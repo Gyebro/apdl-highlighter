@@ -94,12 +94,13 @@ string highlighter::convert_line(string line, bool& in_paragraph) {
 
 string highlighter::get_tooltip(string keyword) {
     string tt = "";
+    string tooltip_newline = "\n";
     for (tooltip t : tcfg.get_tooltips()) {
         if (t.keyword == keyword) {
             tt += "<span class='tooltiptext'>";
             tt += "<a href='" + t.url + "' target='_blank'>";
-            tt += t.keyword + "</a></br>";
-            tt += "<b>" + t.usage + "</b></br>";
+            tt += t.keyword + "</a>" + tooltip_newline;
+            tt += "<b>" + t.usage + "</b>" + tooltip_newline;
             tt += t.description;
             tt += "</span>";
             return tt;
