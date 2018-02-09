@@ -66,7 +66,10 @@ string highlighter::convert_line(string line, bool& in_paragraph) {
                         break;
                     case html_entity::TAG:
                         converted+="<"+r.repl_value+">";
-                        converted+=line;
+                        // If the token is replaced with a tag, print the token in "hidden" form
+                        converted+="<span class='hidden'>";
+                        converted+=line.substr(0,r.token.length())+"</span>";
+                        converted+=trim_spaces(line.substr(r.token.length()));
                         converted+="</"+r.repl_value+">";
                         converted+="\n";
                         break;
