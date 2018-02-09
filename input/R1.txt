@@ -1,0 +1,150 @@
+!!! FEA R1: Static analysis of a 2D frame structure
+! Created by: Gergely Gyebroszki, 2018.02.08.
+
+!! SETUP: element types, materials, sections
+! Preferences / Structural
+KEYW,PR_STRUC,1
+! Enter Preprocessor phase 
+/PREP7 
+! Element type, add: Beam 188
+ET,1,BEAM188
+! Beam sections (hollow rectangle)
+SECTYPE,1,BEAM,HREC,SEC1
+SECOFFSET,CENT 
+SECDATA,50,30,3,3,3,3
+SECTYPE,2,BEAM,HREC,SEC2
+SECOFFSET,CENT
+SECDATA,30,30,3,3,3,3
+! Material properties
+MPTEMP,1,0
+MPDATA,EX,1,,2E5
+MPDATA,PRXY,1,,0.3
+MPDATA,DENS,1,,7.8E-9 
+
+!! MODELLING
+! Enable keypoint and line numbering
+/PNUM,KP,1
+/PNUM,LINE,1
+! Create keypoints
+K,,-3000
+K,,-3000,2000
+K,,-3000,3500
+K,,-2500,3000
+K,,-1500,3000
+K,,,3000
+K,,,4000
+K,,-1500,4500
+K,,-2000,2000
+! Create lines
+L,1,2 
+L,2,3 
+L,3,7 
+L,7,6 
+L,6,5 
+L,5,4 
+L,4,1 
+! Create auxiliary lines
+L,2,9 
+L,5,8 
+! Intersect lines
+LINL,3,9 
+LINL,7,8 
+! Create deleted lines
+L,1,8 
+L,8,4 
+L,3,10 
+L,10,7 
+! Create thin lines
+L,2,8 
+L,3,4 
+L,4,10 
+L,5,10 
+L,10,6 
+! Select all lines with negative X coord
+LSEL,S,LOC,X,-4000,-1 
+! Reflect these lines to YZ plane
+LSYMM,X,ALL
+! Select all lines again to include the one at X=0
+LSEL,ALL
+! Merge keypoints at the same coordinates
+NUMMRG,KP,0.01,,,LOW
+
+!! MESHING
+! Set uniform element size
+LESIZE,ALL,100
+! Select thin lines
+LSEL,S,,,4
+LSEL,A,,,10,14
+LSEL,A,,,23,27
+! Activate cross section 2
+SECN,2
+! Mesh these lines using section 2
+LMESH,ALL
+! Invert selection on lines
+LSEL,INVE 
+! Activate cross section 1
+SECN,1
+! Mesh these lines using section 1
+LMESH,ALL
+LSEL,ALL
+! Turn on the element shape display
+/ESHAPE,1.0
+EPLOT
+
+!! CONSTRAINTS AND LOADS
+! Constrain all dof of KP 1 and 9
+! Select KP 1
+KSEL,S,,,1
+! Also select KP 9
+KSEL,A,,,9
+! Select nodes attached to these keypoints
+NSLK,S
+! Constrain all DOFs
+D,ALL,,,,,,ALL
+! Select everything again
+ALLSEL,ALL  
+! Constrain UZ of all nodes
+D,ALL,,,,,,UZ
+! Select top lines on the left
+LSEL,S,,,8,9
+! Select elements attached to these lines
+ESLL,S
+! Apply P1 pressure
+SFBEAM,ALL,2,PRES,0.5
+! Select top lines on the right
+LSEL,S,,,21,22
+! Select elements attached to these lines
+ESLL,S
+! Apply P1 pressure with opposite direction because line orientation is opposite here
+SFBEAM,ALL,2,PRES,-0.5
+! Select side lines on the right
+LSEL,S,,,15,16
+! Select elements attached to these lines
+ESLL,S
+! Apply P2 pressure
+SFBEAM,ALL,2,PRES,-0.2
+! Select everything again
+ALLSEL,ALL 
+! Set acceleration of reference system to -g
+ACEL,0,9810,0
+
+!! SOLUTION: Solve K.U=F
+! Enter Solution Phase
+/SOL
+! Solve current load step
+SOLVE   
+
+!! POSTPROCESSING 
+! Enter postprocessing phase
+/POST1  
+! Plot deformed shape with undeformed model's edges
+PLDISP,2
+! X-directional displacement on contour plot
+PLNSOL,U,X,0,1.0 
+! Y-directional displacement on contour plot
+PLNSOL,U,Y,0,1.0 
+! Create element tables for MZ at node I and J of elements
+ETABLE,MZI,SMISC,3 
+ETABLE,MZJ,SMISC,16
+! Plot line element results (MZI and MZJ)
+PLLS,MZI,MZJ,1,0,0

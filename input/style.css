@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,700&subset=latin-ext');
+
+body {
+	font-family: 'Roboto Mono', monospace;
+	padding-left: 6px;
+}
+
+h1, h2, p {
+	margin: 0px;
+}
+
+.comment {
+	color: #269226;
+}
+
+.keyword {
+	color: #0e52d1;
+	position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+.keyword .tooltiptext {
+    visibility: hidden;
+    width: 600px;
+    background-color: #cccccc;
+    color: #000000;
+    text-align: left;
+    padding: 6px;
+    border-radius: 6px;
+    position: absolute;
+	top: -5px;
+    left: 105%; 
+    z-index: 1;
+}
+
+.keyword .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%; /* To the left of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent #cccccc transparent transparent;
+}
+
+.keyword:hover .tooltiptext {
+    visibility: visible;
+}
