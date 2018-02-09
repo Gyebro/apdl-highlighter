@@ -56,13 +56,13 @@ string highlighter::convert_line(string line, bool& in_paragraph) {
                         converted+="<span class='"+r.repl_value+"'>";
                         converted+=line;
                         converted+="</span>";
-                        converted+="</br>\n";
+                        converted+="<br>\n";
                         break;
                     case html_entity::ID:
                         converted+="<span id='"+r.repl_value+"'>";
                         converted+=line;
                         converted+="</span>";
-                        converted+="</br>\n";
+                        converted+="<br>\n";
                         break;
                     case html_entity::TAG:
                         converted+="<"+r.repl_value+">";
@@ -86,7 +86,7 @@ string highlighter::convert_line(string line, bool& in_paragraph) {
             for (size_t i = 1; i < parts.size(); i++) {
                 converted += "," + trim_spaces(parts[i]);
             }
-            converted += "</br>\n";
+            converted += "<br>\n";
         }
     }
     return converted;
