@@ -80,8 +80,18 @@ string highlighter::convert_line(string line, bool& in_paragraph) {
         }
     }
     if (!token_match) {
-        vector<string> parts = split(line,',');
-        if (!parts.empty()) {
+        // Handle line end comments first
+        vector<string> outer = split(line,'!');
+        string command = "";
+        string comment = "";
+        if (!outer.empty()) {
+            command = outer[0];
+            for (size_t j=1; j<outer.size(); j++) {
+                comment += outer[j];
+            }
+        }
+        if (!command.empty()) {
+            vector<string> parts = split(command,',');
             converted += "<span class='keyword'>" + trim_spaces(parts[0]);
             // Find tooltip for this keyword if any
             converted += get_tooltip(trim_spaces(parts[0]));
@@ -89,8 +99,12 @@ string highlighter::convert_line(string line, bool& in_paragraph) {
             for (size_t i = 1; i < parts.size(); i++) {
                 converted += "," + trim_spaces(parts[i]);
             }
+            if (!comment.empty()) {
+                converted += "<span class='comment inline'>!"+comment+"</span>";
+            }
             converted += "<br>\n";
         }
+
     }
     return converted;
 }
