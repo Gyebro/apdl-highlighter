@@ -103,9 +103,15 @@ string highlighter::convert_line(string line, bool& in_paragraph) {
                 converted += "<br>\n";
             } else {
                 vector<string> parts = split(command, ',');
-                converted += "<span class='keyword'>" + trim_spaces(parts[0]);
+                string url;
+                string tooltip = get_tooltip(trim_spaces(parts[0]), url);
+                if (url.length() > 0) {
+                    converted += "<span class='keyword'><a href='" + url + "' target='_blank'>" + trim_spaces(parts[0]) + "</a>";
+                } else {
+                    converted += "<span class='keyword'>" + trim_spaces(parts[0]);
+                }
                 // Find tooltip for this keyword if any
-                converted += get_tooltip(trim_spaces(parts[0]));
+                converted += tooltip;
                 converted += "</span>";
                 for (size_t i = 1; i < parts.size(); i++) {
                     converted += "," + pcfg.annotate(trim_spaces(parts[i]));
@@ -121,7 +127,7 @@ string highlighter::convert_line(string line, bool& in_paragraph) {
     return converted;
 }
 
-string highlighter::get_tooltip(string keyword) {
+string highlighter::get_tooltip(string keyword, string& url) {
     string tt = "";
     string tooltip_newline = "\n";
     for (tooltip t : tcfg.get_tooltips()) {
@@ -132,6 +138,7 @@ string highlighter::get_tooltip(string keyword) {
             tt += "<b>" + t.usage + "</b>" + tooltip_newline;
             tt += t.description;
             tt += "</span>";
+            url = t.url;
             return tt;
         }
     }
