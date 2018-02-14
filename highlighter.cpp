@@ -12,7 +12,9 @@ highlighter::highlighter(string config_file, string tooltip_file): hcfg(config_f
 
 void highlighter::highlight(string input_file) {
     ifstream input(input_file);
-    ofstream output(input_file.substr(0,input_file.length()-3)+"html");
+    string out_file = input_file.substr(0,input_file.length()-3)+"html";
+    cout << "Highlighting APDL script '"+input_file+"', output: '"+out_file+"'\n";
+    ofstream output(out_file);
     output << "<!DOCTYPE html>\n";
     output << "<html lang=\"en\">\n"
             " <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n"

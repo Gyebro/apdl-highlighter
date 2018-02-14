@@ -1,0 +1,50 @@
+!!! FEA R2: 3D beam structure
+! Created by: Gergely Gyebroszki, 2018.02.13.
+
+!! SETUP: element types, materials, sections
+KEYW,PR_STRUC,1
+/PREP7 
+ET,1,BEAM189
+SECTYPE,1,BEAM,I,I100,0  
+SECOFFSET,CENT 
+SECDATA,50,50,100,6.8,6.8,4.5
+MPTEMP,1,0  
+MPDATA,EX,1,,2E5
+MPDATA,PRXY,1,,0.3 
+
+!! Modelling
+/PNUM,KP,1  
+/PNUM,LINE,1
+K,1,0,0,-577.3  
+K,2,-500,0,288.7
+K,3,500,00,288.7
+K,,0,4000,0		! Omitting the KP number means automatic numbering
+K,		! 5-th keypoint at origin, auto-numbered
+L,1,4 
+L,2,4 
+L,3,4 
+! Element size on lines: NDIV = 20
+LESIZE,ALL,,,20,,1,,,1,
+! Meshing attributes on line, '5' is the orientation KP here
+LATT,1,,1,,5,,1 
+LMESH,ALL
+! Display element shape to verify good element orientation
+/ESHAPE,1.0 
+! Select nodes at Y=0, constrain all DoF
+NSEL,S,LOC,Y,0
+D,ALL,,,,,,ALL,,,,,
+! Select nodes at Y=4000, add FZ=10000
+NSEL,S,LOC,Y,4000
+F,ALL,FZ,10000
+! Select everything before proceeding to solution
+ALLSEL,ALL 
+
+!! Solution
+/SOL
+SOLVE
+
+!! Postprocessing
+/POST1  
+PLDISP,2
+PLNSOL,U,Y,0,1.0
+PLNSOL,U,Z,0,1.0

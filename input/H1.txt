@@ -1,0 +1,101 @@
+!!! FEA H1: STATIC ANALYSIS OF A TUBE COMPENSATOR
+! Created by Tamas Poloskei, 2017. February 14.
+! Units: [N],[Nmm],[N/mm^2=MPa],[N/mm]
+
+!! Define constant parameters
+T = 5
+ELAST = 2E5
+NU = 0.3
+F = 1000
+P = 0.2
+
+!! SETUP: element types, materials, sections
+KEYW,PR_STRUC,1  ! Preferences / Structural
+/PREP7   
+ET,1,SHELL181  
+MPTEMP,1,0  
+MPDATA,EX,1,,ELAST  
+MPDATA,PRXY,1,,NU   
+SECT,1,SHELL 	! shell lay-up definition
+SECDATA,T,1,0.0,3  
+SECOFFSET,MID   
+K,1,0,0 
+K,2,0,220   
+K,3,300,0   
+K,4,240,60  
+K,5,140,60  
+K,6,100,100 
+K,7,100,220 
+K,8,240,0   
+K,9,140,100  
+LARC,3,4,8,60   
+L,4,5   
+LARC,5,6,9,40   
+L,6,7   
+AROTAT, 1, 2, 3, 4, , , 1, 2, -90, 1
+! Set the number of finite elements on the meridian curves
+LESIZE,9,,,36
+LESIZE,10,,,36
+LESIZE,11,,,36
+LESIZE,12,,,36
+LESIZE,13,,,36
+! Set the number of finite elements of the contour curves
+LESIZE,1,,,10
+LESIZE,5,,,10
+LESIZE,2,,,8
+LESIZE,6,,,8
+LESIZE,3,,,8
+LESIZE,7,,,8
+LESIZE,4,,,12
+LESIZE,8,,,12
+! Mesh the areas using mapped mesh
+MSHKEY,1
+AMESH,ALL
+! Isometric view
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST
+
+! We can see that the orientation of one of the area is the opposite of the others (purple - turquoise)
+! defining the kinematic constraints (left and right)
+*DO,III, 1, 4,1
+DL,III,,UZ,0  
+DL,III,,ROTX,0
+DL,III,,ROTY,0
+DL,III+4,,UX,0  
+DL,III+4,,ROTY,0
+DL,III+4,,ROTZ,0 
+*ENDDO
+! Bottom
+DL,9,,UY,0
+DL,9,,ROTX,0
+DL,9,,ROTZ,0
+! Reverse the normal of area 2, to achieve an identical normal of the surfaces
+AREVERSE,2,0  
+! Define the force on the top part
+LSEL,S,,,13 
+NSLL,S,1
+! Put the same amount force on all the nodes (36 elements -> 37 nodes)
+F,ALL,FY,-F/4/37
+ALLSEL,ALL  
+! Write loadstep file
+LSWRITE,1
+! Delete all active nodal loads
+FDELE,ALL,ALL  
+! Define uniform pressure on all areas
+SFA,ALL,2,PRES,p   
+LSWRITE,2
+FINISH
+
+!! Solve the finite element equation K.U = F, for loadstep 1 and 2
+/SOL
+LSSOLVE,1,2,1,  
+
+!! Postprocessing
+/POST1 
+! Create the load cases
+LCDEF,1,1,Last, 
+LCDEF,2,2,Last, 
+! Add the two solutions
+LCASE,1,
+LCOPER,ADD,2,,,

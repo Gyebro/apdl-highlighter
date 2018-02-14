@@ -1,0 +1,138 @@
+!!! FEA H1: Stiffened shell structure
+! Created by Tamas Poloskei, 2017. February 14.
+! Units: [N],[Nmm],[N/mm^2=MPa],[N/mm]
+
+!! Define constant parameters
+ELAST = 2E5
+NU = 0.3
+PY = -0.001
+RHO = 8E-9
+
+!! SETUP: element types, materials, sections
+KEYW,PR_STRUC,1  ! Preferences / Structural
+/PREP7  
+ET,1,SHELL181    
+ET,2,BEAM189
+MPTEMP,1,0  
+MPDATA,EX,1,,ELAST  
+MPDATA,PRXY,1,,NU 
+MPDATA,DENS,1,,RHO
+! Shell section, lay-up
+SECT,1,SHELL,,  
+SECDATA,5,1,0.0,3  
+SECOFFSET,MID   
+! Beam section
+SECTYPE,2,BEAM,RECT,BEAM3D,0
+SECOFFSET,USER,0,12.5
+SECDATA,5,20
+
+!! Modelling
+K,1,0,0
+K,2,1000,0
+L,1,2
+! Copy lines
+LGEN,2,1,,,,,250
+LGEN,2,2,,,,,500 
+LGEN,2,3,,,,,500 
+LGEN,2,4,,,,,250 
+TYPE,2
+SECN,2
+! Copy keypoints 3,5,7
+KGEN,2,3,7,2,,100
+! Element number definition along lines
+LESIZE,2,,,36
+LESIZE,3,,,36
+LESIZE,4,,,36
+! Select L2 and set mesh attributes
+LSEL,S,LINE,,2 
+LATT,1,,2,,11,,2
+! Select L3 and set mesh attributes
+LSEL,S,LINE,,3 
+LATT,1,,2,,12,,2
+! Select L4 and set mesh attributes
+LSEL,S,LINE,,4
+LATT,1,,2,,13,,2
+ALLSEL,ALL  
+L,1,3
+L,2,4
+L,3,5
+L,4,6
+L,5,7
+L,6,8
+L,7,9
+L,8,10
+AL,1,6,2,7
+AL,2,8,3,9
+AL,3,10,4,11
+AL,4,12,5,13
+! Set the number of finite elements on lines along axis Z
+LESIZE,6,,,8
+LESIZE,8,,,16
+LESIZE,10,,,16
+LESIZE,12,,,8
+! Mesh the beam
+LMESH,2,4,1 
+! Mesh the areas with shell elements
+TYPE,1
+SECN,1
+MSHKEY,1
+AMESH,ALL
+! Kinematic constraints
+DL,6,,ALL,0 
+DL,8,,ALL,0 
+DL,10,,ALL,0
+DL,12,,ALL,0
+! External load
+SFA,ALL,2,PRES,py  
+FINISH 
+
+!! Solution 
+/SOL
+SOLVE   
+FINISH  
+
+!! Postprocessing
+/POST1 
+! Invert window color
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15 
+! Top view
+/VIEW,1,,1  
+/ANG,1  
+/REP,FAST   
+! Save images as bitmap
+PLNSOL, U,Y, 0,1.0  
+/IMAGE,SAVE,u_y,bmp
+PLNSOL, U,X, 0,1.0  
+/IMAGE,SAVE,u_x,bmp
+PLNSOL, U,Z, 0,1.0  
+/IMAGE,SAVE,u_z,bmp
+PLNSOL, S,Z, 0,1.0  
+/IMAGE,SAVE,s_z,bmp
+PLNSOL, S,XZ, 0,1.0 
+/IMAGE,SAVE,t_xz,bmp
+FINISH
+
+!! Solution, new analysis
+/SOL
+! Modal analysis
+ANTYPE,2 
+! First 10 eigenfrequencies
+MODOPT,LANB,10  
+EQSLV,SPAR  
+MXPAND,10,,,1 
+LUMPM,0 
+PSTRES,0  
+MODOPT,LANB,10,0,0,,OFF
+SOLVE   
+FINISH  
+
+!! Postprocessing: Modal analysis
+/POST1  
+SET,FIRST   
+! Save the eigenshapes as bitmaps
+*DO, III, 1, 10,1
+	PLNSOL, U,Y, 0,1.0  
+	/IMAGE,SAVE,strcat(chrval(III),'_eigen_shape'),bmp
+	SET,NEXT
+*ENDDO
