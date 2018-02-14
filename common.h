@@ -65,6 +65,16 @@ long long int find(const vector<T>& v, const T e) {
     return distance(v.begin(), find(v.begin(), v.end(), e));
 }
 
+/**
+ * Check if str has the substring find inside
+ * @param str String which is searched
+ * @param target Target word to be found
+ * @param loc Location of first match
+ * @param i_begin Optional beginning position of the search
+ * @return
+ */
+bool has_string(const string str, const string target, size_t& loc, size_t i_begin=0);
+
 string trim_spaces(const string s);
 
 template <class Clock>

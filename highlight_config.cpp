@@ -59,3 +59,59 @@ tooltip_config::tooltip_config(string filename) {
 const vector<tooltip> &tooltip_config::get_tooltips() const {
     return tooltips;
 }
+
+parameter_config::parameter_config() {
+    params.resize(0);
+}
+
+void parameter_config::update(string filename) {
+    params.resize(0);
+    ifstream in(filename);
+    string line;
+    scalar_param sp;
+    vector<string> parts;
+    while(getline(in,line,'\n')) {
+        if (trim_spaces(line)[0] != '!') {
+            parts = split(line,'=');
+            if (parts.size() > 1) {
+                sp.param = parts[0];
+                sp.value = parts[1];
+                params.push_back(sp);
+            }
+        }
+    }
+    in.close();
+}
+
+const vector<scalar_param> &parameter_config::getParams() const {
+    return params;
+}
+
+/**
+ * Annotates a string using the scalar parameters
+ * @param argument The argument to be annotated
+ * @return The same argument with scalar parameters annotated
+ */
+string parameter_config::annotate(string argument) {
+    string annotated = argument;
+    size_t i;
+    for (scalar_param sp : params) {
+        if (has_string(annotated, sp.param, i)) {
+            // TODO: The same token may be used more than once
+            if (i > 1) continue;
+            string pre_param = "";
+            if (i == 1) {
+                char pre_param_c = annotated[0];
+                pre_param += pre_param_c;
+                if (!ispunct(pre_param_c)) continue;
+            }
+            string param = annotated.substr(i, sp.param.length());
+            string post_param = annotated.substr(i+sp.param.length());
+            if (post_param.length() > 0 && !ispunct(post_param[0])) continue;
+            annotated = pre_param + "<span class='param'>" + param
+                        + "<span class='tooltiptext'>" + sp.param + " = " + sp.value + "</span>"
+                        + "</span>" + post_param;
+        }
+    }
+    return annotated;
+}

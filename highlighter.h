@@ -12,6 +12,7 @@ class highlighter {
 private:
     highlight_config hcfg;
     tooltip_config tcfg;
+    parameter_config pcfg;
     string convert_line(string line, bool& in_paragraph);
     string get_tooltip(string keyword);
 public:

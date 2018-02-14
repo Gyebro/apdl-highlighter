@@ -46,5 +46,20 @@ public:
     const vector<tooltip> &get_tooltips() const;
 };
 
+struct scalar_param {
+    string param;
+    string value;
+};
+
+class parameter_config {
+private:
+    vector<scalar_param> params;
+public:
+    parameter_config();
+    void update(string filename);
+    string annotate(string argument);
+    const vector<scalar_param> &getParams() const;
+};
+
 
 #endif //APDL_HIGHLIGHT_HIGHLIGHT_CONFIG_H

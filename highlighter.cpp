@@ -11,6 +11,8 @@ highlighter::highlighter(string config_file, string tooltip_file): hcfg(config_f
 }
 
 void highlighter::highlight(string input_file) {
+    // Update scalar parameters
+    pcfg.update(input_file);
     ifstream input(input_file);
     string out_file = input_file.substr(0,input_file.length()-3)+"html";
     cout << "Highlighting APDL script '"+input_file+"', output: '"+out_file+"'\n";
@@ -93,18 +95,26 @@ string highlighter::convert_line(string line, bool& in_paragraph) {
             }
         }
         if (!command.empty()) {
-            vector<string> parts = split(command,',');
-            converted += "<span class='keyword'>" + trim_spaces(parts[0]);
-            // Find tooltip for this keyword if any
-            converted += get_tooltip(trim_spaces(parts[0]));
-            converted += "</span>";
-            for (size_t i = 1; i < parts.size(); i++) {
-                converted += "," + trim_spaces(parts[i]);
+            // Check for = sign first, Assume A=B
+            size_t loc = 0;
+            if (has_string(command,"=",loc)) {
+                converted += "<span class='param'>" + command.substr(0,loc) + "</span>";
+                converted += command.substr(loc);
+                converted += "<br>\n";
+            } else {
+                vector<string> parts = split(command, ',');
+                converted += "<span class='keyword'>" + trim_spaces(parts[0]);
+                // Find tooltip for this keyword if any
+                converted += get_tooltip(trim_spaces(parts[0]));
+                converted += "</span>";
+                for (size_t i = 1; i < parts.size(); i++) {
+                    converted += "," + pcfg.annotate(trim_spaces(parts[i]));
+                }
+                if (!comment.empty()) {
+                    converted += "<span class='comment inline'>!" + comment + "</span>";
+                }
+                converted += "<br>\n";
             }
-            if (!comment.empty()) {
-                converted += "<span class='comment inline'>!"+comment+"</span>";
-            }
-            converted += "<br>\n";
         }
 
     }

@@ -3,11 +3,11 @@
 ! Units: [N],[Nmm],[N/mm^2=MPa],[N/mm]
 
 !! Define constant parameters
-T = 5
-ELAST = 2E5
-NU = 0.3
-F = 1000
-P = 0.2
+T=5
+ELAST=2E5
+NU=0.3
+FRC=1000
+P=0.2
 
 !! SETUP: element types, materials, sections
 KEYW,PR_STRUC,1  ! Preferences / Structural
@@ -59,12 +59,12 @@ AMESH,ALL
 ! We can see that the orientation of one of the area is the opposite of the others (purple - turquoise)
 ! defining the kinematic constraints (left and right)
 *DO,III, 1, 4,1
-DL,III,,UZ,0  
+DL,III,,UZ,0
 DL,III,,ROTX,0
 DL,III,,ROTY,0
-DL,III+4,,UX,0  
+DL,III+4,,UX,0
 DL,III+4,,ROTY,0
-DL,III+4,,ROTZ,0 
+DL,III+4,,ROTZ,0
 *ENDDO
 ! Bottom
 DL,9,,UY,0
@@ -76,14 +76,14 @@ AREVERSE,2,0
 LSEL,S,,,13 
 NSLL,S,1
 ! Put the same amount force on all the nodes (36 elements -> 37 nodes)
-F,ALL,FY,-F/4/37
+F,ALL,FY,-FRC/4/37
 ALLSEL,ALL  
 ! Write loadstep file
 LSWRITE,1
 ! Delete all active nodal loads
 FDELE,ALL,ALL  
 ! Define uniform pressure on all areas
-SFA,ALL,2,PRES,p   
+SFA,ALL,2,PRES,P
 LSWRITE,2
 FINISH
 

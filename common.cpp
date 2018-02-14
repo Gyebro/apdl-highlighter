@@ -32,6 +32,20 @@ bool anagram_pair_test(string s1, string s2) {
     }
 }
 
+bool has_string(const string str, const string target, size_t &loc, size_t i_begin) {
+    size_t size_str = str.size();
+    size_t size_target = target.size();
+    loc = size_str;
+    if (size_target > size_str) return false;
+    for (size_t i=i_begin; i<=size_str-size_target; i++) {
+        if (str.substr(i,size_target) == target) {
+            loc = i;
+            return true;
+        }
+    }
+    return false;
+}
+
 string trim_spaces(string value) {
     // Remove leading spaces
     value.erase(value.begin(), std::find_if(value.begin(), value.end(), std::bind1st(std::not_equal_to<char>(), ' ')));
