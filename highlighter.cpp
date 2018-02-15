@@ -103,6 +103,15 @@ string highlighter::convert_line(string line, bool& in_paragraph) {
                 converted += "<br>\n";
             } else {
                 vector<string> parts = split(command, ',');
+
+//                indent the line
+                if(parts[0] == "*ENDDO")
+                    indentationLevel--;
+                for(size_t iii = 1; iii <= indentationLevel; iii++)
+                    converted += "&emsp;";
+                if(parts[0] == "*DO")
+                    indentationLevel++;
+
                 string url;
                 string tooltip = get_tooltip(trim_spaces(parts[0]), url);
                 if (url.length() > 0) {
@@ -133,8 +142,9 @@ string highlighter::get_tooltip(string keyword, string& url) {
     for (tooltip t : tcfg.get_tooltips()) {
         if (t.keyword == keyword) {
             tt += "<span class='tooltiptext'>";
-            tt += "<a href='" + t.url + "' target='_blank'>";
-            tt += t.keyword + "</a>" + tooltip_newline;
+//            Removing the 'unnecessary' text from the tooltip
+//            tt += "<a href='" + t.url + "' target='_blank'>";
+//            tt += t.keyword + "</a>" + tooltip_newline;
             tt += "<b>" + t.usage + "</b>" + tooltip_newline;
             tt += t.description;
             tt += "</span>";
