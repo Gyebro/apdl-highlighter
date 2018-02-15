@@ -3,7 +3,7 @@
 
 using namespace std;
 
-string filenames[] = {"R1", "R2", "H1", "H3"};
+string filenames[] = {"R1", "R2", "H1", "H3", "R3", "S3"};
 
 int main() {
     cout << "Running APDL highlighter\n";

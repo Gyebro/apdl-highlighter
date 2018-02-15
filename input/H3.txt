@@ -1,4 +1,4 @@
-!!! FEA H1: Stiffened shell structure
+!!! FEA H3: Stiffened shell structure
 ! Created by Tamas Poloskei, 2017. February 14.
 ! Units: [N],[Nmm],[N/mm^2=MPa],[N/mm]
 
@@ -132,7 +132,7 @@ FINISH
 SET,FIRST   
 ! Save the eigenshapes as bitmaps
 *DO, III, 1, 10,1
-	PLNSOL, U,Y, 0,1.0  
-	/IMAGE,SAVE,strcat(chrval(III),'_eigen_shape'),bmp
-	SET,NEXT
+ PLNSOL, U,Y, 0,1.0  
+ /IMAGE,SAVE,strcat(chrval(III),'_eigen_shape'),bmp
+ SET,NEXT
 *ENDDO
