@@ -6,7 +6,7 @@
 #include "highlighter.h"
 #include "common.h"
 
-highlighter::highlighter(string config_file, string tooltip_file): hcfg(config_file), tcfg(tooltip_file) {
+highlighter::highlighter(string config_file, string tooltip_file): hcfg(config_file), tcfg(tooltip_file), indentationLevel(0) {
 
 }
 
