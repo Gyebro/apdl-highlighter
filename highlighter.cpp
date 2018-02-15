@@ -142,5 +142,6 @@ string highlighter::get_tooltip(string keyword, string& url) {
             return tt;
         }
     }
+    cout << "Warning: tooltip for keyword: '" + keyword + "' not found!\n";
     return tt;
 }
