@@ -108,7 +108,7 @@ string highlighter::convert_line(string line, bool& in_paragraph) {
                 if(parts[0] == "*ENDDO")
                     indentationLevel--;
                 for(size_t iii = 1; iii <= indentationLevel; iii++)
-                    converted += "&emsp;";
+                    converted += "&nbsp;&nbsp;";
                 if(parts[0] == "*DO")
                     indentationLevel++;
 
