@@ -1,0 +1,119 @@
+!!! FEA ST4: STABILITY ANALYSIS OF A CYLINDRICAL SHELL
+! Created by Tamas Poloskei, 2017. February 28.
+!! Units: [N],[Nmm],[N/mm^2=MPa],[N/mm] 
+
+!! Define constant parameters
+D = 100
+H = 150
+T = 1
+ELAST = 210E3
+NU = 0.3
+
+!! SETUP: element types, materials, sections
+KEYW,PR_STRUC,1  ! Preferences / Structural
+/PREP7
+ET,1,SHELL181   
+MPTEMP,1,0  
+MPDATA,EX,1,,ELAST  
+MPDATA,PRXY,1,,NU
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15 
+
+! thickness definition
+SECT,1,SHELL  
+SECDATA, T,1,0.0,3 
+SECOFFSET,MID   
+SECCONTROL
+
+! Create keypoints
+K,1,0,0,0
+K,2,0,0,H
+
+! Create circle
+CIRCLE,1,D/2,,,360,4
+
+! Create line to be swept along
+L,1,2
+
+! Extrude the lines of the circle
+ADRAG,1,2,3,4,,,5
+
+! Set the number of elements on each line
+LESIZE,1,,,10
+LESIZE,2,,,10
+LESIZE,3,,,10
+LESIZE,4,,,10
+LESIZE,6,,,10
+LESIZE,9,,,10
+LESIZE,11,,,10
+LESIZE,13,,,10
+LESIZE,7,,,20
+LESIZE,8,,,20
+LESIZE,10,,,20
+LESIZE,12,,,20
+
+! Mesh areas as mapped
+MSHKEY,1
+AMESH,ALL
+
+! Activate cylindrical coordinate system
+CSYS,1
+
+! Before element orientation
+/PSYMB,ESYS,1   
+GPLOT 
+! Rotate every elements local coordinatesystem
+NROTAT,ALL
+GPLOT 
+
+! Kinematic constraints
+! Bottom edge
+*DO, III, 1, 4
+DL,III, ,UX,0  
+DL,III, ,UY,0
+DL,III, ,UZ,0
+*ENDDO
+
+! Uncomment the next lines to apply the b) exercise's constraints
+! DL,6, ,UX,0  
+! DL,6, ,UY,0
+! DL,6, ,UY,0
+! *DO, III, 9, 13, 2
+! DL,III, ,UX,0  
+! DL,III, ,UY,0
+! DL,III, ,UY,0
+! *ENDDO
+!
+! Apply loads
+SFA,ALL,1,PRES,-1
+FINISH  
+
+! Activate prestress effects
+/SOL
+PSTRES,1
+/STATUS,SOLU
+SOLVE   
+FINISH
+
+! eigen buckling 
+/SOL
+ANTYPE,1
+! Extract four modes
+BUCOPT,LANB,4,0,0,CENTER
+MXPAND,4,0,0,0,0.001,   
+/STATUS,SOLU
+SOLVE   
+/POST1
+! Save eigenshapes into files
+SET,FIRST
+PLNSOL, U,SUM, 2,1.0
+/IMAGE,SAVE,eigenshape_1,bmp
+SET,NEXT
+PLNSOL, U,SUM, 2,1.0
+/IMAGE,SAVE,eigenshape_2,bmp
+SET,NEXT
+PLNSOL, U,SUM, 2,1.0
+/IMAGE,SAVE,eigenshape_3,bmp
+SET,NEXT
+PLNSOL, U,SUM, 2,1.0
+/IMAGE,SAVE,eigenshape_4,bmp
