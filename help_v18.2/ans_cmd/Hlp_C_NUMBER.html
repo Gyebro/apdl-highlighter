@@ -1,0 +1,31 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:02-04:00"><title>/NUMBER</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_N_TOC.html" title="N Commands"><link rel="prev" href="Hlp_C_NSYM.html" title="NSYM"><link rel="next" href="Hlp_C_NUMCMP.html" title="NUMCMP"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="/NUMBER"><a name="s-NUMBER"></a><div class="titlepage"></div><a class="indexterm" name="d0e186525"></a><span class="refentrytitle"><a href="Hlp_C_NUMBER.html" class="olink"><span class="command"><strong>/NUMBER</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>/NUMBER</strong></span>, <em class="replaceable"><code>NKEY</code></em><br><b class="refpurpose">Specifies whether numbers, colors, or both are used for displays.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_3.html" title="2.3.&nbsp;GRAPHICS Commands"><code class="classname">GRAPHICS</code></a>: <a class="link" href="Hlp_C_CH2_3.html#cmdgraphiclabjla070199" title="Table&nbsp;2.15:&nbsp;&nbsp;Labeling"><span class="type">Labeling</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="s-NUMBER.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NKEY</code></em></b></span></dt><dd><p>Numbering style:       </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">&nbsp;0&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Color (terminal dependent) the numbered
+items and show numbers.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">&nbsp;1&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Color the numbered items.  Do not
+show the numbers.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">&nbsp;2&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Show the numbers.  Do not color
+the items.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">-1&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Do not color the items or show the numbers.
+For contour plots, the resulting display will vary (see below). </p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="s-NUMBER.notes"></a><h2>Notes</h2><p>Specifies whether numbers, colors, or both are used for numbering displays
+[<a href="Hlp_C_PNUM.html" class="olink"><span class="command"><strong>/PNUM</strong></span></a>] of nodes, elements, keypoints, lines, areas, and
+volumes.</p><p>  Shading is also available for terminals configured with more than
+4 color planes [<a href="Hlp_C_SHOW.html" class="olink"><span class="command"><strong>/SHOW</strong></span></a>].  Color automatically appears for
+certain items and may be manually controlled (off or on) for other items.</p><p>When you suppress color (<em class="replaceable"><code>NKEY</code></em> = -1) your
+contour plots will produce different results, depending on your graphics equipment.
+For non-3-D devices (X11, Win32, etc.) your contour plot will be white (no
+color). For 3-D devices, such as OpenGL, the resulting display will be in
+color. </p><p>The following items are automatically given discrete colors:  Boundary
+condition symbols [<a href="Hlp_C_PBC.html" class="olink"><span class="command"><strong>/PBC</strong></span></a>], curves on graph displays, and
+distorted geometry on postprocessing displays.  Contour lines in postprocessing
+displays are automatically colored based upon a continuous, rather than a
+discrete, spectrum so that red is associated with the highest contour value.
+ On terminals with raster capability [<a href="Hlp_C_SHOW.html" class="olink"><span class="command"><strong>/SHOW</strong></span></a>], the area
+between contour lines is filled with the color of the higher contour.</p><p>Explicit entity colors or the discrete color mapping may be changed
+with the <a href="Hlp_C_COLOR.html" class="olink"><span class="command"><strong>/COLOR</strong></span></a> command.</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="s-NUMBER.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;Numbering</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

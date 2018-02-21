@@ -1,0 +1,42 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:23-04:00"><title>AREFINE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_A_TOC.html" title="A Commands"><link rel="prev" href="Hlp_C_AREAS.html" title="AREAS"><link rel="next" href="Hlp_C_AREMESH.html" title="AREMESH"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="AREFINE"><a name="AREFINE"></a><div class="titlepage"></div><a class="indexterm" name="d0e27218"></a><span class="refentrytitle"><span class="command"><strong>AREFINE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>AREFINE</strong></span>, <em class="replaceable"><code>NA1</code></em>, <em class="replaceable"><code>NA2</code></em>, <em class="replaceable"><code>NINC</code></em>, <em class="replaceable"><code>LEVEL</code></em>, <em class="replaceable"><code>DEPTH</code></em>, <em class="replaceable"><code>POST</code></em>, <em class="replaceable"><code>RETAIN</code></em><br><b class="refpurpose">Refines the mesh around specified areas.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7meshingldm061600" title="Table&nbsp;2.36:&nbsp;&nbsp;Meshing"><span class="type">Meshing</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="AREFINE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NA1</code></em>, <em class="replaceable"><code>NA2</code></em>, <em class="replaceable"><code>NINC</code></em></b></span></dt><dd><p>Areas (<em class="replaceable"><code>NA1</code></em> to <em class="replaceable"><code>NA2</code></em> in
+increments of <em class="replaceable"><code>NINC</code></em>) around which the mesh is to
+be refined.  <em class="replaceable"><code>NA2</code></em> defaults to <em class="replaceable"><code>NA1</code></em>,
+and <em class="replaceable"><code>NINC</code></em> defaults to 1.  If <em class="replaceable"><code>NA1</code></em> =
+ALL, <em class="replaceable"><code>NA2</code></em> and <em class="replaceable"><code>NINC</code></em> are
+ignored and all selected areas are used for refinement.  If <em class="replaceable"><code>NA1</code></em> =
+P, graphical picking is enabled and all remaining command fields are ignored
+(valid only in the GUI).  A component name may also be substituted for <em class="replaceable"><code>NA1</code></em> (<em class="replaceable"><code>NA2</code></em> and <em class="replaceable"><code>NINC</code></em> are ignored).</p></dd><dt><span><b class="term"><em class="replaceable"><code>LEVEL</code></em></b></span></dt><dd><p>Amount of refinement to be done.  Specify the value of <em class="replaceable"><code>LEVEL</code></em> as
+an integer from 1 to 5, where a value of 1 provides minimal refinement, and
+a value of 5 provides maximum refinement (defaults to 1).</p></dd><dt><span><b class="term"><em class="replaceable"><code>DEPTH</code></em></b></span></dt><dd><p>Depth of mesh refinement in terms of the number of elements
+outward from the indicated areas (defaults to 1).</p></dd><dt><span><b class="term"><em class="replaceable"><code>POST</code></em></b></span></dt><dd><p>Type of postprocessing to be done after element splitting,
+in order to improve element quality:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>No postprocessing will be done.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SMOOTH</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Smoothing will be done.  Node locations
+may change.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CLEAN</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Smoothing and cleanup will be done.  Existing
+elements may be deleted, and node locations may change (default).</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>RETAIN</code></em></b></span></dt><dd><p>Flag indicating whether quadrilateral elements must be retained
+in the refinement of an all-quadrilateral mesh.  (The ANSYS program ignores
+the <em class="replaceable"><code>RETAIN</code></em> argument when you are refining anything
+other than a quadrilateral mesh.)        </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ON</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The final mesh will be composed entirely of
+quadrilateral elements, regardless of the element quality (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The final mesh may include some triangular
+elements in order to maintain element quality and provide transitioning.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="AREFINE.notes"></a><h2>Notes</h2><p><span class="command"><strong>AREFINE</strong></span> performs local mesh refinement around the
+specified areas.  By default, the indicated elements are split
+to create new elements with 1/2 the edge length of the original elements (<em class="replaceable"><code>LEVEL</code></em> =
+1).</p><p><span class="command"><strong>AREFINE</strong></span> refines all area elements and tetrahedral
+volume elements that are adjacent to the specified areas.  Any volume elements
+that are adjacent to the specified areas, but are not tetrahedra (for example,
+hexahedra, wedges, and pyramids), are not refined.</p><p>You cannot use mesh refinement on a solid model that contains initial
+conditions at nodes [<a class="link" href="Hlp_C_IC.html" title="IC"><span class="command"><strong>IC</strong></span></a>], coupled nodes [<a class="link" href="Hlp_C_CP.html" title="CP"><span class="command"><strong>CP</strong></span></a> family
+of commands], constraint equations [<a class="link" href="Hlp_C_CE.html" title="CE"><span class="command"><strong>CE</strong></span></a> family of commands],
+or boundary conditions or loads applied directly to any of its nodes or elements.
+ This applies to nodes and elements anywhere in the model, not just in the
+region where you want to request mesh refinement.  See <a href="../ans_mod/Hlp_G_MOD8.html" class="olink">Revising Your Model</a> in the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a> for additional
+restrictions on mesh refinement.</p><p>This command is also valid for <a href="../ans_adv/Hlp_G_ADVREZ.html" class="olink">rezoning</a>.</p></div><div class="refsect1" title="Menu Paths"><a name="AREFINE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Modify Mesh&gt;Refine At&gt;Areas</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

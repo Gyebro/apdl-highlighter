@@ -1,0 +1,51 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:10-04:00"><title>SLIST</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_S_TOC.html" title="S Commands"><link rel="prev" href="Hlp_C_SHRINK.html" title="/SHRINK"><link rel="next" href="Hlp_C_SLOAD.html" title="SLOAD"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SLIST"><a name="SLIST"></a><div class="titlepage"></div><a class="indexterm" name="d0e252791"></a><span class="refentrytitle"><span class="command"><strong>SLIST</strong></span></span><div class="refnamediv"><p><span class="command"><strong>SLIST</strong></span>, <em class="replaceable"><code>SFIRST</code></em>, <em class="replaceable"><code>SLAST</code></em>, <em class="replaceable"><code>SINC</code></em>, <em class="replaceable"><code>Details</code></em>, <em class="replaceable"><code>Type</code></em><br><b class="refpurpose">Summarizes the section properties for all defined sections
+in the current session.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7crosssectldm061600" title="Table&nbsp;2.45:&nbsp;&nbsp;Sections"><span class="type">Cross Sections</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="SLIST.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>SFIRST</code></em></b></span></dt><dd><p>First section ID to be summarized. Default = First available section in the database.</p></dd><dt><span><b class="term"><em class="replaceable"><code>SLAST</code></em></b></span></dt><dd><p>Last section ID to be summarized. Default = Last available section in the database.</p></dd><dt><span><b class="term"><em class="replaceable"><code>SINC</code></em></b></span></dt><dd><p>Increment of the section ID. Default = 1.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Details</code></em></b></span></dt><dd><p>Determines the content of the summarized information for beam, pipe,
+            shell, and reinforcing sections.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BRIEF</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>For beams, lists only the section integrated properties (such as <span class="italic"><em>Area</em></span>, <span class="italic"><em>Iyy</em></span>, and
+                    <span class="italic"><em>Iyz</em></span>). This option is the default.</p><p>For <a href="../ans_str/Hlp_G_STRREINF.html" class="olink">reinforcing</a>,
+                  lists only the input reinforcing properties (such as material, cross-section area,
+                  fiber spacing, and input fiber location parameters).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">FULL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>For beams, lists the section integrated properties, as well as the section
+                  nodal coordinates, section cell connectivity information, and section cell
+                  integration point coordinates. For shells, the section stiffness (membrane,
+                  bending, membrane-bending coupling and transverse shear) are printed.</p><p>The shell section stiffness listed considers elastic behavior of materials at
+                  reference temperature only. The elements that use the section data may alter the
+                  transverse shear stiffness based on slenderness considerations (in addition to the
+                  shear correction factors shown). </p><p>Section stiffness terms listed via the FULL option do not include section
+                  offsets. The  program accounts for section offsets during the solution phase of
+                  the analysis.</p><p>For reinforcing sections generated automatically
+                    (<a class="link" href="Hlp_C_EREINF.html" title="EREINF"><span class="command"><strong>EREINF</strong></span></a>), lists the complete information of reinforcing
+                  fibers or surfaces (including material ID, cross-section area, fiber spacing,
+                  orientation, and locations in natural coordinates). </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">GROUP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If a section calls other sections, this option lists those sections
+                  too.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Type</code></em></b></span></dt><dd><p>The section type. Valid arguments are ALL (default) or any valid section type
+              (<a class="link" href="Hlp_C_SECTYPE.html" title="SECTYPE"><span class="command"><strong>SECTYPE</strong></span></a>).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="SLIST.notes"></a><h2>Notes</h2><p>By default, the command lists information about all sections. You can limit the output to
+      specific section types via the <em class="replaceable"><code>Type</code></em> key. </p><p>When <a href="../ans_bas/Hlp_G_BAS2_6.html#bas_oceanloads" class="olink">ocean loading</a> is present, the command lists
+      beam section properties used by ocean loading.</p><div class="refsect2" title="Example Output"><a name="SLIST.extranote1"></a><h3>Example Output</h3><p>Following is example output from the <span class="command"><strong>SLIST</strong></span>,,,,BRIEF command for a rectangular beam section subtype (<a class="link" href="Hlp_C_SECTYPE.html" title="SECTYPE"><span class="command"><strong>SECTYPE</strong></span></a>,,BEAM,RECT):</p><pre class="programlisting">
+LIST SECTION ID SETS     1 TO     1 BY     1
+
+  SECTION ID NUMBER:         1
+  BEAM SECTION TYPE:     Rectangle       
+  BEAM SECTION NAME IS:             
+  BEAM SECTION DATA SUMMARY:
+   Area                 =  6.0000    
+   Iyy                  =  4.5000
+   Iyz                  = 0.11281E-15
+   Izz                  =  2.0000    
+   Warping Constant     = 0.23299
+   Torsion Constant     =  4.7330
+   Center of Gravity Y  =-0.30973E-16
+   Center of Gravity Z  = 0.15376E-15
+   Shear Center Y       =-0.22957E-13
+   Shear Center Z       = 0.31281E-13
+
+   Beam Section is offset to CENTROID of cross section
+</pre></div></div><div class="refsect1" title="Menu Paths"><a name="SLIST.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;List Sections</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

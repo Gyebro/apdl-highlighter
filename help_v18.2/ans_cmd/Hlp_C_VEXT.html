@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:50-04:00"><title>VEXT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_V_TOC.html" title="V Commands"><link rel="prev" href="Hlp_C_VEORIENT.html" title="VEORIENT"><link rel="next" href="Hlp_C_VFACT.html" title="*VFACT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="VEXT"><a name="VEXT"></a><div class="titlepage"></div><a class="indexterm" name="d0e291264"></a><span class="refentrytitle"><span class="command"><strong>VEXT</strong></span></span><div class="refnamediv"><p><span class="command"><strong>VEXT</strong></span>, <em class="replaceable"><code>NA1</code></em>, <em class="replaceable"><code>NA2</code></em>, <em class="replaceable"><code>NINC</code></em>, <em class="replaceable"><code>DX</code></em>, <em class="replaceable"><code>DY</code></em>, <em class="replaceable"><code>DZ</code></em>, <em class="replaceable"><code>RX</code></em>, <em class="replaceable"><code>RY</code></em>, <em class="replaceable"><code>RZ</code></em><br><b class="refpurpose">Generates additional volumes by extruding areas.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7volumesldm061600" title="Table&nbsp;2.34:&nbsp;&nbsp;Volumes"><span class="type">Volumes</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="VEXT.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NA1</code></em>, <em class="replaceable"><code>NA2</code></em>, <em class="replaceable"><code>NINC</code></em></b></span></dt><dd><p>Set of areas (<em class="replaceable"><code>NA1</code></em> to <em class="replaceable"><code>NA2</code></em> in
+steps of <em class="replaceable"><code>NINC</code></em>) that defines the pattern to be extruded.
+ <em class="replaceable"><code>NA2</code></em> defaults to <em class="replaceable"><code>NA1</code></em>, <em class="replaceable"><code>NINC</code></em> defaults
+to 1.  If <em class="replaceable"><code>NA1</code></em> = ALL, <em class="replaceable"><code>NA2</code></em> and <em class="replaceable"><code>NINC</code></em> are
+ignored and the pattern is defined by all selected areas.  If <em class="replaceable"><code>NA1</code></em> =
+P, graphical picking is enabled and all remaining command fields are ignored
+(valid only in the GUI).  A component name may also be substituted for <em class="replaceable"><code>NA1</code></em> (<em class="replaceable"><code>NA2</code></em> and <em class="replaceable"><code>NINC</code></em> are ignored).</p></dd><dt><span><b class="term"><em class="replaceable"><code>DX</code></em>, <em class="replaceable"><code>DY</code></em>, <em class="replaceable"><code>DZ</code></em></b></span></dt><dd><p>Increments to be applied to the X, Y, and Z keypoint coordinates
+in the active coordinate system (<span class="italic"><em>DR</em></span>, <span class="italic"><em>D&#952;</em></span>, <span class="italic"><em>DZ</em></span> for
+cylindrical; <span class="italic"><em>DR</em></span>, <span class="italic"><em>D&#952;</em></span>, <span class="italic"><em>D&#934;</em></span> for spherical).</p></dd><dt><span><b class="term"><em class="replaceable"><code>RX</code></em>, <em class="replaceable"><code>RY</code></em>, <em class="replaceable"><code>RZ</code></em></b></span></dt><dd><p>Scale factors to be applied to the X, Y, and Z keypoint coordinates
+in the active coordinate system (<span class="italic"><em>RR</em></span>, <span class="italic"><em>R&#952;</em></span>, <span class="italic"><em>RZ</em></span> for
+cylindrical; <span class="italic"><em>RR</em></span>, <span class="italic"><em>R&#952;</em></span>, <span class="italic"><em>R&#934;</em></span> for spherical).  Note that the <span class="italic"><em>R&#952;</em></span> and <span class="italic"><em>R&#934;</em></span> scale factors are interpreted as angular <span class="italic"><em>offsets</em></span>.  For example, if CSYS = 1, <em class="replaceable"><code>RX</code></em>,<em class="replaceable"><code> RY</code></em>,<em class="replaceable"><code> RZ</code></em> input of (1.5,10,3) would scale the specified keypoints 1.5 times in the
+radial and 3 times in the Z direction, while adding an offset of 10 degrees
+to the keypoints.  Zero, blank, or negative scale factor values are assumed
+to be 1.0.  Zero or blank angular offsets have no effect.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="VEXT.notes"></a><h2>Notes</h2><p>Generates additional volumes (and their corresponding keypoints, lines,
+and areas) by extruding and scaling a pattern of areas in the active coordinate
+system.</p><p>If element attributes have been associated with the input area via the <a class="link" href="Hlp_C_AATT.html" title="AATT"><span class="command"><strong>AATT</strong></span></a> command,
+the opposite area generated by the <span class="command"><strong>VEXT</strong></span> operation will
+also have those attributes (i.e., the element attributes from the input area
+are copied to the opposite area).  Note that only the area opposite the input
+area will have the same attributes as the input area; the areas adjacent to
+the input area will not.</p><p>If the areas are meshed or belong to meshed volumes, a 3-D mesh can
+be extruded with this command.  Note that the <em class="replaceable"><code>NDIV</code></em> argument
+on the <a class="link" href="Hlp_C_ESIZE.html" title="ESIZE"><span class="command"><strong>ESIZE</strong></span></a> command should be set before extruding the
+meshed areas.</p><p>Scaling of the input areas, if specified, is performed first, followed
+by the extrusion.</p><p>In a non-Cartesian coordinate system, the <span class="command"><strong>VEXT</strong></span> command
+locates the end face of the volume based on the active coordinate system.
+ However, the extrusion is made along a straight line between the end faces.
+ Note that solid modeling in a toroidal coordinate system is not recommended.</p><div class="caution" title="Caution" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b><font color="red">Caution:</font></b></span>&nbsp;&nbsp;Use of the <span class="command"><strong>VEXT</strong></span> command can produce unexpected
+results when operating in a non-Cartesian coordinate system.  For a detailed
+description of the possible problems that may occur, see <a href="../ans_mod/Hlp_G_MOD5.html" class="olink">Solid Modeling</a> in the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a>.</p><hr></div></div><div class="refsect1" title="Menu Paths"><a name="VEXT.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Operate&gt;Extrude&gt;Areas&gt;By XYZ Offset</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:58-04:00"><title>VLSCALE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_V_TOC.html" title="V Commands"><link rel="prev" href="Hlp_C_VLIST.html" title="VLIST"><link rel="next" href="Hlp_C_VMASK.html" title="*VMASK"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="VLSCALE"><a name="VLSCALE"></a><div class="titlepage"></div><a class="indexterm" name="d0e296465"></a><span class="refentrytitle"><span class="command"><strong>VLSCALE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>VLSCALE</strong></span>, <em class="replaceable"><code>NV1</code></em>, <em class="replaceable"><code>NV2</code></em>, <em class="replaceable"><code>NINC</code></em>, <em class="replaceable"><code>RX</code></em>, <em class="replaceable"><code>RY</code></em>, <em class="replaceable"><code>RZ</code></em>, <em class="replaceable"><code>KINC</code></em>, <em class="replaceable"><code>NOELEM</code></em>, <em class="replaceable"><code>IMOVE</code></em><br><b class="refpurpose">Generates a scaled set of volumes from a pattern of volumes.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7volumesldm061600" title="Table&nbsp;2.34:&nbsp;&nbsp;Volumes"><span class="type">Volumes</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="VLSCALE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NV1</code></em>, <em class="replaceable"><code>NV2</code></em>, <em class="replaceable"><code>NINC</code></em></b></span></dt><dd><p>Set of volumes (<em class="replaceable"><code>NV1</code></em> to <em class="replaceable"><code>NV2</code></em> in
+steps of <em class="replaceable"><code>NINC</code></em>) that defines the pattern to be scaled.
+ <em class="replaceable"><code>NV2</code></em> defaults to <em class="replaceable"><code>NV1</code></em>, <em class="replaceable"><code>NINC</code></em> defaults
+to 1.  If <em class="replaceable"><code>NV1</code></em> = ALL, <em class="replaceable"><code>NV2</code></em> and <em class="replaceable"><code>NINC</code></em> are
+ignored and the pattern is defined by all selected volumes.  If <em class="replaceable"><code>NV1</code></em> =
+P, graphical picking is enabled and all remaining command fields are ignored
+(valid only in the GUI).  A component name may also be substituted for <em class="replaceable"><code>NV1</code></em> (<em class="replaceable"><code>NV2</code></em> and <em class="replaceable"><code>NINC</code></em> are ignored).</p></dd><dt><span><b class="term"><em class="replaceable"><code>RX</code></em>, <em class="replaceable"><code>RY</code></em>, <em class="replaceable"><code>RZ</code></em></b></span></dt><dd><p>Scale factors to be applied to the X, Y, and Z keypoint coordinates
+in active coordinate system (<span class="italic"><em>RR</em></span>, <span class="italic"><em>R</em></span>&#952;, <span class="italic"><em>RZ</em></span> for
+cylindrical; <span class="italic"><em>RR</em></span>, <span class="italic"><em>R</em></span>&#952;, <span class="italic"><em>R</em></span>&#934; for spherical).  Note that the <span class="emphasis"><em>R</em></span>&#952;
+and <span class="italic"><em>R</em></span>&#934; scale factors are interpreted
+as angular <span class="italic"><em>offsets</em></span>.  For example, if CSYS
+= 1, <em class="replaceable"><code>RX</code></em>,<em class="replaceable"><code> RY</code></em>,<em class="replaceable"><code> RZ</code></em> input
+of (1.5,10,3) would scale the specified keypoints 1.5 times in the radial
+and 3 times in the Z direction, while adding an offset of 10 degrees to the
+keypoints.  Zero, blank, or negative scale factor values are assumed to be
+1.0.  Zero or blank angular offsets have no effect.</p></dd><dt><span><b class="term"><em class="replaceable"><code>KINC</code></em></b></span></dt><dd><p>Increment to be applied to keypoint numbers for generated
+set.  If zero, the lowest available keypoint numbers will be assigned [<a class="link" href="Hlp_C_NUMSTR.html" title="NUMSTR"><span class="command"><strong>NUMSTR</strong></span></a>].</p></dd><dt><span><b class="term"><em class="replaceable"><code>NOELEM</code></em></b></span></dt><dd><p>Specifies whether nodes and elements are also to be generated:
+        </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Nodes and elements associated with the original
+volumes will be generated (scaled) if they exist.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Nodes and elements will <span class="italic"><em>not</em></span> be
+generated.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>IMOVE</code></em></b></span></dt><dd><p>Specifies whether volumes will be moved or newly defined:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Additional volumes will be generated.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Original volumes will be <span class="italic"><em>moved</em></span> to
+new position (<em class="replaceable"><code>KINC</code></em> and <em class="replaceable"><code>NOELEM</code></em> are
+ignored).  Use only if the old volumes are no longer needed at their original
+positions.  Corresponding meshed items are also moved if not needed at their
+original position.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="VLSCALE.notes"></a><h2>Notes</h2><p>Generates a scaled set of volumes (and their corresponding keypoints,
+lines, areas,  and mesh) from a pattern of volumes.  The MAT, TYPE, REAL,
+and ESYS attributes are based on the volumes in the pattern and not the current
+settings.  Scaling is done in the active coordinate system.  Volumes in the
+pattern could have been generated in any coordinate system.  However, solid
+modeling in a toroidal coordinate system is not recommended.</p></div><div class="refsect1" title="Menu Paths"><a name="VLSCALE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Operate&gt;Scale&gt;Volumes</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

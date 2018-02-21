@@ -1,0 +1,69 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:55-04:00"><title>NLMESH</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_N_TOC.html" title="N Commands"><link rel="prev" href="Hlp_C_NLIST.html" title="NLIST"><link rel="next" href="Hlp_C_NLOG.html" title="NLOG"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="NLMESH"><a name="NLMESH"></a><div class="titlepage"></div><a class="indexterm" name="d0e180388"></a><span class="refentrytitle"><span class="command"><strong>NLMESH</strong></span></span><div class="refnamediv"><p><span class="command"><strong>NLMESH</strong></span>, <em class="replaceable"><code>Control</code></em>,
+    <em class="replaceable"><code>VAL1</code></em><br><b class="refpurpose">Controls remeshing in nonlinear adaptivity.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolunonlinjla070199" title="Table&nbsp;2.50:&nbsp;&nbsp;Nonlinear Options"><span class="type">Nonlinear Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="NLMESH.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Control</code></em></b></span></dt><dd><p>The mesh-quality control to adjust:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NLAY</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The <span class="italic"><em>number of sculpting
+           layers</em></span> beginning with detected seed elements. For local (partial) remeshing,
+          this option helps the remesher to detect remeshing regions from the whole deformed model.
+          Valid for both 2-D and 3-D analysis.</p><p><span class="italic"><em>Default</em></span>:  2-D analysis:
+           <em class="replaceable"><code>VAL1</code></em> = 10.  3-D analysis: <em class="replaceable"><code>VAL1</code></em> =
+          2.</p><p>Generally, a larger <em class="replaceable"><code>VAL1</code></em> leads to larger remeshing regions
+          and tends to unite isolated multiple regions. A larger value also tends to result in
+          better remeshing quality (and increases mapping and solution overhead accordingly).</p><p>Only elements with the same element and material properties as
+          seed elements are included into the remeshing regions. </p><p><span class="italic"><em>VAL1</em></span> = 0 is not valid, as the remeshing regions
+          would contain only the detected seed elements, resulting in many small cavities within
+          remeshing regions (especially if the specified mesh-quality metric threshold
+           [<a class="link" href="Hlp_C_NLADAPTIVE.html" title="NLADAPTIVE"><span class="command"><strong>NLADAPTIVE</strong></span></a>] is relatively large).</p><p>For more information about this control, see <a href="../ans_adv/advmnanewmesh.html#advmnlasculptlayers" class="olink">Sculpting Layers Control in the <span class="olinkdocname">Mechanical APDL Advanced Analysis Guide</span></a>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BDRA</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The <span class="italic"><em>boundary angle threshold</em></span> in degrees. Use this
+          option to retain geometry features of the original (source) mesh. Valid for both 2-D and
+          3-D analysis.</p><p>In a 3-D analysis, this value is the dihedral angle (the angle between the normal
+          vectors from two neighboring surface facets). In a 2-D analysis, this value is the 2-D
+          patch boundary edge normal angle. If the edge angle or dihedral angle is larger than the
+          specified threshold, the node shared by 2-D edges or edges shared by 3-D facets are
+          retained during remeshing.</p><p><span class="italic"><em>Valid values</em></span>: 0 &lt;
+           <em class="replaceable"><code>VAL1</code></em> &lt; 80.</p><p><span class="italic"><em>Default</em></span>:  2-D analysis:
+           <em class="replaceable"><code>VAL1</code></em> = 10.  3-D analysis: <em class="replaceable"><code>VAL1</code></em> =
+          15.</p><p>Generally, a larger <em class="replaceable"><code>VAL1</code></em> improves the quality of the new
+          mesh (and may even repair local tiny edges or facets of poor quality). Too large a value,
+          however, may also smooth out some geometric features, leading to slightly different
+          results and possibly causing convergence issues in the substeps immediately following
+          remeshing. </p><p>For more information about this control, see <a href="../ans_adv/advmnanewmesh.html#advmnlaboundedgecont" class="olink">Boundary-Angle and Edge-Angle Control in the <span class="olinkdocname">Mechanical APDL Advanced Analysis Guide</span></a>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">AEDG</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The <span class="italic"><em>edge angle threshold</em></span> in degrees. Valid for 3-D
+          analysis only.</p><p>Use this control to split 3-D patch segments. The edge angle is the angle between
+          adjacent surface segment edges sharing a node. If the edge angle is larger than the
+          specified threshold (VAL1), the segment splits and the node is automatically treated as a
+          node to be retained.</p><p><span class="italic"><em>Default</em></span>:  <em class="replaceable"><code>VAL1</code></em> =
+          10.</p><p>Generally, a larger <em class="replaceable"><code>VAL1</code></em> improves the quality of the new
+          mesh, but may result in loss of feature nodes. The effect is similar to that of boundary
+          angles (<em class="replaceable"><code>Control</code></em> = BDRA). </p><p>For more information about this control, see <a href="../ans_adv/advmnanewmesh.html#advmnlaboundedgecont" class="olink">Boundary-Angle and Edge-Angle Control in the <span class="olinkdocname">Mechanical APDL Advanced Analysis Guide</span></a>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SRAT </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The <span class="italic"><em>global sizing ratio</em></span> for remeshing. Valid for
+          both 2-D and 3-D analysis.</p><p><span class="italic"><em>Default</em></span>: <em class="replaceable"><code>VAL1</code></em> = 1.0.
+          The default value results in the new mesh having a similar size as that of the original
+          mesh.</p><p>Generally, set the value (<em class="replaceable"><code>VAL1</code></em>) to &gt;= 0.7. The model
+          can be refined (&lt; 1.0) or coarsened (&gt; 1.0) up to 3x depending on the number of 3-D
+          elements, and approximately 2x for 2-D elements.</p><p>For more information about this control, see <a href="../ans_adv/advmnanewmesh.html#advmnlaglobsiz" class="olink">Global Sizing Control in the <span class="olinkdocname">Mechanical APDL Advanced Analysis Guide</span></a>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">GRAD </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Controls the <span class="italic"><em>new mesh sizing gradient</em></span> during
+          remeshing. Valid for both 2-D and 3-D analysis. </p><p><span class="italic"><em>Valid values</em></span>: <em class="replaceable"><code>VAL1</code></em> = 0,
+          1, or 2.</p><table border="0" summary="Simple list" class="simplelist"><tr><td><em class="replaceable"><code>VAL1</code></em> = 0 -- The mesh sizing gradient is not retained.
+           The new mesh is uniform and has an approximate average size on the entire remeshed
+           domain(s), even if the original mesh has sizing gradients.</td></tr><tr><td><em class="replaceable"><code>VAL1</code></em> = 1 -- The new mesh follows the original
+           mesh-sizing gradient to retain the element averaged-edge length. This value tends to
+           coarsen the mesh in the location of the distorted elements during remeshing.</td></tr><tr><td><em class="replaceable"><code>VAL1</code></em> = 2 (default) -- The new mesh follows the sizing
+           gradient of the original mesh, with additional sizing compensation based on the element
+           size change due to deformation during solution. This value tends to refine the mesh at
+           the location of the distorted elements, where the distortion may have originated from
+           deformation during solution.</td></tr></table><p>For more information about this control, see <a href="../ans_adv/advmnanewmesh.html#advmnlalocsizgrad" class="olink">Gradient Control in the <span class="olinkdocname">Mechanical APDL Advanced Analysis Guide</span></a>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LIST </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Lists all mesh-quality control parameters.</p><p>If <em class="replaceable"><code>VAL1</code></em> has been specified for a given mesh control, the
+          most recently specified value is listed. If a value was not explicitly specified, the
+          default value is listed (assuming that the problem has been solved at least once). </p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>VAL1</code></em></b></span></dt><dd><p>Numerical input value that varies according to the specified
+       <em class="replaceable"><code>Control</code></em> option.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="NLMESH.notes"></a><h2>Notes</h2><p><span class="command"><strong>NLMESH</strong></span> is a global control command enabling mesh-quality adjustments for
+   remeshing in <a href="../ans_adv/adv_meshnonlinadapt.html" class="olink">nonlinear
+    adaptivity</a>. The command can be used when components are associated with mesh-quality
+   criteria (<a class="link" href="Hlp_C_NLADAPTIVE.html" title="NLADAPTIVE"><span class="command"><strong>NLADAPTIVE</strong></span></a> with <em class="replaceable"><code>Criterion</code></em> = MESH). </p><p>Issue the <span class="command"><strong>NLMESH</strong></span> command only in cases where advanced mesh-quality
+   control is desirable for remeshing in nonlinear adaptivity. The control values specified by this
+   command apply to all components having mesh-quality-based criteria defined, and can be modified
+   at every loadstep during the nonlinear adaptive solution or when performing a restart
+   analysis.</p></div><div class="refsect1" title="Menu Paths"><a name="NLMESH.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

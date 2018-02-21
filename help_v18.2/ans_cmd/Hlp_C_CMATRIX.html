@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:30-04:00"><title>CMATRIX</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_C_CTOC.html" title="C Commands"><link rel="prev" href="Hlp_C_CMAP.html" title="/CMAP"><link rel="next" href="Hlp_C_CMDELE.html" title="CMDELE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="CMATRIX"><a name="CMATRIX"></a><div class="titlepage"></div><a class="indexterm" name="d0e48414"></a><span class="refentrytitle"><span class="command"><strong>CMATRIX</strong></span></span><div class="refnamediv"><p><span class="command"><strong>CMATRIX</strong></span>, <em class="replaceable"><code>SYMFAC</code></em>, <em class="replaceable"><code>Condname</code></em>, <em class="replaceable"><code>NUMCOND</code></em>, <em class="replaceable"><code>GRNDKEY</code></em>, <em class="replaceable"><code>Capname</code></em><br><b class="refpurpose">Performs electrostatic field solutions and calculates
+the self and mutual capacitances between multiple conductors.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div> </div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="CMATRIX.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>SYMFAC</code></em></b></span></dt><dd><p>Geometric symmetry factor.  Capacitance values are
+scaled by this factor which represents the fraction of the total device
+modeled.  Defaults to 1.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Condname</code></em></b></span></dt><dd><p>Alpha-numeric prefix identifier used in defining named
+conductor components.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NUMCOND</code></em></b></span></dt><dd><p>Total Number of Components.  If a ground is modeled,
+it is to be included as a component.  If a ground is not modeled,
+but infinite elements are used to model the far-field ground, a named
+component for the far-field ground is not required.</p></dd><dt><span><b class="term"><em class="replaceable"><code>GRNDKEY</code></em></b></span></dt><dd><p>Ground key:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Ground is one of the components, which
+is not at infinity.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Ground is at infinity (modeled by infinite
+elements).</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Capname</code></em></b></span></dt><dd><p>Array name for computed capacitance matrix.  Defaults
+to <span class="command"><strong>CMATRIX</strong></span>.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="CMATRIX.notes"></a><h2>Notes</h2><p>To invoke the <span class="command"><strong>CMATRIX</strong></span> macro, the exterior
+nodes of each conductor must be grouped into individual components
+using the <a class="link" href="Hlp_C_CM.html" title="CM"><span class="command"><strong>CM</strong></span></a> command.  Each set of  independent
+components is assigned a component name with a common prefix followed
+by the conductor number.  A conductor system with a ground must also
+include the ground nodes as a component.  The ground component is
+numbered last in the component name sequence.</p><p>A ground capacitance matrix relates charge to a voltage vector.
+ A ground matrix cannot be applied to a circuit modeler. The lumped
+capacitance matrix is a combination of  lumped "arrangements" of voltage
+differences between conductors.  Use the lumped capacitance terms
+in a circuit modeler to represent capacitances between conductors.
+  </p><p>Enclose all name-strings in single quotes in the <span class="command"><strong>CMATRIX</strong></span> command line.</p><p>See the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for
+details.</p><p>This command does not support multiframe
+restarts.</p></div><div class="refsect1" title="Menu Paths"><a name="CMATRIX.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Solve&gt;Electromagnet&gt;Static Analysis&gt;Capac Matrix</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

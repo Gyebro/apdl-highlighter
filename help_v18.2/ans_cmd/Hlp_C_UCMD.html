@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:44-04:00"><title>/UCMD</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_U_TOC.html" title="U Commands"><link rel="prev" href="Hlp_U_TOC.html" title="U Commands"><link rel="next" href="Hlp_C_UDOC_sl.html" title="/UDOC"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="/UCMD"><a name="s-UCMD"></a><div class="titlepage"></div><a class="indexterm" name="d0e284497"></a><span class="refentrytitle"><a href="Hlp_C_UCMD.html" class="olink"><span class="command"><strong>/UCMD</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>/UCMD</strong></span>, <em class="replaceable"><code>Cmd</code></em>, <em class="replaceable"><code>SRNUM</code></em><br><b class="refpurpose">Assigns a user-defined command name.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_4.html" title="2.4.&nbsp;APDL Commands"><code class="classname">APDL</code></a>: <a class="link" href="Hlp_C_CH2_4.html#cmdapdlabbrvjla070199" title="Table&nbsp;2.20:&nbsp;&nbsp;Abbreviations"><span class="type">Abbreviations</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsect1" title="Argument Descriptions"><a name="s-UCMD.argdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Cmd</code></em></b></span></dt><dd><p>User-defined command name.  Only the first four characters
+are significant.  Must not conflict with any ANSYS command name or any user
+"unknown command" macro name.</p></dd><dt><span><b class="term"><em class="replaceable"><code>SRNUM</code></em></b></span></dt><dd><p>User subroutine number (1 to 10) programmed for this command.
+ For example, the command <a href="Hlp_C_UCMD.html" class="olink"><span class="command"><strong>/UCMD</strong></span></a>,MYCMD,3 will execute subroutine
+USER03 whenever the command <span class="bold"><strong>MYCMD</strong></span> is entered.
+ Use a blank command name to disassociate <em class="replaceable"><code>SRNUM</code></em> from
+its command.  For example, <a href="Hlp_C_UCMD.html" class="olink"><span class="command"><strong>/UCMD</strong></span></a>,,3 removes<span class="bold"><strong> MYCMD</strong></span> as
+a command.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="s-UCMD.notes"></a><h2>Notes</h2><p>Assigns a user-defined command name to a user-programmable (system-dependent)
+subroutine.  This feature allows user-defined commands to be programmed into
+the ANSYS program.  Once programmed, this command can be input to the program
+like other commands, and can also be included in the ANSYS start-up file.
+ See <a href="Hlp_C_ULIB.html" class="olink"><span class="command"><strong>*ULIB</strong></span></a> for another way of defining user commands.</p><p>Up to 10 subroutines are available for user-defined commands (USER01 to USER10). Users must
+   have system permission, system access, and knowledge to write, compile, and link the appropriate
+   subprocessors into the ANSYS program at the site where it is to be run. All routines should be
+   written in FORTRAN. For more information on FORTRAN compilers please refer to either the
+   <a href="../ai_instl/install_windows.html" class="olink">ANSYS, Inc. Windows Installation Guide</a> or the <a href="../ai_instl/install_linux.html" class="olink">ANSYS, Inc. Linux Installation Guide</a>
+   for details specific to your platform or operating system. The USER01 routine is
+   commented and should be listed from the distribution media (system dependent) for more details.
+   Issue <a href="Hlp_C_UCMD.html" class="olink"><span class="command"><strong>/UCMD</strong></span></a>,STAT to list all user-defined command names. Since a
+   user-programmed command is a nonstandard use of the program, the verification of any ANSYS run
+   incorporating these commands is entirely up to the user. In any contact with ANSYS customer
+   support regarding the performance of a custom version of the ANSYS program, you should explicitly
+   state that a user programmable feature has been used. See <a href="../ans_adv/Hlp_G_ADV7_1.html" class="olink">User-Programmable Features (UPFs) in the <span class="olinkdocname">Mechanical APDL Advanced Analysis Guide</span></a> for a general description of user-programmable features and the
+    <a href="../ans_prog/Hlp_P_UPFTOC.html" class="olink">Guide to User-Programmable Features in the <span class="olinkdocname">Mechanical APDL Programmer's Reference</span></a> for a detailed description of
+   these features.</p><p>This command is valid only at the Begin Level.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e284592"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

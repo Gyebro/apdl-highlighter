@@ -1,0 +1,23 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:21-04:00"><title>AMAP</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_A_TOC.html" title="A Commands"><link rel="prev" href="Hlp_C_ALPHAD.html" title="ALPHAD"><link rel="next" href="Hlp_C_AMESH.html" title="AMESH"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="AMAP"><a name="AMAP"></a><div class="titlepage"></div><a class="indexterm" name="d0e20076"></a><span class="refentrytitle"><span class="command"><strong>AMAP</strong></span></span><div class="refnamediv"><p><span class="command"><strong>AMAP</strong></span>, <em class="replaceable"><code>AREA</code></em>, <em class="replaceable"><code>KP1</code></em>, <em class="replaceable"><code>KP2</code></em>, <em class="replaceable"><code>KP3</code></em>, <em class="replaceable"><code>KP4</code></em><br><b class="refpurpose">Generates a 2-D mapped mesh based on specified area corners.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7meshingldm061600" title="Table&nbsp;2.36:&nbsp;&nbsp;Meshing"><span class="type">Meshing</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="AMAP.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>AREA</code></em></b></span></dt><dd><p>Area number of area to be meshed.  If <em class="replaceable"><code>AREA</code></em> =
+P, graphical picking is enabled and all remaining arguments are ignored (valid
+only in the GUI).</p></dd><dt><span><b class="term"><em class="replaceable"><code>KP1</code></em>, <em class="replaceable"><code>KP2</code></em>, <em class="replaceable"><code>KP3</code></em>, <em class="replaceable"><code>KP4</code></em></b></span></dt><dd><p>Keypoints defining corners of the mapped mesh.  Three or four
+corners may be specified, and may be input in any order.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="AMAP.notes"></a><h2>Notes</h2><p>Only one area at a time can be meshed with this command.  The program <span class="italic"><em>internally</em></span> concatenates all lines between the specified
+keypoints, then meshes the area with all quadrilateral elements.  If line
+divisions are set, the mesh will follow the rules for mapped meshing (see <a href="../ans_mod/Hlp_G_MOD7_5.html" class="olink">Meshing Your Solid Model</a> in
+the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a>).</p><p>If the area being meshed has concatenated lines, the program will ask
+if those concatenations should be removed (in batch, the concatenations will
+automatically be removed).  Nodes required for the generated elements are
+created and assigned the lowest available node numbers.  If a mapped mesh
+is not possible due to mismatched line divisions or poor element shapes, the
+meshing operation is aborted.</p></div><div class="refsect1" title="Menu Paths"><a name="AMAP.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Mesh&gt;Areas&gt;Mapped&gt;By Corners</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

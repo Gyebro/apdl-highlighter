@@ -1,0 +1,98 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:55-04:00"><title>ESSOLV</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_ESORT.html" title="ESORT"><link rel="next" href="Hlp_C_ESTIF.html" title="ESTIF"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="ESSOLV"><a name="ESSOLV"></a><div class="titlepage"></div><a class="indexterm" name="d0e100259"></a><span class="refentrytitle">
+<span class="command"><strong>ESSOLV</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>ESSOLV</strong></span>, <em class="replaceable"><code>Electit</code></em>, <em class="replaceable"><code>Strutit</code></em>, <em class="replaceable"><code>DIMN</code></em>, <em class="replaceable"><code>MORPHOPT</code></em>, <em class="replaceable"><code>Mcomp</code></em>, <em class="replaceable"><code>Xcomp</code></em>, <em class="replaceable"><code>ELECTOL</code></em>, <em class="replaceable"><code>STRUTOL</code></em>, <em class="replaceable"><code>MXLOOP</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>RUSEKY</code></em>, <em class="replaceable"><code>RESTKY</code></em>, <em class="replaceable"><code>EISCOMP</code></em>
+<br><b class="refpurpose">Performs a coupled electrostatic-structural analysis.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="ESSOLV.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Electit</code></em>
+</b></span></dt><dd><p>Title of the electrostatics physics file as assigned
+by the <a class="link" href="Hlp_C_PHYSICS.html" title="PHYSICS"><span class="command"><strong>PHYSICS</strong></span></a>  command.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Strutit</code></em>
+</b></span></dt><dd><p>Title of the structural physics file as assigned by
+the <a class="link" href="Hlp_C_PHYSICS.html" title="PHYSICS"><span class="command"><strong>PHYSICS</strong></span></a>  command.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>DIMN</code></em>
+</b></span></dt><dd><p>Model dimensionality (a default is not allowed):</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>2-D model.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">3</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>3-D model.</p></td></tr></tbody></table></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>MORPHOPT</code></em>
+</b></span></dt><dd><p>Morphing option:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">&lt;0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Do not perform any mesh morphing
+or remeshing.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Remesh the non-structural regions for
+each recursive loop only if mesh morphing fails (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Remesh the non-structural regions each
+recursive loop and bypass mesh morphing.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Perform mesh morphing only, do not remesh
+any non-structural regions.</p></td></tr></tbody></table></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Mcomp</code></em>
+</b></span></dt><dd><p>Component name of the region to be morphed.  For 2-D
+models, the component may be elements or areas.  For 3-D models, the
+component may be elements or volumes.  A component must be specified.
+You must enclose name-strings in single quotes in the <span class="command"><strong>ESSOLV</strong></span> command line.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Xcomp</code></em>
+</b></span></dt><dd><p>Component name of entities excluded from morphing.
+ In the 2-D case, it is the component name for the lines excluded
+from morphing.  In the 3-D case, it is component name for the areas
+excluded from morphing.  Defaults to exterior non-shared entities
+(see the <a class="link" href="Hlp_C_DAMORPH.html" title="DAMORPH"><span class="command"><strong>DAMORPH</strong></span></a>, <a class="link" href="Hlp_C_DVMORPH.html" title="DVMORPH"><span class="command"><strong>DVMORPH</strong></span></a>, and <a class="link" href="Hlp_C_DEMORPH.html" title="DEMORPH"><span class="command"><strong>DEMORPH</strong></span></a> commands). You must enclose name-strings in single
+quotes in the <span class="command"><strong>ESSOLV</strong></span> command line.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>ELECTOL</code></em>
+</b></span></dt><dd><p>Electrostatic energy convergence tolerance.  Defaults
+to .005 (.5%) of the value computed from the previous iteration. 
+If less than zero, the convergence criteria based on electrostatics
+results is turned off.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>STRUTOL</code></em>
+</b></span></dt><dd><p>Structural maximum displacement convergence tolerance.
+ Defaults to .005 (.5%) of the value computed from the previous iteration.
+ If less than zero, the convergence criteria base on structural results
+is turned off.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>MXLOOP</code></em>
+</b></span></dt><dd><p>Maximum number of allowable solution recursive loops.
+ A single pass through both an electrostatics and structural analysis
+constitutes one loop.  Defaults to 100.</p></dd><dt><span><b class="term"><em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused field.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>RUSEKY</code></em>
+</b></span></dt><dd><p>Reuse flag option:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq91544096-b024-4ae3-805d-a54788e2c5b5.svg"></span>1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Assumes
+initial run of <span class="command"><strong>ESSOLV</strong></span> using base geometry for the
+first electrostatics solution.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">&gt;1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Assumes <span class="command"><strong>ESSOLV</strong></span> run is a continuation of a previous <span class="command"><strong>ESSOLV</strong></span> run,
+whereby the morphed geometry is used for the initial electrostatic
+simulation.</p></td></tr></tbody></table></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>RESTKY</code></em>
+</b></span></dt><dd><p>Structural restart key.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use static solution option for structural
+solution.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use static restart solution option for
+structural solution.</p></td></tr></tbody></table></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>EISCOMP</code></em>
+</b></span></dt><dd><p>Element component name for elements containing initial
+stress data residing in file <span class="filename"><strong>jobname.ist</strong></span>. The
+initial stress data must be defined prior to issuing <span class="command"><strong>ESSOLV</strong></span> (see <a class="link" href="Hlp_C_INISTATE.html" title="INISTATE"><span class="command"><strong>INISTATE</strong></span></a> command).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="ESSOLV.notes"></a><h2>Notes</h2><p>
+<span class="command"><strong>ESSOLV</strong></span> invokes an ANSYS macro which automatically
+performs a coupled electrostatic-structural analysis.</p><p>The macro displays periodic updates of the convergence.</p><p>If non-structural regions are remeshed during the analysis,
+boundary conditions and loads applied to nodes and elements will be
+lost. Accordingly, it is better to assign boundary conditions and
+loads to the solid model.</p><p>Use <em class="replaceable"><code>RUSEKY</code></em> &gt; 1 for solving multiple <span class="command"><strong>ESSOLV</strong></span> simulations for different excitation levels (i.e.,
+for running a voltage sweep). Do not issue the <a class="link" href="Hlp_C_SAVE.html" title="SAVE"><span class="command"><strong>SAVE</strong></span></a> command to save the database between <span class="command"><strong>ESSOLV</strong></span> calls.</p><p>For nonlinear structural solutions, the structural restart option
+(<em class="replaceable"><code>RESTKY</code></em> = 1) may improve solution time
+by starting from the previous converged structural solution.</p><p>For solid elements, <span class="command"><strong>ESSOLV</strong></span> automatically detects the air-structure interface and applies a
+Maxwell surface flag on the electrostatic elements. This flag is used
+to initiate the transfer for forces from the electrostatic region
+to the structure. When using the <span class="command"><strong>ESSOLV</strong></span> command
+with structural shell elements (for example, <a href="../ans_elem/Hlp_E_SHELL181.html" class="olink"><span class="structname">SHELL181</span></a>), you must manually apply the Maxwell surface flag on all air elements
+surrounding the shells before writing the final electrostatic physics
+file. Use the <a class="link" href="Hlp_C_SFA.html" title="SFA"><span class="command"><strong>SFA</strong></span></a> command to apply the Maxwell
+surface flag to the areas representing the shell elements; doing so
+ensures that the air elements next to both sides of the shells receive
+the Maxwell surface flag.</p><p>If lower-order structural solids or shells are used, set KEYOPT(7)
+= 1 for the electrostatic element types to ensure the correct transfer
+of forces.</p><p>Information on creating the initial stress file is documented
+in the <a href="../ans_bas/Hlp_G_BAS2.html" class="olink">Loading</a> chapter in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a>.</p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p></div><div class="refsect1" title="Menu Paths"><a name="ESSOLV.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Physics&gt;Coupled Solvers&gt;Elec/struc</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Physics&gt;Coupled Solvers&gt;Elec/struc</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

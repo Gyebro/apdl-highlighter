@@ -1,0 +1,135 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:12-04:00"><title>FLUID29</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_MATRIX27.html" title="MATRIX27"><link rel="next" href="Hlp_E_FLUID30.html" title="FLUID30"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="FLUID29"><a name="FLUID29"></a><div class="titlepage"></div><a class="indexterm" name="d0e26209"></a><span class="refentrytitle">
+<span class="structname">FLUID29</span> </span><div class="refnamediv"><p><br><b class="refpurpose">2-D Axisymmetric
+Harmonic Acoustic Fluid</b><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+<div class=""><div class="application"><span class="application">
+<a class="link" href="Hlp_E_FLUID29.html#aKW6vq2acmcm" title="FLUID29 Product Restrictions">Product Restrictions</a>
+</span></div></div>
+</div></p></div><div class="refsect1" title="FLUID29 Element Description"><a name="elemdesc29tlm61499"></a><h2>FLUID29 Element Description</h2><p>
+<span class="structname">FLUID29</span> is used for modeling the fluid
+medium and the interface in fluid/structure interaction problems.
+ Typical applications include sound wave propagation and submerged
+structure dynamics.  The governing equation for acoustics, namely
+the 2-D wave equation, has been discretized taking into account the
+coupling of acoustic pressure and structural motion at the interface.
+ The element has four corner nodes with three degrees of freedom per
+node: translations in the nodal x and y directions and pressure. 
+The translations, however, are applicable only at nodes that are on
+the interface.  Acceleration effects, such as in sloshing problems,
+may be included.</p><p>The element has the capability to include damping of sound absorbing
+material at the interface.  The element can be used with other 2-D
+structural elements to  perform unsymmetric or damped modal, full
+harmonic and full transient method analyses (see the description of
+the <a href="../ans_cmd/Hlp_C_TRNOPT.html" class="olink"><span class="command"><strong>TRNOPT</strong></span></a> command).  When there is no structural
+motion, the element is also applicable to static and modal analyses.
+ See <a href="../ans_thry/thy_el29.html" class="olink">
+<span class="structname">FLUID29</span>
+</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for more details about
+this element.</p><div class="figure"><a name="aV3Tf30dlmm"></a><p class="title"><b>Figure&nbsp;29.1:&nbsp;&nbsp;
+<span class="structname">FLUID29</span> Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM29-1.svg" alt="FLUID29 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="FLUID29 Input Data"><a name="aKW6vq158mcm"></a><h2>FLUID29 Input Data</h2><p>The geometry, node locations, and the coordinate system for
+this element are shown in <a class="xref" href="Hlp_E_FLUID29.html#aV3Tf30dlmm" title="Figure&nbsp;29.1:&nbsp;&nbsp; FLUID29 Geometry">Figure&nbsp;29.1:&nbsp;
+<span class="structname">FLUID29</span> Geometry</a>.  The element
+is defined by four nodes, the number of harmonic waves (MODE on the <a href="../ans_cmd/Hlp_C_MODE.html" class="olink"><span class="command"><strong>MODE</strong></span></a> command), the symmetry condition (ISYM on the <a href="../ans_cmd/Hlp_C_MODE.html" class="olink"><span class="command"><strong>MODE</strong></span></a> command), a reference pressure, and the isotropic
+material properties.  The MODE and ISYM parameters are discussed in
+detail in <a class="xref" href="Hlp_E_continuumelems.html#aD19sq339ldm" title="5.1.5.2.1.&nbsp;Harmonic Axisymmetric Elements with Nonaxisymmetric Loads">Harmonic Axisymmetric Elements with Nonaxisymmetric Loads</a>. The reference pressure (PREF)
+is used to calculate the element sound pressure level (defaults to
+20x10<sup>-6</sup> N/m<sup>2</sup>).  The speed of sound (<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq066695ea-a681-4ded-9d45-80374d08f599.svg"></span>) in the fluid is input by SONC where k
+is the bulk modulus of the fluid (Force/Area) and &#961;<sub>o</sub> is the mean fluid density (Mass/Volume) (input as DENS).
+ The dissipative effect due to fluid viscosity is neglected, but absorption
+of sound at the interface is accounted for by generating a damping
+matrix using the surface area and boundary admittance at the interface.
+ Experimentally measured values of the boundary admittance for the
+sound absorbing material may be input as material property MU. We
+recommend MU values from 0.0 to 1.0; however, values greater than
+1.0 are allowed.  MU = 0.0 represents no sound absorption and MU =
+1.0 represents full sound absorption.  DENS, SONC and MU are evaluated
+at the average of the nodal temperatures.</p><p>Nodal flow rates, if any, may be specified using the <a href="../ans_cmd/Hlp_C_F.html" class="olink"><span class="command"><strong>F</strong></span></a> command where both the real and imaginary components
+may be applied.  Nodal flow rates should be input per unit of depth
+for a plane analysis and on a 360&deg; basis for an axisymmetric analysis.</p><p>Element loads are described in <a class="xref" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">Nodal Loading</a>. <a href="../ans_acous/ansacousfsi.html" class="olink">Fluid-structure interfaces
+(FSI)</a> can be flagged by surface loads at the element faces
+as shown by the circled numbers on <a class="xref" href="Hlp_E_FLUID29.html#aV3Tf30dlmm" title="Figure&nbsp;29.1:&nbsp;&nbsp; FLUID29 Geometry">Figure&nbsp;29.1:&nbsp;
+<span class="structname">FLUID29</span> Geometry</a>.
+Specifying the FSI label (without a value) (<a href="../ans_cmd/Hlp_C_SF.html" class="olink"><span class="command"><strong>SF</strong></span></a>, <a href="../ans_cmd/Hlp_C_SFA.html" class="olink"><span class="command"><strong>SFA</strong></span></a>, <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a>) couples the structural motion
+and fluid pressure at the interface.  Deleting the FSI specification
+(<a href="../ans_cmd/Hlp_C_SFDELE.html" class="olink"><span class="command"><strong>SFDELE</strong></span></a>, <a href="../ans_cmd/Hlp_C_SFADELE.html" class="olink"><span class="command"><strong>SFADELE</strong></span></a>, <a href="../ans_cmd/Hlp_C_SFEDELE.html" class="olink"><span class="command"><strong>SFEDELE</strong></span></a>) removes the flag.  The flag specification should be on the fluid
+elements at the interface. The surface load label IMPD with a value
+of unity should be used to include damping that may be present at
+a structural boundary with a sound absorption lining.  A zero value
+of IMPD removes the damping  calculation.  The displacement degrees
+of freedom (UX and UY) at the element nodes not on the interface should
+be set to zero to avoid zero-pivot warning messages.</p><p>Temperatures may be input as element body loads at the nodes.
+ The node I temperature T(I) defaults to TUNIF.  If all other temperatures
+are unspecified, they default to T(I).  For any other input pattern,
+unspecified temperatures default to TUNIF.</p><p>KEYOPT(2) is used to specify the absence of a structure at the
+interface and, therefore, the absence of coupling between the fluid
+and structure.  Since the absence of coupling produces symmetric element
+matrices, a symmetric eigensolver (<a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a>) may
+be used within the modal analysis.  However, for the coupled (unsymmetric)
+problem, a corresponding unsymmetric eigensolver (<a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a>) must be used.</p><p>Vertical acceleration (ACELY on the <a href="../ans_cmd/Hlp_C_ACEL.html" class="olink"><span class="command"><strong>ACEL</strong></span></a> command)
+is needed for the gravity regardless of the value of MODE, even for
+a modal analysis.</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_FLUID29.html#a34Tf294lmm" title="FLUID29 Input Summary">"FLUID29 Input Summary"</a>.  A general description of element input is
+given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>. For axisymmetric applications
+see <a class="xref" href="Hlp_E_continuumelems.html#axele520jjw" title="5.1.5.2.&nbsp;Harmonic Axisymmetric Elements">Harmonic Axisymmetric Elements</a>.</p><div class="refsect2" title="FLUID29 Input Summary"><a name="a34Tf294lmm"></a><h3>FLUID29 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J, K, L</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>UX, UY, PRES if KEYOPT (2) = 0</td></tr><tr><td>PRES if KEYOPT (2) = 1</td></tr></table></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><p>PREF (reference pressure)</p></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p>
+<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: DENS, SONC, MU</p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Fluid-structure Interface Flag&nbsp;--&nbsp;</b></span></dt><dd><p>face 1 (J-I), face 2 (K-J), face 3 (L-K), face 4 (I-L)</p></dd><dt><span><b class="term">Impedance&nbsp;--&nbsp;</b></span></dt><dd><p>face 1 (J-I),
+face 2 (K-J), face 3 (L-K), face 4 (I-L)</p></dd></dl></div></div></dd><dt><span><b class="term">Mode Number</b></span></dt><dd><p>Input mode number on <a href="../ans_cmd/Hlp_C_MODE.html" class="olink"><span class="command"><strong>MODE</strong></span></a> command</p></dd><dt><span><b class="term">Loading Condition</b></span></dt><dd><p>Input for ISYM on <a href="../ans_cmd/Hlp_C_MODE.html" class="olink"><span class="command"><strong>MODE</strong></span></a> command</p><div><div class="variablelist"><dl><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Symmetric loading</p></dd><dt><span><b class="term">-1 &nbsp;--</b></span></dt><dd><p>Antisymmetric loading</p></dd></dl></div></div></dd><dt><span><b class="term">Special Features</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Structure at element interface:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Structure present at interface
+(unsymmetric element matrix)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>No structure at interface
+(symmetric element matrix)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(3)</b></span></dt><dd><p>Element behavior:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Planar</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Axisymmetric</p></dd><dt><span><b class="term">2 --</b></span></dt><dd><p>Axiharmonic</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(7)</b></span></dt><dd><p>Free surface effect:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Do not include sloshing
+effect</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Include sloshing effect
+on face of elements located on Y = 0.0 plane (elements must not have
+positive Y coordinates)</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="FLUID29 Output Data"><a name="aKW6vq1camcm"></a><h2>FLUID29 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal displacements and pressures included in the
+overall nodal solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_FLUID29.html#aFYeDg280lmm" title="Table&nbsp;29.1:&nbsp;&nbsp;FLUID29 Element Output Definitions">Table&nbsp;29.1:&nbsp;FLUID29 Element Output Definitions</a>.</p></li></ul></div><p>
+</p><p>
+<a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a> gives a general description of solution
+output.  See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways to view results.</p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="aFYeDg280lmm"></a><p class="title"><b>Table&nbsp;29.1:&nbsp;&nbsp;FLUID29 Element Output Definitions</b></p><div class="table-contents"><table summary="FLUID29 Element Output Definitions" border="1" width="95%"><colgroup><col width="120" class="col1"><col width="312" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th align="center">Name</th><th align="center">Definition</th><th align="center">O</th><th align="center">R</th></tr></thead><tbody><tr><td>EL</td><td>Element Number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Nodes - I, J, K, L</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>MAT</td><td>Material number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>VOLU:</td><td>Volume</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>XC, YC</td><td>Location where results are reported</td><td align="center">Y</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID29.html#fluid29.tab.2.ft.2">2</a>
+</td></tr><tr><td>TEMP</td><td>Temperatures  T(I), T(J), T(K), T(L)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>PRESSURE</td><td>Average pressure</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>PG( X, Y, SUM)</td><td>Pressure gradient components and vector sum</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>VL( X, Y, SUM)</td><td>Fluid velocity components and
+vector sum</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID29.html#fluid29.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID29.html#fluid29.tab.2.ft.1">1</a>
+</td></tr><tr><td>SOUND PR.LEVEL</td><td>Sound pressure level (in decibels)</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID29.html#fluid29.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID29.html#fluid29.tab.2.ft.1">1</a>
+</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="fluid29.tab.2.ft.1"></a>Output only if <a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,HARMIC</p></li><li class="listitem"><p><a name="fluid29.tab.2.ft.2"></a>Available only at centroid
+as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item.</p></li></ol></div><p>
+<a class="xref" href="Hlp_E_FLUID29.html#aAC18g301lmm" title="Table&nbsp;29.2:&nbsp;&nbsp;FLUID29 Item and Sequence Numbers">Table&nbsp;29.2:&nbsp;FLUID29 Item and Sequence Numbers</a> lists output available through
+the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method.
+ See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General Postprocessor
+(POST1)</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in
+this reference for more information.  The following notation is used
+in <a class="xref" href="Hlp_E_FLUID29.html#aAC18g301lmm" title="Table&nbsp;29.2:&nbsp;&nbsp;FLUID29 Item and Sequence Numbers">Table&nbsp;29.2:&nbsp;FLUID29 Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="Hlp_E_FLUID29.html#aFYeDg280lmm" title="Table&nbsp;29.1:&nbsp;&nbsp;FLUID29 Element Output Definitions">Table&nbsp;29.1:&nbsp;FLUID29 Element Output Definitions</a>
+</p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item  label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element
+data</p></dd></dl></div></div><p>
+</p><div class="table"><a name="aAC18g301lmm"></a><p class="title"><b>Table&nbsp;29.2:&nbsp;&nbsp;FLUID29 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="FLUID29 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="120" align="center" class="col1"><col width="72" class="col2"><col width="48" align="center" class="col3"></colgroup><thead><tr><th rowspan="2" align="center" valign="middle">Output Quantity
+Name</th><th colspan="2" align="center">
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th align="center">Item</th><th align="center">E</th></tr></thead><tbody><tr><td align="center">PGX</td><td>SMISC</td><td align="center">1</td></tr><tr><td align="center">PGY</td><td>SMISC</td><td align="center">2</td></tr><tr><td align="center">VLX</td><td>SMISC</td><td align="center">3</td></tr><tr><td align="center">VLY</td><td>SMISC</td><td align="center">4</td></tr><tr><td align="center">PRESSURE</td><td>NMISC</td><td align="center">1</td></tr><tr><td align="center">PGSUM</td><td>NMISC</td><td align="center">2</td></tr><tr><td align="center">VLSUM</td><td>NMISC</td><td align="center">3</td></tr><tr><td align="center">SOUND PR. LEVEL</td><td>NMISC</td><td align="center">4</td></tr></tbody></table></div></div><br class="table-break"></div><div class="refsect1" title="FLUID29 Assumptions and Restrictions"><a name="aKW6vq242mcm"></a><h2>FLUID29 Assumptions and Restrictions</h2><p>
+</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The area of the element must be positive.</p></li><li class="listitem"><p>The element must lie in a global X-Y plane as shown
+in <a class="xref" href="Hlp_E_FLUID29.html#aV3Tf30dlmm" title="Figure&nbsp;29.1:&nbsp;&nbsp; FLUID29 Geometry">Figure&nbsp;29.1:&nbsp;
+<span class="structname">FLUID29</span> Geometry</a>.</p></li><li class="listitem"><p>All elements must have 4 nodes.  A triangular element
+may be formed by defining duplicate K and L nodes (see <a class="xref" href="Hlp_E_CH2_8.html" title="2.5.&nbsp;Degenerated Shape Elements">Degenerated Shape Elements</a>).</p></li><li class="listitem"><p>The acoustic pressure in the fluid medium is determined
+by the wave equation with the following assumptions:</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>The fluid is compressible (density changes due to
+pressure variations).</p></li><li class="listitem"><p>Inviscid fluid (no dissipative effect due to viscosity).</p></li><li class="listitem"><p>There is no mean flow of the fluid.</p></li><li class="listitem"><p>The mean density and pressure are uniform throughout
+the fluid.  Note that the acoustic pressure is the excess pressure
+from the mean pressure.</p></li><li class="listitem"><p>Analyses are limited to relatively small acoustic
+pressures so that the changes in density are small compared with the
+mean density.</p></li></ul></div><p>
+</p></li></ul></div><p>
+</p><p>The lumped mass matrix formulation (<a href="../ans_cmd/Hlp_C_LUMPM.html" class="olink"><span class="command"><strong>LUMPM</strong></span></a>,ON) is not allowed for this element.</p></div><div class="refsect1" title="FLUID29 Product Restrictions"><a name="aKW6vq2acmcm"></a><h2>FLUID29 Product Restrictions</h2><p>There are no product-specific restrictions for this element.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

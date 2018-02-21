@@ -1,0 +1,432 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:21-04:00"><title>SOLID65</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_SHELL61.html" title="SHELL61"><link rel="next" href="Hlp_E_LINK68.html" title="LINK68"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SOLID65"><a name="SOLID65"></a><div class="titlepage"></div><a class="indexterm" name="d0e39791"></a><span class="refentrytitle">
+<span class="structname">SOLID65</span>   </span><div class="refnamediv"><p><br><b class="refpurpose">3-D Reinforced
+Concrete Solid</b><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+<div class=""><div class="application"><span class="application">
+<a class="link" href="Hlp_E_SOLID65.html#a5pNxq3a5mcm" title="SOLID65 Product Restrictions">Product Restrictions</a>
+</span></div></div>
+</div></p></div><div class="refsect1" title="SOLID65 Element Description"><a name="ELEMsolid65descfdb"></a><h2>SOLID65 Element Description</h2><div class="informaltable"><table border="1" width="95%"><colgroup><col class="col1" width="100%"></colgroup><tbody><tr><td>Although this <a class="link" href="Hlp_E_CH2_OLDNEW.html#EL2oldnewtable" title="2.4.1.&nbsp;Legacy vs. Current Element Technologies">legacy
+element</a> is available for use in your analysis, ANSYS, Inc. recommends
+using the current-technology element <a class="link" href="Hlp_E_SOLID185.html" title="SOLID185"><span class="structname">SOLID185</span></a>, specifying either full integration with the <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq12bc6c2f-bd73-41c0-bad9-9950456b1682.svg"></span> method (KEYOPT(3) = 0 and KEYOPT(2) = 3), or simplified
+enhanced strain formulation (KEYOPT(3) = 0 and KEYOPT(2) = 0). For
+more information, see <a href="../ans_mat/microplane.html" class="olink">Microplane</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</td></tr></tbody></table></div><p>
+<span class="structname">SOLID65</span> is used for 3-D modeling of
+solids with or without reinforcing bars (rebar).  The solid is capable
+of cracking in tension and crushing in compression.  In concrete applications,
+for example, the solid capability of the element may be used to model
+the concrete while the rebar capability is available for modeling
+reinforcement behavior.  Other cases for which the element is also
+applicable would be reinforced composites (such as fiberglass), and
+geological materials (such as rock).  The element is defined by eight
+nodes having three degrees of freedom at each node:  translations
+in the nodal x, y, and z directions.  Up to three different rebar
+specifications may be defined.</p><p>The concrete element is similar to a 3-D structural solid but
+with the addition of special cracking and crushing capabilities. 
+The most important aspect of this element is the treatment of nonlinear
+material properties.  The concrete is capable of cracking (in three
+orthogonal directions), crushing, plastic deformation, and creep.
+ The rebar are capable of tension and compression, but not shear.
+ They are also capable of plastic deformation and creep.  See <a href="../ans_thry/thy_el65.html" class="olink">SOLID65</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for
+more details about this element.</p><div class="figure"><a name="a6m7g10dlmm"></a><p class="title"><b>Figure&nbsp;65.1:&nbsp;&nbsp;SOLID65 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM65-1.svg" alt="SOLID65 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="SOLID65 Input Data"><a name="a5pNxq23emcm"></a><h2>SOLID65 Input Data</h2><p>The geometry, node locations, and the coordinate system for
+this element are shown in <a class="xref" href="Hlp_E_SOLID65.html#a6m7g10dlmm" title="Figure&nbsp;65.1:&nbsp;&nbsp;SOLID65 Geometry">Figure&nbsp;65.1:&nbsp;SOLID65 Geometry</a>.  The element
+is defined by eight nodes and the isotropic material properties. 
+The element has one solid material and up to three rebar materials.
+ Use the <a href="../ans_cmd/Hlp_C_MAT.html" class="olink"><span class="command"><strong>MAT</strong></span></a> command to input the concrete material
+properties.  Rebar specifications, which are input as real constants,
+include the material number (MAT), the volume ratio (VR), and the
+orientation angles (THETA, PHI).  The rebar orientations can be graphically
+verified with the <a href="../ans_cmd/Hlp_C_ESHAPE.html" class="olink"><span class="command"><strong>/ESHAPE</strong></span></a> command.</p><p>The volume ratio is defined as the rebar volume divided by the
+total element volume.  The orientation is defined by two angles (in
+degrees) from the element coordinate system.  The element coordinate
+system orientation is as described in <a class="xref" href="Hlp_E_CH2_3.html" title="3.3.&nbsp;Coordinate Systems">Coordinate Systems</a>.  A rebar material number of zero or equal to the element material
+number removes that rebar capability.</p><p>Additional concrete material data, such as the shear transfer
+coefficients, tensile stresses, and compressive stresses are input
+in the data table, for convenience, as described in <a class="xref" href="Hlp_E_SOLID65.html#acd7sq25ldm" title="Table&nbsp;65.1:&nbsp;&nbsp;SOLID65 Concrete Material Data">Table&nbsp;65.1:&nbsp;SOLID65 Concrete Material Data</a>.  Typical shear transfer coefficients range
+from 0.0 to 1.0, with 0.0 representing a smooth crack (complete loss
+of shear transfer) and 1.0 representing a rough crack (no loss of
+shear transfer).  This specification may be made for both the closed
+and open crack. When the element is cracked or crushed, a small amount
+of stiffness is added to the element for numerical stability. The
+stiffness multiplier CSTIF is used across a cracked face or for a
+crushed element, and defaults to 1.0E-6.</p><p>Element loads are described in <a class="xref" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">Nodal Loading</a>.
+ Pressures may be input as surface loads on the element faces as shown
+by the circled numbers on <a class="xref" href="Hlp_E_SOLID65.html#a6m7g10dlmm" title="Figure&nbsp;65.1:&nbsp;&nbsp;SOLID65 Geometry">Figure&nbsp;65.1:&nbsp;SOLID65 Geometry</a>.  Positive
+pressures act into the element.  Temperatures and fluences may be
+input as element body loads at the nodes.  The node I temperature
+T(I) defaults to TUNIF.  If all other temperatures are unspecified,
+they default to T(I).  For any other input pattern, unspecified temperatures
+default to TUNIF.  Similar defaults occurs for fluence except that
+zero is used instead of TUNIF.</p><p>Use the <a href="../ans_cmd/Hlp_C_BETAD.html" class="olink"><span class="command"><strong>BETAD</strong></span></a> command to specify the global
+value of damping.  If <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,BETD is defined for the
+material number of the element (assigned with the  <a href="../ans_cmd/Hlp_C_MAT.html" class="olink"><span class="command"><strong>MAT</strong></span></a> command), it is summed with the value from the <a href="../ans_cmd/Hlp_C_BETAD.html" class="olink"><span class="command"><strong>BETAD</strong></span></a> command. Similarly, use the <a href="../ans_cmd/Hlp_C_TREF.html" class="olink"><span class="command"><strong>TREF</strong></span></a> command to supply
+the global value of reference temperature. If <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,REFT is defined for the material number of the element, it is used
+for the element instead of the value from the <a href="../ans_cmd/Hlp_C_TREF.html" class="olink"><span class="command"><strong>TREF</strong></span></a> command. But if <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,REFT is defined for the material
+number of the rebar, it is used instead of either the global or element
+value.</p><p>KEYOPT(1) is used to include or suppress the extra displacement
+shapes.  KEYOPT(5) and KEYOPT(6) provide various element printout
+options (see <a class="xref" href="Hlp_E_CH2_2.html#a1HGoq8dldm" title="3.2.3.&nbsp;Element Solution">Element Solution</a>).</p><p>The stress relaxation associated with KEYOPT(7) = 1 is used
+only to help accelerate convergence of the calculations when cracking
+is imminent.  (A multiplier for the amount of tensile stress relaxation
+can be input as constant C9 in the data table; see <a class="xref" href="Hlp_E_SOLID65.html#acd7sq25ldm" title="Table&nbsp;65.1:&nbsp;&nbsp;SOLID65 Concrete Material Data">Table&nbsp;65.1:&nbsp;SOLID65 Concrete Material Data</a>)  The relaxation does not represent a revised
+stress-strain relationship for post-cracking behavior.  After the
+solution converges to the cracked state, the modulus normal to the
+crack face is set to zero. Thus, the stiffness is zero normal to the
+crack face.  See the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for details.</p><p>The program warns when each unreinforced element crushes at
+all integration points. If this warning is unwanted, it can be suppressed
+with KEYOPT(8) = 1.</p><p>If solution convergence is a problem, set KEYOPT(3) = 2 and
+apply the load in very small load increments.</p><p>Pressure load stiffness effects are included
+in linear eigenvalue buckling automatically. If an unsymmetric matrix
+is needed for pressure load stiffness effects, use <a href="../ans_cmd/Hlp_C_NROPT.html" class="olink"><span class="command"><strong>NROPT</strong></span></a>,UNSYM.</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_SOLID65.html#aBl7g392lmm" title="SOLID65 Input Summary">"SOLID65 Input Summary"</a>.  A general description of element input is
+given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>.</p><div class="refsect2" title="SOLID65 Input Summary"><a name="aBl7g392lmm"></a><h3>SOLID65 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J, K, L, M, N, O, P</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>UX, UY, UZ</p></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>MAT1, VR1, THETA1, PHI1, MAT2, VR2,</td></tr><tr><td>THETA2, PHI2, MAT3, VR3, THETA3, PHI3, CSTIF</td></tr></table><p>(where MAT<span class="italic"><em>n</em></span> is material number,
+VR<span class="italic"><em>n</em></span> is volume ratio, and THETA<span class="italic"><em>n</em></span> and PHI<span class="italic"><em>n</em></span> are orientation angles for up to 3 rebar materials)</p></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command: See <a class="xref" href="elem_matsupp.html" title="Chapter&nbsp;4:&nbsp;Element Support for Material Models">Element Support for Material Models</a> for this element.</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: EX, ALPX (or CTEX <span class="italic"><em>or</em></span> THSX), PRXY or NUXY, DENS (for concrete),</td></tr><tr><td>EX, ALPX (or CTEX <span class="italic"><em>or</em></span> THSX),
+DENS (for each rebar), ALPD</td></tr><tr><td>Specify BETD <span>and DMPR</span> only once for the element.
+        (Issue the <a href="../ans_cmd/Hlp_C_MAT.html" class="olink"><span class="command"><strong>MAT</strong></span></a> command to assign the material property set.) REFT may be
+        specified once for the element, or may be assigned on a per-rebar basis. See the discussion
+        in <a class="xref" href="Hlp_E_SOLID65.html#a5pNxq23emcm" title="SOLID65 Input Data">"SOLID65 Input Data"</a> for more information.</td></tr></table></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Pressures&nbsp;--&nbsp;</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>face 1 (J-I-L-K), face 2 (I-J-N-M), face 3 (J-K-O-N),</td></tr><tr><td>face&nbsp;4&nbsp;(K-L-P-O), face 5 (L-I-M-P), face 6 (M-N-O-P)</td></tr></table></dd></dl></div></div></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Temperatures&nbsp;--&nbsp;</b></span></dt><dd><p>T(I), T(J),
+T(K), T(L), T(M), T(N), T(O), T(P)</p></dd><dt><span><b class="term">Fluences&nbsp;--&nbsp;</b></span></dt><dd><p>FL(I), FL(J), FL(K),
+FL(L), FL(M), FL(N), FL(O), FL(P)</p></dd></dl></div></div></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_thry/thy_tool10.html#eltadaptive" class="olink">Adaptive
+descent</a>
+</td></tr><tr><td>
+<a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth
+and death</a>
+</td></tr><tr><td>
+<a href="../ans_str/Hlp_G_STR8_3.html#strcreeptlm61199510" class="olink">Creep</a>
+</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink">Large deflection</a>
+</td></tr><tr><td>
+<a href="../ans_thry/thy_geo1.html" class="olink">Large
+strain</a>
+</td></tr><tr><td>
+<a href="../ans_str/Hlp_G_STR8_2.html#strstrstiftlm61199434" class="olink">Stress stiffening</a>
+</td></tr></table></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Extra displacement shapes:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Include extra displacement
+shapes</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Suppress extra displacement
+shapes</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(3)</b></span></dt><dd><p>Behavior of totally crushed unreinforced elements:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Base</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Suppress mass and applied
+loads, and warning message (see KEYOPT(8))</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Features of 1 and apply
+consistent Newton-Raphson load vector.</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(5)</b></span></dt><dd><p>Concrete linear solution output:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Print concrete linear
+solution only at centroid</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Repeat solution at each
+integration point</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Nodal stress printout</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(6)</b></span></dt><dd><p>Concrete nonlinear solution output:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Print concrete nonlinear
+solution only at centroid</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Print solution also at
+each integration point</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(7)</b></span></dt><dd><p>Stress relaxation after cracking:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>No tensile stress relaxation
+after cracking</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Include tensile stress
+relaxation after cracking to help convergence</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(8)</b></span></dt><dd><p>Warning message for totally crushed unreinforced element:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Print the warning</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Suppress the warning</p></dd></dl></div></div></dd></dl></div></div></div><div class="refsect2" title="SOLID65 Concrete Information"><a name="conc"></a><h3>SOLID65 Concrete Information</h3><p>The data listed in <a class="xref" href="Hlp_E_SOLID65.html#acd7sq25ldm" title="Table&nbsp;65.1:&nbsp;&nbsp;SOLID65 Concrete Material Data">Table&nbsp;65.1:&nbsp;SOLID65 Concrete Material Data</a> is entered
+in the data table with the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> commands.  Data not
+input are assumed to be zero, except for defaults described below.
+ The constant table is started by using the  <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>command (with <span class="italic"><em>Lab</em></span> = CONCR).  Up
+to eight constants may be defined with the <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> commands following a temperature definition on the <a href="../ans_cmd/Hlp_C_TBTEMP.html" class="olink"><span class="command"><strong>TBTEMP</strong></span></a> command.  Up to six temperatures (<span class="italic"><em>NTEMP</em></span> = 6 maximum on the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command) may be defined
+with the <a href="../ans_cmd/Hlp_C_TBTEMP.html" class="olink"><span class="command"><strong>TBTEMP</strong></span></a> commands.  The constants (C1-C9)
+entered on the <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> commands (6 per command),
+after each <a href="../ans_cmd/Hlp_C_TBTEMP.html" class="olink"><span class="command"><strong>TBTEMP</strong></span></a> command, are:</p><div class="table"><a name="acd7sq25ldm"></a><p class="title"><b>Table&nbsp;65.1:&nbsp;&nbsp;SOLID65 Concrete Material Data</b></p><div class="table-contents"><table summary="SOLID65 Concrete Material Data" border="1" width="95%"><colgroup><col width="96" align="center" class="col1"><col width="480" class="col2"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center">
+
+Constant</th><th bgcolor="#E3E3E3" align="center">
+
+Meaning</th></tr></thead><tbody><tr><td align="center">1</td><td>Shear transfer coefficients for
+an open crack.</td></tr><tr><td align="center">2</td><td>Shear transfer
+coefficients for a closed crack.</td></tr><tr><td align="center">3</td><td>Uniaxial tensile cracking stress.</td></tr><tr><td align="center">4</td><td>Uniaxial crushing stress (positive).</td></tr><tr><td align="center">5</td><td>Biaxial crushing stress (positive).</td></tr><tr><td align="center">6</td><td>Ambient hydrostatic stress state for use
+with constants 7 and 8.</td></tr><tr><td align="center">7</td><td>Biaxial
+crushing stress (positive) under the ambient hydrostatic stress state
+(constant 6).</td></tr><tr><td align="center">8</td><td>Uniaxial crushing
+stress (positive) under the ambient hydrostatic stress state (constant
+6).</td></tr><tr><td align="center">9</td><td>Stiffness multiplier
+for cracked tensile condition, used if KEYOPT(7) = 1 (defaults to
+0.6).</td></tr></tbody></table></div></div><br class="table-break"><p>Absence of the data table removes the cracking and crushing
+capability.  A value of -1 for constant 3 or 4 also removes the cracking
+or crushing capability, respectively.  If constants 1-4 are input
+and constants 5-8 are omitted, the latter constants default as discussed
+in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>.  If any one of Constants 5-8 are input, there are
+no defaults and all 8 constants must be input.</p></div></div><div class="refsect1" title="SOLID65 Output Data"><a name="a5pNxq2b5mcm"></a><h2>SOLID65 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal displacements included in the overall nodal
+solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_SOLID65.html#ag347lmm" title="Table&nbsp;65.2:&nbsp;&nbsp;SOLID65 Element Output Definitions">Table&nbsp;65.2:&nbsp;SOLID65 Element Output Definitions</a>
+</p></li></ul></div><p>
+</p><p>Several items are illustrated in <a class="xref" href="Hlp_E_SOLID65.html#aEo7g18almm" title="Figure&nbsp;65.2:&nbsp;&nbsp;SOLID65 Stress Output">Figure&nbsp;65.2:&nbsp;SOLID65 Stress Output</a>.  The element stress directions are parallel to the element coordinate
+system.  Nonlinear material printout appears only if nonlinear properties
+are specified.  Rebar printout appears only for the rebar defined.
+ If cracking or crushing is possible, printout for the concrete is
+also at the integration points, since cracking or crushing may occur
+at any integration point.  The <a href="../ans_arch/Hlp_C_PLCRACK.html" class="olink"><span class="command"><strong>PLCRACK</strong></span></a> command
+can be used in POST1 to display the status of the integration points.
+ A general description of solution output is given in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a>.  See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways to view results.
+ </p><div class="figure"><a name="aEo7g18almm"></a><p class="title"><b>Figure&nbsp;65.2:&nbsp;&nbsp;SOLID65 Stress Output</b></p><div class="figure-contents"><div><img src="graphics/gELEM65-2.svg" alt="SOLID65 Stress Output"></div></div></div><p><br class="figure-break">
+</p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="ag347lmm"></a><p class="title"><b>Table&nbsp;65.2:&nbsp;&nbsp;SOLID65 Element Output Definitions</b></p><div class="table-contents"><table summary="SOLID65 Element Output Definitions" border="1" width="95%"><colgroup><col width="139" class="col1"><col width="340" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center">
+
+Name</th><th bgcolor="#E3E3E3" align="center">
+
+Definition</th><th bgcolor="#E3E3E3" align="center">
+
+O</th><th bgcolor="#E3E3E3" align="center">
+
+R</th></tr></thead><tbody><tr><td>EL</td><td>Element number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Nodes - I, J, K, L, M, N, O, P</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>MAT</td><td>Material number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NREINF</td><td>Number
+of rebar</td><td align="center">Y</td><td align="center">-</td></tr><tr><td>VOLU:</td><td>Volume</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>PRES</td><td>Pressures  P1 at nodes J, I, L, K;  P2 at
+I, J, N, M;  P3 at J, K, O, N;  P4 at K, L, P, O;  P5 at L, I, M,
+P;  P6 at M, N, O, P</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>TEMP</td><td>Temperatures
+T(I), T(J), T(K), T(L), T(M), T(N), T(O), T(P)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>FLUEN</td><td>Fluences  FL(I), FL(J), FL(K), FL(L), FL(M),
+FL(N), FL(O), FL(P)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>XC, YC, ZC</td><td>Location where results are reported</td><td class="bold" align="center">Y</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.2.ft.6">6</a>
+</td></tr><tr><td>S:X, Y, Z,  XY, YZ, XZ</td><td>Stresses</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.1">1</a>
+</td></tr><tr><td>S:1, 2, 3</td><td>Principal stresses</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.1">1</a>
+</td></tr><tr><td>S:INT</td><td>Stress intensity</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.1">1</a>
+</td></tr><tr><td>S:EQV</td><td>Equivalent stress</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.1">1</a>
+</td></tr><tr><td>EPEL:X, Y,
+Z, XY, YZ, XZ</td><td>Elastic strains</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.1">1</a>
+</td></tr><tr><td>EPEL:1, 2,
+3</td><td>Principal elastic strains</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.1">1</a>
+</td><td align="center">-</td></tr><tr><td>EPEL:EQV</td><td>Equivalent elastic strains [<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.2.ft.7">7</a>]</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.1">1</a>
+</td></tr><tr><td>EPTH:X, Y, Z, XY, YZ, XZ</td><td>Average thermal strains</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.1">1</a>
+</td></tr><tr><td>EPTH:EQV</td><td>Equivalent thermal
+strains [<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.2.ft.7">7</a>]</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.1">1</a>
+</td></tr><tr><td>EPPL:X, Y, Z, XY, YZ, XZ</td><td>Average plastic strains</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.4">4</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.4">4</a>
+</td></tr><tr><td>EPPL:EQV</td><td>Equivalent plastic
+strains [<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.2.ft.7">7</a>]</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.4">4</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.4">4</a>
+</td></tr><tr><td>EPCR:X, Y, Z, XY, YZ, XZ</td><td>Average creep strains</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.4">4</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.4">4</a>
+</td></tr><tr><td>EPCR:EQV</td><td>Equivalent creep
+strains [<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.2.ft.7">7</a>]</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.4">4</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.4">4</a>
+</td></tr><tr><td>NL:EPEQ</td><td>Average
+equivalent plastic strain</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.4">4</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.4">4</a>
+</td></tr><tr><td>NL:SRAT</td><td>Ratio of trial stress to stress
+on yield surface</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.4">4</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.4">4</a>
+</td></tr><tr><td>NL:SEPL</td><td>Average equivalent stress from
+stress-strain curve</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.4">4</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.4">4</a>
+</td></tr><tr><td>NL:HPRES</td><td>Hydrostatic pressure</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.4">4</a>
+</td></tr><tr><td>THETCR, PHICR</td><td>THETA and PHI angle orientations of the normal to the crack
+plane</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.1">1</a>
+</td></tr><tr><td>STATUS</td><td>Element status</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.2">2</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.2">2</a>
+</td></tr><tr><td>IRF</td><td>Rebar number</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.3">3</a>
+</td><td align="center">-</td></tr><tr><td>MAT</td><td>Material number</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.3">3</a>
+</td><td align="center">-</td></tr><tr><td>VR</td><td>Volume ratio</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.3">3</a>
+</td><td align="center">-</td></tr><tr><td>THETA</td><td>Angle of orientation
+in X-Y plane</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.3">3</a>
+</td><td align="center">-</td></tr><tr><td>PHI</td><td>Angle of orientation out of X-Y plane</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.3">3</a>
+</td><td align="center">-</td></tr><tr><td>EPEL</td><td>Uniaxial elastic strain</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.3">3</a>
+</td><td align="center">-</td></tr><tr><td>S</td><td>Uniaxial stress</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.3">3</a>
+</td><td align="center">-</td></tr><tr><td>EPEL</td><td>Average uniaxial elastic
+strain</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.5">5</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.5">5</a>
+</td></tr><tr><td>EPPL</td><td>Average uniaxial plastic strain</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.5">5</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.5">5</a>
+</td></tr><tr><td>SEPL</td><td>Average equivalent stress from stress-strain curve</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.5">5</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.5">5</a>
+</td></tr><tr><td>EPCR</td><td>Average uniaxial creep strain</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.5">5</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.3.ft.5">5</a>
+</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="solid65.tab.3.ft.1"></a>Concrete solution item (output
+for each integration point (if KEYOPT(5) = 1) and the centroid)</p></li><li class="listitem"><p><a name="solid65.tab.3.ft.2"></a>The element status table (<a class="xref" href="Hlp_E_SOLID65.html#aRg7sq339ldm" title="Table&nbsp;65.4:&nbsp;&nbsp;SOLID65 Element Status Table">Table&nbsp;65.4:&nbsp;SOLID65 Element Status Table</a>) uses the following terms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Crushed - solid is crushed.</p></li><li class="listitem"><p>Open - solid is cracked and the crack is open.</p></li><li class="listitem"><p>Closed - solid is cracked but the crack is closed.</p></li><li class="listitem"><p>Neither - solid is neither crushed nor cracked.</p></li></ul></div><p>
+</p></li><li class="listitem"><p><a name="solid65.tab.3.ft.3"></a>Rebar solution item repeats
+for each rebar</p></li><li class="listitem"><p><a name="solid65.tab.3.ft.4"></a>Concrete nonlinear integration
+point solution  (if KEYOPT(6) = 3 and the element has a nonlinear
+material)</p></li><li class="listitem"><p><a name="solid65.tab.3.ft.5"></a>Rebar nonlinear integration
+ point solution  (if KEYOPT(6) = 3 and the rebar has a nonlinear material)</p></li><li class="listitem"><p><a name="solid65.tab.2.ft.6"></a>Available only at centroid
+as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item.</p></li><li class="listitem"><p><a name="solid65.tab.2.ft.7"></a>The equivalent strains use
+an effective Poisson's ratio: for elastic and thermal this value is
+set by the user (<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,PRXY); for plastic and creep
+this value is set at 0.5.</p></li></ol></div><div class="table"><a name="aPf7sq2a7ldm"></a><p class="title"><b>Table&nbsp;65.3:&nbsp;&nbsp;SOLID65 Miscellaneous Element Output</b></p><div class="table-contents"><table summary="SOLID65 Miscellaneous Element Output" border="1" width="95%"><colgroup><col width="240" class="col1"><col width="240" class="col2"><col width="48" class="col3"><col width="48" class="col4"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center">
+
+Description</th><th bgcolor="#E3E3E3" align="center">
+
+Names of Items
+Output</th><th bgcolor="#E3E3E3" align="center">
+
+O</th><th bgcolor="#E3E3E3" align="center">
+
+R</th></tr></thead><tbody><tr><td>Nodal Stress Solution</td><td>TEMP, S(X,
+Y, Z, XY, YZ, XZ), SINT, SEQV</td><td>
+<a class="xref" href="Hlp_E_SOLID65.html#solid65.tab.4.ft.1">1</a>
+</td><td align="center">-</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="solid65.tab.4.ft.1"></a>Output at each node, if KEYOPT(5)
+= 2</p></li></ol></div><div class="table"><a name="aRg7sq339ldm"></a><p class="title"><b>Table&nbsp;65.4:&nbsp;&nbsp;SOLID65 Element Status Table</b></p><div class="table-contents"><table summary="SOLID65 Element Status Table" border="1" width="95%"><colgroup><col width="72" align="center" class="col1"><col width="144" class="col2"><col width="144" class="col3"><col width="144" class="col4"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center">
+
+Status</th><th bgcolor="#E3E3E3" align="center">
+
+Status in Direction
+1</th><th bgcolor="#E3E3E3" align="center">
+
+Status in Direction
+2</th><th bgcolor="#E3E3E3" align="center">
+
+Status in Direction
+3</th></tr></thead><tbody><tr><td align="center">1</td><td>Crushed</td><td>Crushed</td><td>Crushed</td></tr><tr><td align="center">2</td><td>Open</td><td>Neither</td><td>Neither</td></tr><tr><td align="center">3</td><td>Closed</td><td>Neither</td><td>Neither</td></tr><tr><td align="center">4</td><td>Open</td><td>Open</td><td>Neither</td></tr><tr><td align="center">5</td><td>Open</td><td>Open</td><td>Open</td></tr><tr><td align="center">6</td><td>Closed</td><td>Open</td><td>Open</td></tr><tr><td align="center">7</td><td>Closed</td><td>Open</td><td>Neither</td></tr><tr><td align="center">8</td><td>Open</td><td>Closed</td><td>Open</td></tr><tr><td align="center">9</td><td>Closed</td><td>Closed</td><td>Open</td></tr><tr><td align="center">10</td><td>Open</td><td>Closed</td><td>Neither</td></tr><tr><td align="center">11</td><td>Open</td><td>Open</td><td>Closed</td></tr><tr><td align="center">12</td><td>Closed</td><td>Open</td><td>Closed</td></tr><tr><td align="center">13</td><td>Closed</td><td>Closed</td><td>Neither</td></tr><tr><td align="center">14</td><td>Open</td><td>Closed</td><td>Closed</td></tr><tr><td align="center">15</td><td>Closed</td><td>Closed</td><td>Closed</td></tr><tr><td align="center">16</td><td>Neither</td><td>Neither</td><td>Neither</td></tr></tbody></table></div></div><br class="table-break"><p>
+<a class="xref" href="Hlp_E_SOLID65.html#a8e38g31clmm" title="Table&nbsp;65.5:&nbsp;&nbsp;SOLID65 Item and Sequence Numbers">Table&nbsp;65.5:&nbsp;SOLID65 Item and Sequence Numbers</a> lists output available through
+the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method.
+ See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General Postprocessor
+(POST1)</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in
+this reference for more information.  The following notation is used
+in <a class="xref" href="Hlp_E_SOLID65.html#a8e38g31clmm" title="Table&nbsp;65.5:&nbsp;&nbsp;SOLID65 Item and Sequence Numbers">Table&nbsp;65.5:&nbsp;SOLID65 Item and Sequence Numbers</a>:</p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="Hlp_E_SOLID65.html#ag347lmm" title="Table&nbsp;65.2:&nbsp;&nbsp;SOLID65 Element Output Definitions">Table&nbsp;65.2:&nbsp;SOLID65 Element Output Definitions</a>
+</p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command</p></dd><dt><span><b class="term">I,J,...,P</b></span></dt><dd><p>sequence number for data at nodes I,J,...,P</p></dd><dt><span><b class="term">IP</b></span></dt><dd><p>sequence number for Integration Point solution items</p></dd></dl></div></div><p>
+</p><div class="table"><a name="a8e38g31clmm"></a><p class="title"><b>Table&nbsp;65.5:&nbsp;&nbsp;SOLID65 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="SOLID65 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="72" align="center" class="col1"><col width="72" align="center" class="col2"><col width="57" align="center" class="col3"><col width="57" align="center" class="col4"><col width="57" align="center" class="col5"></colgroup><thead><tr><th bgcolor="#C0C0C0" rowspan="2" align="center" valign="middle">
+
+Output Quantity Name</th><th bgcolor="#C0C0C0" colspan="4" align="center">
+
+
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th bgcolor="#E3E3E3" align="center">
+
+Item</th><th bgcolor="#E3E3E3" align="center">
+
+Rebar 1</th><th bgcolor="#E3E3E3" align="center">
+
+Rebar 2</th><th bgcolor="#E3E3E3" align="center">
+
+Rebar 3</th></tr></thead><tbody><tr><td align="center">EPEL</td><td align="center">SMISC</td><td align="center">1</td><td align="center">3</td><td align="center">5</td></tr><tr><td align="center">SIG</td><td align="center">SMISC</td><td align="center">2</td><td align="center">4</td><td align="center">6</td></tr><tr><td align="center">EPPL</td><td align="center">NMISC</td><td align="center">41</td><td align="center">45</td><td align="center">49</td></tr><tr><td align="center">EPCR</td><td align="center">NMISC</td><td align="center">42</td><td align="center">46</td><td align="center">50</td></tr><tr><td align="center">SEPL</td><td align="center">NMISC</td><td align="center">43</td><td align="center">47</td><td align="center">51</td></tr><tr><td align="center">SRAT</td><td align="center">NMISC</td><td align="center">44</td><td align="center">48</td><td align="center">52</td></tr></tbody></table></div></div><br class="table-break"><div class="informaltable"><table border="1" width="95%"><colgroup><col width="72" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"><col width="48" align="center" class="col5"><col width="48" align="center" class="col6"><col width="48" align="center" class="col7"><col width="48" align="center" class="col8"><col width="48" align="center" class="col9"><col width="48" align="center" class="col10"></colgroup><thead><tr><th bgcolor="#C0C0C0" rowspan="2" align="center">
+
+Output Quantity Name</th><th bgcolor="#C0C0C0" colspan="9" align="center">
+
+
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th bgcolor="#E3E3E3" align="center">
+
+Item</th><th bgcolor="#E3E3E3" align="center">
+
+I</th><th bgcolor="#E3E3E3" align="center">
+
+J</th><th bgcolor="#E3E3E3" align="center">
+
+K</th><th bgcolor="#E3E3E3" align="center">
+
+L</th><th bgcolor="#E3E3E3" align="center">
+
+M</th><th bgcolor="#E3E3E3" align="center">
+
+N</th><th bgcolor="#E3E3E3" align="center">
+
+O</th><th bgcolor="#E3E3E3" align="center">
+
+P</th></tr></thead><tbody><tr><td align="center">P1</td><td align="center">SMISC</td><td align="center">8</td><td align="center">7</td><td align="center">10</td><td align="center">9</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">P2</td><td align="center">SMISC</td><td align="center">11</td><td align="center">12</td><td align="center">-</td><td align="center">-</td><td align="center">14</td><td align="center">13</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">P3</td><td align="center">SMISC</td><td align="center">-</td><td align="center">15</td><td align="center">16</td><td align="center">-</td><td align="center">-</td><td align="center">18</td><td align="center">17</td><td align="center">-</td></tr><tr><td align="center">P4</td><td align="center">SMISC</td><td align="center">-</td><td align="center">-</td><td align="center">19</td><td align="center">20</td><td align="center">-</td><td align="center">-</td><td align="center">22</td><td align="center">21</td></tr><tr><td align="center">P5</td><td align="center">SMISC</td><td align="center">24</td><td align="center">-</td><td align="center">-</td><td align="center">23</td><td align="center">25</td><td align="center">-</td><td align="center">-</td><td align="center">26</td></tr><tr><td align="center">P6</td><td align="center">SMISC</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td></tr><tr><td align="center">S:1</td><td align="center">NMISC</td><td align="center">1</td><td align="center">6</td><td align="center">11</td><td align="center">16</td><td align="center">21</td><td align="center">26</td><td align="center">31</td><td align="center">36</td></tr><tr><td align="center">S:2</td><td align="center">NMISC</td><td align="center">2</td><td align="center">7</td><td align="center">12</td><td align="center">17</td><td align="center">22</td><td align="center">27</td><td align="center">32</td><td align="center">37</td></tr><tr><td align="center">S:3</td><td align="center">NMISC</td><td align="center">3</td><td align="center">8</td><td align="center">13</td><td align="center">18</td><td align="center">23</td><td align="center">28</td><td align="center">33</td><td align="center">38</td></tr><tr><td align="center">S:INT</td><td align="center">NMISC</td><td align="center">4</td><td align="center">9</td><td align="center">14</td><td align="center">19</td><td align="center">24</td><td align="center">29</td><td align="center">34</td><td align="center">39</td></tr><tr><td align="center">S:EQV</td><td align="center">NMISC</td><td align="center">5</td><td align="center">10</td><td align="center">15</td><td align="center">20</td><td align="center">25</td><td align="center">30</td><td align="center">35</td><td align="center">40</td></tr><tr><td align="center">FLUEN</td><td align="center">NMISC</td><td align="center">109</td><td align="center">110</td><td align="center">111</td><td align="center">112</td><td align="center">113</td><td align="center">114</td><td align="center">115</td><td align="center">116</td></tr></tbody></table></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="48" align="center" class="col1"><col width="96" align="center" class="col2"><col width="72" align="center" class="col3"><col width="38" align="center" class="col4"><col width="38" align="center" class="col5"><col width="38" align="center" class="col6"><col width="38" align="center" class="col7"><col width="38" align="center" class="col8"><col width="38" align="center" class="col9"><col width="38" align="center" class="col10"><col width="38" align="center" class="col11"></colgroup><thead><tr><th bgcolor="#999999" rowspan="3" align="center" valign="middle">
+
+
+</th><th bgcolor="#C0C0C0" rowspan="3" align="center" valign="middle">
+
+Output Quantity Name</th><th bgcolor="#C0C0C0" colspan="9" align="center">
+
+
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th bgcolor="#CCCCCC" rowspan="2" align="center" valign="middle">
+
+Item</th><th bgcolor="#CCCCCC" colspan="8" align="center">
+
+Integration Point</th></tr><tr><th bgcolor="#E3E3E3" align="center">
+
+1</th><th bgcolor="#E3E3E3" align="center">
+
+2</th><th bgcolor="#E3E3E3" align="center">
+
+3</th><th bgcolor="#E3E3E3" align="center">
+
+4</th><th bgcolor="#E3E3E3" align="center">
+
+5</th><th bgcolor="#E3E3E3" align="center">
+
+6</th><th bgcolor="#E3E3E3" align="center">
+
+7</th><th bgcolor="#E3E3E3" align="center">
+
+8</th></tr></thead><tbody><tr><td bgcolor="#999999" align="center" valign="middle">
+
+
+</td><td align="center">STATUS</td><td align="center">NMISC</td><td align="center">53</td><td align="center">60</td><td align="center">67</td><td align="center">74</td><td align="center">81</td><td align="center">88</td><td align="center">95</td><td align="center">102</td></tr><tr><td rowspan="2" align="center" valign="middle">Dir
+ 1</td><td align="center">THETCR</td><td align="center">NMISC</td><td align="center">54</td><td align="center">61</td><td align="center">68</td><td align="center">75</td><td align="center">82</td><td align="center">89</td><td align="center">96</td><td align="center">103</td></tr><tr><td align="center">PHICR</td><td align="center">NMISC</td><td align="center">55</td><td align="center">62</td><td align="center">69</td><td align="center">76</td><td align="center">83</td><td align="center">90</td><td align="center">97</td><td align="center">104</td></tr><tr><td rowspan="2" align="center" valign="middle">Dir  2</td><td align="center">THETCR</td><td align="center">NMISC</td><td align="center">56</td><td align="center">63</td><td align="center">70</td><td align="center">77</td><td align="center">84</td><td align="center">91</td><td align="center">98</td><td align="center">105</td></tr><tr><td align="center">PHICR</td><td align="center">NMISC</td><td align="center">57</td><td align="center">64</td><td align="center">71</td><td align="center">78</td><td align="center">85</td><td align="center">92</td><td align="center">99</td><td align="center">106</td></tr><tr><td rowspan="2" align="center" valign="middle">Dir  3</td><td align="center">THETCR</td><td align="center">NMISC</td><td align="center">58</td><td align="center">65</td><td align="center">72</td><td align="center">79</td><td align="center">86</td><td align="center">93</td><td align="center">100</td><td align="center">107</td></tr><tr><td align="center">PHICR</td><td align="center">NMISC</td><td align="center">59</td><td align="center">66</td><td align="center">73</td><td align="center">80</td><td align="center">87</td><td align="center">94</td><td align="center">101</td><td align="center">108</td></tr></tbody></table></div></div><div class="refsect1" title="SOLID65 Assumptions and Restrictions"><a name="a5pNxq338mcm"></a><h2>SOLID65 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Zero volume elements are not allowed.  </p></li><li class="listitem"><p>Elements may be numbered either as shown in <a class="xref" href="Hlp_E_SOLID65.html#a6m7g10dlmm" title="Figure&nbsp;65.1:&nbsp;&nbsp;SOLID65 Geometry">Figure&nbsp;65.1:&nbsp;SOLID65 Geometry</a> or may have the planes IJKL and MNOP interchanged.
+ Also, the element may not be twisted such that the element has two
+separate volumes.  This occurs most frequently when the elements are
+not numbered properly.</p></li><li class="listitem"><p>All elements must have eight nodes.</p></li><li class="listitem"><p>A prism-shaped element may be formed by defining duplicate
+K and L and duplicate O and P node numbers (see <a class="xref" href="Hlp_E_CH2_8.html" title="2.5.&nbsp;Degenerated Shape Elements">Degenerated Shape Elements</a>).  A tetrahedron shape is also available.
+ The extra shapes are automatically deleted for tetrahedron elements.</p></li><li class="listitem"><p>Whenever the rebar capability of the element is used,
+the rebar are assumed to be <span class="quote">"<span class="quote">smeared</span>"</span> throughout the
+element.  The sum of the volume ratios for all rebar must not be greater
+than 1.0.</p></li><li class="listitem"><p>The element is nonlinear and requires an iterative
+solution.</p></li><li class="listitem"><p>When both cracking and crushing are used together,
+care must be taken to apply the load slowly to prevent possible fictitious
+crushing of the concrete before proper load transfer can occur through
+a closed crack.  This usually happens when excessive cracking strains
+are coupled to the orthogonal uncracked directions through Poisson's
+effect.  Also, at those integration points where crushing has occurred,
+the output plastic and creep strains are from the previous converged
+substep.  Furthermore, when cracking has occurred, the elastic strain
+output includes the cracking strain.  The lost shear resistance of
+cracked and/or crushed elements cannot be transferred to the rebar,
+which have no shear stiffness.</p></li><li class="listitem"><p>The following two options are not recommended if cracking
+or crushing nonlinearities are present: </p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>Stress-stiffening effects.</p></li><li class="listitem"><p>Large strain and large deflection.  Results may not
+converge or may be incorrect, especially if significantly large rotation
+is involved.</p></li></ul></div></li></ul></div></div><div class="refsect1" title="SOLID65 Product Restrictions"><a name="a5pNxq3a5mcm"></a><h2>SOLID65 Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific
+   restrictions apply to this element in addition to the general assumptions and restrictions given
+   in the previous section.</p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li><li class="listitem"><p>Creep is not available.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+   </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

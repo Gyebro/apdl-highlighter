@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:26-04:00"><title>IMMED</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_I_TOC.html" title="I Commands"><link rel="prev" href="Hlp_C_IMESH.html" title="IMESH"><link rel="next" href="Hlp_C_INISTATE.html" title="INISTATE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="IMMED"><a name="IMMED"></a><div class="titlepage"></div><a class="indexterm" name="d0e136890"></a><span class="refentrytitle"><span class="command"><strong>IMMED</strong></span></span><div class="refnamediv"><p><span class="command"><strong>IMMED</strong></span>, <em class="replaceable"><code>KEY</code></em><br><b class="refpurpose">Allows immediate display of a model as it is generated.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_3.html" title="2.3.&nbsp;GRAPHICS Commands"><code class="classname">GRAPHICS</code></a>: <a class="link" href="Hlp_C_CH2_3.html#cmdgraphicsetupjla070199" title="Table&nbsp;2.11:&nbsp;&nbsp;Setup"><span class="type">Set Up</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="IMMED.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>KEY</code></em></b></span></dt><dd><p>Immediate mode key:       </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Display only upon request, i.e., no immediate
+display (default with the GUI <span class="italic"><em>off</em></span>).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Display immediately as model is generated (default
+with the GUI <span class="italic"><em>on</em></span>).</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Command Default"><a name="IMMED.default"></a><h2>Command Default</h2><p>As described above.</p></div><div class="refsect1" title="Notes"><a name="IMMED.notes"></a><h2>Notes</h2><p>Allows immediate display of a model (as it is generated) without a screen
+erase or a display request.  Available only during an interactive session
+at a graphics display terminal.  A valid graphics device name must first be
+specified on the <a href="Hlp_C_SHOW.html" class="olink"><span class="command"><strong>/SHOW</strong></span></a> command.</p><p>The <span class="command"><strong>IMMED</strong></span> command allows you to control whether or
+not the model is displayed immediately as it is generated in an interactive
+session.  By default in the GUI, your model will immediately be displayed
+in the Graphics Window as you create new entities (such as areas, keypoints,
+nodes, elements, local coordinate systems, boundary conditions, etc.).  This
+is called <span class="italic"><em>immediate mode</em></span> graphics.  Also
+note that symbols (such as boundary conditions, local coordinate system triads,
+etc.) are shown immediately and will be present on subsequent displays unless
+you <span class="quote">"<span class="quote">turn off</span>"</span> the appropriate symbol using the GUI plot controls
+function or the appropriate graphics specification command.</p><p>An immediate image will also be automatically scaled to fit nicely within
+the Graphics Window -- a feature called <span class="italic"><em>automatic
+scaling</em></span>.  The new scaling is usually apparent on the automatic
+replot associated with immediate mode.  To suppress automatic replot, issue <a href="Hlp_C_UIS.html" class="olink"><span class="command"><strong>/UIS</strong></span></a>,REPLOT,0.
+ (With automatic replot suppressed, the immediate image may not always be
+automatically scaled correctly.)</p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;An immediate display in progress should <span class="italic"><em>not</em></span> be
+aborted with the usual system "break" feature (or else the ANSYS session itself
+will be aborted).  When you run the ANSYS program interactively <span class="italic"><em>without</em></span> using the GUI, immediate mode is off by default.</p><p>This command is valid only in PREP7.</p><hr></div></div><div class="refsect1" title="Menu Paths"><a name="IMMED.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;Erase Options&gt;Immediate Display</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

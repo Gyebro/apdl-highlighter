@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:50-04:00"><title>MASS166</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_COMBI165.html" title="COMBI165"><link rel="next" href="Hlp_E_LINK167.html" title="LINK167"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="MASS166"><a name="MASS166"></a><div class="titlepage"></div><a class="indexterm" name="d0e80657"></a><span class="refentrytitle"><span class="structname">MASS166</span> </span><div class="refnamediv"><p><br><b class="refpurpose">Explicit
+3-D Structural Mass</b><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | DYNA</span></div></div><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_E_MASS166.html#aF5Oxqa1mcm" title="MASS166 Product Restrictions">Product Restrictions</a></span></div></div></div></p></div><div class="refsect1" title="MASS166 Element Description"><a name="ELEMmass166descfdb"></a><h2>MASS166 Element Description</h2><p><span class="structname">MASS166</span> is a point element having up
+to nine degrees of freedom:  translations, velocities, and accelerations
+in the nodal x, y, and z directions.</p><div class="figure"><a name="aE5Oxq25amcm"></a><p class="title"><b>Figure&nbsp;166.1:&nbsp;&nbsp;MASS166 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM166-1.svg" alt="MASS166 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="MASS166 Input Data"><a name="aE5Oxq2c9mcm"></a><h2>MASS166 Input Data</h2><p>The mass element is defined by a single node with concentrated
+mass components (Force*Time<sup>2</sup>/Length) in
+the element coordinate directions about the element coordinate axes.
+The element also has an option for rotary inertia (without mass) which
+allows the definition of lumped rotary inertia at a defined nodal
+point. For the inertia option (KEYOPT(1) = 1), six polar moment of
+inertia values must be input instead of mass. To include both mass
+and rotary inertia, you must define two <span class="structname">MASS166</span> elements at the same node.</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_MASS166.html#aE5Oxq340mcm" title="MASS166 Input Summary">"MASS166 Input Summary"</a>.  A general description of element input
+is given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>.</p><div class="refsect2" title="MASS166 Input Summary"><a name="aE5Oxq340mcm"></a><h3>MASS166 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>UX, UY, UZ, VX, VY, VZ, AX, AY, AZ</p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;For explicit dynamic analyses, V(X, Y, Z) refers to nodal
+velocity, and A(X, Y, Z) refers to nodal acceleration.  Although V(X,
+Y, Z) and A(X, Y, Z) appear as DOFs, they are not actually physical
+DOFs.  However, these quantities are computed as DOF solutions and
+stored for postprocessing.</p><hr></div></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>If KEYOPT(1) = 0:</td></tr><tr><td>MASS - Concentrated mass (Force*Time<sup>2</sup>/Length) (must be &gt; 0)</td></tr><tr><td>If KEYOPT(1) = 1:</td></tr><tr><td>IXX - Moment of inertia (must be &gt; 0),</td></tr><tr><td>IXY - Moment of inertia,</td></tr><tr><td>IXZ - Moment of inertia,</td></tr><tr><td>IYY - Moment of inertia (must be &gt; 0),</td></tr><tr><td>IYZ - Moment of inertia,</td></tr><tr><td>IZZ - Moment of inertia (must be &gt; 0)</td></tr></table></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p>None, but you must define realistic dummy material
+properties to make this element behave correctly. The dummy properties
+will not be used in any solution.</p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Special Features</b></span></dt><dd><p>All nonlinear features allowed for an <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink">explicit dynamic analysis</a>.</p></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Rotary inertia option:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>3-D mass without rotary
+inertia (default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>3-D rotary inertia (no
+mass)</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="MASS166 Output Data"><a name="aE5Oxq3b0mcm"></a><h2>MASS166 Output Data</h2><p>Nodal displacements are included in the overall displacement
+solution.  There is no printed or post element data output for the
+mass element.</p></div><div class="refsect1" title="MASS166 Assumptions and Restrictions"><a name="aF5Oxq33mcm"></a><h2>MASS166 Assumptions and Restrictions</h2><p>None.</p></div><div class="refsect1" title="MASS166 Product Restrictions"><a name="aF5Oxqa1mcm"></a><h2>MASS166 Product Restrictions</h2><p>There are no product-specific restrictions for this element.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:38-04:00"><title>DESIZE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_D_TOC.html" title="D Commands"><link rel="prev" href="Hlp_C_DERIV.html" title="DERIV"><link rel="next" href="Hlp_C_DESOL.html" title="DESOL"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="DESIZE"><a name="DESIZE"></a><div class="titlepage"></div><a class="indexterm" name="d0e67165"></a><span class="refentrytitle"><span class="command"><strong>DESIZE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>DESIZE</strong></span>, <em class="replaceable"><code>MINL</code></em>, <em class="replaceable"><code>MINH</code></em>, <em class="replaceable"><code>MXEL</code></em>, <em class="replaceable"><code>ANGL</code></em>, <em class="replaceable"><code>ANGH</code></em>, <em class="replaceable"><code>EDGMN</code></em>, <em class="replaceable"><code>EDGMX</code></em>, <em class="replaceable"><code>ADJF</code></em>, <em class="replaceable"><code>ADJM</code></em><br><b class="refpurpose">Controls default element sizes.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7meshingldm061600" title="Table&nbsp;2.36:&nbsp;&nbsp;Meshing"><span class="type">Meshing</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="DESIZE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>MINL</code></em></b></span></dt><dd><p>Minimum number of elements that will be attached to
+a line when using lower-order elements (defaults to 3 elements per
+line).  If <em class="replaceable"><code>MINL</code></em> = DEFA, all arguments will
+be set back to default values.  If <em class="replaceable"><code>MINL</code></em> = <code class="literal">STAT</code>, list status of command (Including on/off
+status).  If <em class="replaceable"><code>MINL</code></em> = OFF, deactivate default
+element sizing.  If <em class="replaceable"><code>MINL</code></em> = ON, reactivate
+default element sizing.</p></dd><dt><span><b class="term"><em class="replaceable"><code>MINH</code></em></b></span></dt><dd><p>Minimum number of elements that will be attached to
+a line when using higher-order elements. Defaults to 2 elements per
+line.</p></dd><dt><span><b class="term"><em class="replaceable"><code>MXEL</code></em></b></span></dt><dd><p>Maximum number of elements that will be attached to
+a single line (lower or higher-order elements). Defaults to 15 elements
+per line for h-elements. To deactivate this limit, specify a large
+number (such as 9999).</p></dd><dt><span><b class="term"><em class="replaceable"><code>ANGL</code></em></b></span></dt><dd><p>Maximum spanned angle per lower-order element for
+curved lines. Defaults to 15 degrees per element.</p></dd><dt><span><b class="term"><em class="replaceable"><code>ANGH</code></em></b></span></dt><dd><p>Maximum spanned angle per higher-order element for
+curved lines. Defaults to 28 degrees per element.</p></dd><dt><span><b class="term"><em class="replaceable"><code>EDGMN</code></em></b></span></dt><dd><p>Minimum element edge length. Defaults to no minimum
+edge length. The <em class="replaceable"><code>MINL</code></em> or <em class="replaceable"><code>MINH</code></em> argument can override this value.</p></dd><dt><span><b class="term"><em class="replaceable"><code>EDGMX</code></em></b></span></dt><dd><p>Maximum element edge length. Defaults to no maximum
+edge length. The <em class="replaceable"><code>MXEL</code></em> argument can override
+this value.</p></dd><dt><span><b class="term"><em class="replaceable"><code>ADJF</code></em></b></span></dt><dd><p>Target aspect ratio for adjacent line.  Used only
+when free meshing. Defaults to 1.0, which attempts to create equal-sided
+h-elements.</p></dd><dt><span><b class="term"><em class="replaceable"><code>ADJM</code></em></b></span></dt><dd><p>Target aspect ratio for adjacent line.  Used only
+when map meshing. Defaults to 4.0, which attempts to create rectangular
+h-elements.</p></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="DESIZE.default"></a><h3>Command Default</h3><p>Default settings as described for each argument are used.</p></div></div><div class="refsect1" title="Notes"><a name="DESIZE.notes"></a><h2>Notes</h2><p><span class="command"><strong>DESIZE</strong></span> settings are usually used for mapped
+meshing.  They are also used for free meshing if SmartSizing is turned
+off [<a class="link" href="Hlp_C_SMRTSIZE.html" title="SMRTSIZE"><span class="command"><strong>SMRTSIZE</strong></span></a>,OFF], which is the default.  Even
+when SmartSizing is on, some <span class="command"><strong>DESIZE</strong></span> settings (such
+as maximum and minimum element edge length) can affect free mesh density.
+The default settings of the <span class="command"><strong>DESIZE</strong></span> command  are
+used only when no other element size specifications [<a class="link" href="Hlp_C_KESIZE.html" title="KESIZE"><span class="command"><strong>KESIZE</strong></span></a>, <a class="link" href="Hlp_C_LESIZE.html" title="LESIZE"><span class="command"><strong>LESIZE</strong></span></a>, <a class="link" href="Hlp_C_ESIZE.html" title="ESIZE"><span class="command"><strong>ESIZE</strong></span></a>] exist for
+a certain line.</p><p>This command is also valid for <a href="../ans_adv/Hlp_G_ADVREZ.html" class="olink">rezoning</a>.</p></div><div class="refsect1" title="Menu Paths"><a name="DESIZE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Size Cntrls&gt;ManualSize&gt;Global&gt;Other</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Manual Rezoning&gt;Create Remesh Zone(s)&gt;Mesh Controls&gt;Default Element Sizing Options</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

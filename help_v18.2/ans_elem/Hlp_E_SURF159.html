@@ -1,0 +1,373 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:47-04:00"><title>SURF159</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_SHELL157.html" title="SHELL157"><link rel="next" href="Hlp_E_LINK160.html" title="LINK160"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SURF159"><a name="SURF159"></a><div class="titlepage"></div><a class="indexterm" name="d0e74234"></a><span class="refentrytitle">
+<span class="structname">SURF159</span>
+</span><div class="refnamediv"><p><br><b class="refpurpose">General
+Axisymmetric Surface</b><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+<div class=""><div class="application"><span class="application">
+<a class="link" href="Hlp_E_SURF159.html#surf159prodrestr" title="SURF159 Product Restrictions">Product Restrictions</a>
+</span></div></div>
+</div></p></div><div class="refsect1" title="SURF159 Element Description"><a name="surf159.descr"></a><h2>SURF159 Element Description</h2><p>Use <span class="structname">SURF159</span> to model axisymmetric solid
+surface loads acting on general axisymmetric solid elements (<a class="link" href="Hlp_E_SOLID272.html" title="SOLID272"><span class="structname">SOLID272</span></a> or <a class="link" href="Hlp_E_SOLID273.html" title="SOLID273"><span class="structname">SOLID273</span></a>). The
+element has linear or quadratic displacement behavior on the <a href="Hlp_E_continuumelems.html#elemgenaxsidebar" class="olink">master plane</a> and is well suited to modeling irregular meshes on the master plane.
+It is defined by two or three nodes on the master plane, and nodes
+created automatically in the circumferential direction based on the
+master plane nodes. The total number of nodes depends on the number
+of nodal planes (KEYOPT(2)). The element area between nodal planes
+is called a <span class="italic"><em>facet</em></span>. Each node has
+three degrees of freedom: translations in the nodal x, y and z directions.
+Various loads and surface effects can exist simultaneously.</p><p>In addition to the <span class="structname">SURF159</span> element
+information provided here, the following topics are available in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+<a href="../ans_thry/thy_el159.html" class="olink">SURF159 - General Axisymmetric Surface with 2 or 3 Nodes</a>
+</p></li><li class="listitem"><p>
+<a href="../ans_thry/thy_shp4.html#thygenaxisurf" class="olink">General Axisymmetric Surfaces</a>
+</p></li></ul></div><p>
+</p><p>For related information (concerning the elements used with <span class="structname">SURF159</span>), see <a class="xref" href="Hlp_E_continuumelems.html#elemgeneralaxis" title="5.1.5.1.&nbsp;General Axisymmetric Elements">General Axisymmetric Elements</a> in this
+document.</p><div class="figure"><a name="surf159.fig1"></a><p class="title"><b>Figure&nbsp;159.1:&nbsp;&nbsp;SURF159 Geometry (KEYOPT(2) = 3)</b></p><div class="figure-contents"><div><img src="graphics/gELEM159-1.svg" alt="SURF159 Geometry (KEYOPT(2) = 3)"></div></div></div><br class="figure-break"></div><div class="refsect1" title="SURF159 Input Data"><a name="surf159inputdata"></a><h2>SURF159 Input Data</h2><p>The geometry and node locations for this element (when KEYOPT(2)
+= 3) are shown in <a class="xref" href="Hlp_E_SURF159.html#surf159.fig1" title="Figure&nbsp;159.1:&nbsp;&nbsp;SURF159 Geometry (KEYOPT(2) = 3)">Figure&nbsp;159.1:&nbsp;SURF159 Geometry (KEYOPT(2) = 3)</a>. The element input
+data includes nodes, real constants, and the material properties.
+The total number of nodes is the two or three base nodes times the
+number of nodal planes. (For information about how Fourier nodes are
+generated, see the <a href="../ans_cmd/Hlp_C_NAXIS.html" class="olink"><span class="command"><strong>NAXIS</strong></span></a> command documentation.) <span class="structname">SURF159</span> elements can be generated via the <a href="../ans_cmd/Hlp_C_ESURF.html" class="olink"><span class="command"><strong>ESURF</strong></span></a> command <span class="italic"><em>before</em></span> generating nodes
+for general axisymmetric element sections (<a href="../ans_cmd/Hlp_C_NAXIS.html" class="olink"><span class="command"><strong>NAXIS</strong></span></a>).</p><p>The element has the x-axis as normal to the element surface,
+the y-axis in the meridional direction, and the z-axis in the circumferential
+direction.</p><p>The mass and volume calculations use the element thicknesses
+(real constants TKI, and TKJ). Thickness TKJ defaults to TKI. The
+mass calculation uses the density (material property DENS, mass per
+unit volume) and the real constant ADMSUA, the added mass per unit
+area. </p><p>The stress stiffness matrix and load vector calculations use
+the in-plane force per unit length (input as real constant SURT) and
+the elastic foundation stiffness (input as real constant EFS); the
+EFS uses pressure-per-length (or force-per-length-cubed) units. The
+foundation stiffness can be damped, either by using the material property
+BETD as a multiplier on the stiffness or by directly using the material
+property VISC.</p><p>
+<a class="xref" href="Hlp_E_SURF159.html#surf159inputsum" title="SURF159 Input Summary">"SURF159 Input Summary"</a> contains a summary of the
+element input. See <a class="xref" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">Nodal Loading</a> for a general description
+of element input.</p><div class="refsect2" title="Pressure Loads"><a name="surf159pressureinput"></a><h3>Pressure Loads</h3><p>Pressures must be input as element surface loads (as force-per-length
+squared) on the element faces as shown by the circled numbers in <a class="xref" href="Hlp_E_SURF159.html#surf159.fig2" title="Figure&nbsp;159.2:&nbsp;&nbsp;SURF159 Pressures">Figure&nbsp;159.2:&nbsp;SURF159 Pressures</a>. For <span class="structname">SURF159</span>, applying
+surface loads to the element (<a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a>) or nodes (<a href="../ans_cmd/Hlp_C_SF.html" class="olink"><span class="command"><strong>SF</strong></span></a>) is very different in comparison to the <a class="link" href="Hlp_E_SOLID272.html" title="SOLID272"><span class="structname">SOLID272</span></a> and <a class="link" href="Hlp_E_SOLID273.html" title="SOLID273"><span class="structname">SOLID273</span></a> elements.
+An <a href="../ans_cmd/Hlp_C_SF.html" class="olink"><span class="command"><strong>SF</strong></span></a> command, if issued, applies loads to faces
+1 through K only (where K = KEYOPT(2), the number of nodal planes). </p><p>
+<span class="structname">SURF159</span> allows complex loads.</p><div class="sidebar" title="Defaults for Pressures on Faces 1 through 3K"><div class="titlepage"><div><div><div class="title"><b>Defaults for Pressures on Faces 1 through 3K</b></div></div></div></div><p>If the first pressure for a face is specified (<a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a>) and the other three remain blank, the other three pressures default
+to the first.</p><p>If values are specified (and perhaps supplemented by the aforementioned
+default) to the first face of each of the three face families (1 through
+K, K+1 through 2K, or 2K+1 to 3K), the same values are assigned to <span class="italic"><em>all other faces</em></span> around the circumference.
+(The <a href="../ans_cmd/Hlp_C_SFELIST.html" class="olink"><span class="command"><strong>SFELIST</strong></span></a> command does not reflect this defaulting
+behavior.)</p><p title="Example 1"><b>Example 1&nbsp;</b>To obtain a uniform pressure across
+the element and around the circumference, only one specified pressure
+is necessary on the first face of the face family.</p><p title="Example 2"><b>Example 2&nbsp;</b>To obtain a pressure that tapers in
+the radial direction and is constant around the circumference, all
+four values must be specified on the first face of the face family.</p></div><p title="Faces 1 through 3K [KEYOPT(3) = 0]"><b>Faces 1 through 3K [KEYOPT(3) = 0]&nbsp;</b>Positive values
+of pressure on these faces act in the positive element coordinate
+directions, as follows: faces 1 through K in the element x (normal)
+direction, faces K+1 through 2K in the element y (tangent, meridional)
+direction, and faces 2K+1 through 3K in the element z (tangent, circumferential)
+direction. For faces 1 through K, positive or negative values may
+be removed as requested via KEYOPT(6) to simulate the discontinuity
+at the free surface of a contained fluid. For faces K+1 through 3K,
+the direction of the load is controlled by the element coordinate
+system; therefore, the <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a> command may be needed.</p><p title="Faces 1 through 3K [KEYOPT(3) = 1]"><b>Faces 1 through 3K [KEYOPT(3) = 1]&nbsp;</b>Pressure loads
+are applied to the element faces according to the local coordinate
+system, as follows: faces 1 through K in the local x direction, faces
+K+1 through 2K in the local y direction, and faces 2K+1 through 3K
+in the local z direction. A local coordinate system must be defined,
+and the element must be set to that coordinate system via the <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a> command. KEYOPT(6) does not apply. </p><div class="figure"><a name="surf159.fig2"></a><p class="title"><b>Figure&nbsp;159.2:&nbsp;&nbsp;SURF159 Pressures</b></p><div class="figure-contents"><div><img src="graphics/gelem159-2.svg" alt="SURF159 Pressures"></div></div></div><br class="figure-break"><p title="Face 3K+1"><b>Face 3K+1&nbsp;</b>The direction is normal to the element
+and the magnitude of the pressure at each integration point is P<sub>I </sub>+ XP<sub>J</sub> + YP<sub>K</sub> + ZP<sub>L</sub>, where P<sub>I</sub> through
+P<sub>L</sub> are input as <em class="replaceable"><code>VAL1</code></em> through <em class="replaceable"><code>VAL4</code></em> on the <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> command, and X, Y, Z are the global Cartesian coordinates at the
+current location of the integration point. No input values can be
+blank. Positive or negative values may be removed as requested with
+KEYOPT(6) to simulate the discontinuity at the free surface of a contained
+fluid. The <a href="../ans_cmd/Hlp_C_SFFUN.html" class="olink"><span class="command"><strong>SFFUN</strong></span></a> and <a href="../ans_cmd/Hlp_C_SFGRAD.html" class="olink"><span class="command"><strong>SFGRAD</strong></span></a> commands
+do not work with face 3K+1.</p><p title="Face 3K+2"><b>Face 3K+2&nbsp;</b>The magnitude of the pressure is P<sub>I</sub>, and the direction is
+      
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqdd6209f4-020f-461a-9d73-a94b1fd2bccb.svg"></span> where i, j, and k are unit vectors in the global Cartesian directions. The
+     load magnitude may be adjusted with KEYOPT(11) and KEYOPT(12). No input values can be blank. </p><p>Temperatures may be input as element body loads at the nodes.
+For the nodes on the master plane, the node I<sub>1</sub> temperature T(I<sub>1</sub>) defaults to TUNIF. If all
+other temperatures are unspecified, they default to T(I<sub>1</sub>). If both corner node temperatures are specified, the
+midside node temperature defaults to the average temperature of the
+adjacent corner nodes. For any other input pattern, unspecified temperatures
+default to TUNIF. For the nodes generated in the circumferential direction
+based on the master node, if all other temperatures are unspecified,
+they default to the value of their base nodes (T(I<sub>1</sub>), T(J<sub>1</sub>), and T(K<sub>1</sub>),
+depending on their location). For any other input pattern, unspecified
+temperatures default to TUNIF. </p><p>The effects of pressure load stiffness are automatically included
+for this element. If an unsymmetric matrix is needed for pressure
+load stiffness effects, issue a <a href="../ans_cmd/Hlp_C_NROPT.html" class="olink"><span class="command"><strong>NROPT</strong></span></a>,UNSYM command.
+For a geometric nonlinear analysis when convergence is an issue, use
+an unsymmetric matrix. </p></div><div class="refsect2" title="SURF159 Input Summary"><a name="surf159inputsum"></a><h3>SURF159 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I<sub>1</sub>, J<sub>1</sub>, K<sub>1</sub>, I<sub>2</sub>, J<sub>2</sub>, K<sub>2</sub>, . . . , I<sub>n</sub>, J<sub>n</sub>, K<sub>n</sub> (where n =
+KEYOPT(2), the number of nodal planes)</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>UX, UY, UZ</p></dd><dt><span><b class="term">
+<a class="link" href="Hlp_E_SURF159.html#surf159realconstants" title="Table&nbsp;159.1:&nbsp;&nbsp;SURF159 Real Constants">Real Constants</a>
+</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>(Blank), (Blank), (Blank), EFS, SURT, ADMSUA, </td></tr><tr><td>TKI, TKJ</td></tr></table></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p>
+<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: DENS, VISC, ALPD, BETD, <span>DMPR</span>
+</p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Pressures&nbsp;--&nbsp;</b></span></dt><dd><p>In the following
+table, K represents the number of nodal planes (specified via KEYOPT(2)):</p></dd></dl></div></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="96" align="center" class="col1"><col width="144" align="center" class="col2"><col width="144" align="center" class="col3"><col width="144" align="center" class="COLSPEC0"></colgroup><tbody><tr><td bgcolor="#C0C0C0" rowspan="2" align="center">
+
+<span class="bold"><strong>Pressure Face</strong></span>
+</td><td bgcolor="#C0C0C0" rowspan="2" align="center">
+
+<span class="bold"><strong>Nodes</strong></span>
+</td><td bgcolor="#C0C0C0" colspan="2" align="center">
+
+<span class="bold"><strong>Pressure Load Type</strong></span>
+</td></tr><tr><td bgcolor="#E3E3E3" align="center" valign="middle">
+KEYOPT(3)
+= 0</td><td bgcolor="#E3E3E3" align="center">
+KEYOPT(3) = 1</td></tr><tr><td align="center">face 1</td><td align="center">J<sub>1</sub>,
+I<sub>1</sub>, I<sub>2</sub>, J<sub>2</sub>
+</td><td rowspan="4" align="center" valign="middle">Normal</td><td rowspan="4" align="center" valign="middle">x direction per <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a>
+</td></tr><tr><td align="center">face 2</td><td align="center">J<sub>2</sub>, I<sub>2</sub>, I<sub>3</sub>, J<sub>3</sub>
+</td></tr><tr><td align="center">. . .</td><td align="center">. . .</td></tr><tr><td align="center">face K</td><td align="center">J<sub>K</sub>, I<sub>K</sub>, I<sub>1</sub>, J<sub>1</sub>
+</td></tr><tr><td bgcolor="#E3E3E3" align="center">
+face K+1</td><td bgcolor="#E3E3E3" align="center">
+J<sub>1</sub>, I<sub>1</sub>, I<sub>2</sub>, J<sub>2</sub>
+</td><td bgcolor="#E3E3E3" rowspan="4" align="center" valign="middle">
+Meridional
+tangent</td><td bgcolor="#E3E3E3" rowspan="4" align="center" valign="middle">
+y direction per <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a>
+</td></tr><tr><td bgcolor="#E3E3E3" align="center">
+face K+2</td><td bgcolor="#E3E3E3" align="center">
+J<sub>2</sub>, I<sub>2</sub>, I<sub>3</sub>, J<sub>3</sub>
+</td></tr><tr><td bgcolor="#E3E3E3" align="center">
+. . .</td><td bgcolor="#E3E3E3" align="center">
+. . .</td></tr><tr><td bgcolor="#E3E3E3" align="center">
+face 2K</td><td bgcolor="#E3E3E3" align="center">
+J<sub>K</sub>, I<sub>K</sub>, I<sub>1</sub>, J<sub>1</sub>
+</td></tr><tr><td align="center">face 2K+1</td><td align="center">J<sub>1</sub>, I<sub>1</sub>, I<sub>2</sub>, J<sub>2</sub>
+</td><td rowspan="4" align="center" valign="middle">Circumferential
+tangent</td><td rowspan="4" align="center" valign="middle">z direction per <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a>
+</td></tr><tr><td align="center">face 2K+2</td><td align="center">J<sub>2</sub>, I<sub>2</sub>, I<sub>3</sub>, J<sub>3</sub>
+</td></tr><tr><td align="center">. . .</td><td align="center">. . .</td></tr><tr><td align="center">face 3K</td><td align="center">J<sub>K</sub>, I<sub>K</sub>, I<sub>1</sub>, J<sub>1</sub>
+</td></tr><tr><td bgcolor="#E3E3E3" align="center">
+face 3K+1</td><td bgcolor="#E3E3E3" align="center">
+All</td><td bgcolor="#E3E3E3" colspan="2" align="center">
+Global taper</td></tr><tr><td align="center">
+face 3K+2</td><td align="center">
+All</td><td colspan="2" align="center">
+Oriented vector</td></tr></tbody></table></div></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Temperatures&nbsp;--&nbsp;</b></span></dt><dd><p>T(I<sub>1</sub>), T(J<sub>1</sub>), T(K<sub>1</sub>), T(I<sub>2</sub>), T(J<sub>2</sub>), T(K<sub>2</sub>), . . .  , T(I<sub>n</sub>), T(J<sub>n</sub>), T(K<sub>n</sub>)</p></dd></dl></div></div></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth
+and death</a>
+</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink">Large deflection</a>
+</td></tr><tr><td>
+<a href="../ans_str/Hlp_G_STR8_2.html#strstrstiftlm61199434" class="olink">Stress stiffening</a>
+</td></tr></table></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Number of Fourier nodes in the circumferential direction
+(that is, the number of nodal planes):</p><div><div class="variablelist"><dl><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Axisymmetric deformation
+(with or without torsion).</p></dd><dt><span><b class="term">3 - 12&nbsp;--&nbsp;</b></span></dt><dd><p>General 3-D deformation.</p></dd></dl></div></div><p>This KEYOPT has no default. You must specify a valid value.
+(0 is not valid.) The value must match the KEYOPT(2) value of the
+underlying <a class="link" href="Hlp_E_SOLID272.html" title="SOLID272"><span class="structname">SOLID272</span></a> or <a class="link" href="Hlp_E_SOLID273.html" title="SOLID273"><span class="structname">SOLID273</span></a> element.</p><p>For information about specifying the number Fourier nodes, see <a class="link" href="Hlp_E_continuumelems.html#elemgeneralaxis" title="5.1.5.1.&nbsp;General Axisymmetric Elements">General Axisymmetric Elements</a> in
+this document.</p><p>For information about how Fourier nodes are generated, see the <a href="../ans_cmd/Hlp_C_NAXIS.html" class="olink"><span class="command"><strong>NAXIS</strong></span></a> command documentation.</p></dd><dt><span><b class="term">KEYOPT(3)</b></span></dt><dd><p>Pressure applied to faces 1 through 3K (3 x KEYOPT(2)),
+according to the coordinate system:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Apply face loads in the
+default element coordinate system (for example, the first K faces
+act normal to the surface). </p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Apply face loads in the
+specified element coordinate system (for example, the first K faces
+act in the x direction as defined via the <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a> command).</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(4)</b></span></dt><dd><p>Midside nodes:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Has midside nodes. Use
+with <a class="link" href="Hlp_E_SOLID273.html" title="SOLID273"><span class="structname">SOLID273</span></a>. This value is the default. </p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>No midside nodes. Use
+with <a class="link" href="Hlp_E_SOLID272.html" title="SOLID272"><span class="structname">SOLID272</span></a>.</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(6)</b></span></dt><dd><p>Applicable only to normal direction pressure (faces
+1 through K and 3K+1):</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Use pressures as calculated
+(positive and negative).</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Use positive pressures
+only (negative set to zero).</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Use negative pressures
+only (positive set to zero).</p></dd></dl></div></div><p>To use KEYOPT(6), KEYOPT(3) must be set to 0. </p></dd><dt><span><b class="term">KEYOPT(7)</b></span></dt><dd><p>Loaded area during large-deflection analyses:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Use new area.</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Use original area.</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(11)</b></span></dt><dd><p>Pressure applied by vector orientation (face 3K+2):</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>On projected area and
+includes tangential component.</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>On projected area and
+does not include tangential component.</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>On full area and includes
+the tangential component.</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(12)</b></span></dt><dd><p>Effect of the direction of the element normal (element
+x-axis) on vector oriented (face 3K+2) pressure:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Pressure load is applied
+regardless of the element normal orientation.</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Pressure load is not used
+if the element normal is oriented in the same general direction as
+the pressure vector.</p></dd></dl></div></div></dd></dl></div></div><div class="table"><a name="surf159realconstants"></a><p class="title"><b>Table&nbsp;159.1:&nbsp;&nbsp;SURF159 Real Constants</b></p><div class="table-contents"><table summary="SURF159 Real Constants" border="1" width="95%"><colgroup><col width="72" class="col1"><col width="96" class="col2"><col width="432" class="col3"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center" valign="top">
+No.</th><th bgcolor="#E3E3E3" align="center" valign="top">
+Name</th><th bgcolor="#E3E3E3" align="center" valign="top">
+Description</th></tr></thead><tbody><tr><td align="center">1 ... 3</td><td>(Blank)</td><td>--</td></tr><tr><td align="center">4</td><td>EFS</td><td>Foundation stiffness</td></tr><tr><td align="center">5</td><td>SURT</td><td>Surface tension</td></tr><tr><td align="center">6</td><td>ADMSUA</td><td>Added mass/unit area</td></tr><tr><td align="center">7</td><td>TKI</td><td>In-plane thickness at node I</td></tr><tr><td align="center">8</td><td>TKJ</td><td>In-plane thickness
+at node J (defaults to TKI)</td></tr></tbody></table></div></div><br class="table-break"></div></div><div class="refsect1" title="SURF159 Output Data"><a name="surf159outputdata"></a><h2>SURF159 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal displacements included in the overall nodal
+solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_SURF159.html#surf159outputdefs" title="Table&nbsp;159.2:&nbsp;&nbsp;SURF159 Element Output Definitions">Table&nbsp;159.2:&nbsp;SURF159 Element Output Definitions</a>
+</p></li></ul></div><p>
+</p><p>A general description of solution output is given in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a>. See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways to view results.</p><p>To view 3-D mode shapes for a modal or eigenvalue buckling analysis,
+expand the modes with element results calculation active (via the <a href="../ans_cmd/Hlp_C_MXPAND.html" class="olink"><span class="command"><strong>MXPAND</strong></span></a> command's <em class="replaceable"><code>Elcalc</code></em> = YES
+option). </p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="surf159outputdefs"></a><p class="title"><b>Table&nbsp;159.2:&nbsp;&nbsp;SURF159 Element Output Definitions</b></p><div class="table-contents"><table summary="SURF159 Element Output Definitions" border="1" width="95%"><colgroup><col width="139" class="col1"><col width="340" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center">
+Name</th><th bgcolor="#E3E3E3" align="center">
+Definition</th><th bgcolor="#E3E3E3" align="center">
+O</th><th bgcolor="#E3E3E3" align="center">
+R</th></tr></thead><tbody><tr><td>ELEMID</td><td>Element number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Nodes
+- I, J, . . . , K (nodes in master plane)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NNP</td><td>Number of nodal planes</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>AREA</td><td>Total area</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>VOLU</td><td>Total volume</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>MAT</td><td>Material number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>DENS</td><td>Density</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>ADMSUA</td><td>Added mass per unit area</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>MASS</td><td>Element mass</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>EFS</td><td>Elastic foundation stiffness</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>SURT</td><td>Surface tension</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>PRES</td><td>Pressures</td><td align="center">Y</td><td align="center">Y</td></tr></tbody></table></div></div><br class="table-break"><p>
+<a class="xref" href="Hlp_E_SURF159.html#surf159seqtable" title="Table&nbsp;159.3:&nbsp;&nbsp;SURF159 Item and Sequence Numbers">Table&nbsp;159.3:&nbsp;SURF159 Item and Sequence Numbers</a> lists output available through <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> using the Sequence Number method. See <a href="../ans_bas/Hlp_G_BAS5_2.html#abOBsq267ldm" class="olink">Creating an Element Table</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in this document
+for more information. The following notation is used in the output
+table: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="Hlp_E_SURF159.html#surf159outputdefs" title="Table&nbsp;159.2:&nbsp;&nbsp;SURF159 Element Output Definitions">Table&nbsp;159.2:&nbsp;SURF159 Element Output Definitions</a>
+</p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>
+</p></dd><dt><span><b class="term">I<sub>1</sub>, J<sub>1</sub>, I<sub>2</sub>, J<sub>2</sub>, . . . </b></span></dt><dd><p>sequence number for data at nodes I<sub>1</sub>, J<sub>1</sub>, I<sub>2</sub>, J<sub>2</sub>, . . . </p></dd></dl></div></div><p>
+</p><div class="table"><a name="surf159seqtable"></a><p class="title"><b>Table&nbsp;159.3:&nbsp;&nbsp;SURF159 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="SURF159 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="81" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" class="COLSPEC5"><col width="48" align="center" class="col4"><col width="48" align="center" class="col5"><col width="48" align="center" class="col6"><col width="48" align="center" class="col7"><col width="48" class="COLSPEC0"><col width="48" class="COLSPEC4"><col width="28" class="COLSPEC3"><col width="48" class="COLSPEC2"><col width="48" class="COLSPEC1"></colgroup><thead><tr><th bgcolor="#E3E3E3" rowspan="2" align="center" valign="middle">
+Output Quantity Name</th><th bgcolor="#E3E3E3" colspan="11" align="center">
+
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input (K = KEYOPT(2))</th></tr><tr><th bgcolor="#CCCCCC" align="center">
+Item</th><th bgcolor="#CCCCCC" align="center">
+E</th><th bgcolor="#CCCCCC" align="center">
+I<sub>1</sub>
+</th><th bgcolor="#CCCCCC" align="center">
+J<sub>1</sub>
+</th><th bgcolor="#CCCCCC" align="center">
+I<sub>2</sub>
+</th><th bgcolor="#CCCCCC" align="center">
+J<sub>2</sub>
+</th><th bgcolor="#CCCCCC" align="center">
+I<sub>3</sub>
+</th><th bgcolor="#CCCCCC" align="center">
+J<sub>3</sub>
+</th><th bgcolor="#CCCCCC" align="center">
+...</th><th bgcolor="#CCCCCC" align="center">
+I<sub>K</sub>
+</th><th bgcolor="#CCCCCC" align="center">
+J<sub>K</sub>
+</th></tr></thead><tbody><tr><td align="center">P<sub>1</sub>
+</td><td align="center">SMISC</td><td align="center">-</td><td align="center">2</td><td align="center">1</td><td align="center">3</td><td align="center">4</td><td align="center">-</td><td align="center">-</td><td align="center">...</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">P<sub>2</sub>
+</td><td align="center">SMISC</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">6</td><td align="center">5</td><td align="center">7</td><td align="center">8</td><td align="center">...</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">...</td><td align="center">...</td><td align="center">...</td><td align="center">...</td><td align="center">...</td><td align="center">...</td><td align="center">...</td><td align="center">...</td><td align="center">...</td><td align="center">...</td><td align="center">...</td><td align="center">...</td></tr><tr><td align="center">P<sub>K</sub>
+</td><td align="center">SMISC</td><td align="center">-</td><td align="center">4K-1</td><td align="center">4K</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">...</td><td align="center">4K-2 </td><td align="center">4K-3 </td></tr><tr><td bgcolor="#E3E3E3" align="center">
+P<sub>K+1</sub> </td><td bgcolor="#E3E3E3" align="center">
+SMISC</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+4K+2 </td><td bgcolor="#E3E3E3" align="center">
+4K+1 </td><td bgcolor="#E3E3E3" align="center">
+4K+3 </td><td bgcolor="#E3E3E3" align="center">
+4K+4 </td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+...</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td></tr><tr><td bgcolor="#E3E3E3" align="center">
+P<sub>K+2</sub>
+</td><td bgcolor="#E3E3E3" align="center">
+SMISC</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+4K+6 </td><td bgcolor="#E3E3E3" align="center">
+4K+5 </td><td bgcolor="#E3E3E3" align="center">
+4K+7 </td><td bgcolor="#E3E3E3" align="center">
+4K+8 </td><td bgcolor="#E3E3E3" align="center">
+...</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td></tr><tr><td bgcolor="#E3E3E3" align="center">
+...</td><td bgcolor="#E3E3E3" align="center">
+...</td><td bgcolor="#E3E3E3" align="center">
+...</td><td bgcolor="#E3E3E3" align="center">
+...</td><td bgcolor="#E3E3E3" align="center">
+...</td><td bgcolor="#E3E3E3" align="center">
+...</td><td bgcolor="#E3E3E3" align="center">
+...</td><td bgcolor="#E3E3E3" align="center">
+...</td><td bgcolor="#E3E3E3" align="center">
+...</td><td bgcolor="#E3E3E3" align="center">
+...</td><td bgcolor="#E3E3E3" align="center">
+...</td><td bgcolor="#E3E3E3" align="center">
+...</td></tr><tr><td bgcolor="#E3E3E3" align="center">
+P<sub>2K</sub>
+</td><td bgcolor="#E3E3E3" align="center">
+SMISC</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+8K-1 </td><td bgcolor="#E3E3E3" align="center">
+8K</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+...</td><td bgcolor="#E3E3E3" align="center">
+8K-2 </td><td bgcolor="#E3E3E3" align="center">
+8K-3 </td></tr><tr><td align="center">
+P<sub>2K+1</sub> </td><td align="center">SMISC</td><td align="center">-</td><td align="center">8K+2</td><td align="center">8K+1</td><td align="center">8K+3</td><td align="center">8K+4</td><td align="center">-</td><td align="center">-</td><td align="center">...</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">
+P<sub>2K+2</sub>
+</td><td align="center">SMISC</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">8K+6</td><td align="center">8K+5</td><td align="center">8K+7</td><td align="center">8K+8</td><td align="center">...</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">
+...</td><td align="center">...</td><td align="center">...</td><td align="center">...</td><td align="center">...</td><td align="center">...</td><td align="center">...</td><td align="center">...</td><td align="center">...</td><td align="center">...</td><td align="center">...</td><td align="center">...</td></tr><tr><td align="center">
+P<sub>3K</sub>
+</td><td align="center">SMISC</td><td align="center">-</td><td align="center">12K-1</td><td align="center">12K</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">...</td><td align="center">12K-2</td><td align="center">12K-3</td></tr><tr><td bgcolor="#E3E3E3" align="center">
+P<sub>3K+1 (magnitude)</sub>
+</td><td bgcolor="#E3E3E3" align="center">
+SMISC</td><td bgcolor="#E3E3E3" align="center">
+12K+1</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+...</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td></tr><tr><td bgcolor="#E3E3E3" align="center">
+X gradient</td><td bgcolor="#E3E3E3" align="center">
+SMISC</td><td bgcolor="#E3E3E3" align="center">
+12K+2</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+...</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td></tr><tr><td bgcolor="#E3E3E3" align="center">
+Y gradient</td><td bgcolor="#E3E3E3" align="center">
+SMISC</td><td bgcolor="#E3E3E3" align="center">
+12K+3</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+...</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td></tr><tr><td bgcolor="#E3E3E3" align="center">
+Z gradient</td><td bgcolor="#E3E3E3" align="center">
+SMISC</td><td bgcolor="#E3E3E3" align="center">
+12K+4</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+...</td><td bgcolor="#E3E3E3" align="center">
+-</td><td bgcolor="#E3E3E3" align="center">
+-</td></tr><tr><td align="center">
+P<sub>3K+2 (magnitude)</sub>
+</td><td align="center">SMISC</td><td align="center">12K+5</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">...</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">
+X component</td><td align="center">SMISC</td><td align="center">12K+6</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">...</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">
+Y component</td><td align="center">SMISC</td><td align="center">12K+7</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">...</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">
+Z component</td><td align="center">SMISC</td><td align="center">12K+8</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">...</td><td align="center">-</td><td align="center">-</td></tr></tbody></table></div></div><br class="table-break"><div class="blockquote"><blockquote class="blockquote"><p>The item and sequence numbers shown are for real pressures.
+Imaginary pressures are represented in the same way but have 12K+8
+added to them.</p></blockquote></div></div><div class="refsect1" title="SURF159 Assumptions and Restrictions"><a name="surf159assumptions"></a><h2>SURF159 Assumptions and Restrictions</h2><p>
+</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The length of the base element must be nonzero. </p></li><li class="listitem"><p>The base element must lie on one side of the axisymmetric
+axis, and the axisymmetric axis must be on the same plane as the base
+element (master plane).  </p></li><li class="listitem"><p>A base element or base node must be associated with
+one axisymmetric axis (defined via <a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a> and <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> commands) <span class="italic"><em>before</em></span> generating nodes for general axisymmetric element sections (<a href="../ans_cmd/Hlp_C_NAXIS.html" class="olink"><span class="command"><strong>NAXIS</strong></span></a>) or defining an element by node connectivity (<a href="../ans_cmd/Hlp_C_E.html" class="olink"><span class="command"><strong>E</strong></span></a>).</p></li><li class="listitem"><p>An edge with a removed midside node implies that the
+displacement varies linearly, rather than parabolically, along that
+edge. For more information about the use of midside nodes, see <a href="../ans_mod/Hlp_G_MOD2_4.html#aQXQxq1ecmcm" class="olink">Quadratic Elements (Midside
+Nodes)</a> in the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a>. </p></li><li class="listitem"><p>You cannot apply a pressure load by applying a surface
+load to selected areas (<a href="../ans_cmd/Hlp_C_SFA.html" class="olink"><span class="command"><strong>SFA</strong></span></a>).</p></li><li class="listitem"><p>The contribution of the element to the mass moment
+inertia of the whole model is calculated by element mass multiplied
+by the square of the coordinates of the elemental centroid. The moment
+of inertia may therefore be inaccurate. </p></li><li class="listitem"><p>The element does not support the <a href="../ans_substr/axcAuq367ldm.html" class="olink">expansion pass of
+a superelement</a> with large rotation.</p></li><li class="listitem"><p>Issuing an <a href="../ans_cmd/Hlp_C_ESHAPE.html" class="olink"><span class="command"><strong>/ESHAPE</strong></span></a>,1 command while
+PowerGraphics is active causes the program to plot the elements in
+3-D and the results on both nodal planes and all <a href="Hlp_E_continuumelems.html#elemgenaxsidebar" class="olink">integration planes</a> in the circumferential direction; otherwise, the program plots the
+elements in 2-D and the results on the master plane. </p></li><li class="listitem"><p>You cannot display surface load symbols (<a href="../ans_cmd/Hlp_C_PSF.html" class="olink"><span class="command"><strong>/PSF</strong></span></a>) for this element.</p></li><li class="listitem"><p>When listing the surface loads for elements (<a href="../ans_cmd/Hlp_C_SFELIST.html" class="olink"><span class="command"><strong>SFELIST</strong></span></a>), only information for the <span class="italic"><em>first</em></span> facet is returned.</p></li><li class="listitem"><p>When plotting contour values via <a href="../ans_cmd/Hlp_C_ESHAPE.html" class="olink"><span class="command"><strong>/ESHAPE</strong></span></a>,1, expanded <span class="structname">SURF159</span> elements are assigned
+zeroes; you should therefore deselect <span class="structname">SURF159</span> elements when plotting results such as stresses and strains.</p></li><li class="listitem"><p>In postprocessing, print commands return the nodal
+plane results only.</p></li><li class="listitem"><p>Stress stiffening is always included in geometrically
+nonlinear analyses (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON). Prestress effects
+can be activated via the <a href="../ans_cmd/Hlp_C_PSTRES.html" class="olink"><span class="command"><strong>PSTRES</strong></span></a> command.</p></li></ul></div><p> </p></div><div class="refsect1" title="SURF159 Product Restrictions"><a name="surf159prodrestr"></a><h2>SURF159 Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific
+   restrictions apply to this element in addition to the general assumptions and restrictions given
+   in the previous section.</p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+   </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

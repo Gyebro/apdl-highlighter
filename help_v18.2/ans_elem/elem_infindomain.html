@@ -1,0 +1,55 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:06-04:00"><title>5.7.&nbsp;Elements Used to Model the Truncation of an Infinite Structural Domain</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_StressAnalysisElems.html" title="Chapter&nbsp;5:&nbsp;Elements for Stress Analysis"><link rel="prev" href="elem_surfelems.html" title="5.6.&nbsp;Surface Elements"><link rel="next" href="Hlp_E_AutoSelectElems.html" title="5.8.&nbsp;Automatic Selection of Element Technologies and Formulations"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="5.7.&nbsp;Elements Used to Model the Truncation of an Infinite Structural Domain"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="elem_infindomain"></a>5.7.&nbsp;Elements Used to Model the Truncation of an Infinite Structural Domain</h2></div></div></div><p>It is sometimes necessary to represent an infinite domain within a finite FEA
+            simulation model when a structural problem contains an infinite open domain. The
+            structural infinite elements and the perfectly matched layers (PML) technology offer two
+            methods for truncating the infinite domain without affecting the true solution.
+            Following are the elements that correspond to these two methods.</p><p>
+            <span class="bold"><strong>Structural infinite domain element:</strong></span>
+        </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+                <a class="link" href="Hlp_E_INFIN257.html" title="INFIN257"><span class="structname">INFIN257</span></a> - Structural Infinite Solid</td></tr></table><p>
+            <span class="bold"><strong>Structural elements that support perfectly matched layers
+                (PML):</strong></span>
+        </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+                <a class="link" href="Hlp_E_SOLID185.html" title="SOLID185"><span class="structname">SOLID185</span></a> - 3-D 8-Node Structural Solid</td></tr><tr><td>
+                <a class="link" href="Hlp_E_SOLID186.html" title="SOLID186"><span class="structname">SOLID186</span></a> - 3-D 20-Node Structural Solid</td></tr><tr><td>
+                <a class="link" href="Hlp_E_SOLID187.html" title="SOLID187"><span class="structname">SOLID187</span></a> - 3-D 10-Node Tetrahedral Structural
+                Solid</td></tr></table><div class="highlights"><p>The following topics describe and compare the two methods of modeling an infinite
+                domain.</p><ul><li><a href="elem_infindomain.html#d0e14886" title="5.7.1.&nbsp;Structural Infinite Element">Structural Infinite Element</a></li><li><a href="elem_infindomain.html#d0e14927" title="5.7.2.&nbsp;Perfectly Matched Layers (PML) for Structural Elements">Perfectly Matched Layers (PML) for Structural Elements</a></li><li><a href="elem_infindomain.html#d0e14964" title="5.7.3.&nbsp;Recommendations for Infinite Element vs. PML">Recommendations for Infinite Element vs. PML</a></li></ul></div><div class="sect2" title="5.7.1.&nbsp;Structural Infinite Element"><div class="titlepage"><div><div><h3 class="title"><a name="d0e14886"></a>5.7.1.&nbsp;Structural Infinite Element</h3></div></div></div><p>The structural infinite element, <a class="link" href="Hlp_E_INFIN257.html" title="INFIN257"><span class="structname">INFIN257</span></a>, is used to
+                model an infinite domain. For static analysis, the element adapts the theory of the
+                mapped element. For dynamic analysis, the element adapts the theory of absorbing
+                boundary. For details, see <a href="../ans_thry/thy_el257.html" class="olink">INFIN257 - Structural Infinite Solid in the <span class="olinkdocname">Mechanical APDL Theory Reference</span></a>.</p><p>Following are advantages to using this element:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The element can be used to model the infinite medium with a reduced
+                            model size (fewer elements).</p></li><li class="listitem"><p>With the reduced number of elements, the computation cost is cheaper
+                            than the same model with finite elements only.</p></li></ul></div><p>
+            </p><p>Following are limitations for this element:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>In a static analysis, the solution is sensitive to the pole position
+                            according to the application. Therefore, you should set the pole
+                            position near the loading position, or at the center of the loads if
+                            there are multiple loading positions.</p></li><li class="listitem"><p>In a dynamic analysis, the simulation results may not be highly
+                            accurate (but are acceptable) due to the limitation of the theory of the
+                            absorbing boundary. </p></li></ul></div><p>
+            </p><p>Refer to the <a href="../ans_cmd/Hlp_C_EINFIN.html" class="olink"><span class="command"><strong>EINFIN</strong></span></a> command and the
+                    <a class="link" href="Hlp_E_INFIN257.html" title="INFIN257"><span class="structname">INFIN257</span></a> element description for details on how to
+                define and use this element type.</p></div><div class="sect2" title="5.7.2.&nbsp;Perfectly Matched Layers (PML) for Structural Elements"><div class="titlepage"><div><div><h3 class="title"><a name="d0e14927"></a>5.7.2.&nbsp;Perfectly Matched Layers (PML) for Structural Elements</h3></div></div></div><p>The structural PML feature is an artificial anisotropic material used to truncate
+                the structural infinite FEA open domain. PML are defined by the
+                    <a class="link" href="Hlp_E_SOLID185.html" title="SOLID185"><span class="structname">SOLID185</span></a>, <a class="link" href="Hlp_E_SOLID186.html" title="SOLID186"><span class="structname">SOLID186</span></a>, and
+                    <a class="link" href="Hlp_E_SOLID187.html" title="SOLID187"><span class="structname">SOLID187</span></a> elements with KEYOPT(15) = 1.</p><p>In a structural harmonic analysis, the outgoing elastic waves are absorbed by the
+                PML without any reflections. In a structural static analysis, the fringing
+                displacement is attenuated rapidly in the PML without affecting the values of
+                displacement in the normal FEA domain.</p><p>The use of PML leads to higher accuracy, especially in harmonic analysis. Refer to
+                    <a href="../ans_thry/thy_strpmlel.html" class="olink">Perfectly Matched Layers (PML) in Elastic Media</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for
+                structural PML theory.</p><p>Modeling PML requires a cubic enclosure for three-dimensional models and more than
+                three layers. The PML accommodate the symmetry of the model. The displacement values
+                on the exterior surface of structural PML must be set to zero. The structural PML
+                feature does not support transient analysis or 2-D elements.</p><p>Refer to <a href="../ans_acous/acous_artificial.html#acouspml" class="olink">Perfectly Matched Layers (PML)</a> in the <a href="../ans_acous/ans_acous.html" class="olink"><em class="citetitle">Acoustic Analysis Guide</em></a> for
+                information on how to construct PML in your model. </p></div><div class="sect2" title="5.7.3.&nbsp;Recommendations for Infinite Element vs. PML"><div class="titlepage"><div><div><h3 class="title"><a name="d0e14964"></a>5.7.3.&nbsp;Recommendations for Infinite Element vs. PML</h3></div></div></div><p>The following table indicates under what circumstances the infinite element and
+                the PML feature are applicable.</p><div class="table"><a name="d0e14969"></a><p class="title"><b>Table&nbsp;5.3:&nbsp;&nbsp;Infinite Element vs. PML</b></p><div class="table-contents"><table summary="Infinite Element vs. PML" border="1" width="95%"><colgroup><col width="29%" class="c1"><col width="24%" class="c2"><col width="23%" class="c3"><col width="24%" class="c4"></colgroup><thead><tr><th align="center">Application Domain</th><th align="center">Analysis Type</th><th align="center">Infinite Element</th><th align="center">PML</th></tr></thead><tbody><tr><td rowspan="3" align="center" valign="middle">2-D</td><td>Static</td><td align="center">Yes</td><td align="center">No</td></tr><tr><td>Transient</td><td align="center">Yes</td><td align="center">No</td></tr><tr><td>Harmonic</td><td align="center">Yes</td><td align="center">No</td></tr><tr><td rowspan="3" align="center" valign="middle">3-D</td><td>Static [<a class="xref" href="elem_infindomain.html#infinvspml.ft.1">1</a>]</td><td align="center">Yes</td><td align="center">Yes</td></tr><tr><td>Transient</td><td align="center">Yes</td><td align="center">No</td></tr><tr><td>Harmonic [<a class="xref" href="elem_infindomain.html#infinvspml.ft.2">2</a>]</td><td align="center">Yes</td><td align="center">Yes</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="infinvspml.ft.1"></a>If you want to run a pole-independent (or pole-insensitive) analysis, the
+                        PML feature is recommended.</p></li><li class="listitem"><p><a name="infinvspml.ft.2"></a>The PML feature is recommended for higher accuracy.</p></li></ol></div></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

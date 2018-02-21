@@ -1,0 +1,92 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:52-04:00"><title>NLADAPTIVE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_N_TOC.html" title="N Commands"><link rel="prev" href="Hlp_C_NKPT.html" title="NKPT"><link rel="next" href="Hlp_C_NLDIAG.html" title="NLDIAG"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="NLADAPTIVE"><a name="NLADAPTIVE"></a><div class="titlepage"></div><a class="indexterm" name="d0e177627"></a><span class="refentrytitle"><span class="command"><strong>NLADAPTIVE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>NLADAPTIVE</strong></span>, <em class="replaceable"><code>Component</code></em>, <em class="replaceable"><code>Action</code></em>, <em class="replaceable"><code>Criterion</code></em>, <em class="replaceable"><code>Option</code></em>, <em class="replaceable"><code>VAL1</code></em>, <em class="replaceable"><code>VAL2</code></em>, <em class="replaceable"><code>VAL3</code></em><br><b class="refpurpose">Defines the criteria under which the mesh is refined or
+modified during a nonlinear solution.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolunonlinjla070199" title="Table&nbsp;2.50:&nbsp;&nbsp;Nonlinear Options"><span class="type">Nonlinear Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="NLADAPTIVE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Component</code></em></b></span></dt><dd><p>Specifies the element component upon which this command should act:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ALL </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>All selected components, or all selected
+elements if no component is selected (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term"><em class="replaceable"><code>Name</code></em></b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Component
+name.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Action</code></em></b></span></dt><dd><p>Action to perform on the selected component(s):</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ADD </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Add a criterion to the database.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LIST </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>List the criteria defined for the specified component(s).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DELETE </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Delete the criteria defined for the specified component(s).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ON</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Enable the defined criteria for the specified component(s) and specify how frequently
+          and when to check them (via
+           ON,,,<em class="replaceable"><code>VAL1</code></em>,<em class="replaceable"><code>VAL2</code></em>,<em class="replaceable"><code>VAL3</code></em>):</p><p><em class="replaceable"><code>VAL1</code></em> -- Checking frequency. If &gt; 0, check criteria at
+          every <em class="replaceable"><code>VAL1</code></em> substeps. If &lt; 0, check criteria at each of the
+           <em class="replaceable"><code>VAL1</code></em> points (approximately equally spaced) between
+           <em class="replaceable"><code>VAL2</code></em> and <em class="replaceable"><code>VAL3</code></em>. (Default =
+          -1.)</p><p><em class="replaceable"><code>VAL2</code></em> -- Checking start time, where
+           <em class="replaceable"><code>VAL2</code></em> &lt; <em class="replaceable"><code>VAL3</code></em>. (Default is the
+          start time of the load step.)</p><p><em class="replaceable"><code>VAL3</code></em> -- Checking end time, where
+           <em class="replaceable"><code>VAL3</code></em> &gt; <em class="replaceable"><code>VAL2</code></em>. (Default is the end
+          time of the load step.) </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Disable the defined criteria for the specified component(s).</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Criterion</code></em></b></span></dt><dd><p>Type of criterion to apply to the selected component(s):</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CONTACT </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Contact-based. (Valid only for <em class="replaceable"><code>Action</code></em> = ADD,
+           <em class="replaceable"><code>Action</code></em> = LIST, or <em class="replaceable"><code>Action</code></em> =
+          DELETE.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ENERGY </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Energy-based. (Valid only for <em class="replaceable"><code>Action</code></em> = ADD,
+           <em class="replaceable"><code>Action</code></em> = LIST, or <em class="replaceable"><code>Action</code></em> =
+          DELETE.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BOX </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>A position-based criterion, defined by a box. (Valid only for
+           <em class="replaceable"><code>Action</code></em> = ADD, <em class="replaceable"><code>Action</code></em> = LIST, or
+           <em class="replaceable"><code>Action</code></em> = DELETE.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MESH </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>A mesh-quality-based criterion. (Valid only for <em class="replaceable"><code>Action</code></em> =
+          ADD, <em class="replaceable"><code>Action</code></em> = LIST, or <em class="replaceable"><code>Action</code></em> =
+          DELETE.) </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ALL </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>All criteria and options. (Valid only for <em class="replaceable"><code>Action</code></em> = LIST or
+           <em class="replaceable"><code>Action</code></em> = DELETE. <em class="replaceable"><code>Option</code></em> and all
+          subsequent arguments are ignored.)</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Option</code></em></b></span></dt><dd><p>Criterion option to apply to the selected component(s):</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NUMELEM </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>For target elements only, defines the minimum number of contact elements to contact
+          with each target element. If this criterion is not satisfied, the program refines the
+          contact elements and the associated solid elements. For this option,
+           <em class="replaceable"><code>VAL1</code></em> must be a positive integer. (Valid only for
+           <em class="replaceable"><code>Criterion</code></em> = CONTACT and <em class="replaceable"><code>Action</code></em> =
+          ADD, LIST, or DELETE.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MEAN </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Checks the strain energy of any element that is part of the defined component for the
+          condition E<sub>e</sub> &#8805; c<sub>1</sub> *
+           E<sub>total</sub> / <em class="replaceable"><code>NUME</code></em> (where
+           c<sub>1</sub> = <em class="replaceable"><code>VAL1</code></em>,
+           E<sub>total</sub> is the total strain energy of the component, and
+           <em class="replaceable"><code>NUME</code></em> is the number of elements of the component). If this
+          criterion is satisfied at an element, the program refines the element. For this option,
+           <em class="replaceable"><code>VAL1</code></em> must be non-negative and defaults to 1. (Valid only for
+           <em class="replaceable"><code>Criterion</code></em> = ENERGY and <em class="replaceable"><code>Action</code></em> =
+          ADD, LIST, or DELETE.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">XYZRANGE </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Defines the location box in which all elements within are to be split or refined. Up
+          to six values following the <em class="replaceable"><code>Option</code></em> argument (representing the
+          x1, x2, y1, y2, z1, and z2 coordinates) are allowed. An unspecified coordinate is not
+          checked. (Valid only for <em class="replaceable"><code>Criterion</code></em> = BOX and
+           <em class="replaceable"><code>Action</code></em> = ADD, LIST, or DELETE.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SKEWNESS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Mesh-quality control threshold for element <a href="../ans_elem/Hlp_E_SOLID285.html" class="olink"><span class="structname">SOLID285</span></a>. Valid
+          values (<em class="replaceable"><code>VAL1</code></em>) are 0.0 through 1.0. Default = 0.9. (Valid only
+          for <em class="replaceable"><code>Criterion</code></em> = MESH and <em class="replaceable"><code>Action</code></em> =
+          ADD, LIST, or DELETE.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SHAPE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Mesh-quality control threshold for element <a href="../ans_elem/Hlp_E_PLANE182.html" class="olink"><span class="structname">PLANE182</span></a>. (Valid
+          only for <em class="replaceable"><code>Criterion</code></em> = MESH and <em class="replaceable"><code>Action</code></em>
+          = ADD, LIST, or DELETE.)</p><p><em class="replaceable"><code>VAL1</code></em> -- Maximum corner angle of an element in degrees.
+          Valid values are 0 through 180. Default = 160. An element is remeshed when any of its
+          corner angles reach the specified value.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">WEAR</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>For contact elements having surface wear specified (<a class="link" href="Hlp_C_TB.html" title="TB"><span class="command"><strong>TB</strong></span></a>,WEAR) only,
+          defines <em class="replaceable"><code>VAL1</code></em> as a critical ratio of magnitude of wear to the
+          average depth of the solid element underlying the contact element. Once this critical
+          ratio is reached for any element, the program morphs the mesh to improve the quality of
+          the elements. <em class="replaceable"><code>VAL1</code></em> must be a positive integer. (Valid only for
+           <em class="replaceable"><code>Criterion</code></em> = CONTACT and <em class="replaceable"><code>Action</code></em> =
+          ADD, <em class="replaceable"><code>Action</code></em> = LIST, or <em class="replaceable"><code>Action</code></em> =
+          DELETE.) Cannot be combined with any other option during solution.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ALL </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>All options. (Valid only for <em class="replaceable"><code>Action</code></em> = LIST or
+           <em class="replaceable"><code>Action</code></em> = DELETE. All subsequent arguments are ignored.)</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="NLADAPTIVE.notes"></a><h2>Notes</h2><p>If a specified component (<em class="replaceable"><code>Component</code></em>) is an assembly, the defined criterion applies to all element components
+included in the assembly.</p><p>All components must be defined and selected <span class="italic"><em>before</em></span> the first solve (<a class="link" href="Hlp_C_SOLVE.html" title="SOLVE"><span class="command"><strong>SOLVE</strong></span></a>), although their nonlinear adaptivity criteria can be modified from
+load step to load step, and upon restart. For nonlinear adaptivity
+to work properly, ensure that all components are selected before each
+solve.</p><p>After using this command to define a new criterion, the new
+criterion becomes active and is checked one time during each load
+step, roughly in mid-loading (unless this behavior is changed via <em class="replaceable"><code>Action</code></em> = ON). </p><p>When a criterion is defined, it overwrites a previously defined
+criterion (if one exists) through the same component, or through the
+component assembly that includes the specified component.</p><p>During solution, the same criteria defined for an element through
+different components are combined, and the tightest criteria and action
+control (<em class="replaceable"><code>Action</code></em>,ON,,,<em class="replaceable"><code>VAL1</code></em>) are used. If an ON action is defined by a positive <em class="replaceable"><code>VAL1</code></em> value through one component and a negative <em class="replaceable"><code>VAL1</code></em> value through another, the program uses the positive
+value.</p><p>For <em class="replaceable"><code>Action</code></em> = ON, if <em class="replaceable"><code>VAL2</code></em> (start time) and/or <em class="replaceable"><code>VAL3</code></em> (end time) are unspecified or invalid, the program uses the start
+and/or end time (respectively) of the load step. If <em class="replaceable"><code>VAL1</code></em> &lt; 0, the program checks <em class="replaceable"><code>VAL1</code></em> points
+between <em class="replaceable"><code>VAL2</code></em> and <em class="replaceable"><code>VAL3</code></em>. The time interval between each check points is determined by (<em class="replaceable"><code>VAL3</code></em> - <em class="replaceable"><code>VAL2</code></em>) / (<em class="replaceable"><code>VAL1</code></em> + 1), with the first check point as close to <em class="replaceable"><code>VAL2</code></em> + (<em class="replaceable"><code>VAL3</code></em> - <em class="replaceable"><code>VAL2</code></em>) / (<em class="replaceable"><code>VAL1</code></em> + 1) as possible.
+Fewer check points can be used if the number of substeps during solution
+is insufficient (as the program can only check at the <span class="italic"><em>end</em></span> of a substep).</p><p><em class="replaceable"><code>Option</code></em> = SKEWNESS
+applies to linear tetrahedral element <a href="../ans_elem/Hlp_E_SOLID285.html" class="olink"><span class="structname">SOLID285</span></a> only. When the skewness of a <a href="../ans_elem/Hlp_E_SOLID285.html" class="olink"><span class="structname">SOLID285</span></a> element
+is &gt;= the defined value, the element is used as the core (seed) element
+of the remeshed region(s). If this criterion is used together with
+any other criteria for the same component, the other criteria defined
+for the component are ignored. The most desirable skewness value is
+0, applicable when the element is a standard tetrahedral element;
+the highest value is 1, applicable when the element becomes flat with
+zero volume. For more information about skewness and remeshing, see <a href="../ans_adv/adv_meshnonlinadapt.html" class="olink">Mesh Nonlinear Adaptivity</a> in the <a href="../ans_adv/Hlp_G_AdvTOC.html" class="olink"><em class="citetitle">Advanced Analysis Guide</em></a>.</p><p>For more granular control of the source
+mesh geometry, see <a class="link" href="Hlp_C_NLMESH.html" title="NLMESH"><span class="command"><strong>NLMESH</strong></span></a>.</p></div><div class="refsect1" title="Menu Paths"><a name="NLADAPTIVE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

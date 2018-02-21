@@ -1,0 +1,23 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:52-04:00"><title>SE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_S_TOC.html" title="S Commands"><link rel="prev" href="Hlp_C_SDELETE.html" title="SDELETE"><link rel="next" href="Hlp_C_SECCONTROL.html" title="SECCONTROL"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SE"><a name="SE"></a><div class="titlepage"></div><a class="indexterm" name="d0e235463"></a><span class="refentrytitle"><span class="command"><strong>SE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>SE</strong></span>, <em class="replaceable"><code>File</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>TOLER</code></em><br><b class="refpurpose">Defines a superelement.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7superelementsldm061600" title="Table&nbsp;2.39:&nbsp;&nbsp;Superelements"><span class="type">Superelements</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="SE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>File</code></em></b></span></dt><dd><p>The name (case sensitive) of the file containing the
+original superelement matrix created by the generation pass (<span class="filename"><strong><em class="replaceable"><code>Sename</code></em>.SUB</strong></span>). The default is
+the current Jobname.</p></dd><dt><span><b class="term"><em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused fields.</p></dd><dt><span><b class="term"><em class="replaceable"><code>TOLER</code></em></b></span></dt><dd><p>Tolerance used to determine if use pass nodes are
+noncoincident with master nodes having the same node numbers.  Defaults
+to 0.0001.  Use pass nodes will always be replaced by master nodes
+of the same node number.  However, if a use pass node is more than <em class="replaceable"><code>TOLER</code></em> away from the corresponding master node, a warning
+is generated.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="SE.notes"></a><h2>Notes</h2><p>Defines a superelement by reading in the superelement matrices
+and master nodes from the superelement matrix file.  The matrix file
+(<span class="filename"><strong>File.SUB</strong></span>) must be available from the substructure
+generation pass.  The proper element type (<a href="../ans_elem/Hlp_E_MATRIX50.html" class="olink"><span class="structname">MATRIX50</span></a>) must be active [<a class="link" href="Hlp_C_TYPE.html" title="TYPE"><span class="command"><strong>TYPE</strong></span></a>] for this command.  A scratch
+file called <span class="filename"><strong>File.SORD</strong></span> showing the superelement
+names and their corresponding element numbers is also written.</p></div><div class="refsect1" title="Menu Paths"><a name="SE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Elements&gt;Superelem&gt;From .SUB File</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

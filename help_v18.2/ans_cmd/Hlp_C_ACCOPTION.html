@@ -1,0 +1,26 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:20-04:00"><title>ACCOPTION</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_A_TOC.html" title="A Commands"><link rel="prev" href="Hlp_C_ACCAT.html" title="ACCAT"><link rel="next" href="Hlp_C_ACEL.html" title="ACEL"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="ACCOPTION"><a name="ACCOPTION"></a><div class="titlepage"></div><a class="indexterm" name="d0e16902"></a><span class="refentrytitle"><span class="command"><strong>ACCOPTION</strong></span> </span><div class="refnamediv"><p><span class="command"><strong>ACCOPTION</strong></span>, <em class="replaceable"><code>Activate</code></em><br><b class="refpurpose">Specifies GPU accelerator capability options.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsect1" title="Argument Descriptions"><a name="ACCOPTION.argdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Activate</code></em></b></span></dt><dd><p>Activates the GPU accelerator capability within the
+equation solvers. </p><div><div class="variablelist"><dl><dt><span><b class="term">OFF&nbsp;--&nbsp;</b></span></dt><dd><p>Do not use GPU accelerator.</p></dd><dt><span><b class="term">ON&nbsp;--&nbsp;</b></span></dt><dd><p>Use GPU accelerator. </p></dd></dl></div></div></dd></dl></div></div></div><div class="refsect1" title="Command Default"><a name="ACCOPTION.default"></a><h2>Command Default</h2><p><em class="replaceable"><code>Activate</code></em> is set to ON when the GPU
+acceleration command line option (-acc) is specified upon launching
+ANSYS; otherwise it is OFF.</p></div><div class="refsect1" title="Notes"><a name="ACCOPTION.notes"></a><h2>Notes</h2><p>The GPU accelerator capability requires specific hardware to
+be installed on the machine. See the appropriate ANSYS, Inc. Installation
+Guide (<a href="../ai_instl/win_gpureqt.html" class="olink">Windows</a> or <a href="../ai_instl/unix_gpureqt.html" class="olink">Linux</a>) for a list of supported GPU hardware. Use of this capability also
+requires HPC licensing. For more information, see <a href="../ans_dan/para_gpu.html" class="olink">GPU Accelerator Capability</a> in the <a href="../ans_dan/dantoc.html" class="olink"><em class="citetitle">Parallel Processing Guide</em></a>.</p><p>The GPU accelerator capability is available
+for the sparse direct solver and the PCG and JCG iterative solvers.
+Static, buckling, modal, full harmonic, and full transient analyses
+are supported. For buckling analyses, the Block Lanczos and Subspace
+eigensolvers are supported. For modal analyses, only the Block Lanczos,
+PCG Lanczos, Subspace, Unsymmetric, and Damped eigensolvers are supported.
+Activating this capability when using other equation solvers or other
+analysis types has no effect.</p><p>The GPU accelerator capability is supported only on the Windows
+64-bit and Linux 64-bit platforms.</p></div><div class="refsect1" title="Menu Paths"><a name="ACCOPTION.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:06-04:00"><title>5.2.&nbsp;Shell Elements</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_StressAnalysisElems.html" title="Chapter&nbsp;5:&nbsp;Elements for Stress Analysis"><link rel="prev" href="Hlp_E_continuumelems.html" title="5.1.&nbsp;Continuum Stress Elements"><link rel="next" href="Hlp_E_BeamElements.html" title="5.3.&nbsp;Beam and Link (Truss) Elements"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="5.2.&nbsp;Shell Elements"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="shellelements81"></a>5.2.&nbsp;Shell Elements</h2></div></div></div><a class="indexterm" name="d0e14515"></a><p>Use shell elements to model thin structures (where one dimension is much smaller than
+            the other two dimensions). Shell elements decouple the deformation on the surface and
+            the deformation in the normal direction, allowing for a simple and efficient simulation
+            of a thin structure. </p><p>No firm rules exist to indicate when it is best to use shell elements. If the
+            structure acts as a shell, you can use shell elements. </p><p>Shell elements are usually created by meshing a surface representing the position and
+            shape of the structure, and associating them with section data to represent shell
+            thickness and properties. </p><div class="highlights"><p>The following additional topics concerning shell elements are available:</p><ul><li><a href="Hlp_E_ShellElements.html#d0e14527" title="5.2.1.&nbsp;Axisymmetric Shells">Axisymmetric Shells</a></li><li><a href="Hlp_E_ShellElements.html#d0e14542" title="5.2.2.&nbsp;Shell Stress and Stiffness">Shell Stress and Stiffness</a></li><li><a href="Hlp_E_ShellElements.html#d0e14549" title="5.2.3.&nbsp;Membrane and Surface Stress Options">Membrane and Surface Stress Options</a></li><li><a href="Hlp_E_ShellElements.html#d0e14556" title="5.2.4.&nbsp;Shell Shear and Warping">Shell Shear and Warping</a></li><li><a href="Hlp_E_ShellElements.html#d0e14582" title="5.2.5.&nbsp;Curved Shell Elements">Curved Shell Elements</a></li><li><a href="Hlp_E_ShellElements.html#d0e14597" title="5.2.6.&nbsp;Shell Element Coordinate System">Shell Element Coordinate System</a></li><li><a href="Hlp_E_ShellElements.html#d0e14619" title="5.2.7.&nbsp;Shell Element Nodes">Shell Element Nodes</a></li></ul></div><div class="sect2" title="5.2.1.&nbsp;Axisymmetric Shells"><div class="titlepage"><div><div><h3 class="title"><a name="d0e14527"></a>5.2.1.&nbsp;Axisymmetric Shells</h3></div></div></div><p>In addition to 3-D shell elements, axisymmetric shell elements are available for
+                efficiently modeling axisymmetric shell structures in 2-D. </p><p>Axisymmetric shell elements, such as <a class="link" href="Hlp_E_SHELL208.html" title="SHELL208"><span class="structname">SHELL208</span></a> and
+                    <a class="link" href="Hlp_E_SHELL209.html" title="SHELL209"><span class="structname">SHELL209</span></a>, may include out-of-plane translational
+                degrees of freedom to model uniform torsion about the axis. </p></div><div class="sect2" title="5.2.2.&nbsp;Shell Stress and Stiffness"><div class="titlepage"><div><div><h3 class="title"><a name="d0e14542"></a>5.2.2.&nbsp;Shell Stress and Stiffness</h3></div></div></div><p>Only plane stress state is allowed in shell elements. Normal thickness stress may
+                be recovered in some shell elements; however, recovered normal thickness stress is a
+                postprocessing quantity and does not contribute to the total element strain energy. </p><p>Shell elements withhold external load with membrane, bending, and transverse shear
+                stiffness. The in-plane rotational (drill) stiffness is added at the nodes for
+                solution stability, as shell elements do not have a true in-plane rotational
+                stiffness; consequently, do not expect the in-plane rotational stiffness to carry a
+                load. For lower-order shells with uniform reduced integration, a small artificial
+                stiffness may be included for suppressing the hourglass modes.</p></div><div class="sect2" title="5.2.3.&nbsp;Membrane and Surface Stress Options"><div class="titlepage"><div><div><h3 class="title"><a name="d0e14549"></a>5.2.3.&nbsp;Membrane and Surface Stress Options</h3></div></div></div><p>Some shell elements have an option allowing them to be used as membrane elements.
+                Such elements allow deformation in the plane of the surface only (that is, stresses
+                do not vary through the thickness). Only membrane stiffness is accounted for. Shell
+                bending, transverse shear, and drill stiffness are excluded; therefore, only
+                translational degrees of freedom are retained. Membrane elements are suitable for
+                modeling extremely thin shells or composite shells with small bending stiffness.
+                Specifying the membrane option for these structures can generally avoid
+                ill-conditioned systems; however, because membrane elements are capable of multiple
+                free-energy modes, using those elements alone is not recommended.</p><p>A surface-stress option is available for some shell elements, which excludes all
+                element stiffness and mass contribution. The option allows shell elements to serve
+                as a strain gauge for precision measurement of stresses, strains, and other element
+                solution quantities at selected locations in the model. Similar to the membrane
+                option, the surface-stress option requires only translational degrees of
+                freedom.</p></div><div class="sect2" title="5.2.4.&nbsp;Shell Shear and Warping"><div class="titlepage"><div><div><h3 class="title"><a name="d0e14556"></a>5.2.4.&nbsp;Shell Shear and Warping</h3></div></div></div><p>The only shear on the free surfaces of a shell element is in-plane. Normals to the
+                shell middle surface stay straight, but not necessarily normal. As a result, the
+                in-plane strain variation through the thickness cannot be more complex than
+                linear.</p><p>The assumption of linear in-plane strain variation through the thickness is
+                invalid at the edges of layered composite shell elements that have different
+                material properties at each layer. For accurate stresses in this area, consider
+                using <a href="../ans_adv/Hlp_G_ADV4.html" class="olink">submodeling</a>.</p><p>The program does not verify that the element thickness exceeds its width (or many
+                times its width), as such an element may be part of a fine mesh of a larger model
+                that acts as a shell.</p><p>If the initial shape of the model is curved, then the radius/thickness ratio is
+                important because the strain distribution through the thickness departs from linear
+                as the ratio decreases. With the exception of <a class="link" href="Hlp_E_SHELL61.html" title="SHELL61"><span class="structname">SHELL61</span></a>, all
+                shell elements allow shear deformation, important for relatively thick
+                shells.</p><p>Various shell element types tolerate a different degree of warping before their
+                results become questionable (as described in <a href="../ans_thry/thy_et7.html#eltwarping" class="olink">Warping Factor</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>). Four-node shell elements that do
+                not have all of their nodes in the same plane are considered to be warped.
+                Eight-node shell elements can accept a much greater degree of warping, but unlike
+                other midside-node elements, their midside nodes cannot be dropped. </p></div><div class="sect2" title="5.2.5.&nbsp;Curved Shell Elements"><div class="titlepage"><div><div><h3 class="title"><a name="d0e14582"></a>5.2.5.&nbsp;Curved Shell Elements</h3></div></div></div><p>Some shell elements, such as <a class="link" href="Hlp_E_SHELL181.html" title="SHELL181"><span class="structname">SHELL181</span></a> and
+                    <a class="link" href="Hlp_E_SHELL281.html" title="SHELL281"><span class="structname">SHELL281</span></a>, use an advanced element formulation that
+                accurately incorporates initial curvature effects. </p><p>The calculation for effective curvature change accounts for both shell-membrane
+                and thickness strains. The formulation generally offers excellent accuracy in
+                curved-shell-structure simulations, especially when thickness strain is significant
+                or the material anisotropy in the thickness direction cannot be ignored.</p></div><div class="sect2" title="5.2.6.&nbsp;Shell Element Coordinate System"><div class="titlepage"><div><div><h3 class="title"><a name="d0e14597"></a>5.2.6.&nbsp;Shell Element Coordinate System</h3></div></div></div><p>The <a class="link" href="Hlp_E_CH2_3.html#akm8sq3daldm" title="3.3.1.&nbsp;Understanding the Element Coordinate System">element coordinate system</a> for all shell
+                elements has the z axis normal to the plane. The element x axis is in the plane,
+                with its orientation determined by one of the following: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a> command</p></li><li class="listitem"><p>Side I-J of the element</p></li><li class="listitem"><p>Real constants</p></li></ul></div></div><div class="sect2" title="5.2.7.&nbsp;Shell Element Nodes"><div class="titlepage"><div><div><h3 class="title"><a name="d0e14619"></a>5.2.7.&nbsp;Shell Element Nodes</h3></div></div></div><p>Nodes are normally located on the center plane of the element. You can offset
+                nodes from the center plane using either of the following methods: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The <a href="../ans_cmd/Hlp_C_SECOFFSET.html" class="olink"><span class="command"><strong>SECOFFSET</strong></span></a> command</p></li><li class="listitem"><p>A rigid link (<a class="link" href="Hlp_E_MPC184.html" title="MPC184"><span class="structname">MPC184</span></a>) that connects a middle
+                        surface node to an out-of-plane node. </p></li></ul></div><p>Use node offsets with care when modeling initially curved structures with either
+                flat or curved elements. For curved elements, an increased mesh density in the
+                circumferential direction may improve the results.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

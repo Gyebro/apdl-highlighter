@@ -1,0 +1,44 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:45-04:00"><title>MIDTOL</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_M_TOC.html" title="M Commands"><link rel="prev" href="Hlp_C_MGEN.html" title="MGEN"><link rel="next" href="Hlp_C_MKDIR.html" title="/MKDIR"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="MIDTOL"><a name="MIDTOL"></a><div class="titlepage"></div><a class="indexterm" name="d0e166270"></a><span class="refentrytitle"><span class="command"><strong>MIDTOL</strong></span></span><div class="refnamediv"><p><span class="command"><strong>MIDTOL</strong></span>, <em class="replaceable"><code>KEY</code></em>, <em class="replaceable"><code>TOLERB</code></em>, <em class="replaceable"><code>RESFQ</code></em><br><b class="refpurpose">Sets midstep residual criterion values for structural transient
+analyses.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoludynoptjla070199" title="Table&nbsp;2.51:&nbsp;&nbsp;Dynamic Options"><span class="type">Dynamic Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code> KEY</code></em></b></span></dt><dd><p>Midstep residual criterion activation key.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ON or 1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Activate midstep residual criterion in
+a structural transient analysis (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF or 0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Deactivate midstep residual criterion
+in a structural transient analysis.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">STAT </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>List the current midstep residual criterion
+setting.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>TOLERB</code></em></b></span></dt><dd><p>Midstep residual tolerance or reference value for <span class="emphasis"><em>bisection</em></span>.
+Defaults to 100 times the <em class="replaceable"><code>TOLER</code></em> setting of the <a class="link" href="Hlp_C_CNVTOL.html" title="CNVTOL"><span class="command"><strong>CNVTOL</strong></span></a> command. </p><p>If <em class="replaceable"><code>TOLERB</code></em> &gt; 0, it is used as a tolerance
+about the typical force and/or moment to compare midstep residual force and/or
+moment for convergence. </p><p>If <em class="replaceable"><code>TOLERB</code></em> &lt; 0, it is used as a reference
+force value against which the midstep residual force is compared for convergence.
+The reference force value is used to compute a reference moment value for
+midstep residual moment comparison.</p><p>If midstep residual force and/or moment has not converged and <a class="link" href="Hlp_C_AUTOTS.html" title="AUTOTS"><span class="command"><strong>AUTOTS</strong></span></a>,ON
+is used, then <em class="replaceable"><code>TOLERB</code></em> is also used to predict time
+step size for bisection.</p></dd><dt><span><b class="term"><em class="replaceable"><code>RESFQ</code></em></b></span></dt><dd><p>Key to use response frequency computation along with midstep
+residual criterion for automatic time stepping (<a class="link" href="Hlp_C_AUTOTS.html" title="AUTOTS"><span class="command"><strong>AUTOTS</strong></span></a>,ON).</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF&nbsp;or&nbsp;0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Do not calculate response frequency
+and do not consider it in the automatic time stepping (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ON&nbsp;or&nbsp;1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Calculate response frequency
+and consider it in the automatic time stepping.</p></td></tr></tbody></table></div></div></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="d0e166395"></a><h3>Command Default</h3><p>For transient structural analysis, the out-of-balance residual is not
+checked at the midstep.</p></div></div><div class="refsect1" title="Notes"><a name="d0e166400"></a><h2>Notes</h2><p>When <em class="replaceable"><code>TOLERB</code></em> is input as a tolerance value
+(<em class="replaceable"><code>TOLERB</code></em> &gt; 0), the typical force and/or moment from
+the regular time step is used in the midstep residual force and/or moment
+comparison.</p><p>In a structural transient analysis, the suggested tolerance range of <em class="replaceable"><code>TOLERB</code></em> (<em class="replaceable"><code>TOLERB</code></em> &gt;
+0) is as follows:</p><table border="0" summary="Simple list" class="simplelist"><tr><td><em class="replaceable"><code>TOLERB</code></em> = 1 to 10 times the <em class="replaceable"><code>TOLER</code></em> setting
+of the <a class="link" href="Hlp_C_CNVTOL.html" title="CNVTOL"><span class="command"><strong>CNVTOL</strong></span></a> command for high accuracy solution.</td></tr><tr><td><em class="replaceable"><code>TOLERB</code></em> = 10 to 100 times the <em class="replaceable"><code>TOLER</code></em> setting
+of the <a class="link" href="Hlp_C_CNVTOL.html" title="CNVTOL"><span class="command"><strong>CNVTOL</strong></span></a> command for medium accuracy solution.</td></tr><tr><td><em class="replaceable"><code>TOLERB</code></em> = more than 100 times the <em class="replaceable"><code>TOLER</code></em> setting
+of the <a class="link" href="Hlp_C_CNVTOL.html" title="CNVTOL"><span class="command"><strong>CNVTOL</strong></span></a> command for low accuracy solution.</td></tr></table><p>If the structural transient analysis is elastic and linear, and
+the load is constant or changes slowly, use a smaller value of <em class="replaceable"><code>TOLERB</code></em> to
+achieve an accurate solution. If the analysis involves large amounts of energy
+dissipation, such as elastic-plastic material, <em class="replaceable"><code>TOLERB</code></em> can
+be larger. If the analysis includes contact or rapidly varying loads, a smaller
+value of <em class="replaceable"><code>TOLERB</code></em> should be used if high frequency
+response is important; otherwise, a larger value of <em class="replaceable"><code>TOLERB</code></em> may
+be used to enable faster convergence with larger time step sizes. </p><p>For more information on how the midstep criterion is used by the program,
+see <a href="../ans_thry/thy_tool6.html#autotime_midstep" class="olink">Midstep Residual for Structural Dynamic Analysis</a> in
+the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>.</p><p>This command is also valid in PREP7.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e166476"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Analysis Type&gt;Sol'n Controls&gt;Transient</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Analysis Type&gt;Sol'n Controls&gt;Transient</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

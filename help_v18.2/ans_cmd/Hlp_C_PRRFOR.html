@@ -1,0 +1,37 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:35-04:00"><title>PRRFOR</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_P_TOC.html" title="P Commands"><link rel="prev" href="Hlp_C_PRPATH.html" title="PRPATH"><link rel="next" href="Hlp_C_PRRSOL.html" title="PRRSOL"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="PRRFOR"><a name="PRRFOR"></a><div class="titlepage"></div><a class="indexterm" name="d0e215267"></a><span class="refentrytitle"><span class="command"><strong>PRRFOR</strong></span></span><div class="refnamediv"><p><span class="command"><strong>PRRFOR</strong></span>, <em class="replaceable"><code>Lab</code></em><br><b class="refpurpose">Prints the constrained node reaction solution. Used with
+the <a class="link" href="Hlp_C_FORCE.html" title="FORCE"><span class="command"><strong>FORCE</strong></span></a> command.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1resultjla070199" title="Table&nbsp;2.82:&nbsp;&nbsp;Results"><span class="type">Results</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="PRRFOR.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><p>Nodal reaction load type. 
+If blank, use the first ten of all available labels. Valid labels
+are:</p><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="bold"><strong>Structural force labels</strong></span>:
+ FX, FY or FZ (forces); F (FX, FY and FZ); MX, MY or MZ (moments);
+M (MX, MY and MZ).</td></tr><tr><td><span class="bold"><strong>Thermal force labels</strong></span>:  HEAT,
+HBOT, HE2, HE3, . . ., HTOP (heat flow).</td></tr><tr><td><span class="bold"><strong>Fluid force labels</strong></span>:  FLOW
+(fluid flow);  VFX, VFY and VFZ (fluid forces); VF (VFX, VFY and VFZ).</td></tr><tr><td><span class="bold"><strong>Electric force labels</strong></span>:  AMPS
+(current flow); CHRG (charge); CURT (current);  VLTG (voltage drop).</td></tr><tr><td><span class="bold"><strong>Magnetic force labels</strong></span>:  FLUX
+(magnetic flux);  CSGX, CSGY, CSGZ (magnetic current segments);  CSG
+(CSGX, CSGY and CSGZ);  CURT (current), VLTG (voltage drop).</td></tr><tr><td><span class="bold"><strong>Diffusion labels</strong></span>: RATE (diffusion
+flow rate).</td></tr></table></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="PRRFOR.notes"></a><h2>Notes</h2><p><span class="command"><strong>PRRFOR</strong></span> has the same functionality as the <a class="link" href="Hlp_C_PRRSOL.html" title="PRRSOL"><span class="command"><strong>PRRSOL</strong></span></a> command; use <span class="command"><strong>PRRFOR</strong></span> instead of <a class="link" href="Hlp_C_PRRSOL.html" title="PRRSOL"><span class="command"><strong>PRRSOL</strong></span></a> when a <a class="link" href="Hlp_C_FORCE.html" title="FORCE"><span class="command"><strong>FORCE</strong></span></a> command has been
+issued.</p><p>In a non-spectrum analysis, if either contact or pretension
+elements exist in the model, <span class="command"><strong>PRRFOR</strong></span> uses the <a class="link" href="Hlp_C_PRRSOL.html" title="PRRSOL"><span class="command"><strong>PRRSOL</strong></span></a> command internally and the <a class="link" href="Hlp_C_FORCE.html" title="FORCE"><span class="command"><strong>FORCE</strong></span></a> setting is ignored.</p><p>Because modal displacements cannot be used to calculate contact
+element nodal forces,&nbsp;those forces are not included in the spectrum
+and PSD analyses reaction solution. As a consequence, the&nbsp;<span class="command"><strong>PRRFOR</strong></span>&nbsp;command is not supported when constraints on
+contact element pilot nodes are present.</p></div><div class="refsect1" title="Using PRRFOR in a Spectrum or PSD Analysis (ANTYPE,SPECTR)"><a name="d0e215374"></a><h2>Using <span class="command"><strong>PRRFOR</strong></span> in a Spectrum or PSD Analysis
+(<a class="link" href="Hlp_C_ANTYPE.html" title="ANTYPE"><span class="command"><strong>ANTYPE</strong></span></a>,SPECTR)</h2><p>When using <span class="command"><strong>PRRFOR</strong></span> in a spectrum analysis
+after the combination file has been input (<a href="Hlp_C_INPUT.html" class="olink"><span class="command"><strong>/INPUT</strong></span></a>,,MCOM), or in a PSD analysis when postprocessing 1-sigma results
+(loadstep 3, 4, or 5), the following message will display in the printout
+header:</p><pre class="programlisting">(Spectrum analysis summation is used)</pre><p>This message means that the summation of the element nodal forces
+is performed prior to the combination of those forces. In this case, <a class="link" href="Hlp_C_RSYS.html" title="RSYS"><span class="command"><strong>RSYS</strong></span></a> does not apply, and the reaction forces are in the
+nodal coordinate systems.  Unlike <a class="link" href="Hlp_C_PRRSOL.html" title="PRRSOL"><span class="command"><strong>PRRSOL</strong></span></a>, which
+retrieves the forces from the database, the <span class="command"><strong>PRRFOR</strong></span> command calculates the forces in the postprocessor.</p><p>The spectrum analysis summation is available when the element
+results are written to the mode file, <span class="filename"><strong>Jobname.MODE</strong></span> (<em class="replaceable"><code>MSUPkey</code></em> = Yes on <a class="link" href="Hlp_C_MXPAND.html" title="MXPAND"><span class="command"><strong>MXPAND</strong></span></a>).</p><p>The spectrum analysis summation is not available after reading a load
+      case (<a class="link" href="Hlp_C_LCWRITE.html" title="LCWRITE"><span class="command"><strong>LCWRITE</strong></span></a>, <a class="link" href="Hlp_C_LCZERO.html" title="LCZERO"><span class="command"><strong>LCZERO</strong></span></a>, <a class="link" href="Hlp_C_LCASE.html" title="LCASE"><span class="command"><strong>LCASE</strong></span></a>).</p></div><div class="refsect1" title="Menu Paths"><a name="PRRFOR.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

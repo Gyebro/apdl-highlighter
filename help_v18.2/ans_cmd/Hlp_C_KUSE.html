@@ -1,0 +1,24 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:31-04:00"><title>KUSE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_K_TOC.html" title="K Commands"><link rel="prev" href="Hlp_C_KTRAN.html" title="KTRAN"><link rel="next" href="Hlp_C_KWPAVE.html" title="KWPAVE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="KUSE"><a name="KUSE"></a><div class="titlepage"></div><a class="indexterm" name="d0e145260"></a><span class="refentrytitle"><span class="command"><strong>KUSE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>KUSE</strong></span>, <em class="replaceable"><code>KEY</code></em><br><b class="refpurpose">Specifies whether or not to reuse the factorized
+matrix.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluldstepjla070199" title="Table&nbsp;2.53:&nbsp;&nbsp;Load Step Options"><span class="type">Load Step Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="KUSE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>KEY</code></em></b></span></dt><dd><p>Reuse key:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">&nbsp;&nbsp;0&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Program decides whether or
+not to reuse the previous factorized stiffness matrix.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">&nbsp;&nbsp;1&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Force the previous factorized
+stiffness matrix to be reused.  Used mainly in a restart.  Forcing reuse of
+the matrix is a nonstandard use of the program, and should be done with caution.
+ For instance, using this option and changing the number of elements, or the
+number or type of degrees of freedom, may cause an abort.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">-1&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>All element matrices are reformed and
+are used to reform a new factorized stiffness matrix.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Command Default"><a name="KUSE.default"></a><h2>Command Default</h2><p>Program makes decision.</p></div><div class="refsect1" title="Notes"><a name="KUSE.notes"></a><h2>Notes</h2><p>Overrides the program logic to determine whether
+or not to reuse the previous factorized stiffness matrix for each substep
+of this load step.  Applies only to static or full transient analyses and
+to full harmonic analyses if the frequency is not changed for continuing loadsteps.
+For full harmonic analyses, only <em class="replaceable"><code>KEY</code></em> = 1 or <em class="replaceable"><code>KEY</code></em> =
+0 is valid.</p><p>This command is also valid in PREP7.</p></div><div class="refsect1" title="Menu Paths"><a name="KUSE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Load Step Opts&gt;Other&gt;Reuse Factorized Matrix</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Load Step Opts&gt;Other&gt;Reuse Factorized Matrix</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

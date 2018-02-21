@@ -1,0 +1,23 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:24-04:00"><title>PLORB</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_P_TOC.html" title="P Commands"><link rel="prev" href="Hlp_C_PLOPTS.html" title="/PLOPTS"><link rel="next" href="Hlp_C_PLOT.html" title="PLOT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="PLORB"><a name="PLORB"></a><div class="titlepage"></div><a class="indexterm" name="d0e205417"></a><span class="refentrytitle"><span class="command"><strong>PLORB</strong></span></span><div class="refnamediv"><p><span class="command"><strong>PLORB</strong></span><br><b class="refpurpose">Displays the orbital motion of a rotating structure</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1resultjla070199" title="Table&nbsp;2.82:&nbsp;&nbsp;Results"><span class="type">Results</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsect1" title="Notes"><a name="d0e205443"></a><h2>Notes</h2><p>When a structure is rotating and the Coriolis or gyroscopic
+effect is taken into account (<a class="link" href="Hlp_C_CORIOLIS.html" title="CORIOLIS"><span class="command"><strong>CORIOLIS</strong></span></a>), nodes
+lying on the rotation axis generally exhibit an elliptical orbital
+motion. The <span class="command"><strong>PLORB</strong></span> command displays the orbit of
+each rotating node as well as the deformed shape at time <span class="italic"><em>t</em></span> = 0 (the real part of the solution).</p><p>To <span class="italic"><em>print</em></span> the characteristics
+of the orbital path traversed by each node, issue the <a class="link" href="Hlp_C_PRORB.html" title="PRORB"><span class="command"><strong>PRORB</strong></span></a> command.</p><p>The <span class="command"><strong>PLORB</strong></span> command
+is valid for line elements (such as <a href="../ans_elem/Hlp_E_BEAM188.html" class="olink"><span class="structname">BEAM188</span></a>, <a href="../ans_elem/Hlp_E_BEAM189.html" class="olink"><span class="structname">BEAM189</span></a>, <a href="../ans_elem/Hlp_E_PIPE288.html" class="olink"><span class="structname">PIPE288</span></a>, and <a href="../ans_elem/Hlp_E_PIPE289.html" class="olink"><span class="structname">PIPE289</span></a>).  </p><p>Your model must also involve a rotational velocity (<a class="link" href="Hlp_C_OMEGA.html" title="OMEGA"><span class="command"><strong>OMEGA</strong></span></a> or <a class="link" href="Hlp_C_CMOMEGA.html" title="CMOMEGA"><span class="command"><strong>CMOMEGA</strong></span></a>) with Coriolis enabled
+in a <span class="italic"><em>stationary</em></span> reference frame
+(<a class="link" href="Hlp_C_CORIOLIS.html" title="CORIOLIS"><span class="command"><strong>CORIOLIS</strong></span></a>,,,,<em class="replaceable"><code>RefFrame</code></em> = ON).</p><p>A <a class="link" href="Hlp_C_SET.html" title="SET"><span class="command"><strong>SET</strong></span></a> command should be issued after <span class="command"><strong>PLORB</strong></span> to ensure proper output for subsequent
+postprocessing commands. </p><p>The coordinate system for displaying nodal results must be global
+Cartesian (<a class="link" href="Hlp_C_RSYS.html" title="RSYS"><span class="command"><strong>RSYS</strong></span></a>,<em class="replaceable"><code>KCN</code></em> =
+0).</p></div><div class="refsect1" title="Menu Paths"><a name="d0e205526"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Rotor Dynamics&gt;Plot orbit</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

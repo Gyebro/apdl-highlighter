@@ -1,0 +1,62 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:22-04:00"><title>ANSTOAQWA</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_A_TOC.html" title="A Commands"><link rel="prev" href="Hlp_C_ANSOL.html" title="ANSOL"><link rel="next" href="Hlp_C_ANSTOASAS.html" title="ANSTOASAS"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="ANSTOAQWA"><a name="ANSTOAQWA"></a><div class="titlepage"></div><a class="indexterm" name="d0e23826"></a><span class="refentrytitle"><span class="command"><strong>ANSTOAQWA</strong></span></span><div class="refnamediv"><p><span class="command"><strong>ANSTOAQWA</strong></span>, <em class="replaceable"><code>Fname</code></em>, <em class="replaceable"><code>VertAxis</code></em>, <em class="replaceable"><code>Gc</code></em>, <em class="replaceable"><code>Rho</code></em>, <em class="replaceable"><code>HWL</code></em>, <em class="replaceable"><code>DiffKey</code></em>, <em class="replaceable"><code>SymxKey</code></em>, <em class="replaceable"><code>SymyKey</code></em><br><b class="refpurpose">Creates an AQWA-LINE input file from the current Mechanical APDL model.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_1.html" title="2.1.&nbsp;SESSION Commands"><code class="classname">SESSION</code></a>: <a class="link" href="Hlp_C_CH2_1.html#cmdsessionfilejla062999" title="Table&nbsp;2.3:&nbsp;&nbsp;Files"><span class="type">Files</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="ANSTOAQWA.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Fname</code></em></b></span></dt><dd><p>AQWA file name. Defaults to <span class="filename"><strong>Jobname</strong></span>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>VertAxis</code></em></b></span></dt><dd><p>Axis in the vertical direction: </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">Y (or 2)&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Global Y axis.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">Z&nbsp;(or 3)&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Global Z axis (default).</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Gc</code></em></b></span></dt><dd><p>Gravitational acceleration. Defaults to 9.81.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Rho</code></em></b></span></dt><dd><p>Density of water. Defaults to 1025.0.</p></dd><dt><span><b class="term"><em class="replaceable"><code>HWL</code></em></b></span></dt><dd><p>Waterline height in model coordinates. Defaults to 0.0. </p></dd><dt><span><b class="term"><em class="replaceable"><code>DiffKey</code></em></b></span></dt><dd><p>Diffracting model key: </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Create a non-diffracting
+AQWA model.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Create a diffracting AQWA
+model (default).</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>SymxKey</code></em></b></span></dt><dd><p>Key indicating if model is symmetric about the global
+XZ plane: </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>No symmetry about XZ plane
+(default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use symmetry about XZ plane.
+Only include (or select) half the model.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>SymyKey</code></em></b></span></dt><dd><p>Key indicating if model is symmetric about the global
+YZ plane: </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>No symmetry about YZ plane
+(default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use symmetry about YZ plane.
+Only include (or select) half the model.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="ANSTOAQWA.notes"></a><h2>Notes</h2><p>This command creates the input file <em class="replaceable"><code>Fname</code></em>.aqwa for the ANSYS Aqwa Multi-Body Hydrodynamics System for diffraction
+analysis in AQWA-LINE from the model currently in the database, based
+on the currently selected set of elements. The selected set must only
+include the hull envelope; no internal structure should be selected.</p><p>There should be a line of nodes defined at the waterline. Only
+those elements that are entirely below the waterline will be specified
+as diffracting. If there are no waterline nodes, there will be no
+diffracting elements at the waterline, which will severely reduce
+the accuracy of the diffraction analysis.</p><p>The translator maps PLANE42, SHELL63, and
+    <a href="../ans_elem/Hlp_E_SHELL181.html" class="olink"><span class="structname">SHELL181</span></a> elements to PANELs, and maps PIPE16 and PIPE59 elements to
+   TUBEs. It does not recognize any other element types. Any material or geometric properties can be
+   used for the shell elements, as AQWA does not need any properties at all and the command does not
+   use them. All the shell elements below the water must have their normals pointing outward.</p><p>TUBE elements in AQWA have material density,
+outside diameter, wall thickness, added mass, and drag coefficients,
+so appropriate properties should be used in the ANSYS model. PIPE59
+elements can have added mass and damping coefficients; these will
+be written to the file. The ANSYS program uses the inertia coefficient
+C<sub>M</sub>, whereas AQWA uses the added mass coefficient
+C<sub>A</sub>, where C<sub>M</sub> = (1 +
+C<sub>A</sub>). This correction is made automatically.</p><div class="informaltable"><table border="1" width="95%"><colgroup><col class="col1" width="100%"></colgroup><tbody><tr><td>Documentation for legacy elements PIPE16, PLANE42,
+PIPE59, and SHELL63 appears in the <a href="../ans_arch/ans_arch.html" class="olink"><em class="citetitle">Feature Archive</em></a>.</td></tr></tbody></table></div><p>In AQWA the vertical axis is always the Z-axis. The command
+can convert a model built with either the Y or Z-axis vertical, but
+the X-axis must be horizontal and should preferably be along the fore/aft
+axis of the vessel.  If the structure is symmetric and you wish to
+use the symmetry options, you must only select one half or one quarter
+of the model, as appropriate. If you model a complete vessel and specify
+X symmetry, the AQWA model will contain two sets of coincident elements.</p><p>If you are working from a model created for a structural analysis,
+it will probably be necessary to remesh the model as the structural
+mesh is most likely finer than needed for a diffraction analysis.</p><p>If you enter this command interactively (with the GUI active)
+and no data is provided for the command options, you will be prompted
+for their values.</p><p>You must verify the completeness and accuracy of the data written.</p></div><div class="refsect1" title="AQWA-LINE Notes"><a name="ANSTOAQWA.aqwa"></a><h2>AQWA-LINE Notes</h2><p>The file will specify restart stages 1-2 only. It has no options
+except REST, so AQWA may fail if any of the elements are badly shaped.</p><p>The total mass is obtained by integrating over the wetted surface
+area and adding the TUBE masses, so it should be reasonably accurate.
+However, the integration used is not as accurate as that in AQWA,
+so there may be a small difference between the weight and buoyancy,
+particularly if tubes represent a large portion of the model.</p><p>The position of the CG is unknown. A point mass is placed at
+the water-line above the CB, but you should change this to the correct
+position.</p><p>The moments of inertia are estimated based on the overall dimensions
+of the model and using standard formulae for a ship. You should change
+these to the correct values.</p><p>The maximum frequency is calculated from the maximum side length
+of the underwater elements. The range of frequencies runs from 0.1
+rad/s to the calculated maximum, in steps of 0.1 rad/s.</p><p>The directions are in steps of 15&deg; over a range that is
+determined by the symmetry you have specified, in accordance with
+the requirements of AQWA.</p></div><div class="refsect1" title="Menu Paths"><a name="ANSTOAQWA.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

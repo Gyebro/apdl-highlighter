@@ -1,0 +1,68 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:17-04:00"><title>SSMT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_S_TOC.html" title="S Commands"><link rel="prev" href="Hlp_C_SSLN.html" title="SSLN"><link rel="next" href="Hlp_C_SSOPT.html" title="SSOPT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SSMT"><a name="SSMT"></a><div class="titlepage"></div><a class="indexterm" name="d0e259854"></a><span class="refentrytitle">
+<span class="command"><strong>SSMT</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>SSMT</strong></span>, <em class="replaceable"><code>M<sup>T</sup>
+<sub>11</sub>
+</code></em>, <em class="replaceable"><code>M<sup>T</sup>
+<sub>22</sub>
+</code></em>, <em class="replaceable"><code>M<sup>T</sup>
+<sub>12</sub>
+</code></em>, <em class="replaceable"><code>T</code></em>
+<br><b class="refpurpose">Specifies preintegrated membrane thermal effects for shell sections.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7crosssectldm061600" title="Table&nbsp;2.45:&nbsp;&nbsp;Sections"><span class="type">Cross Sections</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>M<sup>T</sup>
+<sub>11</sub>
+</code></em>, <em class="replaceable"><code>M<sup>T</sup>
+<sub>22</sub>
+</code></em>, <em class="replaceable"><code>M<sup>T</sup>
+<sub>12</sub>
+</code></em>
+</b></span></dt><dd><p>Membrane thermal effects component [<span class="bold"><strong>
+<em class="replaceable"><code>M</code></em>
+</strong></span>
+<sup>
+<em class="replaceable"><code>T</code></em>
+</sup>].</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>T</code></em>
+</b></span></dt><dd><p>Temperature.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="d0e259972"></a><h2>Notes</h2><p>The behavior of shell elements is governed by the generalized-stress/generalized-strain
+relationship of the <a href="../ans_str/Hlp_G_PRESHELL_5.html" class="olink">
+form</a>:</p><div class="informalequation"><a name="eq59bf1997-4d51-442a-b137-d9bc6a5a4cbd"></a><div><img src="graphics/eq59bf1997-4d51-442a-b137-d9bc6a5a4cbd.svg"></div></div><p>The <span class="command"><strong>SSMT</strong></span> command, one of several <a href="../ans_str/Hlp_G_PRESHELL_5.html#strpreshelldef" class="olink">preintegrated shell section commands</a>, specifies
+the membrane thermal effects quantity (submatrix [<span class="bold"><strong>
+<em class="replaceable"><code>M</code></em>
+</strong></span>
+<sup>
+<em class="replaceable"><code>T</code></em>
+</sup>] data) for a preintegrated shell section. The section data
+defined is associated with the section most recently defined (via the <a class="link" href="Hlp_C_SECTYPE.html" title="SECTYPE"><span class="command"><strong>SECTYPE</strong></span></a> command).</p><p>The [<span class="bold"><strong>
+<em class="replaceable"><code>M</code></em>
+</strong></span>
+<sup>
+<em class="replaceable"><code>T</code></em>
+</sup>]
+quantity represents membrane stress resultants caused by a unit raise in temperature
+on a fully constrained model. For a layered composite shell, it is usually
+necessary to specify both the [<span class="bold"><strong>
+<em class="replaceable"><code>M</code></em>
+</strong></span>
+<sup>
+<em class="replaceable"><code>T</code></em>
+</sup>] and [<span class="bold"><strong>
+<em class="replaceable"><code>B</code></em>
+</strong></span>
+<sup>
+<em class="replaceable"><code>T</code></em>
+</sup>]
+quantities (by issuing the <span class="command"><strong>SSMT</strong></span> and <a class="link" href="Hlp_C_SSBT.html" title="SSBT"><span class="command"><strong>SSBT</strong></span></a> commands,
+respectively). </p><p>Unspecified values default to zero.</p><p>Related commands are <a class="link" href="Hlp_C_SSPA.html" title="SSPA"><span class="command"><strong>SSPA</strong></span></a>, <a class="link" href="Hlp_C_SSPB.html" title="SSPB"><span class="command"><strong>SSPB</strong></span></a>, <a class="link" href="Hlp_C_SSPD.html" title="SSPD"><span class="command"><strong>SSPD</strong></span></a>, <a class="link" href="Hlp_C_SSPE.html" title="SSPE"><span class="command"><strong>SSPE</strong></span></a>, <a class="link" href="Hlp_C_SSBT.html" title="SSBT"><span class="command"><strong>SSBT</strong></span></a>, and <a class="link" href="Hlp_C_SSPM.html" title="SSPM"><span class="command"><strong>SSPM</strong></span></a>.</p><p>For complete information, see <a href="../ans_str/Hlp_G_PRESHELL_5.html" class="olink">Using Preintegrated General Shell Sections</a>.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e260083"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Shell&gt;Pre-integrated</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

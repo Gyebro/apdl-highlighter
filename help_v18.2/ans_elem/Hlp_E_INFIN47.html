@@ -1,0 +1,61 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:14-04:00"><title>INFIN47</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_COMBIN40.html" title="COMBIN40"><link rel="next" href="Hlp_E_MATRIX50.html" title="MATRIX50"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="INFIN47"><a name="INFIN47"></a><div class="titlepage"></div><a class="indexterm" name="d0e32436"></a><span class="refentrytitle"><span class="structname">INFIN47</span>  </span><div class="refnamediv"><p><br><b class="refpurpose">3-D Infinite
+Boundary</b><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_E_INFIN47.html#aob6vq18mcm" title="INFIN47 Product Restrictions">Product Restrictions</a></span></div></div></div></p></div><div class="refsect1" title="INFIN47 Element Description"><a name="ELEMinfin47descfdb"></a><h2>INFIN47 Element Description</h2><div class="informaltable"><table border="1" width="95%"><colgroup><col width="100%" class="col1"></colgroup><tbody><tr><td>Although this <a class="link" href="Hlp_E_CH2_OLDNEW.html#EL2oldnewtable" title="2.4.1.&nbsp;Legacy vs. Current Element Technologies">legacy
+element</a> is available for use in your analysis, ANSYS, Inc. recommends
+using a current-technology element such as <a class="link" href="Hlp_E_INFIN111.html" title="INFIN111"><span class="structname">INFIN111</span></a>.</td></tr></tbody></table></div><p><span class="structname">INFIN47</span> is used to model an open boundary
+of a 3-D unbounded field problem.  The element may be a 4-node quadrilateral
+or a 3-node triangle with a magnetic potential or temperature degree
+of freedom at each node.  The enveloped (or enclosed) element types
+may be the <a class="link" href="Hlp_E_SOLID5.html" title="SOLID5"><span class="structname">SOLID5</span></a>, <a class="link" href="Hlp_E_SOLID96.html" title="SOLID96"><span class="structname">SOLID96</span></a>, or <a class="link" href="Hlp_E_SOLID98.html" title="SOLID98"><span class="structname">SOLID98</span></a> magnetic elements or the <a class="link" href="Hlp_E_SOLID70.html" title="SOLID70"><span class="structname">SOLID70</span></a>, <a class="link" href="Hlp_E_SOLID90.html" title="SOLID90"><span class="structname">SOLID90</span></a> or <a class="link" href="Hlp_E_SOLID87.html" title="SOLID87"><span class="structname">SOLID87</span></a> thermal solid elements.  With the magnetic degree
+of freedom the analysis may be linear or nonlinear static.  With the
+thermal degree of freedom steady-state or transient analyses (linear
+or nonlinear) may be done.  See <a href="../ans_thry/thy_el47.html" class="olink">INFIN47</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for more
+details about this element.</p><div class="figure"><a name="aylnfa7lmm"></a><p class="title"><b>Figure&nbsp;47.1:&nbsp;&nbsp;INFIN47 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM47-1.svg" alt="INFIN47 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="INFIN47 Input Data"><a name="anb6vq2b6mcm"></a><h2>INFIN47 Input Data</h2><p>The geometry, node locations, and the coordinate system for
+this element are shown in <a class="xref" href="Hlp_E_INFIN47.html#aylnfa7lmm" title="Figure&nbsp;47.1:&nbsp;&nbsp;INFIN47 Geometry">Figure&nbsp;47.1:&nbsp;INFIN47 Geometry</a>.  The element
+is defined by 4 nodes, and the material properties.  Nonzero material
+properties must be defined.  A triangular element may be formed by
+defining duplicate K and L node numbers as described in <a class="xref" href="Hlp_E_CH2_8.html" title="2.5.&nbsp;Degenerated Shape Elements">Degenerated Shape Elements</a>.  The element x-axis is parallel to the I-J
+side of the element.</p><p>The coefficient matrix of this boundary element is, in general,
+unsymmetric.  The matrix is made symmetric by averaging the off-diagonal
+terms to take advantage of a symmetric solution with a slight decrease
+in accuracy.  KEYOPT(2) can be used to keep an unsymmetric matrix
+from being made symmetric.</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_INFIN47.html#aAmnf242lmm" title="INFIN47 Input Summary">"INFIN47 Input Summary"</a>.  A general description of element input is
+given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>.</p><div class="refsect2" title="INFIN47 Input Summary"><a name="aAmnf242lmm"></a><h3>INFIN47 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J, K, L</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>MAG if KEYOPT(1) = 0</td></tr><tr><td>TEMP if KEYOPT(1) = 1</td></tr></table></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td><a href="../ans_cmd/Hlp_C_EMUNIT.html" class="olink"><span class="command"><strong>EMUNIT</strong></span></a> command: MUZERO if KEYOPT (1) =
+0 (has default value for MKS units or can be set manually), KXX if
+KEYOPT(1) = 1</td></tr></table></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Element Printout</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Special Features</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Element degree(s) of freedom:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Magnetic option</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Thermal option</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Coefficient matrix:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Make the coefficient matrix
+symmetric</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Coefficient matrix is
+used as generated (symmetric or unsymmetric, depending on the problem)</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="INFIN47 Output Data"><a name="anb6vq325mcm"></a><h2>INFIN47 Output Data</h2><p>The boundary element has no output of its own since it is used
+only to provide a semi-infinite boundary condition to a model consisting
+of other elements.</p></div><div class="refsect1" title="INFIN47 Assumptions and Restrictions"><a name="anb6vq390mcm"></a><h2>INFIN47 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The 4 nodes defining the element should lie as close
+as possible to a flat plane; however, a moderate out-of-plane tolerance
+is permitted so that the element may have a somewhat warped shape. </p></li><li class="listitem"><p>An excessively warped element will produce a warning
+message. In the case of warping errors, triangular elements should
+be used (see <a class="xref" href="Hlp_E_CH2_8.html" title="2.5.&nbsp;Degenerated Shape Elements">Degenerated Shape Elements</a>). </p></li><li class="listitem"><p>Shell element warping is described in detail in <a href="../ans_thry/thy_et7.html#eltwarping" class="olink">Warping Factor</a> in <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>.</p></li><li class="listitem"><p>Zero area elements are not allowed.</p></li><li class="listitem"><p>The semi-infinite volume is assumed to be bound on
+five sides (four, if triangular) by the boundary element and by four
+semi-infinite radial surfaces (three, if triangular) defined from
+the global coordinate system origin through nodes I and J, J and K,
+K and L, and L and I (nodes I and J, J and K, and K and I if triangular).</p></li><li class="listitem"><p> The boundary element should be as normal as possible
+to the radial surfaces.</p></li><li class="listitem"><p>Acute or wide intersection angles should be avoided
+by <span class="quote">"<span class="quote">filling-in</span>"</span> the model with the other elements so
+that the line of boundary elements around the model is smooth and
+concave when viewed from the global coordinate system origin.</p></li><li class="listitem"><p>The element assumes that the degree of freedom (DOF)
+value at infinity is <span class="italic"><em>always</em></span> zero
+(0.0).  That is, the DOF value at infinity is <span class="italic"><em>not</em></span> affected by <a href="../ans_cmd/Hlp_C_TUNIF.html" class="olink"><span class="command"><strong>TUNIF</strong></span></a>, <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a>, or other load commands.</p></li><li class="listitem"><p>The boundary element must lie <span class="quote">"<span class="quote">against</span>"</span> an enclosed element (that is, share the same nodes).</p></li><li class="listitem"><p>The exterior semi-infinite domain is assumed to be
+homogeneous, isotropic, and linear without containing any sources
+or sinks. </p></li><li class="listitem"><p>The origin of the global coordinate system must be
+inside the model and as centrally located as possible.</p></li><li class="listitem"><p>The surface of boundary elements should be located
+away from the region of interest of the enclosed elements for better
+accuracy.  The surface of boundary elements need not totally surround
+the model. </p></li><li class="listitem"><p>The element may not be deactivated with the <a href="../ans_cmd/Hlp_C_EKILL.html" class="olink"><span class="command"><strong>EKILL</strong></span></a> command.</p></li><li class="listitem"><p>When used in a model with higher order elements <a class="link" href="Hlp_E_SOLID90.html" title="SOLID90"><span class="structname">SOLID90</span></a>, <a class="link" href="Hlp_E_SOLID87.html" title="SOLID87"><span class="structname">SOLID87</span></a>, and <a class="link" href="Hlp_E_SOLID98.html" title="SOLID98"><span class="structname">SOLID98</span></a>, the midside nodes of these elements must be
+removed at the interface with <span class="structname">INFIN47</span> [<a href="../ans_cmd/Hlp_C_EMID.html" class="olink"><span class="command"><strong>EMID</strong></span></a>].</p></li><li class="listitem"><p>If KEYOPT(2) = 1, the matrices are presumed to be
+unsymmetric.</p></li></ul></div></div><div class="refsect1" title="INFIN47 Product Restrictions"><a name="aob6vq18mcm"></a><h2>INFIN47 Product Restrictions</h2><p>There are no product-specific restrictions for this element.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

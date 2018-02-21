@@ -1,0 +1,97 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:26-04:00"><title>*IF</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_I_TOC.html" title="I Commands"><link rel="prev" href="Hlp_C_ICSCALE.html" title="/ICSCALE"><link rel="next" href="Hlp_C_IGESIN.html" title="IGESIN"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="*IF"><a name="a-IF"></a><div class="titlepage"></div><a class="indexterm" name="d0e135671"></a><span class="refentrytitle">
+<a href="Hlp_C_IF.html" class="olink"><span class="command"><strong>*IF</strong></span></a>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>*IF</strong></span>, <em class="replaceable"><code>VAL1</code></em>, <em class="replaceable"><code>Oper1</code></em>, <em class="replaceable"><code>VAL2</code></em>, <em class="replaceable"><code>Base1</code></em>, <em class="replaceable"><code>VAL3</code></em>, <em class="replaceable"><code>Oper2</code></em>, <em class="replaceable"><code>VAL4</code></em>, <em class="replaceable"><code>Base2</code></em> <br><b class="refpurpose">Conditionally causes commands to be read.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_4.html" title="2.4.&nbsp;APDL Commands"><code class="classname">APDL</code></a>: <a class="link" href="Hlp_C_CH2_4.html#cmdapdlproctlsjla070199" title="Table&nbsp;2.22:&nbsp;&nbsp;Process Controls"><span class="type">Process Controls</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div>
+</div></p></div><div class="refsect1" title="Argument Descriptions"><a name="a-IF.argdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>VAL1</code></em>
+</b></span></dt><dd><p>First numerical value (or parameter which evaluates
+to a numerical value) in the conditional comparison operation.  <em class="replaceable"><code>VAL1</code></em>, <em class="replaceable"><code>VAL2</code></em>, <em class="replaceable"><code>VAL3</code></em>, and <em class="replaceable"><code>VAL4</code></em> can also
+be character strings (enclosed in quotes) or parameters for <em class="replaceable"><code>Oper</code></em> = EQ and NE only.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Oper1</code></em>
+</b></span></dt><dd><p>Operation label.  A tolerance of 1.0E-10 is used for
+comparisons between real numbers:       </p><div><div class="variablelist"><dl><dt><span><b class="term">EQ&nbsp;--&nbsp;</b></span></dt><dd><p>Equal (for <em class="replaceable"><code>VAL1</code></em> = <em class="replaceable"><code>VAL2</code></em>).</p></dd><dt><span><b class="term">NE&nbsp;--&nbsp;</b></span></dt><dd><p>Not equal (for <em class="replaceable"><code>VAL1</code></em>&nbsp;&#8800; <em class="replaceable"><code>VAL2</code></em>).</p></dd><dt><span><b class="term">LT&nbsp;--&nbsp;</b></span></dt><dd><p>Less than (for <em class="replaceable"><code>VAL1</code></em> &lt; <em class="replaceable"><code>VAL2</code></em>).</p></dd><dt><span><b class="term">GT&nbsp;--&nbsp;</b></span></dt><dd><p>Greater than (for <em class="replaceable"><code>VAL1</code></em> &gt; <em class="replaceable"><code>VAL2</code></em>).</p></dd><dt><span><b class="term">LE&nbsp;--&nbsp;</b></span></dt><dd><p>Less than or equal (for <em class="replaceable"><code>VAL1</code></em> &nbsp;
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqb856d2de-7435-4a65-9d27-4017e0ed39ae.svg"></span> <em class="replaceable"><code>VAL2</code></em>).</p></dd><dt><span><b class="term">GE&nbsp;--&nbsp;</b></span></dt><dd><p>Greater than or equal
+(for <em class="replaceable"><code>VAL1</code></em> &nbsp;
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq103f7986-9608-4734-89f4-d2c1bd840f5e.svg"></span> <em class="replaceable"><code>VAL2</code></em>).</p></dd><dt><span><b class="term">ABLT&nbsp;--&nbsp;</b></span></dt><dd><p>Absolute values of <em class="replaceable"><code>VAL1</code></em> and <em class="replaceable"><code>VAL2</code></em> before &lt;
+operation.</p></dd><dt><span><b class="term">ABGT&nbsp;--&nbsp;</b></span></dt><dd><p>Absolute values of <em class="replaceable"><code>VAL1</code></em> and <em class="replaceable"><code>VAL2</code></em> before &gt;
+operation.</p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL2</code></em>
+</b></span></dt><dd><p>Second numerical value (or parameter which evaluates
+to a numerical value) in the conditional comparison operation.</p></dd><dt><span><b class="term">
+<em class="glossterm">
+<em class="replaceable"><code>Base1</code></em>
+</em>
+</b></span></dt><dd><p>Action based on the logical expression (<em class="replaceable"><code>Oper1</code></em>) being true.  If false, continue reading at the
+next line. This is conditional, except for the IF-THEN-ELSE constructs
+described below; any of the following constructs (through <em class="replaceable"><code>Base1</code></em> = THEN) cause all subsequent fields to be ignored:
+      </p><div><div class="variablelist"><dl><dt><span><b class="term">:<em class="replaceable"><code>label&nbsp;--&nbsp;</code></em>
+</b></span></dt><dd><p>A user-defined label (beginning with a colon (:), 8 characters
+maximum).  The command reader will skip (and wrap to the beginning
+of the file, if necessary) to the first line that begins with the
+matching :<em class="replaceable"><code>label</code></em>.</p><div class="caution" title="Caution" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b><font color="red">Caution:</font></b></span>&nbsp;&nbsp; This label option may not be mixed with do-loop or
+if-then-else constructs.</p><hr></div></dd><dt><span><b class="term">STOP&nbsp;--&nbsp;</b></span></dt><dd><p>This action will cause
+an exit from the ANSYS program at this line, unless running in interactive
+mode. In interactive mode, the program will not stop.</p></dd><dt><span><b class="term">EXIT&nbsp;--&nbsp;</b></span></dt><dd><p>Exit the current do-loop
+[<a href="Hlp_C_EXIT_st.html" class="olink"><span class="command"><strong>*EXIT</strong></span></a>].</p></dd><dt><span><b class="term">CYCLE&nbsp;--&nbsp;</b></span></dt><dd><p>Skip to the end of
+the current do-loop [<a href="Hlp_C_CYCLE.html" class="olink"><span class="command"><strong>*CYCLE</strong></span></a>].</p></dd><dt><span><b class="term">THEN&nbsp;--&nbsp;</b></span></dt><dd><p>Make this <a href="Hlp_C_IF.html" class="olink"><span class="command"><strong>*IF</strong></span></a> an if-then-else construct (see below).</p></dd></dl></div></div><p>
+</p><p>The following optional values determine
+the connection between the two logical clauses <em class="replaceable"><code>Oper1</code></em> and <em class="replaceable"><code>Oper2</code></em>
+</p><div><div class="variablelist"><dl><dt><span><b class="term">AND -- </b></span></dt><dd><p>True if both clauses (<em class="replaceable"><code>Oper1</code></em> and <em class="replaceable"><code>Oper2</code></em>) are true. </p></dd><dt><span><b class="term">OR -- </b></span></dt><dd><p>True if either clause is true. </p></dd><dt><span><b class="term">XOR -- </b></span></dt><dd><p>True if either (but not both)
+clause is true. </p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL3</code></em>
+</b></span></dt><dd><p>Third numerical value (or parameter which evaluates
+to a numerical value).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Oper2</code></em>
+</b></span></dt><dd><p>Operation label. This will have the same labels as <em class="replaceable"><code>Oper1</code></em>, except it uses <em class="replaceable"><code>Val3</code></em> and <em class="replaceable"><code>Val4</code></em>. A tolerance of 1.0E-10 is used
+for comparisons between real numbers. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL4</code></em>
+</b></span></dt><dd><p>Fourth numerical value (or parameter value which evaluates
+to a numerical value). </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Base2</code></em>
+</b></span></dt><dd><p>Action based on the logical expression (<em class="replaceable"><code>Oper1</code></em> and <em class="replaceable"><code>Oper2</code></em>) being true.
+They will be the same values as <em class="replaceable"><code>Base1</code></em>,
+except as noted. </p></dd></dl></div></div></div><div class="refsect1" title="Command Default"><a name="a-IF.default"></a><h2>Command Default</h2><p>Read commands sequentially.</p></div><div class="refsect1" title="Notes"><a name="a-IF.notes"></a><h2>Notes</h2><p>Conditionally causes commands to be read from a specific block
+or at a specific location.  Twenty levels of nested <a href="Hlp_C_IF.html" class="olink"><span class="command"><strong>*IF</strong></span></a> blocks are allowed.  Jumping to a :<em class="replaceable"><code>label</code></em> line is not allowed with keyboard entry.  Jumping into, out of,
+or within a do-loop or an if-then-else construct to a :<em class="replaceable"><code>label</code></em> line is not allowed. Using <a href="Hlp_C_IF.html" class="olink"><span class="command"><strong>*IF</strong></span></a> interactively or from the command line prevents rereading the file
+to find a <em class="replaceable"><code>label</code></em>. To do so, use batch mode
+or <a href="Hlp_C_INPUT.html" class="olink"><span class="command"><strong>/INPUT</strong></span></a>.</p><p>The following is an example of an if-then-else construct:</p><p>
+<a href="Hlp_C_IF.html" class="olink"><span class="command"><strong>*IF</strong></span></a>,<em class="replaceable"><code>VAL1</code></em>,<em class="replaceable"><code>Oper</code></em>,<em class="replaceable"><code>VAL2</code></em>,THEN</p><p>----</p><p>
+<a href="Hlp_C_ELSEIF.html" class="olink"><span class="command"><strong>*ELSEIF</strong></span></a>,<em class="replaceable"><code>VAL1</code></em>,<em class="replaceable"><code>Oper</code></em>,<em class="replaceable"><code>VAL2</code></em>
+</p><p>----</p><p>
+<a href="Hlp_C_ELSEIF.html" class="olink"><span class="command"><strong>*ELSEIF</strong></span></a>,<em class="replaceable"><code>VAL1</code></em>,<em class="replaceable"><code>Oper</code></em>,<em class="replaceable"><code>VAL2</code></em>
+</p><p>----</p><p>
+<a href="Hlp_C_ELSE.html" class="olink"><span class="command"><strong>*ELSE</strong></span></a>
+</p><p>----</p><p>
+<a href="Hlp_C_ENDIF.html" class="olink"><span class="command"><strong>*ENDIF</strong></span></a>
+</p><p>where "----" represents a block of any
+number of commands.  Any number of <a href="Hlp_C_ELSEIF.html" class="olink"><span class="command"><strong>*ELSEIF</strong></span></a> clauses
+(or none) may be included (in the location shown).  One <a href="Hlp_C_ELSE.html" class="olink"><span class="command"><strong>*ELSE</strong></span></a> clause (at most) may be included (in the location shown).  The <a href="Hlp_C_IF.html" class="olink"><span class="command"><strong>*IF</strong></span></a> command is executed by evaluating its logical expression.
+ If it is true, the block of commands following it is executed.  The
+construct is considered to be complete and the command following the <a href="Hlp_C_ENDIF.html" class="olink"><span class="command"><strong>*ENDIF</strong></span></a> is executed next.  If the logical expression is
+false, the next <a href="Hlp_C_ELSEIF.html" class="olink"><span class="command"><strong>*ELSEIF</strong></span></a> command (if any) following
+the block is executed.  The execution logic is the same as for <a href="Hlp_C_IF.html" class="olink"><span class="command"><strong>*IF</strong></span></a>.  The effect is that the logical expressions in the <a href="Hlp_C_IF.html" class="olink"><span class="command"><strong>*IF</strong></span></a> and the <a href="Hlp_C_ELSEIF.html" class="olink"><span class="command"><strong>*ELSEIF</strong></span></a> commands are sequentially
+tested until one is found to be true.  Then the block of commands
+immediately following the expression is executed, which completes
+the execution of the if-then-else construct.  If all <a href="Hlp_C_IF.html" class="olink"><span class="command"><strong>*IF</strong></span></a> and <a href="Hlp_C_ELSEIF.html" class="olink"><span class="command"><strong>*ELSEIF</strong></span></a> expressions are false, the block
+following the <a href="Hlp_C_ELSE.html" class="olink"><span class="command"><strong>*ELSE</strong></span></a> command is executed, if there
+is one.  Only one block of commands (at most) is executed within the
+if-then-else construct.  If a batch input stream hits an end-of-file
+during a false <a href="Hlp_C_IF.html" class="olink"><span class="command"><strong>*IF</strong></span></a> condition, the ANSYS run will
+not terminate normally. You will need to terminate it externally (use
+either the Linux &#8220;kill&#8221; function or the Windows task manager).
+The <a href="Hlp_C_IF.html" class="olink"><span class="command"><strong>*IF</strong></span></a>, <a href="Hlp_C_ELSEIF.html" class="olink"><span class="command"><strong>*ELSEIF</strong></span></a>, <a href="Hlp_C_ELSE.html" class="olink"><span class="command"><strong>*ELSE</strong></span></a>, and <a href="Hlp_C_ENDIF.html" class="olink"><span class="command"><strong>*ENDIF</strong></span></a> commands for each if-then-else construct
+must all be read from the same file (or keyboard).</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e136203"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

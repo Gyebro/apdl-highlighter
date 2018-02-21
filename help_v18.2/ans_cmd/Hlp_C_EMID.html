@@ -1,0 +1,31 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:50-04:00"><title>EMID</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_EMFT.html" title="EMFT"><link rel="next" href="Hlp_C_EMIS.html" title="EMIS"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="EMID"><a name="EMID"></a><div class="titlepage"></div><a class="indexterm" name="d0e93612"></a><span class="refentrytitle"><span class="command"><strong>EMID</strong></span></span><div class="refnamediv"><p><span class="command"><strong>EMID</strong></span>, <em class="replaceable"><code>Key</code></em>, <em class="replaceable"><code>Edges</code></em><br><b class="refpurpose">Adds or removes midside nodes.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7elementsldm061600" title="Table&nbsp;2.38:&nbsp;&nbsp;Elements"><span class="type">Elements</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="EMID.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Key</code></em></b></span></dt><dd><p>Add or remove key:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ADD</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Add midside node to elements (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">REMOVE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Remove midside nodes from elements.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Edges</code></em></b></span></dt><dd><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ALL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Add (or remove) midside nodes to (from)
+all edges of all selected elements, independent of which nodes are
+selected (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">EITHER</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Add (or remove) midside nodes only
+to (from) element edges which have either corner node selected.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BOTH</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Add (or remove) midside nodes only
+to (from) element edges which have both corner nodes selected.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="EMID.notes"></a><h2>Notes</h2><p>This command adds midside nodes to (or removes midside nodes
+from) the selected elements. For this to occur, the selected elements
+must be midside node capable, the active element type [<a class="link" href="Hlp_C_TYPE.html" title="TYPE"><span class="command"><strong>TYPE</strong></span></a>] must allow midside node capability, and the relationship between
+the finite element model and the solid model (if any) must first be
+disassociated [<a class="link" href="Hlp_C_MODMSH.html" title="MODMSH"><span class="command"><strong>MODMSH</strong></span></a>].</p><p>By default, <span class="command"><strong>EMID</strong></span> generates a midside node
+wherever a zero (or missing) midside node occurs for that element.
+You can control this and add (or remove) midside nodes selectively
+by using the <em class="replaceable"><code>Edges</code></em> argument. Nodes are
+located midway between the two appropriate corner nodes based on a
+linear Cartesian interpolation. Nodal coordinate system rotation angles
+are also linearly interpolated. Connected elements share the same
+midside node. Node numbers are generated sequentially from the maximum
+node number.</p><p>The <span class="command"><strong>EMID</strong></span> command is
+useful for transforming linear element types to quadratic element
+types having the same corner node connectivity.</p><p><span class="command"><strong>EMID</strong></span> is also useful for transforming elements
+created outside of the program.</p></div><div class="refsect1" title="Menu Paths"><a name="EMID.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Move / Modify&gt;Elements&gt;Add Mid Nodes</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Move / Modify&gt;Elements&gt;Remove Mid Nd</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

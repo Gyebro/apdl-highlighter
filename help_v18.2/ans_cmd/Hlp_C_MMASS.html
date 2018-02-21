@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:45-04:00"><title>MMASS</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_M_TOC.html" title="M Commands"><link rel="prev" href="Hlp_C_MLIST.html" title="MLIST"><link rel="next" href="Hlp_C_MMF.html" title="MMF"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="MMASS"><a name="MMASS"></a><div class="titlepage"></div><a class="indexterm" name="d0e166662"></a><span class="refentrytitle"><span class="command"><strong>MMASS</strong></span></span><div class="refnamediv"><p><span class="command"><strong>MMASS</strong></span>, <em class="replaceable"><code>Option</code></em>, <em class="replaceable"><code>ZPA</code></em><br><b class="refpurpose">Specifies the missing mass response calculation.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluspectrumjla070199" title="Table&nbsp;2.52:&nbsp;&nbsp;Spectrum Options"><span class="type">Spectrum Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="MMASS.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Option</code></em></b></span></dt><dd><p>Flag to activate or deactivate missing mass response
+calculation. </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0 (OFF or NO)</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Deactivate (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1 (ON or YES)</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Activate. </p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>ZPA</code></em></b></span></dt><dd><p>Zero Period Acceleration Value.
+If a scale factor <span class="italic"><em>FACT</em></span> is defined
+on the <em class="replaceable"><code>SVTYP</code></em> command, it is applied to
+this value. </p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="MMASS.notes"></a><h2>Notes</h2><p>The missing mass calculation is valid only for single point
+excitation response spectrum analysis (<a class="link" href="Hlp_C_SPOPT.html" title="SPOPT"><span class="command"><strong>SPOPT</strong></span></a>, SPRS)
+and for multiple point response spectrum analysis (<a class="link" href="Hlp_C_SPOPT.html" title="SPOPT"><span class="command"><strong>SPOPT</strong></span></a>, MPRS) performed with base excitation using acceleration response
+spectrum loading. Missing mass is supported in a spectrum analysis
+only when the preceding modal analysis is performed with the Block
+Lanczos, PCG Lanczos, Supernode, or Subspace eigensolver (Method =LANB,
+LANPCG, SNODE, or SUBSP on the <a class="link" href="Hlp_C_MODOPT.html" title="MODOPT"><span class="command"><strong>MODOPT</strong></span></a> command). </p><p>The velocity solution is not available
+(<em class="replaceable"><code>Label</code></em> = VELO on the combination command: <a class="link" href="Hlp_C_SRSS.html" title="SRSS"><span class="command"><strong>SRSS</strong></span></a>, <a class="link" href="Hlp_C_CQC.html" title="CQC"><span class="command"><strong>CQC</strong></span></a>...) when the missing mass
+calculation is activated.</p><p>The missing mass calculation is not supported when the spectrum
+analysis is based on a linear perturbation modal analysis performed
+after a nonlinear base analysis.</p><p>The missing mass is not supported when
+superelements are present.</p><p>To take into account the contribution of the truncated modes,
+the residual vector (<a class="link" href="Hlp_C_RESVEC.html" title="RESVEC"><span class="command"><strong>RESVEC</strong></span></a>) can be used in place
+of the missing mass response. This is of particular interest if the
+velocity solution is requested or if a nonlinear prestress is included
+in the analysis (linear perturbation), or if a superelement is present,
+since the missing mass cannot be used in these cases. </p><p>In a multiple point response spectrum analysis
+(<a class="link" href="Hlp_C_SPOPT.html" title="SPOPT"><span class="command"><strong>SPOPT</strong></span></a>,MPRS), the <span class="command"><strong>MMASS</strong></span> command
+must precede the participation factor calculation command (<a class="link" href="Hlp_C_PFACT.html" title="PFACT"><span class="command"><strong>PFACT</strong></span></a>).</p><p>This command is also valid in PREP7.</p><div class="refsect2" title="Additional Information"><a name="d0e166784"></a><h3>Additional Information</h3><table border="0" summary="Simple list" class="simplelist"><tr><td><a href="../ans_str/Hlp_G_STR6_4.html" class="olink">Performing a Single-Point Response Spectrum (SPRS) Analysis</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a></td></tr><tr><td><a href="../ans_str/Hlp_G_STR6_10.html" class="olink">Performing a Multi-Point Response Spectrum (MPRS) Analysis</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a></td></tr><tr><td><a href="../ans_thry/thy_anproc7.html#mmass1" class="olink">Missing-Mass Response</a> in
+the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a></td></tr><tr><td><a class="link" href="Hlp_C_RIGRESP.html" title="RIGRESP"><span class="command"><strong>RIGRESP</strong></span></a> command</td></tr></table></div></div><div class="refsect1" title="Menu Paths"><a name="MMASS.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:06-04:00"><title>SFFUN</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_S_TOC.html" title="S Commands"><link rel="prev" href="Hlp_C_SFELIST.html" title="SFELIST"><link rel="next" href="Hlp_C_SFGRAD.html" title="SFGRAD"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SFFUN"><a name="SFFUN"></a><div class="titlepage"></div><a class="indexterm" name="d0e249357"></a><span class="refentrytitle"><span class="command"><strong>SFFUN</strong></span></span><div class="refnamediv"><p><span class="command"><strong>SFFUN</strong></span>, <em class="replaceable"><code>Lab</code></em>, <em class="replaceable"><code>Par</code></em>, <em class="replaceable"><code>Par2</code></em><br><b class="refpurpose">Specifies a varying surface load.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolufesurfldsjla070199" title="Table&nbsp;2.68:&nbsp;&nbsp;FE Surface Loads"><span class="type">FE Surface Loads</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="SFFUN.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><p>Valid surface load label.  Load labels are listed
+under "Surface Loads" in the input table for each element type in
+the <a href="../ans_elem/Hlp_E_ElemTOC.html" class="olink"><em class="citetitle">Element Reference</em></a>.  Issue <span class="command"><strong>SFFUN</strong></span>,STATUS to list current
+command settings.</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="110" class="col1"><col width="100" class="col2"><col width="192" class="col3"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center" valign="middle">Discipline</th><th bgcolor="#E3E3E3" align="center" valign="top">Surface Load Label</th><th bgcolor="#E3E3E3" align="center" valign="middle">Label Description</th></tr></thead><tbody><tr><td>Structural</td><td>PRES</td><td>pressure</td></tr><tr><td>Thermal</td><td>CONV[<a class="xref" href="Hlp_C_SFFUN.html#sffun1">1</a>]</td><td>convection</td></tr><tr><td>&nbsp;</td><td>HFLUX[<a class="xref" href="Hlp_C_SFFUN.html#sffun1">1</a>]</td><td>heat flux</td></tr><tr><td>Electric</td><td>CHRGS</td><td>surface
+charge density</td></tr><tr><td>Diffusion</td><td>DFLUX</td><td>Diffusion flux</td></tr></tbody></table></div><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="sffun1"></a>Thermal labels CONV and HFLUX are mutually
+exclusive.</p></li></ol></div></dd><dt><span><b class="term"><em class="replaceable"><code>Par</code></em></b></span></dt><dd><p>Parameter containing list of surface load values.
+ If <em class="replaceable"><code>Lab</code></em> = CONV, values are typically the
+film coefficients and <em class="replaceable"><code>Par2</code></em> values (below)
+are typically the bulk temperatures.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Par2</code></em></b></span></dt><dd><p>Parameter containing list of second surface load values
+(if any).  If <em class="replaceable"><code>Lab</code></em> = CONV, the <em class="replaceable"><code>Par2</code></em> values are typically the bulk temperatures. <em class="replaceable"><code>Par2</code></em> is not used for other surface load labels.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="SFFUN.notes"></a><h2>Notes</h2><p>Specifies a surface load "function" to be used when the <a class="link" href="Hlp_C_SF.html" title="SF"><span class="command"><strong>SF</strong></span></a> or <a class="link" href="Hlp_C_SFE.html" title="SFE"><span class="command"><strong>SFE</strong></span></a> command is issued.  The function
+is supplied through an array parameter vector which contains nodal
+surface load values.  Node numbers are implied from the sequential
+location in the array parameter.  For example, a value in location
+11 applies to node 11.  The element faces are determined from the
+implied list of nodes when the <a class="link" href="Hlp_C_SF.html" title="SF"><span class="command"><strong>SF</strong></span></a> or <a class="link" href="Hlp_C_SFE.html" title="SFE"><span class="command"><strong>SFE</strong></span></a> command is issued.  Zero values should be supplied for nodes that
+have no load.  A tapered load value may be applied over the element
+face.  These loads are in addition to any loads that are also specified
+with the <a class="link" href="Hlp_C_SF.html" title="SF"><span class="command"><strong>SF</strong></span></a> or <a class="link" href="Hlp_C_SFE.html" title="SFE"><span class="command"><strong>SFE</strong></span></a> commands.
+ Issue <span class="command"><strong>SFFUN</strong></span> (with blank remaining fields) to remove
+this specification.  Issue <span class="command"><strong>SFFUN</strong></span>,STATUS to list
+current settings.</p><p>Starting array element numbers must be defined for each array
+parameter vector.  For example, <span class="command"><strong>SFFUN</strong></span>,CONV,A(1,1),A(1,2)
+reads the first and second columns of array A (starting with the first
+array element of each column) and associates the values with the nodes.
+ Operations continue on successive column array elements until the
+end of the column. Another example to show the order of the commands:</p><pre class="programlisting">*dim,nodepres,array,2
+nodepres(1)=11,12
+/prep7
+et,1,42
+n,1
+n,2,1
+n,3,1,1
+n,4,,1
+e,1,2,3,4
+sfe,1,1,pres,1,3
+sfelist ! expected answer: 3 at both nodes 1 and 2 
+sfedel,all,pres,all
+sffun,pres, nodepres(1)
+sfe,1,1,pres,1,5
+sfelist ! expected answer: 5+11=16 at node 1, 5+12=17 at node 2
+fini
+</pre><p><span class="command"><strong>SFFUN</strong></span> does not work for tabular boundary
+conditions.</p><p>This command is also valid in PREP7.</p></div><div class="refsect1" title="Menu Paths"><a name="SFFUN.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Define Loads&gt;Settings&gt;For Surface Ld&gt;Node Function</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Define Loads&gt;Settings&gt;For Surface Ld&gt;Node Function</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

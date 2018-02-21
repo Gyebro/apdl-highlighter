@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:52-04:00"><title>ERESX</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_EREINF.html" title="EREINF"><link rel="next" href="Hlp_C_ERNORM.html" title="ERNORM"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="ERESX"><a name="ERESX"></a><div class="titlepage"></div><a class="indexterm" name="d0e97187"></a><span class="refentrytitle"><span class="command"><strong>ERESX</strong></span></span><div class="refnamediv"><p><span class="command"><strong>ERESX</strong></span>, <em class="replaceable"><code>Key</code></em><br><b class="refpurpose">Specifies extrapolation of integration point results.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="ERESX.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Key</code></em></b></span></dt><dd><p>Extrapolation key:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DEFA</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If element is fully elastic (no active
+plasticity, creep, or swelling nonlinearities), extrapolate the integration
+point results to the nodes.  If any portion of the element is plastic
+(or other active material nonlinearity), copy the integration point
+results to the nodes (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">YES</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Extrapolate the linear portion of
+the integration point results to the nodes and copy the nonlinear
+portion (for example, plastic strains). </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NO</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Copy the integration point results
+to the nodes.</p></td></tr></tbody></table></div></div></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="ERESX.default"></a><h3>Command Default</h3><p>Extrapolate integration point results to the nodes for all elements
+except those with active plasticity, creep, or swelling nonlinearities
+(default).</p></div></div><div class="refsect1" title="Notes"><a name="ERESX.notes"></a><h2>Notes</h2><p>Specifies whether the solution results at the element-integration points are extrapolated or
+   copied to the nodes for element and nodal postprocessing. Structural stresses, elastic and
+   thermal strains, field gradients, and fluxes are affected. Nonlinear data (such as plastic,
+   creep, and swelling strains) are always copied to the nodes, never extrapolated. For shell
+   elements, <span class="command"><strong>ERESX</strong></span> applies only to integration-point results in the in-plane
+   directions. </p><p>Extrapolation occurs in the element-solution coordinate system. For
+   elements allowing different solution systems at integration points (such as
+    <a href="../ans_elem/Hlp_E_SHELL281.html" class="olink"><span class="structname">SHELL281</span></a> and <a href="../ans_elem/Hlp_E_SOLID186.html" class="olink"><span class="structname">SOLID186</span></a>), extrapolation can
+   produce unreliable results when the solution coordinate systems in each element differ
+   significantly. (Varying element-solution coordinate systems can be created via the
+    <a class="link" href="Hlp_C_ESYS.html" title="ESYS"><span class="command"><strong>ESYS</strong></span></a> command or from large deformation.) Examine results carefully in such
+   cases, and disable extrapolation if necessary.</p><p>This command is also valid in PREP7.</p></div><div class="refsect1" title="Menu Paths"><a name="ERESX.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Load Step Opts&gt;Output Ctrls&gt;Integration Pt</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Load Step Opts&gt;Output Ctrls&gt;Integration Pt</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:26-04:00"><title>ICROTATE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_I_TOC.html" title="I Commands"><link rel="prev" href="Hlp_C_ICLWID.html" title="/ICLWID"><link rel="next" href="Hlp_C_ICSCALE.html" title="/ICSCALE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="ICROTATE"><a name="ICROTATE"></a><div class="titlepage"></div><a class="indexterm" name="d0e135313"></a><span class="refentrytitle">
+<span class="command"><strong>ICROTATE</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>ICROTATE</strong></span>, <em class="replaceable"><code>NODE</code></em>, <em class="replaceable"><code>OMEGA</code></em>, <em class="replaceable"><code>X1</code></em>, <em class="replaceable"><code>Y1</code></em>, <em class="replaceable"><code>Z1</code></em>, <em class="replaceable"><code>X2</code></em>, <em class="replaceable"><code>Y2</code></em>, <em class="replaceable"><code>Z2</code></em>, <em class="replaceable"><code>Vx</code></em>, <em class="replaceable"><code>Vy</code></em>, <em class="replaceable"><code>Vz</code></em>
+<br><b class="refpurpose">Specifies initial velocity at nodes as a sum of rotation
+about an axis and translation.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolumiscldsjla070199" title="Table&nbsp;2.59:&nbsp;&nbsp;Miscellaneous Loads"><span class="type">Misc Loads</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="ICROTATE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NODE</code></em>
+</b></span></dt><dd><p>Node at which the initial velocity is to be specified.
+If ALL, apply to all selected nodes (<a class="link" href="Hlp_C_NSEL.html" title="NSEL"><span class="command"><strong>NSEL</strong></span></a>). A component
+name may be input for <em class="replaceable"><code>NODE</code></em>.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>OMEGA</code></em>
+</b></span></dt><dd><p>Scalar rotational velocity about the rotational axis.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>X1</code></em>, <em class="replaceable"><code>Y1</code></em>, <em class="replaceable"><code>Z1</code></em>
+</b></span></dt><dd><p>Coordinates (in the global Cartesian coordinate system)
+of the beginning point of the rotational axis vector.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>X2</code></em>, <em class="replaceable"><code>Y2</code></em>, <em class="replaceable"><code>Z2</code></em>
+</b></span></dt><dd><p>Coordinates (in the global Cartesian coordinate system)
+of the end point of the rotational axis vector.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Vx</code></em>
+</b></span></dt><dd><p>Initial translational velocity in direction x of the
+nodal coordinate system.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Vy</code></em>
+</b></span></dt><dd><p>Initial translational velocity in direction y of the
+nodal coordinate system.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Vz</code></em>
+</b></span></dt><dd><p>Initial translational velocity in direction z of the
+nodal coordinate system.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="ICROTATE.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>ICROTATE</strong></span> command specifies initial velocity
+for all translational degrees of freedom of the specified nodes. The
+velocity value is a combination of velocity due to rotation about
+an axis and translation. The velocity at the node is calculated as:</p><p>
+<span class="inlineequation" style="&#xA;          vertical-align:-14.000000px"><img src="graphics/eq566b6bdb-813f-449e-a94a-b693f1bda8c9.svg"></span>
+</p><p>where </p><table border="0" summary="Simple list" class="simplelist"><tr><td>v<sup>
+<em class="replaceable"><code>N</code></em>
+</sup> =
+velocity of node <em class="replaceable"><code>N</code></em> in the nodal coordinate
+system</td></tr><tr><td>v<sup>trans</sup> =  translational velocity
+input as [<em class="replaceable"><code>Vx</code></em>, <em class="replaceable"><code>Vy</code></em>, <em class="replaceable"><code>Vz</code></em>]</td></tr><tr><td>&#969; =  scalar angular velocity input as <em class="replaceable"><code>OMEGA</code></em>
+</td></tr><tr><td>x<sup>1</sup> and x<sup>2</sup> denote the coordinates of points prescribing the beginning [<em class="replaceable"><code>X1</code></em>, <em class="replaceable"><code>Y1</code></em>, <em class="replaceable"><code>Z1</code></em>] and end [<em class="replaceable"><code>X2</code></em>, <em class="replaceable"><code>Y2</code></em>, <em class="replaceable"><code>Z2</code></em>] of the rotation axis</td></tr><tr><td>x<sup>
+<em class="replaceable"><code>N</code></em>
+</sup> denotes
+the coordinates of node <em class="replaceable"><code>N</code></em>
+</td></tr></table><p>
+</p><p>All coordinates are input in the global Cartesian coordinate
+system, and the velocity due to rotation is then converted to the
+nodal coordinate system and added to the prescribed translation.</p><p>The <span class="command"><strong>ICROTATE</strong></span> command is valid only for <span>static
+    analysis and </span>full method transient analysis (<a class="link" href="Hlp_C_TIMINT.html" title="TIMINT"><span class="command"><strong>TIMINT</strong></span></a>,ON with
+    <a class="link" href="Hlp_C_TRNOPT.html" title="TRNOPT"><span class="command"><strong>TRNOPT</strong></span></a>,FULL). The initial value is specified at the beginning of the first
+   load step; that is, at time = 0.0. </p><p>The command calculates the nodal velocities and saves them in
+the database as if the <a class="link" href="Hlp_C_IC.html" title="IC"><span class="command"><strong>IC</strong></span></a> command had been used
+to calculate these velocities. Thus, when the <span class="filename"><strong>Jobname.CDB</strong></span> or <span class="filename"><strong>Jobname.DB</strong></span> file is written, the velocities
+prescribed by the <span class="command"><strong>ICROTATE</strong></span> command appear as <a class="link" href="Hlp_C_IC.html" title="IC"><span class="command"><strong>IC</strong></span></a> commands. All assumptions, recommendations, and restrictions
+for the <a class="link" href="Hlp_C_IC.html" title="IC"><span class="command"><strong>IC</strong></span></a> command are also true for the <span class="command"><strong>ICROTATE</strong></span> command. </p><p>This command is also valid in PREP7.</p></div><div class="refsect1" title="Menu Paths"><a name="ICROTATE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

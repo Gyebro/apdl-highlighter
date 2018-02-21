@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:04-04:00"><title>GAUGE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_G_TOC.html" title="G Commands"><link rel="prev" href="Hlp_C_GAPF.html" title="GAPF"><link rel="next" href="Hlp_C_GCDEF.html" title="GCDEF"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="GAUGE"><a name="GAUGE"></a><div class="titlepage"></div><a class="indexterm" name="d0e114067"></a><span class="refentrytitle"><span class="command"><strong>GAUGE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>GAUGE</strong></span>, <em class="replaceable"><code>Opt</code></em>, <em class="replaceable"><code>FREQ</code></em><br><b class="refpurpose">Gauges the problem domain for a magnetic edge-element
+formulation.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="GAUGE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Opt</code></em></b></span></dt><dd><p>Type of gauging to be performed:       </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ON</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Perform tree gauging of the edge values
+(default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Gauging is off. (You must specify
+custom gauging via APDL specifications.) </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">STAT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Gauging status (returns the current <em class="replaceable"><code>Opt</code></em> and <em class="replaceable"><code>FREQ</code></em> values)</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>FREQ</code></em></b></span></dt><dd><p>The following options are valid when <em class="replaceable"><code>Opt</code></em> = ON:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Generate tree-gauging information once,
+at the first load step. Gauging data is retained for subsequent load
+steps. (This behavior is the default.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Repeat gauging for each load step. Rewrites
+the gauging information at each load step to accommodate changing
+boundary conditions on the AZ degree of freedom (for example, adding
+or deleting AZ constraints via the <a class="link" href="Hlp_C_D.html" title="D"><span class="command"><strong>D</strong></span></a> or <a class="link" href="Hlp_C_CE.html" title="CE"><span class="command"><strong>CE</strong></span></a> commands). </p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="GAUGE.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>GAUGE</strong></span> command controls the tree-gauging
+procedure required for electromagnetic analyses using an edge-based
+magnetic formulation (elements <a href="../ans_elem/Hlp_E_SOLID236.html" class="olink"><span class="structname">SOLID236</span></a> and <a href="../ans_elem/Hlp_E_SOLID237.html" class="olink"><span class="structname">SOLID237</span></a>). </p><p>Gauging occurs at the solver level for each solution (<a class="link" href="Hlp_C_SOLVE.html" title="SOLVE"><span class="command"><strong>SOLVE</strong></span></a>). It sets additional zero constraints on the edge-flux
+degrees of freedom AZ to produce a unique solution; the additional
+constraints are removed after solution. </p><p>Use the <em class="replaceable"><code>FREQ</code></em> option to specify how
+the command generates gauging information for multiple
+load steps. </p><p>Access the gauging information via the _TGAUGE component of
+gauged nodes. The program creates and uses this component internally
+to remove and reapply the AZ constraints required by gauging. If <em class="replaceable"><code>FREQ</code></em> = 0, the _TGAUGE component is created at the first
+load step and is used to reapply the tree gauge constraints at subsequent
+load steps. If <em class="replaceable"><code>FREQ</code></em> = 1, the tree-gauging
+information and the _TGAUGE component are generated at every load
+step </p><p>If gauging is turned off (<span class="command"><strong>GAUGE</strong></span>,OFF), you
+must specify your own gauging at the APDL level. </p><p>This command is also valid in PREP7.</p></div><div class="refsect1" title="Menu Paths"><a name="GAUGE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Load Step Opts&gt;Magnetics&gt;Options Only&gt;Gauging</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Load Step Opts&gt;Magnetics&gt;Options Only&gt;Gauging</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

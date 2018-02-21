@@ -1,0 +1,356 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:08-04:00"><title>6.3.&nbsp;Elements for Acoustic Analysis</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="elem_chmultiphys.html" title="Chapter&nbsp;6:&nbsp;Elements for Multiphysics Analysis"><link rel="prev" href="elem_thermelems.html" title="6.2.&nbsp;Elements for Thermal Analysis"><link rel="next" href="elem_electric.html" title="6.4.&nbsp;Elements for Electric and Magnetic Analysis"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="6.3.&nbsp;Elements for Acoustic Analysis"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="elem_acouselems"></a>6.3.&nbsp;Elements for Acoustic Analysis</h2></div></div></div><a class="indexterm" name="d0e17625"></a><div class="highlights"><p>The following topics related to the elements used for acoustic analyses are
+                available:</p><ul><li><a href="elem_acouselems.html#d0e17633" title="6.3.1.&nbsp;Acoustic Element Types">Acoustic Element Types</a></li><li><a href="elem_acouselems.html#d0e17727" title="6.3.2.&nbsp;3-D Acoustic Element Usage">3-D Acoustic Element Usage</a></li><li><a href="elem_acouselems.html#d0e17785" title="6.3.3.&nbsp;3-D Acoustic Element Input">3-D Acoustic Element Input</a></li><li><a href="elem_acouselems.html#aco3Deleminputsummary" title="6.3.4.&nbsp;3-D Acoustic Element Input Summary">3-D Acoustic Element Input Summary</a></li><li><a href="elem_acouselems.html#aco3Delemoutputdata" title="6.3.5.&nbsp;3-D Acoustic Element Output Data">3-D Acoustic Element Output Data</a></li><li><a href="elem_acouselems.html#aco3Delemassumptions" title="6.3.6.&nbsp;3-D Acoustic Element Assumptions and Restrictions">3-D Acoustic Element Assumptions and Restrictions</a></li><li><a href="elem_acouselems.html#aco3Delemprodrestrict" title="6.3.7.&nbsp;3-D Acoustic Element Product Restrictions">3-D Acoustic Element Product Restrictions</a></li></ul></div><div class="sect2" title="6.3.1.&nbsp;Acoustic Element Types"><div class="titlepage"><div><div><h3 class="title"><a name="d0e17633"></a>6.3.1.&nbsp;Acoustic Element Types</h3></div></div></div><p>An <a href="../ans_thry/thy_acou.html" class="olink">acoustic analysis</a>
+                calculates either the propagation properties of pure acoustic waves in the given
+                environment or the coupled acoustic structural interaction (FSI). </p><p>Support is available for time-harmonic, modal and transient acoustic analysis. </p><p>Use the following fluid elements to simulate 2-D acoustic or coupled acoustic
+                problems:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                        <a class="link" href="Hlp_E_FLUID29.html" title="FLUID29"><span class="structname">FLUID29</span></a> -- Axisymmetric harmonic acoustic
+                        fluid.</p></li><li class="listitem"><p>
+                        <a class="link" href="Hlp_E_FLUID129.html" title="FLUID129"><span class="structname">FLUID129</span></a> -- Infinite acoustic.</p><p>This element is a companion to <a class="link" href="Hlp_E_FLUID29.html" title="FLUID29"><span class="structname">FLUID29</span></a>. It is
+                        used to envelop a model made of <a class="link" href="Hlp_E_FLUID29.html" title="FLUID29"><span class="structname">FLUID29</span></a> finite
+                        elements for the truncation of infinite propagating domain.</p></li></ul></div><p>Use these fluid elements for 3-D simulation:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                        <a class="link" href="Hlp_E_FLUID30.html" title="FLUID30"><span class="structname">FLUID30</span></a> -- Acoustic fluid</p></li><li class="listitem"><p>
+                        <a class="link" href="Hlp_E_FLUID130.html" title="FLUID130"><span class="structname">FLUID130</span></a> -- Infinite acoustic</p><p>This element is a companion to <a class="link" href="Hlp_E_FLUID30.html" title="FLUID30"><span class="structname">FLUID30</span></a>,
+                            <a class="link" href="Hlp_E_FLUID220.html" title="FLUID220"><span class="structname">FLUID220</span></a>, and
+                        <a class="link" href="Hlp_E_FLUID221.html" title="FLUID221"><span class="structname">FLUID221</span></a>. It is used to envelop a model made of
+                            <a class="link" href="Hlp_E_FLUID30.html" title="FLUID30"><span class="structname">FLUID30</span></a>, <a class="link" href="Hlp_E_FLUID220.html" title="FLUID220"><span class="structname">FLUID220</span></a>, and
+                            <a class="link" href="Hlp_E_FLUID221.html" title="FLUID221"><span class="structname">FLUID221</span></a> finite elements for the truncation of
+                        infinite propagating domain.</p></li><li class="listitem"><p>
+                        <a class="link" href="Hlp_E_FLUID220.html" title="FLUID220"><span class="structname">FLUID220</span></a> -- 20-node acoustic solid </p></li><li class="listitem"><p>
+                        <a class="link" href="Hlp_E_FLUID221.html" title="FLUID221"><span class="structname">FLUID221</span></a> -- 10-node acoustic tetrahedral
+                        solid</p></li></ul></div></div><div class="sect2" title="6.3.2.&nbsp;3-D Acoustic Element Usage"><div class="titlepage"><div><div><h3 class="title"><a name="d0e17727"></a>6.3.2.&nbsp;3-D Acoustic Element Usage</h3></div></div></div><p>Use <a class="link" href="Hlp_E_FLUID30.html" title="FLUID30"><span class="structname">FLUID30</span></a>, <a class="link" href="Hlp_E_FLUID220.html" title="FLUID220"><span class="structname">FLUID220</span></a> and
+                    <a class="link" href="Hlp_E_FLUID221.html" title="FLUID221"><span class="structname">FLUID221</span></a> to model the fluid medium and the interface in
+                fluid/structure interaction problems. Typical applications include sound wave
+                propagation and submerged structure dynamics. The governing equation for acoustics,
+                namely the 3-D wave equation, has been discretized taking into account the coupling
+                of acoustic pressure and structural motion at the interface. The element node has
+                four degrees of freedom per node: translations in the nodal x, y and z directions,
+                and pressure. The translations are applicable only at nodes on the interface.
+                Acceleration effects like those in sloshing problems can be included. <span>The mean flow effect or incompressible fluid can be
+                    simulated.</span> For more information, see <a href="../ans_thry/thy_acou.html" class="olink">Acoustics</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>. </p><p>The elements have the capability to include damping of sound-absorbing material at
+                the interface as well as damping within the fluid. The elements can be used with or
+                without other 3-D structural elements to perform symmetric, unsymmetric or damped
+                modal (<a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a>), full harmonic (<a href="../ans_cmd/Hlp_C_HROPT.html" class="olink"><span class="command"><strong>HROPT</strong></span></a>), and
+                full transient method analyses (<a href="../ans_cmd/Hlp_C_TRNOPT.html" class="olink"><span class="command"><strong>TRNOPT</strong></span></a>). </p><p>See <a class="link" href="Hlp_E_FLUID30.html" title="FLUID30"><span class="structname">FLUID30</span></a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for more information about
+                the low-order element. See <a class="link" href="Hlp_E_FLUID220.html" title="FLUID220"><span class="structname">FLUID220</span></a> for more information
+                about the high-order hexahedral element and <a class="link" href="Hlp_E_FLUID221.html" title="FLUID221"><span class="structname">FLUID221</span></a> for
+                more information about the high-order tetrahedral element.</p></div><div class="sect2" title="6.3.3.&nbsp;3-D Acoustic Element Input"><div class="titlepage"><div><div><h3 class="title"><a name="d0e17785"></a>6.3.3.&nbsp;3-D Acoustic Element Input</h3></div></div></div><p>The geometry, node locations, and coordinate system for each 3-D acoustic element
+                is shown in <a class="xref" href="Hlp_E_FLUID30.html#aTSTf382lmm" title="Figure&nbsp;30.1:&nbsp;&nbsp;FLUID30 Geometry">Figure&nbsp;30.1:&nbsp;<span class="structname">FLUID30</span> Geometry</a>, <a class="xref" href="Hlp_E_FLUID220.html#aT220STf38762lmm" title="Figure&nbsp;220.1:&nbsp;&nbsp;FLUID220 Geometry">Figure&nbsp;220.1:&nbsp;<span class="structname">FLUID220</span> Geometry</a>, and
+                    <a class="xref" href="Hlp_E_FLUID221.html#aT221STf38762lmm" title="Figure&nbsp;221.1:&nbsp;&nbsp;FLUID221 Geometry">Figure&nbsp;221.1:&nbsp;<span class="structname">FLUID221</span> Geometry</a>. The elements are defined by eight nodes
+                    (<a class="link" href="Hlp_E_FLUID30.html" title="FLUID30"><span class="structname">FLUID30</span></a>), 20 nodes
+                (<a class="link" href="Hlp_E_FLUID220.html" title="FLUID220"><span class="structname">FLUID220</span></a>), or 10 nodes
+                (<a class="link" href="Hlp_E_FLUID221.html" title="FLUID221"><span class="structname">FLUID221</span></a>), a reference pressure, and the isotropic
+                material properties. The reference pressure (PREF) is used to calculate the element
+                sound pressure level (defaults to 20x10<sup>-6</sup>
+                    N/m<sup>2</sup>). The speed of sound (<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq0d0d855a-54e0-4370-8ce5-91bd032b5561.svg"></span>) in the fluid is input by SONC where k is the bulk modulus of the
+                fluid (Force/Area) and&nbsp;&#961;<sub>o</sub> is the mean fluid density
+                (Mass/Volume) (input as DENS). The dissipative effect due to fluid viscosity can be
+                included (input as <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,VISC). DENS, SONC, and VISC are evaluated
+                at the average of the nodal temperatures.</p><p>The <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,PERF command defines the equivalent fluid of the
+                perforated material using the Johnson-Champoux-Allard, Delany-Bazley, Miki,
+                impedance-propagating constant, or complex density-velocity model. The material
+                properties, thermal conductivity (<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,KXX), heat coefficient at
+                constant volume per unit of mass (<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,CVH), the dynamic viscosity
+                    (<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,VISC) (default 1.84x10<sup>-5</sup>
+                    N&#8226;s/m<sup>2</sup>), and specific heat
+                    (<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,C) can be defined for the Prandtl number calculation
+                (default 0.713) and the specific heat ratio (default 1.4) if necessary. Viscosity
+                defaults to 1.84x10<sup>-5</sup>s for elements where the
+                    <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,PERF command has been issued. For all other elements, the
+                viscosity is assumed to be zero when undefined.</p><p>The <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,PERF command also defines the transfer admittance matrix
+                for the equivalence of complex perforated structures, including plates with hole
+                arrays. The <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,AFDM command defines the frequency-dependent
+                acoustic materials combined with the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,FIELD command. The
+                parameters set via the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,PERF command can be frequency-dependent
+                along with the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,FIELD command. Both the boundary layer
+                    (<a href="../ans_cmd/Hlp_C_SF.html" class="olink"><span class="command"><strong>SF</strong></span></a>,BLI) and the low-frequency reduced model
+                    (<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,AFDM) are available to simulate the interaction between
+                acoustic fluid and rigid wall in visco-thermal medium </p><p>Element loads are described in <a class="xref" href="Hlp_E_CH2_1.html#elem_loads" title="3.1.8.&nbsp;Element Loading">Element Loading</a>. <a href="../ans_acous/ansacousfsi.html" class="olink">Fluid-structure interfaces
+                    (FSIs)</a> can be flagged by surface loads at the element faces as shown by
+                the circled numbers in <a class="xref" href="Hlp_E_FLUID30.html#aTSTf382lmm" title="Figure&nbsp;30.1:&nbsp;&nbsp;FLUID30 Geometry">Figure&nbsp;30.1:&nbsp;<span class="structname">FLUID30</span> Geometry</a>, <a class="xref" href="Hlp_E_FLUID220.html#aT220STf38762lmm" title="Figure&nbsp;220.1:&nbsp;&nbsp;FLUID220 Geometry">Figure&nbsp;220.1:&nbsp;<span class="structname">FLUID220</span> Geometry</a>, and <a class="xref" href="Hlp_E_FLUID221.html#aT221STf38762lmm" title="Figure&nbsp;221.1:&nbsp;&nbsp;FLUID221 Geometry">Figure&nbsp;221.1:&nbsp;<span class="structname">FLUID221</span> Geometry</a>. Specifying
+                the FSI label (without a value) (<a href="../ans_cmd/Hlp_C_SF.html" class="olink"><span class="command"><strong>SF</strong></span></a>, <a href="../ans_cmd/Hlp_C_SFA.html" class="olink"><span class="command"><strong>SFA</strong></span></a>,
+                    <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a>) couples the structural motion and fluid pressure at the
+                interface. Deleting the FSI specification (<a href="../ans_cmd/Hlp_C_SFDELE.html" class="olink"><span class="command"><strong>SFDELE</strong></span></a>,
+                    <a href="../ans_cmd/Hlp_C_SFADELE.html" class="olink"><span class="command"><strong>SFADELE</strong></span></a>, <a href="../ans_cmd/Hlp_C_SFEDELE.html" class="olink"><span class="command"><strong>SFEDELE</strong></span></a>) removes the flag. The
+                flag specification should be on the fluid elements at the interface.</p><p>The fluid-structure interface (FSI) can be flagged automatically if acoustic
+                elements are adjacent to solid structural elements (except for shell elements) and
+                FSIs have not been flagged manually. Use the surface load label IMPD with a given
+                complex impedance value to include any damping present at a structural boundary with
+                a sound absorption lining. These impedance boundary conditions can also be applied
+                to a flagged FSI interface. A zero IMPD value removes the damping calculation. If
+                using the coupled acoustic elements (KEYOPT(2) = 0), set the displacement degrees of
+                freedom (UX, UY and UZ) to zero at the element nodes not on the interface to avoid
+                zero-pivot warnings. The surface load label SHLD with a given amplitude and initial
+                phase angle defines a normal sound speed in a harmonic analysis or a normal sound
+                acceleration in a transient analysis on the exterior surface. The sloshing surface
+                that must be parallel to the coordinate plane of the global Cartesian system can be
+                flagged via the FREE surface load label. When near- or far- field parameters are
+                required, apply the surface load label MXWF to the equivalent source surface. The
+                label MXWF can be applied automatically to a PML-acoustic medium interface or
+                exterior surface via the INF label INF (if MXWF surfaces have not been flagged
+                manually). The surface load label ATTN with the absorption coefficient defines an
+                absorbing surface in modal and harmonic response analyses. The surface load label
+                BLI is applied on the rigid wall to introduce the boundary layer model in
+                viscous-thermal fluid. The surface load label PORT defines the network ports. When
+                the transfer admittance matrix is used, define a pair of ports on the opposite faces
+                in the same element. Surface loads with load label IMPD, ATTN and SHLD can be
+                frequency- or time-dependent using tabular inputs. <span>The
+                    label RIGW flags the rigid walls.</span></p><p>Temperatures can be input as element body loads at the nodes. The node I
+                temperature T(I) defaults to TUNIF. If all other temperatures are unspecified, they
+                default to T(I). For any other input pattern, unspecified temperatures default to
+                TUNIF.</p><p>Mass source (in units of mass/length<sup>3</sup>/time) can be
+                defined in a harmonic analysis and mass source rate (partial time derivative of mass
+                source in units of
+                    mass/length<sup>3</sup>/time<sup>2</sup>) can be
+                defined in a transient analysis (<a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a>,,MASS). For harmonic response
+                analyses, both the amplitude and initial phase can be applied so that the
+                inhomogeneous Helmholtz equation is solved. The impedance sheet inside a fluid can
+                be defined (<a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a>,,IMPD or <a href="../ans_cmd/Hlp_C_BFA.html" class="olink"><span class="command"><strong>BFA</strong></span></a>,,IMPD) in a
+                harmonic analysis. For a nonuniform acoustic medium, define the reference
+                temperature T<sub>0</sub> (<a href="../ans_cmd/Hlp_C_TREF.html" class="olink"><span class="command"><strong>TREF</strong></span></a>) and the reference
+                static pressure (real constant PSREF). PSREF defaults to 101325, the standard
+                atmospheric pressure in units of N/m<sup>2</sup>. Nodal temperatures
+                are input via body load commands. Nodal static pressure can also be input
+                    (<a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a>,,<span>SPRE</span>). You can define nonuniform
+                velocity in a harmonic analysis or nonuniform acceleration in a transient analysis
+                    (<a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a>,,VELO). Body loads with labels TEMP, MASS or VELO can be
+                frequency- or time-dependent using tabular inputs. The interior port is defined with
+                    <a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a>,,PORT. You can also define the Floquet periodic boundary
+                condition (<a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a>,,FPBC) in harmonic and modal analyses. <span>The mean flow velocity is introduced by
+                        <a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a>,,VMEN in harmonic analysis. </span>
+            </p><p>One-way coupling from structure to acoustics is more computationally efficient,
+                while the acoustic effect on the structure can be neglected. The structural solution
+                is performed first. If a conforming mesh is used on the FSI interface, you can flag
+                the FSI in the structural model (<a href="../ans_cmd/Hlp_C_SF.html" class="olink"><span class="command"><strong>SF</strong></span></a>,FSIN) and write the
+                structural results on the FSI to a <span class="filename"><strong>.asi</strong></span> (default) file
+                    (<a href="../ans_cmd/Hlp_C_ASIFILE.html" class="olink"><span class="command"><strong>ASIFILE</strong></span></a>). The velocities or accelerations on the FSI are
+                loaded into the sequential acoustic solution with multiple frequencies or time steps
+                corresponding to the previous structural solution. If a nonconforming mesh is used
+                on the FSI, the <a href="../ans_cmd/Hlp_C_ASIFILE.html" class="olink"><span class="command"><strong>ASIFILE</strong></span></a>,,,,MAP command efficiently maps the
+                structural results on the FSI interface to the acoustic model during the sequential
+                acoustic solution. You can also map the structural results on the selected
+                interfaces to the acoustic model linking the projects in Workbench Project
+                Schematic, then perform an acoustic solution.</p><p>One-way coupling from the ANSYS Fluent CFD Solver to Mechanical APDL acoustics is available
+                for noise prediction in the enclosure modeled by acoustic and structural elements.
+                The surface element <a class="link" href="Hlp_E_SURF154.html" title="SURF154"><span class="structname">SURF154</span></a> must be generated on top of the
+                structural solid or shell elements and flagged (<a href="../ans_cmd/Hlp_C_SF.html" class="olink"><span class="command"><strong>SF</strong></span></a>,FSIN) for a
+                one-way coupling interface. The coupled vibro-acoustic FSI interface is also flagged
+                    (<a href="../ans_cmd/Hlp_C_SF.html" class="olink"><span class="command"><strong>SF</strong></span></a>,FSI). The fast Fourier transformation (FFT) data of the
+                transient CFD solution is written to a <span class="filename"><strong>.cgns</strong></span> file with the
+                one-sided peak complex pressure values in the CFD postprocessor. Mechanical APDL
+                reads the CFD result (<a href="../ans_cmd/Hlp_C_FLUREAD.html" class="olink"><span class="command"><strong>FLUREAD</strong></span></a>) and maps the complex pressure to
+                the one-way coupling interface, then performs harmonic solutions at multiple FFT
+                frequencies within the defined frequency range (<a href="../ans_cmd/Hlp_C_HARFRQ.html" class="olink"><span class="command"><strong>HARFRQ</strong></span></a>).</p><p>The nonlinear static analysis for the structural deformation can be performed
+                before performing a coupled or pure acoustic solution. Because of the structural
+                deformation, the mesh in the acoustic domain is morphed during the static structural
+                solution (<a href="../ans_cmd/Hlp_C_MORPH.html" class="olink"><span class="command"><strong>MORPH</strong></span></a>). The linear perturbation scheme
+                    (<a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a> and <a href="../ans_cmd/Hlp_C_PERTURB.html" class="olink"><span class="command"><strong>PERTURB</strong></span></a>) is used to perform a
+                sequential acoustic solution with the updated mesh. If a morphing failure occurs
+                during mesh morphing (typically due to large deformations), automatic time stepping
+                will bisect the solution, if possible. The nonlinear static structural analysis is
+                also efficiently performed without mesh morphing in the acoustic domain if the
+                structural deformation can be ignored (see <a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>). </p><p>KEYOPT(2) = 1 specifies the absence of a structure at the
+                interface and the absence of coupling between the fluid and structure. Because the
+                absence of coupling produces symmetric element matrices, a symmetric eigensolver
+                    (<a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a>) can be used within the modal analysis. KEYOPT(2) = 0
+                (the default) specifies a coupled (unsymmetric) problem, requiring a corresponding
+                unsymmetric eigensolver (<a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a>). If KEYOPT(1) = 2, specifying
+                symmetric algorithms in the presence of FSI coupling, a symmetric linear equation
+                solver can be used for full harmonic analysis. The <a class="link" href="Hlp_E_FLUID130.html" title="FLUID130"><span class="structname">FLUID130</span></a>
+                element is compatible with the symmetric options during the solution. </p><p>To reduce the size of the <span class="filename"><strong>Jobname.emat</strong></span> file, issue the
+                    <a href="../ans_cmd/Hlp_C_ECPCHG.html" class="olink"><span class="command"><strong>ECPCHG</strong></span></a> command. This command converts acoustics element
+                adjacent to solid structural elements (or flagged with FSI) to coupled elements, and
+                converts coupled acoustic elements to uncoupled elements.</p><p>KEYOPT(4) specifies the existence of perfectly matched
+                layers (PML) or irregular perfectly matched layers (IPML) to absorb the outgoing
+                sound waves. The pressure on the exterior enclosure of PML (KEYOPT(4) = 1) or IPML
+                (KEYOPT(4) = 2) must be constrained to zero, unless the pressure is on the symmetric
+                planes. The PML must be defined in a PML coordinate system
+                (<a href="../ans_cmd/Hlp_C_PSYS.html" class="olink"><span class="command"><strong>PSYS</strong></span></a>). The rigid walls must be flagged
+                (<a href="../ans_cmd/Hlp_C_SF.html" class="olink"><span class="command"><strong>SF</strong></span></a>,,RIGW) if the zero pressure on the exterior surface of the
+                IPML is set by the program. For more information about using PML and IPML, see
+                    <a href="../ans_acous/acous_artificial.html" class="olink">Artificially Matched Layers in the <span class="olinkdocname">Mechanical APDL Acoustic Analysis Guide</span></a> and <a href="../ans_thry/thyacous_proprad.html#thyacous_artifml" class="olink">Artificially Matched Layers in the <span class="olinkdocname">Mechanical APDL Theory Reference</span></a>.</p><p>KEYOPT(5) = 1 specifies the non-morphed element during the static structural
+                solution (<a href="../ans_cmd/Hlp_C_MORPH.html" class="olink"><span class="command"><strong>MORPH</strong></span></a>) for efficient meshing.</p><p>KEYOPT(6) = 1 specifies the incompressible fluid in which the sound speed
+                equivalently tends to infinite.</p><p>If free surface effects are present (<a href="../ans_cmd/Hlp_C_SF.html" class="olink"><span class="command"><strong>SF</strong></span></a>,,FREE), vertical
+                acceleration (<a href="../ans_cmd/Hlp_C_ACEL.html" class="olink"><span class="command"><strong>ACEL</strong></span></a>,,,<em class="replaceable"><code>ACEL_Z</code></em>) is
+                necessary to specify gravity, even for a modal analysis.</p><p>A harmonic analysis can be performed over the octave band, the 1/2, 1/3, 1/6,
+                1/12, or 1/24 octave bands, or the general frequency band with logarithm frequency
+                span (<a href="../ans_cmd/Hlp_C_HARFRQ.html" class="olink"><span class="command"><strong>HARFRQ</strong></span></a>,,,,<em class="replaceable"><code>LogOpt</code></em>).</p><p>An analytic acoustic mode can be launched in the rectangular, circular, and
+                coaxial acoustic duct (<a href="../ans_cmd/Hlp_C_aport.html" class="olink"><span class="command"><strong>APORT</strong></span></a>). The incident planar wave on the
+                port can also be defined.</p><p>The mean flow effect is taken into account by solving the
+                convective wave equation with a defined mean flow velocity
+                (<a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a>,,VMEN) in a harmonic analysis. The static mean flow can be
+                solved with the mean flow velocities defined on the inlet and outlet in an upstream
+                static analysis and stored in the <span class="filename"><strong>Jobname.rmf</strong></span> file. The static
+                mean flow is loaded into the model during the sequential harmonic solution of the
+                convective wave equation (<a href="../ans_cmd/Hlp_C_LDREAD.html" class="olink"><span class="command"><strong>LDREAD</strong></span></a> command).</p><p>Use the <a href="../ans_cmd/Hlp_C_DFSWAVE.html" class="olink"><span class="command"><strong>DFSWAVE</strong></span></a> command to define a
+                diffuse sound field consisting of an infinite number of plane waves for random
+                acoustics. The surface element, <a class="link" href="Hlp_E_SURF154.html" title="SURF154"><span class="structname">SURF154</span></a>, must be defined on
+                the top of the structural panel meshed by structural or shell elements. The half
+                space where the diffuse sound field exists is not meshed, and the radiation space
+                (receiver side) is meshed with the acoustic element and truncated by the PML or
+                absorbing elements. Multiple solutions at the same frequencies
+                    (<a href="../ans_cmd/Hlp_C_MSOLVE.html" class="olink"><span class="command"><strong>MSOLVE</strong></span></a>) are necessary to obtain a stable, average solution
+                for the physical samplings. The transmission loss of the structural panel is
+                calculated and displayed by the <a href="../ans_cmd/Hlp_C_PRAS.html" class="olink"><span class="command"><strong>PRAS</strong></span></a> and <a href="../ans_cmd/Hlp_C_PLAS.html" class="olink"><span class="command"><strong>PLAS</strong></span></a>
+                commands. </p><p>The angle sweep in the harmonic analysis with the Floquet
+                periodic boundary condition is controlled by the <a href="../ans_cmd/Hlp_C_MSOLVE.html" class="olink"><span class="command"><strong>MSOLVE</strong></span></a> command,
+                and the results are displayed by the <a href="../ans_cmd/Hlp_C_PRAS.html" class="olink"><span class="command"><strong>PRAS</strong></span></a> and
+                    <a href="../ans_cmd/Hlp_C_PLAS.html" class="olink"><span class="command"><strong>PLAS</strong></span></a> commands.</p><p>For acoustic scattering analysis, acoustic incident waves can be specified outside
+                of the model (<a href="../ans_cmd/Hlp_C_AWAVE.html" class="olink"><span class="command"><strong>AWAVE</strong></span></a>). These incident waves can be combined with a
+                PML or Robin boundary surface (<a href="../ans_cmd/Hlp_C_SF.html" class="olink"><span class="command"><strong>SF</strong></span></a>,INF). Either the total field or
+                pure scattered field formulation can be used. When using the pure scattered
+                formulation, the scattered formulation is required (<a href="../ans_cmd/Hlp_C_ASOL.html" class="olink"><span class="command"><strong>ASOL</strong></span></a>), and
+                acoustic incident waves can also be specified inside the model
+                    (<a href="../ans_cmd/Hlp_C_AWAVE.html" class="olink"><span class="command"><strong>AWAVE</strong></span></a>). </p><p>The acoustic near- and far-field parameters can be
+                calculated (<a href="../ans_cmd/Hlp_C_PRNEAR.html" class="olink"><span class="command"><strong>PRNEAR</strong></span></a>, <a href="../ans_cmd/Hlp_C_PLNEAR.html" class="olink"><span class="command"><strong>PLNEAR</strong></span></a>,
+                    <a href="../ans_cmd/Hlp_C_PRFAR.html" class="olink"><span class="command"><strong>PRFAR</strong></span></a>, or <a href="../ans_cmd/Hlp_C_PLFAR.html" class="olink"><span class="command"><strong>PLFAR</strong></span></a>) for the full 3-D model or
+                the 2-D rotated extrusion model. (The axisymmetric model is simulated via a slice of
+                the 3-D model with rotation). The sound power data, including transmission loss, can
+                be calculated on the defined ports by the <a href="../ans_cmd/Hlp_C_PRAS.html" class="olink"><span class="command"><strong>PRAS</strong></span></a> and
+                    <a href="../ans_cmd/Hlp_C_PLAS.html" class="olink"><span class="command"><strong>PLAS</strong></span></a> commands. The following quantities can be also be
+                calculated and displayed by these two commands:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>complex specific acoustic impedance, acoustic impedance, mechanical
+                            impedance, force, pressure and acoustic power on the selected
+                            surface;</p></li><li class="listitem"><p>sound pressure level (SPL) and A-weighted SPL of the octave band at
+                            the selected nodes;</p></li><li class="listitem"><p>acoustic potential energy, kinetic energy, total energy and average
+                            square of the L2 norm of pressure on the selected elements.</p></li></ul></div><p>
+            </p><p>The acoustic parameters can be obtained by the <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a>,,ACUS
+                command. The acoustic far-field parameters radiated from a structural panel are also
+                calculated based on the Rayleigh integral principle (<a href="../ans_cmd/Hlp_C_PRFAR.html" class="olink"><span class="command"><strong>PRFAR</strong></span></a> or
+                    <a href="../ans_cmd/Hlp_C_PLFAR.html" class="olink"><span class="command"><strong>PLFAR</strong></span></a>).</p><p>Element input for <a class="link" href="Hlp_E_FLUID30.html" title="FLUID30"><span class="structname">FLUID30</span></a>,
+                    <a class="link" href="Hlp_E_FLUID220.html" title="FLUID220"><span class="structname">FLUID220</span></a>, and <a class="link" href="Hlp_E_FLUID221.html" title="FLUID221"><span class="structname">FLUID221</span></a> is
+                given in <a class="xref" href="elem_acouselems.html#aco3Deleminputsummary" title="6.3.4.&nbsp;3-D Acoustic Element Input Summary">3-D Acoustic Element Input Summary</a>. A general description of element
+                input is given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>.</p></div><div class="sect2" title="6.3.4.&nbsp;3-D Acoustic Element Input Summary"><div class="titlepage"><div><div><h3 class="title"><a name="aco3Deleminputsummary"></a>6.3.4.&nbsp;3-D Acoustic Element Input Summary</h3></div></div></div><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>
+                            <a class="link" href="Hlp_E_FLUID30.html" title="FLUID30"><span class="structname">FLUID30</span></a>: I, J, K, L, M, N, O, P</p><p>
+                            <a class="link" href="Hlp_E_FLUID220.html" title="FLUID220"><span class="structname">FLUID220</span></a>: I, J, K, L, M, N, O, P, Q, R, S, T,
+                            U, V, W, X, Y, Z, A, B</p><p>
+                            <a class="link" href="Hlp_E_FLUID221.html" title="FLUID221"><span class="structname">FLUID221</span></a>: I, J, K, L, M, N, O, P, Q, R</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>UX, UY, UZ, PRES if KEYOPT (2) = 0</td></tr><tr><td>PRES if KEYOPT (2) = 1</td></tr></table></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>PREF -- Reference pressure</td></tr><tr><td>PSREF -- Reference static pressure</td></tr></table></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>DENS, SONC, VISC, KXX, C, CVH, BVIS (<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>
+                                command)</td></tr><tr><td>PERF, AFDM (<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command)</td></tr></table></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><p>Fluid-structure interface (FSI) flag, impedance (IMPD), normal speed
+                            or normal acceleration (SHLD), sloshing surface (FREE), equivalent
+                            source surface (MXWF), Robin boundary surface (INF), attenuation
+                            coefficient (ATTN), viscous-thermal boundary layer (BLI), port (PORT),
+                                <span>rigid wall (RIGW)</span>:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+                                <a class="link" href="Hlp_E_FLUID30.html" title="FLUID30"><span class="structname">FLUID30</span></a> and
+                                    <a class="link" href="Hlp_E_FLUID220.html" title="FLUID220"><span class="structname">FLUID220</span></a>-- </td></tr><tr><td>face 1 (J-I-L-K), face 2 (I-J-N-M), face 3 (J-K-O-N),</td></tr><tr><td>face 4 (K-L-P-O), face 5 (L-I-M-P), face 6 (M-N-O-P)</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_FLUID221.html" title="FLUID221"><span class="structname">FLUID221</span></a> --</td></tr><tr><td>face 1 (J-I-K), face 2 (I-J-L), face 3 (J-K-L), face 4
+                                (K-I-L)</td></tr></table></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><p>Mass source or mass rate (MASS), static pressure
+                                <span>(SPRE)</span>, impedance (IMPD), temperature (TEMP),
+                            velocity or acceleration (VELO), interior port (PORT), Floquet periodic
+                            boundary condition (FPBC), <span>mean flow
+                                velocity (VMEN)</span>
+                        </p></dd><dt><span><b class="term">Special Features</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Specific algorithm options:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>FSI present in the model (unsymmetric element matrices)
+                                        (default)</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>FSIs present in the model for full harmonic analysis
+                                        (symmetric element matrix) </p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Acoustic element types:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Coupled acoustic element with FSIs </p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Uncoupled acoustic element without FSIs</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(4)</b></span></dt><dd><p>Perfectly matched layers (PML) or irregular
+                            perfectly matched layers (IPML) absorbing condition:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Do not include any PML or IPML
+                                        absorbing condition</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Include PML absorbing condition</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Include IPML absorbing condition</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(5)</b></span></dt><dd><p>Acoustic element morphing control:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Morphed element during the structural static
+                                        solution</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Non-morphed element during the structural static
+                                        solution</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(6)</b></span></dt><dd><p>Fluid property control:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Compressed fluid</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Incompressible fluid</p></dd></dl></div></div></dd></dl></div></div></div><div class="sect2" title="6.3.5.&nbsp;3-D Acoustic Element Output Data"><div class="titlepage"><div><div><h3 class="title"><a name="aco3Delemoutputdata"></a>6.3.5.&nbsp;3-D Acoustic Element Output Data</h3></div></div></div><p>The solution output associated with the elements consists of the following: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal displacements and pressures included in the overall nodal
+                            solution.</p></li><li class="listitem"><p>Nodal velocity is included in the element nodal solution via standard
+                            results output commands with Item = PG (for example,
+                                <a href="../ans_cmd/Hlp_C_PRNSOL.html" class="olink"><span class="command"><strong>PRNSOL</strong></span></a>, <a href="../ans_cmd/Hlp_C_PLVECT.html" class="olink"><span class="command"><strong>PLVECT</strong></span></a>,
+                                <a href="../ans_cmd/Hlp_C_PRESOL.html" class="olink"><span class="command"><strong>PRESOL</strong></span></a>, and <a href="../ans_cmd/Hlp_C_PLESOL.html" class="olink"><span class="command"><strong>PLESOL</strong></span></a>).</p></li><li class="listitem"><p>Nodal sound pressure level (SPL) and A-weighted SPL.</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="elem_acouselems.html#aco3Delemoutputdef" title="Table&nbsp;6.1:&nbsp;&nbsp;3-D Acoustic Element Output Definitions">Table&nbsp;6.1:&nbsp;3-D Acoustic Element Output Definitions</a>.</p></li></ul></div><p>
+            </p><p>A general description of solution output is given in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a>.
+                See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways to view results.</p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="aco3Delemoutputdef"></a><p class="title"><b>Table&nbsp;6.1:&nbsp;&nbsp;3-D Acoustic Element Output Definitions</b></p><div class="table-contents"><table summary="3-D Acoustic Element Output Definitions" border="1" width="95%"><colgroup><col width="120" class="col1"><col width="312" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center">
+                                
+                                Name</th><th bgcolor="#E3E3E3" align="center">
+                                
+                                Definition</th><th bgcolor="#E3E3E3" align="center">
+                                
+                                O</th><th bgcolor="#E3E3E3" align="center">
+                                
+                                R</th></tr></thead><tbody><tr valign="middle"><td align="center" valign="middle">EL</td><td valign="middle">Element Number</td><td align="center" valign="middle">Y</td><td align="center" valign="middle">Y</td></tr><tr valign="middle"><td align="center" valign="middle">NODES</td><td valign="middle">
+                                <p>FLUID30: I, J, K, L, M, N, O, P</p>
+                                <p>FLUID220: I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y,
+                                    Z, A, B</p>
+                                <p>FLUID221: I, J, K, L, M, N, O, P, Q, R</p>
+                            </td><td align="center" valign="middle">Y</td><td align="center" valign="middle">Y</td></tr><tr valign="middle"><td align="center" valign="middle">MAT</td><td valign="middle">Material number</td><td align="center" valign="middle">Y</td><td align="center" valign="middle">Y</td></tr><tr valign="middle"><td align="center" valign="middle">VOLU:</td><td valign="middle">Volume</td><td align="center" valign="middle">Y</td><td align="center" valign="middle">Y</td></tr><tr valign="middle"><td align="center" valign="middle">XC, YC, ZC</td><td valign="middle">Location where results are reported</td><td align="center" valign="middle">Y</td><td align="center" valign="middle">
+                                <a class="xref" href="elem_acouselems.html#acou3Delem.tab.2.ft.2">1</a>
+                            </td></tr><tr valign="middle"><td align="center" valign="middle">TEMP</td><td valign="middle">
+                                <p>FLUID30 : T(I), T(J), &#8230;, T(P)</p>
+                                <p>FLUID220: T(I), T(J), &#8230;, T(B)</p>
+                                <p>FLUID221: T(I), T(J), &#8230;, T(R)</p>
+                            </td><td align="center" valign="middle">Y</td><td align="center" valign="middle">Y</td></tr><tr valign="middle"><td align="center" valign="middle">PRESSURE</td><td valign="middle">Average pressure</td><td align="center" valign="middle">Y</td><td align="center" valign="middle">Y</td></tr><tr valign="middle"><td align="center" valign="middle">PG(X,Y,Z)</td><td valign="middle">Velocity components and vector sum</td><td align="center" valign="middle">Y</td><td align="center" valign="middle">Y</td></tr><tr valign="middle"><td align="center" valign="middle">PL2</td><td valign="middle">Square of the L2 norm of pressure over element volume</td><td align="center" valign="middle">
+                                <a class="xref" href="elem_acouselems.html#acou3Delem.tab.2.ft.1">2</a>
+                            </td><td align="center" valign="middle">
+                                <a class="xref" href="elem_acouselems.html#acou3Delem.tab.2.ft.1">2</a>
+                            </td></tr><tr><td align="center" valign="middle">DENSRE</td><td valign="middle">Real part of complex effective density</td><td align="center" valign="middle">
+                                <a class="xref" href="elem_acouselems.html#acou3Delem.tab.2.ft.1">2</a>
+                            </td><td align="center" valign="middle">
+                                <a class="xref" href="elem_acouselems.html#acou3Delem.tab.2.ft.1">2</a>
+                            </td></tr><tr><td align="center" valign="middle">DENSIM</td><td valign="middle">Imaginary part of complex effective
+                                density</td><td align="center" valign="middle">
+                                <a class="xref" href="elem_acouselems.html#acou3Delem.tab.2.ft.3">3</a>
+                            </td><td align="center" valign="middle">
+                                <a class="xref" href="elem_acouselems.html#acou3Delem.tab.2.ft.3">3</a>
+                            </td></tr><tr><td align="center" valign="middle">SONCRE</td><td valign="middle">Real part of complex effective sound
+                                velocity</td><td align="center" valign="middle">
+                                <a class="xref" href="elem_acouselems.html#acou3Delem.tab.2.ft.1">2</a>
+                            </td><td align="center" valign="middle">
+                                <a class="xref" href="elem_acouselems.html#acou3Delem.tab.2.ft.1">2</a>
+                            </td></tr><tr><td align="center" valign="middle">SONCIM</td><td valign="middle">Imaginary part of complex effective sound
+                                velocity</td><td align="center" valign="middle">
+                                <a class="xref" href="elem_acouselems.html#acou3Delem.tab.2.ft.3">3</a>
+                            </td><td align="center" valign="middle">
+                                <a class="xref" href="elem_acouselems.html#acou3Delem.tab.2.ft.3">3</a>
+                            </td></tr><tr><td align="center" valign="middle">POUT</td><td valign="middle">Output sound power </td><td align="center" valign="middle">
+                                <a class="xref" href="elem_acouselems.html#acou3Delem.tab.2.ft.1">2</a>
+                            </td><td align="center" valign="middle">
+                                <a class="xref" href="elem_acouselems.html#acou3Delem.tab.2.ft.1">2</a>
+                            </td></tr><tr><td align="center" valign="middle">PINC</td><td valign="middle">Input sound power</td><td align="center" valign="middle">
+                                <a class="xref" href="elem_acouselems.html#acou3Delem.tab.2.ft.1">2</a>
+                            </td><td align="center" valign="middle">
+                                <a class="xref" href="elem_acouselems.html#acou3Delem.tab.2.ft.1">2</a>
+                            </td></tr><tr><td align="center" valign="middle">KENE</td><td valign="middle">Acoustic kinetic energy</td><td align="center" valign="middle">Y</td><td align="center" valign="middle">Y</td></tr><tr><td align="center" valign="middle">MENE</td><td valign="middle">Acoustic potential energy</td><td align="center" valign="middle">Y</td><td align="center" valign="middle">Y</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="acou3Delem.tab.2.ft.2"></a>Available only at centroid as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item.</p></li><li class="listitem"><p><a name="acou3Delem.tab.2.ft.1"></a>Output only if <a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,HARMIC or MODAL</p></li><li class="listitem"><p><a name="acou3Delem.tab.2.ft.3"></a>Available only for equivalent fluid model.</p></li></ol></div><p>
+                <a class="xref" href="elem_acouselems.html#aco3Delemitemseqnum" title="Table&nbsp;6.2:&nbsp;&nbsp;3-D Acoustic Element Item and Sequence Numbers">Table&nbsp;6.2:&nbsp;3-D Acoustic Element Item and Sequence Numbers</a> lists output available through the
+                    <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method. See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General Postprocessor (POST1)</a>
+                in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> of this reference for more
+                information. The following notation is used in <a class="xref" href="elem_acouselems.html#aco3Delemitemseqnum" title="Table&nbsp;6.2:&nbsp;&nbsp;3-D Acoustic Element Item and Sequence Numbers">Table&nbsp;6.2:&nbsp;3-D Acoustic Element Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="elem_acouselems.html#aco3Delemoutputdef" title="Table&nbsp;6.1:&nbsp;&nbsp;3-D Acoustic Element Output Definitions">Table&nbsp;6.1:&nbsp;3-D Acoustic Element Output Definitions</a>
+                            </p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>
+                                command</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element data</p></dd></dl></div></div><p>
+            </p><div class="table"><a name="aco3Delemitemseqnum"></a><p class="title"><b>Table&nbsp;6.2:&nbsp;&nbsp;3-D Acoustic Element Item and Sequence Numbers</b></p><div class="table-contents"><table summary="3-D Acoustic Element Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="120" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"></colgroup><thead><tr><th bgcolor="#C0C0C0" rowspan="2" align="center" valign="middle">
+                                
+                                Output Quantity Name</th><th bgcolor="#C0C0C0" colspan="2" align="center">
+                                
+                                
+                                <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command
+                                Input</th></tr><tr><th bgcolor="#E3E3E3" align="center">
+                                
+                                Item</th><th bgcolor="#E3E3E3" align="center">
+                                
+                                E</th></tr></thead><tbody><tr><td align="center" valign="middle">PGX</td><td align="center">SMISC</td><td align="center">1</td></tr><tr><td align="center" valign="middle">PGY</td><td align="center">SMISC</td><td align="center">2</td></tr><tr><td align="center" valign="middle">PGZ</td><td align="center">SMISC</td><td align="center">3</td></tr><tr><td align="center" valign="middle">PL2</td><td align="center">SMICS</td><td align="center">4</td></tr><tr><td align="center" valign="middle">DENSRE</td><td align="center">SMISC</td><td align="center">5</td></tr><tr><td align="center" valign="middle">DENSIM</td><td align="center">SMISC</td><td align="center">6</td></tr><tr><td align="center" valign="middle">SONCRE</td><td align="center">SMISC</td><td align="center">7</td></tr><tr><td align="center" valign="middle">SONCIM</td><td align="center">SMICS</td><td align="center">8</td></tr><tr><td align="center" valign="middle">POUT</td><td align="center">SMISC</td><td align="center">9</td></tr><tr><td align="center" valign="middle">PINC</td><td align="center">SMICS</td><td align="center">10</td></tr><tr><td align="center" valign="middle">PRESSURE</td><td align="center">NMISC</td><td align="center">1</td></tr><tr><td align="center" valign="middle">PGSUM</td><td align="center">NMISC</td><td align="center">2</td></tr></tbody></table></div></div><br class="table-break"></div><div class="sect2" title="6.3.6.&nbsp;3-D Acoustic Element Assumptions and Restrictions"><div class="titlepage"><div><div><h3 class="title"><a name="aco3Delemassumptions"></a>6.3.6.&nbsp;3-D Acoustic Element Assumptions and Restrictions</h3></div></div></div><p>
+                </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The element must not have a zero volume.</p></li><li class="listitem"><p>For <a class="link" href="Hlp_E_FLUID30.html" title="FLUID30"><span class="structname">FLUID30</span></a>, element nodes can be numbered
+                            either as shown in <a class="xref" href="Hlp_E_FLUID30.html#aTSTf382lmm" title="Figure&nbsp;30.1:&nbsp;&nbsp;FLUID30 Geometry">Figure&nbsp;30.1:&nbsp;<span class="structname">FLUID30</span> Geometry</a> or may have planes IJKL
+                            and MNOP interchanged. All elements must have 8 nodes. A prism-shaped
+                            element can be formed by defining duplicate K and L and duplicate O and
+                            P nodes. (See <a class="xref" href="Hlp_E_CH2_8.html" title="2.5.&nbsp;Degenerated Shape Elements">Degenerated Shape Elements</a>.) A tetrahedron or pyramid
+                            shape is also available.</p></li><li class="listitem"><p>For <a class="link" href="Hlp_E_FLUID220.html" title="FLUID220"><span class="structname">FLUID220</span></a>, the element nodes can be
+                            numbered either as shown in <a class="xref" href="Hlp_E_FLUID220.html#aT220STf38762lmm" title="Figure&nbsp;220.1:&nbsp;&nbsp;FLUID220 Geometry">Figure&nbsp;220.1:&nbsp;<span class="structname">FLUID220</span> Geometry</a> or may
+                            have planes IJKL and MNOP interchanged. All elements must have 20 nodes.
+                            A prism-shaped element can be formed by defining duplicate L and S and
+                            duplicate P and W nodes. (See <a class="xref" href="Hlp_E_CH2_8.html" title="2.5.&nbsp;Degenerated Shape Elements">Degenerated Shape Elements</a>.) A pyramid
+                            shape is also available.</p></li><li class="listitem"><p>For <a class="link" href="Hlp_E_FLUID221.html" title="FLUID221"><span class="structname">FLUID221</span></a>, the element nodes can be
+                            numbered as shown in <a class="xref" href="Hlp_E_FLUID221.html#aT221STf38762lmm" title="Figure&nbsp;221.1:&nbsp;&nbsp;FLUID221 Geometry">Figure&nbsp;221.1:&nbsp;<span class="structname">FLUID221</span> Geometry</a>. All elements
+                            must have 10 nodes</p></li><li class="listitem"><p>The element may not be twisted such that it has two separate volumes.
+                            Such a case typically occurs when the element nodes are not in the
+                            correct sequence.</p></li><li class="listitem"><p>The acoustic pressure in the fluid medium is determined by the wave
+                            equation with the following assumptions: </p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>The acoustic pressure is considered to be the excess pressure
+                                    from the mean pressure.</p></li><li class="listitem"><p>Analyses are limited to relatively small acoustic pressures so
+                                    that the changes in density are small compared with the mean
+                                    density.</p></li></ul></div></li><li class="listitem"><p>The lumped mass matrix formulation (<a href="../ans_cmd/Hlp_C_LUMPM.html" class="olink"><span class="command"><strong>LUMPM</strong></span></a>,ON) is
+                            not valid for this element.</p></li></ul></div><p>
+            </p></div><div class="sect2" title="6.3.7.&nbsp;3-D Acoustic Element Product Restrictions"><div class="titlepage"><div><div><h3 class="title"><a name="aco3Delemprodrestrict"></a>6.3.7.&nbsp;3-D Acoustic Element Product Restrictions</h3></div></div></div><p>No product-specific restrictions exist for 3-D acoustic elements.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

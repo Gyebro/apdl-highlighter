@@ -1,0 +1,39 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:32-04:00"><title>L</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_L_TOC.html" title="L Commands"><link rel="prev" href="Hlp_L_TOC.html" title="L Commands"><link rel="next" href="Hlp_C_L2ANG.html" title="L2ANG"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="L"><a name="L"></a><div class="titlepage"></div><a class="indexterm" name="d0e145553"></a><span class="refentrytitle"><span class="command"><strong>L</strong></span></span><div class="refnamediv"><p><span class="command"><strong>L</strong></span>, <em class="replaceable"><code>P1</code></em>, <em class="replaceable"><code>P2</code></em>, <em class="replaceable"><code>NDIV</code></em>, <em class="replaceable"><code>SPACE</code></em>, <em class="replaceable"><code>XV1</code></em>, <em class="replaceable"><code>YV1</code></em>, <em class="replaceable"><code>ZV1</code></em>, <em class="replaceable"><code>XV2</code></em>, <em class="replaceable"><code>YV2</code></em>, <em class="replaceable"><code>ZV2</code></em><br><b class="refpurpose">Defines a line between two keypoints.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7linesldm061600" title="Table&nbsp;2.32:&nbsp;&nbsp;Lines"><span class="type">Lines</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="L.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>P1</code></em></b></span></dt><dd><p>Keypoint at the beginning of line.  If <em class="replaceable"><code>P1</code></em> =
+P, graphical picking is enabled and all remaining command fields are ignored
+(valid only in the GUI).</p></dd><dt><span><b class="term"><em class="replaceable"><code>P2</code></em></b></span></dt><dd><p>Keypoint at the end of line.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NDIV</code></em></b></span></dt><dd><p>Number of element divisions within this line.  Normally this
+field is not used; specifying divisions with <a class="link" href="Hlp_C_LESIZE.html" title="LESIZE"><span class="command"><strong>LESIZE</strong></span></a>, etc.
+is recommended.</p></dd><dt><span><b class="term"><em class="replaceable"><code>SPACE</code></em></b></span></dt><dd><p>Spacing ratio.  Normally this field is not used, as specifying
+spacing ratios with the <a class="link" href="Hlp_C_LESIZE.html" title="LESIZE"><span class="command"><strong>LESIZE</strong></span></a> command is recommended.
+ If positive, <em class="replaceable"><code>SPACE</code></em> is the nominal ratio of the
+last division size (at <em class="replaceable"><code>P2</code></em>) to the first division
+size (at <em class="replaceable"><code>P1</code></em>).  If the ratio is greater than 1,
+the division sizes increase from <em class="replaceable"><code>P1</code></em> to <em class="replaceable"><code>P2</code></em>,
+and if less than 1, they decrease.  If <em class="replaceable"><code>SPACE</code></em> is
+negative, then |<em class="replaceable"><code>SPACE</code></em>| is the nominal ratio of
+the center division size to those at the ends.</p></dd></dl></div></div><p>The following fields are used only if specified end slopes on the line
+are desired, otherwise zero curvature end slopes will be automatically calculated
+to produce a line which is "straight" in the active coordinate system.  To
+specify end slopes, use the following fields to define a "slope vector" (one
+for each end of the line, if desired) that has its tail at the origin and
+its head at the point <em class="replaceable"><code>XV</code></em>, <em class="replaceable"><code>YV</code></em>, <em class="replaceable"><code>ZV</code></em> in
+the active coordinate system [<a class="link" href="Hlp_C_CSYS.html" title="CSYS"><span class="command"><strong>CSYS</strong></span></a>].  The corresponding
+end slope of the line will then be parallel to this "slope vector."</p><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>XV1</code></em>, <em class="replaceable"><code>YV1</code></em>, <em class="replaceable"><code>ZV1</code></em></b></span></dt><dd><p>Location (in the active coordinate system) of the head of
+the "slope vector" corresponding to the slope at the <em class="replaceable"><code>P1</code></em> end
+of the line.  The tail of the vector is at the origin of the coordinate system.</p></dd><dt><span><b class="term"><em class="replaceable"><code>XV2</code></em>, <em class="replaceable"><code>YV2</code></em>, <em class="replaceable"><code>ZV2</code></em></b></span></dt><dd><p>Location of the head of the "slope vector" corresponding to
+the slope at the <em class="replaceable"><code>P2</code></em> end of the line.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="L.notes"></a><h2>Notes</h2><p>Defines a line between two keypoints from <em class="replaceable"><code>P1</code></em> to <em class="replaceable"><code>P2</code></em>.
+ The line shape may be generated as "straight" (in the active coordinate system)
+or curved.  The line shape is invariant with coordinate system after it is
+generated.  Note that solid modeling in a toroidal coordinate system is not
+recommended.  A curved line is limited to 180&deg;.  Lines may be redefined
+only if not yet attached to an area.</p></div><div class="refsect1" title="Menu Paths"><a name="L.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Lines&gt;Lines&gt;In Active Coord</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

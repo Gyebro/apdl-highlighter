@@ -1,0 +1,127 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:46-04:00"><title>MOPT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_M_TOC.html" title="M Commands"><link rel="prev" href="Hlp_C_MOPER.html" title="*MOPER"><link rel="next" href="Hlp_C_MORPH.html" title="MORPH"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="MOPT"><a name="MOPT"></a><div class="titlepage"></div><a class="indexterm" name="d0e169224"></a><span class="refentrytitle"><span class="command"><strong>MOPT</strong></span></span><div class="refnamediv"><p><span class="command"><strong>MOPT</strong></span>, <em class="replaceable"><code>Lab</code></em>, <em class="replaceable"><code>Value</code></em><br><b class="refpurpose">Specifies meshing options.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7meshingldm061600" title="Table&nbsp;2.36:&nbsp;&nbsp;Meshing"><span class="type">Meshing</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="MOPT.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><p>Meshing option to be specified (determines the meaning
+of <em class="replaceable"><code>Value</code></em>): </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">AORDER</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Mesh by ascending area size order.
+ Set <em class="replaceable"><code>Value</code></em> to ON to mesh smaller areas
+first. Using this results in finer meshes in critical areas for volume
+meshes; this can be used for cases where <a class="link" href="Hlp_C_SMRTSIZE.html" title="SMRTSIZE"><span class="command"><strong>SMRTSIZE</strong></span></a> does not mesh as needed. Default is OFF.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">EXPND</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Area mesh expansion (or contraction)
+option.  (This option is the same as <a class="link" href="Hlp_C_SMRTSIZE.html" title="SMRTSIZE"><span class="command"><strong>SMRTSIZE</strong></span></a>,,,EXPND.)
+This option is used to size internal elements in an area based on
+the size of the elements on the area's boundaries. </p><p><em class="replaceable"><code>Value</code></em> is the expansion (or contraction) factor. For
+example, issuing <span class="command"><strong>MOPT</strong></span>,EXPND,2 before meshing an
+area will allow a mesh with elements that are approximately twice
+as large in the interior of an area as they are on the boundary. If <em class="replaceable"><code>Value</code></em> is less than 1, a mesh with smaller elements
+on the interior of the area will be allowed. <em class="replaceable"><code>Value</code></em> for this option should be greater than 0.5 but less than 4. </p><p><em class="replaceable"><code>Value</code></em> defaults to 1, which does not
+allow expansion or contraction of internal element sizes (except when
+using <a class="link" href="Hlp_C_AESIZE.html" title="AESIZE"><span class="command"><strong>AESIZE</strong></span></a> sizing). If <em class="replaceable"><code>Value</code></em> = 0, the default value of 1 will be used. The actual size of the
+internal elements will also depend on the TRANS option (or upon <a class="link" href="Hlp_C_AESIZE.html" title="AESIZE"><span class="command"><strong>AESIZE</strong></span></a> or <a class="link" href="Hlp_C_ESIZE.html" title="ESIZE"><span class="command"><strong>ESIZE</strong></span></a> sizing, if used).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TETEXPND</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Tet-mesh expansion (or contraction)
+option. This option is used to size internal elements in a volume
+based on the size of the elements on the volume's boundaries.  </p><p><em class="replaceable"><code>Value</code></em> is the expansion (or contraction)
+factor.  For example, issuing <span class="command"><strong>MOPT</strong></span>,TETEXPND,2 before
+meshing a volume will allow a mesh with elements that are approximately
+twice as large in the interior of the volume as they are on the boundary.
+If <em class="replaceable"><code>Value</code></em> is less than 1, a mesh with smaller
+elements on the interior of the volume will be allowed. <em class="replaceable"><code>Value</code></em> for this option should be greater than 0.1 but
+less than 3.  </p><p><em class="replaceable"><code>Value</code></em> defaults to 1, which does not
+allow expansion or contraction of internal element sizes.  If <em class="replaceable"><code>Value</code></em> = 0, the default value of 1 will be used. If <em class="replaceable"><code>Value</code></em> is greater than 2, mesher robustness may be affected.
+ </p><p>The TETEXPND option is supported for both the <a class="link" href="Hlp_C_VMESH.html" title="VMESH"><span class="command"><strong>VMESH</strong></span></a> and <a class="link" href="Hlp_C_FVMESH.html" title="FVMESH"><span class="command"><strong>FVMESH</strong></span></a> commands.  Tet-mesh expansion is the
+only mesh control supported by <a class="link" href="Hlp_C_FVMESH.html" title="FVMESH"><span class="command"><strong>FVMESH</strong></span></a>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TRANS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Mesh-transition option. Controls
+how rapidly elements are permitted to change in size from the boundary
+to the interior of an area. (This option performs the same operation
+as <a class="link" href="Hlp_C_SMRTSIZE.html" title="SMRTSIZE"><span class="command"><strong>SMRTSIZE</strong></span></a>,,,,TRANS.)  </p><p><em class="replaceable"><code>Value</code></em> is the transitioning factor. <em class="replaceable"><code>Value</code></em> defaults to 2.0, which permits elements to approximately double
+in size as they approach the interior of the area.  (If <em class="replaceable"><code>Value</code></em> = 0, the default value of 2 will be used.) <em class="replaceable"><code>Value</code></em> must be greater than 1 and, for best results,
+should be less than 4.  The actual size of the internal elements will
+also depend on the EXPND option (or upon <a class="link" href="Hlp_C_AESIZE.html" title="AESIZE"><span class="command"><strong>AESIZE</strong></span></a> or <a class="link" href="Hlp_C_ESIZE.html" title="ESIZE"><span class="command"><strong>ESIZE</strong></span></a> sizing, if used).</p><p>For a quad mesh with any element size, this option has no effect,
+as the program strictly respects any face size to ensure the most
+uniform quad mesh possible. To obtain a graded mesh using this option,
+apply <a class="link" href="Hlp_C_LESIZE.html" title="LESIZE"><span class="command"><strong>LESIZE</strong></span></a> to the lines of the desired face.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">AMESH</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Triangle surface-meshing option.
+ Valid inputs for <em class="replaceable"><code>Value</code></em> are:    </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DEFAULT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Allows the program to choose which triangle mesher
+to use.  In most cases, the program chooses the main triangle mesher,
+which is the Riemann space mesher.  If the chosen mesher fails for
+any reason, the program invokes the alternate mesher and retries the
+meshing operation.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MAIN</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The program uses the main triangle mesher (Riemann
+space mesher), and it does not invoke an alternate mesher if the main
+mesher fails.  The Riemann space mesher is well suited for most surfaces.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ALTERNATE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The program uses the first alternate triangle mesher
+(3-D tri-mesher), and it does not invoke another mesher if this mesher
+fails.  This option is not recommended due to speed considerations.
+ However, for surfaces with degeneracies in parametric space, this
+mesher often provides the best results.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ALT2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The program uses the second alternate triangle mesher
+(2-D parametric space mesher), and it does not invoke another mesher
+if this mesher fails.  This option is not recommended for use on surfaces
+with degeneracies (spheres, cones, etc.) or poorly parameterized surfaces
+because poor meshes may result.</p></td></tr></tbody></table></div></div></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">QMESH</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Quadrilateral surface meshing option.
+ (Quadrilateral surface meshes will differ based on which triangle
+surface mesher is selected.  This is true because all free quadrilateral
+meshing algorithms use a triangle mesh as a starting point.)  Valid
+inputs for <em class="replaceable"><code>Value</code></em> are:    </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DEFAULT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Let the program choose which quadrilateral mesher
+to use.  In most cases, the program will choose the main quadrilateral
+mesher, which is the Q-Morph (quad-morphing) mesher.  For very coarse
+meshes, the program may choose the alternate quadrilateral mesher
+instead.  In most cases, the Q-Morph mesher results in higher quality
+elements.  If either mesher fails for any reason, the program invokes
+the other mesher and retries the meshing operation.  (Default.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MAIN</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The program uses the main quadrilateral mesher (Q-Morph
+mesher), and it does not invoke the alternate mesher if the main mesher
+fails.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ALTERNATE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The program uses the alternate quadrilateral mesher,
+and it does not invoke the Q-Morph mesher if the alternate mesher
+fails.  To use the alternate quadrilateral mesher, you must also select <span class="command"><strong>MOPT</strong></span>,AMESH,ALTERNATE or <span class="command"><strong>MOPT</strong></span>,AMESH,ALT2.</p></td></tr></tbody></table></div></div></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">VMESH</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Tetrahedral element meshing option.
+ Valid inputs for <em class="replaceable"><code>Value</code></em> are:    </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DEFAULT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Let the program choose which tetrahedra mesher to
+use.  </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MAIN</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use the main tetrahedra mesher (Delaunay technique
+mesher).  (GHS3D meshing technology by P. L. George, INRIA, France.)
+ For most models, this mesher is significantly faster than the alternate
+mesher.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ALTERNATE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use the alternate tetrahedra mesher (advancing front
+mesher).  This mesher does not support the generation of a tetrahedral
+volume mesh from facets (<a class="link" href="Hlp_C_FVMESH.html" title="FVMESH"><span class="command"><strong>FVMESH</strong></span></a>).  If this mesher
+is selected and you issue the <a class="link" href="Hlp_C_FVMESH.html" title="FVMESH"><span class="command"><strong>FVMESH</strong></span></a> command, the
+program uses the main tetrahedra mesher to create the mesh from facets
+and issues a warning message to notify you.</p></td></tr></tbody></table></div></div></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SPLIT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Quad splitting option for non-mapped
+meshing.  If <em class="replaceable"><code>Value</code></em> = 1, ON, or ERR, quadrilateral
+elements in violation of shape error limits are split into triangles
+(default).  If <em class="replaceable"><code>Value</code></em> = 2 or WARN, quadrilateral
+elements in violation of either shape error <span class="italic"><em>or</em></span> warning limits are split into triangles.  If <em class="replaceable"><code>Value</code></em> = OFF, splitting does not occur, regardless of
+element quality.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LSMO</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Line smoothing option. <em class="replaceable"><code>Value</code></em> can be ON or OFF.  If <em class="replaceable"><code>Value</code></em> = ON, smoothing of nodes on area boundaries is performed during
+smoothing step of meshing.  During smoothing, node locations are adjusted
+to achieve a better mesh.  If <em class="replaceable"><code>Value</code></em> = OFF
+(default), no smoothing takes place at area boundaries.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CLEAR</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>This option affects the element
+and node numbering after clearing a mesh.  If <em class="replaceable"><code>Value</code></em> = ON (default), the starting node and element numbers will be the
+lowest available number after the nodes and elements are cleared.
+ If <em class="replaceable"><code>Value</code></em> = OFF, the  starting node and
+element numbers are not reset after the clear operation.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">PYRA</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Transitional pyramid elements option.
+ <em class="replaceable"><code>Value</code></em> can be ON or OFF.  If <em class="replaceable"><code>Value</code></em> = ON (default), the program automatically creates
+transitional pyramid elements, when possible.  Pyramids may be created
+at the interface of tetrahedral and hexahedral elements, or directly
+from quadrilateral elements.  For pyramids to be created, you must
+also issue the command <a class="link" href="Hlp_C_MSHAPE.html" title="MSHAPE"><span class="command"><strong>MSHAPE</strong></span></a>,1,3D (degenerate
+3-D elements).  If <em class="replaceable"><code>Value</code></em> = OFF, the program
+does not create transitional pyramid elements.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TIMP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Identifies the level of tetrahedra
+improvement to be performed when the next free volume meshing operation
+is initiated (<a class="link" href="Hlp_C_VMESH.html" title="VMESH"><span class="command"><strong>VMESH</strong></span></a>, <a class="link" href="Hlp_C_FVMESH.html" title="FVMESH"><span class="command"><strong>FVMESH</strong></span></a>).
+ (For levels 2-5, improvement occurs primarily through the use of
+face swapping and node smoothing techniques.)  Valid inputs for <em class="replaceable"><code>Value</code></em> are:    </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Turn off tetrahedra improvement.  Although
+this value can lead to faster tetrahedral mesh creation, it is <span class="italic"><em>not recommended</em></span> because it often leads to
+poorly shaped elements and mesh failures.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Do the minimal amount of tetrahedra
+improvement.  (Default.)  This option is supported by the main tetrahedra
+mesher only [<span class="command"><strong>MOPT</strong></span>,VMESH,MAIN].  If the alternate
+tetrahedra mesher (<span class="command"><strong>MOPT</strong></span>,VMESH,ALTERNATE) is invoked
+with this setting, the program automatically performs tetrahedra improvement
+at level 3 instead (<span class="command"><strong>MOPT</strong></span>,TIMP,3).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Perform the least amount of swapping/smoothing.
+ No improvement occurs if all tetrahedral elements are within acceptable
+limits.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">3</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Perform an intermediate amount of swapping/smoothing.
+ Some improvement is always done.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">4</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Perform the greatest amount of swapping/smoothing.
+ Meshing takes longer with this level of improvement, but usually
+results in a better mesh.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">5</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Perform the greatest amount of swapping/smoothing,
+plus additional improvement techniques.  This level of improvement
+usually produces results that are similar to those at level 4, except
+for very poor meshes.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">6</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>For linear tetrahedral meshes, this
+value provides the same level of improvement as <span class="command"><strong>MOPT</strong></span>,TIMP,5.  For quadratic tetrahedral meshes, this value provides an
+additional pass of cleanup.  This value is supported for both the
+main (<span class="command"><strong>MOPT</strong></span>,VMESH,MAIN) and alternate (<span class="command"><strong>MOPT</strong></span>,VMESH,ALTERNATE) tetrahedra meshers.</p></td></tr></tbody></table></div></div></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">STAT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Display status of <span class="command"><strong>MOPT</strong></span> settings. <em class="replaceable"><code>Value</code></em> is ignored.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DEFA</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Set all <span class="command"><strong>MOPT</strong></span> options
+to default values.  <em class="replaceable"><code>Value</code></em> is ignored.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Value</code></em></b></span></dt><dd><p>Value, as described for each different <em class="replaceable"><code>Lab</code></em> above.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="MOPT.notes"></a><h2>Notes</h2><p>See the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a> for more information on the <span class="command"><strong>MOPT</strong></span> command and its options.</p><p>This command is also valid for <a href="../ans_adv/Hlp_G_ADVREZ.html" class="olink">rezoning</a>.</p></div><div class="refsect1" title="Menu Paths"><a name="MOPT.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Mesher Opts</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Size Cntrls&gt;ManualSize&gt;Global&gt;Area Cntrls</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Size Cntrls&gt;ManualSize&gt;Global&gt;Volu Cntrls</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Manual Rezoning&gt;Create Remesh Zone(s)&gt;Mesh Controls&gt;Global Meshing Options</strong></span></td></tr><tr><td><span class="guimenu"><strong>Utility Menu&gt;List&gt;Status&gt;Preprocessor&gt;Solid Model</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

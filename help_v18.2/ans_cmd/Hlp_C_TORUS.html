@@ -1,0 +1,31 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:41-04:00"><title>TORUS</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_T_TOC.html" title="T Commands"><link rel="prev" href="Hlp_C_TOPER_st.html" title="*TOPER"><link rel="next" href="Hlp_C_TRANS.html" title="TRANS"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="TORUS"><a name="TORUS"></a><div class="titlepage"></div><a class="indexterm" name="d0e281114"></a><span class="refentrytitle"><span class="command"><strong>TORUS</strong></span></span><div class="refnamediv"><p><span class="command"><strong>TORUS</strong></span>, <em class="replaceable"><code>RAD1</code></em>, <em class="replaceable"><code>RAD2</code></em>, <em class="replaceable"><code>RAD3</code></em>, <em class="replaceable"><code>THETA1</code></em>, <em class="replaceable"><code>THETA2</code></em><br><b class="refpurpose">Creates a toroidal volume.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7primitivesldm061600" title="Table&nbsp;2.29:&nbsp;&nbsp;Primitives"><span class="type">Primitives</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="TORUS.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>RAD1</code></em>, <em class="replaceable"><code>RAD2</code></em>, <em class="replaceable"><code>RAD3</code></em></b></span></dt><dd><p>Three values that define the radii of the torus.  You can
+specify the radii in any order.  The smallest of the values is the inner minor
+radius, the intermediate value is the outer minor radius, and the largest
+value is the major radius.  (There is one exception regarding the order of
+the radii values--if you want to create a solid torus, specify zero or blank
+for the inner minor radius, in which case the zero or blank <span class="italic"><em>must</em></span> occupy
+either the <em class="replaceable"><code>RAD1</code></em> or <em class="replaceable"><code>RAD2</code></em> position.)
+ At least two of the values that you specify must be positive values; they
+will be used to define the outer minor radius and the major radius.  See the
+diagram in the Notes section for a view of a toroidal sector showing all radii.</p></dd><dt><span><b class="term"><em class="replaceable"><code>THETA1</code></em>, <em class="replaceable"><code>THETA2</code></em></b></span></dt><dd><p>Starting and ending angles (either order) of the torus.  Used
+for creating a toroidal sector.  The sector begins at the algebraically smaller
+angle, extends in a positive angular direction, and ends at the larger angle.
+ The starting angle defaults to 0&deg; and the ending angle defaults to 360&deg;.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="TORUS.notes"></a><h2>Notes</h2><p>Defines a toroidal volume centered about the working plane origin. 
+A solid torus of 360&deg; will be defined with four areas, each area spanning
+180&deg; around the major and minor circumference.</p><p>To create the toroidal sector shown below, the command <span class="command"><strong>TORUS</strong></span>,5,1,2,0,180
+was issued.  Since "1" was the smallest radii value specified, it defined
+the inner minor radius; since "2" was the intermediate radii value specified,
+it defined the outer minor radius; and since "5" was the largest radii value
+specified, it defined the major radius.  The values "0" and "180" defined
+the starting and ending angles of the torus.</p><div><img src="graphics/gTORU1.svg"></div></div><div class="refsect1" title="Menu Paths"><a name="TORUS.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Volumes&gt;Torus</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:14-04:00"><title>PIVCHECK</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_P_TOC.html" title="P Commands"><link rel="prev" href="Hlp_C_PHYSICS.html" title="PHYSICS"><link rel="next" href="Hlp_C_PLAS.html" title="PLAS"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="PIVCHECK"><a name="PIVCHECK"></a><div class="titlepage"></div><a class="indexterm" name="d0e199194"></a><span class="refentrytitle"><span class="command"><strong>PIVCHECK</strong></span></span><div class="refnamediv"><p><span class="command"><strong>PIVCHECK</strong></span>, <em class="replaceable"><code>KEY</code></em>, <em class="replaceable"><code>PRNTCNTRL</code></em><br><b class="refpurpose">Controls the behavior of an analysis when a negative or
+zero equation solver pivot value is encountered.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a> 
+    DesSpc | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="PIVCHECK.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>KEY</code></em></b></span></dt><dd><p>Determines whether to stop or continue an analysis
+when a negative or zero equation solver pivot value is encountered:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">AUTO</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Check for negative or zero pivot
+values for analyses performed with the sparse and PCG solvers. When
+one is encountered, an error or warning is issued, per various criteria
+relating to the type of analysis being solved. An error causes the
+analysis to stop; a warning allows the analysis to continue. A negative
+pivot value may be valid for some nonlinear and multiphysics analyses
+(for example, electromagnetic and thermal analyses); this key has
+no effect in these cases.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ERROR</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Check for negative or zero pivot
+values for analyses performed with the sparse and PCG solvers. When
+one is encountered, an error is issued, stopping the analysis. A negative
+pivot value may be valid for some nonlinear and multiphysics analyses
+(for example, electromagnetic and thermal analyses); this key has
+no effect in these cases.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">WARN</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Check for negative or zero pivot
+values for analyses performed with the sparse and PCG solvers. When
+one is encountered, a warning is issued and the analysis continues.
+A negative pivot value may be valid for some nonlinear and multiphysics
+analyses (for example, electromagnetic and thermal analyses); this
+key has no effect in these cases.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Pivot values are not checked. This
+key causes the analysis to continue in spite of a negative or zero
+pivot value.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>PRNTCNTRL</code></em></b></span></dt><dd><p>Provides print options. Print output with these options
+will be sent to the default output file, not to the files created
+by the nonlinear diagnostic tools (<a class="link" href="Hlp_C_NLDIAG.html" title="NLDIAG"><span class="command"><strong>NLDIAG</strong></span></a>).</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ONCE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Print only the maximum and minimum
+pivot information on the first call to the sparse solver (which is
+the default solver). This is the default behavior.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">EVERY</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Print the maximum and minimum pivot
+information at every call to the sparse solver. This option is provided
+for nonlinear analysis diagnostics.</p></td></tr></tbody></table></div></div></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="PIVCHECK.default"></a><h3>Command Default</h3><p>The program checks for negative or zero
+pivot values (<em class="replaceable"><code>Key</code></em> = AUTO). If any are found,
+the analysis may stop with an error or may proceed with only a warning,
+depending on various criteria pertaining to the type of analysis being
+solved.</p></div></div><div class="refsect1" title="Notes"><a name="PIVCHECK.notes"></a><h2>Notes</h2><p>This command is valid for all analyses. In a nonlinear analysis,
+a negative pivot may be valid. In some cases, rigid body motions in
+a nonlinear analysis will be trapped by error routines checking infinitely
+large displacements (DOF limit exceeded) or nonconvergence status.
+An under-constrained model may avoid the pivot check, but fail with
+a DOF limit exceeded error.</p><p>Machine precision may affect whether a small pivot triggers
+an error or bypasses this checking logic. You may wish to review the
+ratio of the maximum to absolute minimum pivot values. For ratios
+exceeding 12 to 14 orders of magnitude, the accuracy of the computed
+solution may be degraded by the severe ill-conditioning of the assembled
+matrix.</p><p>Note that negative pivots corresponding
+to Lagrange multiplier based mixed u-P elements are not checked or
+reported by this command. Negative pivots arising from the u-P element
+formulation and related analyses can occur and lead to correct solutions.</p><p>This command is also valid in PREP7.</p></div><div class="refsect1" title="Menu Paths"><a name="PIVCHECK.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Analysis Type&gt;Analysis Options</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Analysis Type&gt;Analysis Options</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

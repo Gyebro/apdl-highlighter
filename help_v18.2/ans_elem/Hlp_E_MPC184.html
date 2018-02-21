@@ -1,0 +1,177 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:36:36-04:00"><title>MPC184</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_PLANE183.html" title="PLANE183"><link rel="next" href="Hlp_E_MPC184link.html" title="MPC184-Link/Beam"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="MPC184"><a name="MPC184"></a><div class="titlepage"></div><a class="indexterm" name="d0e120214"></a><span class="refentrytitle">
+            <span class="structname">MPC184</span>
+        </span><div class="refnamediv"><p><br><b class="refpurpose">Multipoint Constraint Element</b><div class="refclass">
+            <div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+            <div class=""><div class="application"><span class="application">
+                <a class="link" href="Hlp_E_MPC184.html#mpc184prodrest" title="MPC184 Product Restrictions">Product Restrictions</a>
+            </span></div></div>
+        </div></p></div><div class="refsect1" title="MPC184 Element Description"><a name="elemdesc184"></a><h2>MPC184 Element Description</h2><p><span class="structname">MPC184</span> represents a general class of multipoint constraint
+            elements that apply kinematic constraints between nodes. The elements are loosely
+            classified here as &#8220;constraint elements&#8221; (rigid link, rigid beam, etc.) and
+            &#8220;joint elements&#8221; (revolute, universal, etc.). The constraint may be as
+            simple as that of identical displacements between nodes. Constraints can also be more
+            complicated, such as those modeling rigid parts, or those transmitting motion between
+            flexible bodies in a particular way. For example, a structure may consist of rigid parts
+            and moving parts connected together by rotational or sliding connections. The rigid part
+            of the structure may be modeled with the <span class="structname">MPC184</span> link/beam
+            elements, while the moving parts may be connected with any of the
+                <span class="structname">MPC184</span> joint elements.</p><p>The kinematic constraints are imposed using one of the following two methods:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The <span class="bold"><strong>direct elimination method</strong></span>, wherein the
+                    kinematic constraints are imposed by internally generated constraint equations.
+                    The degrees of freedom of a dependent node in the equations are eliminated in
+                    favor of an independent node. </p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>The dependent degrees of freedom are eliminated. Therefore, the
+                            constraint forces and moments are not available from the element output
+                            table (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>) for output purposes. However, the
+                            global constraint reaction forces are available at independent nodes in
+                            the results file, Jobname.rst (<a href="../ans_cmd/Hlp_C_PRRSOL.html" class="olink"><span class="command"><strong>PRRSOL</strong></span></a> command,
+                            etc.).</p></li><li class="listitem"><p>The direct elimination method should be used whenever it is available
+                            since the degrees of freedom at the dependent nodes are eliminated,
+                            thereby reducing the problem size and solution time.</p></li></ul></div></li><li class="listitem"><p>The<span class="bold"><strong> Lagrange multiplier method</strong></span>, wherein the
+                    kinematic constraints are imposed using Lagrange multipliers. In this case, all
+                    the participating degrees of freedom are retained.</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>The Lagrange multiplier method should be used when the direct
+                            elimination method is not available or not suitable for the analysis
+                            purposes.</p></li><li class="listitem"><p>In this method, the constraint forces and moments are available from
+                            the element output table (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>).</p></li><li class="listitem"><p>The disadvantage of the Lagrange multiplier method is that the
+                            Lagrange multipliers are additional solution variables and, hence, the
+                            problem size and solution time become larger when compared with the
+                            direct elimination method.</p></li></ul></div></li></ul></div><p>Currently, the <span class="structname">MPC184</span>
+            <a class="link" href="Hlp_E_MPC184link.html" title="MPC184-Link/Beam">rigid link/beam</a> elements can use the direct
+            elimination method or the Lagrange multiplier method. All other
+                <span class="structname">MPC184</span> element options use the Lagrange multiplier method
+            only.</p><div class="refsect2" title="Constraint Elements"><a name="elem184constr"></a><h3>Constraint Elements</h3><p>The following types of constraint elements are available:</p><table border="0" summary="Simple list" class="simplelist"><tr><td><a class="link" href="Hlp_E_MPC184link.html" title="MPC184-Link/Beam">Rigid link/beam</a></td></tr><tr><td><a class="link" href="Hlp_E_MPC184slid.html" title="MPC184-Slider">Slider</a></td></tr></table></div><div class="refsect2" title="Joint Elements"><a name="elem184joints"></a><h3>Joint Elements</h3><p>Numerical simulations often involve modeling of joints between two parts. These
+                joints or connections may need simple kinematic constraints such as identical
+                displacements between the two parts at the junction or more complicated kinematic
+                constraints that allow for transmission of motion between two flexible bodies. These
+                complex joints may also include some sort of control mechanism like limits or stops,
+                and locks on the components of relative motion between the two bodies. In many
+                instances, these joints may also have stiffness, damping, or friction forces based
+                on the unconstrained components of relative motion between the two bodies. For
+                detailed information on how to use joint elements, see <a href="../ans_mul/Hlp_G_MULMODCOMPJT.html" class="olink">Connecting Multibody Components with Joint Elements</a> in the <a href="../ans_mul/multibody_book.html" class="olink"><em class="citetitle">Multibody Analysis Guide</em></a>.</p><p>The following types of joint elements are available:</p><table border="0" summary="Simple list" class="simplelist"><tr><td><a class="link" href="Hlp_E_MPC184revo.html" title="MPC184-Revolute">x-axis Revolute joint</a></td></tr><tr><td><a class="link" href="Hlp_E_MPC184revo.html" title="MPC184-Revolute">z-axis Revolute joint</a></td></tr><tr><td><a class="link" href="Hlp_E_MPC184univ.html" title="MPC184-Universal">Universal joint</a></td></tr><tr><td><a class="link" href="Hlp_E_MPC184slot.html" title="MPC184-Slot">Slot joint</a></td></tr><tr><td><a class="link" href="Hlp_E_MPC184poin.html" title="MPC184-Point">Point-in-plane joint</a></td></tr><tr><td><a class="link" href="Hlp_E_MPC184tran.html" title="MPC184-Translational">Translational joint</a></td></tr><tr><td><a class="link" href="Hlp_E_MPC184cyl.html" title="MPC184-Cylindrical">x-axis Cylindrical
+                        joint</a></td></tr><tr><td><a class="link" href="Hlp_E_MPC184cyl.html" title="MPC184-Cylindrical">z-axis Cylindrical
+                        joint</a></td></tr><tr><td><a class="link" href="Hlp_E_MPC184plan.html" title="MPC184-Planar">x-axis Planar joint</a></td></tr><tr><td><a class="link" href="Hlp_E_MPC184plan.html" title="MPC184-Planar">z-axis Planar joint</a></td></tr><tr><td><a class="link" href="Hlp_E_MPC184weld.html" title="MPC184-Weld">Weld joint</a></td></tr><tr><td><a class="link" href="Hlp_E_MPC184orie.html" title="MPC184-Orient">Orient joint</a></td></tr><tr><td><a class="link" href="Hlp_E_MPC184sphe.html" title="MPC184-Spherical">Spherical joint</a></td></tr><tr><td><a class="link" href="Hlp_E_MPC184gen.html" title="MPC184-General">General joint</a></td></tr><tr><td><a class="link" href="Hlp_E_MPC184scr.html" title="MPC184-Screw">Screw joint</a></td></tr></table><p>These elements are well suited for linear, large rotation, and/or large strain
+                nonlinear applications. If finite rotations and/or large strain effects are to be
+                considered, the <a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON command must be used; otherwise, linear
+                behavior is assumed. For example, if a revolute joint element is used in an analysis
+                and <a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON is not set, the calculations are carried out in the
+                original configuration and the end result may not reflect the expected deformed
+                configuration. However, if the <a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON command is used, the
+                calculations will take into account the rotation of the revolute joint element. </p><p>Two nodes define these joint elements. Depending on the joint to be defined, the
+                kinematic constraints are imposed on some of the quantities that define the relative
+                motion between the two nodes. These kinematic constraints are applied using Lagrange
+                multipliers. In some instances, one of the nodes is required to be
+                    <span class="quote">"<span class="quote">grounded</span>"</span> or attached to <span class="quote">"<span class="quote">ground</span>"</span> or some other
+                reference location that is not moving. In such cases, only one of the two nodes may
+                be specified. The specified node and the <span class="quote">"<span class="quote">grounded</span>"</span> node are assumed to
+                be coincident in the element calculations.</p><p>The joint element has six degrees of freedom at each node, defining six components
+                of relative motion: three relative displacements and three relative rotations. These
+                six components of relative motion are of primary interest in simulations that
+                involve joint elements. Some of these components may be constrained by the kinematic
+                constraints relevant to a particular joint element, while the other components are
+                    <span class="quote">"<span class="quote">free</span>"</span> or <span class="quote">"<span class="quote">unconstrained</span>"</span>. For example, in the case of
+                universal and revolute joint elements the two nodes are assumed to be connected, and
+                therefore the relative displacements are zero. For the revolute joint only one
+                rotational component of the relative motion (rotation about the revolute axis) is
+                unconstrained, while for the universal joint two such components are
+                available.</p><p>The capabilities of these elements include certain control features such as stops,
+                locks, and actuating loads/boundary conditions that can be imposed on the components
+                of relative motion between the two nodes of the element. For example, in a revolute
+                joint, stops can be specified for the rotation about the revolute axis. This limits
+                the rotation around the revolute axis to be within a certain range. Displacement,
+                force, velocity, and acceleration boundary conditions may be imposed on the
+                components of relative motion between the two nodes allowing for
+                    <span class="quote">"<span class="quote">actuation</span>"</span> of the joints. The driving force or displacements arise
+                from the actuating mechanisms like an electric or hydraulic system that drives these
+                joints.</p><p>You can impose linear and nonlinear elastic stiffness and damping behavior or
+                hysteretic friction behavior on the available components of relative motion of a
+                joint element. The properties can be made temperature dependent if necessary.</p><p>In addition to the existing output options available in ANSYS, outputs related to
+                the components of relative motion are available for joint elements.</p></div><div class="refsect2" title="Joint Input Data"><a name="elem184.jntinput"></a><h3>Joint Input Data</h3><p>Certain input requirements are common to most <span class="structname">MPC184</span>
+                joint elements. Any specific requirements for individual joint elements are
+                highlighted in the description for that element.</p><p>The following types of input data should be considered:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p><a href="../ans_mul/Hlp_G_MULMODCOMPJT.html#mulelemcondef" class="olink">Element Connectivity
+                            Definition</a> - A joint element is typically defined by specifying
+                        two nodes, I and J. One of these nodes may be a <span class="quote">"<span class="quote">grounded</span>"</span>
+                        node.</p></li><li class="listitem"><p><a href="../ans_mul/Hlp_G_MULMODCOMPJT.html#mulelemsecdef" class="olink">Section
+                            Definition</a> - Each joint element must have an associated section
+                        definition (<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a> command).</p></li><li class="listitem"><p><a href="../ans_mul/Hlp_G_MULMODCOMPJT.html#mulloccoordsys" class="olink">Local Coordinate
+                            System Specification</a> - Local coordinate systems at the nodes are
+                        often required to define the kinematic constraints of a joint element
+                            (<a href="../ans_cmd/Hlp_C_SECJOINT.html" class="olink"><span class="command"><strong>SECJOINT</strong></span></a> command).</p></li><li class="listitem"><p><a href="../ans_mul/Hlp_G_MULMODCOMPJT.html#mulstopslimits" class="olink">Stops or
+                            Limits</a> - You can impose stops or limits on the available
+                        components of relative motion between the two nodes of a joint element
+                            (<a href="../ans_cmd/Hlp_C_SECSTOP.html" class="olink"><span class="command"><strong>SECSTOP</strong></span></a> command).</p></li><li class="listitem"><p><a href="../ans_mul/Hlp_G_MULMODCOMPJT.html#muljointlocks" class="olink">Locks</a> -
+                        Locking limits may also be imposed on the available components of relative
+                        motion between the two nodes of a joint element to <span class="quote">"<span class="quote">freeze</span>"</span> the
+                        joint in a desired configuration (<a href="../ans_cmd/Hlp_C_SECLOCK.html" class="olink"><span class="command"><strong>SECLOCK</strong></span></a>
+                        command).</p></li><li class="listitem"><p><a href="../ans_mul/Hlp_G_MULMODCOMPJT.html#mulmatbehavior" class="olink">Material
+                            Behavior</a> - The JOIN material option on the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>
+                        command allows you to impose linear and nonlinear elastic stiffness and
+                        damping behavior or hysteretic friction behavior on the available components
+                        of relative motion of a joint element. </p></li><li class="listitem"><p><a href="../ans_mul/Hlp_G_MULMODCOMPJT.html#mulreflenangjoint" class="olink">Reference Lengths
+                            and Angles</a> - These correspond to the free relative degrees of
+                        freedom in a joint element for which constitutive calculations are performed
+                        and are used when stiffness, damping, or hysteretic friction are specified
+                        for the joint elements (<a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> command).</p></li><li class="listitem"><p><a href="../ans_mul/Hlp_G_MULMODCOMPJT.html#mulbcjointelem" class="olink">Boundary
+                            Conditions</a> - You can impose boundary conditions
+                            (<a href="../ans_cmd/Hlp_C_DJ.html" class="olink"><span class="command"><strong>DJ</strong></span></a> command) or apply concentrated forces
+                            (<a href="../ans_cmd/Hlp_C_FJ.html" class="olink"><span class="command"><strong>FJ</strong></span></a> command) on the available components of relative
+                        motion of the joint element.</p></li></ul></div></div></div><div class="refsect1" title="MPC184 Input Data"><a name="mpc184inputdata"></a><h2>MPC184 Input Data</h2><p>Use KEYOPT(1) to specify the type of <span class="structname">MPC184</span> constraint or
+            joint element you want to use. The remaining input data will vary depending on the type
+            of constraint or joint element specified. The individual <span class="structname">MPC184</span>
+            element descriptions each contain an input summary that applies only to that particular
+            element. You should review these element-specific input summaries after you determine
+            which constraint or joint element you will be using.</p><div><div class="variablelist"><dl><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Element behavior:</p><div><div class="variablelist"><dl><dt><span><b class="term">0 &nbsp;--&nbsp;</b></span></dt><dd><p><a class="link" href="Hlp_E_MPC184link.html" title="MPC184-Link/Beam">Rigid link</a>
+                                    (default)</p></dd><dt><span><b class="term">1 &nbsp;--&nbsp;</b></span></dt><dd><p>
+                                    <a class="link" href="Hlp_E_MPC184link.html" title="MPC184-Link/Beam">Rigid beam</a>
+                                </p></dd><dt><span><b class="term">3 &nbsp;--&nbsp;</b></span></dt><dd><p>
+                                    <a class="link" href="Hlp_E_MPC184slid.html" title="MPC184-Slider">Slider element</a>
+                                </p></dd><dt><span><b class="term">6 &nbsp;--&nbsp;</b></span></dt><dd><p>
+                                    <a class="link" href="Hlp_E_MPC184revo.html" title="MPC184-Revolute">x-axis or z-axis revolute joint
+                                        element </a>
+                                </p></dd><dt><span><b class="term">7 &nbsp;--&nbsp;</b></span></dt><dd><p>
+                                    <a class="link" href="Hlp_E_MPC184univ.html" title="MPC184-Universal">Universal joint element</a>
+                                </p></dd><dt><span><b class="term">8 &nbsp;--&nbsp;</b></span></dt><dd><p>
+                                    <a class="link" href="Hlp_E_MPC184slot.html" title="MPC184-Slot">Slot joint element</a>
+                                </p></dd><dt><span><b class="term">9 &nbsp;--&nbsp;</b></span></dt><dd><p>
+                                    <a class="link" href="Hlp_E_MPC184poin.html" title="MPC184-Point">Point-in-plane joint element</a>
+                                </p></dd><dt><span><b class="term">10 &nbsp;--&nbsp;</b></span></dt><dd><p>
+                                    <a class="link" href="Hlp_E_MPC184tran.html" title="MPC184-Translational">Translational joint
+                                        element</a>
+                                </p></dd><dt><span><b class="term">11 &nbsp;--&nbsp;</b></span></dt><dd><p>
+                                    <a class="link" href="Hlp_E_MPC184cyl.html" title="MPC184-Cylindrical">x-axis or z-axis cylindrical
+                                        joint element</a>
+                                </p></dd><dt><span><b class="term">12 &nbsp;--&nbsp;</b></span></dt><dd><p>
+                                    <a class="link" href="Hlp_E_MPC184plan.html" title="MPC184-Planar">x-axis or z-axis planar joint
+                                        element</a>
+                                </p></dd><dt><span><b class="term">13 &nbsp;--&nbsp;</b></span></dt><dd><p>
+                                    <a class="link" href="Hlp_E_MPC184weld.html" title="MPC184-Weld">Weld joint element</a>
+                                </p></dd><dt><span><b class="term">14 &nbsp;--&nbsp;</b></span></dt><dd><p>
+                                    <a class="link" href="Hlp_E_MPC184orie.html" title="MPC184-Orient">Orient joint element</a>
+                                </p></dd><dt><span><b class="term">15 &nbsp;--&nbsp;</b></span></dt><dd><p>
+                                    <a class="link" href="Hlp_E_MPC184sphe.html" title="MPC184-Spherical">Spherical joint element</a>
+                                </p></dd><dt><span><b class="term">16 &nbsp;--&nbsp;</b></span></dt><dd><p>
+                                    <a class="link" href="Hlp_E_MPC184gen.html" title="MPC184-General">General joint element</a>
+                                </p></dd><dt><span><b class="term">17 &nbsp;--&nbsp;</b></span></dt><dd><p>
+                                    <a class="link" href="Hlp_E_MPC184scr.html" title="MPC184-Screw">Screw joint element</a>
+                                </p></dd></dl></div></div></dd></dl></div></div></div><div class="refsect1" title="MPC184 Output Data"><a name="mpc184outputdata"></a><h2>MPC184 Output Data</h2><p>The solution output associated with the constraint and joint elements is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal displacements included in the overall nodal solution. </p></li><li class="listitem"><p>Additional element output as shown in the individual constraint and joint
+                    element descriptions. This output is available via the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>
+                    command using the Sequence Number method.</p></li></ul></div><p>Refer to the individual element descriptions for complete listings of the output for
+            each element.</p></div><div class="refsect1" title="MPC184 Assumptions and Restrictions"><a name="d0e120685"></a><h2>MPC184 Assumptions and Restrictions</h2><p>The following restrictions apply to all forms of the
+            <span class="structname">MPC184</span>element:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>For <span class="structname">MPC184</span>, the element coordinate system
+                        (<a href="../ans_cmd/Hlp_C_PSYMB.html" class="olink"><span class="command"><strong>/PSYMB</strong></span></a>,ESYS) is not relevant.</p></li></ul></div><p>There are additional assumptions and restrictions for each type of constraint and
+            joint element. For details, see the Assumptions and Restrictions section in the
+            individual constraint and joint element descriptions.</p></div><div class="refsect1" title="MPC184 Product Restrictions"><a name="mpc184prodrest"></a><h2>MPC184 Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific restrictions
+            apply to this element in addition to the general assumptions and restrictions given in
+            the previous section.</p><p title="ANSYS Mechanical Pro"><b>ANSYS Mechanical Pro&nbsp;</b>
+                </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li><li class="listitem"><p>Linear perturbation is not available.</p></li></ul></div><p title="ANSYS Mechanical Pro">
+            </p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+                </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+            </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

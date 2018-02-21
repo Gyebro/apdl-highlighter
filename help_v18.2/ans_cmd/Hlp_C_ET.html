@@ -1,0 +1,38 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:55-04:00"><title>ET</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_ESYS.html" title="ESYS"><link rel="next" href="Hlp_C_ETABLE.html" title="ETABLE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="ET"><a name="ET"></a><div class="titlepage"></div><a class="indexterm" name="d0e101375"></a><span class="refentrytitle"><span class="command"><strong>ET</strong></span></span><div class="refnamediv"><p><span class="command"><strong>ET</strong></span>, <em class="replaceable"><code>ITYPE</code></em>, <em class="replaceable"><code>Ename</code></em>, <em class="replaceable"><code>KOP1</code></em>, <em class="replaceable"><code>KOP2</code></em>, <em class="replaceable"><code>KOP3</code></em>, <em class="replaceable"><code>KOP4</code></em>, <em class="replaceable"><code>KOP5</code></em>, <em class="replaceable"><code>KOP6</code></em>, <em class="replaceable"><code>INOPR</code></em><br><b class="refpurpose">Defines a local element type from the element library.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7elementtypeldm061600" title="Table&nbsp;2.25:&nbsp;&nbsp;Element Type"><span class="type">Element Type</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  DesSpc | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="ET.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>ITYPE</code></em></b></span></dt><dd><p>Arbitrary local element type number. Defaults to 1
++ current maximum.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Ename</code></em></b></span></dt><dd><p>Element name (or number) as given in the element library
+in Chapter 4 of the <a href="../ans_elem/Hlp_E_ElemTOC.html" class="olink"><em class="citetitle">Element Reference</em></a>. The name consists of a category prefix
+and a unique number, such as <a href="../ans_elem/Hlp_E_PIPE288.html" class="olink"><span class="structname">PIPE288</span></a>.  The
+category prefix of the name (PIPE for the example) may be omitted
+but is displayed upon output for clarity. If <em class="replaceable"><code>Ename</code></em> = 0, the element is defined as a null element.</p></dd><dt><span><b class="term"><em class="replaceable"><code>KOP1</code></em>, <em class="replaceable"><code>KOP2</code></em>, <em class="replaceable"><code>KOP3</code></em>, . . . , <em class="replaceable"><code>KOP6</code></em></b></span></dt><dd><p>KEYOPT values (1 through 6) for this element, as described
+in the <a href="../ans_elem/Hlp_E_ElemTOC.html" class="olink"><em class="citetitle">Element Reference</em></a>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>INOPR</code></em></b></span></dt><dd><p>If 1, suppress all element solution printout for this
+element type.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="ET.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>ET</strong></span> command selects
+an element type from the element library and establishes it as a local
+element type for the current model. Information derived from the element
+type is used for subsequent commands, so the <span class="command"><strong>ET</strong></span> command(s) should be issued early. (The <a href="../ans_elem/Hlp_E_ElemTOC.html" class="olink"><em class="citetitle">Element Reference</em></a> describes the available
+elements.) </p><p>A special option, <em class="replaceable"><code>Ename</code></em> = 0, permits
+the specified element type to be ignored during solution without actually
+removing the element from the model. <em class="replaceable"><code>Ename</code></em> may be set to zero only after the element type has been previously
+defined with a nonzero <em class="replaceable"><code>Ename</code></em>.  The preferred method of ignoring elements is to use the select commands
+(such as <a class="link" href="Hlp_C_ESEL.html" title="ESEL"><span class="command"><strong>ESEL</strong></span></a>).</p><p><em class="replaceable"><code>KOPn</code></em> are element option keys. These
+keys (referred to as KEYOPT(<em class="replaceable"><code>n</code></em>)) are used to turn on certain element options for this element.
+These options are listed under "KEYOPT" in the input table for each
+element type in the <a href="../ans_elem/Hlp_E_ElemTOC.html" class="olink"><em class="citetitle">Element Reference</em></a>.  KEYOPT values include stiffness formulation
+options, printout controls, and various other element options. If
+KEYOPT(7) or greater is needed, input their values with the <a class="link" href="Hlp_C_KEYOPT.html" title="KEYOPT"><span class="command"><strong>KEYOPT</strong></span></a> command.</p><p>The <span class="command"><strong>ET</strong></span> command only defines an element type
+local to your model (from the types in the element library). The <a class="link" href="Hlp_C_TYPE.html" title="TYPE"><span class="command"><strong>TYPE</strong></span></a> or similar [<a class="link" href="Hlp_C_KATT.html" title="KATT"><span class="command"><strong>KATT</strong></span></a>, <a class="link" href="Hlp_C_LATT.html" title="LATT"><span class="command"><strong>LATT</strong></span></a>, <a class="link" href="Hlp_C_AATT.html" title="AATT"><span class="command"><strong>AATT</strong></span></a>, or <a class="link" href="Hlp_C_VATT.html" title="VATT"><span class="command"><strong>VATT</strong></span></a>] command must
+be used to point to the desired local element type before meshing.</p><p>To activate the ANSYS program's LS-DYNA explicit dynamic analysis
+capability,  use the <span class="command"><strong>ET</strong></span> command or its GUI equivalent
+to choose an element that works only with LS-DYNA (such as <a href="../ans_elem/Hlp_E_SHELL163.html" class="olink"><span class="structname">SHELL163</span></a>).  Choosing LS-DYNA in the <span class="interface">Preferences</span> dialog box does <span class="italic"><em>not</em></span> activate
+LS-DYNA; it simply makes items and options related to LS-DYNA accessible
+in the GUI.</p></div><div class="refsect1" title="Menu Paths"><a name="ET.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Element Type&gt;Add/Edit/Delete</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

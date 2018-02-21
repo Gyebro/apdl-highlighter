@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:39-04:00"><title>/DIST</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_D_TOC.html" title="D Commands"><link rel="prev" href="Hlp_C_DISPLAY.html" title="DISPLAY"><link rel="next" href="Hlp_C_DJ.html" title="DJ"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="/DIST"><a name="s-DIST"></a><div class="titlepage"></div><a class="indexterm" name="d0e69938"></a><span class="refentrytitle">
+<a href="Hlp_C_DIST.html" class="olink"><span class="command"><strong>/DIST</strong></span></a>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>/DIST</strong></span>, <em class="replaceable"><code>WN</code></em>, <em class="replaceable"><code>DVAL</code></em>, <em class="replaceable"><code>KFACT</code></em>
+<br><b class="refpurpose">Specifies the viewing distance for magnifications and perspective.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_3.html" title="2.3.&nbsp;GRAPHICS Commands"><code class="classname">GRAPHICS</code></a>: <a class="link" href="Hlp_C_CH2_3.html#cmdgraphicviewsjla070199" title="Table&nbsp;2.12:&nbsp;&nbsp;Views"><span class="type">Views</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="s-DIST.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>WN</code></em>
+</b></span></dt><dd><p>Window number (or ALL) to which command applies (defaults
+to 1).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>DVAL</code></em>
+</b></span></dt><dd><p>Distance along the view line from the observer to the focus
+point (defaults to value producing full-window display).  Distances "too close"
+to the object will produce excessive magnifications.  If <em class="replaceable"><code>DVAL</code></em> =
+AUTO, zero, or blank, the program will calculate the distance automatically.
+ If <em class="replaceable"><code>DVAL</code></em> = USER, the distance of last display will
+be used (useful when last display automatically calculated distance).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>KFACT</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>DVAL</code></em> interpretation key:       </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Interpret numerical <em class="replaceable"><code>DVAL</code></em> values
+as described above.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Interpret <em class="replaceable"><code>DVAL</code></em> as
+a multiplier on the current distance (<em class="replaceable"><code>DVAL</code></em> of 2
+gives twice the current distance; 0.5 gives half the current distance, etc.).</p></td></tr></tbody></table></div></div><p>
+</p></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="s-DIST.default"></a><h3>Command Default</h3><p>Distance is automatically calculated to produce full window magnification.</p></div></div><div class="refsect1" title="Notes"><a name="s-DIST.notes"></a><h2>Notes</h2><p>The scale factor is relative to the window shape.  For example, for
+objects centered in a square window and with parallel projection (no perspective),
+a distance of &nbsp;
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqacb4cad8-8d74-4699-92b8-3cc4bc33cedf.svg"></span> /2 (+10%) produces
+a full window magnification, where &nbsp;
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq6beec832-b3e0-485f-bb2e-0b7b9facce42.svg"></span> is
+the largest in-plane vertical or horizontal dimension.  See also <a href="Hlp_C_AUTO.html" class="olink"><span class="command"><strong>/AUTO</strong></span></a> and <a href="Hlp_C_USER.html" class="olink"><span class="command"><strong>/USER</strong></span></a> commands.</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="s-DIST.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;Pan, Zoom, Rotate</strong></span></td></tr><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;View Settings&gt;Magnification</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

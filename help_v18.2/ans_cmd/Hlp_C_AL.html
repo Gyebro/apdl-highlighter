@@ -1,0 +1,26 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:20-04:00"><title>AL</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_A_TOC.html" title="A Commands"><link rel="prev" href="Hlp_C_AINV.html" title="AINV"><link rel="next" href="Hlp_C_ALIST.html" title="ALIST"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="AL"><a name="AL"></a><div class="titlepage"></div><a class="indexterm" name="d0e19543"></a><span class="refentrytitle"><span class="command"><strong>AL</strong></span></span><div class="refnamediv"><p><span class="command"><strong>AL</strong></span>, <em class="replaceable"><code>L1</code></em>, <em class="replaceable"><code>L2</code></em>, <em class="replaceable"><code>L3</code></em>, <em class="replaceable"><code>L4</code></em>, <em class="replaceable"><code>L5</code></em>, <em class="replaceable"><code>L6</code></em>, <em class="replaceable"><code>L7</code></em>, <em class="replaceable"><code>L8</code></em>, <em class="replaceable"><code>L9</code></em>, <em class="replaceable"><code>L10</code></em><br><b class="refpurpose">Generates an area bounded by previously defined lines.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7areasldm061600" title="Table&nbsp;2.33:&nbsp;&nbsp;Areas"><span class="type">Areas</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="AL.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>L1</code></em>, <em class="replaceable"><code>L2</code></em>, <em class="replaceable"><code>L3</code></em>,
+. . . , <em class="replaceable"><code>L10</code></em></b></span></dt><dd><p>List of lines defining area.  The minimum number of lines
+is 3.  The positive normal of the area is controlled by the direction of <em class="replaceable"><code>L1</code></em> using
+the right-hand rule.  A negative value of <em class="replaceable"><code>L1</code></em> reverses
+the normal direction.  If <em class="replaceable"><code>L1</code></em> = ALL, use all selected
+lines with <em class="replaceable"><code>L2</code></em> defining the normal (<em class="replaceable"><code>L3</code></em> to <em class="replaceable"><code>L10</code></em> are
+ignored and <em class="replaceable"><code>L2</code></em> defaults to the lowest numbered
+selected line).  If <em class="replaceable"><code>L1</code></em> = P, graphical picking is
+enabled and all remaining arguments are ignored (valid only in the GUI). 
+A component name may also be substituted for <em class="replaceable"><code>L1</code></em>.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="AL.notes"></a><h2>Notes</h2><p>Lines may be input (once each) in any order and must form a simply connected
+closed curve.  If the area is defined with more than four lines, the lines
+must also lie in the same plane or on a constant coordinate value in the active
+coordinate system (such as a plane or a cylinder).   </p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;Solid modeling
+in a toroidal coordinate system is not recommended.  Areas may be redefined
+only if not yet attached to a volume.</p><hr></div><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="AL.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Areas&gt;Arbitrary&gt;By Lines</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

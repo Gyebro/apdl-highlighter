@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:42-04:00"><title>DVMORPH</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_D_TOC.html" title="D Commands"><link rel="prev" href="Hlp_C_DVAL.html" title="DVAL"><link rel="next" href="Hlp_C_DYNOPT.html" title="DYNOPT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="DVMORPH"><a name="DVMORPH"></a><div class="titlepage"></div><a class="indexterm" name="d0e76639"></a><span class="refentrytitle"><span class="command"><strong>DVMORPH</strong></span></span><div class="refnamediv"><p><span class="command"><strong>DVMORPH</strong></span>, <em class="replaceable"><code>VOLU</code></em>, <em class="replaceable"><code>XAREA</code></em>, <em class="replaceable"><code>RMSHKY</code></em><br><b class="refpurpose">Move nodes in selected volumes to conform to structural displacements.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7morphingjla072399" title="Table&nbsp;2.46:&nbsp;&nbsp;Morphing"><span class="type">Morphing</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div> </div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="DVMORPH.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>VOLU</code></em></b></span></dt><dd><p>Non-structural volume to which mesh movement (morph) applies.
+ If ALL, apply morphing to all selected volumes [<a class="link" href="Hlp_C_VSEL.html" title="VSEL"><span class="command"><strong>VSEL</strong></span></a>].
+If <em class="replaceable"><code>VOLU </code></em> = P, graphical picking is enabled. A component
+may be substituted for <em class="replaceable"><code>VOLU</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>XAREA</code></em></b></span></dt><dd><p>Areas to be excluded from morphing. If ALL, exclude all selected
+areas [<a class="link" href="Hlp_C_ASEL.html" title="ASEL"><span class="command"><strong>ASEL</strong></span></a>].  If <em class="replaceable"><code>XAREA</code></em> = P,
+graphical picking is enabled. A component may be substituted for<em class="replaceable"><code> XAREA</code></em>.
+If <em class="replaceable"><code>XAREA</code></em> is blank (default), allow morphing of
+nodes attached to areas of the selected volumes (<em class="replaceable"><code>VOLU</code></em>)
+which are not shared by unselected volumes. (See Notes for clarification).</p></dd><dt><span><b class="term"><em class="replaceable"><code>RMSHKY</code></em></b></span></dt><dd><p>Remesh flag option:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Remesh the selected non-structural volumes only
+if mesh morphing fails.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Remesh the selected non-structural volumes and
+bypass mesh morphing.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Perform mesh morphing only and do not remesh.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="DVMORPH.notes"></a><h2>Notes</h2><p>The selected volumes should include only non-structural regions adjacent
+to structural regions. DVMORPH will morph the non-structural volumes to coincide
+with the deflections of the structural regions. </p><p>Nodes in the structural regions move in accordance with computed displacements.
+Displacements from a structural analysis must be in the database prior to
+issuing DVMORPH.</p><p>By default, nodes attached to areas can move along the areas. You can
+use <em class="replaceable"><code>XAREA</code></em> to restrain nodes on certain areas.</p><p>By default (<em class="replaceable"><code>RMSHKY</code></em> = 0), DVMORPH will remesh
+the selected non-structural volumes entirely if a satisfactory morphed mesh
+cannot be provided.</p><p>If boundary conditions and loads are applied directly to nodes and elements,
+the DVMORPH command requires that these be removed before remeshing can take
+place.</p><p>Exercise care with initial conditions defined by the <a class="link" href="Hlp_C_IC.html" title="IC"><span class="command"><strong>IC</strong></span></a> command.
+Before a structural analysis is performed for a sequentially coupled analysis,
+the DVMORPH command requires that initial conditions be removed from all null
+element type nodes in the non-structural regions. Use <a class="link" href="Hlp_C_ICDELE.html" title="ICDELE"><span class="command"><strong>ICDELE</strong></span></a> to
+delete the initial conditions.</p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p></div><div class="refsect1" title="Menu Paths"><a name="DVMORPH.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Modify Mesh&gt;Phys Morphing&gt;Volumes</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

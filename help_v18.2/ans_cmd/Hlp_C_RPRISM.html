@@ -1,0 +1,26 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:49-04:00"><title>RPRISM</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_R_TOC.html" title="R Commands"><link rel="prev" href="Hlp_C_RPR4.html" title="RPR4"><link rel="next" href="Hlp_C_RPSD.html" title="RPSD"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="RPRISM"><a name="RPRISM"></a><div class="titlepage"></div><a class="indexterm" name="d0e231875"></a><span class="refentrytitle"><span class="command"><strong>RPRISM</strong></span></span><div class="refnamediv"><p><span class="command"><strong>RPRISM</strong></span>, <em class="replaceable"><code>Z1</code></em>, <em class="replaceable"><code>Z2</code></em>, <em class="replaceable"><code>NSIDES</code></em>, <em class="replaceable"><code>LSIDE</code></em>, <em class="replaceable"><code>MAJRAD</code></em>, <em class="replaceable"><code>MINRAD</code></em><br><b class="refpurpose">Creates a regular prism volume centered about the working plane
+origin. </b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7primitivesldm061600" title="Table&nbsp;2.29:&nbsp;&nbsp;Primitives"><span class="type">Primitives</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="RPRISM.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Z1</code></em>, <em class="replaceable"><code>Z2</code></em></b></span></dt><dd><p>Working plane Z coordinates of the prism.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NSIDES</code></em></b></span></dt><dd><p>Number of sides in the polygon defining the top and bottom
+faces of the prism.  Must be greater than 2.</p></dd><dt><span><b class="term"><em class="replaceable"><code>LSIDE</code></em></b></span></dt><dd><p>Length of each side of the polygon defining the top and bottom
+faces of the prism.</p></dd><dt><span><b class="term"><em class="replaceable"><code>MAJRAD</code></em></b></span></dt><dd><p>Radius of the major (or circumscribed) circle of the polygon
+defining the top and bottom faces of the prism.  Not used if <em class="replaceable"><code>LSIDE</code></em> is
+input.</p></dd><dt><span><b class="term"><em class="replaceable"><code>MINRAD</code></em></b></span></dt><dd><p>Radius of the minor (or inscribed circle) of the polygon defining
+the top and bottom faces of the prism.  Not used if <em class="replaceable"><code>LSIDE</code></em> or <em class="replaceable"><code>MAJRAD</code></em> is
+input.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="RPRISM.notes"></a><h2>Notes</h2><p>Defines a regular prism volume centered about the working plane origin.
+ The prism must have a spatial volume greater than zero. (i.e., this volume
+primitive command cannot be used to create a degenerate volume as a means
+of creating an area.)  The top and bottom faces are polygonal areas that are
+parallel to the working plane but neither face need be coplanar with (i.e.,
+"on") the working plane. The first keypoint defined for each face is at &nbsp;&#952;
+= 0&deg;.  See the <a class="link" href="Hlp_C_RPR4.html" title="RPR4"><span class="command"><strong>RPR4</strong></span></a> and <a class="link" href="Hlp_C_PRISM.html" title="PRISM"><span class="command"><strong>PRISM</strong></span></a> commands
+for other ways to create prisms.</p></div><div class="refsect1" title="Menu Paths"><a name="RPRISM.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Volumes&gt;Prism&gt;By Circumscr Rad</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Volumes&gt;Prism&gt;By Inscribed Rad</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Volumes&gt;Prism&gt;By Side Length</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

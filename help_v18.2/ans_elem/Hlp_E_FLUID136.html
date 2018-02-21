@@ -1,0 +1,207 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:38-04:00"><title>FLUID136</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_SHELL132.html" title="SHELL132"><link rel="next" href="Hlp_E_FLUID138.html" title="FLUID138"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="FLUID136"><a name="FLUID136"></a><div class="titlepage"></div><a class="indexterm" name="d0e63536"></a><span class="refentrytitle">
+<span class="structname">FLUID136</span> </span><div class="refnamediv"><p><br><b class="refpurpose">3-D Squeeze
+Film Fluid Element</b><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+<div class=""><div class="application"><span class="application">
+<a class="link" href="Hlp_E_FLUID136.html#fl136prdres" title="FLUID136 Product Restrictions">Product Restrictions</a>
+</span></div></div>
+</div></p></div><div class="refsect1" title="FLUID136 Element Description"><a name="ELEMfluid136descfdb"></a><h2>FLUID136 Element Description</h2><p>
+<span class="structname">FLUID136</span> models viscous fluid flow
+behavior in small gaps between fixed surfaces and structures moving
+perpendicular to the fixed surfaces. The element behavior is based
+on the Reynolds squeeze film theory and the theory of rarefied gases.
+ As such, it is limited to structures with lateral dimensions much
+greater than the gap size.  In addition, the pressure change must
+be small relative to the ambient pressure, and any viscous heating
+is neglected.  <span class="structname">FLUID136</span> is particularly applicable
+to modeling squeeze-film effects in microstructures.  However, it
+can also model thin-film fluid behavior in macrostructures.</p><p>As a fluid-only element (PRES dof), the element can be used
+to determine the stiffening and damping effects that a fluid exerts
+on a moving structure by applying a known normal velocity. The velocity
+normal to the element surface is specified as a body force.  If the
+velocity of the moving surface is not known, <span class="structname">FLUID136</span> can determine the fluid response from the eigenmodes of the structure
+using the <a href="../ans_flu/Hlp_G_FLU_THIN3.html" class="olink">Modal
+Projection Method</a>.</p><p>
+<span class="structname">FLUID136</span> is applicable to static, harmonic,
+and transient analyses.  A static analysis is used to determine the
+damping effects for low operating frequencies where fluid stiffening
+effects are negligible.  A harmonic analysis is used to determine
+the fluid stiffening and damping effects for high operating frequencies
+where fluid stiffening effects are not negligible.  A transient analysis
+is used to determine the fluid stiffening and damping effects for
+non-harmonic loadings.  The Modal Projection Method can also be used
+to extract frequency-dependent damping ratios for use with the <a href="../ans_cmd/Hlp_C_MDAMP.html" class="olink"><span class="command"><strong>MDAMP</strong></span></a> and <a href="../ans_cmd/Hlp_C_DMPRAT.html" class="olink"><span class="command"><strong>DMPRAT</strong></span></a> commands; and Alpha
+and Beta damping parameters for use with the <a href="../ans_cmd/Hlp_C_ALPHAD.html" class="olink"><span class="command"><strong>ALPHAD</strong></span></a> and <a href="../ans_cmd/Hlp_C_BETAD.html" class="olink"><span class="command"><strong>BETAD</strong></span></a> commands.</p><p>As a fluid-structure element (PRES, UX, UY, UZ), the element
+can be combined with solid structural elements in a coupled-field
+solution where pressure effects are computed from the structure's
+motion. In this mode, the element is applicable to a static or transient
+analysis. Compressibility options are available when considering large
+displacements and/or large pressure changes. Contact options are also
+available when the structural degrees of freedom are active in order
+to model opening and closing contact conditions.</p><p>FLUID136 can be used to model three different flow regimes:
+continuum theory, high Knudsen number, and high Knudsen number with
+accommodation factors.  </p><p>See <a href="../ans_thry/thy_el136.html" class="olink">
+<span class="structname">FLUID136</span>
+</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for more details
+about this element.</p></div><div class="refsect1" title="FLUID136 Input Data"><a name="fluid136indata"></a><h2>FLUID136 Input Data</h2><p>The element is defined by four corner nodes with an option to
+include mid-side nodes (KEYOPT(2) = 1). The element should be oriented
+such that the element normal is pointing toward the fluid domain.
+ If solid elements are used for the structural domain, the fluid element
+normal vector is automatically computed.  If necessary, the  fluid
+element normal vector can be flipped using <a href="../ans_cmd/Hlp_C_ENSYM.html" class="olink"><span class="command"><strong>ENSYM</strong></span></a>.  </p><div class="figure"><a name="FL136geom"></a><p class="title"><b>Figure&nbsp;136.1:&nbsp;&nbsp;FLUID136 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gelem136-1.svg" alt="FLUID136 Geometry"></div></div></div><br class="figure-break"><p>KEYOPT (1) specifies the flow regime.  The Knudsen number can
+be calculated from the mean free fluid path at a reference pressure,
+the operating or absolute pressure, and the gap.</p><p>For a PRES degree of freedom (KEYOPT(3) = 0) and a linearized
+Reynolds equation (KEYOPT(4) = 0 or 2),</p><div class="blockquote"><blockquote class="blockquote"><p>K<sub>n</sub> = (MFP*PREF) / (PAMB*GAP) </p></blockquote></div><p>
+</p><p>For PRES, UX, UY, UZ degrees of freedom (KEYOPT(3) = 1 or 2)
+and a nonlinear Reynolds equation (KEYOPT(4) = 1),</p><div class="blockquote"><blockquote class="blockquote"><p>K<sub>n</sub> = (MFP*PREF) / (P<sub>abs</sub>*GAP) if P<sub>abs</sub> &gt; minpabs</p></blockquote></div><p>
+</p><div class="blockquote"><blockquote class="blockquote"><p>K<sub>n</sub> = (MFP*PREF) / (minpabs*GAP) if P<sub>abs</sub> &lt; minpabs</p></blockquote></div><p>
+</p><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>P<sub>abs</sub> = PAMB + PRES</td></tr><tr><td>minpabs = minimum absolute pressure determined by real constant
+MINPABSF</td></tr></table><p>
+</p><p>For continuum theory to be valid (KEYOPT(1) = 0), the Knudsen
+number should be less than 0.01.  If the Knudsen number is greater
+than 0.01 (KEYOPT(1) = 1 or 2), the dynamic viscosity is adjusted
+to account for the slip flow boundary.  See <a href="../ans_flu/flowreg.html" class="olink">Flow Regime Considerations</a> in the <a href="../ans_flu/Hlp_G_cfdTOC.html" class="olink"><em class="citetitle">Fluids Analysis Guide</em></a> for a complete discussion
+of flow regimes and calculation of the Knudsen number.</p><p>The type of reflection of the gas molecules at the wall interface
+is specified using accommodation factors.  Squeeze film models assume
+diffuse reflection of the gas molecules at the wall interface (accommodation
+factor = 1).  This assumption is valid for most metals, but is less
+accurate for micromachined surfaces, particularly those fabricated
+from silicon.  Materials, such as silicon, cause specular reflection.
+ Typical accommodation factors for silicon are between 0.80 and 0.90.
+ </p><p>KEYOPT (3) sets the element degrees of freedom. Setting KEYOPT
+(3) to 1 or 2 activates the displacement degrees of freedom. When
+displacement DOFs are active both fluidic and mechanical contact pressures
+can be generated. <span class="structname">FLUID136</span> can only be used
+for static and transient analyses when the displacement DOFs are activated.</p><p>If KEYOPT(5) = 2, the element is ignored from a fluid pressure
+standpoint when the fluid gap goes below a specified minimum fluid
+gap (fluid_mingap). If KEYOPT(6) = 1 or 2, mechanical contact pressure
+is applied to a structure if the fluid height goes below a specified
+minimum mechanical gap (mech_mingap).</p><p>For the fluid-only option (PRES dof), the fluid velocity normal
+to the surface may be specified using nodal or element loading with
+the FLUE body load label on the <a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a> or <a href="../ans_cmd/Hlp_C_BFE.html" class="olink"><span class="command"><strong>BFE</strong></span></a> commands.  If <span class="structname">FLUID136</span> is
+used in conjunction with the Modal Projection Method, the fluid velocities
+are obtained from the modal displacements and applied using the <a href="../ans_cmd/Hlp_C_DMPEXT.html" class="olink"><span class="command"><strong>DMPEXT</strong></span></a> command.</p><div class="refsect2" title="FLUID136 Input Summary"><a name="fluid136insum"></a><h3>FLUID136 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J, K, L (KEYOPT(2) = 0)</p><p>I, J, K, L,
+M, N, O, P (KEYOPT(2) = 1)</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>See KEYOPT(3)</p></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><p>See <a class="xref" href="Hlp_E_FLUID136.html#fluid136real" title="Table&nbsp;136.1:&nbsp;&nbsp;FLUID136 Real Constants">Table&nbsp;136.1:&nbsp;FLUID136 Real Constants</a>.</p></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p>
+<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: VISC (dynamic viscosity)</p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><p>FLUE (velocity) (For KEYOPT(3) = 0 only)</p></dd><dt><span><b class="term">Special Features</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Continuous flow options</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Continuum theory</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>High Knudsen numbers (greater
+than 0.01)</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>High Knudsen numbers and
+accommodation factors</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Element geometry</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Four node element</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Eight node element (not
+available if KEYOPT(3) = 1 or 2)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(3)</b></span></dt><dd><p>Degrees of Freedom</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>PRES (Valid for static,
+harmonic, and transient analyses.)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>PRES, UX, UY, UZ - explicit
+treatment of cross-coupling terms. Produces a symmetric          
+matrix. Valid for static and transient analyses only. Convergence
+issues may be           experienced if the fluid gap approaches zero.</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>PRES, UX, UY, UZ - implicit
+treatment of cross-coupling terms. Produces an           unsymmetric
+matrix. Valid for static and transient analyses only.</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(4)</b></span></dt><dd><p>Compressibility. If PRES is the only degree of freedom
+(KEYOPT(3) = 0), the compressible        linearized Reynold equation
+is used (KEYOPT(4) = 0). The following are valid when degrees of 
+      freedom are PRES, UX, UY, and UZ (KEYOPT(3) = 1 or 2).</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Compressible linearized
+Reynolds equation. (large displacement and small pressure        
+  changes)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Compressible nonlinear
+Reynolds equation. (large displacement and large pressure        
+  changes)</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Incompressible linearized
+Reynolds equation. (large displacement and small pressure        
+  changes)</p></dd></dl></div></div><p>For more information on the linearized Reynolds equation, refer
+to <a href="../ans_thry/thy_flo8.html#flatsurfaces" class="olink">Flow Between
+Flat Surfaces</a> in the        <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>.</p></dd><dt><span><b class="term">KEYOPT(5)</b></span></dt><dd><p>If the element gap goes below fluid_mingap:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Trap it as an error.</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Reset it to fluid_mingap.</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Ignore this element from
+a fluid pressure standpoint. This element is considered dead     
+     from a fluids standpoint. However, for postprocessing, a fluid
+pressure can be specified.           See real constants PENP and SPRES.</p></dd></dl></div></div><p>For KEYOPT(5) = 1 or 2, mechanical contact may be included by
+KEYOPT(6) or         <a class="link" href="Hlp_E_TARGE170.html" title="TARGE170"><span class="structname">TARGE170</span></a> and <a class="link" href="Hlp_E_CONTA174.html" title="CONTA174"><span class="structname">CONTA174</span></a> elements.</p><p>If the element gap is above fluid_mingap, fluid pressure is
+applied on the        structure.</p></dd><dt><span><b class="term">KEYOPT(6)</b></span></dt><dd><p>If the element gap goes below mech_mingap:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Do not apply mechanical
+contact pressure on the structure. This element is considered    
+      mechanically dead.</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Apply mechanical contact
+pressure on the structure using the penalty method. Specify      
+    a stiffness parameter (real constant STIFFP). Damping is input
+by real constant DAMPP and           it defaults to zero.</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Apply mechanical contact
+pressure on the structure using the augmented Lagrangian         
+ method. Specify an initial stiffness (real constant STIFFP) and a
+penetration tolerance           (real constant MPTF). Damping is input
+by real constant DAMPP and it defaults to           zero.</p></dd></dl></div></div></dd></dl></div></div><p>The fluid environment is defined by the following set of real
+constants.</p><div class="table"><a name="fluid136real"></a><p class="title"><b>Table&nbsp;136.1:&nbsp;&nbsp;FLUID136 Real Constants</b></p><div class="table-contents"><table summary="FLUID136 Real Constants" border="1" width="95%"><colgroup><col width="72" align="center" class="col1"><col width="144" class="col2"><col width="288" class="col3"></colgroup><thead><tr><th align="center">No.</th><th align="center">Name</th><th align="center">Description</th></tr></thead><tbody><tr><td align="center">1</td><td>GAP</td><td>Element gap separation</td></tr><tr><td align="center">2</td><td>blank </td><td>&#8212;</td></tr><tr><td align="center">3</td><td>blank </td><td>&#8212;</td></tr><tr><td align="center">4</td><td>PAMB </td><td>Ambient (i.e.,
+surrounding) pressure</td></tr><tr><td align="center">5</td><td>ACF1 </td><td>Accommodation factor for top moving surface.</td></tr><tr><td align="center">6</td><td>ACF2</td><td>Accommodation factor for
+bottom fixed surface.</td></tr><tr><td align="center">7</td><td>PREF</td><td>Reference pressure for the mean free fluid path</td></tr><tr><td align="center">8</td><td>MFP</td><td>Mean free fluid path
+at reference pressure PREF</td></tr><tr><td align="center">9</td><td>GAPX</td><td>Gap vector global Cartesian component X </td></tr><tr><td align="center">10</td><td>GAPY</td><td>Gap vector global
+Cartesian component Y </td></tr><tr><td align="center">11</td><td>GAPZ</td><td>Gap vector global Cartesian component Z</td></tr><tr><td align="center">12</td><td>MMGF</td><td>mech_mingapf (minimum mechanical
+gap as a fraction of GAP)</td></tr><tr><td align="center">13</td><td>FMGF</td><td>fluid_mingapf (minimum fluid gap as a fraction
+of GAP)</td></tr><tr><td align="center">14</td><td>PENP</td><td>Penalty parameter for fluid dead element (KEYOPT(5) = 2)</td></tr><tr><td align="center">15</td><td>SPRES</td><td>Specified pressure
+for fluid dead element (KEYOPT(5) = 2)</td></tr><tr><td align="center">16</td><td>STIFFP</td><td>Stiffness parameter for mechanical contact
+(KEYOPT(6) = 1 or 2)</td></tr><tr><td align="center">17</td><td>DAMPP</td><td>Damping parameter for mechanical contact (KEYOPT(6) = 1 or
+2)</td></tr><tr><td align="center">18</td><td>MPTF</td><td>mech_pen_tolf
+(KEYOPT(6) = 2) (mechanical penetration tolerance as a fraction of
+        mech_mingap)</td></tr><tr><td align="center">19</td><td>MINPABSF</td><td>minpabsf (minimum absolute pressure as a fraction of      
+  P<sub>amb</sub>)</td></tr></tbody></table></div></div><br class="table-break"><p>For continuum theory (KEYOPT(1) = 1), GAP and PAMB must be specified. </p><p>For high Knudsen numbers (KEYOPT(1) = 1), GAP, PAMB, PREF, and
+MFP must be specified. PREF     and MFP are used to adjust the dynamic
+viscosity. ACF1 and ACF2 are assumed to be 1. </p><p>For high Knudsen numbers with accommodation factors (KEYOPT(1)
+= 2), GAP, PAMB, PREF, MFP,     ACF1, and ACF2 must be specified.
+Different accommodation factors may be specified for each     surface. </p><p>For small deflections, GAP is assumed to be constant. For the
+fluid-only option (PRES dof)     and large deflections, GAP can be
+updated using <a href="../ans_cmd/Hlp_C_SETFGAP.html" class="olink"><span class="command"><strong>SETFGAP</strong></span></a>. </p><p>Real constants GAPX, GAPY, and GAPZ are the unit vector components
+of the normal gap vector     g in the global Cartesian system (see
+figure below).</p><div class="figure"><a name="d0e64103"></a><p class="title"><b>Figure&nbsp;136.2:&nbsp;&nbsp;Moving Structure with Thin Film of FLUID136 Elements</b></p><div class="figure-contents"><div><img src="graphics/gelem136-3.svg" alt="Moving Structure with Thin Film of FLUID136 Elements"></div></div></div><br class="figure-break"><p>Real constants FMGF and MMGF determine the minimum fluid gap
+(fluid_mingap) and minimum     mechanical gap (mech_mingap) as shown
+below:</p><div class="figure"><a name="d0e64109"></a><p class="title"><b>Figure&nbsp;136.3:&nbsp;&nbsp;Minimum Fluid and Minimum Mechanical Gaps</b></p><div class="figure-contents"><div><img src="graphics/gelem136-2.svg" alt="Minimum Fluid and Minimum Mechanical Gaps"></div></div></div><p><br class="figure-break">
+
+</p><div class="informalequation"><a name="eq60f2c299-fc32-4b3e-8c6b-cba36f52ebbf"></a><div><img src="graphics/eq60f2c299-fc32-4b3e-8c6b-cba36f52ebbf.svg"></div></div><p>
+
+</p><div class="informalequation"><a name="eqccf4cc00-13bf-402d-997e-a48694c68347"></a><div><img src="graphics/eqccf4cc00-13bf-402d-997e-a48694c68347.svg"></div></div><p>
+</p><p>Real constant MPTF determines the mechanical penetration tolerance
+as shown below:</p><div class="figure"><a name="d0e64122"></a><p class="title"><b>Figure&nbsp;136.4:&nbsp;&nbsp;Mechanical Penetration</b></p><div class="figure-contents"><div><img src="graphics/gelem136-5.svg" alt="Mechanical Penetration"></div></div></div><br class="figure-break"><div class="informalequation"><a name="eqab3fd424-c5d4-41f5-b509-8e539252f44b"></a><div><img src="graphics/eqab3fd424-c5d4-41f5-b509-8e539252f44b.svg"></div></div><div class="figure"><a name="d0e64128"></a><p class="title"><b>Figure&nbsp;136.5:&nbsp;&nbsp;Fluid Penetration</b></p><div class="figure-contents"><div><img src="graphics/gelem136-4.svg" alt="Fluid Penetration"></div></div></div><br class="figure-break"><p>Real constant MINPABSFA determines the minimum absolute pressure
+as shown below. The     minimum absolute pressure is used in the definition
+of Knudson number.</p><div class="informalequation"><a name="eq16efe9a8-0ef6-445d-9320-60a525516c18"></a><div><img src="graphics/eq16efe9a8-0ef6-445d-9320-60a525516c18.svg"></div></div><p>Stiffness is input by real constant STIFFP and it is typically
+large. Damping is input by     real constant DAMPP and it is typically
+zero.</p></div></div><div class="refsect1" title="FLUID136 Output Data"><a name="fluid136outdata"></a><h2>FLUID136 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal degrees of freedom included in the overall nodal
+solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_FLUID136.html#fl136outdeftab" title="Table&nbsp;136.2:&nbsp;&nbsp;FLUID136 Element Output Definitions">Table&nbsp;136.2:&nbsp;FLUID136 Element Output Definitions</a>
+</p></li></ul></div><p>
+</p><p>A general description of solution output is given in <a class="xref" href="Hlp_E_FLUID136.html#fl136outdeftab" title="Table&nbsp;136.2:&nbsp;&nbsp;FLUID136 Element Output Definitions">Table&nbsp;136.2:&nbsp;FLUID136 Element Output Definitions</a>.  See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways to view results.</p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="fl136outdeftab"></a><p class="title"><b>Table&nbsp;136.2:&nbsp;&nbsp;FLUID136 Element Output Definitions</b></p><div class="table-contents"><table summary="FLUID136 Element Output Definitions" border="1" width="95%"><colgroup><col width="120" class="col1"><col width="360" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th align="center">Name</th><th align="center">Definition</th><th align="center">O</th><th align="center">R</th></tr></thead><tbody><tr><td>PRES</td><td>Pressure change with regard
+to ambient temperature</td><td align="center">&nbsp;</td><td align="center">Y</td></tr><tr><td>PG (X, Y, Z)</td><td>Mid-surface fluid velocity</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>EL</td><td>Element Number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Nodes - I, J, K,
+L</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>MAT</td><td>Material number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>AREA:</td><td>Area</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>FLUE</td><td>Velocity (normal to surface)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>SNORMAL(YX, Y, Z)Y</td><td>Components of unit surface
+normal n</td><td align="center">-</td><td align="center">-</td></tr><tr><td>VELC(X, Y, Z)</td><td>Components of mechanical velocity at
+centroid</td><td align="center">-</td><td align="center">-</td></tr><tr><td>DISPC(X, Y, Z)</td><td>Components of displacement at centroid</td><td align="center">-</td><td align="center">-</td></tr><tr><td>PRESC</td><td>Fluid pressure at centroid</td><td align="center">-</td><td align="center">-</td></tr><tr><td>GAPDIR(X, Y, Z)</td><td>Components of gap
+vector g</td><td align="center">-</td><td align="center">-</td></tr><tr><td>FLUIDDEAD</td><td>Fluid alive or dead (1 = alive; 0 = dead)</td><td align="center">-</td><td align="center">-</td></tr><tr><td>FLUIDPEN</td><td>Fluid penetration</td><td align="center">-</td><td align="center">-</td></tr><tr><td>MECHDEAD</td><td>Mechanical alive or dead (1 = alive;
+0 = dead)</td><td align="center">-</td><td align="center">-</td></tr><tr><td>MECHPEN</td><td>Mechanical penetration at centroid</td><td align="center">-</td><td align="center">-</td></tr><tr><td>STIFF</td><td>Element
+stiffness</td><td align="center">-</td><td align="center">-</td></tr><tr><td>CONTPRES</td><td>Contact pressure at centroid</td><td align="center">-</td><td align="center">-</td></tr><tr><td>KN</td><td>Knudsen
+number</td><td align="center">-</td><td align="center">-</td></tr></tbody></table></div></div><br class="table-break"><p>Contact pressure is computed as an element centroidal quantity:</p><p>CONTPRES= STIFFP*mech_penetration + DAMPP*mech_velocity</p><p>
+<a class="xref" href="Hlp_E_FLUID136.html#fl136itnumtab" title="Table&nbsp;136.3:&nbsp;&nbsp;FLUID136 Item and Sequence Numbers">Table&nbsp;136.3:&nbsp;FLUID136 Item and Sequence Numbers</a> lists output available through
+the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method.
+ See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General Postprocessor
+(POST1)</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in
+this reference for more information.  The following notation is used
+in <a class="xref" href="Hlp_E_FLUID136.html#fl136itnumtab" title="Table&nbsp;136.3:&nbsp;&nbsp;FLUID136 Item and Sequence Numbers">Table&nbsp;136.3:&nbsp;FLUID136 Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="Hlp_E_FLUID136.html#fl136outdeftab" title="Table&nbsp;136.2:&nbsp;&nbsp;FLUID136 Element Output Definitions">Table&nbsp;136.2:&nbsp;FLUID136 Element Output Definitions</a>
+</p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element
+data</p></dd></dl></div></div><p>
+</p><div class="table"><a name="fl136itnumtab"></a><p class="title"><b>Table&nbsp;136.3:&nbsp;&nbsp;FLUID136 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="FLUID136 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="156" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"></colgroup><thead><tr><th rowspan="2" align="center" valign="middle">Output Quantity
+Name</th><th colspan="2" align="center">
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th align="center">Item</th><th align="center">E</th></tr></thead><tbody><tr><td align="center">Effective viscosity</td><td align="center">NMISC</td><td align="center">1</td></tr><tr><td align="center">GAP</td><td align="center">NMISC</td><td align="center">2</td></tr><tr><td colspan="3" align="center">KEYOPT(3) = 1 or 2</td></tr><tr><td align="center">AREA</td><td align="center">NMISC</td><td align="center">3</td></tr><tr><td align="center">SNORMALX</td><td align="center">NMISC</td><td align="center">4</td></tr><tr><td align="center">SNORMALY</td><td align="center">NMISC</td><td align="center">5</td></tr><tr><td align="center">SNORMALZ</td><td align="center">NMISC</td><td align="center">6</td></tr><tr><td align="center">VELCX</td><td align="center">NMISC</td><td align="center">7</td></tr><tr><td align="center">VELCX</td><td align="center">NMISC</td><td align="center">8</td></tr><tr><td align="center">VELCX</td><td align="center">NMISC</td><td align="center">9</td></tr><tr><td align="center">DISPCX</td><td align="center">NMISC</td><td align="center">10</td></tr><tr><td align="center">DISPCY</td><td align="center">NMISC</td><td align="center">11</td></tr><tr><td align="center">DISPCZ</td><td align="center">NMISC</td><td align="center">12</td></tr><tr><td align="center">PRESC<p>(Zero if KEYOPT(5) = 2)</p>
+</td><td align="center">NMISC</td><td align="center">13</td></tr><tr><td align="center">GAPDIRCX</td><td align="center">NMISC</td><td align="center">14</td></tr><tr><td align="center">GAPDIRCY</td><td align="center">NMISC</td><td align="center">15</td></tr><tr><td align="center">GAPDIRCZ</td><td align="center">NMISC</td><td align="center">16</td></tr><tr><td align="center">FLUIDDEAD<p>(0 if KEYOPT(5)
+= 2)</p>
+<p>(1 if KEYOPT(5) &#8800; 2)</p>
+</td><td align="center">NMISC</td><td align="center">17</td></tr><tr><td align="center">FLUIDPEN<p>(0 if KEYOPT(5) &#8800;
+2)</p>
+</td><td align="center">NMISC</td><td align="center">18</td></tr><tr><td align="center">MECHDEAD<p>(0 if KEYOPT(6) = 0)</p>
+<p>(1 if KEYOPT(6) &#8800;
+0)</p>
+</td><td align="center">NMISC</td><td align="center">19</td></tr><tr><td align="center">MECHPEN<p>(0 if KEYOPT(6) = 0)</p>
+</td><td align="center">NMISC</td><td align="center">20</td></tr><tr><td align="center">STIFF<p>(0 if KEYOPT(6) = 0)</p>
+</td><td align="center">NMISC</td><td align="center">21</td></tr><tr><td align="center">CONTPRES<p>(0 if KEYOPT(6) = 0)</p>
+</td><td align="center">NMISC</td><td align="center">22</td></tr><tr><td align="center">KN</td><td align="center">NMISC</td><td align="center">23</td></tr></tbody></table></div></div><br class="table-break"></div><div class="refsect1" title="FLUID136 Assumptions and Restrictions"><a name="fl136restr"></a><h2>FLUID136 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Knudsen numbers larger than 880 are not supported.</p></li><li class="listitem"><p>The gas flow is assumed to be isothermal.</p></li><li class="listitem"><p>The fluid gap is small compared to the lateral width
+of the underlying structure.</p></li><li class="listitem"><p>The element assumes isothermal viscous flow. All the
+fluid properties are at a constant temperature (<a href="../ans_cmd/Hlp_C_TUNIF.html" class="olink"><span class="command"><strong>TUNIF</strong></span></a>) within a load step, even if you specify material properties with
+temperature dependencies (using <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>). See <a href="../ans_thry/thy_flo8.html" class="olink">Squeeze Film</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for
+more information on the governing equations.</p></li><li class="listitem"><p>This element cannot be used in a distributed solution.</p></li></ul></div></div><div class="refsect1" title="FLUID136 Product Restrictions"><a name="fl136prdres"></a><h2>FLUID136 Product Restrictions</h2><p>There are no product-specific restrictions for this element.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

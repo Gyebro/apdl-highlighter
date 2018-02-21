@@ -1,0 +1,226 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:01-04:00"><title>3.2.&nbsp;Solution Output</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_FEATURES.html" title="Chapter&nbsp;3:&nbsp;General Element Features"><link rel="prev" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input"><link rel="next" href="Hlp_E_CH2_3.html" title="3.3.&nbsp;Coordinate Systems"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="3.2.&nbsp;Solution Output"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="ag8sq3ldm"></a>3.2.&nbsp;Solution Output</h2></div></div></div><a class="indexterm" name="d0e9172"></a><p>Solution output is written to the:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Output file (<span class="filename"><strong>Jobname.OUT</strong></span>) </p></li><li class="listitem"><p>Results file (<span class="filename"><strong>Jobname.RST</strong></span>,
+                        <span class="filename"><strong>Jobname.RTH</strong></span>, or
+                    <span class="filename"><strong>Jobname.RMG</strong></span>)</p></li><li class="listitem"><p>Program database (<span class="filename"><strong>Jobname.DB</strong></span>)</p></li></ul></div><p>The output file is viewable via the GUI. The database and results file data can be
+            postprocessed.</p><div class="highlights"><p>The following solution-output topics are available:</p><ul><li><a href="Hlp_E_CH2_2.html#d0e9207" title="3.2.1.&nbsp;Output File Contents">Output File Contents</a></li><li><a href="Hlp_E_CH2_2.html#d0e9223" title="3.2.2.&nbsp;Results File and Database Contents">Results File and Database Contents</a></li><li><a href="Hlp_E_CH2_2.html#a1HGoq8dldm" title="3.2.3.&nbsp;Element Solution">Element Solution</a></li><li><a href="Hlp_E_CH2_2.html#aQh8sq3b0ldm" title="3.2.4.&nbsp;Nodal Solution">Nodal Solution</a></li></ul></div><div class="sect2" title="3.2.1.&nbsp;Output File Contents"><div class="titlepage"><div><div><h3 class="title"><a name="d0e9207"></a>3.2.1.&nbsp;Output File Contents</h3></div></div></div><a class="indexterm" name="d0e9210"></a><p>The output file contains the nodal degree-of-freedom solution, nodal and reaction
+                loads, and the element solutions, depending on the <a href="../ans_cmd/Hlp_C_OUTPR.html" class="olink"><span class="command"><strong>OUTPR</strong></span></a>
+                settings. </p><p>The element solutions are the solution values at the integration points or
+                centroid. They are controlled by KEYOPTs in certain elements.</p></div><div class="sect2" title="3.2.2.&nbsp;Results File and Database Contents"><div class="titlepage"><div><div><h3 class="title"><a name="d0e9223"></a>3.2.2.&nbsp;Results File and Database Contents</h3></div></div></div><p>The results file contains data for all requested (<a href="../ans_cmd/Hlp_C_OUTRES.html" class="olink"><span class="command"><strong>OUTRES</strong></span></a>)
+                solutions, or load steps. In POST1, the <a href="../ans_cmd/Hlp_C_SET.html" class="olink"><span class="command"><strong>SET</strong></span></a> command identifies
+                the load step that you intend to postprocess. </p><p>Results items for area and volume elements are generally retrieved from the
+                database via standard <a href="../ans_cmd/Hlp_C_CH2_7.html#cmdpost1resultjla070199" class="olink">results output commands</a> (such as <a href="../ans_cmd/Hlp_C_PRNSOL.html" class="olink"><span class="command"><strong>PRNSOL</strong></span></a>,
+                    <a href="../ans_cmd/Hlp_C_PLNSOL.html" class="olink"><span class="command"><strong>PLNSOL</strong></span></a>, <a href="../ans_cmd/Hlp_C_PRESOL.html" class="olink"><span class="command"><strong>PRESOL</strong></span></a>, and
+                    <a href="../ans_cmd/Hlp_C_PLESOL.html" class="olink"><span class="command"><strong>PLESOL</strong></span></a>). </p><p>The labels on these commands correspond to the labels shown in the input and
+                output description tables for each element. For example, postprocessing the stress
+                in the material x direction (typically labeled SX) is identified as item S and
+                component X on the postprocessing commands. Coordinate locations XC, YC, ZC are
+                identified as item CENT and component X, Y, or Z. </p><p>Only items shown both on the given results command and in the element input/output
+                tables are available for use with that command. (An exception is EPTO, the total
+                strain, which is available for all structural solid and shell elements even though
+                it is not shown in the output description tables for those elements.)</p><p>Generic labels do not exist for some results data, such as integration point data,
+                all derived data for structural line elements (such as spars, beams, and pipes) and
+                contact elements, all derived data for thermal line elements, and layer data for
+                layered elements. Instead, a <a class="link" href="Hlp_E_CH2_2.html#aIi8sq29ldm" title="3.2.3.1.&nbsp;The Element Output Definitions Table">sequence number</a>
+                identifies those items.</p></div><div class="sect2" title="3.2.3.&nbsp;Element Solution"><div class="titlepage"><div><div><h3 class="title"><a name="a1HGoq8dldm"></a>3.2.3.&nbsp;Element Solution</h3></div></div></div><a class="indexterm" name="d0e9269"></a><p>The element output items (and their definitions) are shown along with the element
+                type description. Not all of the items shown in the output table will appear at all
+                times for the element. Normally, items not appearing are either not applicable to
+                the solution or have all zero results and are suppressed to save space. However,
+                except for the coupled-field elements <a class="link" href="Hlp_E_PLANE223.html" title="PLANE223"><span class="structname">PLANE223</span></a>,
+                    <a class="link" href="Hlp_E_SOLID226.html" title="SOLID226"><span class="structname">SOLID226</span></a>, and <a class="link" href="Hlp_E_SOLID227.html" title="SOLID227"><span class="structname">SOLID227</span></a>,
+                coupled-field forces appear if they are computed to be zero. The output is, in some
+                cases, dependent on the input. For example, for thermal elements accepting either
+                surface convection (CONV) or nodal heat flux (HFLUX), the output will be either in
+                terms of convection or heat flux. Most of the output items shown appear in the
+                element solution listing. Some items do not appear in the solution listing but are
+                written to the results file.</p><p>Most elements have two tables which describe the output data and ways to access
+                that data for the element. These tables are the "Element Output Definitions" table
+                and the "Item and Sequence Numbers" tables used for accessing data through the
+                    <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> commands.</p><p>Stresses and strains are two primary element solution quantities in structural
+                elements used for stress analysis. <a href="Hlp_E_CH2_OLDNEW.html" class="olink">Current-technology</a> elements output
+                Cauchy stresses, and logarithmic strains in large deflection analysis
+                    (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON) or engineering strains in a small-deflection
+                analysis (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,OFF). Stresses and strains are directly
+                evaluated at element integrations points, and may be extrapolated to element nodes
+                or averaged at element centroid for output. Generalized stresses and strains, such
+                as linearized stresses, forces, moments, and curvature changes, are available in
+                beam, pipe, elbow, and shell elements.</p><div class="highlights"><p>The following element-solution topics are available:</p><ul><li><a href="Hlp_E_CH2_2.html#aIi8sq29ldm" title="3.2.3.1.&nbsp;The Element Output Definitions Table">The Element Output Definitions Table</a></li><li><a href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a></li><li><a href="Hlp_E_CH2_2.html#a5j8sq37aldm" title="3.2.3.3.&nbsp;Surface Loads">Surface Loads</a></li><li><a href="Hlp_E_CH2_2.html#a5k8sq173ldm" title="3.2.3.4.&nbsp;Integration Point Solution (Output Listing Only)">Integration Point Solution (Output Listing Only)</a></li><li><a href="Hlp_E_CH2_2.html#abj8sq386ldm" title="3.2.3.5.&nbsp;Centroidal Solution (Output Listing Only)">Centroidal Solution (Output Listing Only)</a></li><li><a href="Hlp_E_CH2_2.html#chapter_g3f_mqq_rv" title="3.2.3.6.&nbsp;Surface Solution">Surface Solution</a></li><li><a href="Hlp_E_CH2_2.html#aKk8sq8fldm" title="3.2.3.7.&nbsp;Element Nodal Solution">Element Nodal Solution</a></li><li><a href="Hlp_E_CH2_2.html#aYk8sq79ldm" title="3.2.3.8.&nbsp;Element Nodal Loads">Element Nodal Loads</a></li><li><a href="Hlp_E_CH2_2.html#atk8sq2f7ldm" title="3.2.3.9.&nbsp;Nonlinear Solutions">Nonlinear Solutions</a></li><li><a href="Hlp_E_CH2_2.html#aCl8sq52ldm" title="3.2.3.10.&nbsp;2-D and Axisymmetric Solutions">2-D and Axisymmetric Solutions</a></li><li><a href="Hlp_E_CH2_2.html#aVl8sq1adldm" title="3.2.3.11.&nbsp;Member Force Solution">Member Force Solution</a></li><li><a href="Hlp_E_CH2_2.html#jjw030201" title="3.2.3.12.&nbsp;Failure Criteria">Failure Criteria</a></li><li><a href="Hlp_E_CH2_2.html#d0e9889" title="3.2.3.13.&nbsp;Linearized Stresses">Linearized Stresses</a></li></ul></div><div class="sect3" title="3.2.3.1.&nbsp;The Element Output Definitions Table"><div class="titlepage"><div><div><h4 class="title"><a name="aIi8sq29ldm"></a>3.2.3.1.&nbsp;The Element Output Definitions Table</h4></div></div></div><p>The first table, "Element Output Definitions," describes possible output for
+                    the element. In addition, this table outlines which data are available for
+                    solution printout (<span class="filename"><strong>Jobname.OUT</strong></span> and/or display to the
+                    terminal), and which data are available on the results file
+                        (<span class="filename"><strong>Jobname.RST</strong></span>, <span class="filename"><strong>Jobname.RTH</strong></span>,
+                        <span class="filename"><strong>Jobname.RMG</strong></span>, etc.). Only the data which you request
+                    with the solution commands (<a href="../ans_cmd/Hlp_C_OUTPR.html" class="olink"><span class="command"><strong>OUTPR</strong></span></a> and
+                        <a href="../ans_cmd/Hlp_C_OUTRES.html" class="olink"><span class="command"><strong>OUTRES</strong></span></a>) are included in printout and on the results file,
+                    respectively. </p><p>As an added convenience, items in the table which are available via the
+                    Component Name method of the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command are identified by
+                    special notation (:) included in the output label. ( See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General Postprocessor (POST1) in the <span class="olinkdocname">Mechanical APDL Basic Analysis Guide</span></a> for more information.) The label portion before
+                    the colon corresponds to the Item field on the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>
+                    command, and the portion after the colon corresponds to the <span class="italic"><em>Comp</em></span> field. For example, S:EQV is defined as
+                    equivalent stress, and the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command for accessing this
+                    data would be:</p><div class="blockquote"><blockquote class="blockquote"><p><a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>,ABC,S,EQV</p></blockquote></div><p>where ABC is a user-defined label for future identification on listings and
+                    displays. Other data having labels without colons can be accessed through the
+                    Sequence Number method, discussed with the <span class="quote">"<span class="quote">Item and Sequence
+                        Number</span>"</span> tables below.</p><p>In some cases there is more than one label which can be used after the colon,
+                    in which case they are listed and separated by commas. The <span class="bold"><strong>Definition</strong></span> column defines each label and, in some instances,
+                    also lists the label used on the printout, if different. The <span class="bold"><strong>O</strong></span> column indicates those items which are written to
+                    the output window and/or the output file. The <span class="bold"><strong>R</strong></span>
+                    column indicates items which are written to the results file and which can be
+                    obtained in postprocessing; if an item is not marked in the <span class="bold"><strong>R</strong></span> column, it cannot be stored in the "element
+                    table."</p></div><div class="sect3" title="3.2.3.2.&nbsp;The Item and Sequence Number Table"><div class="titlepage"><div><div><h4 class="title"><a name="agi8sq365ldm"></a>3.2.3.2.&nbsp;The Item and Sequence Number Table</h4></div></div></div><p>Many elements also have a table, or set of tables, that list the <span class="italic"><em>Item</em></span> and sequence number required for data access
+                    using the Sequence Number method of the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command. (See
+                        <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General Postprocessor (POST1) in the <span class="olinkdocname">Mechanical APDL Basic Analysis Guide</span></a> for an example.) </p><p>The number of columns in each table and the number of tables per element vary
+                    depending on the type of data available and the number of locations on the
+                    element where data was calculated. </p><p>See <a class="xref" href="Hlp_E_PLANE182.html#aJArCr3c2ldm" title="Table&nbsp;182.2:&nbsp;&nbsp;PLANE182 Item and Sequence Numbers">Table&nbsp;182.2:&nbsp;PLANE182 Item and Sequence Numbers</a> for a sample item and sequence number
+                    table. Items listed as SMISC refer to summable miscellaneous items, while NMISC
+                    refers to non-summable miscellaneous items.</p></div><div class="sect3" title="3.2.3.3.&nbsp;Surface Loads"><div class="titlepage"><div><div><h4 class="title"><a name="a5j8sq37aldm"></a>3.2.3.3.&nbsp;Surface Loads</h4></div></div></div><p>Pressure output for structural elements shows the input pressures expanded to
+                    the element's full linearly or bilinearly varying load capability. </p><p>See the <a href="../ans_cmd/Hlp_C_SF.html" class="olink"><span class="command"><strong>SF</strong></span></a>, <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a>, and
+                        <a href="../ans_cmd/Hlp_C_SFBEAM.html" class="olink"><span class="command"><strong>SFBEAM</strong></span></a> commands for pressure input. Beam elements which
+                    allow an offset from the node on the <a href="../ans_cmd/Hlp_C_SFBEAM.html" class="olink"><span class="command"><strong>SFBEAM</strong></span></a> command an have
+                    additional output labeled OFFST. </p><p>To save space, pressure output is often omitted when values are zero.
+                    Similarly, other surface load items (such as convection (CONV) and heat flux
+                    (HFLUX)), and body load input items (such as temperature (TEMP), fluence (FLUE),
+                    and heat generation (HGEN)), are often omitted when the values are zero (or, for
+                    temperatures, when the T-TREF values are zero).</p><p>To save space, surface output is often omitted when all values are zero. </p><p>For output of ocean-loading information on supported element types, see the
+                        <a href="../ans_cmd/Hlp_C_OCTYPE.html" class="olink"><span class="command"><strong>OCTYPE</strong></span></a> and <a href="../ans_cmd/Hlp_C_OCDATA.html" class="olink"><span class="command"><strong>OCDATA</strong></span></a> commands.</p></div><div class="sect3" title="3.2.3.4.&nbsp;Integration Point Solution (Output Listing Only)"><div class="titlepage"><div><div><h4 class="title"><a name="a5k8sq173ldm"></a>3.2.3.4.&nbsp;Integration Point Solution (Output Listing Only)</h4></div></div></div><p>Integration point output is available in the output listing with most <a href="Hlp_E_CH2_OLDNEW.html" class="olink">current-technology</a> elements. The location of the integration point
+                    is updated if large deflections are used. See the element descriptions in the
+                    <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for details about integration point locations and output. Also the
+                        <a href="../ans_cmd/Hlp_C_ERESX.html" class="olink"><span class="command"><strong>ERESX</strong></span></a> command may be used to request integration point
+                    data to be written as nodal data on the results file.</p></div><div class="sect3" title="3.2.3.5.&nbsp;Centroidal Solution (Output Listing Only)"><div class="titlepage"><div><div><h4 class="title"><a name="abj8sq386ldm"></a>3.2.3.5.&nbsp;Centroidal Solution (Output Listing Only)</h4></div></div></div><p>Output (such as stress, strain, and temperature) in the output listing is
+                    given at the centroid (or near center) of certain elements. The location of the
+                    centroid is updated if large deflections are used. </p><p>The output quantities are calculated as the average of the integration point
+                    values. The component output directions for vector quantities correspond to the
+                    input material directions which, in turn, are a function of the element
+                    coordinate system. For example, the SX stress is in the same direction as EX. </p><p>In postprocessing, the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command can calculate the
+                    centroidal solution of each element from its nodal values. </p></div><div class="sect3" title="3.2.3.6.&nbsp;Surface Solution"><div class="titlepage"><div><div><h4 class="title"><a name="chapter_g3f_mqq_rv"></a>3.2.3.6.&nbsp;Surface Solution</h4></div></div></div><p>Surface output is available in the output on certain <span class="italic"><em>free</em></span> surfaces of solid elements. A free surface is a surface not
+                    connected to any other element and not having any degree-of-freedom constraint
+                    or nodal force load on the surface. </p><div class="informaltable"><table border="1" width="95%"><colgroup><col class="col1" width="100%"></colgroup><tbody><tr><td>
+                                    <p>
+                                        <span class="bold"><strong>Surface Output Limitations</strong></span>
+                                    </p>
+                                    <p>The following limitations apply to surface output:</p>
+                                    <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Not valid on surfaces which are not free or for
+                                                elements having nonlinear material properties</p></li><li class="listitem"><p>Not valid for layered solids</p></li><li class="listitem"><p>Not valid for generalized plane strain</p></li><li class="listitem"><p>Not valid for elements deactivated
+                                                  (<a href="../ans_cmd/Hlp_C_EKILL.html" class="olink"><span class="command"><strong>EKILL</strong></span></a>) and then reactivated
+                                                  (<a href="../ans_cmd/Hlp_C_EALIVE.html" class="olink"><span class="command"><strong>EALIVE</strong></span></a>) </p></li><li class="listitem"><p>Does not include large-strain effects</p></li></ul></div>
+                                </td></tr></tbody></table></div><p>The surface output is automatically suppressed if the element has nonlinear
+                    material properties. Surface calculations are of the same accuracy as the
+                    displacement calculations. Values are not extrapolated to the surface from the
+                    integration points but are calculated from the nodal displacements, face load,
+                    and the material property relationships. Transverse surface shear stresses are
+                    assumed to be zero. The surface normal stress is set equal to the surface
+                    pressure. Surface output should not be requested on condensed faces or on the
+                    zero-radius face (center line) of an axisymmetric model.</p><p>For 3-D solid elements, the face coordinate system has the x-axis in the same
+                    general direction as the first two nodes of the face, as defined with pressure
+                    loading. The exact direction of the x-axis is on the line connecting the midside
+                    nodes or midpoints of the two opposite edges. The y-axis is normal to the
+                    x-axis, in the plane of the face.</p><p>The following table lists output available via the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>
+                    command using the Sequence Number method (<em class="replaceable"><code>Item</code></em> =
+                    SURF). See the appropriate table in the individual element descriptions for
+                    definitions of the output quantities.</p><div class="table"><a name="table_h3f_mqq_rv"></a><p class="title"><b>Table&nbsp;3.3:&nbsp;&nbsp;Output Available via <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>
+                    </b></p><div class="table-contents"><table summary="Output Available via ETABLE&#xA;                    " border="1" width="95%"><colgroup><col width="72" class="col1"><col width="96" class="col2"><col width="96" class="col3"><col width="96" class="col4"></colgroup><thead><tr><th bgcolor="#C0C0C0" colspan="4" align="center">
+                                    
+                                     Element Dimensionality</th></tr><tr><th bgcolor="#E3E3E3" align="center">
+                                    
+                                    snum</th><th bgcolor="#E3E3E3" align="center">
+                                    
+                                    3-D</th><th bgcolor="#E3E3E3" align="center">
+                                    
+                                    2-D</th><th bgcolor="#E3E3E3" align="center">
+                                    
+                                    Axisymm</th></tr></thead><tbody><tr><td align="center">1</td><td align="center">FACE</td><td align="center">FACE</td><td align="center">FACE</td></tr><tr><td align="center">2</td><td align="center">AREA</td><td align="center">AREA</td><td align="center">AREA</td></tr><tr><td align="center">3</td><td align="center">TEMP</td><td align="center">TEMP</td><td align="center">TEMP</td></tr><tr><td align="center">4</td><td align="center">PRES</td><td align="center">PRES</td><td align="center">PRES</td></tr><tr><td align="center">5</td><td align="center">EPX</td><td align="center">EPPAR</td><td align="center">EPPAR</td></tr><tr><td align="center">6</td><td align="center">EPY</td><td align="center">EPPER</td><td align="center">EPPER</td></tr><tr><td align="center">7</td><td align="center">EPZ</td><td align="center">EPZ</td><td align="center">EPZ</td></tr><tr><td align="center">8</td><td align="center">EPXY</td><td align="center">0</td><td align="center">EPSH [<a class="xref" href="Hlp_E_CH2_2.html#elem.ch2-2.tab.1.ft.1">1</a>]</td></tr><tr><td align="center">9</td><td align="center">SX</td><td align="center">SPAR</td><td align="center">SPAR</td></tr><tr><td align="center">10</td><td align="center">SY</td><td align="center">SPER</td><td align="center">SPER</td></tr><tr><td align="center">11</td><td align="center">SZ</td><td align="center">SZ</td><td align="center">SZ</td></tr><tr><td align="center">12</td><td align="center">SXY</td><td align="center">0</td><td align="center">0</td></tr><tr><td align="center">13</td><td align="center">0</td><td align="center">0</td><td align="center">0</td></tr><tr><td align="center">14</td><td align="center">0</td><td align="center">0</td><td align="center">SSH [<a class="xref" href="Hlp_E_CH2_2.html#elem.ch2-2.tab.1.ft.1">1</a>]</td></tr><tr><td align="center">15</td><td align="center">S1</td><td align="center">S1</td><td align="center">S1</td></tr><tr><td align="center">16</td><td align="center">S2</td><td align="center">S2</td><td align="center">S2</td></tr><tr><td align="center">17</td><td align="center">S3</td><td align="center">S3</td><td align="center">S3</td></tr><tr><td align="center">18</td><td align="center">SINT</td><td align="center">SINT</td><td align="center">SINT</td></tr><tr><td align="center">19</td><td align="center">SEQV</td><td align="center">SEQV</td><td align="center">SEQV</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="elem.ch2-2.tab.1.ft.1"></a>Axiharmonic only</p></li></ol></div><p>If an additional face has surface output requested, then snum 1-19 are
+                    repeated as snum 20-38.</p></div><div class="sect3" title="3.2.3.7.&nbsp;Element Nodal Solution"><div class="titlepage"><div><div><h4 class="title"><a name="aKk8sq8fldm"></a>3.2.3.7.&nbsp;Element Nodal Solution</h4></div></div></div><p>The term <span class="italic"><em>element nodal</em></span> means element data
+                    reported for each element at its nodes. This type of output is available for 2-D
+                    and 3-D solid elements, shell elements, and various other elements. </p><p>Element nodal data consist of the element derived data (such as strains,
+                    stresses, fluxes, and gradients) evaluated at each of the element's nodes. These
+                    data are usually calculated at the interior integration points and then
+                    extrapolated to the nodes. </p><p>Exceptions occur if an element has active (nonzero) plasticity, creep, or
+                    swelling at an integration point or if <a href="../ans_cmd/Hlp_C_ERESX.html" class="olink"><span class="command"><strong>ERESX</strong></span></a>,NO is input. In
+                    such cases the nodal solution is the value at the integration point nearest the
+                    node. </p><p>Output is usually in the element coordinate system. Averaging of the nodal
+                    data from adjacent elements is done within the POST1 postprocessor.</p></div><div class="sect3" title="3.2.3.8.&nbsp;Element Nodal Loads"><div class="titlepage"><div><div><h4 class="title"><a name="aYk8sq79ldm"></a>3.2.3.8.&nbsp;Element Nodal Loads</h4></div></div></div><p>Element nodal loads refer to an element's loads (forces) acting on each of its
+                    nodes. They are printed out at the end of each element output in the nodal
+                    coordinate system and are labeled as static loads. </p><p>If the problem is dynamic, the damping loads and inertia loads are also
+                    printed. </p><p>You can control the output of element nodal loads via the
+                        <a href="../ans_cmd/Hlp_C_OUTPR.html" class="olink"><span class="command"><strong>OUTPR</strong></span></a>,NLOAD command (for printed output) and the
+                        <a href="../ans_cmd/Hlp_C_OUTRES.html" class="olink"><span class="command"><strong>OUTRES</strong></span></a>,NLOAD command (for results file output).</p><p>Element nodal loads relate to the reaction solution in the following way: the
+                    sum of the static, damping, and inertia loads at a particular degree of freedom,
+                    summed over all elements connected to that degree of freedom, plus the applied
+                    nodal load (<a href="../ans_cmd/Hlp_C_F.html" class="olink"><span class="command"><strong>F</strong></span></a> or <a href="../ans_cmd/Hlp_C_FK.html" class="olink"><span class="command"><strong>FK</strong></span></a> command), is equal to
+                    the negative of the reaction solution at that same degree of freedom.</p></div><div class="sect3" title="3.2.3.9.&nbsp;Nonlinear Solutions"><div class="titlepage"><div><div><h4 class="title"><a name="atk8sq2f7ldm"></a>3.2.3.9.&nbsp;Nonlinear Solutions</h4></div></div></div><p>For information about nonlinear solutions due to material nonlinearities, see
+                        <a href="../ans_thry/thymatlnonlin.html" class="olink">Structures with Material Nonlinearities in the <span class="olinkdocname">Mechanical APDL Theory Reference</span></a>. </p><p>Nonlinear strain data (EPPL, EPCR, EPSW, etc.) are always the value from the
+                    nearest integration point. </p><p>If creep is present, stresses are computed after the plasticity correction but
+                    before the creep correction. </p><p>Elastic strains are printed after any creep corrections.</p></div><div class="sect3" title="3.2.3.10.&nbsp;2-D and Axisymmetric Solutions"><div class="titlepage"><div><div><h4 class="title"><a name="aCl8sq52ldm"></a>3.2.3.10.&nbsp;2-D and Axisymmetric Solutions</h4></div></div></div><p>A 2-D solid analysis is based upon a per-unit-of-depth calculation, and all
+                    appropriate output data are on a per-unit-of-depth basis. Many 2-D solids,
+                    however, allow an option to specify the depth (thickness). </p><p>An axisymmetric analysis is based on 360&deg;. Calculation and all appropriate
+                    output data are on a full 360&deg; basis. In particular, the total forces for
+                    the 360&deg; model are output for an axisymmetric structural analysis and the
+                    total convection heat flow for the 360&deg; model is output for an axisymmetric
+                    thermal analysis. </p><p>For axisymmetric analyses, the X, Y, Z, and XY stresses and strains correspond
+                    to the radial, axial, hoop, and in-plane shear stresses and strains,
+                    respectively. The global Y axis must be the axis of symmetry, and the structure
+                    should be modeled in the +X quadrants.</p></div><div class="sect3" title="3.2.3.11.&nbsp;Member Force Solution"><div class="titlepage"><div><div><h4 class="title"><a name="aVl8sq1adldm"></a>3.2.3.11.&nbsp;Member Force Solution</h4></div></div></div><p>Member force output is available with most structural line elements. The
+                    listing of this output is activated via a KEYOPT described with the element and
+                    is in addition to the nodal load output. </p><p>Member forces are in the element coordinate system and the components
+                    correspond to the degrees of freedom available with the element. </p></div><div class="sect3" title="3.2.3.12.&nbsp;Failure Criteria"><div class="titlepage"><div><div><h4 class="title"><a name="jjw030201"></a>3.2.3.12.&nbsp;Failure Criteria</h4></div></div></div><a class="indexterm" name="d0e9836"></a><p>Failure criteria are commonly used for determining the damage initiation in
+                    orthotropic materials. Based on various assumptions on the material damage
+                    mechanism, failure criteria are usually formulated with functions of element
+                    solution (stresses or strains) and material strength limits. </p><p>Two types of failure criteria results are possible: those that are available
+                    during any type of analysis, and those that are available only during a
+                    progressive failure damage analysis. Failure criteria results are accessible via
+                    standard postprocessing output commands (<a href="../ans_cmd/Hlp_C_PLESOL.html" class="olink"><span class="command"><strong>PLESOL</strong></span></a>,
+                        <a href="../ans_cmd/Hlp_C_PRESOL.html" class="olink"><span class="command"><strong>PRESOL</strong></span></a>, <a href="../ans_cmd/Hlp_C_PLNSOL.html" class="olink"><span class="command"><strong>PLNSOL</strong></span></a>, and
+                        <a href="../ans_cmd/Hlp_C_PRNSOL.html" class="olink"><span class="command"><strong>PRNSOL</strong></span></a>) and the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                            <span class="bold"><strong>Available during any type of analysis (accessible
+                                via the FAIL item)</strong></span>
+                        </p><table border="0" summary="Simple list" class="simplelist"><tr><td>These failure criteria are computed on the fly when requested,
+                                using stored element strains and stresses in the result file. This
+                                type of failure criteria are suitable for determining whether and
+                                where the material damage may first occur. If the material is
+                                damaged, the stresses used for this calculation are calculated from
+                                the strains and the damaged material stiffnesses.</td></tr></table></li></ul></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                            <span class="bold"><strong>Available only during a progressive failure damage
+                                analysis (accessible via the PFC item)</strong></span>
+                        </p><table border="0" summary="Simple list" class="simplelist"><tr><td>These failure criteria are calculated from element strains and
+                                effective stresses (stresses that would occur if the material were
+                                undamaged) during solution and stored in the result file. They
+                                indicate whether the material damage may be expected to
+                                continue.</td></tr></table></li></ul></div><p>For more information, see <a href="../ans_thry/thy_str4.html#strucfailure" class="olink">Failure Criteria in the <span class="olinkdocname">Mechanical APDL Theory Reference</span></a> and <a href="../ans_str/Hlp_G_STR11_2.html#atlQxq279mcm" class="olink">Specifying Failure Criteria for Composites in the <span class="olinkdocname">Mechanical APDL Structural Analysis Guide</span></a>.</p></div><div class="sect3" title="3.2.3.13.&nbsp;Linearized Stresses"><div class="titlepage"><div><div><h4 class="title"><a name="d0e9889"></a>3.2.3.13.&nbsp;Linearized Stresses</h4></div></div></div><p>Linearized stresses, including axial, membrane, bending, and peak stresses,
+                    are available in beam, pipe, elbow, shell, and solid shell elements. These
+                    quantities are generally output as SMISC records (accessible via the
+                        <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> postprocessing
+                    commands).</p><p>The stress linearization procedure for the solid shell element
+                        (<a class="link" href="Hlp_E_SOLSH190.html" title="SOLSH190"><span class="structname">SOLSH190</span></a>) and shell elements
+                        (<a class="link" href="Hlp_E_SHELL181.html" title="SHELL181"><span class="structname">SHELL181</span></a>, <a class="link" href="Hlp_E_SHELL281.html" title="SHELL281"><span class="structname">SHELL281</span></a>,
+                        <a class="link" href="Hlp_E_SHELL208.html" title="SHELL208"><span class="structname">SHELL208</span></a>, and <a class="link" href="Hlp_E_SHELL209.html" title="SHELL209"><span class="structname">SHELL209</span></a>) is
+                    defined in <em class="citetitle">ASME Boiler and Pressure Vessel Code</em> (2007
+                    Section VIII, Division 2, Annex 5.A). For the linearization procedure used for
+                    other elements, see the documentation for those individual elements.</p></div></div><div class="sect2" title="3.2.4.&nbsp;Nodal Solution"><div class="titlepage"><div><div><h3 class="title"><a name="aQh8sq3b0ldm"></a>3.2.4.&nbsp;Nodal Solution</h3></div></div></div><a class="indexterm" name="d0e9930"></a><p>The nodal solution from an analysis consists of: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>the degree-of-freedom solution, such as nodal displacements,
+                            temperatures, and pressures</p></li><li class="listitem"><p>the reaction solution calculated at constrained nodes - forces
+                            at displacement constraints, heat flows at temperature degree-of-freedom
+                            constraints, fluid flows at pressure degree-of-freedom constraints, and
+                            so on.</p></li></ul></div><p>The degree-of-freedom solution is calculated for all active degrees of freedom in
+                the model, which are determined by the union of all degree-of-freedom labels
+                associated with all the active element types. It is output at all degrees of freedom
+                that have a nonzero stiffness or conductivity and can be controlled by
+                    <a href="../ans_cmd/Hlp_C_OUTPR.html" class="olink"><span class="command"><strong>OUTPR</strong></span></a>,NSOL (for printed output) and
+                <a href="../ans_cmd/Hlp_C_OUTRES.html" class="olink"><span class="command"><strong>OUTRES</strong></span></a>,NSOL (for results file output).</p><p>The reaction solution is calculated at all nodes that are constrained
+                    (<a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a>, <a href="../ans_cmd/Hlp_C_DSYM.html" class="olink"><span class="command"><strong>DSYM</strong></span></a>, etc.). Its output can be
+                controlled by <a href="../ans_cmd/Hlp_C_OUTPR.html" class="olink"><span class="command"><strong>OUTPR</strong></span></a>,RSOL and
+                <a href="../ans_cmd/Hlp_C_OUTRES.html" class="olink"><span class="command"><strong>OUTRES</strong></span></a>,RSOL.</p><p>For vector degrees of freedom and corresponding reactions, the output during
+                solution is in the nodal coordinate system. If a node was input with a rotated nodal
+                coordinate system, the output nodal solution will also be in the rotated coordinate
+                system. For a node with the rotation &#952;<sub>xy</sub> = 90&deg;,
+                the printed UX solution will be in the nodal X direction, which in this case
+                corresponds to the global Y direction. Rotational displacements (ROTX, ROTY, ROTZ)
+                are output in radians, and phase angles from a harmonic analysis are output in
+                degrees.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

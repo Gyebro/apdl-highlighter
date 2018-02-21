@@ -1,0 +1,206 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:49-04:00"><title>SHELL163</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_PLANE162.html" title="PLANE162"><link rel="next" href="Hlp_E_SOLID164.html" title="SOLID164"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SHELL163"><a name="SHELL163"></a><div class="titlepage"></div><a class="indexterm" name="d0e78765"></a><span class="refentrytitle">
+            <span class="structname">SHELL163</span>
+        </span><div class="refnamediv"><p><br><b class="refpurpose">Explicit Thin Structural Shell</b><div class="refclass">
+            <div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | DYNA</span></div></div>
+            <div class=""><div class="application"><span class="application">
+                <a class="link" href="Hlp_E_SHELL163.html#aU4Oxq2amcm" title="SHELL163 Product Restrictions">Product Restrictions</a>
+            </span></div></div>
+        </div></p></div><div class="refsect1" title="SHELL163 Element Description"><a name="ELEMshell163descfdb"></a><h2>SHELL163 Element Description</h2><p><span class="structname">SHELL163</span> is a 4-node element with both bending and membrane
+            capabilities. Both in-plane and normal loads are permitted. The element has 12 degrees
+            of freedom at each node: translations, accelerations, and velocities in the nodal x, y,
+            and z directions and rotations about the nodal x, y, and z-axes.</p><p>This element is used in explicit dynamic analyses only. Refer to the <span class="emphasis"><em>LS-DYNA
+                Theoretical Manual</em></span> for more information.</p><div class="figure"><a name="aT4Oxq250mcm"></a><p class="title"><b>Figure&nbsp;163.1:&nbsp;&nbsp;SHELL163 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM163-1.svg" alt="SHELL163 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="SHELL163 Input Data"><a name="aT4Oxq2bdmcm"></a><h2>SHELL163 Input Data</h2><p>The following real constants are provided for <span class="structname">SHELL163</span>. SHRF
+            is the shear factor. NIP is the number of integration points through the thickness of
+            the element, up to a maximum of 100. If NIP is input as 0 or blank, ANSYS defaults the
+            value to 2. T1 - T4 indicate the shell thickness at each of the 4 nodes. NLOC specifies
+            the location of the reference surface for KEYOPT(1) = 1, 6, or 7. The reference surface
+            is used in the formulation of the element stiffness matrix. (NLOC does not define the
+            location of the contact surface.) If you set NLOC = 1 or -1 (top or bottom surface), you
+            must set <em class="replaceable"><code>SHNU</code></em> = -2 on the <a href="../ans_cmd/Hlp_C_EDSHELL.html" class="olink"><span class="command"><strong>EDSHELL</strong></span></a> command. </p><p>ESOP is the option for the spacing of integration points, and can be either 0 or 1.
+            ESOP is used only if KEYOPT(4) &gt; 0. If you set ESOP = 0, you must define real
+            constants S(i), and WF(i) to define the integration point locations. If KEYOPT(3) = 1,
+            then you must also define BETA(i) and MAT(i) for each integration point. Set ESOP = 1 if
+            the integration points are equally spaced through the thickness such that the shell is
+            subdivided into NIP layers of equal thickness (up to 100 layers).</p><p>The thickness is assumed to vary smoothly over the area of the element, with the
+            thickness input at the 4 nodes. If the element has a constant thickness, only TK(I) need
+            be input. If the thickness is not constant, all four thicknesses must be input.</p><p>If you set ESOP = 0 and define the integration points using S(i), and WF(i), and
+            possibly BETA(i) and MAT(i), note the following: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>If KEYOPT(1) = 1, 6, 7, or 11, then the thicknesses you define will
+                        remain defined through the results determination.</p></li><li class="listitem"><p>If KEYOPT(1) = 2, 3, 4, 5, 8, 9, 10, or 12, then the ANSYS program
+                        overrides any thickness values you specify and averages the thicknesses for
+                        the results determination.</p></li></ul></div><p>S(i) is the relative coordinate of the integration point and must be within the range
+            -1 to 1. WF(i) is the weighting factor for the i-th integration point. It is calculated
+            by dividing the thickness associated with the integration point by the actual shell
+            thickness (that is, &#916;t<sub>i</sub>/t); see <a class="xref" href="Hlp_E_SHELL163.html#aKaySn37etlm" title="Figure&nbsp;163.2:&nbsp;&nbsp;Arbitrary Ordering of Integration Points for User Defined Shell Integration Rule">Figure&nbsp;163.2:&nbsp;Arbitrary Ordering of Integration Points for User Defined Shell Integration
+                    Rule</a>. In the user defined shell integration rule, the ordering
+            of the integration points is arbitrary. If using these real constants to define
+            integration points, then S(i) and WF(i) must both be specified for each integration
+            point (maximum of 100). BETA(i) is the material angle (in degrees) at the i-th
+            integration point and must be specified for each integration point. The material model
+            is not allowed to change within an element, although the material properties (EX, NUXY,
+            etc.), as defined per MAT(i), can change. However, the density may not vary through the
+            thickness of the shell element. If more than one material is used, and the densities
+            vary between materials, the density of the material of the first layer will be used for
+            the entire element.</p><p>If KEYOPT(4) = 0, the integration rule is defined by KEYOPT(2). The Gauss rule
+            (KEYOPT(2) = 0) is valid for up to five layers (integration points). The trapezoidal
+            rule (KEYOPT(2) = 1) allows up to 100 layers, but is not recommended for less than 20
+            layers, especially if bending is involved.</p><div class="figure"><a name="aKaySn37etlm"></a><p class="title"><b>Figure&nbsp;163.2:&nbsp;&nbsp;Arbitrary Ordering of Integration Points for User Defined Shell Integration
+                    Rule</b></p><div class="figure-contents"><div><img src="graphics/gELEM163-2.svg" alt="Arbitrary Ordering of Integration Points for User Defined Shell Integration Rule"></div></div></div><p><br class="figure-break"></p><p>Use the <a href="../ans_cmd/Hlp_C_EDLOAD.html" class="olink"><span class="command"><strong>EDLOAD</strong></span></a> command to apply nodal loads and other load types
+            described below. For detailed information on how to apply loads in an explicit dynamic
+            analysis, see <a href="../ans_lsd/Hlp_L_load.html" class="olink">Loading</a>
+            in the <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink"><em class="citetitle">ANSYS LS-DYNA User's Guide</em></a>.</p><p>Pressures can be input as surface loads on the element midsurfaces. Positive normal
+            pressures act into the element (that is, positive pressure acts in the negative z
+            direction). Note, however, that pressure <span class="italic"><em>is actually applied to
+                the midsurface</em></span>. See <a class="xref" href="Hlp_E_SHELL163.html#anvdGp71ctg" title="Figure&nbsp;163.3:&nbsp;&nbsp;Nodal Numbering for Pressure Loads (Positive Pressure Acts in Negative Z Direction)">Figure&nbsp;163.3:&nbsp;Nodal Numbering for Pressure Loads (Positive Pressure Acts in Negative Z
+                    Direction)</a>.</p><div class="figure"><a name="anvdGp71ctg"></a><p class="title"><b>Figure&nbsp;163.3:&nbsp;&nbsp;Nodal Numbering for Pressure Loads (Positive Pressure Acts in Negative Z
+                    Direction)</b></p><div class="figure-contents"><div><img src="graphics/gELEM163-3.svg" alt="Nodal Numbering for Pressure Loads (Positive Pressure Acts in Negative Z Direction)"></div></div></div><p><br class="figure-break"></p><p>Base accelerations and angular velocities in the x, y, and z directions can be applied
+            at the nodes using the <a href="../ans_cmd/Hlp_C_EDLOAD.html" class="olink"><span class="command"><strong>EDLOAD</strong></span></a> command. To apply these loads, you need
+            to first select the nodes and create a component. The load is then applied to that
+            component. Each node in the component will have the specified load.</p><p>You can also use the <a href="../ans_cmd/Hlp_C_EDLOAD.html" class="olink"><span class="command"><strong>EDLOAD</strong></span></a> command to apply loads (displacements,
+            forces, etc.) on rigid bodies.</p><p>Several types of temperature loading are also available for this element. See <a href="../ans_lsd/Hlp_L_load6.html" class="olink">Temperature Loading</a>
+            in the <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink"><em class="citetitle">ANSYS LS-DYNA User's Guide</em></a>.</p><p>For this element, you can choose from the following materials: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Isotropic Elastic</p></li><li class="listitem"><p>Orthotropic Elastic</p></li><li class="listitem"><p>Bilinear Kinematic</p></li><li class="listitem"><p>Plastic Kinematic</p></li><li class="listitem"><p>Blatz-Ko Rubber</p></li><li class="listitem"><p>Bilinear Isotropic</p></li><li class="listitem"><p>Temperature Dependent Bilinear Isotropic</p></li><li class="listitem"><p>Power Law Plasticity</p></li><li class="listitem"><p>Strain Rate Dependent Plasticity</p></li><li class="listitem"><p>Composite Damage</p></li><li class="listitem"><p>Piecewise Linear Plasticity</p></li><li class="listitem"><p>Modified Piecewise Linear Plasticity</p></li><li class="listitem"><p>Mooney-Rivlin Rubber</p></li><li class="listitem"><p>Barlat Anisotropic Plasticity</p></li><li class="listitem"><p>3-Parameter Barlat Plasticity</p></li><li class="listitem"><p>Transversely Anisotropic Elastic Plastic</p></li><li class="listitem"><p>Rate Sensitive Power Law Plasticity</p></li><li class="listitem"><p>Transversely Anisotropic FLD</p></li><li class="listitem"><p>Elastic Viscoplastic Thermal</p></li><li class="listitem"><p>Johnson-Cook Plasticity</p></li><li class="listitem"><p>Bamman</p></li></ul></div><p>The orthotropic elastic material model does not accept integration point angles
+            (BETA(i)). Therefore, to model a composite material, you need to use the composite
+            damage material model. If you do not wish to use the damage features of this material
+            model, just set the required strength values to zero.</p><p>KEYOPT(1) allows you to specify 1 of 12 element formulations for
+                <span class="structname">SHELL163</span> (see <a class="xref" href="Hlp_E_SHELL163.html#axaySn134tlm" title="SHELL163 Input Summary">"SHELL163 Input Summary"</a>). A brief
+            description about each element formulation follows:</p><p>The Hughes-Liu element formulation (KEYOPT(1) = 1) is based on a degenerated continuum
+            formulation. This formulation results in substantially large computational costs, but it
+            is effective when very large deformations are expected. This formulation treats warped
+            configurations accurately but does not pass the patch test. It uses one-point quadrature
+            with the same hourglass control as the Belytschko-Tsay.</p><p>The Belytschko-Tsay (default) element formulation (KEYOPT(1) = 0 or 2) is the fastest
+            of the explicit dynamics shells. It is based on the Mindlin-Reissner assumption, so
+            transverse shear is included. It does not treat warped configurations accurately, so it
+            should not be used in coarse mesh models. One-point quadrature is used with hourglass
+            control. A default value is set for the hourglass parameter. When hourglassing appears,
+            you should increase this parameter to avoid hourglassing. It does not pass the patch
+            test.</p><p>The BCIZ Triangular Shell element formulation (KEYOPT(1) = 3) is based on a Kirchhoff
+            plate theory and uses cubic velocity fields. Three sets of quadrature points are used in
+            each element, so it is relatively slow. It passes the patch test only when the mesh is
+            generated from three sets of parallel lines.</p><p>The C<sup>0</sup> Triangular Shell element formulation (KEYOPT(1) = 4)
+            is based on a Mindlin-Reissner plate theory and uses linear velocity fields. One
+            quadrature point is used in the element formulation. This formulation is rather stiff,
+            so it should not be used for constructing an entire mesh, only to transition between
+            meshes.</p><p>The Belytschko-Tsay membrane element formulation (KEYOPT(1) = 5) is the same as the
+            Belytschko-Tsay but with no bending stiffness.</p><p>The S/R Hughes-Liu element formulation (KEYOPT(1) = 6) is the same as the Hughes-Liu,
+            but instead of using one-point quadrature with hourglass control, this formulation uses
+            selective reduced integration. This increases the cost by a factor of 3 to 4, but avoids
+            certain hourglass modes; certain bending hourglass modes are still possible.</p><p>The S/R corotational Hughes-Liu element formulation (KEYOPT(1) = 7) is the same as the
+            S/R Hughes-Liu except it uses the corotational system.</p><p>The Belytschko-Leviathan shell formulation (KEYOPT(1) = 8) is similar to the
+            Belytschko-Wong-Chiang with one-point quadrature but it uses physical hourglass control,
+            therefore no user-set hourglass control parameters need to be set.</p><p>The fully-integrated Belytschko-Tsay membrane element formulation (KEYOPT(1) = 9) is
+            the same as the Belytschko-Tsay membrane except is uses a 2 x 2 quadrature instead of a
+            one-point quadrature. This formulation is more robust for warped configurations.</p><p>The Belytschko-Wong-Chiang formulation (KEYOPT(1) = 10) is the same as the
+            Belytschko-Tsay except the shortcomings in warped configuration are avoided. Costs about
+            10% more.</p><p>The fast (corotational) Hughes-Liu formulation (KEYOPT(1) = 11) is the same as the
+            Hughes-Liu except this formulation uses the corotational system.</p><p>The fully-integrated Belytschko-Tsay shell element formulation (KEYOPT(1) = 12) uses a
+            2 x 2 quadrature in the shell plane and is about 2.5 times slower than KEYOPT(1) = 2. It
+            is useful in overcoming hourglass modes. The shear locking is remedied by introducing an
+            assumed strain for the transverse shear.</p><p>Of the twelve shell element formulations, only KEYOPT(1) = 1, 2, 6, 7, 8, 9, 10, 11,
+            and 12 are valid for an explicit-to-implicit sequential solution. For metal forming
+            analyses, KEYOPT(1) = 10 and 12 are recommended in order to properly account for
+            warping.</p><p>When the Mooney-Rivlin Rubber material model is used with
+                <span class="structname">SHELL163</span> elements, the LS-DYNA code will automatically use
+            a total Lagrangian modification of the Belytschko-Tsay formulation instead of using the
+            formulation you specify via KEYOPT(1). This program-chosen formulation is required to
+            address the special needs of the hyperelastic material.</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_SHELL163.html#axaySn134tlm" title="SHELL163 Input Summary">"SHELL163 Input Summary"</a>. A general
+            description of element input is given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>.</p><div class="refsect2" title="SHELL163 Input Summary"><a name="axaySn134tlm"></a><h3>SHELL163 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J, K, L</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>UX, UY, UZ, VX, VY, VZ, AX, AY, AZ, ROTX, ROTY, ROTZ</p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;For explicit dynamic analyses, V(X, Y, Z) refers to nodal
+                                velocity, and A(X, Y, Z) refers to nodal acceleration. Although V(X,
+                                Y, Z) and A(X, Y, Z) appear as DOFs, they are not actually physical
+                                DOFs. However, these quantities are computed as DOF solutions and
+                                stored for postprocessing.</p><hr></div></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>SHRF, NIP, T1, T2, T3, T4,</td></tr><tr><td>NLOC, ESOP, BETA(i), S(i), WF(i), MAT(i)</td></tr><tr><td>(BETA(i), S(i), WF(i), MAT(i) may repeat for each integration
+                                point, depending on the keyoption settings.)</td></tr><tr><td>Specify NLOC only if KEYOPT(1) = 1, 6, 7, or 11.</td></tr><tr><td>See <a class="xref" href="Hlp_E_SHELL163.html#aGiySn259tlm" title="Table&nbsp;163.1:&nbsp;&nbsp;SHELL163 Real Constants">Table&nbsp;163.1:&nbsp;SHELL163 Real Constants</a> for descriptions of the real
+                                constants.</td></tr></table></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td><a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command: See <a class="xref" href="elem_matsupp.html" title="Chapter&nbsp;4:&nbsp;Element Support for Material Models">Element Support for Material Models</a> for this element.</td></tr><tr><td><a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: EX, EY, EZ, NUXY, NUYZ,
+                                NUXZ,</td></tr><tr><td>PRXY, PRXZ, PRYZ, </td></tr><tr><td>ALPX (or CTEX <span class="italic"><em>or</em></span> THSX), GXY,
+                                GYZ, GXZ,</td></tr><tr><td>DENS, ALPD, BETD, <span>DMPR</span></td></tr><tr><td><a href="../ans_cmd/Hlp_C_EDMP.html" class="olink"><span class="command"><strong>EDMP</strong></span></a> command: RIGID, HGLS (except KEYOPT(1) =
+                                3, 4, 6, 7, 9, and 12), ORTHO</td></tr></table></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><p>Pressure (applied on midsurface)</p></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><p>Temperatures (see <a href="../ans_lsd/Hlp_L_load6.html" class="olink">Temperature Loading</a> in
+                            the <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink"><em class="citetitle">ANSYS LS-DYNA User's Guide</em></a>.</p></dd><dt><span><b class="term">Special Features</b></span></dt><dd><p>All nonlinear features allowed for an <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink">explicit dynamic analysis</a>.</p></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Element formulation:</p><div><div class="variablelist"><dl><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Hughes-Liu</p></dd><dt><span><b class="term">0, 2&nbsp;--&nbsp;</b></span></dt><dd><p>Belytschko-Tsay (default)</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>BCIZ triangular shell</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>C<sup>0</sup> triangular shell</p></dd><dt><span><b class="term">5&nbsp;--&nbsp;</b></span></dt><dd><p>Belytschko-Tsay membrane</p></dd><dt><span><b class="term">6&nbsp;--&nbsp;</b></span></dt><dd><p>S/R Hughes-Liu</p></dd><dt><span><b class="term">7&nbsp;--&nbsp;</b></span></dt><dd><p>S/R corotational Hughes-Liu</p></dd><dt><span><b class="term">8&nbsp;--&nbsp;</b></span></dt><dd><p>Belytschko-Levithan shell</p></dd><dt><span><b class="term">9&nbsp;--&nbsp;</b></span></dt><dd><p>Fully integrated Belytschko-Tsay membrane</p></dd><dt><span><b class="term">10&nbsp;--&nbsp;</b></span></dt><dd><p>Belytschko-Wong-Chiang</p></dd><dt><span><b class="term">11&nbsp;--&nbsp;</b></span></dt><dd><p>Fast (corotational) Hughes-Liu</p></dd><dt><span><b class="term">12&nbsp;--&nbsp;</b></span></dt><dd><p>Fully integrated Belytschko-Tsay shell</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Quadrature rule (used for standard integration rules, KEYOPT(4) =
+                            0):</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Gauss rule (up to five integration points are
+                                        permitted)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Trapezoidal rule (up to 100 integration points are
+                                        permitted)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(3)</b></span></dt><dd><p>Flag for layered composite material mode:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Non-composite material mode</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Composite material mode; a material angle is defined for
+                                        each through thickness integration point</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(4)</b></span></dt><dd><p>Integration rule ID:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Standard integration option</p></dd><dt><span><b class="term">n&nbsp;--&nbsp;</b></span></dt><dd><p>User-defined integration rule ID (valid range is 1 to
+                                        9999; if selected, it overrides the integration rule set by
+                                        KEYOPT(2))</p></dd></dl></div></div></dd></dl></div></div><div class="table"><a name="aGiySn259tlm"></a><p class="title"><b>Table&nbsp;163.1:&nbsp;&nbsp;SHELL163 Real Constants</b></p><div class="table-contents"><table summary="SHELL163 Real Constants" border="1" width="95%"><colgroup><col width="72" class="col1"><col width="96" class="col2"><col width="384" class="col3"></colgroup><thead><tr><th>No.</th><th align="center">Name</th><th align="center">Description</th></tr></thead><tbody><tr><td>1</td><td>SHRF</td><td>Shear factor <p>Suggested value: 5/6; if left blank, defaults
+                                    to 1</p></td></tr><tr><td>2</td><td>NIP</td><td>Number of integration points <p>If input as 0 or blank,
+                                    defaults to 2.</p></td></tr><tr><td>3</td><td>T1</td><td>Shell thickness at node I</td></tr><tr><td>4</td><td>T2</td><td>Shell thickness at node J</td></tr><tr><td>5</td><td>T3</td><td>Shell thickness at node K</td></tr><tr><td>6</td><td>T4</td><td>Shell thickness at node L</td></tr><tr><td>7</td><td>NLOC</td><td>Location of reference surface <p> = 1, top surface</p>
+                                <p> = 0, middle surface</p>
+                                <p> = -1, bottom surface</p>
+                                <p>Used only if KEYOPT(1) = 1, 6, or 7.</p></td></tr><tr><td>8</td><td>ESOP</td><td>Option for the spacing of integration points: <p>0 -
+                                    Integration points are defined using real constants S(i) and
+                                    WF(i).</p>
+                                <p>1 - Integration points are equally spaced through the
+                                    thickness such that the shell is subdivided into NIP layers of
+                                    equal thickness.</p></td></tr><tr><td>9, 13, 17,... <p>405</p></td><td>BETA(i)</td><td>Material angle at the i-th integration point.[<a class="xref" href="Hlp_E_SHELL163.html#shell163.tab.2.ft.1">1</a>]</td></tr><tr><td>10, 14, 18, ... <p>406</p></td><td>S(i)</td><td>Coordinate of integration point in the range -1 to 1. <p>i =
+                                    1, NIP (NIP = 100 max)[<a class="xref" href="Hlp_E_SHELL163.html#shell163.tab.2.ft.1">1</a>]</p></td></tr><tr><td>11,15, 19, ... <p>407</p></td><td>WF(i)</td><td>Weighting factor; that is, the thickness associated with the
+                                integration point divided by the actual shell thickness. <p>i =
+                                    1, NIP (NIP = 100 max)[<a class="xref" href="Hlp_E_SHELL163.html#shell163.tab.2.ft.1">1</a>]</p></td></tr><tr><td>12, 16, 20, ... <p>408</p></td><td>MAT(i)</td><td>Material ID for each layer. [<a class="xref" href="Hlp_E_SHELL163.html#shell163.tab.2.ft.1">1</a>]</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="shell163.tab.2.ft.1"></a>If KEYOPT(3) = 1, then BETA(i), S(i), WF(i), and MAT(i) should be
+                        specified for each integration point. For example, for 20 integration
+                        points, you would specify BETA(1), S(1), WF(1), MAT(1), BETA(2), S(2),
+                        WF(2), MAT(2), ..., BETA(20), S(20), WF(20), MAT(20). If KEYOPT(3) = 0, then
+                        only S(i) and WF(i) need to be specified. The material used will be that
+                        specified by the <a href="../ans_cmd/Hlp_C_MAT.html" class="olink"><span class="command"><strong>MAT</strong></span></a> command.</p></li></ol></div></div></div><div class="refsect1" title="SHELL163 Output Data"><a name="aT4Oxq338mcm"></a><h2>SHELL163 Output Data</h2><p>To store output data for this element, you must specify the number of output locations
+            for which you want data using the <a href="../ans_cmd/Hlp_C_EDINT.html" class="olink"><span class="command"><strong>EDINT</strong></span></a>,SHELLIP command during
+            solution. To review the stored data for a specified layer, use the
+                <a href="../ans_cmd/Hlp_C_LAYER.html" class="olink"><span class="command"><strong>LAYER</strong></span></a>,NUM command. However, be aware that the output location for
+            this data is always at the integration point. "Top" and "bottom" refer to the top or
+            bottom integration point, which is not necessarily the top or bottom surface.</p><p>Stress data is always output from the bottom of the shell to the top. See <a class="xref" href="Hlp_E_SHELL163.html#aKaySn37etlm" title="Figure&nbsp;163.2:&nbsp;&nbsp;Arbitrary Ordering of Integration Points for User Defined Shell Integration Rule">Figure&nbsp;163.2:&nbsp;Arbitrary Ordering of Integration Points for User Defined Shell Integration
+                    Rule</a>.</p><p>In all cases (default and otherwise), strain is always output for two layers only:
+            Layer 1 = bottom and layer 2 = top.</p><p>The number of integration points specified by real constant NIP controls the output
+            locations through the thickness of the shell. If NIP = SHELLIP, then each layer
+            corresponds to an integration point, and those are the locations where you will get
+            output data. If NIP&gt;SHELLIP, then data is output only at the SHELLIP number of
+            locations (first bottom layer, then layers 2 through <span class="italic"><em>n</em></span> moving up from the bottom). If NIP&lt;SHELLIP (but NIP&gt;2), then
+            results are output only for NIP number of layers.</p><p>By default, the number of integration points (NIP) is 2, and the number of output
+            locations/layers (SHELLIP) is 3. In this case, stress data is output in the following
+            order: Layer 1 = bottom, layer 2 = middle, and layer 3 = top. When SHELLIP = 3, the
+            middle layer will be an interpolated value if NIP is an even number or an actual value
+            at an integration point if NIP is an odd number.</p><p>If NIP = 1, the integration point is at the element midplane, and only one stress and
+            one strain value are output.</p><p>For elements with 2 x 2 integration points in the shell plane (KEYOPT(1) = 6, 7, 9,
+            12), LS-DYNA performs an averaging of any data output at those points in every layer so
+            that the output is the same for all shell formulations.</p><p>For the default <a href="../ans_cmd/Hlp_C_RSYS.html" class="olink"><span class="command"><strong>RSYS</strong></span></a> setting, strains (EPTO) and generalized
+            stresses (M, T, N) are output in the element coordinate system, and stresses (S) are
+            output in the global Cartesian system for all formulations associated with
+                <span class="structname">SHELL163</span>, except the Hughes-Liu formulation. Strain output
+            (EPTO) for the Hughes-Liu formulation (KEYOPT(1) = 1) is output in the global Cartesian
+            system.</p><p>You can rotate stress results for this element into another coordinate system using
+            the <a href="../ans_cmd/Hlp_C_RSYS.html" class="olink"><span class="command"><strong>RSYS</strong></span></a> command. However, <a href="../ans_cmd/Hlp_C_RSYS.html" class="olink"><span class="command"><strong>RSYS</strong></span></a> has no effect on
+            the stress results for composite <span class="structname">SHELL163</span> elements (KEYOPT(3) =
+            1). In addition, <a href="../ans_cmd/Hlp_C_RSYS.html" class="olink"><span class="command"><strong>RSYS</strong></span></a> cannot be used to rotate strain results for any
+            of the <span class="structname">SHELL163</span> element formulations.</p><p>The following items are available in the results file.</p><div class="table"><a name="aenySn171tlm"></a><p class="title"><b>Table&nbsp;163.2:&nbsp;&nbsp;SHELL163 Element Output Definitions</b></p><div class="table-contents"><table summary="SHELL163 Element Output Definitions" border="1" width="95%"><colgroup><col width="192" class="col1"><col width="312" class="col2"></colgroup><thead><tr><th align="center">Name</th><th align="center">Definition</th></tr></thead><tbody><tr><td>S(X, Y, Z, XY, YZ, XZ)</td><td>Stresses</td></tr><tr><td>S(1, 2, 3)</td><td>Principal stresses</td></tr><tr><td>SINT</td><td>Stress intensity</td></tr><tr><td>SEQV</td><td>Equivalent stress</td></tr><tr><td>EPTO(X, Y, Z, XY, YZ, XZ)</td><td>Total strain</td></tr><tr><td>EPTO(1, 2, 3)</td><td>Total principal strains</td></tr><tr><td>EPTO(INT)</td><td>Total strain intensity</td></tr><tr><td>EPTO(EQV)</td><td>Total equivalent strain</td></tr><tr><td>EPEL(X, Y, Z, XY, YZ, XZ)</td><td>Elastic strains</td></tr><tr><td>EPEL(1, 2, 3)</td><td>Principal elastic strains</td></tr><tr><td>EPEL(INT)</td><td>Elastic strain intensity</td></tr><tr><td>EPEL(EQV)</td><td>Equivalent elastic strain</td></tr><tr><td>EPPL(EQV)</td><td>Equivalent plastic strain</td></tr><tr><td>M(X, Y, XY)</td><td>Element X, Y, and XY moments</td></tr><tr><td>N(X. Y)</td><td>Out-of-plane X, Y shear</td></tr><tr><td>T(X, Y, XY)</td><td>In-plane element X, Y, and XY forces</td></tr><tr><td>Thick</td><td>Element thickness</td></tr></tbody></table></div></div><br class="table-break"><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;Stress and total strain are always available. The availability of elastic strain
+                and equivalent plastic strain depends on the material model used for the element
+                (see <a href="../ans_lsd/Hlp_L_postpro3.html#lsdelemoutputjla4400" class="olink">Element Output
+                    Data</a> in the <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink"><em class="citetitle">ANSYS LS-DYNA User's Guide</em></a> for details).</p><hr></div><p><a class="xref" href="Hlp_E_SHELL163.html#a2oySn1e8tlm" title="Table&nbsp;163.3:&nbsp;&nbsp;SHELL163 Item and Sequence Numbers">Table&nbsp;163.3:&nbsp;SHELL163 Item and Sequence Numbers</a> lists output available through the
+                <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method. See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General Postprocessor (POST1)</a> in
+            the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in this reference for more information.
+            The following notation is used in <a class="xref" href="Hlp_E_SHELL163.html#a2oySn1e8tlm" title="Table&nbsp;163.3:&nbsp;&nbsp;SHELL163 Item and Sequence Numbers">Table&nbsp;163.3:&nbsp;SHELL163 Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="Hlp_E_SHELL163.html#aenySn171tlm" title="Table&nbsp;163.2:&nbsp;&nbsp;SHELL163 Element Output Definitions">Table&nbsp;163.2:&nbsp;SHELL163 Element Output Definitions</a></p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>
+                            command</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element
+                            data</p></dd></dl></div></div><div class="table"><a name="a2oySn1e8tlm"></a><p class="title"><b>Table&nbsp;163.3:&nbsp;&nbsp;SHELL163 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="SHELL163 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="124" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"></colgroup><thead><tr><th rowspan="2" align="center" valign="middle">Output Quantity
+                            Name</th><th colspan="2" align="center"><a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and
+                                <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th align="center">Item</th><th align="center">E</th></tr></thead><tbody><tr><td align="center">MX</td><td align="center">SMISC</td><td align="center">1</td></tr><tr><td align="center">MY</td><td align="center">SMISC</td><td align="center">2</td></tr><tr><td align="center">MXY</td><td align="center">SMISC</td><td align="center">3</td></tr><tr><td align="center">NX</td><td align="center">SMISC</td><td align="center">4</td></tr><tr><td align="center">NY</td><td align="center">SMISC</td><td align="center">5</td></tr><tr><td align="center">TX</td><td align="center">SMISC</td><td align="center">6</td></tr><tr><td align="center">TY</td><td align="center">SMISC</td><td align="center">7</td></tr><tr><td align="center">TXY</td><td align="center">SMISC</td><td align="center">8</td></tr><tr><td align="center">EPEQ (top)[<a class="xref" href="Hlp_E_SHELL163.html#shell163.tab.4.ft.1">1</a>]</td><td align="center">NMISC</td><td align="center">1</td></tr><tr><td align="center">EPEQ (middle)[<a class="xref" href="Hlp_E_SHELL163.html#shell163.tab.4.ft.1">1</a>], [<a class="xref" href="Hlp_E_SHELL163.html#shell163.tab.4.ft.2">2</a>]</td><td align="center">NMISC</td><td align="center">2</td></tr><tr><td align="center">EPEQ (bottom)[<a class="xref" href="Hlp_E_SHELL163.html#shell163.tab.4.ft.1">1</a>]</td><td align="center">NMISC</td><td align="center">3</td></tr><tr><td align="center">Thick[<a class="xref" href="Hlp_E_SHELL163.html#shell163.tab.4.ft.1">1</a>]</td><td align="center">NMISC</td><td align="center">4</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="shell163.tab.4.ft.1"></a>The sequence numbers for NMISC items in this table are based on the assumption
+                    that the number of integration points for output (SHELLIP on the
+                        <a href="../ans_cmd/Hlp_C_EDINT.html" class="olink"><span class="command"><strong>EDINT</strong></span></a> command) is set to the default value of 3.</p></li><li class="listitem"><p><a name="shell163.tab.4.ft.2"></a>If the number of integration points (NIP) is even, the middle EPEQ value
+                    (NMISC,2) will be an interpolated value.</p></li></ol></div><p>The SMISC quantities in the above table are independent of layers (that is, you will
+            get one set of SMISC quantities output per element). However, the NMISC items are
+            layer-dependent, and the order of the NMISC items is dependent on the SHELLIP and NIP
+            values. The order shown in the table corresponds to the default SHELLIP value (SHELLIP =
+            3). If NIP &gt; 3, it is strongly recommended that you set SHELLIP = NIP. In this case,
+            the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> output will go from top (NMISC,1) to bottom
+                (NMISC,<em class="replaceable"><code>n</code></em>&nbsp;where <em class="replaceable"><code>n</code></em> is the total number of layers). If SHELLIP is not equal to NIP, the
+            order of NMISC items will vary. Therefore, you should not use <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>
+            to access the NMISC items when NIP &gt; 3 and SHELLIP is not equal to NIP.</p></div><div class="refsect1" title="SHELL163 Assumptions and Restrictions"><a name="aT4Oxq3a9mcm"></a><h2>SHELL163 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Zero area elements are not allowed. This occurs most often whenever the
+                    elements are not numbered properly. </p></li><li class="listitem"><p>Zero thickness elements or elements tapering down to a zero thickness at any
+                    corner are not allowed.</p></li><li class="listitem"><p>A triangular element may be formed by defining duplicate K and L node numbers
+                    as described in <a class="xref" href="Hlp_E_CH2_8.html" title="2.5.&nbsp;Degenerated Shape Elements">Degenerated Shape Elements</a>. In this event, the
+                        C<sup>0</sup> triangular shell element (KEYOPT(1) = 4) will
+                    be used.</p></li><li class="listitem"><p>An assemblage of flat shell elements can produce a good approximation to a
+                    curved shell surface provided that each flat element does not extend over more
+                    than a 15&deg; arc. </p></li></ul></div></div><div class="refsect1" title="SHELL163 Product Restrictions"><a name="aU4Oxq2amcm"></a><h2>SHELL163 Product Restrictions</h2><p>There are no product-specific restrictions for this element.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

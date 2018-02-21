@@ -1,0 +1,54 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:42:03-04:00"><title>VSWEEP</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_V_TOC.html" title="V Commands"><link rel="prev" href="Hlp_C_VSUM.html" title="VSUM"><link rel="next" href="Hlp_C_VSYMM.html" title="VSYMM"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="VSWEEP"><a name="VSWEEP"></a><div class="titlepage"></div><a class="indexterm" name="d0e301116"></a><span class="refentrytitle"><span class="command"><strong>VSWEEP</strong></span></span><div class="refnamediv"><p><span class="command"><strong>VSWEEP</strong></span>, <em class="replaceable"><code>VNUM</code></em>, <em class="replaceable"><code>SRCA</code></em>, <em class="replaceable"><code>TRGA</code></em>, <em class="replaceable"><code>LSMO</code></em><br><b class="refpurpose">Fills an existing unmeshed volume with elements by sweeping the
+mesh from an adjacent area through the volume.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7meshingldm061600" title="Table&nbsp;2.36:&nbsp;&nbsp;Meshing"><span class="type">Meshing</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="VSWEEP.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>VNUM</code></em></b></span></dt><dd><p>Number identifying the volume that is to be meshed by <span class="command"><strong>VSWEEP</strong></span>.
+ If <em class="replaceable"><code>VNUM</code></em> = P, graphical picking is enabled, you
+will be prompted to choose the volume or volumes based on the setting of <a class="link" href="Hlp_C_EXTOPT.html" title="EXTOPT"><span class="command"><strong>EXTOPT</strong></span></a>,VSWE,AUTO.
+ This argument is required. </p><p>&#8220;ALL&#8221; is a valid input
+value that when selected sends all the selected volumes to the sweeper. If <em class="replaceable"><code>VNUM</code></em> =
+ALL, each volume that can be swept will be and those not able to be swept
+will be unmeshed or meshed with tets depending upon the setting of <a class="link" href="Hlp_C_EXTOPT.html" title="EXTOPT"><span class="command"><strong>EXTOPT</strong></span></a>,VSWE,TETS. </p><p>A component name is a valid input value. All volumes that are part of
+the specified component will be sent to the sweeper.</p></dd><dt><span><b class="term"><em class="replaceable"><code>SRCA</code></em></b></span></dt><dd><p>Number identifying the source area.  This is the area whose
+mesh will provide the pattern for the volume elements.  (If you do not mesh
+the source area prior to volume sweeping, ANSYS meshes it internally when
+you initiate volume sweeping.)  ANSYS sweeps the pattern of the area elements
+through the volume to create the mesh of volume elements.  You cannot substitute
+a component name for <em class="replaceable"><code>SRCA</code></em>.</p><p>This argument
+is optional. If <em class="replaceable"><code>VNUM</code></em> = ALL or is a component containing
+more than one volume, <em class="replaceable"><code>SRCA</code></em> is ignored. If <em class="replaceable"><code>SRCA</code></em> is
+not provided or if it is ignored, <span class="command"><strong>VSWEEP</strong></span> attempts to automatically
+determine which area should be the target area.</p></dd><dt><span><b class="term"><em class="replaceable"><code>TRGA</code></em></b></span></dt><dd><p>Number identifying the target area.  This is the area that
+is opposite the source area specified by <em class="replaceable"><code>SRCA</code></em>.
+ You cannot substitute a component name for <em class="replaceable"><code>TRGA</code></em>.</p><p> This argument is optional. If <em class="replaceable"><code>VNUM</code></em> = ALL
+or component containing more than one volume, <em class="replaceable"><code>TRGA</code></em> is
+ignored. If <em class="replaceable"><code>TRGA</code></em> is not provided or if it is ignored, <span class="command"><strong>VSWEEP</strong></span> attempts
+to automatically determine which area should be the target area.</p></dd><dt><span><b class="term"><em class="replaceable"><code>LSMO</code></em></b></span></dt><dd><p>Value specifying whether ANSYS should perform line smoothing
+during volume sweeping.  (The value of this argument controls line smoothing
+for the <span class="command"><strong>VSWEEP</strong></span> command only;  it has no effect on the setting
+of the <a class="link" href="Hlp_C_MOPT.html" title="MOPT"><span class="command"><strong>MOPT</strong></span></a> command's LSMO option.)  This argument is optional.
+       </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Do not perform line smoothing.  This is the
+default.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Always perform line smoothing.  This setting
+is not recommended for large models due to speed considerations.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="VSWEEP.notes"></a><h2>Notes</h2><p>If the source mesh consists of quadrilateral elements, ANSYS fills the
+volume with hexahedral elements.  If the source mesh consists of triangles,
+ANSYS fills the volume with wedges.  If the source mesh consists of a combination
+of quadrilaterals and triangles, ANSYS fills the volume with a combination
+of hexahedral and wedge elements.</p><p>In the past, you may have used the <a class="link" href="Hlp_C_VROTAT.html" title="VROTAT"><span class="command"><strong>VROTAT</strong></span></a>, <a class="link" href="Hlp_C_VEXT.html" title="VEXT"><span class="command"><strong>VEXT</strong></span></a>, <a class="link" href="Hlp_C_VOFFST.html" title="VOFFST"><span class="command"><strong>VOFFST</strong></span></a>,
+and/or <a class="link" href="Hlp_C_VDRAG.html" title="VDRAG"><span class="command"><strong>VDRAG</strong></span></a> commands to extrude a meshed area into a meshed
+volume.  However, those commands create the volume and the volume mesh simultaneously.
+ In contrast, the <span class="command"><strong>VSWEEP</strong></span> command is intended for use in
+an existing unmeshed volume.  This makes <span class="command"><strong>VSWEEP</strong></span> particularly
+useful when you have imported a solid model that was created in another program,
+and you want to mesh it in ANSYS.</p><p>For related information, see the description of the <a class="link" href="Hlp_C_EXTOPT.html" title="EXTOPT"><span class="command"><strong>EXTOPT</strong></span></a> command
+(although <a class="link" href="Hlp_C_EXTOPT.html" title="EXTOPT"><span class="command"><strong>EXTOPT</strong></span></a> sets volume sweeping options, it does
+not affect element spacing). Also see the detailed discussion of volume sweeping
+in <a href="../ans_mod/Hlp_G_MOD7_5.html" class="olink">Meshing Your Solid Model</a> of
+the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a>.</p></div><div class="refsect1" title="Menu Paths"><a name="VSWEEP.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Mesh&gt;Volume Sweep&gt;Sweep</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

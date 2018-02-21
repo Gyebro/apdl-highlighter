@@ -1,0 +1,144 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:11-04:00"><title>1.3.&nbsp;Command Characteristics</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_C_CH1.html" title="Chapter&nbsp;1:&nbsp;About This Reference"><link rel="prev" href="Hlp_C_CH1_2_3.html" title="1.2.&nbsp;Terminology"><link rel="next" href="aV39Sq344ctg.html" title="Chapter&nbsp;2:&nbsp;Command Groupings"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="1.3.&nbsp;Command Characteristics"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="aOG6vq332mcm"></a>1.3.&nbsp;Command Characteristics</h2></div></div></div><div class="highlights"><p>The following characteristics apply to commands:</p><ul><li><a href="Hlp_C_CH1_3.html#aq97Sq201ctg" title="1.3.1.&nbsp;Data Input">Data Input</a></li><li><a href="Hlp_C_CH1_3.html#aOG6vq3e1mcm" title="1.3.2.&nbsp;Free-Format Input">Free-Format Input</a></li><li><a href="Hlp_C_CH1_3.html#aPG6vq66mcm" title="1.3.3.&nbsp;Nonrestrictive Data Input">Nonrestrictive Data Input</a></li><li><a href="Hlp_C_CH1_3.html#aPG6vqd8mcm" title="1.3.4.&nbsp;Condensed Data Input">Condensed Data Input</a></li><li><a href="Hlp_C_CH1_3.html#aPG6vq14cmcm" title="1.3.5.&nbsp;Units">Units</a></li><li><a href="Hlp_C_CH1_3.html#aPG6vq1bamcm" title="1.3.6.&nbsp;Command and Argument Defaults">Command and Argument Defaults</a></li><li><a href="Hlp_C_CH1_3.html#aPG6vq22amcm" title="1.3.7.&nbsp;File Names">File Names</a></li><li><a href="Hlp_C_CH1_3.html#PG6vq298mcm" title="1.3.8.&nbsp;Star and Slash Commands">Star and Slash Commands</a></li></ul></div><div class="sect2" title="1.3.1.&nbsp;Data Input"><div class="titlepage"><div><div><h3 class="title"><a name="aq97Sq201ctg"></a>1.3.1.&nbsp;Data Input</h3></div></div></div><p>The data input for each command is described in this manual.
+ Data should  not be input in any undocumented field, nor should other
+than documented values  be input in any field.  Also, the data input
+described in this manual should  not be used with any earlier version
+of the program.  Some features  that allow easy input of data are
+free-format, nonrestrictive, and condensed  input.</p></div><div class="sect2" title="1.3.2.&nbsp;Free-Format Input"><div class="titlepage"><div><div><h3 class="title"><a name="aOG6vq3e1mcm"></a>1.3.2.&nbsp;Free-Format Input</h3></div></div></div><p>Free-format capability allows the user to input data in consecutive
+ fields without having to space to each field.  The comma (,) character
+effectively  ends the field so that the next character will be input
+in the beginning of  the next field.  A blank field is skipped by
+having no data item between the  commas. Fields are assumed to be
+as wide as the number of characters specified.   Input is converted
+to formatted fields when coded files are written (of width  large
+enough (16 characters maximum) to minimize loss of accuracy).</p><p>Significant figures of output should not be expected to match
+that of  input.  Machine precision, rounding of numbers when writing
+internal scratch  files, etc., tend to lower the precision during
+the analysis.</p></div><div class="sect2" title="1.3.3.&nbsp;Nonrestrictive Data Input"><div class="titlepage"><div><div><h3 class="title"><a name="aPG6vq66mcm"></a>1.3.3.&nbsp;Nonrestrictive Data Input</h3></div></div></div><p>Nonrestrictive data input allows the user to enter any form
+of data  in a field and the ANSYS program will interpret it as required
+(integer, real,  or alphabetic) or ignore it.  Double precision is
+used throughout the program  for all real numbers.  Alphabetic data
+may be entered in upper or lower case.   Lower case is internally
+converted to upper case within the program (except  for case-sensitive
+applications, such as in comments, (text preceded by a !)  titles,
+and file names.) </p><p>The following features are available with the nonrestrictive
+data input.       </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>No distinction is necessary between real and integer
+data. </p></li><li class="listitem"><p>Data may be placed anywhere within the field.</p></li><li class="listitem"><p>Real data input without a decimal point has the decimal
+point  assumed after the right-most digit.</p></li><li class="listitem"><p>Real number values input to integer data fields will
+be rounded to the nearest integer. The absolute value of integer data
+must fall between zero and 2,000,000,000.</p></li><li class="listitem"><p>Element and node numbers (IDs) should be between 1
+and <span>999,999,999</span>. Element type,
+material reference, real constant, section, and coordinate system
+IDs should be between 1 and 9,999,999. IDs larger than these may not
+be written out correctly in listings (xLIST commands), <a class="link" href="Hlp_C_CDWRITE.html" title="CDWRITE"><span class="command"><strong>CDWRITE</strong></span></a> files, <a class="link" href="Hlp_C_LSWRITE.html" title="LSWRITE"><span class="command"><strong>LSWRITE</strong></span></a> files, and other text-based output
+files.</p></li><li class="listitem"><p>Exponents may be input in the field after the number. The E (or D) character must be
+       used (upper or lower case). The sign after the E character is assumed to be the sign
+       associated with the exponent (the absence of a sign is assumed to be +). The acceptable range
+       of values for real data is +/-1.0E+200 to +/-1.0E-200.</p></li><li class="listitem"><p>A nonnumeric character in the numeric field (other
+than a  valid convenience label, a parameter name, or an E or D exponent
+character)  will be ignored and will cause the remainder of the field
+to be ignored.   When the program can accept an alphanumeric label
+in a field, it will interpret  any alphanumeric input that matches
+a valid label as the appropriate label.   In other words, the program
+will not interpret a valid label as an identically  named parameter.
+ If you truly want to use a parameter in place of a valid  label,
+you can use forced parametric substitution (using % signs).  A non-alphanumeric
+ character in a label field is taken as part of the label.  Non-alphanumeric
+ characters (such as CONTROL-characters, TAB-characters, and other
+terminal  editing characters) should be avoided since they may be
+used directly instead  of being interpreted by the terminal.</p></li></ul></div></div><div class="sect2" title="1.3.4.&nbsp;Condensed Data Input"><div class="titlepage"><div><div><h3 class="title"><a name="aPG6vqd8mcm"></a>1.3.4.&nbsp;Condensed Data Input</h3></div></div></div><p>An option for condensing the data input is available with the
+$ character.   This character effectively ends a command and allows
+the next command to  begin on the same line (at the next column).
+ The line must not extend beyond  640 characters (including all commas
+and $ signs).  If a command cannot be  completed on the line, it should
+begin on the next line.  Blank commands are  ignored.  The $ character
+should not be used following any command that causes  a file switch
+to read additional commands (such as the <a href="Hlp_C_INPUT.html" class="olink"><span class="command"><strong>/INPUT</strong></span></a>, <a href="Hlp_C_USE.html" class="olink"><span class="command"><strong>*USE</strong></span></a>, <a class="link" href="Hlp_C_CDREAD.html" title="CDREAD"><span class="command"><strong>CDREAD</strong></span></a>, etc. commands,
+ any "unknown command" macro, or any do-loops or if-then-else constructs).
+  The $ character should not be used between a command and its required
+following  format line (such as <a href="Hlp_C_VREAD.html" class="olink"><span class="command"><strong>*VREAD</strong></span></a>, <a href="Hlp_C_VWRITE.html" class="olink"><span class="command"><strong>*VWRITE</strong></span></a>,  <a href="Hlp_C_MSG.html" class="olink"><span class="command"><strong>*MSG</strong></span></a>,  etc.).   The $ character
+should not be used after the  <a class="link" href="Hlp_C_ALLSEL.html" title="ALLSEL"><span class="command"><strong>ALLSEL</strong></span></a>  command.
+Using the $ character in interactive mode may result in unexpected
+output behavior.</p></div><div class="sect2" title="1.3.5.&nbsp;Units"><div class="titlepage"><div><div><h3 class="title"><a name="aPG6vq14cmcm"></a>1.3.5.&nbsp;Units</h3></div></div></div><p>The ANSYS program permits the use of any consistent set of units
+for  length, force, time, temperature, etc.  Care must be taken to
+ensure that  all input data are in the same set of units.  The <a href="Hlp_C_UNITS.html" class="olink"><span class="command"><strong>/UNITS</strong></span></a>  command may be used to note the system of units
+being used.  Temperatures  may be absolute or relative in most cases.
+ For problems requiring absolute  temperatures, such as those involving
+creep, swelling, or radiation, temperatures  may be input as Celsius
+or Fahrenheit, for convenience, with a temperature shift from absolute
+zero [<a class="link" href="Hlp_C_TOFFST.html" title="TOFFST"><span class="command"><strong>TOFFST</strong></span></a>].</p></div><div class="sect2" title="1.3.6.&nbsp;Command and Argument Defaults"><div class="titlepage"><div><div><h3 class="title"><a name="aPG6vq1bamcm"></a>1.3.6.&nbsp;Command and Argument Defaults</h3></div></div></div><a class="indexterm" name="d0e599"></a><a class="indexterm" name="d0e604"></a><a class="indexterm" name="d0e609"></a><a class="indexterm" name="d0e614"></a><p>To minimize the amount of data input, most commands have defaults
+which apply both to the command itself and to any arguments.</p><p><span class="bold"><strong>Command Defaults</strong></span></p><p>A <span class="italic"><em>command default</em></span> refers
+to the specification or behavior that is assumed when a command is
+not issued.  For example, if you do not issue the <a href="Hlp_C_FILNAME.html" class="olink"><span class="command"><strong>/FILNAME</strong></span></a> command, the jobname defaults to <span class="filename"><strong>FILE</strong></span> (or whatever
+jobname was specified when you entered the program).</p><p><span class="bold"><strong>Argument Defaults</strong></span></p><p>An <span class="italic"><em>argument default</em></span> is the
+value assumed for a command argument if the argument is not specified.
+For example, if you issue the command <a class="link" href="Hlp_C_N.html" title="N"><span class="command"><strong>N</strong></span></a>,10 (defining
+node 10 with the <span class="italic"><em>X, Y, Z</em></span> coordinate
+arguments left blank), the node is defined at the origin; that is, <span class="italic"><em>X, Y</em></span>, and <span class="italic"><em>Z</em></span> default to zero.  </p><p>Values for numeric arguments (such as <span class="italic"><em>X, Y, Z</em></span>) typically default to zero, although exceptions
+exist for some commands, such as those with arguments specifying coefficients
+or tolerances. Such exceptions are noted in the documentation for
+those commands. </p><p>When an argument has a nonzero default, entering a blank <span class="italic"><em>or a zero</em></span> for that argument triggers the
+nonzero default value. If an effective zero is desired for such an
+argument, input a very small number (such as 1E-14) instead.</p><p>In cases where no default is indicated or obvious for an argument,
+enter the desired value. Such arguments have no favored default value
+and require an explicit input value.</p><div class="informaltable"><table border="1" width="95%"><colgroup><col class="col1" width="100%"></colgroup><tbody><tr><td><p><span class="bold"><strong>Some Command Defaults
+May Differ According to Product</strong></span></p><p>The defaults
+for some commands and their arguments may differ depending on which
+product is using the commands. The "Product Restrictions" section
+of the descriptions of the affected commands clearly documents such
+cases. </p><p>If you intend to use your input file in more than
+one product, it is good practice to explicitly specify commands and
+argument values, rather than letting them default. Otherwise, behavior
+in the other product may differ from what you expect.</p></td></tr></tbody></table></div></div><div class="sect2" title="1.3.7.&nbsp;File Names"><div class="titlepage"><div><div><h3 class="title"><a name="aPG6vq22amcm"></a>1.3.7.&nbsp;File Names</h3></div></div></div><p>Various files are used during a session for reading, writing,
+and storing data.  Program-generated files are identified by a name,
+a system-dependent separator, and an extension (as in the form <span class="filename"><strong>fname.ext</strong></span>).</p><p>The name is obtained from the <span class="filename"><strong>Jobname</strong></span> (250
+characters maximum, including the directory name) as defined with
+the execution command. (Windows cannot create directory names longer
+than 245 characters.)</p><p>Unless otherwise specified, the <span class="filename"><strong>Jobname</strong></span> defaults to a system-dependent name (usually <span class="filename"><strong>FILE</strong></span>).  The extension is a two- to four-character identifier. (See <a href="../ans_bas/Hlp_G_BAS18_4.html#ahStsqbfldm" class="olink">Files that ANSYS Writes</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a>.) For example, the error message file (which has
+the identifier <span class="filename"><strong>ERR</strong></span>)  with a jobname of <span class="filename"><strong>FILE</strong></span> and separator (.) would be generated as <span class="filename"><strong>FILE.ERR</strong></span>.  If the Jobname is <span class="filename"><strong>JOB1</strong></span>,  the file would be named <span class="filename"><strong>JOB1.ERR</strong></span>.  The documentation
+generically refers to program-generated files as <span class="filename"><strong>Jobname</strong></span>.<em class="replaceable"><code>identifier</code></em>, such as <span class="filename"><strong>Jobname.ERR</strong></span> for the error message file. Unless otherwise indicated, files are
+written in the current working directory.</p><p>Some commands (such as <a href="Hlp_C_INPUT.html" class="olink"><span class="command"><strong>/INPUT</strong></span></a> and <a href="Hlp_C_OUTPUT.html" class="olink"><span class="command"><strong>/OUTPUT</strong></span></a>) allow you to specify a file name other than <span class="filename"><strong>Jobname</strong></span>, and an extension other than the default extension.
+Such user-written files use a naming convention similar  to the ANSYS-generated
+files except that the name (248 characters maximum, including the
+directory name) is user defined, and the extension (8 characters maximum)
+is optional. The file name can include the directory path, but it
+is not necessary if you want to use the default directory. File names
+containing directory paths must reference existing directories. File
+and directory names may contain blank spaces, but strings containing
+blank spaces must be enclosed in single quotes.</p><p>A system dependent separator is automatically written between
+file name  and extension (if the extension exists) input on commands.
+ </p><p>File name fields are usually restricted to 248 characters (including
+the directory name) in command inputs. If you specify no directory
+path, the default path is your working directory, and you can use
+all 248 characters for the file name.</p><p>To help ensure portability of input files across systems, the
+program has certain requirements for file names.  File names specified
+by  the user should contain ASCII alpha-numeric characters. Avoid
+using special characters (+,-,*,/,$,!, etc.) in file names unless
+meaningful, and begin file names with a letter.  Some system-dependent
+special characters (such as ~) are not interpreted the same as they
+are at the operating system level when used in path names.  Parameter
+substitution may be forced within the name, extension, or directory
+fields by enclosing the parameter within percent (%) signs.  For example,
+if I = 5, the name TEST%I%  becomes TEST5.  Only one forced substitution
+may be made per field.</p></div><div class="sect2" title="1.3.8.&nbsp;Star and Slash Commands"><div class="titlepage"><div><div><h3 class="title"><a name="PG6vq298mcm"></a>1.3.8.&nbsp;Star and Slash Commands</h3></div></div></div><p>The slash (<span class="bold"><strong>/</strong></span>) and star (<span class="bold"><strong>  *</strong></span>) commands are usually used for supplying
+general control instructions to the program. For example, slash commands
+are used for entering  a processor (<a href="Hlp_C_PREP7.html" class="olink"><span class="command"><strong>/PREP7</strong></span></a>, <a href="Hlp_C_POST1.html" class="olink"><span class="command"><strong>/POST1</strong></span></a>, etc.).  Printout  controls, display controls, and
+file controls are available within the slash command set.  </p><p>Repeat, looping and macro controls are available within the
+ star command set.  </p><p>Many star and slash commands are global and apply to all  processors.
+For example, the <a href="Hlp_C_TITLE.html" class="olink"><span class="command"><strong>/TITLE</strong></span></a>  command may be used to
+change the title in any processor (PREP7, POST1, etc.). The star commands
+can be input anywhere. Most slash commands can be input anywhere;
+however, some can only be input at a Begin level, and those commands
+are specifically noted in the command description.  Graphics displays
+are controlled via the graphics display slash commands.  The graphics
+display slash commands can be input anywhere.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

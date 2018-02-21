@@ -1,0 +1,58 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:45-04:00"><title>EDIPART</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_EDINT.html" title="EDINT"><link rel="next" href="Hlp_C_EDIS.html" title="EDIS"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="EDIPART"><a name="EDIPART"></a><div class="titlepage"></div><a class="indexterm" name="d0e82993"></a><span class="refentrytitle"><span class="command"><strong>EDIPART</strong></span></span><div class="refnamediv"><p><span class="command"><strong>EDIPART</strong></span>, <em class="replaceable"><code>PART</code></em>, <em class="replaceable"><code>Option</code></em>, <em class="replaceable"><code>Cvect</code></em>, <em class="replaceable"><code>TM</code></em>, <em class="replaceable"><code>IRCS</code></em>, <em class="replaceable"><code>Ivect</code></em>, <em class="replaceable"><code>Vvect</code></em>, <em class="replaceable"><code>CID</code></em><br><b class="refpurpose">Defines inertia for rigid parts in an explicit dynamics analysis.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7expdynldm061600" title="Table&nbsp;2.44:&nbsp;&nbsp;Explicit Dynamics"><span class="type">Explicit Dynamics</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="EDIPART.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>PART</code></em></b></span></dt><dd><p>Part number for which the inertia is defined (the part number
+must have been previously generated using the <a class="link" href="Hlp_C_EDPART.html" title="EDPART"><span class="command"><strong>EDPART</strong></span></a> command).
+ The part should be composed of a rigid material (<a class="link" href="Hlp_C_EDMP.html" title="EDMP"><span class="command"><strong>EDMP</strong></span></a>,RIGID).
+For <em class="replaceable"><code>Option</code></em> = ADD, you must input a value; there
+is no default. For <em class="replaceable"><code>Option</code></em> = DELE or LIST, <em class="replaceable"><code>PART</code></em> defaults
+to all parts.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Option</code></em></b></span></dt><dd><p> </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ADD&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Define inertia for the specified <em class="replaceable"><code>PART</code></em> (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DELE&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Delete the inertia properties
+for the specified <em class="replaceable"><code>PART</code></em>. The remaining fields are
+ignored. If <em class="replaceable"><code>PART</code></em> is blank, inertia properties previously
+specified using <span class="command"><strong>EDIPART</strong></span> are deleted for all rigid parts.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LIST&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>List the inertia properties for
+the specified <em class="replaceable"><code>PART</code></em>. The remaining fields are ignored.
+If <em class="replaceable"><code>PART</code></em> is blank, inertia properties are listed
+for all rigid parts.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Cvect</code></em></b></span></dt><dd><p>The vector containing the global Cartesian coordinates of
+the center of mass for the part. This vector must have been previously defined
+with a dimension of three (<a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a> command) and filled in
+as shown below. If <em class="replaceable"><code>Cvect</code></em> is blank, the global Cartesian
+origin (0,0,0) is used as the center of mass.</p><table border="0" summary="Simple list" class="simplelist"><tr><td><em class="replaceable"><code>Cvect</code></em>(1) -- X-coordinate of the center
+of mass</td></tr><tr><td><em class="replaceable"><code>Cvect</code></em>(2) -- Y-coordinate of the center
+of mass</td></tr><tr><td><em class="replaceable"><code>Cvect</code></em>(3) --&nbsp;Z-coordinate of the center
+of mass</td></tr></table></dd><dt><span><b class="term"><em class="replaceable"><code>TM</code></em></b></span></dt><dd><p>Translation mass (no default, must be defined).</p></dd><dt><span><b class="term"><em class="replaceable"><code>IRCS</code></em></b></span></dt><dd><p>Flag for inertia tensor reference coordinate system.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0&nbsp;(or&nbsp;blank)&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Global inertia tensor
+(default). You must supply all six inertia tensor components (see <em class="replaceable"><code>Ivect</code></em>).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Principal moments of inertia with
+orientation vectors. You must supply IXX, IYY, IZZ (see <em class="replaceable"><code>Ivect</code></em>)
+and <em class="replaceable"><code>CID</code></em>.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Ivect</code></em></b></span></dt><dd><p>The name of a vector containing the components of the inertia
+tensor. This vector must have been previously defined (<a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a> command)
+with a dimension of six and filled in as shown below. Vector entries 2, 3,
+and 5 are ignored if <em class="replaceable"><code>IRCS</code></em> = 1. There is no default
+for this vector; it must be specified.</p><table border="0" summary="Simple list" class="simplelist"><tr><td><em class="replaceable"><code>Ivect</code></em>(1) -- IXX component of the inertia
+tensor</td></tr><tr><td><em class="replaceable"><code>Ivect</code></em>(2)&nbsp;--&nbsp;IXY (set this entry
+to zero if <em class="replaceable"><code>IRCS</code></em> = 1)</td></tr><tr><td><em class="replaceable"><code>Ivect</code></em>(3)&nbsp;--&nbsp;IXZ (set this entry
+to zero if <em class="replaceable"><code>IRCS</code></em> = 1)</td></tr><tr><td><em class="replaceable"><code>Ivect</code></em>(4)&nbsp;--&nbsp;IYY component of
+the inertia tensor</td></tr><tr><td><em class="replaceable"><code>Ivect</code></em>(5)&nbsp;--&nbsp;IYZ (set this entry
+to zero if <em class="replaceable"><code>IRCS</code></em> = 1)</td></tr><tr><td><em class="replaceable"><code>Ivect</code></em>(6)&nbsp;--&nbsp;IZZ component of
+the inertia tensor</td></tr></table></dd><dt><span><b class="term"><em class="replaceable"><code>Vvect</code></em></b></span></dt><dd><p>The name of a vector containing the initial velocity (relative
+to the global Cartesian coordinate system) of the rigid part. This vector
+must have been previously defined (<a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a> command) with a
+dimension of six and filled in as shown below. If <em class="replaceable"><code>Vvect</code></em> is
+blank, the initial velocity defaults to zero.</p><table border="0" summary="Simple list" class="simplelist"><tr><td><em class="replaceable"><code>Vvect</code></em>(1)&nbsp;--&nbsp;Initial translational
+velocity of rigid body in X-direction</td></tr><tr><td><em class="replaceable"><code>Vvect</code></em>(2)&nbsp;--&nbsp;Initial translational
+velocity of rigid body in Y-direction</td></tr><tr><td><em class="replaceable"><code>Vvect</code></em>(3)&nbsp;--&nbsp;Initial translational
+velocity of rigid body in Z-direction</td></tr><tr><td><em class="replaceable"><code>Vvect</code></em>(4)&nbsp;--&nbsp;Initial rotational
+velocity of rigid body about the X-axis</td></tr><tr><td><em class="replaceable"><code>Vvect</code></em>(5)&nbsp;--&nbsp;Initial rotational
+velocity of rigid body about the Y-axis</td></tr><tr><td><em class="replaceable"><code>Vvect</code></em>(6)&nbsp;--&nbsp;Initial rotational
+velocity of rigid body about the Z-axis</td></tr></table></dd><dt><span><b class="term"><em class="replaceable"><code>CID</code></em></b></span></dt><dd><p>Local coordinate system ID. This coordinate system must have
+been previously defined with the <a class="link" href="Hlp_C_EDLCS.html" title="EDLCS"><span class="command"><strong>EDLCS</strong></span></a> command. You must
+input <em class="replaceable"><code>CID</code></em> if <em class="replaceable"><code>IRCS</code></em> =
+1 (no default).</p></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="EDIPART.default"></a><h3>Command Default</h3><p>Inertia properties are calculated by the program for all rigid parts.</p></div></div><div class="refsect1" title="Notes"><a name="EDIPART.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>EDIPART</strong></span> command applies only to rigid parts (<a class="link" href="Hlp_C_EDMP.html" title="EDMP"><span class="command"><strong>EDMP</strong></span></a>,RIGID).
+It allows you to input the inertia properties for the rigid part rather than
+having the program calculate the properties from the finite element mesh.</p><p>This command is also valid in Solution.</p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p></div><div class="refsect1" title="Menu Paths"><a name="EDIPART.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;LS-DYNA Options&gt;Inertia Options&gt;Define Inertia</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;LS-DYNA Options&gt;Inertia Options&gt;Delete Inertia</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;LS-DYNA Options&gt;Inertia Options&gt;List Inertia</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

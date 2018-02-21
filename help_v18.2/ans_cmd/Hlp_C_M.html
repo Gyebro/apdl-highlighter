@@ -1,0 +1,40 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:40-04:00"><title>M</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_M_TOC.html" title="M Commands"><link rel="prev" href="Hlp_M_TOC.html" title="M Commands"><link rel="next" href="Hlp_C_MAGOPT.html" title="MAGOPT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="M"><a name="M"></a><div class="titlepage"></div><a class="indexterm" name="d0e158928"></a><span class="refentrytitle"><span class="command"><strong>M</strong></span></span><div class="refnamediv"><p><span class="command"><strong>M</strong></span>, <em class="replaceable"><code>NODE</code></em>, <em class="replaceable"><code>Lab1</code></em>, <em class="replaceable"><code>NEND</code></em>, <em class="replaceable"><code>NINC</code></em>, <em class="replaceable"><code>Lab2</code></em>, <em class="replaceable"><code>Lab3</code></em>, <em class="replaceable"><code>Lab4</code></em>, <em class="replaceable"><code>Lab5</code></em>, <em class="replaceable"><code>Lab6</code></em><br><b class="refpurpose">Defines master degrees of freedom for superelement generation
+analyses.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolumstrdofjla070199" title="Table&nbsp;2.61:&nbsp;&nbsp;Master Degrees of Freedom"><span class="type">Master DOF</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="M.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NODE</code></em></b></span></dt><dd><p>Node number at which master degree of freedom is defined.
+ If ALL, define master degrees of freedom at all selected nodes (<a class="link" href="Hlp_C_NSEL.html" title="NSEL"><span class="command"><strong>NSEL</strong></span></a>).  If <em class="replaceable"><code>NODE</code></em> = P, graphical
+picking is enabled and all remaining command fields are ignored (valid
+only in the GUI).  A component name may also be substituted for <em class="replaceable"><code>NODE</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Lab1</code></em></b></span></dt><dd><p>Valid degree of freedom label. If ALL, use all appropriate
+labels. Structural labels:  UX, UY, or UZ (displacements); ROTX, ROTY,
+or ROTZ (rotations). Thermal labels: TEMP, TBOT, TE2, TE3, . . .,
+TTOP (temperature).  Electric labels:  VOLT (voltage).  </p></dd><dt><span><b class="term"><em class="replaceable"><code>NEND</code></em>, <em class="replaceable"><code>NINC</code></em></b></span></dt><dd><p>Define all nodes from <em class="replaceable"><code>NODE</code></em> to <em class="replaceable"><code>NEND</code></em> (defaults to <em class="replaceable"><code>NODE</code></em>) in steps of <em class="replaceable"><code>NINC</code></em> (defaults to 1) as
+master degrees of freedom in the specified direction.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Lab2</code></em>, <em class="replaceable"><code>Lab3</code></em>, <em class="replaceable"><code>Lab4</code></em>, . . . , <em class="replaceable"><code>Lab6</code></em></b></span></dt><dd><p>Additional master degree of freedom labels.  The nodes
+defined are associated with each label specified.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="M.notes"></a><h2>Notes</h2><p>Defines master degrees of freedom (MDOF)
+for superelement generation. If defined for other analyses, MDOF are
+ignored.  If used in SOLUTION, this command is valid only within the
+first load step.</p><p>Repeat <span class="command"><strong>M</strong></span> command for additional master degrees
+of freedom.  The limit for the number of master nodes used is determined
+by the maximum system memory available.</p><p>The substructure (<a class="link" href="Hlp_C_ANTYPE.html" title="ANTYPE"><span class="command"><strong>ANTYPE</strong></span></a>,SUBSTR) analysis utilizes the matrix condensation technique to reduce
+the structure matrices to those characterized by a set of master degrees
+of freedom.</p><p>Master degrees of freedom are identified by a list of nodes
+and their nodal directions.  The actual degree of freedom directions
+available for a particular node depends upon the degrees of freedom
+associated with element types (<a class="link" href="Hlp_C_ET.html" title="ET"><span class="command"><strong>ET</strong></span></a>) at that node.
+ There must be some mass (or stress stiffening in the case of the
+buckling analysis) associated with each master degree of freedom (except
+for the VOLT label).  The mass may be due either to the distributed
+mass of the element or due to discrete lumped masses at the node.
+ If a master degree of freedom is specified at a constrained point,
+it is ignored.  If a master degree of freedom is specified at a coupled
+node, it should be specified at the prime node of the coupled set.
+ </p><p>Substructure analysis connection points
+must be defined as master degrees of freedom.</p><p>This command is also valid in PREP7.</p></div><div class="refsect1" title="Menu Paths"><a name="M.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Master DOFs&gt;Define</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;CMS&gt;CMS Interface&gt;Define</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Master DOFs&gt;Define</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

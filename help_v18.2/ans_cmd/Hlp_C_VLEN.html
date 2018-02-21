@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:57-04:00"><title>*VLEN</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_V_TOC.html" title="V Commands"><link rel="prev" href="Hlp_C_VITRP.html" title="*VITRP"><link rel="next" href="Hlp_C_VLIST.html" title="VLIST"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="*VLEN"><a name="a-VLEN"></a><div class="titlepage"></div><a class="indexterm" name="d0e296207"></a><span class="refentrytitle"><a href="Hlp_C_VLEN.html" class="olink"><span class="command"><strong>*VLEN</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>*VLEN</strong></span>, <em class="replaceable"><code>NROW</code></em>, <em class="replaceable"><code>NINC</code></em><br><b class="refpurpose">Specifies the number of rows to be used in array parameter operations.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_4.html" title="2.4.&nbsp;APDL Commands"><code class="classname">APDL</code></a>: <a class="link" href="Hlp_C_CH2_4.html#cmdapdlarrayparajla070199" title="Table&nbsp;2.21:&nbsp;&nbsp;Array Parameters"><span class="type">Array Parameters</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsect1" title="Argument Descriptions"><a name="a-VLEN.argdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NROW</code></em></b></span></dt><dd><p>Number of rows to be used with the <span class="bold"><strong>*V<em class="replaceable"><code>XX</code></em></strong></span> or <span class="bold"><strong>*M<em class="replaceable"><code>XX</code></em></strong></span> operations.  Defaults to the number
+of rows needed to fill the result array.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NINC</code></em></b></span></dt><dd><p>Perform the operation on every <em class="replaceable"><code>NINC</code></em> row
+(defaults to 1).</p></dd></dl></div></div></div><div class="refsect1" title="Command Default"><a name="a-VLEN.default"></a><h2>Command Default</h2><p>Fill all locations of the result array from the specified starting location.</p></div><div class="refsect1" title="Notes"><a name="a-VLEN.notes"></a><h2>Notes</h2><p>Specifies the number of rows to be used in array parameter operations.
+ The size of the submatrix used is determined from the upper left starting
+array element (defined on the operation command) to the lower right array
+element (defined by the number of rows on this command and the number of columns
+on the <a href="Hlp_C_VCOL.html" class="olink"><span class="command"><strong>*VCOL</strong></span></a> command).  <em class="replaceable"><code>NINC</code></em> allows
+skipping row operations for some operation commands.  Skipped rows are included
+in the row count.  The starting row number must be defined on the operation
+command for each parameter read and for the result written.</p><p>The default <em class="replaceable"><code>NROW</code></em> is calculated from the maximum
+number of rows of the result array (the <a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a> row dimension)
+minus the starting location + 1.  For example, <a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a>,R,,10
+and a starting location of R(7) gives a default of 4 loops (filling R(7),
+R(8), R(9), and R(10)).  Repeat operations automatically terminate at the
+last row of the result array.  Existing values in the rows and columns of
+the results matrix remain unchanged where not overwritten by the requested
+input or operation values.</p><p>The stride (<em class="replaceable"><code>NINC</code></em>) allows operations to be
+performed at regular intervals.  It has no effect on the total number of row
+operations.  Skipped operations retain the previous result.  For example, <a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a>,R,,6,
+with a starting location of R(1), <em class="replaceable"><code>NROW</code></em> = 10, and <em class="replaceable"><code>NINC</code></em> =
+2 calculates values for locations R(1), R(3), and R(5) and retains values
+for locations R(2), R(4), and R(6).  A more general skip control may be done
+by masking [<a href="Hlp_C_VMASK.html" class="olink"><span class="command"><strong>*VMASK</strong></span></a>].  The row control settings are <span class="italic"><em>reset</em></span> to the defaults after each <span class="bold"><strong>*V<em class="replaceable"><code>XX</code></em></strong></span> or <span class="bold"><strong>*M<em class="replaceable"><code>XX</code></em></strong></span> operation.  Use <a href="Hlp_C_VSTAT.html" class="olink"><span class="command"><strong>*VSTAT</strong></span></a> to
+list settings.</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e296339"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;Parameters&gt;Array Operations&gt;Operation Settings</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

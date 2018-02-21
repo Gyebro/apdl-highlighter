@@ -1,0 +1,71 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:29-04:00"><title>CERIG</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_C_CTOC.html" title="C Commands"><link rel="prev" href="Hlp_C_CEQN.html" title="CEQN"><link rel="next" href="Hlp_C_CESGEN.html" title="CESGEN"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="CERIG"><a name="CERIG"></a><div class="titlepage"></div><a class="indexterm" name="d0e43751"></a><span class="refentrytitle"><span class="command"><strong>CERIG</strong></span></span><div class="refnamediv"><p><span class="command"><strong>CERIG</strong></span>, <em class="replaceable"><code>MASTE</code></em>, <em class="replaceable"><code>SLAVE</code></em>, <em class="replaceable"><code>Ldof</code></em>, <em class="replaceable"><code>Ldof2</code></em>, <em class="replaceable"><code>Ldof3</code></em>, <em class="replaceable"><code>Ldof4</code></em>, <em class="replaceable"><code>Ldof5</code></em><br><b class="refpurpose">Defines a rigid region.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7constrainteqldm061600" title="Table&nbsp;2.42:&nbsp;&nbsp;Constraint Equations"><span class="type">Constraint Equations</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="CERIG.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>MASTE</code></em></b></span></dt><dd><p>Retained (or master) node for this rigid region. 
+If <em class="replaceable"><code>MASTE</code></em> = P, then graphical picking of
+the master and slave nodes is enabled (first node picked will be the
+master node, and subsequent nodes picked will be slave  nodes), and
+subsequent fields are ignored (valid only in GUI).</p></dd><dt><span><b class="term"><em class="replaceable"><code>SLAVE</code></em></b></span></dt><dd><p>Removed (or slave) node for this rigid region.  If
+ALL, slave nodes are all selected nodes.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Ldof</code></em></b></span></dt><dd><p>Degrees of freedom associated with equations:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ALL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>All applicable degrees of freedom
+(default).  If 3-D, generate 6 equations based on UX, UY, UZ, ROTX,
+ROTY, ROTZ;  if 2-D, generate 3 equations based on UX, UY, ROTZ.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">UXYZ</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Translational degrees of freedom.
+ If 3-D, generate 3 equations based on the slave nodes' UX, UY, and
+UZ DOFs and the master node's UX, UY, UZ, ROTX, ROTY, and ROTZ DOFs;
+ if 2-D, generate 2 equations based on the slave nodes UX and UY DOFs
+and the master nodes UX, UY, and ROTZ DOFs.  No equations are generated
+for the rotational coupling.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">RXYZ</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Rotational degrees of freedom.  If
+3-D, generate 3 equations based on ROTX, ROTY, ROTZ;  if 2-D, generate
+1 equation based on ROTZ.  No equations are generated for the translational
+coupling.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">UX</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Slave translational UX degree of freedom
+only.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">UY</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Slave translational UY degree of freedom
+only.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">UZ</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Slave translational UZ degree of freedom
+only.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ROTX</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Slave rotational ROTX degree of freedom
+only.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ROTY</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Slave rotational ROTY degree of freedom
+only.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ROTZ</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Slave rotational ROTZ degree of freedom
+only.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Ldof2</code></em>, <em class="replaceable"><code>Ldof3</code></em>, <em class="replaceable"><code>Ldof4</code></em>, <em class="replaceable"><code>Ldof5</code></em></b></span></dt><dd><p>Additional degrees of freedom.  Used only if more
+than one degree of freedom required and <em class="replaceable"><code>Ldof</code></em> is not ALL, UXYZ, or RXYZ.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="CERIG.notes"></a><h2>Notes</h2><p>Defines a rigid region (link, area or volume) by automatically
+generating constraint equations to relate nodes in the region.  Nodes
+in the rigid region must be assigned a geometric location before this
+command is used.  Also, nodes must be connected to elements having
+the required degree of freedom set (see <em class="replaceable"><code>Ldof</code></em> above).  Generated constraint equations are based on small deflection
+theory.  Generated constraint equations are numbered beginning from
+the highest previously defined equation number (<em class="replaceable"><code>NEQN</code></em>) plus 1.  Equations, once generated, may be listed [<a class="link" href="Hlp_C_CELIST.html" title="CELIST"><span class="command"><strong>CELIST</strong></span></a>] or modified [<a class="link" href="Hlp_C_CE.html" title="CE"><span class="command"><strong>CE</strong></span></a>] as desired.  Repeat <span class="command"><strong>CERIG</strong></span> command for additional rigid region equations.</p><p>This command will generate the constraint equations needed for
+defining rigid lines in 2-D or 3-D space.  Multiple rigid lines relative
+to a common point are used to define a rigid area or a rigid volume.
+ In 2-D space, with <em class="replaceable"><code>Ldof = </code></em>ALL, three equations
+are generated for each pair of constrained nodes.  These equations
+define the three rigid body motions in global Cartesian space, i.e.,
+two in-plane translations and one in-plane rotation.  These equations
+assume the X-Y plane to be the active plane with UX, UY, and ROTZ
+degrees of freedom available at each node.  Other types of equations
+can be generated with the appropriate <em class="replaceable"><code>Ldof</code></em> labels.</p><p>Six equations are generated for each pair of constrained nodes
+in 3-D space (with <em class="replaceable"><code>Ldof = </code></em>ALL).  These
+equations define the six rigid body motions in global Cartesian space.
+ These equations assume that UX, UY, UZ, ROTX, ROTY, and ROTZ degrees
+of freedom are available at each node.</p><p>The UXYZ label allows generating a partial set of rigid region
+equations.  This option is useful for transmitting the bending moment
+between elements having different degrees of freedom at a node.  With
+this option only two of the three equations are generated for each
+pair of constrained nodes in 2-D space.  In 3-D space, only three
+of the six equations are generated.  In each case the rotational coupling
+equations are not generated.  Similarly, the RXYZ label allows generating
+a partial set of equations with the translational coupling equations
+omitted.</p><p>Applying this command to a large number of slave nodes may result
+in constraint equations with a large number of coefficients. This
+may significantly increase the peak memory required during the process
+of element assembly. If real memory or virtual memory is not available,
+consider reducing the number of slave nodes.</p><p>Note that under certain circumstances the
+constraint equations generated by <span class="command"><strong>CERIG</strong></span> may be
+modified during the solution. See <a href="../ans_mod/Hlp_G_MOD12_6.html#progmodces" class="olink">Program Modification of Constraint Equations</a> for more information.</p><p>As an alternative to the <span class="command"><strong>CERIG</strong></span> command, you
+can define a similar type of rigid region using contact elements and
+the internal multipoint constraint (MPC) algorithm. See <a href="../ans_ctec/Hlp_ctec_surfcon.html" class="olink">Surface-Based Constraints</a> for more information.</p><p><span class="command"><strong>CERIG</strong></span> cannot be deleted using <a class="link" href="Hlp_C_CEDELE.html" title="CEDELE"><span class="command"><strong>CEDELE</strong></span></a>,ALL and then regenerated in the second or higher load steps if the <a class="link" href="Hlp_C_LSWRITE.html" title="LSWRITE"><span class="command"><strong>LSWRITE</strong></span></a>  and <a class="link" href="Hlp_C_LSSOLVE.html" title="LSSOLVE"><span class="command"><strong>LSSOLVE</strong></span></a> procedure is used. <span class="command"><strong>CERIG</strong></span> writes constraint equations directly into load step
+files.  Deleting constraint equations (<a class="link" href="Hlp_C_CEDELE.html" title="CEDELE"><span class="command"><strong>CEDELE</strong></span></a>,ALL)
+cannot always maintain the consistency among load steps.</p></div><div class="refsect1" title="Menu Paths"><a name="CERIG.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Coupling / Ceqn&gt;Rigid Region</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

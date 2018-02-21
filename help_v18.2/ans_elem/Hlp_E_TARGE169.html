@@ -1,0 +1,275 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:51-04:00"><title>TARGE169</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_SOLID168.html" title="SOLID168"><link rel="next" href="Hlp_E_TARGE170.html" title="TARGE170"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="TARGE169"><a name="TARGE169"></a><div class="titlepage"></div><a class="indexterm" name="d0e81479"></a><span class="refentrytitle">
+            <span class="structname">TARGE169</span>
+        </span><div class="refnamediv"><p><br><b class="refpurpose">2-D Target Segment</b><div class="refclass">
+            <div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  DesSpc | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+            <div class=""><div class="application"><span class="application">
+                <a class="link" href="Hlp_E_TARGE169.html#at5Oxq2fbmcm" title="TARGE169 Product Restrictions">Product Restrictions</a>
+            </span></div></div>
+        </div></p></div><div class="refsect1" title="TARGE169 Element Description"><a name="ELEMtarge169descfdb"></a><h2>TARGE169 Element Description</h2><p><span class="structname">TARGE169</span> is used to represent various 2-D "target" surfaces
+            for the associated contact elements (<a class="link" href="Hlp_E_CONTA171.html" title="CONTA171"><span class="structname">CONTA171</span></a>,
+                <a class="link" href="Hlp_E_CONTA172.html" title="CONTA172"><span class="structname">CONTA172</span></a>, and <a class="link" href="Hlp_E_CONTA175.html" title="CONTA175"><span class="structname">CONTA175</span></a>). The
+            contact elements themselves overlay the solid elements describing the boundary of a
+            deformable body and are potentially in contact with the target surface, defined by
+                <span class="structname">TARGE169</span>.</p><p>You can impose translational or rotational displacement,
+            temperature, voltage, magnetic potential, pore pressure, and concentration on the target
+            segment element. You can also impose forces and moments on target elements. See <a href="../ans_thry/thy_el169.html" class="olink"><span class="structname">TARGE169</span></a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for more details about
+            this element. To represent 3-D target surfaces, use <a class="link" href="Hlp_E_TARGE170.html" title="TARGE170"><span class="structname">TARGE170</span></a>, a
+            3-D target segment element. </p><p>For rigid targets, these elements can easily model complex target shapes. For flexible
+            targets, these elements will overlay the solid elements describing the boundary of the
+            deformable target body.</p><div class="figure"><a name="at5Oxq130mcm"></a><p class="title"><b>Figure&nbsp;169.1:&nbsp;&nbsp;TARGE169 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM169-1.svg" alt="TARGE169 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="TARGE169 Input Data"><a name="at5Oxq19cmcm"></a><h2>TARGE169 Input Data</h2><p>The target surface is modeled through a set of <span class="italic"><em>target
+                segments</em></span>. Typically, several target segments make up one target
+            surface.</p><p><a class="xref" href="Hlp_E_TARGE169.html#aEChVr11flcd" title="Figure&nbsp;169.2:&nbsp;&nbsp;TARGE169 2-D Segment Types">Figure&nbsp;169.2:&nbsp;TARGE169 2-D Segment Types</a> shows the available segment types for
+                <span class="structname">TARGE169</span>. </p><p>For any target surface definition, the node ordering of the target segment element is
+            critical for proper detection of contact. The nodes must be ordered so that, for a 2-D
+            surface, the associated contact elements (<a class="link" href="Hlp_E_CONTA171.html" title="CONTA171"><span class="structname">CONTA171</span></a>,
+                <a class="link" href="Hlp_E_CONTA172.html" title="CONTA172"><span class="structname">CONTA172</span></a>, or <a class="link" href="Hlp_E_CONTA175.html" title="CONTA175"><span class="structname">CONTA175</span></a>) must lie to
+            the right of the target surface when moving from target node I to target node J. For a
+            rigid 2-D complete circle, contact must occur on the outside of the circle; internal
+            contacting is not allowed.</p><p>
+            <span class="bold"><strong>Pair-Based Contact versus General Contact</strong></span>
+        </p><p>There are two methods to define a contact interaction: the pair-based contact
+            definition and the general contact definition. Both contact definitions can exist in the
+            same model. <span class="structname">TARGE169</span> can be used in either type of contact
+            definition.</p><p>
+            <span class="bold"><strong>
+                <span class="italic"><em>Pair-Based Contact</em></span>
+            </strong></span>
+        </p><p>In a <a href="../ans_ctec/Hlp_ctec_surtsur.html" class="olink">pair-based contact
+                definition</a>, the 2-D contact elements (<a class="link" href="Hlp_E_CONTA171.html" title="CONTA171"><span class="structname">CONTA171</span></a>,
+                <a class="link" href="Hlp_E_CONTA172.html" title="CONTA172"><span class="structname">CONTA172</span></a>, or <a class="link" href="Hlp_E_CONTA175.html" title="CONTA175"><span class="structname">CONTA175</span></a>) are
+            associated with 2-D target segment elements (<span class="structname">TARGE169</span>) via a
+            shared real constant set. The program looks for contact interaction only between
+            surfaces with the same real constant set ID (which is greater than zero). The material
+            ID associated with the contact element is used to specify interaction properties (such
+            as friction coefficient) defined by <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> or <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>
+            commands.</p><p>The target surface can be either rigid or deformable. For rigid-flexible contact, the
+            rigid surface must be represented by a target surface. For flexible-flexible contact,
+            one of the deformable surfaces must be overlaid by a target surface. See <a href="../ans_ctec/Hlp_ctec_dessurf.html" class="olink">Designating Contact and Target Surfaces</a> in the <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a> for more
+            information.</p><p>Each target surface can be associated with only one contact surface, and vice-versa.
+            However, several contact elements could make up the contact surface and therefore come
+            in contact with the same target surface. Likewise, several target elements could make up
+            the target surface and thus come in contact with the same contact surface. For either
+            the target or contact surfaces, you can put many elements in a single target or contact
+            surface, or you can localize the contact and target surfaces by splitting the large
+            surfaces into smaller target and contact surfaces, each of which contain fewer
+            elements.</p><p>If a contact surface may contact more than one target surface, you must define
+            duplicate contact surfaces that share the same geometry but relate to separate targets,
+            that is, have separate real constant set numbers.</p><p>
+            <span class="bold"><strong>
+                <span class="italic"><em>General Contact</em></span>
+            </strong></span>
+        </p><p>In a <a href="../ans_ctec/ctec_gencont.html" class="olink">general contact
+                definition</a>, the general contact surfaces are generated automatically by the
+                <a href="../ans_cmd/Hlp_C_GCGEN.html" class="olink"><span class="command"><strong>GCGEN</strong></span></a> command based on physical parts and geometric shapes in the
+            model. The program overlays contact surface elements (<a class="link" href="Hlp_E_CONTA172.html" title="CONTA172"><span class="structname">CONTA172</span></a>)
+            on 2-D deformable bodies (on both lower- and higher-order elements). The general contact
+            definition may also contain target elements (<span class="structname">TARGE169</span>) overlaid
+            on the surfaces of standalone rigid bodies and lower-order contact surface elements
+                (<a class="link" href="Hlp_E_CONTA171.html" title="CONTA171"><span class="structname">CONTA171</span></a>) on 2-D deformable bodies. </p><p>The <a href="../ans_cmd/Hlp_C_GCGEN.html" class="olink"><span class="command"><strong>GCGEN</strong></span></a> command automatically assigns section IDs and element
+            type IDs for each general contact surface. As a result, each general contact surface
+            consists of contact or target elements that are easily identified by a unique section ID
+            number. The real constant ID and material ID are always set to zero for contact and
+            target elements in the general contact definition. </p><p>The program looks for contact interaction among all surfaces and within each surface.
+            You can further control contact interactions between specific surfaces that could
+            potentially be in contact by using the <a href="../ans_cmd/Hlp_C_GCDEF.html" class="olink"><span class="command"><strong>GCDEF</strong></span></a> command. The material ID
+            and real constant ID input on <a href="../ans_cmd/Hlp_C_GCDEF.html" class="olink"><span class="command"><strong>GCDEF</strong></span></a> identify interface properties
+            (defined by <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> or <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> commands) and contact control
+            parameters (defined by the <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) for a specific contact
+            interaction. Unlike a pair-based contact definition, the contact and target elements in
+            the general contact definition are not associated with these material and real constant
+            ID numbers.</p><div class="refsect2" title="Considerations for Rigid Targets"><a name="aEChVr9clcd"></a><h3>Considerations for Rigid Targets</h3><p>Each target segment is a single element with a specific shape, or <span class="italic"><em>segment type.</em></span> The program supports seven 2-D segment
+                types, as described in <a class="xref" href="Hlp_E_TARGE169.html#aD7kQr33awfl" title="Table&nbsp;169.1:&nbsp;&nbsp;TARGE169 2-D Segment Types, Target Shape Codes, and Nodes">Table&nbsp;169.1:&nbsp;TARGE169 2-D Segment Types, Target Shape Codes, and Nodes</a>. The segment types are defined
+                by one, two, or three nodes and a target shape code (<a href="../ans_cmd/Hlp_C_TSHAP.html" class="olink"><span class="command"><strong>TSHAP</strong></span></a>
+                command) which indicates the geometry (shape) of the element. The segment location
+                is determined by the nodes. </p><p>A radius value is required for the circle segment type. For pair-based contact,
+                the radius is specified by real constant (R1). For a general contact definition, the
+                radius is specified by section data (the <a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,,CONTACT,RADIUS
+                command with the radius entered on the <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> command).</p><div class="table"><a name="aD7kQr33awfl"></a><p class="title"><b>Table&nbsp;169.1:&nbsp;&nbsp;TARGE169 2-D Segment Types, Target Shape Codes, and Nodes</b></p><div class="table-contents"><table summary="TARGE169 2-D Segment Types, Target Shape Codes, and Nodes" border="1" width="95%"><colgroup><col width="72" class="col1"><col width="139" class="col2"><col width="96" class="col3"><col width="96" class="col4"><col width="96" class="col5"><col width="62" align="center" class="col6"><col width="62" align="center" class="col7"></colgroup><thead><tr><th>TSHAP</th><th>Segment Type</th><th>Node1 (DOF)</th><th>Node 2 (DOF)<sup>[<a class="link" href="Hlp_E_TARGE169.html#dofnote169">1</a>]</sup></th><th>Node 3 (DOF)</th><th align="center">R1</th><th align="center">R2</th></tr></thead><tbody><tr><td>LINE</td><td>Straight line</td><td>1st corner pt (UX, UY) (TEMP) (VOLT) (AZ)</td><td>2nd corner pt (UX, UY) (TEMP) (VOLT) (AZ)</td><td>None</td><td align="center">None</td><td align="center">None</td></tr><tr><td>ARC</td><td>Arc, clockwise</td><td>1st corner pt (UX, UY) (TEMP) (VOLT) (AZ)</td><td>2nd corner pt (UX, UY) (TEMP) (VOLT) (AZ)</td><td>Circle center pt (UX, UY) (TEMP) (VOLT) (AZ)</td><td align="center">None</td><td align="center">None</td></tr><tr><td>CARC</td><td>Arc, counter- clockwise</td><td>1st corner pt (UX, UY) (TEMP) (VOLT) (AZ)</td><td>2nd corner pt (UX, UY) (TEMP) (VOLT) (AZ)</td><td>Circle center pt (UX, UY) (TEMP) (VOLT) (AZ)</td><td align="center">None</td><td align="center">None</td></tr><tr><td>PARA</td><td>Parabola</td><td>1st corner pt (UX, UY) (TEMP) (VOLT) (AZ)</td><td>2nd corner pt (UX, UY) (TEMP) (VOLT) (AZ)</td><td>Midside pt (UX, UY) (TEMP) (VOLT) (AZ)</td><td align="center">None</td><td align="center">None</td></tr><tr><td>CIRC</td><td>Circle<sup>[<a class="link" href="Hlp_E_TARGE169.html#r1note169">2</a>][<a class="link" href="Hlp_E_TARGE169.html#ftnotegencont169">4</a>]</sup></td><td>Circle center pt (UX, UY) (TEMP) (VOLT) (AZ)</td><td>None</td><td>None</td><td align="center">Radius</td><td align="center">None</td></tr><tr><td>PILO</td><td>Pilot node</td><td>1st point (UX, UY, ROTZ) (TEMP) (VOLT) (AZ)</td><td>None</td><td>None</td><td align="center">None</td><td align="center">None</td></tr><tr><td>POINT</td><td>Point<sup>[<a class="link" href="Hlp_E_TARGE169.html#ftnotespace169">3</a>]</sup></td><td>1st point (UX, UY)</td><td>None</td><td>None</td><td align="center">None</td><td align="center">None</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="dofnote169"></a>The DOF available depends on the setting of KEYOPT(1) for the associated
+                        contact element. For more information, see the element documentation for
+                            <a class="link" href="Hlp_E_CONTA171.html" title="CONTA171"><span class="structname">CONTA171</span></a>, <a class="link" href="Hlp_E_CONTA172.html" title="CONTA172"><span class="structname">CONTA172</span></a>, or
+                            <a class="link" href="Hlp_E_CONTA175.html" title="CONTA175"><span class="structname">CONTA175</span></a>.</p></li><li class="listitem"><p><a name="r1note169"></a>When using the direct generation modeling method to create a circle target
+                        segment, specify the R1 value (define the real constant set for pair-based
+                        contact; or define the RADIUS section data for general contact) <span class="italic"><em>before</em></span> creating the element.</p></li><li class="listitem"><p><a name="ftnotespace169"></a>Rigid surface node. This segment type is only used to apply boundary
+                        conditions to rigid target surfaces.</p></li><li class="listitem"><p><a name="ftnotegencont169"></a>The surface projection contact method (KEYOPT(4) = 3 on the contact
+                        element) does not support primitive target segments.</p></li></ol></div><div class="figure"><a name="aEChVr11flcd"></a><p class="title"><b>Figure&nbsp;169.2:&nbsp;&nbsp;TARGE169 2-D Segment Types</b></p><div class="figure-contents"><div><img src="graphics/gELEM169-3.png" alt="TARGE169 2-D Segment Types"></div></div></div><br class="figure-break"><p>For simple rigid target surfaces, you can define the target segment elements
+                individually by direct generation. You must first specify the <span class="italic"><em>SHAPE</em></span> argument for the <a href="../ans_cmd/Hlp_C_TSHAP.html" class="olink"><span class="command"><strong>TSHAP</strong></span></a>
+                command. When creating circles through direct generation, you must also define the
+                radius value before creating the element (specify real constant R1 for pair-based
+                contact, or specify the RADIUS section type via <a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a> and
+                    <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> commands for general contact).</p><p>For general 2-D rigid surfaces, target segment elements can be defined by line
+                meshing (<a href="../ans_cmd/Hlp_C_LMESH.html" class="olink"><span class="command"><strong>LMESH</strong></span></a>). You can also use keypoint meshing
+                    (<a href="../ans_cmd/Hlp_C_KMESH.html" class="olink"><span class="command"><strong>KMESH</strong></span></a>) to generate the pilot node.</p><p>If the <span class="structname">TARGE169</span> elements are created via automatic
+                meshing (<a href="../ans_cmd/Hlp_C_LMESH.html" class="olink"><span class="command"><strong>LMESH</strong></span></a> or <a href="../ans_cmd/Hlp_C_KMESH.html" class="olink"><span class="command"><strong>KMESH</strong></span></a>), then the
+                    <a href="../ans_cmd/Hlp_C_TSHAP.html" class="olink"><span class="command"><strong>TSHAP</strong></span></a> command is ignored and the program chooses the correct
+                shape automatically.</p><p>For rigid-to-flexible contact, by default, the program automatically fixes the
+                structural degree of freedom for rigid target nodes if they aren't explicitly
+                constrained (KEYOPT(2) = 0). If you wish, you can override the automatic boundary
+                condition settings by setting KEYOPT(2) = 1 for the target elements. For
+                flexible-to-flexible contact, no special boundary conditions treatment is performed,
+                and the KEYOPT(2) = 0 setting should be used.</p><p>You can assign only one pilot node to an entire rigid target surface (or none if
+                it is not needed). In a pair-based contact definition, the target element associated
+                with the pilot node has the same real constant ID as the other target elements in
+                the pair. In a general contact definition, the target element associated with the
+                pilot node has the same section ID, but it has a zero real constant ID, as do the
+                other target elements of each rigid surface in the general contact definition. </p><p>The pilot node, unlike the other segment types, is used to
+                define the degrees of freedom for the entire target surface. This node can be any of
+                the target surface nodes, but it does not have to be. All possible rigid motions of
+                the target surface will be a combination of a translation and a rotation around the
+                pilot node. The pilot node provides a convenient and powerful way to assign boundary
+                conditions such as rotations, translations, moments, temperature, voltage, magnetic
+                potential, pore pressure, and concentration on an entire rigid target surface. By
+                default (KEYOPT(2) = 0), you can assign the boundary conditions only to the pilot
+                node, eliminating the need to assign boundary conditions to individual target nodes,
+                thus reducing the chance of errors. The program also automatically fixes the
+                structural degrees of freedom on the pilot node if they aren't explicitly
+                constrained.</p><p>By setting KEYOPT(2) = 1 for the target elements, you can apply boundary
+                conditions on any rigid target nodes rather than only on the pilot node. It is your
+                responsibility to make sure the rigid target surface is not under-constrained or
+                over-constrained. It is still recommended that you apply all boundary conditions on
+                the pilot node, even when KEYOPT(2) = 1.</p></div><div class="refsect2" title="Considerations for Deformable Target Surfaces"><a name="aEChVr18blcd"></a><h3>Considerations for Deformable Target Surfaces</h3><p>For general deformable surfaces, you will normally use the
+                    <a href="../ans_cmd/Hlp_C_ESURF.html" class="olink"><span class="command"><strong>ESURF</strong></span></a> command to overlay the target elements on the boundary
+                of the existing mesh. Note that the segment types (<a href="../ans_cmd/Hlp_C_TSHAP.html" class="olink"><span class="command"><strong>TSHAP</strong></span></a> command)
+                should not be used for this case.</p></div><div class="refsect2" title="Considerations for Geometry Correction"><a name="d0e81965"></a><h3>Considerations for Geometry Correction</h3><p>In general, curved contact and target surfaces can be well approximated by linear
+                or quadratic contact and target elements when the mesh is sufficiently refined.
+                However, in certain circumstances (for example, when linear elements are used or
+                when the midside nodes of quadratic elements do not lie exactly on the initial
+                curved geometry because a third party mesh generator was used), using a straight
+                line in place of the true curved geometry can significantly affect the accuracy of
+                contact stresses. An optional geometric correction can be used for a circular (or
+                nearly circular) arc via <a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a> and <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a>
+                section commands. The defined geometry correction can be applied to specific contact
+                elements via a section ID (<a href="../ans_cmd/Hlp_C_SECNUM.html" class="olink"><span class="command"><strong>SECNUM</strong></span></a> command). For details, see
+                    <a href="../ans_ctec/ctecgeomcor.html" class="olink">Geometry Correction for Contact and Target Surfaces</a> in the <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a>. </p></div><div class="refsect2" title="Considerations for Fluid Penetration Loading"><a name="d0e81988"></a><h3>Considerations for Fluid Penetration Loading</h3><p>To model fluid penetration loads, use the <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> command to
+                specify the fluid pressure and fluid penetration starting points. For more
+                information, see <a href="../ans_ctec/ctecfluidpress.html" class="olink">Applying Fluid Pressure-Penetration Loads</a> in the
+                <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a>.</p></div><div class="refsect2" title="Considerations for Thermal Contact Analysis"><a name="d0e82003"></a><h3>Considerations for Thermal Contact Analysis</h3><p>By default, the temperature is set to the value of TUNIF, and if this has no
+                explicit value the temperature is set to zero. For thermal contact analysis, such as
+                convection and radiation modeling, the behavior of a thermal contact surface
+                (whether a &#8220;near-field&#8221; or &#8220;free&#8221; surface) is usually based
+                on the contact status. Contact status affects the behavior of the contact surface as
+                follows:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>If the contact surface is outside the pinball region, its behavior is as a
+                        far-field of free surface. In this instance, convection/radiation occurs
+                        with the ambient temperature.</p></li><li class="listitem"><p>If the contact surface is inside the pinball region, the behavior is as a
+                        near-field surface.</p></li></ul></div><p>However, the thermal contact surface status is ignored if KEYOPT(3) = 1 is set,
+                and the surface is always treated as a free surface (see
+                    <a class="link" href="Hlp_E_CONTA171.html" title="CONTA171"><span class="structname">CONTA171</span></a>, <a class="link" href="Hlp_E_CONTA172.html" title="CONTA172"><span class="structname">CONTA172</span></a>, or
+                    <a class="link" href="Hlp_E_CONTA175.html" title="CONTA175"><span class="structname">CONTA175</span></a> for details).</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_TARGE169.html#av7kQr2dewfl" title="TARGE169 Input Summary">"TARGE169 Input Summary"</a>. A
+                general description of element input is given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>.
+            </p></div><div class="refsect2" title="TARGE169 Input Summary"><a name="av7kQr2dewfl"></a><h3>TARGE169 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J, K (J and K are not required for all segment types)</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>UX, UY, TEMP, VOLT, AZ, PRES (determined by the associated 2-D contact
+                            elements: <a class="link" href="Hlp_E_CONTA171.html" title="CONTA171"><span class="structname">CONTA171</span></a>,
+                                <a class="link" href="Hlp_E_CONTA172.html" title="CONTA172"><span class="structname">CONTA172</span></a>, or
+                                <a class="link" href="Hlp_E_CONTA175.html" title="CONTA175"><span class="structname">CONTA175</span></a>)</p><p>ROTZ is also valid, but only for the pilot node associated with a
+                            surface-based constraint or a rigid target surface</p></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><p>R1, R2, [the others are defined through the associated
+                                <a class="link" href="Hlp_E_CONTA171.html" title="CONTA171"><span class="structname">CONTA171</span></a>,
+                            <a class="link" href="Hlp_E_CONTA172.html" title="CONTA172"><span class="structname">CONTA172</span></a>, or <a class="link" href="Hlp_E_CONTA175.html" title="CONTA175"><span class="structname">CONTA175</span></a>
+                            element]</p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;In a general contact definition, R1 and R2 are specified by a
+                                section definition (<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a> and
+                                    <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> commands) instead of real
+                                constants.</p><hr></div></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><p>Pressure, Face 1 (I-J) (opposite to target normal direction)</p></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+                                <a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth and death</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_ctec/ctecfluidpress.html" class="olink">Fluid pressure penetration</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_str/strlinperturb.html" class="olink">Linear perturbation</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_adv/adv_meshnonlinadapt.html" class="olink">Nonlinear adaptivity</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_str/Hlp_G_STRnlbasin.html" class="olink">Nonlinearity</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_adv/Hlp_G_ADVREZ.html" class="olink">Rezoning</a>
+                            </td></tr><tr><td><a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink">Section definition</a> for <a href="../ans_ctec/ctecgeomcor.html" class="olink">geometry correction</a> of spherical
+                                and revolute surfaces</td></tr></table></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Boundary conditions for rigid target nodes:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Automatically constrained by the program</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Specified by user</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(3)</b></span></dt><dd><p>Behavior of thermal contact surface:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Based on contact status</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Treated as free-surface</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(4)</b></span></dt><dd><p>DOF set to be constrained on the dependent or independent DOF for
+                            internally-generated multipoint constraints (MPCs). This option is used
+                            for these situations: <a href="../ans_ctec/Hlp_ctec_solsol.html" class="olink">solid-solid and shell-shell
+                                assemblies;</a>
+                            <a href="../ans_ctec/Hlp_ctec_surfcon.html" class="olink">surface-based
+                                constraints</a> that use a single pilot node for the target
+                            element; and rigid target surfaces that use the KEYOPT(2) = 1
+                            setting.</p><div><div class="variablelist"><dl><dt><span><b class="term"><span class="emphasis"><em>n</em></span>&nbsp;--&nbsp;</b></span></dt><dd><p>Enter a three digit value that represents the DOF set to
+                                        be constrained. The first to third digits represent ROTZ,
+                                        UY, UX, respectively. The number 1 (one) indicates the DOF
+                                        is active, and the number 0 (zero) indicates the DOF is not
+                                        active. For example, 011 means that UX and UY will be used
+                                        in the multipoint constraint. Leading zeros may be omitted;
+                                        for example, you can enter 1 to indicate that UX is the only
+                                        active DOF. If KEYOPT(4) = 0 (which is the default) or 111,
+                                        all DOF are constrained.</p></dd></dl></div></div><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;KEYOPT(4) is not supported for target elements used in a general
+                                contact definition.</p><hr></div></dd><dt><span><b class="term">KEYOPT(6)</b></span></dt><dd><p>Symmetry condition of a constrained surface. This option is only used
+                            for a <a href="../ans_ctec/Hlp_ctec_surfcon.html" class="olink">force-distributed constraint</a> that uses a single pilot node
+                            for the target element:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>No symmetry on the constrained surface (default).</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>The constrained surface has a symmetry condition with
+                                        respect to the y axis of the nodal coordinate system of the
+                                        pilot node.</p></dd><dt><span><b class="term">10&nbsp;--&nbsp;</b></span></dt><dd><p>The constrained surface has a symmetry condition with
+                                        respect to the x axis of the nodal coordinate system of the
+                                        pilot node.</p></dd></dl></div></div><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;Keep the following points in mind when using this symmetry condition:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>When a symmetry condition is used, the pilot
+                                            node must be defined on the symmetry
+                                        axis.</p></li><li class="listitem"><p>KEYOPT(6) = 11 is not valid input.
+                                        </p></li><li class="listitem"><p>When the constrained surface is defined on a 2-D
+                                            axisymmetric model and the pilot node is located on the
+                                            y axis of the nodal coordinate system, KEYOPT(6) = 1
+                                            will be set internally. In this case, do not set
+                                            KEYOPT(6) = 10; otherwise, the initial constraint
+                                            equations will be redundant and the solution will be
+                                            invalid.</p></li></ul></div><hr></div><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;KEYOPT(6) is not supported for target elements used in a general
+                                contact definition.</p><hr></div></dd><dt><span><b class="term">KEYOPT(7)</b></span></dt><dd><p>Weighting factor control key. This option is only used for a <a href="../ans_ctec/Hlp_ctec_surfcon.html" class="olink">force-distributed
+                                constraint</a> that uses a single pilot node for the target
+                            element. </p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Weighting factors are calculated internally based on the
+                                        contact area of each contact node.</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>The weighting factor for each contact node is 1.</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="TARGE169 Output Data"><a name="at5Oxq224mcm"></a><h2>TARGE169 Output Data</h2><p>The solution output associated with the element is shown in <a class="xref" href="Hlp_E_TARGE169.html#aBBvvo355ctg" title="Table&nbsp;169.2:&nbsp;&nbsp;TARGE169 Element Output Definitions">Table&nbsp;169.2:&nbsp;TARGE169 Element Output Definitions</a>. The following notation is used:</p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="aBBvvo355ctg"></a><p class="title"><b>Table&nbsp;169.2:&nbsp;&nbsp;TARGE169 Element Output Definitions</b></p><div class="table-contents"><table summary="TARGE169 Element Output Definitions" border="1" width="95%"><colgroup><col width="120" class="col1"><col width="312" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th align="center">Name</th><th align="center">Definition</th><th align="center">O</th><th align="center">R</th></tr></thead><tbody><tr><td>EL</td><td>Element Number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Nodes I, J, and K</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>ITRGET</td><td>Target surface number (assigned by the
+                            program)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>TSHAP</td><td>Segment shape
+                            type</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>ISEG</td><td>Segment numbering</td><td align="center"><a class="xref" href="Hlp_E_TARGE169.html#targe169.tab.3.ft.1">1</a></td><td align="center"><a class="xref" href="Hlp_E_TARGE169.html#targe169.tab.3.ft.1">1</a></td></tr><tr><td>FPRS</td><td>Actual applied fluid penetration pressure</td><td align="center">Y</td><td align="center">Y</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="targe169.tab.3.ft.1"></a>An internal segment number determined by the
+                    program. ISEG for the target element has a different meaning than ISEG reported
+                    for the contact element.</p></li></ol></div><p>You can display or list the actual fluid pressure applied to the target element
+            through several POST1 postprocessing commands, as shown below:</p><pre class="programlisting">PLESOL,CONT,FPRS
+PLNSOL,CONT,FPRS
+PRESOL,CONT
+PRNSOL,CONT</pre><p>Note that only the FPRS (fluid penetration pressure) output item is meaningful when
+            the <a href="../ans_cmd/Hlp_C_PRESOL.html" class="olink"><span class="command"><strong>PRESOL</strong></span></a> and <a href="../ans_cmd/Hlp_C_PRNSOL.html" class="olink"><span class="command"><strong>PRNSOL</strong></span></a> commands are used for target
+            elements.</p><p><a class="xref" href="Hlp_E_TARGE169.html#con169tabitseq" title="Table&nbsp;169.3:&nbsp;&nbsp;TARGE169 Item and Sequence Numbers">Table&nbsp;169.3:&nbsp;TARGE169 Item and Sequence Numbers</a> lists output available through the
+                <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method. See <a href="../ans_bas/Hlp_G_BAS5_2.html#abOBsq267ldm" class="olink">Creating an Element Table</a> in
+            the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in this reference for more information.
+            The following notation is used in <a class="xref" href="Hlp_E_TARGE169.html#con169tabitseq" title="Table&nbsp;169.3:&nbsp;&nbsp;TARGE169 Item and Sequence Numbers">Table&nbsp;169.3:&nbsp;TARGE169 Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="Hlp_E_TARGE169.html#aBBvvo355ctg" title="Table&nbsp;169.2:&nbsp;&nbsp;TARGE169 Element Output Definitions">Table&nbsp;169.2:&nbsp;TARGE169 Element Output Definitions</a></p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>
+                            command</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element
+                            data</p></dd><dt><span><b class="term">I,J</b></span></dt><dd><p>sequence number for data at nodes I, J</p></dd></dl></div></div><div class="table"><a name="con169tabitseq"></a><p class="title"><b>Table&nbsp;169.3:&nbsp;&nbsp;TARGE169 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="TARGE169 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="72" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"><col width="48" align="center" class="col5"></colgroup><thead><tr><th rowspan="2" align="center" valign="middle">Output Quantity
+                            Name</th><th colspan="4" align="center"><a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and
+                                <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th align="center">Item</th><th align="center">E</th><th align="center">I</th><th align="center">J</th></tr></thead><tbody><tr><td align="center">FPRS</td><td align="center">SMISC</td><td align="center">3</td><td align="center">1</td><td align="center">2</td></tr></tbody></table></div></div><br class="table-break"></div><div class="refsect1" title="TARGE169 Assumptions and Restrictions"><a name="at5Oxq28fmcm"></a><h2>TARGE169 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The 2-D segment element must be defined in the global X-Y plane.</p></li><li class="listitem"><p>For each pilot node, the program automatically defines an internal node and an
+                    internal constraint equation. The rotational DOF of the pilot node is connected
+                    to the translational DOF of the internal node by the internal constraint
+                    equation. ANSYS, Inc. recommends against using external constraint equations or
+                    coupling on pilot nodes; if you do, conflicts may occur, yielding incorrect
+                    results.</p></li><li class="listitem"><p>For circular arcs, the third node defines the actual center of the circle and
+                    must be defined accurately when the element is generated and must be moved
+                    consistently with the other nodes during the deformation process. If the third
+                    node is not moved consistently with the other nodes, the arc shape will change
+                    with that node's movement. To ensure the correct behavior, apply all boundary
+                    conditions to a pilot node.</p></li><li class="listitem"><p>For parabolic segments, the third point must lie at the middle of the
+                    parabola.</p></li><li class="listitem"><p>Generally speaking, you should not change the R1 real constant between load
+                    steps or during restart stages; otherwise ANSYS assumes the radius of the circle
+                    varies between the load steps. When using direct generation, the real constant
+                    R1 for circles may be defined before the input of the element nodes. If multiple
+                    rigid circles are defined, each having a different radius, they must be defined
+                    by different target surfaces.</p></li><li class="listitem"><p>For rotation of a rigid body constrained only by a bonded, rigid-flexible
+                    contact pair with a pilot node, use the MPC algorithm or a surface-based
+                    constraint as described in <a href="../ans_ctec/Hlp_ctec_mpcassm.html" class="olink">Multipoint Constraints and Assemblies</a> in the <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a>. Penalty-based algorithms can create undesirable rotational
+                    energies in this situation.</p></li></ul></div></div><div class="refsect1" title="TARGE169 Product Restrictions"><a name="at5Oxq2fbmcm"></a><h2>TARGE169 Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific restrictions
+            apply to this element in addition to the general assumptions and restrictions given in
+            the previous section.</p><p title="ANSYS Mechanical Pro"><b>ANSYS Mechanical Pro&nbsp;</b>
+                </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li><li class="listitem"><p>Linear perturbation is not available.</p></li></ul></div><p title="ANSYS Mechanical Pro">
+            </p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+                </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+            </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

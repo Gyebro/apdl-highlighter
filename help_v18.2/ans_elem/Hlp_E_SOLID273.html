@@ -1,0 +1,681 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:36-04:00"><title>SOLID273</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_SOLID272.html" title="SOLID272"><link rel="next" href="Hlp_E_SOLID278.html" title="SOLID278"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SOLID273"><a name="SOLID273"></a><div class="titlepage"></div><a class="indexterm" name="d0e195485"></a><span class="refentrytitle">
+<span class="structname">SOLID273</span>
+</span><div class="refnamediv"><p><br><b class="refpurpose">General
+Axisymmetric Solid with 8 Base Nodes</b><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+<div class=""><div class="application"><span class="application">
+<a class="link" href="Hlp_E_SOLID273.html#solid273prodrestr" title="SOLID273 Product Restrictions">Product Restrictions</a>
+</span></div></div>
+</div></p></div><div class="refsect1" title="SOLID273 Element Description"><a name="solid273.descr"></a><h2>SOLID273 Element Description</h2><p>Use <span class="structname">SOLID273</span> to model axisymmetric
+solid structures. The element has quadratic displacement behavior
+on the <a href="Hlp_E_continuumelems.html#elemgenaxsidebar" class="olink">master
+plane</a> and is well suited to modeling irregular meshes on the
+master plane. It is defined by eight nodes on the master plane, and
+nodes created automatically in the circumferential direction based
+on the eight master plane nodes. The total number of nodes depends
+on the number of nodal planes (KEYOPT(2)). Each node has three degrees
+of freedom: translations in the nodal x, y and z directions. The element
+allows a triangle as the degenerated shape on the base plane to simulate
+irregular areas. The element has plasticity, hyperelasticity, stress
+stiffening, large deflection, and large strain capabilities. It also
+has mixed-formulation capability for simulating deformations of nearly
+incompressible elastoplastic materials, and nearly and fully incompressible
+hyperelastic materials.</p><p>For more details about this element, see <a href="../ans_thry/thy_el273.html" class="olink">SOLID273</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>, and <a class="xref" href="Hlp_E_continuumelems.html#elemgeneralaxis" title="5.1.5.1.&nbsp;General Axisymmetric Elements">General Axisymmetric Elements</a> in this
+   document.</p><div class="figure"><a name="solid273.fig1"></a><p class="title"><b>Figure&nbsp;273.1:&nbsp;&nbsp;SOLID273 Geometry (KEYOPT(2) = 3)</b></p><div class="figure-contents"><div><img src="graphics/gELEM273-1.svg" alt="SOLID273 Geometry (KEYOPT(2) = 3)"></div></div></div><br class="figure-break"></div><div class="refsect1" title="SOLID273 Input Data"><a name="solid273inputdata"></a><h2>SOLID273 Input Data</h2><p>The geometry and node locations for this element (when KEYOPT(2)
+= 3) are shown in <a class="xref" href="Hlp_E_SOLID273.html#solid273.fig1" title="Figure&nbsp;273.1:&nbsp;&nbsp;SOLID273 Geometry (KEYOPT(2) = 3)">Figure&nbsp;273.1:&nbsp;SOLID273 Geometry (KEYOPT(2) = 3)</a>. The element input
+data includes nodes and the orthotropic material properties. The total
+number of nodes is the 8 base nodes times the number of nodal planes.
+(For information about how Fourier node are generated, see the <a href="../ans_cmd/Hlp_C_NAXIS.html" class="olink"><span class="command"><strong>NAXIS</strong></span></a> command documentation.) The default element coordinate
+system is the cylindrical coordinate system with the Z axis as the
+axisymmetric axis (defined via the <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> command)
+and the circumferential direction as &#952;. (See <a class="xref" href="Hlp_E_continuumelems.html#elemgeneralaxis" title="5.1.5.1.&nbsp;General Axisymmetric Elements">General Axisymmetric Elements</a> for details.) Use the <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a> command to define an element coordinate system, which forms the
+basis for orthotropic material directions.</p><p>Element loads are described in <a class="xref" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">Nodal Loading</a>.
+Pressures must be input as element surface loads on the element edge
+of nodal planes as shown by the circled numbers in <a class="xref" href="Hlp_E_SOLID273.html#solid273.fig1" title="Figure&nbsp;273.1:&nbsp;&nbsp;SOLID273 Geometry (KEYOPT(2) = 3)">Figure&nbsp;273.1:&nbsp;SOLID273 Geometry (KEYOPT(2) = 3)</a>. Positive pressures act into the element
+and the maximum face edge is 4n, where n is the number of nodal planes.
+If pressure is applied on the element edge with face numbers less
+that or equal to 4 and no load on other edges, the pressure loads
+are the same on the 360 degrees of circumferential surfaces. (If pressure
+is applied on a single element edge with a face number <span class="italic"><em>greater</em></span> than 4, the pressure is ignored.)
+If pressure is applied on the element edges with faces p and 4q+p
+(where q = 1 . . . n-1), the pressure changes linearly with respect
+to &#952; within the part of the surface bounded by the edges p
+and 4q+p; on the rest of the surface, the pressure is zero. </p><p>Temperatures may be input as element body loads at the nodes.
+For the eight nodes on the master plane, the node I<sub>1</sub> temperature T(I<sub>1</sub>) defaults to TUNIF. If all
+other temperatures are unspecified, they default to T(I<sub>1</sub>). If all corner node temperatures are specified, each
+midside node temperature defaults to the average temperature of its
+adjacent corner nodes. For any other input pattern, unspecified temperatures
+default to TUNIF. For the nodes generated in circumferential direction
+based on the master node, if all other temperatures are unspecified,
+they default to the value of their base nodes (T(I<sub>1</sub>), T(J<sub>1</sub>), T(K<sub>1</sub>), T(L<sub>1</sub>), T(M<sub>1</sub>), T(N<sub>1</sub>), T(O<sub>1</sub>) and T(P<sub>1</sub>),
+depending on their location). For any other input pattern, unspecified
+temperatures default to TUNIF. </p><p>KEYOPT(6) = 1 sets the element for using mixed formulation.
+For details on the use of mixed formulation, see <a class="link" href="Hlp_E_continuumelems.html#EL2appmfjwf091100" title="5.1.3.3.&nbsp;Applications of Mixed u-P Formulations">Applications of Mixed u-P Formulations</a> in this document. </p><p>As described in <a class="link" href="Hlp_E_CH2_3.html" title="3.3.&nbsp;Coordinate Systems">Coordinate Systems</a>, you can use the <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a> command to orient the material
+properties and strain/stress output. Use <a href="../ans_cmd/Hlp_C_RSYS.html" class="olink"><span class="command"><strong>RSYS</strong></span></a> to
+choose output that follows the material coordinate system or the global
+coordinate system. </p><p>The effects of pressure load stiffness are automatically included
+for this element. If an unsymmetric matrix is needed for pressure
+load stiffness effects, issue a <a href="../ans_cmd/Hlp_C_NROPT.html" class="olink"><span class="command"><strong>NROPT</strong></span></a>,UNSYM command.
+For a geometric nonlinear analysis when convergence is an issue, use
+an unsymmetric matrix. </p><p>
+<a class="xref" href="Hlp_E_SOLID273.html#solid273inputsum" title="SOLID273 Input Summary">"SOLID273 Input Summary"</a> contains a summary of the
+element input. See <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a> in this document
+for a general description of element input.</p><div class="refsect2" title="SOLID273 Input Summary"><a name="solid273inputsum"></a><h3>SOLID273 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I<sub>1</sub>, J<sub>1</sub>, K<sub>1</sub>, L<sub>1</sub>, M<sub>1</sub>, N<sub>1</sub>, O<sub>1</sub>, P<sub>1</sub> , I<sub>2</sub>, J<sub>2</sub>, K<sub>2</sub>, L<sub>2</sub>, M<sub>2</sub>, N<sub>2</sub>, O<sub>2</sub>, P<sub>2</sub>, . . . , I<sub>n</sub>, J<sub>n</sub>, K<sub>n</sub>, L<sub>n</sub>, M<sub>n</sub>, N<sub>n</sub>, O<sub>n</sub>, P<sub>n</sub> (where n =
+KEYOPT(2), the number of nodal planes)</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>UX, UY, UZ</p></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>None </td></tr></table></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p>
+<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command: See <a class="xref" href="elem_matsupp.html" title="Chapter&nbsp;4:&nbsp;Element Support for Material Models">Element Support for Material Models</a> for this element.</p><p>
+<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: EX, EY, EZ, PRXY, PRYZ, PRXZ (or NUXY, NUYZ, NUXZ), </p><p>ALPX, ALPY, ALPZ (or CTEX, CTEY, CTEZ <span class="italic"><em>or</em></span> THSX, THSY, THSZ), </p><p>DENS, GXY, GYZ, GXZ, ALPD, BETD, <span>DMPR</span>
+</p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Pressures&nbsp;--&nbsp;</b></span></dt><dd><p>edge 1 (J<sub>1</sub>-I<sub>1</sub>), edge 2 (K<sub>1</sub>-J<sub>1</sub>), edge 3 (L<sub>1</sub>-K<sub>1</sub>), edge 4 (I<sub>1</sub>-L<sub>1</sub>), edge 5 (J<sub>2</sub>-I<sub>2</sub>),
+edge 6 (K<sub>2</sub>-J<sub>2</sub>), . .
+. , edge 4n-3(J<sub>n</sub>-I<sub>n</sub>),
+edge 4n-2 (K<sub>n</sub>-J<sub>n</sub>), edge
+4n-1 (L<sub>n</sub>-K<sub>n</sub>), edge 4n
+(I<sub>n</sub>-L<sub>n</sub>)</p></dd></dl></div></div></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Temperatures&nbsp;--&nbsp;</b></span></dt><dd><p>T(I<sub>1</sub>), T(J<sub>1</sub>), T(K<sub>1</sub>), T(L<sub>1</sub>), T(M<sub>1</sub>), T(N<sub>1</sub>), T(O<sub>1</sub>), T(P<sub>1</sub>), T(I<sub>2</sub>), T(J<sub>2</sub>), T(K<sub>2</sub>), T(L<sub>2</sub>), T(M<sub>2</sub>), T(N<sub>2</sub>), T(O<sub>2</sub>), T(P<sub>2</sub>), . . .  , T(I<sub>n</sub>), T(J<sub>n</sub>), T(K<sub>n</sub>), T(L<sub>n</sub>), T(M<sub>n</sub>), T(N<sub>n</sub>), T(O<sub>n</sub>), T(P<sub>n</sub>) </p></dd></dl></div></div></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth
+and death</a>
+</td></tr><tr><td><a href="../ans_cmd/Hlp_C_CORIOLIS.html" class="olink">Coriolis
+                                    effect</a></td></tr><tr><td>
+<a href="Hlp_E_AutoSelectElems.html" class="olink">Element
+technology autoselect</a>
+</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink">Large deflection</a>
+</td></tr><tr><td>
+<a href="../ans_thry/thy_geo1.html" class="olink">Large
+strain</a>
+</td></tr><tr><td>
+<a href="../ans_str/Hlp_G_STRUNST.html#strnonlinstab" class="olink">Nonlinear
+stabilization</a>
+</td></tr><tr><td>
+<a href="../ans_str/Hlp_G_STR8_2.html#strstrstiftlm61199434" class="olink">Stress stiffening</a>
+</td></tr></table></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Number of Fourier nodes in the circumferential direction
+(that is, the number of nodal planes):</p><div><div class="variablelist"><dl><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Axisymmetric deformation
+(may have torsion)</p></dd><dt><span><b class="term">3 - 12&nbsp;--&nbsp;</b></span></dt><dd><p>General 3-D deformation</p></dd></dl></div></div><p>This KEYOPT has no default. You must specify a valid nonzero
+value.</p><p>For large-rotation not about the axisymmetric axis, KEYOPT(2) 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq9b79ec8e-5026-4094-86c1-bdc9fbbaf309.svg"></span> 5 is recommended.</p><p>For information about specifying the number of Fourier nodes,
+see <a class="link" href="Hlp_E_continuumelems.html#elemgeneralaxis" title="5.1.5.1.&nbsp;General Axisymmetric Elements">General Axisymmetric Elements</a> in this document.</p><p>For information about how Fourier nodes are generated, see the <a href="../ans_cmd/Hlp_C_NAXIS.html" class="olink"><span class="command"><strong>NAXIS</strong></span></a> command documentation.</p></dd><dt><span><b class="term">KEYOPT(6)</b></span></dt><dd><p>Element formulation:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Use pure displacement
+formulation (default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Use mixed u-P formulation</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="SOLID273 Output Data"><a name="solid273outputdata"></a><h2>SOLID273 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal displacements included in the overall nodal
+solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_SOLID273.html#solid273outputdefs" title="Table&nbsp;273.1:&nbsp;&nbsp;SOLID273 Element Output Definitions">Table&nbsp;273.1:&nbsp;SOLID273 Element Output Definitions</a>
+</p></li></ul></div><p>
+</p><p>As shown in <a class="xref" href="Hlp_E_SOLID273.html#solid273.fig2" title="Figure&nbsp;273.2:&nbsp;&nbsp;SOLID273 Stress Output">Figure&nbsp;273.2:&nbsp;SOLID273 Stress Output</a>, the element stress
+directions are parallel to the element coordinate system. A general
+description of solution output is given in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a>. See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways to view results.</p><p>To view 3-D mode shapes for a modal or eigenvalue buckling analysis,
+expand the modes with element results calculation active (via the <a href="../ans_cmd/Hlp_C_MXPAND.html" class="olink"><span class="command"><strong>MXPAND</strong></span></a> command's <em class="replaceable"><code>Elcalc</code></em> = YES
+option). </p><div class="figure"><a name="solid273.fig2"></a><p class="title"><b>Figure&nbsp;273.2:&nbsp;&nbsp;SOLID273 Stress Output</b></p><div class="figure-contents"><div><img src="graphics/gELEM273-2.svg" alt="SOLID273 Stress Output"></div><div class="blockquote"><blockquote class="blockquote"><p>Element stress directions SX, SY, and SZ shown in the global
+coordinate system.</p></blockquote></div></div></div><br class="figure-break"><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="solid273outputdefs"></a><p class="title"><b>Table&nbsp;273.1:&nbsp;&nbsp;SOLID273 Element Output Definitions</b></p><div class="table-contents"><table summary="SOLID273 Element Output Definitions" border="1" width="95%"><colgroup><col width="139" class="col1"><col width="340" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th bgcolor="#CCCCCC" align="center">
+
+Name</th><th bgcolor="#CCCCCC" align="center">
+
+Definition</th><th bgcolor="#CCCCCC" align="center">
+
+O</th><th bgcolor="#CCCCCC" align="center">
+
+R</th></tr></thead><tbody><tr><td>EL</td><td>Element number</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Nodes - I<sub>1</sub>, J<sub>1</sub>, K<sub>1</sub>, L<sub>1</sub>, I<sub>2</sub>, J<sub>2</sub>, K<sub>2</sub>, L<sub>2</sub>, . . .</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>MAT</td><td>Material number</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>VOLU</td><td>Volume</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>XC, YC, ZC</td><td>Location
+where results are reported</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.3">3</a>
+</td></tr><tr><td>PRES</td><td>
+<p>Pressures  P1 at nodes J,I; P2 at K,J; P3 at L,K; P4
+at I,L</p>
+<p>See <a class="xref" href="Hlp_E_SOLID273.html#solid273seqtable" title="Table&nbsp;273.2:&nbsp;&nbsp;SOLID273 Item and Sequence Numbers">Table&nbsp;273.2:&nbsp;SOLID273 Item and Sequence Numbers</a> for more
+output.</p>
+</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>TEMP</td><td>Temperatures  T(I<sub>1</sub>), T(J<sub>1</sub>), T(K<sub>1</sub>), T(L<sub>1</sub>), T(I<sub>2</sub>), T(J<sub>2</sub>), T(K<sub>2</sub>), T(L<sub>2</sub>), . . . </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>S:X, Y,
+Z, XY, YZ, XZ</td><td>Stresses</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>S:1, 2, 3</td><td>Principal
+stresses</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>S:INT</td><td>Stress intensity</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>S:EQV</td><td>Equivalent stress</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>EPEL:X, Y, Z, XY, YZ, XZ</td><td>Elastic strains</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>EPEL:1,
+2, 3</td><td>Principal elastic strains</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>EPEL:EQV</td><td>Equivalent
+elastic strain [<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.6">6</a>]</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>EPTH:X, Y, Z, XY, YZ, XZ</td><td>Thermal strains</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.2">2</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.2">2</a>
+</td></tr><tr><td>EPTH:EQV</td><td>Equivalent thermal strain [<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.6">6</a>]</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.2">2</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.2">2</a>
+</td></tr><tr><td>EPPL:X, Y,
+Z, XY, YZ, XZ</td><td>Plastic strains[<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.7">7</a>]</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.1">1</a>
+</td></tr><tr><td>EPPL:EQV</td><td>Equivalent plastic strain [<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.6">6</a>]</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.1">1</a>
+</td></tr><tr><td>EPCR:X, Y, Z, XY, YZ, XZ</td><td>Creep strains</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.1">1</a>
+</td></tr><tr><td>EPCR:EQV</td><td>Equivalent creep strains [<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.6">6</a>]</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.1">1</a>
+</td></tr><tr><td>EPTO:X, Y, Z, XY, YZ, XZ</td><td>Total mechanical strains (EPEL + EPPL + EPCR)</td><td align="center">Y</td><td align="center">-</td></tr><tr><td>EPTO:EQV</td><td>Total
+equivalent mechanical strains (EPEL + EPPL + EPCR)</td><td align="center">Y</td><td align="center">-</td></tr><tr><td>NL:EPEQ</td><td>Accumulated equivalent plastic strain</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.1">1</a>
+</td></tr><tr><td>NL:CREQ</td><td>Accumulated equivalent plastic
+strain</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.1">1</a>
+</td></tr><tr><td>NL:SRAT</td><td>Plastic yielding
+(1 = actively yielding, 0 = not yielding)</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.1">1</a>
+</td></tr><tr><td>NL:PLWK</td><td>Plastic work/volume</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.1">1</a>
+</td></tr><tr><td>NL:HPRES</td><td>Hydrostatic pressure</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.1">1</a>
+</td></tr><tr><td>SEND:ELASTIC, PLASTIC,  CREEP, ENTO</td><td>Strain
+energy densities</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.1">1</a>
+</td></tr><tr><td>LOCI:X, Y, Z</td><td>Integration
+point locations</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.4">4</a>
+</td></tr><tr><td>SVAR:1, 2, ... , N</td><td>State variables</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID273.html#solid273.tab.2.ft.5">5</a>
+</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="solid273.tab.2.ft.1"></a>Nonlinear solution, output
+only if the element has a nonlinear material. </p></li><li class="listitem"><p><a name="solid273.tab.2.ft.2"></a>Output only if element has
+a thermal load.</p></li><li class="listitem"><p><a name="solid273.tab.2.ft.3"></a>Available only at centroid
+as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item.</p></li><li class="listitem"><p><a name="solid273.tab.2.ft.4"></a>Available only if <a href="../ans_cmd/Hlp_C_OUTRES.html" class="olink"><span class="command"><strong>OUTRES</strong></span></a>,LOCI is used. </p></li><li class="listitem"><p><a name="solid273.tab.2.ft.5"></a>Available only if the <a href="../ans_mat/matcustommatmods.html#user" class="olink">
+<code class="function">UserMat</code> subroutine</a> and <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,STATE command are used. </p></li><li class="listitem"><p><a name="solid273.tab.2.ft.6"></a>The equivalent strains use
+an effective Poisson's ratio: for elastic and thermal strains, this
+value is set by the user (<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,PRXY); for plastic
+and creep strains, this value is set at 0.5.</p></li><li class="listitem"><p><a name="solid273.tab.2.ft.7"></a>For the shape memory alloy
+material model, transformation strains are reported as plasticity
+strain EPPL.</p></li></ol></div><p>
+<a class="xref" href="Hlp_E_SOLID273.html#solid273seqtable" title="Table&nbsp;273.2:&nbsp;&nbsp;SOLID273 Item and Sequence Numbers">Table&nbsp;273.2:&nbsp;SOLID273 Item and Sequence Numbers</a> lists output available through <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> using the Sequence Number method.  See <a href="../ans_bas/Hlp_G_BAS5_2.html#abOBsq267ldm" class="olink">Creating an Element Table</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in this document
+for more information. The following notation is used in the output
+table: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="Hlp_E_SOLID273.html#solid273outputdefs" title="Table&nbsp;273.1:&nbsp;&nbsp;SOLID273 Element Output Definitions">Table&nbsp;273.1:&nbsp;SOLID273 Element Output Definitions</a>
+</p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>
+</p></dd><dt><span><b class="term">I<sub>1</sub>, J<sub>1</sub>, K<sub>1</sub>, L<sub>1</sub>, M<sub>1</sub>, N<sub>1</sub>, O<sub>1</sub>, P<sub>1</sub> , I<sub>2</sub>, J<sub>2</sub>, K<sub>2</sub>, L<sub>2</sub>, M<sub>2</sub>, N<sub>2</sub>, O<sub>2</sub>, P<sub>2</sub> . . . </b></span></dt><dd><p>sequence number for data at nodes I<sub>1</sub>, J<sub>1</sub>, K<sub>1</sub>, L<sub>1</sub>, M<sub>1</sub>, N<sub>1</sub>, O<sub>1</sub>, P<sub>1</sub> , I<sub>2</sub>, J<sub>2</sub>, K<sub>2</sub>, L<sub>2</sub>, M<sub>2</sub>, N<sub>2</sub>, O<sub>2</sub>, P<sub>2</sub>, . . . </p></dd></dl></div></div><p>
+</p><div class="table"><a name="solid273seqtable"></a><p class="title"><b>Table&nbsp;273.2:&nbsp;&nbsp;SOLID273 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="SOLID273 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="67" class="col1"><col width="52" class="col2"><col width="33" class="col3"><col width="33" class="col4"><col width="33" class="COLSPEC0"><col width="33" class="COLSPEC10"><col width="33" class="COLSPEC9"><col width="33" class="COLSPEC8"><col width="33" class="COLSPEC7"><col width="33" class="COLSPEC6"><col width="33" class="COLSPEC5"><col width="38" class="COLSPEC4"><col width="36" class="COLSPEC3"><col width="38" class="COLSPEC2"><col width="38" class="COLSPEC1"><col width="38" class="COLSPEC11"><col width="38" class="COLSPEC14"><col width="38" class="COLSPEC13"><col width="33" class="COLSPEC12"></colgroup><thead><tr><th bgcolor="#CCCCCC" rowspan="2" align="center" valign="middle">
+
+Output
+Quantity Name</th><th bgcolor="#CCCCCC" colspan="18" align="center">
+
+
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th bgcolor="#CCCCCC" align="center">
+
+Item</th><th bgcolor="#CCCCCC" align="center">
+
+I<sub>1</sub>
+</th><th bgcolor="#CCCCCC" align="center">
+
+J<sub>1</sub>
+</th><th bgcolor="#CCCCCC" align="center">
+
+K<sub>1</sub>
+</th><th bgcolor="#CCCCCC" align="center">
+
+L<sub>1</sub>
+</th><th bgcolor="#CCCCCC" align="center">
+
+M<sub>1</sub>
+</th><th bgcolor="#CCCCCC" align="center">
+
+N<sub>1</sub>
+</th><th bgcolor="#CCCCCC" align="center">
+
+O<sub>1</sub>
+</th><th bgcolor="#CCCCCC" align="center">
+
+P<sub>1</sub>
+</th><th bgcolor="#CCCCCC" align="center">
+
+---</th><th bgcolor="#CCCCCC" align="center">
+
+I<sub>n</sub>
+</th><th bgcolor="#CCCCCC" align="center">
+
+J<sub>n</sub>
+</th><th bgcolor="#CCCCCC" align="center">
+
+K<sub>n</sub>
+</th><th bgcolor="#CCCCCC" align="center">
+
+L<sub>n</sub>
+</th><th bgcolor="#CCCCCC" align="center">
+
+M<sub>n</sub>
+</th><th bgcolor="#CCCCCC" align="center">
+
+N<sub>n</sub>
+</th><th bgcolor="#CCCCCC" align="center">
+
+O<sub>n</sub>
+</th><th bgcolor="#CCCCCC" align="center">
+
+P<sub>n</sub>
+</th></tr></thead><tbody><tr><td align="center">P<sub>1</sub>
+</td><td align="center">SMISC</td><td align="center">2</td><td align="center">1</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td align="center">---</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td></tr><tr><td align="center">P<sub>2</sub>
+</td><td align="center">SMISC</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td align="center">4</td><td align="center">3</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td align="center">---</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td></tr><tr><td align="center">P<sub>3</sub>
+</td><td align="center">SMISC</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td align="center">6</td><td align="center">5</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td align="center">---</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td></tr><tr><td align="center">P<sub>4</sub>
+</td><td align="center">SMISC</td><td align="center">7</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td align="center">8</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td align="center">---</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td></tr><tr><td align="center">P<sub>5</sub>
+</td><td align="center">SMISC</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td align="center">---</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td></tr><tr><td align="center">P<sub>6</sub>
+</td><td align="center">SMISC</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td align="center">---</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td></tr><tr><td align="center">P<sub>7</sub>
+</td><td align="center">SMISC</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td align="center">---</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td></tr><tr><td align="center">P<sub>8</sub>
+</td><td align="center">SMISC</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td align="center">---</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td></tr><tr><td align="center">--- </td><td align="center">---</td><td align="center">---</td><td align="center">---</td><td align="center">---</td><td align="center">---</td><td align="center">---</td><td align="center">---</td><td align="center">---</td><td align="center">---</td><td align="center">---</td><td align="center">---</td><td align="center">---</td><td align="center">---</td><td align="center">---</td><td align="center">---</td><td align="center">---</td><td align="center">---</td><td align="center">---</td></tr><tr><td align="center">P<sub>4n-3</sub>
+</td><td align="center">SMISC</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td align="center">---</td><td align="center">8n-6</td><td align="center">8n-7</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td></tr><tr><td align="center">P<sub>4n-2</sub>
+</td><td align="center">SMISC</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td align="center">---</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td align="center">8n-4</td><td align="center">8n-5</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td></tr><tr><td align="center">P<sub>4n-1</sub>
+</td><td align="center">SMISC</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td align="center">---</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+
+</td><td align="center">8n-2</td><td align="center">8n-3</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td></tr><tr><td align="center">P<sub>4n</sub>
+</td><td align="center">SMISC</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td align="center">---</td><td align="center">8n-1</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td align="center">8n</td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td><td bgcolor="#E3E3E3" align="center">
+
+ </td></tr></tbody></table></div></div><br class="table-break"></div><div class="refsect1" title="SOLID273 Assumptions and Restrictions"><a name="solid273assumptions"></a><h2>SOLID273 Assumptions and Restrictions</h2><p>
+</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The area of the base element must be nonzero. </p></li><li class="listitem"><p>The base element must lie on one side of the axisymmetric
+axis, and the axisymmetric axis must be on the same plane as the base
+element (master plane).  </p></li><li class="listitem"><p>A base element or base node must be associated with
+one axisymmetric axis (defined via <a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a> and <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> commands) <span class="italic"><em>before</em></span> generating nodes for general axisymmetric element sections (<a href="../ans_cmd/Hlp_C_NAXIS.html" class="olink"><span class="command"><strong>NAXIS</strong></span></a>) or defining an element by node connectivity (<a href="../ans_cmd/Hlp_C_E.html" class="olink"><span class="command"><strong>E</strong></span></a>).</p></li><li class="listitem"><p>An edge with a removed midside node implies that the
+displacement varies linearly, rather than parabolically, along that
+edge. For more information about the use of midside nodes, see <a href="../ans_mod/Hlp_G_MOD2_4.html#aQXQxq1ecmcm" class="olink">Quadratic Elements (Midside
+Nodes)</a> in the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a>. </p></li><li class="listitem"><p>Use at least two elements to avoid the hourglass effect.</p></li><li class="listitem"><p>You can form a triangular base element by defining
+duplicate K<sub>1</sub> - L<sub>1</sub> -
+O<sub>1</sub> node numbers. (See <a class="xref" href="Hlp_E_CH2_8.html" title="2.5.&nbsp;Degenerated Shape Elements">Degenerated Shape Elements</a> in this document.)</p></li><li class="listitem"><p>You cannot apply a pressure load via the <a href="../ans_cmd/Hlp_C_SFA.html" class="olink"><span class="command"><strong>SFA</strong></span></a> command.</p></li><li class="listitem"><p>If you specify mixed formulation (KEYOPT(6) = 1),
+do not miss any midside nodes. You must also use the sparse solver.</p></li><li class="listitem"><p>The contribution of the element to the mass moment
+inertia of the whole model is calculated by element mass multiplied
+by the square of the coordinates of the elemental centroid. The moment
+of inertia may therefore be inaccurate. </p></li><li class="listitem"><p>Issuing an <a href="../ans_cmd/Hlp_C_ESHAPE.html" class="olink"><span class="command"><strong>/ESHAPE</strong></span></a>,1 command while
+PowerGraphics is active causes the program to plot the elements in
+3-D and the results on both nodal planes and all <a href="Hlp_E_continuumelems.html#elemgenaxsidebar" class="olink">integration planes</a> in the circumferential direction; otherwise, the program plots the
+elements in 2-D and the results on the master plane. </p></li><li class="listitem"><p>You cannot display surface load symbols (<a href="../ans_cmd/Hlp_C_PSF.html" class="olink"><span class="command"><strong>/PSF</strong></span></a>) when displaying this element in 3-D via the <a href="../ans_cmd/Hlp_C_ESHAPE.html" class="olink"><span class="command"><strong>/ESHAPE</strong></span></a> command. </p></li><li class="listitem"><p>When specifying more than one facet per element edge
+for PowerGraphics displays (<a href="../ans_cmd/Hlp_C_NAXIS.html" class="olink"><span class="command"><strong>NAXIS</strong></span></a>,EFACET,<em class="replaceable"><code>NUM</code></em>, where <em class="replaceable"><code>NUM</code></em> &gt; 1),
+ANSYS plots additional results on some planes between the nodal and
+integration planes. The results on these planes are interpolated based
+on the nodal and integration plane values and are therefore less accurate
+than the values on the nodal and interpolation planes. If you do not
+wish to plot the interpolated values, set <em class="replaceable"><code>NUM</code></em> = 1 to plot only the values on nodal and integration planes.</p></li><li class="listitem"><p>You cannot increase the number of planar facets per
+element edge (<a href="../ans_cmd/Hlp_C_EFACET.html" class="olink"><span class="command"><strong>/EFACET</strong></span></a>) when displaying this element
+in 3-D via the <a href="../ans_cmd/Hlp_C_ESHAPE.html" class="olink"><span class="command"><strong>/ESHAPE</strong></span></a> command.</p></li><li class="listitem"><p>Print commands in postprocessing print the nodal plane
+results only.</p></li><li class="listitem"><p>To model axisymmetric solid surface loads acting on
+this element, use general axisymmetric surface element <a class="link" href="Hlp_E_SURF159.html" title="SURF159"><span class="structname">SURF159</span></a>. (You cannot use this element with surface-effect
+elements <a class="link" href="Hlp_E_SURF153.html" title="SURF153"><span class="structname">SURF153</span></a> and <a class="link" href="Hlp_E_SURF154.html" title="SURF154"><span class="structname">SURF154</span></a>.)</p></li><li class="listitem"><p>You cannot generate surface-based contact pairs (contact
+elements <a class="link" href="Hlp_E_CONTA171.html" title="CONTA171"><span class="structname">CONTA171</span></a> through <a class="link" href="Hlp_E_CONTA174.html" title="CONTA174"><span class="structname">CONTA174</span></a> paired with  target elements <a class="link" href="Hlp_E_TARGE169.html" title="TARGE169"><span class="structname">TARGE169</span></a> and <a class="link" href="Hlp_E_TARGE170.html" title="TARGE170"><span class="structname">TARGE170</span></a>) on this element.</p></li><li class="listitem"><p>You <span class="italic"><em>can</em></span> generate
+node-to-surface contact pairs (contact elements <a class="link" href="Hlp_E_CONTA175.html" title="CONTA175"><span class="structname">CONTA175</span></a> paired with target elements <a class="link" href="Hlp_E_TARGE170.html" title="TARGE170"><span class="structname">TARGE170</span></a>) and
+node-to-node contact elements (<a class="link" href="Hlp_E_CONTA178.html" title="CONTA178"><span class="structname">CONTA178</span></a>)
+on this element, with the following restrictions:</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>When <a class="link" href="Hlp_E_TARGE170.html" title="TARGE170"><span class="structname">TARGE170</span></a> is on the surface
+of <span class="structname">SOLID273</span>, you may have accuracy and convergence
+issues if the loading causes large rotations about the axisymmetric
+axis of <span class="structname">SOLID273</span>; you may also have those
+issues if the two sides of the contact boundaries have different mesh
+patterns in the circumferential direction (caused by different KEYOPT(2)
+values of <span class="structname">SOLID273</span>).</p></li><li class="listitem"><p>You cannot define <a class="link" href="Hlp_E_CONTA175.html" title="CONTA175"><span class="structname">CONTA175</span></a> with the multipoint constraint (MPC) approach using a force-distributed
+constraint (that is, you cannot set KEYOPT(2) = 2, KEYOPT(4) = 1,
+and KEYOPT(12) = 5 or 6 simultaneously for the <a class="link" href="Hlp_E_CONTA175.html" title="CONTA175"><span class="structname">CONTA175</span></a> elements).</p></li><li class="listitem"><p>In the case of a true axisymmetric condition (<span class="structname">SOLID273</span> with KEYOPT(2) = 1), you should use 2-D node-to-surface
+contact pairs (<a class="link" href="Hlp_E_CONTA175.html" title="CONTA175"><span class="structname">CONTA175</span></a> contact elements
+paired with <a class="link" href="Hlp_E_TARGE169.html" title="TARGE169"><span class="structname">TARGE169</span></a> target elements).</p></li></ul></div></li><li class="listitem"><p>Stress stiffening is always included in geometrically
+nonlinear analyses (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON). Prestress effects
+can be activated via the <a href="../ans_cmd/Hlp_C_PSTRES.html" class="olink"><span class="command"><strong>PSTRES</strong></span></a> command.</p></li></ul></div><p> </p></div><div class="refsect1" title="SOLID273 Product Restrictions"><a name="solid273prodrestr"></a><h2>SOLID273 Product Restrictions</h2><p>When used in the product(s) listed below, the stated
+            product-specific restrictions apply to this element in addition to the general
+            assumptions and restrictions given in the previous section.</p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+                </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+            </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:15-04:00"><title>SPLINE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_S_TOC.html" title="S Commands"><link rel="prev" href="Hlp_C_SPHERE.html" title="SPHERE"><link rel="next" href="Hlp_C_SPLOT.html" title="SPLOT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SPLINE"><a name="SPLINE"></a><div class="titlepage"></div><a class="indexterm" name="d0e257648"></a><span class="refentrytitle"><span class="command"><strong>SPLINE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>SPLINE</strong></span>, <em class="replaceable"><code>P1</code></em>, <em class="replaceable"><code>P2</code></em>, <em class="replaceable"><code>P3</code></em>, <em class="replaceable"><code>P4</code></em>, <em class="replaceable"><code>P5</code></em>, <em class="replaceable"><code>P6</code></em>, <em class="replaceable"><code>XV1</code></em>, <em class="replaceable"><code>YV1</code></em>, <em class="replaceable"><code>ZV1</code></em>, <em class="replaceable"><code>XV6</code></em>, <em class="replaceable"><code>YV6</code></em>, <em class="replaceable"><code>ZV6</code></em><br><b class="refpurpose">Generates a segmented spline through a series of keypoints.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7linesldm061600" title="Table&nbsp;2.32:&nbsp;&nbsp;Lines"><span class="type">Lines</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="SPLINE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>P1</code></em>, <em class="replaceable"><code>P2</code></em>, <em class="replaceable"><code>P3</code></em>,
+. . . , <em class="replaceable"><code>P6</code></em></b></span></dt><dd><p>Keypoints through which the spline is fit.  At least two must
+be defined.  If <em class="replaceable"><code>P1</code></em> = P, graphical picking is enabled
+and all remaining command fields are ignored (valid only in the GUI).</p></dd></dl></div></div><p>The following fields are used only if specified end slopes on the line
+are desired, otherwise zero curvature end slopes will be automatically calculated
+to produce a line which is "straight" in the active coordinate system.  To
+specify end slopes, use the following fields to define a "slope vector" (one
+for each end of the line, if desired) that has its tail at the origin and
+its head at the point <span class="italic"><em>XVn</em></span>,<span class="italic"><em>YVn</em></span>, <span class="italic"><em>ZVn</em></span> in the active coordinate system [<a class="link" href="Hlp_C_CSYS.html" title="CSYS"><span class="command"><strong>CSYS</strong></span></a>].
+ The corresponding end slope of the line will then be parallel to this "slope
+vector."</p><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>XV1</code></em>, <em class="replaceable"><code>YV1</code></em>, <em class="replaceable"><code>ZV1</code></em></b></span></dt><dd><p>Location (in the active coordinate system) of the head of
+the "slope vector" corresponding to the slope at the <em class="replaceable"><code>P1</code></em> end
+of the spline.  The tail of the vector is at the origin of the coordinate
+system.</p></dd><dt><span><b class="term"><em class="replaceable"><code>XV6</code></em>, <em class="replaceable"><code>YV6</code></em>, <em class="replaceable"><code>ZV6</code></em></b></span></dt><dd><p>Location of the head of the "slope vector" corresponding to
+the slope at the <em class="replaceable"><code>P6</code></em> (or the last keypoint if fewer
+than six specified) end of the spline.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="SPLINE.notes"></a><h2>Notes</h2><p>The output from this command is a series of connected lines (one line
+between each pair of keypoints) that together form a spline.  Note that solid
+modeling in a toroidal coordinate system is not recommended.</p></div><div class="refsect1" title="Menu Paths"><a name="SPLINE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Lines&gt;Splines&gt;Segmented Spline</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Lines&gt;Splines&gt;With Options&gt;Segmented Spline</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

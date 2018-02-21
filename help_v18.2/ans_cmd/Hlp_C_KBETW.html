@@ -1,0 +1,30 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:29-04:00"><title>KBETW</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_K_TOC.html" title="K Commands"><link rel="prev" href="Hlp_C_KBC.html" title="KBC"><link rel="next" href="Hlp_C_KCALC.html" title="KCALC"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="KBETW"><a name="KBETW"></a><div class="titlepage"></div><a class="indexterm" name="d0e140739"></a><span class="refentrytitle"><span class="command"><strong>KBETW</strong></span></span><div class="refnamediv"><p><span class="command"><strong>KBETW</strong></span>, <em class="replaceable"><code>KP1</code></em>, <em class="replaceable"><code>KP2</code></em>, <em class="replaceable"><code>KPNEW</code></em>, <em class="replaceable"><code>Type</code></em>, <em class="replaceable"><code>VALUE</code></em><br><b class="refpurpose">Creates a keypoint between two existing keypoints.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7keypointsldm061600" title="Table&nbsp;2.30:&nbsp;&nbsp;Keypoints"><span class="type">Keypoints</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="KBETW.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>KP1</code></em></b></span></dt><dd><p>First keypoint.  If <em class="replaceable"><code>KP1</code></em> = P, graphical
+picking is enabled and all remaining command fields are ignored (valid only
+in the GUI).</p></dd><dt><span><b class="term"><em class="replaceable"><code>KP2</code></em></b></span></dt><dd><p>Second keypoint.</p></dd><dt><span><b class="term"><em class="replaceable"><code>KPNEW</code></em></b></span></dt><dd><p>Number assigned to the new keypoint.  Defaults to the lowest
+available keypoint number.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Type</code></em></b></span></dt><dd><p>Type of input for <em class="replaceable"><code>VALUE</code></em>.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">RATIO&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Value is the ratio of the distances
+between keypoints as follows:  (<em class="replaceable"><code>KP1</code></em>-<em class="replaceable"><code>KPNEW</code></em>)/(<em class="replaceable"><code>KP1</code></em>-<em class="replaceable"><code>KP2</code></em>).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DIST&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Value is the absolute distance
+between <em class="replaceable"><code>KP1</code></em> and <em class="replaceable"><code>KPNEW</code></em> (valid
+only if current coordinate system is Cartesian).</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>VALUE</code></em></b></span></dt><dd><p>Location of new keypoint, as defined by <em class="replaceable"><code>Type</code></em> (defaults
+to 0.5).  If <em class="replaceable"><code>VALUE</code></em> is a ratio (<em class="replaceable"><code>Type</code></em> =
+RATIO) and is less than 0 or greater than 1, the keypoint is created on the
+extended line.  Similarly, if <em class="replaceable"><code>VALUE</code></em> is a distance
+(<em class="replaceable"><code>Type</code></em> = DIST) and is less than 0 or greater than
+the distance between <em class="replaceable"><code>KP1</code></em> and <em class="replaceable"><code>KP2</code></em>,
+the keypoint is created on the extended line.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="KBETW.notes"></a><h2>Notes</h2><p>Placement of the new keypoint depends on the currently active coordinate
+system [<a class="link" href="Hlp_C_CSYS.html" title="CSYS"><span class="command"><strong>CSYS</strong></span></a>].  If the coordinate system is Cartesian,
+the keypoint will lie on a straight line between <em class="replaceable"><code>KP1</code></em> and <em class="replaceable"><code>KP2</code></em>.
+ If the system is not Cartesian (e.g., cylindrical, spherical, etc.), the
+keypoint will be located as if on a line (which may not be straight) created
+in the current coordinate system between <em class="replaceable"><code>KP1</code></em> and <em class="replaceable"><code>KP2</code></em>.
+ Note that solid modeling in a toroidal coordinate system is not recommended.</p></div><div class="refsect1" title="Menu Paths"><a name="KBETW.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Keypoints&gt;KP between KPs</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

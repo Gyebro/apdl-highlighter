@@ -1,0 +1,31 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:21-04:00"><title>GMATRIX</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_G_TOC.html" title="G Commands"><link rel="prev" href="Hlp_C_GMARKER.html" title="/GMARKER"><link rel="next" href="Hlp_C_GMFACE.html" title="GMFACE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="GMATRIX"><a name="GMATRIX"></a><div class="titlepage"></div><a class="indexterm" name="d0e128503"></a><span class="refentrytitle"><span class="command"><strong>GMATRIX</strong></span></span><div class="refnamediv"><p><span class="command"><strong>GMATRIX</strong></span>, <em class="replaceable"><code>SYMFAC</code></em>, <em class="replaceable"><code>Condname</code></em>, <em class="replaceable"><code>NUMCOND</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>Matrixname</code></em><br><b class="refpurpose">Performs electric field solutions and calculates the self
+and mutual conductance between multiple conductors.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div> </div></p></div><div class="refsynopsisdiv" title="Synopsis"><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>SYMFAC</code></em></b></span></dt><dd><p>Geometric symmetry factor.  Conductance values are
+scaled by this factor which represents the fraction of the total device
+modeled.  Defaults to 1.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Condname</code></em></b></span></dt><dd><p>Alphanumeric prefix identifier used in defining named
+conductor components.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NUMCOND</code></em></b></span></dt><dd><p>Total number of components.  If a ground is modeled,
+it is to be included as a component.  </p></dd><dt><span><b class="term"><em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused field.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Matrixname</code></em></b></span></dt><dd><p>Array name for computed conductance matrix.  Defaults
+to GMATRIX.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="d0e128582"></a><h2>Notes</h2><p>To invoke the <span class="command"><strong>GMATRIX</strong></span> macro, the exterior
+nodes of each conductor must be grouped into individual components
+using the <a class="link" href="Hlp_C_CM.html" title="CM"><span class="command"><strong>CM</strong></span></a> command.  Each set of  independent
+components is assigned a component name with a common prefix followed
+by the conductor number.  A conductor system with a ground must also
+include the ground nodes as a component.  The ground component is
+numbered last in the component name sequence.</p><p>A ground conductance matrix relates current to a voltage vector.
+ A ground matrix cannot be applied to a circuit modeler.  The lumped
+conductance matrix is a combination of  lumped "arrangements" of voltage
+differences between conductors.  Use the lumped conductance terms
+in a circuit modeler to represent conductances between conductors.
+  </p><p>Enclose all name-strings in single quotes in the <span class="command"><strong>GMATRIX</strong></span> command line.</p><p><span class="command"><strong>GMATRIX</strong></span> works with the following elements:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p><a href="../ans_elem/Hlp_E_SOLID5.html" class="olink"><span class="structname">SOLID5</span></a> (KEYOPT(1) = 9)</p></li><li class="listitem"><p><a href="../ans_elem/Hlp_E_SOLID98.html" class="olink"><span class="structname">SOLID98</span></a> (KEYOPT(1) = 9)</p></li><li class="listitem"><p><a href="../ans_elem/Hlp_E_LINK68.html" class="olink"><span class="structname">LINK68</span></a></p></li><li class="listitem"><p><a href="../ans_elem/Hlp_E_PLANE230.html" class="olink"><span class="structname">PLANE230</span></a></p></li><li class="listitem"><p><a href="../ans_elem/Hlp_E_SOLID231.html" class="olink"><span class="structname">SOLID231</span></a></p></li><li class="listitem"><p><a href="../ans_elem/Hlp_E_SOLID232.html" class="olink"><span class="structname">SOLID232</span></a></p></li></ul></div><p>This command is available from the menu path shown below only
+if existing results are available.</p><p>This command does not support multiframe
+restarts</p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e128647"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Elec&amp;Mag Calc&gt;Component Based&gt;Self/Mutual conductance</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

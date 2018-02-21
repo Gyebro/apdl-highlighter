@@ -1,0 +1,20 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:42-04:00"><title>RAPPND</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_R_TOC.html" title="R Commands"><link rel="prev" href="Hlp_C_RADOPT.html" title="RADOPT"><link rel="next" href="Hlp_C_RATE.html" title="RATE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="RAPPND"><a name="RAPPND"></a><div class="titlepage"></div><a class="indexterm" name="d0e222637"></a><span class="refentrytitle"><span class="command"><strong>RAPPND</strong></span></span><div class="refnamediv"><p><span class="command"><strong>RAPPND</strong></span>, <em class="replaceable"><code>LSTEP</code></em>, <em class="replaceable"><code>TIME</code></em><br><b class="refpurpose">Appends results data from the database to the results file. </b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1loadcasejla070199" title="Table&nbsp;2.88:&nbsp;&nbsp;Load Case Calculations"><span class="type">Load Case Calculations</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="RAPPND.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>LSTEP</code></em></b></span></dt><dd><p>Load step number to be assigned to the results data set. 
+If it is the same as an existing load step number on the results file, the
+appended load step will be inaccessible.  Defaults to 1.</p></dd><dt><span><b class="term"><em class="replaceable"><code>TIME</code></em></b></span></dt><dd><p>Time value to be assigned to the results data set.  Defaults
+to 0.0.  A time value greater than the last load step should be used.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="RAPPND.notes"></a><h2>Notes</h2><p>This command is typically used to append the results from a load case
+combination to the results file.  See the <a class="link" href="Hlp_C_LCWRITE.html" title="LCWRITE"><span class="command"><strong>LCWRITE</strong></span></a> command
+to create a separate load case file.  Only summable and constant data are
+written to the results file by default; non-summable data are not written
+unless requested (<a class="link" href="Hlp_C_LCSUM.html" title="LCSUM"><span class="command"><strong>LCSUM</strong></span></a> command). <span class="structname">RAPPND</span> should
+not be used to append results from a harmonic analysis.</p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p></div><div class="refsect1" title="Menu Paths"><a name="RAPPND.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Write Results</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

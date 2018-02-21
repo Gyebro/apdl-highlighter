@@ -1,0 +1,53 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:27-04:00"><title>/INQUIRE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_I_TOC.html" title="I Commands"><link rel="prev" href="Hlp_C_INPUT.html" title="/INPUT"><link rel="next" href="Hlp_C_INRES.html" title="INRES"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="/INQUIRE"><a name="s-INQUIRE"></a><div class="titlepage"></div><a class="indexterm" name="d0e138445"></a><span class="refentrytitle"><a href="Hlp_C_INQUIRE.html" class="olink"><span class="command"><strong>/INQUIRE</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>/INQUIRE</strong></span>, <em class="replaceable"><code>StrArray</code></em>, <em class="replaceable"><code>FUNC</code></em><br><b class="refpurpose">Returns system information to a parameter.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_4.html" title="2.4.&nbsp;APDL Commands"><code class="classname">APDL</code></a>: <a class="link" href="Hlp_C_CH2_4.html#cmdapdlparadefjla070199" title="Table&nbsp;2.18:&nbsp;&nbsp;Parameter Definition"><span class="type">Parameters</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsect1" title="Argument Descriptions"><a name="s-INQUIRE.argdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>StrArray</code></em></b></span></dt><dd><p>Name of the "string array" parameter that will hold
+the returned values. String array parameters are similar to character
+arrays, but each array element can be as long as 248 characters. If
+the string parameter does not exist, it will be created.</p></dd></dl></div></div><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>FUNC</code></em></b></span></dt><dd><p>Specifies the type of system information returned:</p><div><div class="variablelist"><dl><dt><span><b class="term">LOGIN&nbsp;--&nbsp;</b></span></dt><dd><p>Returns the pathname
+of the login directory on Linux systems or the pathname of the default
+directory (including drive letter) on Windows systems.</p></dd><dt><span><b class="term">DOCU&nbsp;--&nbsp;</b></span></dt><dd><p>Returns the pathname
+of the ANSYS docu directory.</p></dd><dt><span><b class="term">APDL&nbsp;--&nbsp;</b></span></dt><dd><p>Returns the pathname
+of the ANSYS APDL directory.</p></dd><dt><span><b class="term">PROG&nbsp;--&nbsp;</b></span></dt><dd><p>Returns the pathname
+of the ANSYS executable directory.</p></dd><dt><span><b class="term">AUTH&nbsp;--&nbsp;</b></span></dt><dd><p>Returns the pathname
+of the directory in which the license file resides.</p></dd><dt><span><b class="term">USER&nbsp;--&nbsp;</b></span></dt><dd><p>Returns the name of
+the user currently logged-in.</p></dd><dt><span><b class="term">DIRECTORY&nbsp;--&nbsp;</b></span></dt><dd><p>Returns the pathname
+of the current directory.</p></dd><dt><span><b class="term">JOBNAME&nbsp;--&nbsp;</b></span></dt><dd><p>Returns the current <em class="replaceable"><code>Jobname</code></em>. </p></dd><dt><span><b class="term">RSTDIR&nbsp;--&nbsp;</b></span></dt><dd><p>Returns rst directory
+(<a class="link" href="Hlp_C_FILE.html" title="FILE"><span class="command"><strong>FILE</strong></span></a> command).</p></dd><dt><span><b class="term">RSTFILE&nbsp;--&nbsp;</b></span></dt><dd><p>Returns rst file
+name (<a class="link" href="Hlp_C_FILE.html" title="FILE"><span class="command"><strong>FILE</strong></span></a> command).</p></dd><dt><span><b class="term">RSTEXT&nbsp;--&nbsp;</b></span></dt><dd><p>Returns rst file
+extension (<a class="link" href="Hlp_C_FILE.html" title="FILE"><span class="command"><strong>FILE</strong></span></a> command).</p></dd><dt><span><b class="term">PSEARCH&nbsp;--&nbsp;</b></span></dt><dd><p>Returns path used
+for "unknown command" macro (<a href="Hlp_C_PSEARCH.html" class="olink"><span class="command"><strong>/PSEARCH</strong></span></a> command).</p></dd><dt><span><b class="term">OUTPUT&nbsp;--&nbsp;</b></span></dt><dd><p>Returns the current
+output file name (<a href="Hlp_C_OUTPUT.html" class="olink"><span class="command"><strong>/OUTPUT</strong></span></a> command).</p></dd></dl></div></div></dd></dl></div></div><h4><a name="d0e138599"></a>Returning the Value of an Environment Variable to a Parameter</h4><p>If <em class="replaceable"><code>FUNC</code></em>=ENV, the command format is <a href="Hlp_C_INQUIRE.html" class="olink"><span class="command"><strong>/INQUIRE</strong></span></a>,<em class="replaceable"><code>StrArray</code></em>,ENV,<em class="replaceable"><code>ENVNAME</code></em>,<em class="replaceable"><code>Substring</code></em>. In this
+instance, ENV specifies that the command should return the value of
+an environment variable. The following defines the remaining fields:</p><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>ENVNAME</code></em></b></span></dt><dd><p>Specifies the name of the environment variable.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Substring</code></em></b></span></dt><dd><p>If <em class="replaceable"><code>Substring</code></em> = 1, the first
+substring (up to the first colon (:)) is returned. If <em class="replaceable"><code>Substring</code></em> = 2, the second substring is returned, etc.
+For Windows platforms, the separating character is semicolon (;).
+If this argument is either blank or 0, the entire value of the environment
+variable is returned.</p></dd></dl></div></div><h4><a name="d0e138640"></a>Returning the Value of a Title to a Parameter</h4><p>If <em class="replaceable"><code>FUNC</code></em> = TITLE, the command format
+is <a href="Hlp_C_INQUIRE.html" class="olink"><span class="command"><strong>/INQUIRE</strong></span></a>,<em class="replaceable"><code>StrArray</code></em>,TITLE,<em class="replaceable"><code>Title_num</code></em>. In this context, the
+value of <em class="replaceable"><code>Title_num</code></em> can be blank or 1 through
+5. If the value is 1 or blank, the title is returned. If the value
+is 2 through 5, a corresponding subtitle is returned (2 denoting the
+first subtitle, and so on).</p><h4><a name="d0e138660"></a>Returning Information About a File to a Parameter</h4><p>The <a href="Hlp_C_INQUIRE.html" class="olink"><span class="command"><strong>/INQUIRE</strong></span></a> command can also return information
+about specified files within the file system. For these capabilities,
+the format is <a href="Hlp_C_INQUIRE.html" class="olink"><span class="command"><strong>/INQUIRE</strong></span></a>,<em class="replaceable"><code>Parameter</code></em>,<em class="replaceable"><code>FUNC</code></em>,<em class="replaceable"><code>Fname</code></em>, <em class="replaceable"><code>Ext</code></em>, <em class="replaceable"><code>--</code></em>. The following defines
+the fields:</p><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Parameter</code></em></b></span></dt><dd><p>Name of the parameter that will hold the returned
+values.</p></dd></dl></div></div><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>FUNC</code></em></b></span></dt><dd><p>Specifies the type of file information returned:</p><div><div class="variablelist"><dl><dt><span><b class="term">EXIST&nbsp;--&nbsp;</b></span></dt><dd><p>Returns a 1 if the
+specified file exists, and 0 if it does not.</p></dd><dt><span><b class="term">DATE&nbsp;--&nbsp;</b></span></dt><dd><p>Returns the date stamp
+of the specified file in the format <em class="replaceable"><code>yyyymmdd.hhmmss</code></em>.</p></dd><dt><span><b class="term">SIZE&nbsp;--&nbsp;</b></span></dt><dd><p>Returns the size of
+the specified file in MB.</p></dd><dt><span><b class="term">WRITE&nbsp;--&nbsp;</b></span></dt><dd><p>Returns the status
+of the write attribute. A 0 denotes no write permission while a 1
+denotes write permission.</p></dd><dt><span><b class="term">READ&nbsp;--&nbsp;</b></span></dt><dd><p>Returns the status
+of the read attribute. A 0 denotes no read permission while a 1 denotes
+read permission.</p></dd><dt><span><b class="term">EXEC&nbsp;--&nbsp;</b></span></dt><dd><p>Returns the status
+of the execute attribute (this has meaning only on Linux). A 0 denotes
+no execute permission while a 1 denotes execute permission.</p></dd><dt><span><b class="term">LINES&nbsp;--&nbsp;</b></span></dt><dd><p>Returns the number
+of lines in an ASCII file.</p></dd></dl></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Fname</code></em></b></span></dt><dd><p>File name and directory path (248 characters maximum, including the characters needed for the directory path).  An unspecified directory path defaults to the working directory; in this case, you can use all 248 characters for the file name. </p></dd><dt><span><b class="term"><em class="replaceable"><code>Ext</code></em></b></span></dt><dd><p>Filename extension (eight-character maximum).</p></dd><dt><span><b class="term"><em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused field.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="s-INQUIRE.notes"></a><h2>Notes</h2><p>The <a href="Hlp_C_INQUIRE.html" class="olink"><span class="command"><strong>/INQUIRE</strong></span></a> command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e138779"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

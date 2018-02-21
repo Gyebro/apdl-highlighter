@@ -1,0 +1,180 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:27-04:00"><title>INISTATE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_I_TOC.html" title="I Commands"><link rel="prev" href="Hlp_C_IMMED.html" title="IMMED"><link rel="next" href="Hlp_C_INIT.html" title="*INIT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="INISTATE"><a name="INISTATE"></a><div class="titlepage"></div><a class="indexterm" name="d0e137002"></a><span class="refentrytitle">
+<span class="command"><strong>INISTATE</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>INISTATE</strong></span>, <em class="replaceable"><code>Action</code></em>, <em class="replaceable"><code>Val1</code></em>, <em class="replaceable"><code>Val2</code></em>, <em class="replaceable"><code>Val3</code></em>, <em class="replaceable"><code>Val4</code></em>, <em class="replaceable"><code>Val5</code></em>, <em class="replaceable"><code>Val6</code></em>, <em class="replaceable"><code>Val7</code></em>, <em class="replaceable"><code>Val8</code></em>, <em class="replaceable"><code>Val9</code></em>
+<br><b class="refpurpose">Defines initial state data and parameters.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7datatablesldm061600" title="Table&nbsp;2.28:&nbsp;&nbsp;Material Data Tables"><span class="type">Data Tables</span></a></span></div></div><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="INISTATE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Action</code></em>
+</b></span></dt><dd><p>Specifies action for defining or manipulating <a href="../ans_adv/Hlp_G_INSTINTRO.html" class="olink">initial state</a> data:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SET</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use <em class="replaceable"><code>Action</code></em> = SET to designate initial state coordinate system, data type, and
+material type parameters. See <a class="xref" href="Hlp_C_INISTATE.html#inistate_set" title="Command Specification for Action = SET">"Command Specification for <em class="replaceable"><code>Action</code></em> = SET"</a>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DEFINE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use <em class="replaceable"><code>Action</code></em> = DEFINE to specify the
+                                    actual state values, and the corresponding element, integration
+                                    point, or layer information. See <a class="xref" href="Hlp_C_INISTATE.html#inistate_define" title="Command Specifications for Action = DEFINE">"Command Specifications for <em class="replaceable"><code>Action</code></em> = DEFINE"</a>.</p><p>Use <em class="replaceable"><code>Action</code></em> = DEFINE for <a href="../ans_adv/Hlp_G_INSTAPPL.html#initfuncbased" class="olink">function-based</a> initial
+                                    state. See <a class="xref" href="Hlp_C_INISTATE.html#inistate_deffuncbased" title="Command Specifications for Action = DEFINE (Function-Based Option)">"Command Specifications for <em class="replaceable"><code>Action</code></em> = DEFINE (Function-Based
+            Option)"</a>. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">WRITE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use <em class="replaceable"><code>Action</code></em> = WRITE to write the initial state values to a file when the <a class="link" href="Hlp_C_SOLVE.html" title="SOLVE"><span class="command"><strong>SOLVE</strong></span></a> command is issued. See <a class="xref" href="Hlp_C_INISTATE.html#inistate_write" title="Command Specifications for Action = WRITE">"Command Specifications for <em class="replaceable"><code>Action</code></em> = WRITE"</a>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">READ</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use <em class="replaceable"><code>Action</code></em> = READ to read the initial state values from a file. See <a class="xref" href="Hlp_C_INISTATE.html#inistate_read" title="Command Specifications for Action = READ">"Command Specifications for <em class="replaceable"><code>Action</code></em> = READ"</a>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LIST</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use <em class="replaceable"><code>Action</code></em> = LIST  to read out the initial state data. See <a class="xref" href="Hlp_C_INISTATE.html#inistate_list" title="Command Specifications for Action = LIST">"Command Specifications for <em class="replaceable"><code>Action</code></em> = LIST"</a>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DELETE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use <em class="replaceable"><code>Action</code></em> = DELE to delete initial state data from a selected set of elements.
+See <a class="xref" href="Hlp_C_INISTATE.html#inistate_delete" title="Command Specifications for Action = DELETE">"Command Specifications for <em class="replaceable"><code>Action</code></em> = DELETE"</a>
+</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term">
+<em class="replaceable"><code>Val1, Val2, ..., Val9</code></em>
+</b></span></dt><dd><p>Input values based on the <em class="replaceable"><code>Action</code></em> type.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="d0e137185"></a><h2>Notes</h2><p>The <span class="command"><strong>INISTATE</strong></span> command is available for <a href="../ans_elem/Hlp_E_CH2_OLDNEW.html#EL2oldnewtable" class="olink">current-technology
+elements</a>. Initial state supported for a given element is indicated
+in the <a href="../ans_elem/Hlp_E_LIBRARY.html" class="olink">documentation
+for the element</a> under &#8220;Special Features.&#8221;</p><p>The command is not for use with kinematic hardening material properties (such as
+    <a class="link" href="Hlp_C_TB.html" title="TB"><span class="command"><strong>TB</strong></span></a>,BKIN) or the shape memory alloy material model
+   (<a class="link" href="Hlp_C_TB.html" title="TB"><span class="command"><strong>TB</strong></span></a>,SMA). </p><p>
+<span class="command"><strong>INISTATE</strong></span> with elastic strain alone is not
+supported for gasket materials (<a class="link" href="Hlp_C_TB.html" title="TB"><span class="command"><strong>TB</strong></span></a>,GASK) and hyperelastic
+materials (<a class="link" href="Hlp_C_TB.html" title="TB"><span class="command"><strong>TB</strong></span></a>,HYPER, <a class="link" href="Hlp_C_TB.html" title="TB"><span class="command"><strong>TB</strong></span></a>,BB, <a class="link" href="Hlp_C_TB.html" title="TB"><span class="command"><strong>TB</strong></span></a>,AHYPER, <a class="link" href="Hlp_C_TB.html" title="TB"><span class="command"><strong>TB</strong></span></a>,CDM, <a class="link" href="Hlp_C_TB.html" title="TB"><span class="command"><strong>TB</strong></span></a>,EXPE). </p><p>
+<span class="command"><strong>INISTATE</strong></span> with initial stress alone is not
+supported for gasket materials (<a class="link" href="Hlp_C_TB.html" title="TB"><span class="command"><strong>TB</strong></span></a>,GASK).</p><p>
+<span class="command"><strong>INISTATE</strong></span> with plastic strain (which must include
+            initial strain or stress, plastic strain, and accumulated plastic strain) does not
+            support gasket materials (<a class="link" href="Hlp_C_TB.html" title="TB"><span class="command"><strong>TB</strong></span></a>,GASK), rate-dependent plasticity
+                (<a class="link" href="Hlp_C_TB.html" title="TB"><span class="command"><strong>TB</strong></span></a>,RATE), and viscoplasticity (<a class="link" href="Hlp_C_TB.html" title="TB"><span class="command"><strong>TB</strong></span></a>,PRONY,
+                <a class="link" href="Hlp_C_TB.html" title="TB"><span class="command"><strong>TB</strong></span></a>,SHIFT).</p><div class="informaltable"><table border="1" width="95%"><colgroup><col class="col1" width="100%"></colgroup><tbody><tr><td>
+<p>For detailed information about using the
+initial state capability, see <a href="../ans_adv/Hlp_G_INSTINTRO.html" class="olink">Initial State in the <span class="olinkdocname">Mechanical APDL Advanced Analysis Guide</span></a>.</p>
+</td></tr></tbody></table></div></div><div class="refsect1" title="Command Specification for Action = SET"><a name="inistate_set"></a><h2>Command Specification for <em class="replaceable"><code>Action</code></em> = SET</h2><div class="refsect2" title="INISTATE, SET, Val1, Val2"><a name="d0e137286"></a><h3>
+<span class="command"><strong>INISTATE</strong></span>, SET, <em class="replaceable"><code>Val1</code></em>, <em class="replaceable"><code>Val2</code></em>
+</h3><div class="informaltable"><table border="1" width="95%"><colgroup><col width="96" class="col1"><col width="480" class="col2"></colgroup><thead><tr><th bgcolor="#E3E3E3" valign="top">
+
+
+<em class="replaceable"><code>Val1</code></em>
+                                = </th><th bgcolor="#E3E3E3" valign="top">
+
+
+<em class="replaceable"><code>Val2</code></em>
+                                = </th></tr></thead><tbody><tr><td>CSYS</td><td>
+                                <p>Coordinate system. <em class="replaceable"><code>Val2</code></em> is an
+                                    integer corresponding to the <a href="../ans_adv/Hlp_G_INSTCSYS.html" class="olink">coordinate system</a>:</p>
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>-2 = Element Coordinate System</td></tr><tr><td>-1 = Material Coordinate System</td></tr><tr><td>0 = Global Cartesian Coordinate System</td></tr><tr><td>0 - 10 = Any ANSYS-defined coordinate system</td></tr><tr><td>
+                                        <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqa75106a1-917a-430f-944b-fdac20caa523.svg"></span>11 = Any user-defined coordinate system
+                                        ID</td></tr></table>
+                            </td></tr><tr><td>DTYP</td><td>
+                                <p>Data type. <em class="replaceable"><code>Val2</code></em> is the type of data
+                                    that will be set on the subsequent
+                                    <span class="command"><strong>INISTATE</strong></span>,DEFINE command:</p>
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>STRE = Stress data (default)</td></tr><tr><td>EPEL = Strain data</td></tr><tr><td>EPPL = Plastic strain data</td></tr><tr><td>PLEQ = Accumulated equivalent plastic strain </td></tr><tr><td>PLWK = Plastic strain energy density</td></tr><tr><td>EPCR = Creep strain data</td></tr><tr><td>PPRE = Pore pressure</td></tr><tr><td>VOID = Void ratio</td></tr><tr><td>SVAR = State Variables</td></tr><tr><td>ufXX = User-defined field XX (01 through 09)</td></tr></table>
+                            </td></tr><tr><td>MAT</td><td>Material type. <em class="replaceable"><code>Val2</code></em> is the material
+                                ID. Specifying <em class="replaceable"><code>Val2</code></em> = 0 disables
+                                material-based initial state and enables integration-point-based
+                                initial state data. </td></tr><tr><td>NODE</td><td>Enable <a href="../ans_adv/Hlp_G_INSTSPEC.html#bas_nodebasedinit" class="olink">node-based initial
+                                    state</a>. When <em class="replaceable"><code>Val2</code></em> = 1, all
+                                subsequent <span class="command"><strong>INISTATE</strong></span> commands use the node-based
+                                format. To disable node-based initial state, specify
+                                    <em class="replaceable"><code>Val2</code></em> = 0.</td></tr><tr><td>DATA</td><td>Input method. By default, the data is discrete at either the
+                                node- or element-integration point. Function-based inistate can be
+                                activated via the FUNC option.</td></tr></tbody></table></div><div class="refsect3" title="Notes"><a name="d0e137421"></a><h4>Notes</h4><p>
+<em class="replaceable"><code>Action</code></em> = SET specifies and modifies the environment into which you
+                    will define the initial state data (via a subsequent
+                    <span class="command"><strong>INISTATE</strong></span>,DEFINE command). Otherwise, subsequent
+                        <span class="command"><strong>INISTATE</strong></span>,DEFINE data is input as initial stress data in
+                    the global Cartesian coordinate system.</p></div></div></div><div class="refsect1" title="Command Specifications for Action = DEFINE"><a name="inistate_define"></a><h2>Command Specifications for <em class="replaceable"><code>Action</code></em> = DEFINE</h2><div class="refsect2" title="INISTATE, DEFINE, ID, EINT, KLAYER, PARMINT, Cxx, Cyy, Czz, Cxy, Cyz, Cxz"><a name="d0e137441"></a><h3>
+<span class="command"><strong>INISTATE</strong></span>, DEFINE, <em class="replaceable"><code>ID, EINT, KLAYER, PARMINT, Cxx, Cyy, Czz,
+                    Cxy, Cyz, Cxz</code></em>
+</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>ID</code></em> --</b></span></dt><dd><p>Element ID number when using element-based initial
+state. Defaults to current element selection. </p><p>Node number
+when using node-based initial state. Defaults to current node selection.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>EINT</code></em> --</b></span></dt><dd><p>Gauss integration point (defaults to ALL). </p><p>For node-based initial state (<em class="replaceable"><code>Val2</code></em> = NODE),
+                            element ID (if specified). The <span class="command"><strong>INISTATE</strong></span> command is
+                            applied only to the element ID (unlike the default behavior, where the
+                            command is applied to <span class="emphasis"><em>all</em></span> selected elements
+                            containing the specified node).</p><p>Not valid for material-based initial-state data
+                                (<em class="replaceable"><code>Val1</code></em> = MAT) or node-based initial state
+                                (<em class="replaceable"><code>Val2</code></em> = NODE).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>KLAYER</code></em> --</b></span></dt><dd><p>Layer number (for layered solid/shell elements) or
+cell number for beam/pipe elements. Blank for other supported element
+types and material-based initial state data.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>ParmInt</code></em> --</b></span></dt><dd><p>Section integration point within a layer, or cell-integration
+point for beams (typically four integration points). The default value
+is ALL. Not valid for material-based initial state data (<em class="replaceable"><code>Val1</code></em> = MAT) or node-based initial state (<em class="replaceable"><code>Val2</code></em> = NODE).</p><p>Not valid for material-based
+initial state data (<em class="replaceable"><code>Val1</code></em> = MAT).</p><p>Not used for node-based initial state with elements that do
+not have a beam/pipe/shell section defined. </p><p>For node-based initial state with beams/pipes, values 1 through
+4 can be used to specify the values at corner nodes within a cell.
+ </p><p>For node-based initial state with layered sections, values can
+be specified at TOP, BOT, and MID, or left blank (ALL). </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Cxx, Cyy, Czz, Cxy, Cyz, Cxz</code></em> --</b></span></dt><dd><p>Stress (S), strain (EPEL), or plastic strain (EPPL)
+values.</p></dd></dl></div></div><div class="refsect3" title="Notes"><a name="d0e137534"></a><h4>Notes</h4><p>You can issue the <span class="command"><strong>INISTATE</strong></span> command repeatedly
+to define multiple sets of initial state values. Initial state data
+can be specified according to elements, layers or integration points. </p><p>When the initial state parameters are being defined based on the material,
+                        (<span class="command"><strong>INISTATE</strong></span>,SET,MAT,<em class="replaceable"><code>MATID</code></em>), the
+                        <em class="replaceable"><code>ELID</code></em> value designates the element number and all
+                    subsequent values are ignored.</p><p>For coupled-field elements, the stresses to input must be Biot&#8217;s
+effective stresses. </p></div></div></div><div class="refsect1" title="Command Specifications for Action = DEFINE (Function-Based Option)"><a name="inistate_deffuncbased"></a><h2>Command Specifications for <em class="replaceable"><code>Action</code></em> = DEFINE (Function-Based
+            Option)</h2><div class="refsect2" title="INISTATE, DEFINE, ID, EINT, --, --, FuncName, C1, C2, ..., C12"><a name="d0e137561"></a><h3>
+<span class="command"><strong>INISTATE</strong></span>, DEFINE, <em class="replaceable"><code>ID, EINT, --, --, FuncName, C1,
+                    C2, ..., C12</code></em>
+</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>ID</code></em> --</b></span></dt><dd><p>Element ID number when using element-based initial state. Defaults to
+                            current element selection. </p><p>Node number when using node-based initial state. Defaults to current
+                            node selection.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>EINT</code></em> --</b></span></dt><dd><p>Gauss integration point (defaults to ALL). Not valid for
+                            material-based initial state data (<em class="replaceable"><code>Val1</code></em> =
+                            MAT) or node-based initial state (<em class="replaceable"><code>Val2</code></em> =
+                            NODE).</p></dd><dt><span><b class="term">(Blank) --</b></span></dt><dd><p>
+<span class="italic"><em>Reserved for future use.</em></span>
+</p></dd><dt><span><b class="term">(Blank) --</b></span></dt><dd><p>
+<span class="italic"><em>Reserved for future use.</em></span>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>FuncName</code></em> --</b></span></dt><dd><p>LINX | LINY | LINZ. Apply initial state data as a linear function of
+                            location based on the X axis (LINX), Y axis (LINY), or Z axis (LINZ) in
+                            the coordinate system specified via the
+                            <span class="command"><strong>INISTATE</strong></span>,SET,CSYS command. Default coordinate system:
+                            CSYS,0 (global Cartesian).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>C1, C2, ..., C12</code></em> --</b></span></dt><dd><p>For <em class="replaceable"><code>FuncName</code></em> with tensors, each component
+                            uses two values. SXX = <em class="replaceable"><code>C1</code></em> +
+                                X*<em class="replaceable"><code>C2</code></em>, SYY = <em class="replaceable"><code>C3
+                            </code></em>+ 2*<em class="replaceable"><code>C4</code></em>, and so on. Specify 12
+                            values (for the six tensor components). </p><p>For <em class="replaceable"><code>FuncName</code></em> with scalars, only two values
+                                <em class="replaceable"><code>C1</code></em> and <em class="replaceable"><code>C2</code></em>
+                                (<em class="replaceable"><code>VALUE</code></em> = <em class="replaceable"><code>C1 </code></em>+
+                                X*<em class="replaceable"><code>C2</code></em>) are necessary to apply the initial
+                            state. </p></dd></dl></div></div><div class="refsect3" title="Notes"><a name="d0e137671"></a><h4>Notes</h4><p>You can issue the <span class="command"><strong>INISTATE</strong></span> command repeatedly with the
+                    function-based option to define multiple sets of initial state values. Initial
+                    state data can be specified according to elements or integration points. </p><p>For coupled-field elements, the stresses to input must be Biot's effective
+                    stresses. </p></div></div></div><div class="refsect1" title="Command Specifications for Action = WRITE"><a name="inistate_write"></a><h2>Command Specifications for <em class="replaceable"><code>Action</code></em> = WRITE</h2><div class="refsect2" title="INISTATE, WRITE, FLAG, , , , CSID, Dtype"><a name="d0e137687"></a><h3>INISTATE, WRITE, <em class="replaceable"><code>FLAG, , , , CSID, Dtype</code></em>
+</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>FLAG</code></em> --</b></span></dt><dd><p>Set this value to 1 to generate the initial state
+file, or 0 to disable initial state file generation.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>CSID</code></em> --</b></span></dt><dd><p>Determines the <a href="../ans_adv/Hlp_G_INSTCSYS.html" class="olink">coordinate system</a> for the initial
+                            state:</p><div><div class="variablelist"><dl><dt><span><b class="term"> 0 (default)</b></span></dt><dd><p>Write in global Cartesian
+coordinate system for solid elements.</p></dd></dl></div></div><div><div class="variablelist"><dl><dt><span><b class="term">-1 (or MAT)</b></span></dt><dd><p>Write in material coordinate
+system</p></dd></dl></div></div><div><div class="variablelist"><dl><dt><span><b class="term">-2 (or ELEM)</b></span></dt><dd><p>Write in element coordinate
+system for link, beam, and layered elements.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Dtype</code></em> --</b></span></dt><dd><p>Sets the data type to be written in the
+                                            <span class="filename"><strong>.IST</strong></span> file:</p><div><div class="variablelist"><dl><dt><span><b class="term">S</b></span></dt><dd><p>Output stresses.</p></dd></dl></div></div><div><div class="variablelist"><dl><dt><span><b class="term">EPEL</b></span></dt><dd><p>Output elastic strain.</p></dd></dl></div></div><div><div class="variablelist"><dl><dt><span><b class="term">EPPL</b></span></dt><dd><p>Output plastic strain.</p></dd><dt><span><b class="term">PLEQ</b></span></dt><dd><p>Output equivalent plastic strain.</p></dd><dt><span><b class="term">PLWK</b></span></dt><dd><p>Output plastic strain energy density.</p></dd><dt><span><b class="term">EPCR</b></span></dt><dd><p>Output creep strain.</p></dd><dt><span><b class="term">PPRE</b></span></dt><dd><p>Initial pore pressure.</p></dd><dt><span><b class="term">VOID</b></span></dt><dd><p>Initial void ratio.</p></dd><dt><span><b class="term">SVAR</b></span></dt><dd><p>State variables.</p></dd></dl></div></div></dd></dl></div></div></dd></dl></div></div><div class="refsect3" title="Notes"><a name="d0e137805"></a><h4>Notes</h4><p>Default is 0 for solid elements and -2 for link, beam, and shell
+elements.</p><p>State variables are always written to the <span class="filename"><strong>.ist</strong></span> file in the material coordinate system.</p><p>Only the three in-plane stresses for the top and bottom
+                    surfaces are written.</p><p>For coupled-field elements, the stresses written out are Biot&#8217;s effective stress
+                    values.</p><p>Initial pore pressure and void ratio are available for
+                    the coupled pore-pressure elements (CPT<em class="replaceable"><code>nnn</code></em>) only:
+                        <a href="../ans_elem/Hlp_E_CPT212.html" class="olink"><span class="structname">CPT212</span></a>, <a href="../ans_elem/Hlp_E_CPT213.html" class="olink"><span class="structname">CPT213</span></a>,
+                        <a href="../ans_elem/Hlp_E_CPT215.html" class="olink"><span class="structname">CPT215</span></a>, <a href="../ans_elem/Hlp_E_CPT216.html" class="olink"><span class="structname">CPT216</span></a>, and
+                        <a href="../ans_elem/Hlp_E_CPT217.html" class="olink"><span class="structname">CPT217</span></a>. </p></div></div></div><div class="refsect1" title="Command Specifications for Action = READ"><a name="inistate_read"></a><h2>Command Specifications for <em class="replaceable"><code>Action</code></em> = READ</h2><div class="refsect2" title="INISTATE, READ, Fname, Ext, Path"><a name="d0e137850"></a><h3>
+<span class="command"><strong>INISTATE</strong></span>, READ, <em class="replaceable"><code>Fname, Ext,
+Path</code></em>
+</h3><p>Read initial state data from a standalone initial-state file of the
+                specified name (<em class="replaceable"><code>Fname</code></em>) and filename extension
+                    (<em class="replaceable"><code>Ext</code></em>), located in the specified path
+                    (<em class="replaceable"><code>Path</code></em>). The initial state file must be in a
+                comma-delimited ASCII file format, consisting of individual rows for each
+                stress/strain item, with each row consisting of columns separated by commas. The
+                    <span class="command"><strong>INISTATE</strong></span>,READ command is available for
+                element-integration-point-based initial-state data and node-based initial-state data
+                (described in <a href="../ans_adv/Hlp_G_INSTFORMAT.html" class="olink">Initial-State (<span class="filename"><strong>.IST</strong></span>) File</a>).</p><div class="refsect3" title="Notes"><a name="d0e137875"></a><h4>Notes</h4><p>Use the READ option to apply complex sets of initial state data
+to various elements, cells, layers, sections and integration points.
+Fore more information, see <a href="../ans_adv/Hlp_G_INSTINTRO.html" class="olink">Initial State in the <span class="olinkdocname">Mechanical APDL Advanced Analysis Guide</span></a>.</p></div></div></div><div class="refsect1" title="Command Specifications for Action = LIST"><a name="inistate_list"></a><h2>Command Specifications for <em class="replaceable"><code>Action</code></em> = LIST</h2><div class="refsect2" title="INISTATE, LIST, ELID"><a name="d0e137888"></a><h3>INISTATE, LIST, <em class="replaceable"><code>ELID</code></em>
+</h3><p>Lists initial state data for elements with ID = <em class="replaceable"><code>ELID</code></em>. If <em class="replaceable"><code>ELID</code></em> is blank,
+all initial state data for all selected elements are listed.</p></div></div><div class="refsect1" title="Command Specifications for Action = DELETE"><a name="inistate_delete"></a><h2>Command Specifications for <em class="replaceable"><code>Action</code></em> = DELETE</h2><div class="refsect2" title="INISTATE, DELE, ELID"><a name="d0e137908"></a><h3>INISTATE, DELE, <em class="replaceable"><code>ELID</code></em>
+</h3><p>Deletes initial state data for elements with ID = <em class="replaceable"><code>ELID</code></em>.  If <em class="replaceable"><code>ELID</code></em> is blank,
+all initial state data for all selected elements are deleted.</p></div></div><div class="refsect1" title="Menu Paths"><a name="INISTATE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

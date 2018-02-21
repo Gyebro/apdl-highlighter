@@ -1,0 +1,37 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:57-04:00"><title>VIMP</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_V_TOC.html" title="V Commands"><link rel="prev" href="Hlp_C_VIEW.html" title="/VIEW"><link rel="next" href="Hlp_C_VINP.html" title="VINP"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="VIMP"><a name="VIMP"></a><div class="titlepage"></div><a class="indexterm" name="d0e295650"></a><span class="refentrytitle"><span class="command"><strong>VIMP</strong></span></span><div class="refnamediv"><p><span class="command"><strong>VIMP</strong></span>, <em class="replaceable"><code>VOL</code></em>, <em class="replaceable"><code>CHGBND</code></em>, <em class="replaceable"><code>IMPLEVEL</code></em><br><b class="refpurpose">Improves the quality of the tetrahedral elements in the
+selected volume(s).</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7meshingldm061600" title="Table&nbsp;2.36:&nbsp;&nbsp;Meshing"><span class="type">Meshing</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="VIMP.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>VOL</code></em></b></span></dt><dd><p>Number of the volume containing the tetrahedral elements
+to be improved.  If <em class="replaceable"><code>VOL</code></em> = ALL (default),
+improve the tetrahedral elements in all selected volumes.  If <em class="replaceable"><code>VOL</code></em> = P, graphical picking is enabled and all remaining
+command fields are ignored (valid only in the GUI).  A component name
+may also be substituted for <em class="replaceable"><code>VOL</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>CHGBND</code></em></b></span></dt><dd><p>Specifies whether to allow boundary modification.
+ Boundary modification includes such things as changes in the connectivity
+of the element faces on the boundary and the addition of boundary
+nodes.  (Also see <a class="xref" href="Hlp_C_VIMP.html#VIMP.notes" title="Notes">"Notes"</a> below for important
+usage information for <em class="replaceable"><code>CHGBND</code></em>.)</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Do not allow boundary modification.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Allow boundary modification (default).</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>IMPLEVEL</code></em></b></span></dt><dd><p>Identifies the level of improvement to be performed
+on the elements.  (Improvement occurs primarily through the use of
+face swapping and node smoothing techniques.)</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Perform the least amount of swapping/smoothing.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Perform an intermediate amount of swapping/smoothing.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Perform the greatest amount of swapping/smoothing.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">3</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Perform the greatest amount of swapping/smoothing,
+plus additional improvement techniques (default).</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="VIMP.notes"></a><h2>Notes</h2><p><span class="command"><strong>VIMP</strong></span> is useful for further improving a volume
+mesh created in ANSYS [<a class="link" href="Hlp_C_VMESH.html" title="VMESH"><span class="command"><strong>VMESH</strong></span></a>], especially quadratic
+tetrahedral element meshes.</p><p>The <span class="command"><strong>VIMP</strong></span> command enables you to improve a
+given tetrahedral mesh by reducing the number of poorly-shaped tetrahedral
+elements (in particular, the number of sliver tetrahedral elements)--as
+well as the overall number of elements--in the mesh.  It also improves
+the overall quality of the mesh.</p><p>Regardless of the value of the <em class="replaceable"><code>CHGBND</code></em> argument, boundary mid-nodes can be moved.</p><p>When loads or constraints have been placed on boundary nodes
+or mid-nodes, and boundary mid-nodes are later moved, ANSYS issues
+a warning message to let you know that it will not update the loads
+or constraints.</p><p>Even when <em class="replaceable"><code>CHGBND</code></em> = 1, no boundary
+modification is performed on areas and lines that are not modifiable
+(for example, areas that are adjacent to other volumes or that contain
+shell elements, or lines that are not incident on modifiable areas,
+contain beam elements, or have line divisions specified for them [<a class="link" href="Hlp_C_LESIZE.html" title="LESIZE"><span class="command"><strong>LESIZE</strong></span></a>]).</p></div><div class="refsect1" title="Menu Paths"><a name="VIMP.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Modify Mesh&gt;Improve Tets&gt;Volumes</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

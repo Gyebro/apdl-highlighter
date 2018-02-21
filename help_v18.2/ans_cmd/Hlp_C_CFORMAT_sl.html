@@ -1,0 +1,30 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:29-04:00"><title>/CFORMAT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_C_CTOC.html" title="C Commands"><link rel="prev" href="Hlp_C_CFWRITE.html" title="*CFWRITE"><link rel="next" href="Hlp_C_CGLOC.html" title="CGLOC"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="/CFORMAT"><a name="s-CFORMAT"></a><div class="titlepage"></div><a class="indexterm" name="d0e44531"></a><span class="refentrytitle"><a href="Hlp_C_CFORMAT_sl.html" class="olink"><span class="command"><strong>/CFORMAT</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>/CFORMAT</strong></span>, <em class="replaceable"><code>NFIRST</code></em>, <em class="replaceable"><code>NLAST</code></em><br><b class="refpurpose">Controls the graphical display of alphanumeric character strings
+for parameters, components, assemblies, and tables.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_3.html" title="2.3.&nbsp;GRAPHICS Commands"><code class="classname">GRAPHICS</code></a>: <a class="link" href="Hlp_C_CH2_3.html#cmdgraphiclabjla070199" title="Table&nbsp;2.15:&nbsp;&nbsp;Labeling"><span class="type">Labeling</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="s-CFORMAT.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NFIRST</code></em></b></span></dt><dd><p>Display the first <em class="replaceable"><code>n</code></em> characters
+of the parameter, component, assembly, or table name, up to 32. Defaults to
+32.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NLAST</code></em></b></span></dt><dd><p>Display the last <em class="replaceable"><code>n</code></em> characters of
+the parameter, component, assembly, or table name, up to 32. Defaults to 0.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="s-CFORMAT.notes"></a><h2>Notes</h2><p>Use this command to control the length of the character string that
+is shown in the graphics window for a parameter, component, assembly, or table
+name.</p><p>The total number of characters (<em class="replaceable"><code>NFIRST</code></em> + <em class="replaceable"><code>NLAST</code></em> +3)
+cannot exceed 32.</p><p>If <em class="replaceable"><code>NFIRST</code></em> is greater than zero and <em class="replaceable"><code>NLAST</code></em> =
+0, only the <em class="replaceable"><code>NFIRST</code></em> characters are displayed, followed
+by an ellipsis. </p><p>If <em class="replaceable"><code>NFIRST</code></em> = 0 and <em class="replaceable"><code>NLAST</code></em> is
+greater than zero, only the <em class="replaceable"><code>NLAST</code></em> characters are
+displayed, preceded by an ellipsis (...). </p><p>If both <em class="replaceable"><code>NFIRST</code></em> and <em class="replaceable"><code>NLAST</code></em> are
+greater than zero, the name will be shown as <em class="replaceable"><code>NFIRST</code></em>,
+followed by an ellipsis (...), followed by <em class="replaceable"><code>NLAST</code></em>,
+up to a maximum of 32 characters.</p><p>For example, if <em class="replaceable"><code>NFIRST</code></em> = 6 and <em class="replaceable"><code>NLAST</code></em> =
+3, and the character string is LENGTHOFSIDEONE, then it will appear in the
+graphics window as LENGTH...ONE.</p><p>If the actual length of the character string is less than the specified
+combination of <em class="replaceable"><code>NFIRST</code></em> + <em class="replaceable"><code>NLAST</code></em> +3,
+then the actual string will be used.</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="s-CFORMAT.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;Style&gt;Size and Shape</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

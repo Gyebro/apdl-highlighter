@@ -1,0 +1,49 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:14-04:00"><title>PHYSICS</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_P_TOC.html" title="P Commands"><link rel="prev" href="Hlp_C_PFACT.html" title="PFACT"><link rel="next" href="Hlp_C_PIVCHECK.html" title="PIVCHECK"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="PHYSICS"><a name="PHYSICS"></a><div class="titlepage"></div><a class="indexterm" name="d0e198967"></a><span class="refentrytitle"><span class="command"><strong>PHYSICS</strong></span></span><div class="refnamediv"><p><span class="command"><strong>PHYSICS</strong></span>, <em class="replaceable"><code>Option</code></em>, <em class="replaceable"><code>Title</code></em>, <em class="replaceable"><code>Fname</code></em>, <em class="replaceable"><code>Ext</code></em>, <em class="replaceable"><code>--</code></em><br><b class="refpurpose">Writes, reads, or lists all element information</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7specpurpldm061600" title="Table&nbsp;2.48:&nbsp;&nbsp;Special Purpose"><span class="type">Special Purpose</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="PHYSICS.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Option</code></em></b></span></dt><dd><p>Specifies what to do with element information:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">WRITE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Write all appropriate element types,
+key options, real constants, material properties, solution analysis
+options, load step options, constraint equations, coupled nodes, defined
+components, and GUI preference settings to the file specified with
+the <em class="replaceable"><code>Fname</code></em> and <em class="replaceable"><code>Ext</code></em> arguments.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">READ</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Deletes all solution information
+(material properties, solution options, load step options, constraint
+equations, coupled nodes, results, and GUI preference settings) then
+reads all the information listed above into the ANSYS database from
+the location specified by the <em class="replaceable"><code>Fname</code></em> and <em class="replaceable"><code>Ext</code></em> arguments.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LIST</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Lists currently defined physics files
+and their titles.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DELETE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Deletes a specified physics file
+and its title from the database.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CLEAR</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Deletes all material properties,
+solution options, load step options, constraint equations, coupled
+nodes, results, and GUI preference settings from the database. Does
+NOT clear the active physics file title from the database.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">STATUS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Displays information about all
+active elements and settings.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Title</code></em></b></span></dt><dd><p>A user-defined title that quickly identifies a set
+of physics settings.  For example, you might use "Fluid," "Structural,"
+or "Magnetic" as titles.  A title can contain up to 64 characters.
+It can be entered in lower or upper case. Lower case is internally
+converted to upper case within the program.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Fname</code></em></b></span></dt><dd><p>File name and directory path (248 characters maximum, including the characters needed for the directory path).  An unspecified directory path defaults to the working directory; in this case, you can use all 248 characters for the file name. </p><p>The file name defaults to <span class="filename"><strong>Jobname</strong></span>. Previous data on this file, if any, are overwritten.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Ext</code></em></b></span></dt><dd><p>Filename extension (eight-character maximum).</p><p>The extension defaults to PH<em class="replaceable"><code>n</code></em> if <em class="replaceable"><code>Fname</code></em> is blank, where <em class="replaceable"><code>n</code></em> is a number between one and nine, depending on how
+many times you have issued the <span class="command"><strong>PHYSICS</strong></span> command.
+(You can have up to nine separate physics files.) If you issue the
+command more than nine times, the ANSYS program will require you to
+delete an existing file.</p></dd><dt><span><b class="term"><em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused field.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="PHYSICS.notes"></a><h2>Notes</h2><p>Use the <span class="command"><strong>PHYSICS</strong></span> command when you are performing
+a multiphysics analysis that involves two different disciplines (for
+example, magnetic and structural analyses) and you cannot solve both
+analyses simultaneously. Once you have set up physics environments
+for both analyses, you can use the <span class="command"><strong>PHYSICS</strong></span>,READ
+command to change between the defined physics environments.  For more
+information about doing multiphysics analyses, see <a href="../ans_cou/Hlp_G_COU2.html" class="olink">Sequential Coupled-Field
+Analysis</a> in the <a href="../ans_cou/Hlp_G_CouTOC.html" class="olink"><em class="citetitle">Coupled-Field Analysis Guide</em></a>.</p><p>The <span class="command"><strong>PHYSICS</strong></span> command outputs all solution
+information, including analysis options, to the <span class="filename"><strong>Jobname.PH<em class="replaceable"><code>n</code></em></strong></span> file described above.  Although
+it also outputs components, the ANSYS program does not list entities
+(nodes, elements, lines, etc.).</p><p><span class="command"><strong>PHYSICS</strong></span>,WRITE will overwrite existing physics
+files with the same title (even if the name is different). In other
+words, if the directory has a physics file with the same title as
+the active physics file title, but a different name, the <span class="command"><strong>PHYSICS</strong></span>,WRITE command will overwrite the existing physics
+file and use the existing filename, not the filename specified on
+the <span class="command"><strong>PHYSICS</strong></span>,WRITE command.</p></div><div class="refsect1" title="Menu Paths"><a name="PHYSICS.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Physics&gt;Environment&gt;Clear</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Physics&gt;Environment&gt;Delete</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Physics&gt;Environment&gt;List</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Physics&gt;Environment&gt;Read</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Physics&gt;Environment&gt;Status</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Physics&gt;Environment&gt;Write</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Physics&gt;Environment&gt;Clear</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Physics&gt;Environment&gt;Delete</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Physics&gt;Environment&gt;List</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Physics&gt;Environment&gt;Read</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Physics&gt;Environment&gt;Status</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Physics&gt;Environment&gt;Write</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

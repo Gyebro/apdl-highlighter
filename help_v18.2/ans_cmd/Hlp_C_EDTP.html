@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:48-04:00"><title>EDTP</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_EDTERM.html" title="EDTERM"><link rel="next" href="Hlp_C_EDVEL.html" title="EDVEL"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="EDTP"><a name="EDTP"></a><div class="titlepage"></div><a class="indexterm" name="d0e89419"></a><span class="refentrytitle"><span class="command"><strong>EDTP</strong></span></span><div class="refnamediv"><p><span class="command"><strong>EDTP</strong></span>, <em class="replaceable"><code>OPTION</code></em>, <em class="replaceable"><code>VALUE1</code></em>, <em class="replaceable"><code>VALUE2</code></em><br><b class="refpurpose">Plots explicit elements based on their time step size.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluexpdyjla070199" title="Table&nbsp;2.72:&nbsp;&nbsp;Explicit Dynamics"><span class="type">Explicit Dynamics</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="EDTP.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>OPTION</code></em></b></span></dt><dd><p> Plotting option (default = 1).</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Plots the <em class="replaceable"><code>elements</code></em> with
+the smallest time step sizes. The number of elements plotted and listed is
+equal to <em class="replaceable"><code>VALUE1</code></em> (which defaults to 100). Each element
+is shaded red or yellow based on its time step value (see <a class="xref" href="Hlp_C_EDTP.html#EDTP.notes" title="Notes">"Notes"</a> for
+details).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">2&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Produces the same plot as for <em class="replaceable"><code>OPTION</code></em> =
+1, and also produces a list of the plotted elements and their corresponding
+time step values.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">3&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Produces a plot similar to <em class="replaceable"><code>OPTION</code></em> =
+1, except that all selected elements are plotted. Elements beyond the first <em class="replaceable"><code>VALUE1</code></em> elements
+are blue and translucent. The amount of translucency is specified by <em class="replaceable"><code>VALUE2</code></em>.
+This option also produces a list of the first <em class="replaceable"><code>VALUE1</code></em> elements
+with their corresponding time step values.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>VALUE1</code></em></b></span></dt><dd><p>Number of elements to be plotted and listed (default = 100).
+For example, if <em class="replaceable"><code>VALUE1</code></em> = 10, only the elements
+with the 10 smallest time step sizes are plotted and listed.</p></dd><dt><span><b class="term"><em class="replaceable"><code>VALUE2</code></em></b></span></dt><dd><p>Translucency level ranging from 0 to 1 (default = 0.9). <em class="replaceable"><code>VALUE2</code></em> is
+only used when <em class="replaceable"><code>OPTION</code></em> = 3, and only for the elements
+plotted in blue. To plot these elements as non-translucent, set <em class="replaceable"><code>VALUE2</code></em> =
+0.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="EDTP.notes"></a><h2>Notes</h2><p>EDTP invokes an ANSYS macro that plots and lists explicit elements based
+on their time step size. For <em class="replaceable"><code>OPTION</code></em> = 1 or 2, the
+number of elements plotted is equal to <em class="replaceable"><code>VALUE1</code></em> (default
+= 100). For <em class="replaceable"><code>OPTION</code></em> = 3, all selected elements are
+plotted.</p><p>The elements are shaded red, yellow, or blue based on their time step
+size. Red represents the smallest time step sizes, yellow represents the intermediate
+time step sizes, and blue represents the largest time step sizes. For example,
+if you specify <em class="replaceable"><code>VALUE1</code></em> = 30, and if T1 is the smallest
+critical time step of all elements and T30 is the time step of the 30th smallest
+element, then the elements are shaded as follows:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>Red - time step range is T1 to T1 + [0.05*(T30--T1)]</td></tr><tr><td>Yellow - time step range is T1 + [0.05*(T30--T1)] to T30</td></tr><tr><td>Blue (translucent) - time step range is &gt; T30</td></tr></table><p>Translucent blue elements only appear when OPTION = 3.</p><p>This command is also valid in PREP7.</p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p></div><div class="refsect1" title="Menu Paths"><a name="EDTP.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Time Controls&gt;Time Step Prediction</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

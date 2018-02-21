@@ -1,0 +1,118 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:50-04:00"><title>RSTMAC</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_R_TOC.html" title="R Commands"><link rel="prev" href="Hlp_C_RSPLIT.html" title="RSPLIT"><link rel="next" href="Hlp_C_RSTOFF.html" title="RSTOFF"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="RSTMAC"><a name="RSTMAC"></a><div class="titlepage"></div><a class="indexterm" name="d0e232565"></a><span class="refentrytitle">
+<span class="command"><strong>RSTMAC</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>RSTMAC</strong></span>, <em class="replaceable"><code>File1</code></em>,
+    <em class="replaceable"><code>Lstep1</code></em>, <em class="replaceable"><code>Sbstep1</code></em>,
+    <em class="replaceable"><code>File2</code></em>, <em class="replaceable"><code>Lstep2</code></em>,
+    <em class="replaceable"><code>Sbstep2</code></em>, <em class="replaceable"><code>TolerN</code></em>,
+    <em class="replaceable"><code>MacLim</code></em>, <em class="replaceable"><code>Cname</code></em>,
+    <em class="replaceable"><code>KeyPrint</code></em>, <em class="replaceable"><code>UNVscale</code></em>,
+    <em class="replaceable"><code>KeyMass</code></em>, <em class="replaceable"><code>TolerR</code></em>
+<br><b class="refpurpose">Calculates modal assurance criterion (MAC) and matches
+nodal solutions from two results files or from one results file and
+one universal format file.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1sppurpjla070199" title="Table&nbsp;2.91:&nbsp;&nbsp;Special Purpose"><span class="type">Special Purpose</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>File1</code></em>
+</b></span></dt><dd><p>File name (<span>248</span> characters maximum) corresponding to
+      the first results file (<span class="filename"><strong>.rst</strong></span> or <span class="filename"><strong>.rstp</strong></span> file). If the
+      file name does not contain the extension, it defaults to <span class="filename"><strong>.rst</strong></span>.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Lstep1</code></em>
+</b></span></dt><dd><p>Load step number of the results to be read in <em class="replaceable"><code>File1</code></em>.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>N</code></em> </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Reads load
+step <em class="replaceable"><code>N</code></em>. Defaults to 1.</p></td></tr></tbody></table></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Sbstep1</code></em> </b></span></dt><dd><p>Substep number of the results to be read in <em class="replaceable"><code>File1</code></em>.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>N</code></em> </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Reads substep <em class="replaceable"><code>N</code></em>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">All </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Reads all substeps. This value is
+the default.</p></td></tr></tbody></table></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>File2</code></em>
+</b></span></dt><dd><p>File name (<span>248</span> characters maximum) corresponding to
+      the second file (<span class="filename"><strong>.rst</strong></span>, <span class="filename"><strong>.rstp</strong></span>, or
+       <span class="filename"><strong>.unv</strong></span> file). If the file name does not contain the extension, it defaults
+      to <span class="filename"><strong>.rst</strong></span>.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Lstep2</code></em>
+</b></span></dt><dd><p>Load step number of the results to be read in <em class="replaceable"><code>File2</code></em>.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>N</code></em> </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Reads load
+step <em class="replaceable"><code>N</code></em>. Defaults to 1.</p></td></tr></tbody></table></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Sbstep2</code></em> </b></span></dt><dd><p>Substep number of the results to be read in <em class="replaceable"><code>File2</code></em>. </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>N</code></em> </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Reads substep <em class="replaceable"><code>N</code></em>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">All </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Reads all substeps. This value is
+the default.</p></td></tr></tbody></table></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TolerN</code></em>
+</b></span></dt><dd><p>Tolerance for nodes matching.</p><p>If <em class="replaceable"><code>TolerN</code></em> = -1, the nodes on <em class="replaceable"><code>File2</code></em>
+      are mapped into the selected elements of <em class="replaceable"><code>File1</code></em>.</p><p>If <em class="replaceable"><code>TolerN</code></em> is positive, it is taken as
+      an absolute tolerance and the selected nodes of <em class="replaceable"><code>File1</code></em> are matched
+      to the nodes of <em class="replaceable"><code>File2</code></em>. The default value is 0.01. </p><p>If <em class="replaceable"><code>TolerN</code></em> = -2, the selected nodes of
+       <em class="replaceable"><code>File1</code></em> are matched to the nodes of <em class="replaceable"><code>File2</code></em>
+      with the relative tolerance <em class="replaceable"><code>TolerR</code></em>.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>MacLim</code></em>
+</b></span></dt><dd><p>Smallest acceptable MAC value. Must be 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq4dc952d7-ef85-40c5-b2ea-fa2cd8c895af.svg"></span> 0 and 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq4a60f8f9-b80a-41f0-9dab-58832742e875.svg"></span> 1. The
+default value is 0.90. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Cname</code></em>
+</b></span></dt><dd><p>Name of the component from the first file (<em class="replaceable"><code>File1</code></em>). The component must be based on nodes. If unspecified,
+all nodes are matched and used for MAC calculations. If a component
+name is specified, only nodes included in the specified component
+are used. Not applicable to node mapping (<em class="replaceable"><code>TolerN</code></em>=-1).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>KeyPrint</code></em> </b></span></dt><dd><p>Printout options:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0 </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Printout matched solutions table. This
+value is the default.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1 </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Printout matched solutions table and
+full MAC table.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">2 </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Printout matched solutions table, full
+MAC table and matched nodes table.</p></td></tr></tbody></table></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>UNVscale</code></em> </b></span></dt><dd><p>Scaling of the nodal coordinates when <em class="replaceable"><code>File2</code></em> is a universal format file (<span class="filename"><strong>.unv</strong></span>).</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">Blank or 0 </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>No scaling (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">Non-zero value </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Scaling factor applied
+to the nodal coordinates.</p></td></tr></tbody></table></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>KeyMass</code></em> </b></span></dt><dd><p>Key to include the mass matrix diagonal in the calculations.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ON </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Include the mass matrix diagonal.
+This is the default.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Do not include the mass matrix diagonal.</p></td></tr></tbody></table></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TolerR</code></em>
+</b></span></dt><dd><p>Relative tolerance for nodes matching (<em class="replaceable"><code>TolerN</code></em> = -2).  It is a
+      fraction of the minimum element dimension.  The selected nodes of
+       <em class="replaceable"><code>File1</code></em> are matched to the nodes of
+      <em class="replaceable"><code>File2</code></em>.  Defaults to 0.5 (50%).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="d0e232976"></a><h2>Notes</h2><p>The <span class="command"><strong>RSTMAC</strong></span> command
+allows the comparison of the solutions from either:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Two different results files</p></li><li class="listitem"><p>One result file and one universal format file</p></li></ul></div><p>
+</p><p>The modal assurance criterion (MAC) is
+used.</p><p>The meshes read on <em class="replaceable"><code>File1</code></em> and <em class="replaceable"><code>File2</code></em> may
+   be different. If <em class="replaceable"><code>TolerN</code></em> &gt; 0, the nodes are matched. This is the
+   default. If <em class="replaceable"><code>TolerN</code></em> = -1, the nodes are mapped and the solutions are
+   interpolated from <em class="replaceable"><code>File1</code></em>. <span>If
+     <em class="replaceable"><code>TolerN</code></em> = -2 and <em class="replaceable"><code>TolerR</code></em> &gt; 0, the nodes are
+    matched using a relative tolerance (<em class="replaceable"><code>TolerR</code></em>).</span>
+</p><p>Units and coordinate systems must be
+the same for both models. When a universal format file is used, the
+nodal coordinates can be scaled using <em class="replaceable"><code>UNVscale</code></em>.</p><p>The corresponding database file (<span class="filename"><strong>.db</strong></span>) for
+    <em class="replaceable"><code>File1</code></em> must be resumed before running the command in the following
+   cases:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>A component (<em class="replaceable"><code>Cname</code></em>) is used.</p></li><li class="listitem"><p>The nodes are mapped (<em class="replaceable"><code>TolerN</code></em> = -1).</p></li><li class="listitem"><p>The nodes are matched using a relative tolerance <em class="replaceable"><code>TolerR</code></em>
+      (<em class="replaceable"><code>TolerN</code></em> = -2).</p></li></ul></div><p>Results may be real or complex; however, if results from <em class="replaceable"><code>File1</code></em> have a different type from results in <em class="replaceable"><code>File2</code></em>, only the real parts of the solutions are taken
+into account in MAC calculations. The analysis type can be arbitrary.</p><p>Only structural degrees of freedom are considered. Degrees of
+freedom can vary between <em class="replaceable"><code>File1</code></em> and <em class="replaceable"><code>File2</code></em>, but at least one common degree of freedom must
+exist. </p><p>When node mapping and solution interpolation is performed (<em class="replaceable"><code>TolerN</code></em>=-1), <em class="replaceable"><code>File1</code></em> must correspond
+to a model meshed in solid and/or shell elements. Other types of elements
+can be present but the node mapping is not performed for those elements.
+Interpolation is performed on UX, UY, and UZ degrees of freedom.</p><p>The solutions read on the results files are not all written
+to the database, therefore, subsequent plotting or printing of solutions
+is not possible.  A <a class="link" href="Hlp_C_SET.html" title="SET"><span class="command"><strong>SET</strong></span></a> command must be issued
+after the <span class="command"><strong>RSTMAC</strong></span> command to post-process each solution.</p><p>
+<span class="command"><strong>RSTMAC</strong></span> comparison
+on cyclic symmetry analysis works only if the number of sectors on <em class="replaceable"><code>File1</code></em> and <em class="replaceable"><code>File2</code></em> are the
+same. Also comparison cannot be made between cyclic symmetry results
+and full 360 degree model results (<em class="replaceable"><code>File1</code></em> &#8211; cyclic solution, <em class="replaceable"><code>File2</code></em> &#8211;
+full 360 degree model solution). Comparing cyclic symmetry solutions
+written on selected set of node (<a class="link" href="Hlp_C_OUTRES.html" title="OUTRES"><span class="command"><strong>OUTRES</strong></span></a>) is not
+supported.</p><p>The modal assurance criterion values can be retrieved as parameters
+using the <a href="Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> command (<em class="replaceable"><code>Entity</code></em> = <span class="command"><strong>RSTMAC</strong></span>).</p><p>For more information and an example, see <a href="../ans_bas/Hlp_G_BAS5_4.html#rstmacbas" class="olink">Comparing Nodal Solutions
+From Two Models (<span class="command"><strong>RSTMAC</strong></span>)</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a>. </p></div><div class="refsect1" title="Menu Paths"><a name="d0e233136"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

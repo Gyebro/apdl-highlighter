@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:26-04:00"><title>BFESCAL</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_B_TOC.html" title="B Commands"><link rel="prev" href="Hlp_C_BFELIST.html" title="BFELIST"><link rel="next" href="Hlp_C_BFINT.html" title="BFINT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="BFESCAL"><a name="BFESCAL"></a><div class="titlepage"></div><a class="indexterm" name="d0e35852"></a><span class="refentrytitle"><span class="command"><strong>BFESCAL</strong></span></span><div class="refnamediv"><p><span class="command"><strong>BFESCAL</strong></span>, <em class="replaceable"><code>Lab</code></em>, <em class="replaceable"><code>FACT</code></em>, <em class="replaceable"><code>TBASE</code></em><br><b class="refpurpose">Scales element body force loads.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolufebdyldsjla070199" title="Table&nbsp;2.69:&nbsp;&nbsp;FE Body Loads"><span class="type">FE Body Loads</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="BFESCAL.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><p>Valid body load label.  If ALL, use all appropriate
+labels.</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="110" class="col1"><col width="62" class="col2"><col width="192" class="col3"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center" valign="middle">Discipline</th><th bgcolor="#E3E3E3" align="center" valign="top">Body Load Label</th><th bgcolor="#E3E3E3" align="center" valign="middle">Label Description</th></tr></thead><tbody><tr><td rowspan="2">Structural</td><td>TEMP</td><td>temperature</td></tr><tr><td>FLUE</td><td>fluence</td></tr><tr><td>Thermal</td><td>HGEN</td><td>heat generation
+rate</td></tr><tr><td rowspan="3">Magnetic</td><td>TEMP</td><td>temperature</td></tr><tr><td>JS</td><td>current densities</td></tr><tr><td>MVDI</td><td>magnetic
+virtual displacements flag</td></tr><tr><td rowspan="2">Electric</td><td>TEMP</td><td>temperature</td></tr><tr><td>CHRGD</td><td>charge density</td></tr><tr><td>Diffusion </td><td>DGEN</td><td>diffusing substance generation rate</td></tr></tbody></table></div></dd><dt><span><b class="term"><em class="replaceable"><code>FACT</code></em></b></span></dt><dd><p>Scale factor for the element body load values.  Zero
+(or blank) defaults  to 1.0.  Use a small number for a "zero" scale
+factor.  The scale factor is not applied to body load phase angles.</p></dd><dt><span><b class="term"><em class="replaceable"><code>TBASE</code></em></b></span></dt><dd><p>Base temperature for temperature difference.  Used
+only with <em class="replaceable"><code>Lab</code></em> = TEMP.  Scale factor is
+applied to the temperature difference (<em class="replaceable"><code>T</code></em> - <em class="replaceable"><code>TBASE</code></em>)  and then added to <em class="replaceable"><code>TBASE</code></em>.  <em class="replaceable"><code>T</code></em> is
+the current temperature.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="BFESCAL.notes"></a><h2>Notes</h2><p>Scales element body force loads on the selected elements in
+the database.  Issue the <a class="link" href="Hlp_C_BFELIST.html" title="BFELIST"><span class="command"><strong>BFELIST</strong></span></a> command to list
+the element body loads.  Solid model boundary conditions are not scaled
+by this command, but boundary conditions on the FE model are scaled.
+ (Note that such scaled FE boundary conditions may still be overwritten
+by unscaled solid model boundary conditions if a subsequent boundary
+condition transfer occurs.)</p><p><span class="command"><strong>BFESCAL</strong></span> does not work for tabular boundary
+conditions.</p><p>This command is also valid in PREP7.</p></div><div class="refsect1" title="Menu Paths"><a name="BFESCAL.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Define Loads&gt;Operate&gt;Scale FE Loads&gt;Elem Body Lds</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Define Loads&gt;Operate&gt;Scale FE Loads&gt;Elem Body Lds</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:02-04:00"><title>FILL</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_F_TOC.html" title="F Commands"><link rel="prev" href="Hlp_C_FILEDISP.html" title="FILEDISP"><link rel="next" href="Hlp_C_FILLDATA.html" title="FILLDATA"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="FILL"><a name="FILL"></a><div class="titlepage"></div><a class="indexterm" name="d0e109945"></a><span class="refentrytitle"><span class="command"><strong>FILL</strong></span></span><div class="refnamediv"><p><span class="command"><strong>FILL</strong></span>, <em class="replaceable"><code>NODE1</code></em>, <em class="replaceable"><code>NODE2</code></em>, <em class="replaceable"><code>NFILL</code></em>, <em class="replaceable"><code>NSTRT</code></em>, <em class="replaceable"><code>NINC</code></em>, <em class="replaceable"><code>ITIME</code></em>, <em class="replaceable"><code>INC</code></em>, <em class="replaceable"><code>SPACE</code></em><br><b class="refpurpose">Generates a line of nodes between two existing nodes.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7nodesldm061600" title="Table&nbsp;2.37:&nbsp;&nbsp;Nodes"><span class="type">Nodes</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="FILL.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NODE1</code></em>, <em class="replaceable"><code>NODE2</code></em></b></span></dt><dd><p>Beginning and ending nodes for fill-in.  <em class="replaceable"><code>NODE1</code></em> defaults
+to next to last node specified, <em class="replaceable"><code>NODE2</code></em> defaults
+to last node specified.  If <em class="replaceable"><code>NODE1</code></em> = P, graphical
+picking is enabled and all remaining command fields are ignored (valid only
+in the GUI).</p></dd><dt><span><b class="term"><em class="replaceable"><code>NFILL</code></em></b></span></dt><dd><p>Fill <em class="replaceable"><code>NFILL</code></em> nodes between <em class="replaceable"><code>NODE1</code></em> and <em class="replaceable"><code>NODE2</code></em> (defaults
+to |<em class="replaceable"><code>NODE2</code></em>-<em class="replaceable"><code>NODE1</code></em>|-1).
+ <em class="replaceable"><code>NFILL</code></em> must be positive.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NSTRT</code></em></b></span></dt><dd><p>Node number assigned to first filled-in node (defaults to <em class="replaceable"><code>NODE1</code></em> + <em class="replaceable"><code>NINC</code></em>).</p></dd><dt><span><b class="term"><em class="replaceable"><code>NINC</code></em></b></span></dt><dd><p>Add this increment to each of the remaining filled-in node
+numbers (may be positive or negative).  Defaults to the integer result of
+(<em class="replaceable"><code>NODE2</code></em>-<em class="replaceable"><code>NODE1</code></em>)/(<em class="replaceable"><code>NFILL</code></em> +
+1), i.e., linear interpolation.  If the default evaluates to zero, or if zero
+is input, <em class="replaceable"><code>NINC</code></em> is set to 1.</p></dd><dt><span><b class="term"><em class="replaceable"><code>ITIME</code></em>, <em class="replaceable"><code>INC</code></em></b></span></dt><dd><p>Do fill-in operation a total of <em class="replaceable"><code>ITIMEs</code></em>,
+incrementing <em class="replaceable"><code>NODE1</code></em>, <em class="replaceable"><code>NODE2</code></em> and <em class="replaceable"><code>NSTRT</code></em> by <em class="replaceable"><code>INC</code></em> each time after the first.  <em class="replaceable"><code>ITIME</code></em> and <em class="replaceable"><code>INC</code></em> both
+default to 1.</p></dd><dt><span><b class="term"><em class="replaceable"><code>SPACE</code></em></b></span></dt><dd><p>Spacing ratio.  Ratio of last division size to first division
+size.  If &gt; 1.0, divisions increase.  If &lt; 1.0, divisions decrease.  Ratio
+defaults to 1.0 (uniform spacing).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="FILL.notes"></a><h2>Notes</h2><p>Generates a line of nodes (in the active coordinate system) between
+two existing nodes.  The two nodes may have been defined in any coordinate
+system.  Nodal locations and rotation angles are determined by interpolation.
+ Any number of nodes may be filled-in and any node number sequence may be
+assigned.  See the <a class="link" href="Hlp_C_CSCIR.html" title="CSCIR"><span class="command"><strong>CSCIR</strong></span></a> command when filling across the
+180&deg; singularity line in a non-Cartesian system.</p></div><div class="refsect1" title="Menu Paths"><a name="FILL.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Nodes&gt;Fill between Nds</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

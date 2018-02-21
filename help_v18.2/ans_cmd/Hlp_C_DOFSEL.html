@@ -1,0 +1,39 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:41-04:00"><title>DOFSEL</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_D_TOC.html" title="D Commands"><link rel="prev" href="Hlp_C_DOF.html" title="DOF"><link rel="next" href="Hlp_C_DOMEGA.html" title="DOMEGA"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="DOFSEL"><a name="DOFSEL"></a><div class="titlepage"></div><a class="indexterm" name="d0e74315"></a><span class="refentrytitle"><span class="command"><strong>DOFSEL</strong></span></span><div class="refnamediv"><p><span class="command"><strong>DOFSEL</strong></span>, <em class="replaceable"><code>Type</code></em>, <em class="replaceable"><code>Dof1</code></em>, <em class="replaceable"><code>Dof2</code></em>, <em class="replaceable"><code>Dof3</code></em>, <em class="replaceable"><code>Dof4</code></em>, <em class="replaceable"><code>Dof5</code></em>, <em class="replaceable"><code>Dof6</code></em><br><b class="refpurpose">Selects a DOF label set for reference by other commands.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_2.html" title="2.2.&nbsp;DATABASE Commands"><code class="classname">DATABASE</code></a>: <a class="link" href="Hlp_C_CH2_2.html#cmddataselectjla062999" title="Table&nbsp;2.6:&nbsp;&nbsp;Selecting"><span class="type">Selecting</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="DOFSEL.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Type</code></em></b></span></dt><dd><p>Label identifying the type of select:       </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">S</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Select a new set of labels.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">A</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Add labels to the current set.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">U</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Unselect (remove) labels from the current
+set.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ALL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Restore the full set of labels.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">STAT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Display the current select status.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Dof1</code></em>, <em class="replaceable"><code>Dof2</code></em>, <em class="replaceable"><code>Dof3</code></em>, . . . , <em class="replaceable"><code>Dof6</code></em></b></span></dt><dd><p>Used only with <em class="replaceable"><code>Type</code></em> = S, A, or U.  Valid structural labels:  UX, UY,
+or UZ (displacements); U (UX, UY, and UZ);  ROTX, ROTY, or ROTZ (rotations);
+ROT (ROTX, ROTY, and ROTZ);  DISP (U and ROT); HDSP (Hydrostatic pressure).
+Valid thermal labels: TEMP, TBOT, TE2, TE3, . . ., TTOP (temperature).
+ Valid acoustic labels:  PRES (pressure); UX, UY, or UZ (displacements
+for FSI coupled elements). Valid electric labels:  VOLT (voltage);
+EMF (electromotive force drop); CURR (current).  Valid magnetic labels:
+ MAG (scalar magnetic potential); AZ (vector magnetic potential);
+A (AZ); CURR (current).  Valid structural force labels:
+ FX, FY, or FZ (forces); F (FX, FY, and FZ); MX, MY, or MZ (moments);
+M (MX, MY, and MZ);  FORC (F and M); DVOL (fluid mass flow rate).
+ Valid thermal force labels:  HEAT, HBOT, HE2, HE3, . . ., HTOP (heat
+flow).  Valid fluid flow force labels:  FLOW (fluid flow).  Valid
+electric force labels:  AMPS (current flow); CHRG (electric charge).
+ Valid magnetic force labels:  FLUX (scalar magnetic flux); CSGX,
+CSGY, or CSGZ (magnetic current segments); CSG (CSGX, CSGY, and CSGZ).
+Valid diffusion labels: CONC (concentration); RATE (diffusion flow
+rate).</p></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="DOFSEL.default"></a><h3>Command Default</h3><p>Degree of freedom (and the corresponding force) labels are determined
+from the model.</p></div></div><div class="refsect1" title="Notes"><a name="DOFSEL.notes"></a><h2>Notes</h2><p>Selects a degree of freedom label set for reference by other
+commands.  The label set is used on certain commands where ALL is
+either input in the degree of freedom label field or implied.  The
+active label set has no effect on the solution degrees of freedom.
+ Specified labels which are not active in the model (from the <a class="link" href="Hlp_C_ET.html" title="ET"><span class="command"><strong>ET</strong></span></a> or <a class="link" href="Hlp_C_DOF.html" title="DOF"><span class="command"><strong>DOF</strong></span></a> command) are ignored.  As
+a convenience, a set of force labels corresponding to the degree of
+freedom labels is also selected.  For example, selecting UX also causes
+FX to be selected (and vice versa).  The force label set is used on
+certain commands where ALL is input in the force label field.</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="DOFSEL.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Define Loads&gt;Operate&gt;Scale FE Loads&gt;Constraints</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Define Loads&gt;Operate&gt;Scale FE Loads&gt;Forces</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Define Loads&gt;Settings&gt;Replace vs Add&gt;Constraints</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Define Loads&gt;Settings&gt;Replace vs Add&gt;Forces</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Define Loads&gt;Operate&gt;Scale FE Loads&gt;Constraints</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Define Loads&gt;Operate&gt;Scale FE Loads&gt;Forces</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Define Loads&gt;Settings&gt;Replace vs Add&gt;Constraints</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Define Loads&gt;Settings&gt;Replace vs Add&gt;Forces</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

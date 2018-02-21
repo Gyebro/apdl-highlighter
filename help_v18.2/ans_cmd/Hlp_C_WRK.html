@@ -1,0 +1,28 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:42:05-04:00"><title>*WRK</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_W_TOC.html" title="W Commands"><link rel="prev" href="Hlp_C_WRITEMAP.html" title="WRITEMAP"><link rel="next" href="Hlp_C_WSPRINGS.html" title="WSPRINGS"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="*WRK"><a name="a-WRK"></a><div class="titlepage"></div><a class="indexterm" name="d0e303382"></a><span class="refentrytitle"><a href="Hlp_C_WRK.html" class="olink"><span class="command"><strong>*WRK</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>*WRK</strong></span>, <em class="replaceable"><code>Num</code></em><br><b class="refpurpose">Sets the active workspace number.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_4.html" title="2.4.&nbsp;APDL Commands"><code class="classname">APDL</code></a>: <a class="link" href="Hlp_C_CH2_4.html#cmdapdlmatrix" title="Table&nbsp;2.23:&nbsp;&nbsp;Matrix Operations (APDL Math)"><span class="type">Matrix Operations</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsect1" title="Argument Descriptions"><a name="a-WRK.argdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Num</code></em></b></span></dt><dd><p>Number of the active memory workspace for APDLMath
+vector and matrices. All the following APDLMath vectors and matrices
+will belong to this memory workspace, until the next call to the <a href="Hlp_C_WRK.html" class="olink"><span class="command"><strong>*WRK</strong></span></a> command. By default, all the APDLMath objects belong
+to workspace number 1.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="a-WRK.notes"></a><h2>Notes</h2><p>This feature enables you to associate a set of vector and matrices
+in a given memory workspace, so that you can easily manage the free
+step:</p><pre class="programlisting">*VEC,V,D,ALLOC,5		! V belongs to the default Workspace 1
+
+*WRK,2					! Set the active workspace as the number 2
+
+*VEC,W,D,IMPORT,FULL,file.full,RHS	! W belongs to the Workspace 2
+*SMAT,K,D,IMPORT,FULL,file.full,STIFF	! K belongs to the Workspace 2 
+*DMAT,M,ALLOC,10,10 			! M belongs to the Workspace 2 
+&#8230; 
+*FREE,WRK,2			! W, K and M are deleted, but not V  
+
+*PRINT,V</pre><p>This feature can be useful to free all the temporary APDLMath
+variables inside a MACRO in one call.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e303436"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

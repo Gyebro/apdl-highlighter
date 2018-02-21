@@ -1,0 +1,37 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:39-04:00"><title>/TEE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_T_TOC.html" title="T Commands"><link rel="prev" href="Hlp_C_TCHG.html" title="TCHG"><link rel="next" href="Hlp_C_TERM.html" title="TERM"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="/TEE"><a name="s-TEE"></a><div class="titlepage"></div><a class="indexterm" name="d0e279188"></a><span class="refentrytitle"><a href="Hlp_C_TEE_sl.html" class="olink"><span class="command"><strong>/TEE</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>/TEE</strong></span>, <em class="replaceable"><code>Label</code></em>, <em class="replaceable"><code>Fname</code></em>, <em class="replaceable"><code>Ext</code></em>, <em class="replaceable"><code>--</code></em><br><b class="refpurpose">Writes a list of commands to a specified file at the same
+time that the commands are being executed.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_4.html" title="2.4.&nbsp;APDL Commands"><code class="classname">APDL</code></a>: <a class="link" href="Hlp_C_CH2_4.html#cmdapdlmacrojla070199" title="Table&nbsp;2.19:&nbsp;&nbsp;Macro Files"><span class="type">Macro Files</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsect1" title="Argument Descriptions"><a name="pmTEEsargdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Label</code></em></b></span></dt><dd><p>Indicates how ANSYS is to interpret this <a href="Hlp_C_TEE_sl.html" class="olink"><span class="command"><strong>/TEE</strong></span></a> command:</p><div><div class="variablelist"><dl><dt><span><b class="term">NEW&nbsp;--&nbsp;</b></span></dt><dd><p>Signals the beginning
+of the command text that is to be written to <em class="replaceable"><code>Fname</code></em>. If <em class="replaceable"><code>Fname</code></em> already exists, specifying
+NEW causes the contents of <em class="replaceable"><code>Fname</code></em> to be
+overwritten.</p></dd><dt><span><b class="term">APPEND&nbsp;--&nbsp;</b></span></dt><dd><p>Indicates that you
+want to append to <em class="replaceable"><code>Fname</code></em> the command text
+that follows.</p></dd><dt><span><b class="term">END&nbsp;--&nbsp;</b></span></dt><dd><p>Signals the end of the
+command text that is to be written to or appended to <em class="replaceable"><code>Fname</code></em>.</p></dd></dl></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Fname</code></em></b></span></dt><dd><p>File name and directory path (248 characters maximum, including the characters needed for the directory path).  An unspecified directory path defaults to the working directory; in this case, you can use all 248 characters for the file name. </p></dd><dt><span><b class="term"><em class="replaceable"><code>Ext</code></em></b></span></dt><dd><p>Filename extension (eight-character maximum).</p><p>If you plan to execute the file as if it
+were an ANSYS command, use the extension <em class="replaceable"><code>.mac</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused field.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="s-TEE.notes"></a><h2>Notes</h2><p>You can use the <a href="Hlp_C_TEE_sl.html" class="olink"><span class="command"><strong>/TEE</strong></span></a> command to record a macro to a specified file at the same time that
+the macro is being executed. It is similar to the Linux <span class="bold"><strong>tee</strong></span> command.</p><p>For more information about the <a href="Hlp_C_TEE_sl.html" class="olink"><span class="command"><strong>/TEE</strong></span></a> command,
+see the <a href="../ans_apdl/Hlp_P_APDL1.html" class="olink">Introducing APDL</a> of the <a href="../ans_apdl/Hlp_P_APDLTOC.html" class="olink"><em class="citetitle">ANSYS Parametric Design Language Guide</em></a>.</p><p>The following example illustrates the use of the <a href="Hlp_C_TEE_sl.html" class="olink"><span class="command"><strong>/TEE</strong></span></a> command. If you issue these commands:</p><pre class="programlisting">/tee,new,myfile,mac
+et,1,42,0,0,1
+ex,1,3e7
+/tee,end
+/tee,append,myfile,mac
+n,1,8
+n,5,11
+fill
+ngen,5,5,1,5,1,0,1
+/tee,end</pre><p>the content of <span class="bold"><strong>myfile.mac</strong></span> is:</p><pre class="programlisting">et,1,42,0,0,1
+ex,1,3e7
+n,1,8
+n,5,11
+fill
+ngen,5,5,1,5,1,0,1</pre><p>This command is valid in any processor, but only during an interactive
+run.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e279343"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:42-04:00"><title>RBE3</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_R_TOC.html" title="R Commands"><link rel="prev" href="Hlp_C_RATIO.html" title="/RATIO"><link rel="next" href="Hlp_C_RCON.html" title="RCON"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="RBE3"><a name="RBE3"></a><div class="titlepage"></div><a class="indexterm" name="d0e223094"></a><span class="refentrytitle"><span class="command"><strong>RBE3</strong></span></span><div class="refnamediv"><p><span class="command"><strong>RBE3</strong></span>, <em class="replaceable"><code>Master</code></em>, <em class="replaceable"><code>DOF</code></em>, <em class="replaceable"><code>Slaves</code></em>, <em class="replaceable"><code>Wtfact</code></em><br><b class="refpurpose">Distributes the force/moment applied at the master node to a set
+ of slave nodes, taking into account the geometry of the slave nodes as well
+as weighting factors. </b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7constrainteqldm061600" title="Table&nbsp;2.42:&nbsp;&nbsp;Constraint Equations"><span class="type">Constraint Equations</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="RBE3.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Master</code></em></b></span></dt><dd><p>Node at which the force/moment to be distributed will be applied.
+This node must be associated with an element for the master node to be included
+in the DOF solution.</p></dd><dt><span><b class="term"><em class="replaceable"><code>DOF</code></em></b></span></dt><dd><p>Refers to the master node degrees of freedom to be used in
+constraint equations. Valid labels are: UX, UY, UZ, ROTX, ROTY, ROTZ, UXYZ,
+RXYZ, ALL</p></dd><dt><span><b class="term"><em class="replaceable"><code>Slaves</code></em></b></span></dt><dd><p>The name of an array parameter that contains a list of slave
+nodes. Must specify the starting index number. ALL can be used for currently
+selected set of nodes. The slave nodes may not be colinear, that is, not be
+all located on the same straight line (see<span class="bold"><strong> Notes</strong></span> below).</p></dd><dt><span><b class="term"><em class="replaceable"><code>Wtfact</code></em></b></span></dt><dd><p>The name of an array parameter that contains a list of weighting
+factors corresponding to each slave node above. Must have the starting index
+number. If not specified, the weighting factor for each slave node defaults
+to 1.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="RBE3.notes"></a><h2>Notes</h2><p>The force is distributed to the slave nodes proportional to the weighting
+factors. The moment is distributed as forces to the slaves; these forces are
+proportional to the distance from the center of gravity of the slave nodes
+times the weighting factors.  Only the translational degrees of freedom of
+the slave nodes are used for constructing the constraint equations. Constraint
+equations are converted to distributed forces/moments on the slave nodes during
+solution.</p><p><span class="command"><strong>RBE3</strong></span> creates constraint equations such that the motion
+of the master is the average of the slaves. For the rotations, a least-squares
+approach is used to define the "average rotation" at the master from the translations
+of the slaves. If the slave nodes are colinear, then one of the master rotations
+that is parallel to the colinear direction can not be determined in terms
+of the translations of the slave nodes. Therefore, the associated moment component
+on the master node in that direction can not be transmitted. When this case
+occurs, a warning message is issued and the constraint equations created by <span class="command"><strong>RBE3</strong></span> are
+ignored.</p><p>Applying this command to a large number of slave nodes may result in
+constraint equations with a large number of coefficients. This may significantly
+increase the peak memory required during the process of element assembly.
+If real memory or virtual memory is not available, consider reducing the number
+of slave nodes.</p><p>As an alternative to the <span class="command"><strong>RBE3</strong></span> command, you can apply
+a similar type of constraint using contact elements and the internal multipoint
+constraint (MPC) algorithm. See <a href="../ans_ctec/Hlp_ctec_surfcon.html" class="olink">Surface-based
+Constraints</a> for more information.</p><p>This command is also valid in SOLUTION.</p></div><div class="refsect1" title="Menu Paths"><a name="RBE3.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Coupling / Ceqn&gt;Dist F/M at Mstr</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

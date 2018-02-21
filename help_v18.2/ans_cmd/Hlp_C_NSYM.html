@@ -1,0 +1,31 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:02-04:00"><title>NSYM</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_N_TOC.html" title="N Commands"><link rel="prev" href="Hlp_C_NSVR.html" title="NSVR"><link rel="next" href="Hlp_C_NUMBER.html" title="/NUMBER"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="NSYM"><a name="NSYM"></a><div class="titlepage"></div><a class="indexterm" name="d0e186379"></a><span class="refentrytitle"><span class="command"><strong>NSYM</strong></span></span><div class="refnamediv"><p><span class="command"><strong>NSYM</strong></span>, <em class="replaceable"><code>Ncomp</code></em>, <em class="replaceable"><code>INC</code></em>, <em class="replaceable"><code>NODE1</code></em>, <em class="replaceable"><code>NODE2</code></em>, <em class="replaceable"><code>NINC</code></em><br><b class="refpurpose">Generates a reflected set of nodes.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7nodesldm061600" title="Table&nbsp;2.37:&nbsp;&nbsp;Nodes"><span class="type">Nodes</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="NSYM.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Ncomp</code></em></b></span></dt><dd><p>Symmetry key:       </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">X</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>X (or R) symmetry (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">Y</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Y (or &#952;) symmetry.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">Z</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Z (or &#934;) symmetry.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>INC</code></em></b></span></dt><dd><p>Increment all nodes in the given pattern by <em class="replaceable"><code>INC</code></em> to
+form the reflected node pattern.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NODE1</code></em>, <em class="replaceable"><code>NODE2</code></em>, <em class="replaceable"><code>NINC</code></em></b></span></dt><dd><p>Reflect nodes from pattern beginning with <em class="replaceable"><code>NODE1</code></em> to <em class="replaceable"><code>NODE2</code></em> (defaults
+to <em class="replaceable"><code>NODE1</code></em>) in steps of <em class="replaceable"><code>NINC</code></em> (defaults
+to 1).  If  <em class="replaceable"><code>NODE1</code></em> = ALL, <em class="replaceable"><code>NODE2</code></em> and <em class="replaceable"><code>NINC</code></em> are
+ignored and pattern is all selected nodes [<a class="link" href="Hlp_C_NSEL.html" title="NSEL"><span class="command"><strong>NSEL</strong></span></a>].  If <em class="replaceable"><code>NODE1</code></em> =
+P, graphical picking is enabled and all remaining command fields are ignored
+(valid only in the GUI).  A component name may also be substituted for <em class="replaceable"><code>NODE1</code></em> (<em class="replaceable"><code>NODE2</code></em> and <em class="replaceable"><code>NINC</code></em> are ignored).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="NSYM.notes"></a><h2>Notes</h2><p>Generates nodes from a given node pattern by a symmetry reflection.
+ Reflection is done in the active coordinate system by changing a particular
+coordinate sign.  Nodes in the pattern may have been generated in any coordinate
+system.   Nodal rotation angles are not reflected.</p><p>Symmetry reflection may be used with any node pattern, in any coordinate
+system, as many times as desired.  Reflection is accomplished by a coordinate
+sign change (in the active coordinate system).  For example, an X-reflection
+in a Cartesian coordinate system generates additional nodes from a given pattern,
+with a node increment added to each node number, and an X coordinate sign
+change.  An R-reflection in a cylindrical coordinate system gives a reflected
+"radial" location by changing the "equivalent" Cartesian (i.e., the Cartesian
+system with the same origin as the active cylindrical system) X and Y coordinate
+signs.  An R-reflection in a spherical coordinate system gives a reflected
+"radial" location by changing the equivalent Cartesian X, Y, and Z coordinate
+location signs.  Nodal coordinate system rotation angles are not reflected.</p></div><div class="refsect1" title="Menu Paths"><a name="NSYM.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Reflect&gt;Nodes</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

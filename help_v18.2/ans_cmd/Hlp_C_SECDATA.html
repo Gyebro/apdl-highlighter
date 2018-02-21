@@ -1,0 +1,741 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:56-04:00"><title>SECDATA</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_S_TOC.html" title="S Commands"><link rel="prev" href="Hlp_C_SECCONTROL.html" title="SECCONTROL"><link rel="next" href="Hlp_C_SECFUNCTION.html" title="SECFUNCTION"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SECDATA"><a name="SECDATA"></a><div class="titlepage"></div><a class="indexterm" name="d0e235952"></a><span class="refentrytitle">
+<span class="command"><strong>SECDATA</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>SECDATA</strong></span>, <em class="replaceable"><code>VAL1</code></em>, <em class="replaceable"><code>VAL2</code></em>, <em class="replaceable"><code>VAL3</code></em>, <em class="replaceable"><code>VAL4</code></em>, <em class="replaceable"><code>VAL5</code></em>, <em class="replaceable"><code>VAL6</code></em>, <em class="replaceable"><code>VAL7</code></em>, <em class="replaceable"><code>VAL8</code></em>, <em class="replaceable"><code>VAL9</code></em>, <em class="replaceable"><code>VAL10</code></em>, <em class="replaceable"><code>VAL11</code></em>, <em class="replaceable"><code>VAL12</code></em>
+<br><b class="refpurpose">Describes the geometry of a section.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7crosssectldm061600" title="Table&nbsp;2.45:&nbsp;&nbsp;Sections"><span class="type">Cross Sections</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  DesSpc | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;&#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="SECDATA.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>VAL1</code></em>, <em class="replaceable"><code>VAL2</code></em>, <em class="replaceable"><code>VAL3</code></em>, . . . , <em class="replaceable"><code>VAL12</code></em>
+</b></span></dt><dd><p>Values, such as thickness or the length of a side
+or the numbers of cells along the width, that describe the geometry
+of a section. The terms <em class="replaceable"><code>VAL1</code></em>, <em class="replaceable"><code>VAL2</code></em>, etc. are specialized for each type of cross-section. </p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="SECDATA.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>SECDATA</strong></span> command defines the data describing
+the geometry of a section. The command is divided into these section
+types: <a class="link" href="Hlp_C_SECDATA.html#SECDATA.beams" title="Beams">Beams</a>, <a class="link" href="Hlp_C_SECDATA.html#SECDATA.links" title="Links">Links</a>, <a class="link" href="Hlp_C_SECDATA.html#SECDATA.pipes" title="Pipes">Pipes</a>, <a class="link" href="Hlp_C_SECDATA.html#SECDATA.axisy" title="General Axisymmetric">Axisymmetric</a>, <a class="link" href="Hlp_C_SECDATA.html#SECDATA.taper" title="Taper">Taper</a>, <a class="link" href="Hlp_C_SECDATA.html#SECDATA.shells" title="Shells">Shells</a>, <a class="link" href="Hlp_C_SECDATA.html#SECDATA.pretension" title="Pretension">Pretension</a>, <a class="link" href="Hlp_C_SECDATA.html#SECDATA.joints" title="Joints">Joints</a>, <a class="link" href="Hlp_C_SECDATA.html#SECDATA.reinforcement" title="Reinforcing">Reinforcing</a>, and <a class="link" href="Hlp_C_SECDATA.html#SECDATA.contact" title="CONTACT">Contact</a>. </p><p>The data input on the <span class="command"><strong>SECDATA</strong></span> command is
+interpreted based on the most recently issued <a class="link" href="Hlp_C_SECTYPE.html" title="SECTYPE"><span class="command"><strong>SECTYPE</strong></span></a> command. The data required is determined by the section type and
+subtype, and is different for each one.</p><div><img src="graphics/Linebrk.gif"></div><div class="refsect2" title="Beams"><a name="SECDATA.beams"></a><h3>Beams</h3><h5><a name="d0e236097"></a>Type: BEAM</h5><p>Beam sections are referenced by <a href="../ans_elem/Hlp_E_BEAM188.html" class="olink"><span class="structname">BEAM188</span></a> and <a href="../ans_elem/Hlp_E_BEAM189.html" class="olink"><span class="structname">BEAM189</span></a> elements. Not all <a class="link" href="Hlp_C_SECOFFSET.html" title="SECOFFSET"><span class="command"><strong>SECOFFSET</strong></span></a> location values are valid for each subtype.</p><div class="informaltable"><table border="0" width="95%"><colgroup><col width="49%" class="col1"><col width="51%" class="col2"></colgroup><tbody><tr valign="top"><td valign="top">
+<p>
+<span class="bold"><strong>Type:
+BEAM, Subtype: RECT</strong></span>
+</p>
+<div><a name="SECDATA.fig.1"></a><img src="graphics/gSECD1.svg"></div>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields:</td></tr><tr><td>
+<em class="replaceable"><code>B</code></em>, <em class="replaceable"><code>H</code></em>, <em class="replaceable"><code>Nb</code></em>, <em class="replaceable"><code>Nh</code></em>
+</td></tr><tr><td>where</td></tr><tr><td>
+<em class="replaceable"><code>B</code></em> = Width</td></tr><tr><td>
+<em class="replaceable"><code>H</code></em> = Height</td></tr><tr><td>
+<em class="replaceable"><code>Nb</code></em> = Number of cells along width;
+default = 2</td></tr><tr><td>
+<em class="replaceable"><code>Nh</code></em> = Number of cells along height;
+default = 2</td></tr><tr><td>
+<em class="replaceable"><code>Nb</code></em>*<em class="replaceable"><code>Nh</code></em>
+</td></tr></table>
+</td><td valign="top">
+<p>
+<span class="bold"><strong>Type: BEAM,
+Subtype: QUAD</strong></span>
+</p>
+<div><a name="SECDATA.fig.2"></a><img src="graphics/gSECD2.svg"></div>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields:</td></tr><tr><td>
+<em class="replaceable"><code>yI</code></em>, <em class="replaceable"><code>zI</code></em>, <em class="replaceable"><code>yJ</code></em>, <em class="replaceable"><code>zJ</code></em>, <em class="replaceable"><code>yK</code></em>, <em class="replaceable"><code>zK</code></em>, <em class="replaceable"><code>yL</code></em>, <em class="replaceable"><code>zL</code></em>, <em class="replaceable"><code>Ng</code></em>, <em class="replaceable"><code>Nh</code></em>
+</td></tr><tr><td>
+<em class="replaceable"><code>yI</code></em>, <em class="replaceable"><code>zI</code></em>, <em class="replaceable"><code>yJ</code></em>, <em class="replaceable"><code>zJ</code></em>, <em class="replaceable"><code>yK</code></em>, <em class="replaceable"><code>zK</code></em>, <em class="replaceable"><code>yL</code></em>, <em class="replaceable"><code>zL</code></em> = Coordinate location of various
+points</td></tr><tr><td>
+<em class="replaceable"><code>Ng</code></em> = Number of cells along <span class="italic"><em>g</em></span>; default = 2</td></tr><tr><td>
+<em class="replaceable"><code>Nh</code></em> = Number of cells along <span class="italic"><em>h</em></span>; default = 2</td></tr><tr><td>
+<em class="replaceable"><code>Ng</code></em>*<em class="replaceable"><code>Nh</code></em>
+</td></tr></table>
+<p>Degeneration to triangle is permitted by specifying
+the same coordinates for cells along an edge.</p>
+</td></tr><tr valign="top"><td valign="top">&nbsp;</td><td valign="top">&nbsp;</td></tr><tr valign="top"><td valign="top">
+<p>
+<span class="bold"><strong>Type: BEAM, Subtype: CSOLID</strong></span>
+</p>
+<div><a name="SECDATA.fig.3"></a><img src="graphics/gSECD3.svg"></div>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields:</td></tr><tr><td>
+<em class="replaceable"><code>R</code></em>, <em class="replaceable"><code>N</code></em>, <em class="replaceable"><code>T</code></em>
+</td></tr><tr><td>where</td></tr><tr><td>
+<em class="replaceable"><code>R</code></em> = Radius</td></tr><tr><td>
+<em class="replaceable"><code>N</code></em> = Number of divisions around
+the circumference; 8 <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqe463b505-282f-43e3-907e-9340997a88bf.svg"></span> <em class="replaceable"><code>N</code></em> <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq029637b6-9a80-4a84-97ea-4ce3d184d13c.svg"></span> 120 (where a greater
+value improves accuracy slightly); default = 8</td></tr><tr><td>
+<em class="replaceable"><code>T</code></em> = Number of divisions through
+the radius; default = 2</td></tr></table>
+</td><td valign="top">
+<p>
+<span class="bold"><strong>Type: BEAM,
+Subtype: CTUBE</strong></span>
+</p>
+<div><a name="SECDATA.fig.4"></a><img src="graphics/gSECD4.svg"></div>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields:</td></tr><tr><td>
+<em class="replaceable"><code>Ri</code></em>, <em class="replaceable"><code>Ro</code></em>, <em class="replaceable"><code>N</code></em>
+</td></tr><tr><td>where</td></tr><tr><td>
+<em class="replaceable"><code>Ri</code></em> = Inner radius of the tube</td></tr><tr><td>
+<em class="replaceable"><code>Ro</code></em> = Outer radius of the tube</td></tr><tr><td>
+<em class="replaceable"><code>N</code></em> = Number of cells around the
+circumference; N <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq4a3edfd7-22e5-436a-be81-0f71f2d56990.svg"></span> 8  (where a greater value improves accuracy
+slightly); default = 8</td></tr></table>
+<p>This subtype is similar to type <a class="link" href="Hlp_C_SECDATA.html#SECDATA.pipes" title="Pipes">PIPE</a>. However, elements using PIPE
+account for internal or external pressures, whereas elements using
+CTUBE do not.</p>
+</td></tr><tr valign="top"><td valign="top">&nbsp;</td><td valign="top">&nbsp;</td></tr><tr valign="top"><td valign="top">
+<p>
+<span class="bold"><strong>Type: BEAM, Subtype: CHAN</strong></span>
+</p>
+<div><a name="SECDATA.fig.5"></a><img src="graphics/gSECD5.svg"></div>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields:</td></tr><tr><td>
+<em class="replaceable"><code>W1</code></em>, <em class="replaceable"><code>W2</code></em>, <em class="replaceable"><code>W3</code></em>, <em class="replaceable"><code>t1</code></em>, <em class="replaceable"><code>t2</code></em>, <em class="replaceable"><code>t3</code></em>
+</td></tr><tr><td>where</td></tr><tr><td>
+<em class="replaceable"><code>W1</code></em>, <em class="replaceable"><code>W2</code></em> = Lengths of the flanges</td></tr><tr><td>
+<em class="replaceable"><code>W3</code></em> = Overall depth</td></tr><tr><td>
+<em class="replaceable"><code>t1</code></em>, <em class="replaceable"><code>t2</code></em> = Flange thicknesses</td></tr><tr><td>
+<em class="replaceable"><code>t3</code></em> = Web thicknesses</td></tr></table>
+</td><td valign="top">
+<p>
+<span class="bold"><strong>Type: BEAM,
+Subtype: I</strong></span>
+</p>
+<div><a name="SECDATA.fig.6"></a><img src="graphics/gSECD6.svg"></div>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields:</td></tr><tr><td>
+<em class="replaceable"><code>W1</code></em>, <em class="replaceable"><code>W2</code></em>, <em class="replaceable"><code>W3</code></em>, <em class="replaceable"><code>t1</code></em>, <em class="replaceable"><code>t2</code></em>, <em class="replaceable"><code>t3</code></em>
+</td></tr><tr><td>where</td></tr><tr><td>
+<em class="replaceable"><code>W1</code></em>, <em class="replaceable"><code>W2</code></em> = Width of the top and bottom flanges</td></tr><tr><td>
+<em class="replaceable"><code>W3</code></em> = Overall depth</td></tr><tr><td>
+<em class="replaceable"><code>t1</code></em>, <em class="replaceable"><code>t2</code></em> = Flange thicknesses</td></tr><tr><td>
+<em class="replaceable"><code>t3</code></em> = Web thicknesses</td></tr></table>
+</td></tr><tr valign="top"><td valign="top">&nbsp;</td><td valign="top">&nbsp;</td></tr><tr valign="top"><td valign="top">
+<p>
+<span class="bold"><strong>Type: BEAM, Subtype: Z</strong></span>
+</p>
+<div><a name="SECDATA.fig.7"></a><img src="graphics/gSECD7.svg"></div>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields:</td></tr><tr><td>
+<em class="replaceable"><code>W1</code></em>, <em class="replaceable"><code>W2</code></em>, <em class="replaceable"><code>W3</code></em>, <em class="replaceable"><code>t1</code></em>, <em class="replaceable"><code>t2</code></em>, <em class="replaceable"><code>t3</code></em>
+</td></tr><tr><td>where</td></tr><tr><td>
+<em class="replaceable"><code>W1</code></em>, <em class="replaceable"><code>W2</code></em> = Flange lengths</td></tr><tr><td>
+<em class="replaceable"><code>W3</code></em> = Overall depth</td></tr><tr><td>
+<em class="replaceable"><code>t1</code></em>, <em class="replaceable"><code>t2</code></em> = Flange thicknesses</td></tr><tr><td>
+<em class="replaceable"><code>t3</code></em> = Stem thicknesses</td></tr></table>
+</td><td valign="top">
+<p>
+<span class="bold"><strong>Type: BEAM,
+Subtype: L</strong></span>
+</p>
+<div><a name="SECDATA.fig.8"></a><img src="graphics/gSECD8.svg"></div>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields:</td></tr><tr><td>
+<em class="replaceable"><code>W1</code></em>, <em class="replaceable"><code>W2</code></em>, <em class="replaceable"><code>t1</code></em>, <em class="replaceable"><code>t2</code></em>
+</td></tr><tr><td>where</td></tr><tr><td>
+<em class="replaceable"><code>W1</code></em>, <em class="replaceable"><code>W2</code></em> = Leg lengths</td></tr><tr><td>
+<em class="replaceable"><code>t1</code></em>, <em class="replaceable"><code>t2</code></em> = Leg thicknesses</td></tr></table>
+<p>If <em class="replaceable"><code>W2</code></em> is a negative
+value, the section will be flipped.</p>
+</td></tr><tr valign="top"><td valign="top">&nbsp;</td><td valign="top">&nbsp;</td></tr><tr valign="top"><td valign="top">
+<p>
+<span class="bold"><strong>Type: BEAM, Subtype: T</strong></span>
+</p>
+<div><a name="SECDATA.fig.9"></a><img src="graphics/gSECD9.svg"></div>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields:</td></tr><tr><td>
+<em class="replaceable"><code>W1</code></em>, <em class="replaceable"><code>W2</code></em>, <em class="replaceable"><code>t1</code></em>, <em class="replaceable"><code>t2</code></em>
+</td></tr><tr><td>where</td></tr><tr><td>
+<em class="replaceable"><code>W1</code></em> = Flange width</td></tr><tr><td>
+<em class="replaceable"><code>W2</code></em> = Overall depth</td></tr><tr><td>
+<em class="replaceable"><code>t1</code></em> = Flange thicknesses</td></tr><tr><td>
+<em class="replaceable"><code>t2</code></em> = Stem thicknesses</td></tr></table>
+<p>If <em class="replaceable"><code>W2</code></em> is a negative
+value, the section will be flipped.</p>
+</td><td valign="top">
+<p>
+<span class="bold"><strong>Type: BEAM, Subtype: HATS</strong></span>
+</p>
+<div><a name="SECDATA.fig.10"></a><img src="graphics/gSECD10.svg"></div>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields:</td></tr><tr><td>
+<em class="replaceable"><code>W1</code></em>, <em class="replaceable"><code>W2</code></em>, <em class="replaceable"><code>W3</code></em>, <em class="replaceable"><code>W4</code></em>, <em class="replaceable"><code>t1</code></em>, <em class="replaceable"><code>t2</code></em>, <em class="replaceable"><code>t3</code></em>, <em class="replaceable"><code>t4</code></em>, <em class="replaceable"><code>t5</code></em>
+</td></tr><tr><td>where</td></tr><tr><td>
+<em class="replaceable"><code>W1</code></em>, <em class="replaceable"><code>W2</code></em> = Width of the brim</td></tr><tr><td>
+<em class="replaceable"><code>W3</code></em> = Width of the top of the hat</td></tr><tr><td>
+<em class="replaceable"><code>W4</code></em> = Overall depth</td></tr><tr><td>
+<em class="replaceable"><code>t1</code></em>, <em class="replaceable"><code>t2</code></em> = Thickness of the brim</td></tr><tr><td>
+<em class="replaceable"><code>t3</code></em> = Thickness of the top of the
+hat</td></tr><tr><td>
+<em class="replaceable"><code>t4</code></em>, <em class="replaceable"><code>t5</code></em> = Web thicknesses</td></tr></table>
+</td></tr><tr valign="top"><td valign="top">&nbsp;</td><td valign="top">&nbsp;</td></tr><tr valign="top"><td valign="top">
+<p>
+<span class="bold"><strong>Type: BEAM, Subtype: HREC</strong></span>
+</p>
+<div><a name="SECDATA.fig.11"></a><img src="graphics/gSECD11.svg"></div>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields:</td></tr><tr><td>
+<em class="replaceable"><code>W1</code></em>, <em class="replaceable"><code>W2</code></em>, <em class="replaceable"><code>t1</code></em>, <em class="replaceable"><code>t2</code></em>, <em class="replaceable"><code>t3</code></em>, <em class="replaceable"><code>t4</code></em>
+</td></tr><tr><td>where</td></tr><tr><td>
+<em class="replaceable"><code>W1</code></em> = Outer width of the box</td></tr><tr><td>
+<em class="replaceable"><code>W2</code></em> = Outer height of the box</td></tr><tr><td>
+<em class="replaceable"><code>t1</code></em>, <em class="replaceable"><code>t2</code></em>, <em class="replaceable"><code>t3</code></em>, <em class="replaceable"><code>t4</code></em> =
+Wall thickness</td></tr></table>
+</td><td valign="top">
+<p>
+<span class="bold"><strong>Type: BEAM,
+Subtype: ASEC</strong></span>
+</p>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>Arbitrary: User-supplied integrated section properties instead
+of basic geometry data.</td></tr><tr><td>Data to provide in the value fields:</td></tr><tr><td>
+<em class="replaceable"><code>A</code></em>, <em class="replaceable"><code>Iyy</code></em>, <em class="replaceable"><code>Iyz</code></em>, <em class="replaceable"><code>Izz</code></em>, <em class="replaceable"><code>Iw</code></em>, <em class="replaceable"><code>J</code></em>, <em class="replaceable"><code>CGy</code></em>, <em class="replaceable"><code>CGz</code></em>, <em class="replaceable"><code>SHy</code></em>, <em class="replaceable"><code>SHz, TKz, TKy</code></em>
+</td></tr><tr><td>where</td></tr><tr><td>
+<em class="replaceable"><code>A</code></em> = Area of section</td></tr><tr><td>
+<em class="replaceable"><code>Iyy</code></em> = Moment of inertia about the
+y axis</td></tr><tr><td>
+<em class="replaceable"><code>Iyz</code></em> = Product of inertia</td></tr><tr><td>
+<em class="replaceable"><code>Izz</code></em> = Moment of inertia about the
+z axis</td></tr><tr><td>
+<em class="replaceable"><code>Iw</code></em> = Warping constant</td></tr><tr><td>
+<em class="replaceable"><code>J</code></em> = Torsional constant</td></tr><tr><td>
+<em class="replaceable"><code>CGy</code></em> = y coordinate of centroid</td></tr><tr><td>
+<em class="replaceable"><code>CGz</code></em> = z coordinate of centroid</td></tr><tr><td>
+<em class="replaceable"><code>SHy</code></em> = y coordinate of shear center</td></tr><tr><td>
+<em class="replaceable"><code>SHz</code></em> = z coordinate of shear center</td></tr><tr><td>
+<em class="replaceable"><code>TKz</code></em> = Thickness along Z axis (maximum
+height)</td></tr><tr><td>
+<em class="replaceable"><code>TKy</code></em> = Thickness along Y axis (maximum
+width)</td></tr></table>
+<p>
+<a class="link" href="Hlp_C_SECPLOT.html" title="SECPLOT"><span class="command"><strong>SECPLOT</strong></span></a> cannot display an ASEC
+plot.</p>
+</td></tr><tr valign="top"><td valign="top">
+<p>
+<span class="bold"><strong>Type: BEAM, Subtype: MESH</strong></span>
+</p>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>User-defined mesh.</td></tr><tr><td>Data required is created by the <a class="link" href="Hlp_C_SECWRITE.html" title="SECWRITE"><span class="command"><strong>SECWRITE</strong></span></a> command and is read in by the <a class="link" href="Hlp_C_SECREAD.html" title="SECREAD"><span class="command"><strong>SECREAD</strong></span></a> command. </td></tr><tr><td>When a user mesh is input via <a class="link" href="Hlp_C_SECREAD.html" title="SECREAD"><span class="command"><strong>SECREAD</strong></span></a>,
+the program calculates the area, second moments of inertia, centroid,
+torsion constant, warping rigidity, and shear center.</td></tr><tr><td>If you redefine a material for a composite cross-section after
+creating the section, reissue the <a class="link" href="Hlp_C_SECREAD.html" title="SECREAD"><span class="command"><strong>SECREAD</strong></span></a> command.</td></tr></table>
+</td><td valign="top">&nbsp;</td></tr></tbody></table></div><div><img src="graphics/Linebrk.gif"></div></div><div class="refsect2" title="Links"><a name="SECDATA.links"></a><h3>Links</h3><h5><a name="d0e236992"></a>Type: LINK</h5><p>Link sections are referenced by the <a href="../ans_elem/Hlp_E_LINK180.html" class="olink"><span class="structname">LINK180</span></a> element.</p><table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields:</td></tr><tr><td>
+<em class="replaceable"><code>VAL1</code></em> = Area</td></tr></table><div><img src="graphics/Linebrk.gif"></div></div><div class="refsect2" title="Pipes"><a name="SECDATA.pipes"></a><h3>Pipes</h3><h5><a name="d0e237012"></a>Type: PIPE</h5><p>Pipe sections are referenced by the <a href="../ans_elem/Hlp_E_PIPE288.html" class="olink"><span class="structname">PIPE288</span></a>, <a href="../ans_elem/Hlp_E_PIPE289.html" class="olink"><span class="structname">PIPE289</span></a>, and <a href="../ans_elem/Hlp_E_ELBOW290.html" class="olink"><span class="structname">ELBOW290</span></a> elements.</p><div class="blockquote"><blockquote class="blockquote"><table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields:</td></tr><tr><td>
+<em class="replaceable"><code>D</code></em>
+<sub>
+<em class="replaceable"><code>o</code></em>
+</sub>, <em class="replaceable"><code>T</code></em>
+<sub>
+<em class="replaceable"><code>w</code></em>
+</sub>, <em class="replaceable"><code>N</code></em>
+<sub>
+<em class="replaceable"><code>c</code></em>
+</sub>, <em class="replaceable"><code>S</code></em>
+<sub>
+<em class="replaceable"><code>s</code></em>
+</sub>, <em class="replaceable"><code>N</code></em>
+<sub>
+<em class="replaceable"><code>t</code></em>
+</sub>, <em class="replaceable"><code>M</code></em>
+<sub>
+<em class="replaceable"><code>int</code></em>
+</sub>, <em class="replaceable"><code>M</code></em>
+<sub>
+<em class="replaceable"><code>ins</code></em>
+</sub>, <em class="replaceable"><code>T</code></em>
+<sub>
+<em class="replaceable"><code>ins</code></em>
+</sub>
+</td></tr><tr><td>where</td></tr><tr><td>
+<em class="replaceable"><code>D</code></em>
+<sub>
+<em class="replaceable"><code>o</code></em>
+</sub> = Outside diameter of pipe. Use a constant value for
+a circular pipe and an array for a noncircular pipe. (Noncircular
+pipe sections are referenced by the <a href="../ans_elem/Hlp_E_ELBOW290.html" class="olink"><span class="structname">ELBOW290</span></a> element only. See <a href="../ans_str/Hlp_G_STR15_4.html#strnoncircpipedef" class="olink">Defining a Noncircular Pipe</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.)</td></tr><tr><td>
+<em class="replaceable"><code>T</code></em>
+<sub>
+<em class="replaceable"><code>w</code></em>
+</sub> = Wall thickness (defaults to <em class="replaceable"><code>D<sub>o</sub>
+</code></em> / 2, or &#8220;solid&#8221; pipe).</td></tr><tr><td>
+<em class="replaceable"><code>N</code></em>
+<sub>
+<em class="replaceable"><code>c</code></em>
+</sub> = Number of cells around the circumference (8 <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq9f8a8d97-c5a4-4048-97f1-b43b26be8907.svg"></span> <em class="replaceable"><code>N</code></em>
+<sub>
+<em class="replaceable"><code>c</code></em>
+</sub> <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq148b7566-f562-4fe0-8ce3-f61c6b455f70.svg"></span> 120, where a greater
+value improves accuracy slightly; default = 8).</td></tr><tr><td>
+<em class="replaceable"><code>S</code></em>
+<sub>
+<em class="replaceable"><code>s</code></em>
+</sub> = Section number of the shell representing the pipe
+wall. Valid with <a href="../ans_elem/Hlp_E_ELBOW290.html" class="olink"><span class="structname">ELBOW290</span></a> only. (Total thickness
+of the section is scaled to <em class="replaceable"><code>T</code></em>
+<sub>
+<em class="replaceable"><code>w</code></em>
+</sub>. The program considers the
+innermost layer inside of the pipe to be the first layer.)</td></tr><tr><td>
+<em class="replaceable"><code>N</code></em>
+<sub>
+<em class="replaceable"><code>t</code></em>
+</sub> = Number of cells through the pipe wall. Valid values
+are 1 (default), 3, 5, 7, and 9. Cells are graded such that they are
+thinner on the inner and outer surfaces. Valid with <a href="../ans_elem/Hlp_E_PIPE288.html" class="olink"><span class="structname">PIPE288</span></a> and <a href="../ans_elem/Hlp_E_PIPE289.html" class="olink"><span class="structname">PIPE289</span></a> only.</td></tr><tr><td>
+<em class="replaceable"><code>M</code></em>
+<sub>
+<em class="replaceable"><code>int</code></em>
+</sub> = Material number of fluid inside of the pipe. The default
+value is 0 (no fluid). This value is used to input the density of
+the internal fluid. The fluid inside the pipe element is ignored unless
+the free surface in a global X-Y plane is added as face 3 (<a class="link" href="Hlp_C_SFE.html" title="SFE"><span class="command"><strong>SFE</strong></span></a>) and is high enough to include at least one end node
+of the element.</td></tr><tr><td>
+<em class="replaceable"><code>M</code></em>
+<sub>
+<em class="replaceable"><code>ins</code></em>
+</sub> = Material number of material external to the pipe (such
+as insulation or armoring). The default value is 0 (no external material).
+This value is used to input the density of the external material.
+(External material adds mass and increases hydraulic diameter, but
+does not add to stiffness.)</td></tr><tr><td>
+<em class="replaceable"><code>T</code></em>
+<sub>
+<em class="replaceable"><code>ins</code></em>
+</sub> = Thickness of material external to the pipe, such as
+insulation. The default value is 0 (no external material). </td></tr></table></blockquote></div><p>The accuracy of the ovalization value (OVAL) output by <a href="../ans_elem/Hlp_E_ELBOW290.html" class="olink"><span class="structname">ELBOW290</span></a> (<a href="../ans_elem/Hlp_E_ELBOW290.html#elbow290a_elemdescr" class="olink">Structural Elbow</a> form only)
+improves as the specified number of cells around the circumference
+(<em class="replaceable"><code>N</code></em>
+<sub>
+<em class="replaceable"><code>c</code></em>
+</sub>) is increased. </p><p>External material (<em class="replaceable"><code>M</code></em>
+<sub>
+<em class="replaceable"><code>ins</code></em>
+</sub>) adds mass and increases hydraulic
+diameter, but does not add to stiffness.</p><div><img src="graphics/gSECD_pipe.svg"></div><div><img src="graphics/Linebrk.gif"></div></div><div class="refsect2" title="Taper"><a name="SECDATA.taper"></a><h3>Taper</h3><h5><a name="d0e237286"></a>Type: TAPER</h5><p>Tapered sections are referenced by <a href="../ans_elem/Hlp_E_BEAM188.html" class="olink"><span class="structname">BEAM188</span></a>, <a href="../ans_elem/Hlp_E_BEAM189.html" class="olink"><span class="structname">BEAM189</span></a> and <a href="../ans_elem/Hlp_E_ELBOW290.html" class="olink"><span class="structname">ELBOW290</span></a> elements. After specifying the tapered section type (<a class="link" href="Hlp_C_SECTYPE.html" title="SECTYPE"><span class="command"><strong>SECTYPE</strong></span></a>,,TAPER), issue separate <span class="command"><strong>SECDATA</strong></span> commands to define
+each end of the tapered beam or pipe.</p><table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields:</td></tr><tr><td>
+<em class="replaceable"><code>Sec_IDn</code></em>, <em class="replaceable"><code>XLOC</code></em>, <em class="replaceable"><code>YLOC</code></em>, <em class="replaceable"><code>ZLOC</code></em>
+</td></tr></table><div class="blockquote"><blockquote class="blockquote"><table border="0" summary="Simple list" class="simplelist"><tr><td>where:</td></tr><tr><td>
+<em class="replaceable"><code>Sec_IDn</code></em> = Previously defined beam
+or pipe section at ends 1 and 2.</td></tr><tr><td>
+<em class="replaceable"><code>XLOC</code></em>, <em class="replaceable"><code>YLOC</code></em>, <em class="replaceable"><code>ZLOC</code></em> = The location of Sec_ID<span class="italic"><em>n</em></span> in the global Cartesian coordinate system.</td></tr></table></blockquote></div><p>For more information about tapered beams and pipes, including
+assumptions and example command input, see <a href="../ans_str/Hlp_G_STR15_4.html#taperbeam" class="olink">Defining a Tapered Beam or Pipe</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p><div><img src="graphics/Linebrk.gif"></div></div><div class="refsect2" title="General Axisymmetric"><a name="SECDATA.axisy"></a><h3>General Axisymmetric</h3><h5><a name="d0e237361"></a>Type: AXIS</h5><p>General axisymmetric sections are referenced by the <a href="../ans_elem/Hlp_E_SURF159.html" class="olink"><span class="structname">SURF159</span></a>, <a href="../ans_elem/Hlp_E_SOLID272.html" class="olink"><span class="structname">SOLID272</span></a>, and <a href="../ans_elem/Hlp_E_SOLID273.html" class="olink"><span class="structname">SOLID273</span></a> elements. Use this command to locate the axisymmetric
+axis.</p><table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields:</td></tr><tr><td>
+<span class="bold"><strong>Pattern 1 (two points):</strong></span> </td></tr><tr><td> 1, <em class="replaceable"><code>X1</code></em>, <em class="replaceable"><code>Y1</code></em>, <em class="replaceable"><code>Z1</code></em>, <em class="replaceable"><code>X2</code></em>, <em class="replaceable"><code>Y2</code></em>, <em class="replaceable"><code>Z2</code></em> </td></tr><tr><td> where <em class="replaceable"><code>X1</code></em>, <em class="replaceable"><code>Y1</code></em>, <em class="replaceable"><code>Z1</code></em>, <em class="replaceable"><code>X2</code></em>, <em class="replaceable"><code>Y2</code></em>, <em class="replaceable"><code>Z2</code></em> are global Cartesian
+coordinates.</td></tr><tr><td>
+<span class="bold"><strong>Pattern 2 (coordinate system number
+plus axis [1 = x, 2 = y, 3 = z] ):</strong></span> </td></tr><tr><td> 2, <em class="replaceable"><code>csys</code></em>, <em class="replaceable"><code>axis</code></em>
+</td></tr><tr><td> where <em class="replaceable"><code>csys</code></em> is a Cartesian coordinate
+system.</td></tr><tr><td>
+<span class="bold"><strong>Pattern 3 (origin plus direction):</strong></span> </td></tr><tr><td> 3, <em class="replaceable"><code>XO</code></em>, <em class="replaceable"><code>YO</code></em>, <em class="replaceable"><code>ZO</code></em>, <em class="replaceable"><code>xdir</code></em>, <em class="replaceable"><code>ydir</code></em>, <em class="replaceable"><code>zdir</code></em>
+</td></tr><tr><td> where <em class="replaceable"><code>XO</code></em>, <em class="replaceable"><code>YO</code></em>, <em class="replaceable"><code>ZO</code></em>
+<em class="replaceable"><code> are global Cartesian
+coordinates and xdir</code></em>, <em class="replaceable"><code>ydir</code></em>, and <em class="replaceable"><code>zdir</code></em> are direction cosines.</td></tr></table><div><img src="graphics/Linebrk.gif"></div></div><div class="refsect2" title="Shells"><a name="SECDATA.shells"></a><h3>Shells</h3><h5><a name="d0e237492"></a>Type: SHELL</h5><p>Shell sections are referenced by the <a href="../ans_elem/Hlp_E_SHELL131.html" class="olink"><span class="structname">SHELL131</span></a>, <a href="../ans_elem/Hlp_E_SHELL132.html" class="olink"><span class="structname">SHELL132</span></a>, <a href="../ans_elem/Hlp_E_SHELL181.html" class="olink"><span class="structname">SHELL181</span></a>, <a href="../ans_elem/Hlp_E_SOLID185.html" class="olink"><span class="structname">SOLID185</span></a> Layered Solid, <a href="../ans_elem/Hlp_E_SOLID186.html" class="olink"><span class="structname">SOLID186</span></a> Layered Solid, <a href="../ans_elem/Hlp_E_SOLSH190.html" class="olink"><span class="structname">SOLSH190</span></a>, <a href="../ans_elem/Hlp_E_SHELL208.html" class="olink"><span class="structname">SHELL208</span></a>, <a href="../ans_elem/Hlp_E_SHELL209.html" class="olink"><span class="structname">SHELL209</span></a>, <a href="../ans_elem/Hlp_E_SOLID278.html" class="olink"><span class="structname">SOLID278</span></a> Layered Solid, <a href="../ans_elem/Hlp_E_SOLID279.html" class="olink"><span class="structname">SOLID279</span></a> Layered Solid,
+and <a href="../ans_elem/Hlp_E_SHELL281.html" class="olink"><span class="structname">SHELL281</span></a> elements.</p><table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields:</td></tr><tr><td>
+<em class="replaceable"><code>TK</code></em>, <em class="replaceable"><code>MAT</code></em>, <em class="replaceable"><code>THETA</code></em>, <em class="replaceable"><code>NUMPT</code></em>, <em class="replaceable"><code>LayerName</code></em>
+</td></tr><tr><td>where</td></tr><tr><td>
+<em class="replaceable"><code>TK</code></em> = Thickness of shell layer.
+Zero thickness (not valid for <a href="../ans_elem/Hlp_E_SHELL131.html" class="olink"><span class="structname">SHELL131</span></a> and <a href="../ans_elem/Hlp_E_SHELL132.html" class="olink"><span class="structname">SHELL132</span></a>) indicates a dropped layer. The sum of all
+layer thicknesses must be greater than zero.  The total thickness
+can be tapered via the <a class="link" href="Hlp_C_SECFUNCTION.html" title="SECFUNCTION"><span class="command"><strong>SECFUNCTION</strong></span></a> command.</td></tr><tr><td>
+<em class="replaceable"><code>MAT</code></em> = Material ID for layer (any
+current-technology material model is available for <a href="../ans_elem/Hlp_E_SHELL181.html" class="olink"><span class="structname">SHELL181</span></a>, <a href="../ans_elem/Hlp_E_SOLID185.html" class="olink"><span class="structname">SOLID185</span></a> Layered Solid, <a href="../ans_elem/Hlp_E_SOLID186.html" class="olink"><span class="structname">SOLID186</span></a> Layered Solid, <a href="../ans_elem/Hlp_E_SOLSH190.html" class="olink"><span class="structname">SOLSH190</span></a>, <a href="../ans_elem/Hlp_E_SHELL208.html" class="olink"><span class="structname">SHELL208</span></a>, <a href="../ans_elem/Hlp_E_SHELL209.html" class="olink"><span class="structname">SHELL209</span></a>, <a href="../ans_elem/Hlp_E_SOLID278.html" class="olink"><span class="structname">SOLID278</span></a> Layered Solid and <a href="../ans_elem/Hlp_E_SOLID279.html" class="olink"><span class="structname">SOLID279</span></a> Layered Solid
+[including <a href="../ans_prog/Z7K4r1e5lcd.html#UPFusermatjwf032800403" class="olink">
+<code class="function">UserMat</code>
+</a>], and <a href="../ans_elem/Hlp_E_SHELL281.html" class="olink"><span class="structname">SHELL281</span></a>). <em class="replaceable"><code>MAT</code></em> is required for a composite (multi-layered) laminate. For a homogeneous
+(single-layered) shell, the default is the <a class="link" href="Hlp_C_MAT.html" title="MAT"><span class="command"><strong>MAT</strong></span></a> command
+setting. Use the <a class="link" href="Hlp_C_TREF.html" title="TREF"><span class="command"><strong>TREF</strong></span></a> and/or the <a class="link" href="Hlp_C_MP.html" title="MP"><span class="command"><strong>MP</strong></span></a>, REFT commands to address multiple reference temperatures. </td></tr><tr><td>
+<em class="replaceable"><code>THETA</code></em> = Angle (in degrees) of layer
+element coordinate system with respect to element coordinate system
+(ESYS).</td></tr><tr><td>
+<em class="replaceable"><code>NUMPT</code></em> = Number of integration points
+in layer. The GUI permits 1, 3, 5, 7, or 9 points (default = 3). However
+a higher odd number may be specified in the command. The integration
+rule used is Simpson's Rule. (<em class="replaceable"><code>NUMPT</code></em> is
+not used by <a href="../ans_elem/Hlp_E_SHELL131.html" class="olink"><span class="structname">SHELL131</span></a> and <a href="../ans_elem/Hlp_E_SHELL132.html" class="olink"><span class="structname">SHELL132</span></a>.)</td></tr></table><div><img src="graphics/Linebrk.gif"></div></div><div class="refsect2" title="Pretension"><a name="SECDATA.pretension"></a><h3>Pretension</h3><h5><a name="d0e237666"></a>Type: PRETENSION</h5><p>Pretension sections are referenced by the <a href="../ans_elem/Hlp_E_PRETS179.html" class="olink"><span class="structname">PRETS179</span></a> element.</p><table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields:</td></tr><tr><td>
+<em class="replaceable"><code>node</code></em>, <em class="replaceable"><code>nx</code></em>, <em class="replaceable"><code>ny</code></em>, <em class="replaceable"><code>nz</code></em>
+</td></tr><tr><td>where</td></tr><tr><td>
+<em class="replaceable"><code>node</code></em> = Pretension node number.</td></tr><tr><td>
+<em class="replaceable"><code>nx</code></em> = Orientation in global Cartesian
+x direction.</td></tr><tr><td>
+<em class="replaceable"><code>ny</code></em> = Orientation in global Cartesian
+y direction.</td></tr><tr><td>
+<em class="replaceable"><code>nz</code></em> = Orientation in global Cartesian
+z direction.</td></tr></table><p>The following usage is typical:</p><p>
+</p><table border="0" summary="Simple list" class="simplelist"><tr><td>SECTYPE, 1, PRETENSION</td></tr><tr><td>SECDATA, 13184, 0.000, 0.000, 1.000</td></tr><tr><td>SECMODIF, 1, NAME, example</td></tr><tr><td>SLOAD, 1, PL01, TINY, FORC, 100.00 , 1, 2</td></tr></table><p>
+</p><p>The <em class="replaceable"><code>PRETENSION</code></em> section options of <a class="link" href="Hlp_C_SECTYPE.html" title="SECTYPE"><span class="command"><strong>SECTYPE</strong></span></a> and <span class="command"><strong>SECDATA</strong></span> are documented mainly
+to aid in the understanding of data written by <a class="link" href="Hlp_C_CDWRITE.html" title="CDWRITE"><span class="command"><strong>CDWRITE</strong></span></a>. ANSYS, Inc. recommends that you generate pretension sections using <a class="link" href="Hlp_C_PSMESH.html" title="PSMESH"><span class="command"><strong>PSMESH</strong></span></a>.</p><div><img src="graphics/Linebrk.gif"></div></div><div class="refsect2" title="Joints"><a name="SECDATA.joints"></a><h3>Joints</h3><h5><a name="d0e237751"></a>Type: JOINT</h5><p>Joint sections are referenced by <a href="../ans_elem/Hlp_E_MPC184.html" class="olink"><span class="structname">MPC184</span></a> joint elements.</p><table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields:</td></tr><tr><td>
+<em class="replaceable"><code>length1</code></em>, <em class="replaceable"><code>length2</code></em>, <em class="replaceable"><code>length3</code></em>, <em class="replaceable"><code>angle1</code></em>, <em class="replaceable"><code>angle2</code></em>, <em class="replaceable"><code>angle3</code></em>
+</td></tr><tr><td>where</td></tr><tr><td>
+<em class="replaceable"><code>length1-3</code></em> = Reference lengths used
+in the constitutive calculations.</td></tr><tr><td>
+<em class="replaceable"><code>angle1-3</code></em> = Reference angles used
+in the constitutive calculations.</td></tr></table><p>The following table shows the lengths and angles to be specified
+for different kinds of joints.</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="120" class="col1"><col width="120" class="col2"><col width="360" class="col3"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center" valign="top">
+
+Joint</th><th bgcolor="#E3E3E3" align="center" valign="top">
+
+Subtype</th><th bgcolor="#E3E3E3" align="center" valign="top">
+
+Reference
+lengths and angles</th></tr></thead><tbody><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184revo.html" class="olink">Revolute</a>
+</td><td>REVO</td><td>
+<div class="literallayout"><p>angle1&nbsp;for&nbsp;x-axis&nbsp;revolute&nbsp;joint<br>
+angle3&nbsp;for&nbsp;z-axis&nbsp;revolute&nbsp;joint</p></div>
+</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184univ.html" class="olink">Universal</a>
+</td><td>UNIV</td><td>angle1 and angle3</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184slot.html" class="olink">Slot</a>
+</td><td>SLOT</td><td>length1</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184poin.html" class="olink">Point-in-plane</a>
+</td><td>PINP</td><td>length2 and length3, </td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184revo.html" class="olink">Revolute</a>
+<a href="../ans_elem/Hlp_E_MPC184tran.html" class="olink">Translational</a>
+</td><td>PRIS</td><td>length1</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184cyl.html" class="olink">Cylindrical</a>
+</td><td>CYLI</td><td>
+<div class="literallayout"><p>length1&nbsp;and&nbsp;angle1&nbsp;for&nbsp;x-axis&nbsp;cylindrical&nbsp;joint<br>
+length3&nbsp;and&nbsp;angle3&nbsp;for&nbsp;z-axis&nbsp;cylindrical&nbsp;joint</p></div>
+</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184plan.html" class="olink">Planar</a>
+</td><td>PLAN</td><td>
+<div class="literallayout"><p>length2,&nbsp;length3,&nbsp;and&nbsp;angle1&nbsp;for&nbsp;x-axis&nbsp;planar&nbsp;joint<br>
+length1,&nbsp;length2,&nbsp;and&nbsp;angle3&nbsp;for&nbsp;z-axis&nbsp;planar&nbsp;joint</p></div>
+</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184weld.html" class="olink">Weld</a>
+</td><td>WELD</td><td>(not used)</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184orie.html" class="olink">Orient</a>
+</td><td>ORIE</td><td>(not used)</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184sphe.html" class="olink">Spherical</a>
+</td><td>SPHE</td><td>(not used)</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184gen.html" class="olink">General</a>
+</td><td>GENE</td><td>length1, length2, length3, angle1, angle2, angle3 -- <a href="../ans_mul/Hlp_G_MULMODCOMPJT.html" class="olink">Depends upon which &#8220;unconstrained&#8221;
+relative degrees of freedom are available</a>.</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184scr.html" class="olink">Screw</a>
+</td><td>SCRE</td><td>length3 and angle3</td></tr></tbody></table></div><p>The reference length and angle specifications correspond to
+the free relative degrees of freedom in a joint element for which
+constitutive calculations are performed. These values are used when
+stiffness and/or damping are specified for the joint elements.</p><p>If the reference lengths and angles are not specified, they
+are calculated from the default or starting configuration for the
+element.</p><p>See <a href="../ans_elem/Hlp_E_MPC184.html" class="olink"><span class="structname">MPC184</span></a> or the individual joint
+element descriptions for more information on joint element constitutive
+calculations.</p><div><img src="graphics/Linebrk.gif"></div></div><div class="refsect2" title="Reinforcing"><a name="SECDATA.reinforcement"></a><h3>Reinforcing</h3><h5><a name="d0e237971"></a>Type: REINF</h5><p>Each <span class="command"><strong>SECDATA</strong></span> command defines the material, geometry,
+    and orientation (if Subtype = SMEAR) of one reinforcing member (discrete fiber or smeared
+    surface) in the section. The reinforcing section can be referenced by reinforcing elements
+     (<a href="../ans_elem/Hlp_E_REINF263.html" class="olink"><span class="structname">REINF263</span></a>, <a href="../ans_elem/Hlp_E_REINF264.html" class="olink"><span class="structname">REINF264</span></a>, and
+     <a href="../ans_elem/Hlp_E_REINF265.html" class="olink"><span class="structname">REINF265</span></a>), or <a href="../ans_elem/Hlp_E_MESH200.html" class="olink"><span class="structname">MESH200</span></a> elements when used for
+    temporarily representing reinforcing members. Only one <span class="command"><strong>SECDATA</strong></span> command is
+    allowed per section when referenced by <a href="../ans_elem/Hlp_E_MESH200.html" class="olink"><span class="structname">MESH200</span></a> elements. For more
+    information, see <a href="../ans_str/Hlp_G_STRREINF.html" class="olink">Reinforcing in the <span class="olinkdocname">Mechanical APDL Structural Analysis Guide</span></a>.</p><p>- - - - - - - - - - - - - - - - - - - - - </p><p>
+<span class="bold"><strong>Type: REINF, Subtype: DISCRETE</strong></span>
+</p><p>Defines discrete reinforcing fibers with arbitrary orientations. For
+    the MESH input pattern, reinforcing section data is referenced by
+     <a href="../ans_elem/Hlp_E_MESH200.html" class="olink"><span class="structname">MESH200</span></a> elements. For other patterns, issue separate
+     <span class="command"><strong>SECDATA</strong></span> commands to define each reinforcing fiber.</p><table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields:</td></tr><tr><td>
+<em class="replaceable"><code>MAT, A, PATT, V1, V2, V3, V4, V5</code></em>
+</td></tr><tr><td>
+     <em class="replaceable"><code>MAT</code></em> = Material ID for the fiber. (See
+      <a href="../ans_elem/Hlp_E_REINF264.html" class="olink"><span class="structname">REINF264</span></a> for valid material models.) When the reinforcing section is
+     referenced by a <a href="../ans_elem/Hlp_E_MESH200.html" class="olink"><span class="structname">MESH200</span></a> element, the default is the
+      <a href="../ans_elem/Hlp_E_MESH200.html" class="olink"><span class="structname">MESH200</span></a> element material ID (<a class="link" href="Hlp_C_MAT.html" title="MAT"><span class="command"><strong>MAT</strong></span></a>). When the
+     section is referenced by reinforcing elements, the material ID is required for all fibers, and
+     no default for this value is available.</td></tr><tr><td>
+<em class="replaceable"><code>A</code></em> = Cross-section area of the reinforcing
+fiber. </td></tr><tr><td>
+     <em class="replaceable"><code>PATT</code></em> = Input pattern code (described below) indicating how the
+     location of this fiber is defined. Available input patterns are MESH (when the section is
+     referenced by a <a href="../ans_elem/Hlp_E_MESH200.html" class="olink"><span class="structname">MESH200</span></a> element), and LAYN, EDGO, and BEAM (when the
+     section is referenced by a reinforcing element).</td></tr><tr><td>
+<em class="replaceable"><code>V1, V2, V3, V4, V5</code></em> = Values to
+define the location of the reinforcing fiber (depending on the <em class="replaceable"><code>PATT</code></em> pattern code used), as shown:</td></tr></table><div class="blockquote"><blockquote class="blockquote"><p>
+     <span class="bold"><strong>
+      <em class="replaceable"><code>PATT</code></em> : MESH</strong></span>
+    </p></blockquote></div><p>
+    <span class="bold"><strong>Description:</strong></span> The locations of reinforcing fibers are defined
+    directly via <a href="../ans_elem/Hlp_E_MESH200.html" class="olink"><span class="structname">MESH200</span></a> element connectivity.</p><p>
+    <span class="bold"><strong>Required input:</strong></span> None.</p><div class="blockquote"><blockquote class="blockquote"><p>
+<span class="bold"><strong>
+<em class="replaceable"><code>PATT</code></em> :  LAYN</strong></span>
+</p></blockquote></div><p>
+<span class="bold"><strong>Description:</strong></span> The discrete reinforcing
+fiber is placed in the middle of a layer in a layered base element.
+The orientation of the fiber within the layer is adjustable via offsets
+with respect to a specified element edge.</p><p>
+<span class="bold"><strong>Required input:</strong></span>  </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<em class="replaceable"><code>V1</code></em> (or <em class="replaceable"><code>N</code></em>) -- The number of the layer in the base element on which to apply
+the reinforcing fiber. The default value is 1.</td></tr><tr><td>
+<em class="replaceable"><code>V2</code></em> (or <em class="replaceable"><code>e</code></em>) -- The number to indicate the element edge to which the offsets
+are measured. The default value is 1.</td></tr><tr><td>
+<em class="replaceable"><code>V3</code></em> and <em class="replaceable"><code>V4</code></em> (or <em class="replaceable"><code>Y1</code></em> and <em class="replaceable"><code>Y2</code></em>) -- The normalized distances from the fiber to the two ends of the
+specified element edge. Valid values for <em class="replaceable"><code>Y1</code></em> and <em class="replaceable"><code>Y2</code></em> are 0.0 through 1.0. The default
+value of <em class="replaceable"><code>Y1</code></em> is 0.5. The default value of <em class="replaceable"><code>Y2</code></em> is <em class="replaceable"><code>Y1</code></em>. </td></tr></table><p>
+</p><div class="blockquote"><blockquote class="blockquote"><p>When applied to 8-node or 20-node layered solid elements:</p><div><img src="graphics/gSECD18.svg"></div><p>
+</p><div><img src="graphics/gSECD19.svg"></div><p>
+</p></blockquote></div><p>
+</p><p>
+</p><div class="blockquote"><blockquote class="blockquote"><p>When applied to 4-node or 8-node layered shell elements:</p><div><img src="graphics/gSECD20.svg"></div><p>
+</p><div><img src="graphics/gSECD21.svg"></div><p>
+</p></blockquote></div><p>
+</p><div class="blockquote"><blockquote class="blockquote"><p>
+<span class="bold"><strong>
+<em class="replaceable"><code>PATT</code></em> :  EDGO</strong></span>
+</p></blockquote></div><p>
+<span class="bold"><strong>Description:</strong></span> The orientation
+of the discrete reinforcing fiber is similar to one of the specified
+element edges. The fiber orientation can be further adjusted via offsets
+with respect to the specified element edge.</p><p>
+<span class="bold"><strong>Required input:</strong></span> </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<em class="replaceable"><code>V1</code></em> (or <em class="replaceable"><code>O</code></em>) -- The number to indicate the element edge to which the offsets
+are measured. The default value is 1.  </td></tr><tr><td>
+<em class="replaceable"><code>V2</code></em> and <em class="replaceable"><code>V3</code></em> (or <em class="replaceable"><code>Y1 </code></em>and <em class="replaceable"><code>Z1</code></em>) -- The normalized distances from the fiber to the first end of
+the specified element edge. Valid values for <em class="replaceable"><code>Y1</code></em> and <em class="replaceable"><code>Z1</code></em> are 0.0 through 1.0. The default
+value for <em class="replaceable"><code>Y1</code></em> and <em class="replaceable"><code>Z1</code></em> is 0.5. </td></tr><tr><td>
+<em class="replaceable"><code>V4</code></em> and <em class="replaceable"><code>V5</code></em> (or <em class="replaceable"><code>Y2</code></em> and <em class="replaceable"><code>Z2</code></em>) &#8211; The normalized distances from the fiber to the second end
+of the specified element edge. Value values for <em class="replaceable"><code>Y2</code></em> and <em class="replaceable"><code>Z2</code></em> are 0.0 through 1.0. The default
+value for <em class="replaceable"><code>Y2</code></em> is <em class="replaceable"><code>Y1</code></em>, and the default value for <em class="replaceable"><code>Z2</code></em> is <em class="replaceable"><code>Z1</code></em>.</td></tr></table><div class="blockquote"><blockquote class="blockquote"><p>If the base element is a beam or link, the program ignores values
+      <em class="replaceable"><code>V2</code></em> through <em class="replaceable"><code>V5</code></em> and instead places the
+     reinforcing in the center of the beam or link.</p></blockquote></div><p>
+</p><div class="blockquote"><blockquote class="blockquote"><p>When applied to 8-node or 20-node solid elements:</p></blockquote></div><p>
+</p><div><img src="graphics/gSECD22.svg"></div><p>
+</p><div><img src="graphics/gSECD22b.svg"></div><p>
+</p><div><img src="graphics/gSECD22c.svg"></div><p>
+</p><div class="blockquote"><blockquote class="blockquote"><p>When applied to tetrahedral elements:</p></blockquote></div><p>
+</p><div class="informaltable"><table border="0" width="95%"><colgroup><col width="79%" class="col1"><col width="21%" class="col2"></colgroup><tbody><tr><td colspan="2">
+<div><img src="graphics/gSECD25.svg"></div>
+</td></tr><tr><td colspan="2">
+<div><img src="graphics/gSECD26.svg"></div>
+</td></tr><tr><td colspan="2">
+<div><img src="graphics/gSECD27.svg"></div>
+</td></tr></tbody></table></div><p>
+</p><p>
+</p><div class="blockquote"><blockquote class="blockquote"><p>When applied to 3-D shell elements:</p><div><img src="graphics/gSECD28.svg"></div><p>
+</p><div><img src="graphics/gSECD29.svg"></div><p>
+</p></blockquote></div><p>
+</p><p>
+</p><div class="blockquote"><blockquote class="blockquote"><p>When applied to beam or link elements:</p><div><img src="graphics/gSECD30.svg"></div><p>
+</p></blockquote></div><p>
+</p><div class="blockquote"><blockquote class="blockquote"><p>
+<span class="bold"><strong>
+<em class="replaceable"><code>PATT</code></em> :  BEAM</strong></span>
+</p></blockquote></div><p>
+<span class="bold"><strong>Description:</strong></span> Use this specialized
+input pattern for defining reinforcing in regular constant and tapered
+beams.</p><p>
+<span class="bold"><strong>Required input:</strong></span>  </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+     <em class="replaceable"><code>V1</code></em> and <em class="replaceable"><code>V2</code></em> (or
+      <em class="replaceable"><code>Y1</code></em> and <em class="replaceable"><code>Z1</code></em>) -- Y and Z offsets with
+     respect to the section origin in the first beam section referenced by the base beam element.
+     The default value for Y1 and Z1 is 0.0.</td></tr><tr><td>
+     <em class="replaceable"><code>V3</code></em> and <em class="replaceable"><code>V4</code></em> (or
+      <em class="replaceable"><code>Y2</code></em> and <em class="replaceable"><code>Z2</code></em>) -- Y and Z offsets with
+     respect to the section origin in the second beam section referenced by the base beam element.
+     The default value for <em class="replaceable"><code>Y2</code></em> is <em class="replaceable"><code>Y1</code></em>, and the
+     default value for <em class="replaceable"><code>Z2</code></em> is <em class="replaceable"><code>Z1</code></em>. (Because
+      <em class="replaceable"><code>V3</code></em> and <em class="replaceable"><code>V4</code></em> values apply only to tapered
+     beams, the program ignores them if the base beam has a constant section.)</td></tr></table><p>
+</p><div class="blockquote"><blockquote class="blockquote"><p>
+</p><div><img src="graphics/gSECD31.svg"></div><p>
+</p></blockquote></div><p>
+</p><p>- - - - - - - - - - - - - - - - - - - - - </p><p>
+<span class="bold"><strong>Type: REINF, Subtype: SMEAR</strong></span>
+</p><p>Suitable for layers of reinforcing fibers with uniform cross-section
+    area and spacing. Each <span class="command"><strong>SECDATA</strong></span> command defines the one reinforcing layer in
+    the section. When referenced by a <a href="../ans_elem/Hlp_E_MESH200.html" class="olink"><span class="structname">MESH200</span></a> element, only one
+     <span class="command"><strong>SECDATA</strong></span> command per section is allowed. When referenced by reinforcing
+    elements (<a href="../ans_elem/Hlp_E_REINF263.html" class="olink"><span class="structname">REINF263</span></a> and <a href="../ans_elem/Hlp_E_REINF265.html" class="olink"><span class="structname">REINF265</span></a>), this
+    limitation does not apply.</p><table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields:</td></tr><tr><td>
+<em class="replaceable"><code>MAT, A, S, KCN, THETA, PATT, V1, V2, V3, V4,
+V5</code></em>
+</td></tr><tr><td>where</td></tr><tr><td>
+     <em class="replaceable"><code>MAT</code></em> = Material ID for layer. (See <a href="../ans_elem/Hlp_E_REINF263.html" class="olink"><span class="structname">REINF263</span></a>
+     or <a href="../ans_elem/Hlp_E_REINF265.html" class="olink"><span class="structname">REINF265</span></a> for available material models.) When the section is
+     referenced by a <a href="../ans_elem/Hlp_E_MESH200.html" class="olink"><span class="structname">MESH200</span></a> element, the default is the
+      <a href="../ans_elem/Hlp_E_MESH200.html" class="olink"><span class="structname">MESH200</span></a> element material ID (<a class="link" href="Hlp_C_MAT.html" title="MAT"><span class="command"><strong>MAT</strong></span></a>). When the
+     section is referenced by reinforcing elements, the material ID is required for all fibers, and
+     no default for this value is available.</td></tr><tr><td>
+<em class="replaceable"><code>A</code></em> = Cross-section area of a single
+reinforcing fiber. </td></tr><tr><td>
+<em class="replaceable"><code>S</code></em> = Distance between two adjacent
+reinforcing fibers.</td></tr><tr><td>
+     <em class="replaceable"><code>KCN</code></em> = Local coordinate system reference number for this layer. (See
+      <a class="link" href="Hlp_C_LOCAL.html" title="LOCAL"><span class="command"><strong>LOCAL</strong></span></a> for more information.) When the section is referenced by a
+      <a href="../ans_elem/Hlp_E_MESH200.html" class="olink"><span class="structname">MESH200</span></a> element, the default <em class="replaceable"><code>KCN</code></em> value is
+     the <a href="../ans_elem/Hlp_E_MESH200.html" class="olink"><span class="structname">MESH200</span></a> element coordinate system ID (<a class="link" href="Hlp_C_ESYS.html" title="ESYS"><span class="command"><strong>ESYS</strong></span></a>).
+     For the 2-D smeared reinforcing element <a href="../ans_elem/Hlp_E_REINF263.html" class="olink"><span class="structname">REINF263</span></a>,
+      <em class="replaceable"><code>KCN</code></em> input is not required. When <em class="replaceable"><code>KCN</code></em> is
+     not specified, the program uses a default layer coordinate system (described in
+      <a href="../ans_elem/Hlp_E_REINF263.html" class="olink"><span class="structname">REINF263</span></a> and <a href="../ans_elem/Hlp_E_REINF265.html" class="olink"><span class="structname">REINF265</span></a>). </td></tr><tr><td>
+<em class="replaceable"><code>THETA </code></em> = Angle (in degrees) of
+the final layer coordinate system with respect to the default layer
+system or the layer system specified in the <em class="replaceable"><code>KCN</code></em> field. This value is ignored for <a href="../ans_elem/Hlp_E_REINF263.html" class="olink"><span class="structname">REINF263</span></a> when that element is embedded in 2-D plane strain or plane stress
+base elements.</td></tr><tr><td>
+     <em class="replaceable"><code>PATT </code></em> = Input pattern code (described below) indicating how the
+     location of this fiber is defined. Available input patterns are MESH (when the section is
+     referenced by a <a href="../ans_elem/Hlp_E_MESH200.html" class="olink"><span class="structname">MESH200</span></a> element), and LAYN, EDGO, and BEAM (when the
+     section is referenced by a reinforcing element).</td></tr><tr><td>
+<em class="replaceable"><code>V1, V2, V3, V4, V5</code></em> = Values to
+define the location of the reinforcing layer, as shown:</td></tr></table><div class="blockquote"><blockquote class="blockquote"><p>
+     <span class="bold"><strong>
+      <em class="replaceable"><code>PATT</code></em> : MESH</strong></span>
+    </p></blockquote></div><p>
+    <span class="bold"><strong>Description:</strong></span> The locations of reinforcing fibers are defined
+    directly via <a href="../ans_elem/Hlp_E_MESH200.html" class="olink"><span class="structname">MESH200</span></a> element connectivity.</p><p>
+    <span class="bold"><strong>Required input:</strong></span> None.</p><div class="blockquote"><blockquote class="blockquote"><p>
+<span class="bold"><strong>
+<em class="replaceable"><code>PATT</code></em> :  LAYN</strong></span>
+</p></blockquote></div><p>
+<span class="bold"><strong>Description:</strong></span> The smeared reinforcing
+layer is placed in the middle of a layer in a layered base element.</p><p>
+<span class="bold"><strong>Required input:</strong></span>  <em class="replaceable"><code>V1</code></em> (or <em class="replaceable"><code>n</code></em>) -- The number
+of the layer in the base element on which to apply the reinforcing
+layer. The default value is 1.</p><div class="informaltable"><table border="0" width="95%"><colgroup><col width="44%" class="col1"><col width="56%" class="col2"></colgroup><tbody><tr><td colspan="2">
+<p>When applied
+to layered solid elements:</p>
+<div align="center"><img src="graphics/gSECD12.svg" align="middle"></div>
+</td></tr><tr><td>
+<p>When applied
+to 2-D axisymmetric shells:</p>
+<div><img src="graphics/gSECD32.svg"></div>
+</td><td>
+<p>When applied to 3-D layered shells:</p>
+<div><img src="graphics/gSECD13.svg"></div>
+</td></tr></tbody></table></div><div class="blockquote"><blockquote class="blockquote"><p>
+<span class="bold"><strong>
+<em class="replaceable"><code>PATT</code></em> :  EDGO</strong></span>
+</p></blockquote></div><p>
+<span class="bold"><strong>Description:</strong></span> This pattern applies
+only to 2-D smeared reinforcing element <a href="../ans_elem/Hlp_E_REINF263.html" class="olink"><span class="structname">REINF263</span></a>. The smeared reinforcing layer is represented by a line in 2-D.
+The orientation of the 2-D smeared reinforcing layer is similar to
+one of the specified element edges. The fiber orientation can be further
+adjusted via offsets with respect to the specified element edge.</p><p>
+<span class="bold"><strong>Required input:</strong></span> </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<em class="replaceable"><code>V1</code></em> (or <em class="replaceable"><code>O</code></em>) -- The number to indicate the element edge to which the offsets
+are measured. The default value is 1. </td></tr><tr><td>
+<em class="replaceable"><code>V2</code></em> (or <em class="replaceable"><code>Y1</code></em>) -- The normalized distances from the reinforcing layer to the first
+end of the specified element edge. Valid values for Y1 are 0.0 through
+1.0. The default value for <em class="replaceable"><code>Y1</code></em> is 0.5.  <em class="replaceable"><code>V3</code></em> (or <em class="replaceable"><code>Z1</code></em>) input is ignored.</td></tr><tr><td>
+<em class="replaceable"><code>V4</code></em> (or <em class="replaceable"><code>Y2</code></em>) -- The normalized distances from the reinforcing layer to the second
+end of the specified element edge. Valid value values for <em class="replaceable"><code>Y2</code></em> are 0.0 through 1.0. The default value for <em class="replaceable"><code>Y2</code></em> is <em class="replaceable"><code>Y1</code></em>. <em class="replaceable"><code>V4</code></em> (or <em class="replaceable"><code>Y2</code></em>) is ignored for axisymmetric shell
+elements. <em class="replaceable"><code>V5</code></em> (or <em class="replaceable"><code>Z2`</code></em>) input is ignored.</td></tr></table><div class="informaltable"><table border="0" width="95%"><colgroup><col width="49%" class="col1"><col width="51%" class="col2"></colgroup><tbody><tr><td colspan="2">
+<p>When applied
+to 2-D 4-node or 8-node solid elements:</p>
+<div><img src="graphics/gSECD34.svg"></div>
+</td></tr><tr><td colspan="2">
+<p>When applied to 2-D 3-node or 6-node triangular
+solid elements:</p>
+<div><img src="graphics/gSECD35.svg"></div>
+</td></tr><tr><td colspan="2">
+<p>When applied
+to 2-node or 3-node axisymmetric shell elements:</p>
+<div><img src="graphics/gSECD33.svg"></div>
+</td></tr></tbody></table></div><div class="blockquote"><blockquote class="blockquote"><p>
+<span class="bold"><strong>
+<em class="replaceable"><code>PATT</code></em> :  ELEF</strong></span>
+</p></blockquote></div><p>
+<span class="bold"><strong>Description:</strong></span> The smeared reinforcing
+layer is oriented parallel to one of three adjacent element faces.
+(This pattern does not apply to 2-D smeared reinforcing element <a href="../ans_elem/Hlp_E_REINF263.html" class="olink"><span class="structname">REINF263</span></a>.)</p><p>
+<span class="bold"><strong>Required input:</strong></span> </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<em class="replaceable"><code>V1</code></em> (or <em class="replaceable"><code>F</code></em>) -- The number to indicate the base element face. The default value
+is 1. </td></tr><tr><td>
+<em class="replaceable"><code>V2</code></em> (or <em class="replaceable"><code>d1</code></em>) -- The normalized distance from the  layer to the specified base
+element face. Valid values for <em class="replaceable"><code>d1</code></em> are 0.0
+through 1.0. The default value is 0.5. </td></tr><tr><td>
+<em class="replaceable"><code>V3</code></em> (or <em class="replaceable"><code>d2</code></em>) -- The normalized distance from corners JJ and KK of the layer
+to the specified base element face (applicable to 8-node or 20-node
+solid elements only). Valid values for <em class="replaceable"><code>d2</code></em> are 0.0 through 1.0. The default value is <em class="replaceable"><code>d1</code></em>.  </td></tr></table><p>
+</p><div class="blockquote"><blockquote class="blockquote"><p>When applied to 8-node or 20-node solid elements:</p></blockquote></div><p>
+</p><div class="informaltable"><table border="0" width="95%"><colgroup><col width="50%" class="col1"><col width="50%" class="col2"></colgroup><tbody><tr><td>
+<div><img src="graphics/gSECD14a.svg"></div>
+</td><td>
+<div><img src="graphics/gSECD14b.svg"></div>
+</td></tr><tr><td>
+<div><img src="graphics/gSECD14c.svg"></div>
+</td><td align="left" valign="middle">
+<p>where</p>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>
+<em class="replaceable"><code>d1</code></em> = distance II and LL</td></tr><tr><td>
+<em class="replaceable"><code>d2</code></em> = distance JJ and KK</td></tr></table>
+</td></tr></tbody></table></div><p>
+</p><p>
+</p><div class="blockquote"><blockquote class="blockquote"><p>When applied to tetrahedral elements:</p></blockquote></div><p>
+</p><div class="informaltable"><table border="0" width="95%"><colgroup><col width="52%" class="col1"><col width="48%" class="col2"></colgroup><tbody><tr><td>
+<div><img src="graphics/gSECD15a.svg"></div>
+</td><td>
+<div><img src="graphics/gSECD15b.svg"></div>
+</td></tr><tr><td>
+<div><img src="graphics/gSECD15c.svg"></div>
+</td><td>&nbsp;</td></tr></tbody></table></div><p>
+</p><div class="blockquote"><blockquote class="blockquote"><p>When applied to 3-D shell elements: </p><div><img src="graphics/gSECD16.svg"></div><p>
+</p></blockquote></div><p>
+</p><div><img src="graphics/Linebrk.gif"></div></div><div class="refsect2" title="CONTACT"><a name="SECDATA.contact"></a><h3>CONTACT</h3><h5><a name="d0e238868"></a>Type: CONTACT</h5><p title="Geometry Correction"><b>Geometry Correction&nbsp;</b>Contact sections for geometry
+correction (<em class="replaceable"><code>Subtype</code></em> = CIRCLE, SPHERE, or
+CYLINDER) are referenced by the following elements: <a href="../ans_elem/Hlp_E_TARGE169.html" class="olink"><span class="structname">TARGE169</span></a>, <a href="../ans_elem/Hlp_E_TARGE170.html" class="olink"><span class="structname">TARGE170</span></a>, <a href="../ans_elem/Hlp_E_CONTA171.html" class="olink"><span class="structname">CONTA171</span></a>, <a href="../ans_elem/Hlp_E_CONTA172.html" class="olink"><span class="structname">CONTA172</span></a>, <a href="../ans_elem/Hlp_E_CONTA173.html" class="olink"><span class="structname">CONTA173</span></a>, and <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a>. This geometry correction
+applies to cases where the original meshes of contact elements or
+target elements are located on a portion of a circular, spherical,
+or revolute surface.</p><p>
+<span class="bold"><strong>Type: CONTACT, Subtype: CIRCLE</strong></span>
+</p><table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields for <em class="replaceable"><code>Subtype</code></em> = CIRCLE:</td></tr><tr><td>
+<em class="replaceable"><code>X0</code></em>, <em class="replaceable"><code>Y0</code></em> (circle center location in Global Cartesian coordinates - XY plane)</td></tr></table><p>
+<span class="bold"><strong>Type: CONTACT, Subtype: SPHERE</strong></span>
+</p><table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields for <em class="replaceable"><code>Subtype</code></em> = SPHERE:</td></tr><tr><td>
+<em class="replaceable"><code>X0</code></em>, <em class="replaceable"><code>Y0</code></em>, <em class="replaceable"><code>Z0</code></em> (sphere center location in Global
+Cartesian coordinates)</td></tr></table><p>
+<span class="bold"><strong>Type: CONTACT, Subtype: CYLINDER</strong></span>
+</p><table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields for <em class="replaceable"><code>Subtype</code></em> = CYLINDER:</td></tr><tr><td>
+<em class="replaceable"><code>X1</code></em>, <em class="replaceable"><code>Y1</code></em>, <em class="replaceable"><code>Z1</code></em>, <em class="replaceable"><code>X2</code></em>, <em class="replaceable"><code>Y2</code></em>, <em class="replaceable"><code>Z2</code></em> (two ends of cylindrical
+axis in Global Cartesian coordinates)</td></tr></table><p title="User-Defined Contact Surface Normal"><b>User-Defined Contact Surface Normal&nbsp;</b>The contact
+section for a user-defined contact surface normal (<em class="replaceable"><code>Subtype</code></em> = NORMAL) is referenced by the following elements: <a href="../ans_elem/Hlp_E_CONTA171.html" class="olink"><span class="structname">CONTA171</span></a>, <a href="../ans_elem/Hlp_E_CONTA172.html" class="olink"><span class="structname">CONTA172</span></a>, <a href="../ans_elem/Hlp_E_CONTA173.html" class="olink"><span class="structname">CONTA173</span></a>, <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a>, and <a href="../ans_elem/Hlp_E_CONTA175.html" class="olink"><span class="structname">CONTA175</span></a>. This geometry correction is used to define a <a href="../ans_ctec/ctecgeomcor.html#ctec_usernormal" class="olink">shift direction for
+interference fit</a> solutions. </p><p>
+<span class="bold"><strong>Type: CONTACT, Subtype: NORMAL</strong></span>
+</p><table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields for <em class="replaceable"><code>Subtype</code></em> = NORMAL:</td></tr><tr><td>
+<em class="replaceable"><code>CSYS</code></em>, <em class="replaceable"><code>NX</code></em>, <em class="replaceable"><code>NY</code></em>, <em class="replaceable"><code>NZ</code></em>
+</td></tr><tr><td>where</td></tr><tr><td>
+<em class="replaceable"><code>CSYS</code></em> = Local coordinate system
+number (defaults to global Cartesian).</td></tr><tr><td>
+<em class="replaceable"><code>NX</code></em>, <em class="replaceable"><code>NY</code></em>, <em class="replaceable"><code>NZ</code></em> = Direction cosines with respect
+to <em class="replaceable"><code>CSYS.</code></em>
+</td></tr></table><p title="Radius values associated with contact or target elements"><b>Radius values associated with contact or target elements&nbsp;</b>The radius contact section (<em class="replaceable"><code>Subtype</code></em> = RADIUS) is referenced by contact or target elements in a general
+contact definition under the following circumstances:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+<span class="bold"><strong>Equivalent 3-D contact radius for beam-to-beam contact</strong></span> - The
+        contact section for a user-defined equivalent contact radius
+         (<em class="replaceable"><code>Subtype</code></em> = RADIUS) is referenced by the element type
+         <a href="../ans_elem/Hlp_E_CONTA177.html" class="olink"><span class="structname">CONTA177</span></a> within a general contact definition. 3-D beam-to-beam
+        contact (or edge-to-edge contact) modeled by this line contact element assumes that its
+        surface is a cylindrical surface.</p></li><li class="listitem"><p>
+<span class="bold"><strong>Radius (or radii) of rigid target
+segments</strong></span> - The contact section for rigid target segment
+radii is referenced by target elements <a href="../ans_elem/Hlp_E_TARGE169.html" class="olink"><span class="structname">TARGE169</span></a> (circle segment type) and <a href="../ans_elem/Hlp_E_TARGE170.html" class="olink"><span class="structname">TARGE170</span></a> (line,
+parabola, cylinder, sphere, or cone segment type) in a general contact
+definition.</p></li></ul></div><p title="Radius values associated with contact or target elements">
+</p><p>
+<span class="bold"><strong>Type: CONTACT, Subtype:
+RADIUS</strong></span>
+</p><table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields for <em class="replaceable"><code>Subtype</code></em> = RADIUS if
+     the section is used as an equivalent contact radius for 3-D beam-to-beam contact:</td></tr><tr><td>
+     <em class="replaceable"><code>VAL1</code></em> = Equivalent radius - outer radius</td></tr><tr><td>
+     <em class="replaceable"><code>VAL2</code></em> = Equivalent radius - inner radius (internal beam-to-beam
+     contact)</td></tr><tr><td>
+     <em class="replaceable"><code>VAL3</code></em>: Set to 1 for internal beam-to-beam contact. Defaults to
+     external beam-to-beam contact.</td></tr></table><table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields for <em class="replaceable"><code>Subtype</code></em> = RADIUS if the section is used for 2-D or 3-D rigid target segments:</td></tr><tr><td>
+<em class="replaceable"><code>VAL1</code></em> = First radius of the target
+segment (used for circle, line, parabola, cylinder, sphere, and cone
+segment types)</td></tr><tr><td>
+<em class="replaceable"><code>VAL2</code></em> = Second radius of the target
+segment (used only for the cone segment type)</td></tr></table><p title="Simplified Bolt Thread Modeling"><b>Simplified Bolt Thread Modeling&nbsp;</b>The contact section
+for bolt-thread modeling (<em class="replaceable"><code>Subtype</code></em> = BOLT)
+is referenced by the following elements: <a href="../ans_elem/Hlp_E_CONTA171.html" class="olink"><span class="structname">CONTA171</span></a>, <a href="../ans_elem/Hlp_E_CONTA172.html" class="olink"><span class="structname">CONTA172</span></a>, <a href="../ans_elem/Hlp_E_CONTA173.html" class="olink"><span class="structname">CONTA173</span></a>, <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a>, and <a href="../ans_elem/Hlp_E_CONTA175.html" class="olink"><span class="structname">CONTA175</span></a>. It applies to cases where the original meshes of contact elements
+are located on a portion of a bolt-thread surface. This feature allows
+you to include the behavior of bolt threads without having to add
+the geometric detail of the threads. Calculations are performed internally
+to approximate the behavior of the bolt-thread connections.</p><p>
+<span class="bold"><strong>Type: CONTACT, Subtype: BOLT</strong></span>
+</p><table border="0" summary="Simple list" class="simplelist"><tr><td>Data to provide in the value fields for <em class="replaceable"><code>Subtype</code></em> = BOLT:</td></tr><tr><td>
+<em class="replaceable"><code>D<sub>m</sub>
+</code></em>, <em class="replaceable"><code>P</code></em>, <em class="replaceable"><code>ALPHA</code></em>, <em class="replaceable"><code>N</code></em>, <em class="replaceable"><code>X1</code></em>, <em class="replaceable"><code>Y1</code></em>, <em class="replaceable"><code>Z1</code></em>, <em class="replaceable"><code>X2</code></em>, <em class="replaceable"><code>Y2</code></em>, <em class="replaceable"><code>Z2</code></em>
+</td></tr><tr><td>where</td></tr><tr><td>
+<em class="replaceable"><code>D<sub>m</sub>
+</code></em> = Mean
+pitch diameter, d<sub>m</sub>.</td></tr><tr><td>
+<em class="replaceable"><code>P</code></em> = Pitch distance, p.</td></tr><tr><td>
+<em class="replaceable"><code>ALPHA</code></em> = Half-thread angle, <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font> (defaults to 30 degrees).</td></tr><tr><td>
+<em class="replaceable"><code>N</code></em> = Number of starts (defaults
+to 1).</td></tr><tr><td>
+<em class="replaceable"><code>X1</code></em>, <em class="replaceable"><code>Y1</code></em>, <em class="replaceable"><code>Z1</code></em>, <em class="replaceable"><code>X2</code></em>, <em class="replaceable"><code>Y2</code></em>, <em class="replaceable"><code>Z2</code></em> = Two end points
+of the bolt axis in global Cartesian coordinates.</td></tr></table><div><img src="graphics/gctbolt.svg"></div><div><img src="graphics/Linebrk.gif"></div></div></div><div class="refsect1" title="Menu Paths"><a name="SECDATA.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Axis&gt;Add</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Axis&gt;Edit</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Beam&gt;Common Sections</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Beam&gt;Taper Sections&gt;By Picked Nodes</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Beam&gt;Taper Sections&gt;By XYZ Location</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Contact&gt;Add</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Contact&gt;Edit</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Joints&gt;Add / Edit</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Link&gt;Add</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Link&gt;Edit</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Pipe&gt;Add</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Pipe&gt;Edit</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Reinforcing&gt;Add / Edit</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Shell&gt;Lay-up&gt;Add / Edit</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

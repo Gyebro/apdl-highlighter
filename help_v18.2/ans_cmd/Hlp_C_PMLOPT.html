@@ -1,0 +1,50 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:26-04:00"><title>PMLOPT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_P_TOC.html" title="P Commands"><link rel="prev" href="Hlp_C_PMGTRAN.html" title="PMGTRAN"><link rel="next" href="Hlp_C_PMLSIZE.html" title="PMLSIZE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="PMLOPT"><a name="PMLOPT"></a><div class="titlepage"></div><a class="indexterm" name="d0e207581"></a><span class="refentrytitle"><span class="command"><strong>PMLOPT</strong></span></span><div class="refnamediv"><p><span class="command"><strong>PMLOPT</strong></span>, <em class="replaceable"><code>PSYS</code></em>, <em class="replaceable"><code>Lab</code></em>, <em class="replaceable"><code>Xminus</code></em>, <em class="replaceable"><code>Xplus</code></em>, <em class="replaceable"><code>Yminus</code></em>, <em class="replaceable"><code>Yplus</code></em>, <em class="replaceable"><code>Zminus</code></em>, <em class="replaceable"><code>Zplus</code></em>, <em class="replaceable"><code>MixOpt</code></em><br><b class="refpurpose">Defines perfectly matched layers (PMLs) or irregular perfectly
+   matched layers (IPML).</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#prep7permatlayersldm061600" title="Table&nbsp;2.47:&nbsp;&nbsp;Artificially Matched Layers"><span class="type">Artificially Matched Layers</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="PMLOPT.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>PSYS</code></em></b></span></dt><dd><p>PML element coordinate system number. <em class="replaceable"><code>PSYS</code></em> may be 0 (global
+      Cartesian) or any previously defined local Cartesian coordinate system number (&gt;10).
+      Defaults to 0. (Not used for IPML.)</p></dd><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><p>Label defining the number of dimensions <span>(not used for
+       IPML)</span>:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ONE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>A one-dimensional PML region.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">THREE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>A three-dimensional PML region (default).</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Xminus</code></em></b></span></dt><dd><p>For PML, normal reflection coefficient (harmonic analysis) or attenuation factor (static
+      structural analysis) in negative X direction of <em class="replaceable"><code>PSYS</code></em>. Defaults to
+      1.E&#8722;3 (equivalent to -60 dB) for a harmonic analysis and 30 for a static structural
+      analysis.</p><p>For IPML, normal reflection coefficient (harmonic analysis); the default value is
+      calculated by the program. </p></dd><dt><span><b class="term"><em class="replaceable"><code>Xplus</code></em></b></span></dt><dd><p>Normal reflection coefficient (harmonic analysis) or attenuation factor (static structural
+      analysis) in positive X direction of <em class="replaceable"><code>PSYS</code></em>. Defaults to 1.E&#8722;3
+      (equivalent to -60 dB) for a harmonic analysis and 30 for a static structural analysis.
+       <span>(Not used for IPML.)</span></p></dd><dt><span><b class="term"><em class="replaceable"><code>Yminus</code></em></b></span></dt><dd><p>Normal reflection coefficient (harmonic analysis) or attenuation factor (static structural
+      analysis) in negative Y direction of <em class="replaceable"><code>PSYS</code></em>. Defaults to 1.E&#8722;3
+      (equivalent to -60 dB) for a harmonic analysis and 30 for a static structural analysis.
+       <span>(Not used for IPML.)</span></p></dd><dt><span><b class="term"><em class="replaceable"><code>Yplus</code></em></b></span></dt><dd><p>Normal reflection coefficient (harmonic analysis) or attenuation factor (static structural
+      analysis) in positive Y direction of <em class="replaceable"><code>PSYS</code></em>. Defaults to 1.E&#8722;3
+      (equivalent to -60 dB) for a harmonic analysis and 30 for a static structural analysis.
+       <span>(Not used for IPML.)</span></p></dd><dt><span><b class="term"><em class="replaceable"><code>Zminus</code></em></b></span></dt><dd><p>Normal reflection coefficient (harmonic analysis) or attenuation factor (static structural
+      analysis) in negative Z direction of <em class="replaceable"><code>PSYS</code></em>. Defaults to 1.E&#8722;3
+      (equivalent to -60 dB) for a harmonic analysis and 30 for a static structural analysis.
+       <span>(Not used for IPML.)</span></p></dd><dt><span><b class="term"><em class="replaceable"><code>Zplus</code></em></b></span></dt><dd><p>Normal reflection coefficient (harmonic analysis) or attenuation factor (static structural
+      analysis) in positive Z direction of <em class="replaceable"><code>PSYS</code></em>. Defaults to 1.E&#8722;3
+      (equivalent to -60 dB) for a harmonic analysis and 30 for a static structural analysis.
+       <span>(Not used for IPML.)</span></p></dd><dt><span><b class="term"><em class="replaceable"><code>MixOpt</code></em></b></span></dt><dd><p>Key for the evanescent wave:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NO</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Only the propagating wave is attenuated
+(default). The PML parameter is set to s = 1&#8211;j&#946;.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">YES</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Both the propagating wave and the
+evanescent wave are attenuated. The PML parameter is set to s = <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>&#8211;j&#946; (<font face="Arial Unicode Ms"><span class="markup">&#945;</span></font> &gt; 1). The program sets the
+coefficient <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font> values
+in terms of the normal reflection coefficients.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="PMLOPT.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>PMLOPT</strong></span> command can be used to define perfectly
+   matched layers (PML) for acoustic or structural analyses. Each PML region must have a uniquely
+   defined PML element coordinate system (<a class="link" href="Hlp_C_PSYS.html" title="PSYS"><span class="command"><strong>PSYS</strong></span></a>). Normal reflection coefficient
+   values for a harmonic analysis must be less than 1.</p><p>The <span class="command"><strong>PMLOPT</strong></span> command can also be used to define
+   irregular perfectly matched layers (IPML) for acoustic analyses. Normal reflection coefficient
+   values for a harmonic analysis must be less than 1.</p><p>Issue <span class="command"><strong>PMLOPT</strong></span>,STAT to list the current normal reflection
+   coefficient or attenuation factor settings for a PML <span>or
+    IPML</span> region. Issue <span class="command"><strong>PMLOPT</strong></span>,CLEAR to clear all normal reflection
+   coefficient settings and restore them to the defaults. </p><p>Issue <span class="command"><strong>PMLOPT</strong></span>,PSYS,CLEAR to clear all normal reflection
+   coefficient settings for <span>the specified PML</span> element
+   coordinate system and restore them to the defaults.</p><p>See <a href="../ans_acous/acous_artificial.html" class="olink">Artificially Matched Layers in the <span class="olinkdocname">Mechanical APDL Acoustic Analysis Guide</span></a> for more information about using perfectly matched layers (PML) and
+   irregular perfectly matched layers (IPML).</p></div><div class="refsect1" title="Menu Paths"><a name="PMLOPT.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

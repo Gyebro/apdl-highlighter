@@ -1,0 +1,50 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:19-04:00"><title>STABILIZE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_S_TOC.html" title="S Commands"><link rel="prev" href="Hlp_C_SSTATE.html" title="SSTATE"><link rel="next" href="Hlp_C_STAT.html" title="STAT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="STABILIZE"><a name="STABILIZE"></a><div class="titlepage"></div><a class="indexterm" name="d0e261709"></a><span class="refentrytitle"><span class="command"><strong>STABILIZE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>STABILIZE</strong></span>, <em class="replaceable"><code>Key</code></em>, <em class="replaceable"><code>Method</code></em>, <em class="replaceable"><code>VALUE</code></em>, <em class="replaceable"><code>SubStpOpt</code></em>, <em class="replaceable"><code>FORCELIMIT</code></em><br><b class="refpurpose">Activates stabilization for all elements that support
+nonlinear stabilization.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a> 
+    &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Key</code></em></b></span></dt><dd><p>Key for controlling nonlinear stabilization:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p> Deactivate stabilization. This value
+is the default.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CONSTANT </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p> Activate stabilization. The
+energy-dissipation ratio or damping factor remains constant during
+the load step.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">REDUCE </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p> Activate stabilization. The energy-dissipation
+ratio or damping factor is reduced linearly to zero at the end of
+the load step from the specified or calculated value.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Method</code></em></b></span></dt><dd><p>The stabilization-control method:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ENERGY </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p> Use the energy-dissipation ratio
+as the control. This value is the default when <em class="replaceable"><code>Key</code></em> &#8800; OFF.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DAMPING </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p> Use the damping factor as the
+control.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>VALUE</code></em></b></span></dt><dd><p>The energy-dissipation ratio (<em class="replaceable"><code>Method</code></em> = ENERGY) or damping factor (<em class="replaceable"><code>Method</code></em> =
+DAMPING). This value must be greater than 0 when <em class="replaceable"><code>Method</code></em> = ENERGY or <em class="replaceable"><code>Method</code></em> = DAMPING. When <em class="replaceable"><code>Method</code></em> = ENERGY, this value is usually a number between
+0 and 1. </p></dd><dt><span><b class="term"><em class="replaceable"><code>SubStpOpt</code></em></b></span></dt><dd><p>Option for the first substep of the load step:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NO </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p> Stabilization is not activated for
+the first substep even when it does not converge after the minimal
+allowed time increment is reached. This value is the default when <em class="replaceable"><code>Key</code></em> &#8800; OFF.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MINTIME </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p> Stabilization is activated for
+the first substep if it still does not converge after the minimal
+allowed time increment is reached. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ANYTIME </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p> Stabilization is activated for
+the first substep. Use this option if stabilization was active for
+the previous load step via <em class="replaceable"><code>Key</code></em> = CONSTANT.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>FORCELIMIT</code></em></b></span></dt><dd><p>The stabilization force limit coefficient, such that
+0 &lt; <em class="replaceable"><code>FORCELIMIT</code></em> &lt; 1. The default value
+is 0.2. To omit a stabilization force check, set this value to 0.</p></dd></dl></div></div></div><div class="refsect1" title="Command Default"><a name="STABILIZE.default"></a><h2>Command Default</h2><p>Once issued, the stabilization effects of the command remain
+until you issue either a <span class="command"><strong>STABILIZE</strong></span> command (with
+no arguments) or a <span class="command"><strong>STABILIZE</strong></span>,OFF command. If you
+issue the command with no arguments, the effect is to deactivate stabilization. </p></div><div class="refsect1" title="Notes"><a name="STABILIZE.notes"></a><h2>Notes</h2><p>Once issued, a <span class="command"><strong>STABILIZE</strong></span> command remains
+in effect until you reissue the command.</p><p>For the energy dissipation ratio, specify <em class="replaceable"><code>VALUE</code></em> = 1.0e-4 if you have no prior experience with the current model;
+if convergence problems are still an issue, increase the value gradually.
+The damping factor is mesh-, material-, and time-step-dependent; an
+initial reference value from the previous run (such as a run with
+the energy-dissipation ratio as input) should suggest itself. </p><p>Exercise caution when specifying <em class="replaceable"><code>SubStpOpt</code></em> = MINTIME or ANYTIME for the first load step; ANSYS, Inc. recommends this
+option only for experienced users. If stabilization was active for
+the previous load step via <em class="replaceable"><code>Key</code></em> = CONSTANT
+and convergence is an issue for the first substep, specify <em class="replaceable"><code>SubStpOpt</code></em> = ANYTIME. </p><p>When the L2-norm of the stabilization force
+(CSRSS value) exceeds the L2-norm of the internal force multiplied
+by the stabilization force coefficient, ANSYS issues a message displaying
+both the stabilization force norm and the internal force norm. The <em class="replaceable"><code>FORCELIMIT</code></em> argument allows you to change the default
+stabilization force coefficient (normally 20 percent). </p><p>This command stabilizes the degrees of
+freedom for <a href="../ans_elem/Hlp_E_CH2_OLDNEW.html#EL2oldnewtable" class="olink">current-technology elements</a> only. Other elements can be included
+in the FE model, but their degrees of freedom are not stabilized.</p><p>For more information about nonlinear stabilization, see <a href="../ans_str/Hlp_G_STRUNST.html" class="olink">Unstable Structures</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.
+For additional tips that can help you to achieve a stable final model,
+see <a href="../ans_str/Hlp_G_STR8_12.html#strsimpletlm61299" class="olink">Simplify Your Model</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>. </p></div><div class="refsect1" title="Menu Paths"><a name="STABILIZE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Analysis Type&gt;Sol'n Controls&gt;Advanced NL</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Analysis Type&gt;Sol'n Controls&gt;Advanced NL</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

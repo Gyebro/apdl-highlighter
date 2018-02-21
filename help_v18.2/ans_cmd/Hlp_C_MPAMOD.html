@@ -1,0 +1,22 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:48-04:00"><title>MPAMOD</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_M_TOC.html" title="M Commands"><link rel="prev" href="Hlp_C_MP.html" title="MP"><link rel="next" href="Hlp_C_MPCHG.html" title="MPCHG"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="MPAMOD"><a name="MPAMOD"></a><div class="titlepage"></div><a class="indexterm" name="d0e171060"></a><span class="refentrytitle"><span class="command"><strong>MPAMOD</strong></span></span><div class="refnamediv"><p><span class="command"><strong>MPAMOD</strong></span>, <em class="replaceable"><code>MAT</code></em>, <em class="replaceable"><code>DEFTEMP</code></em><br><b class="refpurpose">Modifies temperature-dependent secant coefficients of thermal
+expansion.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7matldm061600" title="Table&nbsp;2.27:&nbsp;&nbsp;Materials"><span class="type">Materials</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="MPAMOD.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>MAT</code></em></b></span></dt><dd><p>Material number for which the secant coefficients of thermal
+expansion (SCTE's) are to be modified.  Defaults to 1.</p></dd><dt><span><b class="term"><em class="replaceable"><code>DEFTEMP</code></em></b></span></dt><dd><p>Definition temperature at which the existing SCTE-versus-temperature
+tables were defined.  Defaults to zero.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="MPAMOD.notes"></a><h2>Notes</h2><p>This command converts temperature-dependent SCTE data (properties ALPX,
+ALPY, ALPZ)  from the definition temperature (<em class="replaceable"><code>DEFTEMP</code></em>)
+to the reference temperature defined by <a class="link" href="Hlp_C_MP.html" title="MP"><span class="command"><strong>MP</strong></span></a>,REFT or <a class="link" href="Hlp_C_TREF.html" title="TREF"><span class="command"><strong>TREF</strong></span></a>.
+ If both the <a class="link" href="Hlp_C_MP.html" title="MP"><span class="command"><strong>MP</strong></span></a>,REFT and <a class="link" href="Hlp_C_TREF.html" title="TREF"><span class="command"><strong>TREF</strong></span></a> commands
+have been issued, the reference temperature defined by the <a class="link" href="Hlp_C_MP.html" title="MP"><span class="command"><strong>MP</strong></span></a>,REFT
+command will be used.</p><p>This command does not apply to the instantaneous coefficients of thermal
+expansion (properties CTEX, CTEY, CTEZ) or to the thermal strains (properties
+THSX, THSY, THSZ). </p><p>This command is also valid in SOLUTION.</p></div><div class="refsect1" title="Menu Paths"><a name="MPAMOD.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Load Step Opts&gt;Other&gt;Change Mat Props&gt;Convert ALPx</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Material Props&gt;Convert ALPx</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Load Step Opts&gt;Other&gt;Change Mat Props&gt;Convert ALPx</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

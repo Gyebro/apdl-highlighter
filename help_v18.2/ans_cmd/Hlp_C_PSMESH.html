@@ -1,0 +1,96 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:39-04:00"><title>PSMESH</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_P_TOC.html" title="P Commands"><link rel="prev" href="Hlp_C_PSMAT.html" title="PSMAT"><link rel="next" href="Hlp_C_PSPEC_sl.html" title="/PSPEC"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="PSMESH"><a name="PSMESH"></a><div class="titlepage"></div><a class="indexterm" name="d0e219171"></a><span class="refentrytitle">
+<span class="command"><strong>PSMESH</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>PSMESH</strong></span>, <em class="replaceable"><code>SECID</code></em>, <em class="replaceable"><code>Name</code></em>, <em class="replaceable"><code>P0</code></em>, <em class="replaceable"><code>Egroup</code></em>, <em class="replaceable"><code>NUM</code></em>, <em class="replaceable"><code>KCN</code></em>, <em class="replaceable"><code>KDIR</code></em>, <em class="replaceable"><code>VALUE</code></em>, <em class="replaceable"><code>NDPLANE</code></em>, <em class="replaceable"><code>PSTOL</code></em>, <em class="replaceable"><code>PSTYPE</code></em>, <em class="replaceable"><code>ECOMP</code></em>, <em class="replaceable"><code>NCOMP</code></em>
+<br><b class="refpurpose">Create and mesh a pretension section</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7meshingldm061600" title="Table&nbsp;2.36:&nbsp;&nbsp;Meshing"><span class="type">Meshing</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  DesSpc | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="PSMESH.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>SECID</code></em>
+</b></span></dt><dd><p>Unique section number. This number must not already
+be assigned to a section.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Name</code></em>
+</b></span></dt><dd><p>Unique eight character descriptive name, if desired.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>P0</code></em>
+</b></span></dt><dd><p>Pretension node number. The node will be defined if
+it doesn't exist and the number defaults to the highest node number
+plus one.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Egroup</code></em>, <em class="replaceable"><code>NUM</code></em>
+</b></span></dt><dd><p>Element group on which <span class="command"><strong>PSMESH</strong></span> will
+operate. If <em class="replaceable"><code>Egroup</code></em> = P, graphical picking
+is enabled and <em class="replaceable"><code>NUM</code></em> is ignored (valid only
+in the GUI).</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">L&nbsp;(or&nbsp;LINE)</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<span class="command"><strong>PSMESH</strong></span> operates on all elements in the line specified by <em class="replaceable"><code>NUM</code></em>. New pretension nodes are associated with <em class="replaceable"><code>NUM</code></em> or entities below it. Any subsequent <a class="link" href="Hlp_C_LCLEAR.html" title="LCLEAR"><span class="command"><strong>LCLEAR</strong></span></a> operation
+of <em class="replaceable"><code>NUM</code></em> deletes the pretension elements
+and nodes created by <span class="command"><strong>PSMESH</strong></span>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">A&nbsp;(or&nbsp;AREA)</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<span class="command"><strong>PSMESH</strong></span> operates on all elements in the area specified by <em class="replaceable"><code>NUM</code></em>. New pretension nodes are associated with <em class="replaceable"><code>NUM</code></em> or entities below it. Any subsequent <a class="link" href="Hlp_C_ACLEAR.html" title="ACLEAR"><span class="command"><strong>ACLEAR</strong></span></a> of <em class="replaceable"><code>NUM</code></em> deletes the pretension elements and nodes created
+by <span class="command"><strong>PSMESH</strong></span>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">V&nbsp;(or&nbsp;VOLU)</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<span class="command"><strong>PSMESH</strong></span> operates on all elements in the volume specified by <em class="replaceable"><code>NUM</code></em>. New pretension nodes are associated with <em class="replaceable"><code>NUM</code></em> or entities below it. Any subsequent <a class="link" href="Hlp_C_VCLEAR.html" title="VCLEAR"><span class="command"><strong>VCLEAR</strong></span></a> of <em class="replaceable"><code>NUM</code></em> deletes the pretension elements
+and nodes created by <span class="command"><strong>PSMESH</strong></span>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">P</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<span class="command"><strong>PSMESH</strong></span> operates on
+elements selected through the subsequent picking operations, and <em class="replaceable"><code>NUM</code></em> is ignored</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ALL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The command operates on all selected
+elements, and <em class="replaceable"><code>NUM</code></em> is ignored.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term">
+<em class="replaceable"><code>KCN</code></em>
+</b></span></dt><dd><p>Coordinate system number for the separation surface
+and normal direction.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>KDIR</code></em>
+</b></span></dt><dd><p>Direction (x, y, or z) normal to separation surface
+in the <em class="replaceable"><code>KCN</code></em> coordinate system.</p><p>If <em class="replaceable"><code>KCN</code></em> is cartesian, the pretension section
+normal will be parallel to the <em class="replaceable"><code>KDIR</code></em> axis
+regardless of the position of the pretension node.</p><p>If <em class="replaceable"><code>KCN</code></em> is non-cartesian, the pretension
+section normal will be aligned with the <em class="replaceable"><code>KDR</code></em> direction of system <em class="replaceable"><code>KCN</code></em> at the position
+of the pretension node.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VALUE</code></em>
+</b></span></dt><dd><p>Point along the <em class="replaceable"><code>KDIR</code></em> axis
+at which to locate the separation surface. Ignored if <em class="replaceable"><code>NDPLANE</code></em> is supplied.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NDPLANE</code></em>
+</b></span></dt><dd><p>Existing node that <span class="command"><strong>PSMESH</strong></span> will
+use to locate the separation surface. If <em class="replaceable"><code>NDPLANE</code></em> is supplied, the location of the separation surface is defined by
+the <em class="replaceable"><code>KDIR</code></em> coordinate of <em class="replaceable"><code>NDPLANE</code></em>.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>PSTOL</code></em>
+</b></span></dt><dd><p>Optional tolerance below <em class="replaceable"><code>VALUE</code></em>. Allows nodes occurring precisely at or slightly below the separation
+ to be identified properly as above the plane. Has the effect of shifting
+the plane down by <em class="replaceable"><code>PSTOL</code></em>.  The following
+expression represents the default value: 
+</p><div class="informalequation"><a name="eq811d2936-9d6e-479d-b0d5-846b7af1b414"></a><div><img src="graphics/eq811d2936-9d6e-479d-b0d5-846b7af1b414.svg"></div></div><p>where &#916;X, &#916;Y,
+and &#916;Z are the dimensions of the model based on nodal locations
+(that is, &#916;X = X<em class="replaceable"><code>max</code></em> - X<em class="replaceable"><code>min</code></em>).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>PSTYPE</code></em>
+</b></span></dt><dd><p>If specified, this value is the type number
+for pretension elements. (If not specified, ANSYS defines this value.)
+If already defined, it must be of type <a href="../ans_elem/Hlp_E_PRETS179.html" class="olink"><span class="structname">PRETS179</span></a>.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>ECOMP</code></em>
+</b></span></dt><dd><p>If specified, the name of a component to be composed
+of new pretension elements and existing elements modified by the <span class="command"><strong>PSMESH</strong></span> command.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NCOMP</code></em>
+</b></span></dt><dd><p>Name of a component to be composed of nodes on new
+pretension elements.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="PSMESH.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>PSMESH</strong></span> command creates a pretension section
+normal to the pretension load direction by cutting the mesh along
+existing element boundaries at the point defined by <em class="replaceable"><code>VALUE</code></em> or <em class="replaceable"><code>NDPLANE</code></em> and inserting <a href="../ans_elem/Hlp_E_PRETS179.html" class="olink"><span class="structname">PRETS179</span></a> elements. The <span class="command"><strong>PSMESH</strong></span> command
+verifies that <em class="replaceable"><code>PSTYPE</code></em> is <a href="../ans_elem/Hlp_E_PRETS179.html" class="olink"><span class="structname">PRETS179</span></a>; if it is not, the command finds the lowest available <em class="replaceable"><code>ITYPE</code></em> that is <a href="../ans_elem/Hlp_E_PRETS179.html" class="olink"><span class="structname">PRETS179</span></a>, or
+if necessary will create a new one.</p><p>When it is necessary to define the pretension node, ANSYS uses
+node <em class="replaceable"><code>NDPLANE</code></em>. If the <em class="replaceable"><code>NDPLANE</code></em> value is not specified, ANSYS defines the pretension node at:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The centroid of geometric entity <em class="replaceable"><code>NUM</code></em>, if <em class="replaceable"><code>Egroup</code></em> = LINE, AREA or VOLU</p></li><li class="listitem"><p>The centroid location of all selected elements, if <em class="replaceable"><code>Egroup</code></em> = ALL or if graphical picking is used.</p></li></ul></div><p>If the elements to which the pretension load is to be applied
+have already been meshed in two groups, <span class="command"><strong>PSMESH</strong></span> cannot
+be used to insert the pretension elements. The <a class="link" href="Hlp_C_EINTF.html" title="EINTF"><span class="command"><strong>EINTF</strong></span></a> command must be used to insert the PRETS179 elements between the
+two meshed groups.</p><p>The <span class="command"><strong>PSMESH</strong></span> operation copies any nodal temperatures
+you have defined on the split surface of the original mesh from the
+original nodes to the newly created coincident duplicate nodes. However,
+displacements, forces, and other boundary conditions are not copied.</p><p>By mathematical definition, the pretension surface must always
+be a flat plane. In a non-Cartesian coordinate system, the <span class="command"><strong>PSMESH</strong></span> command creates that plane at the indicated position,
+oriented with respect to the specified direction of the active system
+(in the same manner that the <a class="link" href="Hlp_C_NROTAT.html" title="NROTAT"><span class="command"><strong>NROTAT</strong></span></a> command orients
+a nodal system with respect to a curved system). For example, assuming
+a X = 1 and Y = 45 in a cylindrical coordinate system with Z as the
+axis of rotation (<em class="replaceable"><code>KCN</code></em> = 1), a pretension
+surface normal to X tilts 45 degrees away from the global X axis.</p><p>The <span class="command"><strong>PSMESH</strong></span> command is valid for structural
+analyses only.</p></div><div class="refsect1" title="Menu Paths"><a name="PSMESH.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Elements&gt;Pretension&gt;Pretensn Mesh&gt;Elements in Area</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Elements&gt;Pretension&gt;Pretensn Mesh&gt;Elements in Line</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Elements&gt;Pretension&gt;Pretensn Mesh&gt;Elements in Volu</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Elements&gt;Pretension&gt;Pretensn Mesh&gt;Picked Elements</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Elements&gt;Pretension&gt;Pretensn Mesh&gt;Selected Element</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Elements&gt;Pretension&gt;Pretensn Mesh&gt;With Options&gt;Divide at Node&gt;Elements in Area</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Elements&gt;Pretension&gt;Pretensn Mesh&gt;With Options&gt;Divide at Node&gt;Elements in Line</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Elements&gt;Pretension&gt;Pretensn Mesh&gt;With Options&gt;Divide at Node&gt;Elements in Volu</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Elements&gt;Pretension&gt;Pretensn Mesh&gt;With Options&gt;Divide at Node&gt;Picked Elements</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Elements&gt;Pretension&gt;Pretensn Mesh&gt;With Options&gt;Divide at Node&gt;Selected Element</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Elements&gt;Pretension&gt;Pretensn Mesh&gt;With Options&gt;Divide at Valu&gt;Elements in Area</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Elements&gt;Pretension&gt;Pretensn Mesh&gt;With Options&gt;Divide at Valu&gt;Elements in Line</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Elements&gt;Pretension&gt;Pretensn Mesh&gt;With Options&gt;Divide at Valu&gt;Elements in Volu</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Elements&gt;Pretension&gt;Pretensn Mesh&gt;With Options&gt;Divide at Valu&gt;Picked Elements</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Elements&gt;Pretension&gt;Pretensn Mesh&gt;With Options&gt;Divide at Valu&gt;Selected Element</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Pretension&gt;Pretensn Mesh&gt;Elements in Area</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Pretension&gt;Pretensn Mesh&gt;Elements in Line</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Pretension&gt;Pretensn Mesh&gt;Elements in Volu</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Pretension&gt;Pretensn Mesh&gt;Picked Elements</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Pretension&gt;Pretensn Mesh&gt;Selected Element</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Pretension&gt;Pretensn Mesh&gt;With Options&gt;Divide at Node&gt;Elements in Area</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Pretension&gt;Pretensn Mesh&gt;With Options&gt;Divide at Node&gt;Elements in Line</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Pretension&gt;Pretensn Mesh&gt;With Options&gt;Divide at Node&gt;Elements in Volu</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Pretension&gt;Pretensn Mesh&gt;With Options&gt;Divide at Node&gt;Picked Elements</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Pretension&gt;Pretensn Mesh&gt;With Options&gt;Divide at Node&gt;Selected Element</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Pretension&gt;Pretensn Mesh&gt;With Options&gt;Divide at Valu&gt;Elements in Area</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Pretension&gt;Pretensn Mesh&gt;With Options&gt;Divide at Valu&gt;Elements in Line</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Pretension&gt;Pretensn Mesh&gt;With Options&gt;Divide at Valu&gt;Elements in Volu</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Pretension&gt;Pretensn Mesh&gt;With Options&gt;Divide at Valu&gt;Picked Elements</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Pretension&gt;Pretensn Mesh&gt;With Options&gt;Divide at Valu&gt;Selected Element</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:30-04:00"><title>FLUID116</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_INFIN111.html" title="INFIN111"><link rel="next" href="Hlp_E_PLANE121.html" title="PLANE121"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="FLUID116"><a name="FLUID116"></a><div class="titlepage"></div><a class="indexterm" name="d0e53250"></a><span class="refentrytitle">
+<span class="structname">FLUID116</span>  </span><div class="refnamediv"><p><br><b class="refpurpose">Coupled
+Thermal-Fluid Pipe</b><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+<div class=""><div class="application"><span class="application">
+<a class="link" href="Hlp_E_FLUID116.html#aLzNxqfdmcm" title="FLUID116 Product Restrictions">Product Restrictions</a>
+</span></div></div>
+</div></p></div><div class="refsect1" title="FLUID116 Element Description"><a name="ELEMfluid116descfdb"></a><h2>FLUID116 Element Description</h2><p>
+<span class="structname">FLUID116</span> is a 3-D element with the
+ability to conduct heat and transmit fluid between its two primary
+nodes.  Heat flow is due to the conduction within the fluid and the
+mass transport of the fluid.  Convection may be accounted for either
+with additional nodes and convection areas or with surface elements <a class="link" href="Hlp_E_SURF151.html" title="SURF151"><span class="structname">SURF151</span></a> and <a class="link" href="Hlp_E_SURF152.html" title="SURF152"><span class="structname">SURF152</span></a>.  In both
+cases, the film coefficient may be related to the fluid flow rate.
+ The element may have two different types of degrees of freedom, temperature
+and/or pressure.</p><p>The thermal-flow element may be used in a steady-state or transient
+thermal analysis.  If the model containing the thermal-flow element
+is also to be analyzed structurally, the element should be replaced
+by an equivalent (or null) structural element.  See <a href="../ans_thry/thy_el116.html" class="olink">FLUID116</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for
+more details about this element.</p><div class="figure"><a name="abLLXq289ctg"></a><p class="title"><b>Figure&nbsp;116.1:&nbsp;&nbsp;FLUID116 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM116-1.svg" alt="FLUID116 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="FLUID116 Input Data"><a name="aKzNxq27cmcm"></a><h2>FLUID116 Input Data</h2><p>The geometry, node locations, and the coordinate system for
+this thermal-flow pipe element are shown in <a class="xref" href="Hlp_E_FLUID116.html#abLLXq289ctg" title="Figure&nbsp;116.1:&nbsp;&nbsp;FLUID116 Geometry">Figure&nbsp;116.1:&nbsp;FLUID116 Geometry</a>.  The element is defined by two primary nodes, two additional nodes
+if convection is desired, several real constants (see <a class="xref" href="Hlp_E_FLUID116.html#aXvgr12bldm" title="Table&nbsp;116.1:&nbsp;&nbsp;FLUID116 Element Real Constants">Table&nbsp;116.1:&nbsp;FLUID116 Element Real Constants</a>), and the material properties.  The length
+L of the element is determined from the two primary node locations.
+ </p><p>The material properties can be input as numerical values or as <a href="../ans_bas/bas_tabinputmat.html" class="olink">tabular inputs</a> evaluated as a
+   function of pressure, temperature, velocity, time, and location. If temperature or pressure, you
+   need to activate the appropriate pressure or temperature degrees of freedom. Tabular material
+   properties are calculated before the first iteration (i.e., using initial values
+    [<a href="../ans_cmd/Hlp_C_IC.html" class="olink"><span class="command"><strong>IC</strong></span></a>]).</p><p>The fluid mass density &#961; (Mass/Length<sup>3</sup>) is input as property DENS or computed following the ideal gas law
+if the real constant  R<sub>gas</sub> is present.  If
+KEYOPT(2) = 2, 3, or 4, the convection film coefficient h<sub>f </sub>(Heat/Length<sup>2</sup>*Time*Deg)
+is input by the options defined by KEYOPT(4).  If KEYOPT(2) = 1, convection
+surfaces using <span class="structname">FLUID116</span> velocities and other
+information are stored and can be used by <a class="link" href="Hlp_E_SURF151.html" title="SURF151"><span class="structname">SURF151</span></a> or <a class="link" href="Hlp_E_SURF152.html" title="SURF152"><span class="structname">SURF152</span></a> and optionally the <a href="../ans_adv/Hlp_G_ADV7_1.html" class="olink">user programmable feature</a> USRSURF116 in order to determine film coefficients and bulk temperatures
+as a function of velocities and other parameters. The input tables
+are explained in detail in <a class="xref" href="Hlp_E_FLUID116.html#tabl" title="Table&nbsp;116.2:&nbsp;&nbsp;FLUID116 Empirical Data Table (Optional)">Table&nbsp;116.2:&nbsp;FLUID116 Empirical Data Table (Optional)</a>.  The thermal conductivity
+k<sub>xx</sub> (Heat/Length*time*Deg) acts in the element
+longitudinal direction and is input as property KXX.  The specific
+heat c<sub>p</sub> (Heat/Mass*Deg or Heat*Length/Force*Time<sup>2</sup>*Deg) is input as property C.  The fluid viscosity &#956;
+is input as property VISC.  In an axisymmetric analysis, such as for
+annular flow, the flow area, the convection areas, and all other input
+should be on a full 360&deg; basis.</p><p>KEYOPT(2) = 3 and 4 are variations of KEYOPT(2) = 2 used to
+avoid an artificial reduction of the change in temperature in the
+last element next to an inlet or outlet with no specified temperature.
+If such an inlet or outlet is at node I, use KEYOPT(2) = 3 and if
+it is at node J, use KEYOPT(2) = 4. All elements of a run of pipe
+should use the same KEYOPT, not just the end one. For networks where
+the usage of KEYOPT(2) is not obvious and the detailed temperature
+distribution is important, use KEYOPT(2) = 2 with a relatively fine
+mesh (small elements). The effect of KEYOPT(2) = 3 and 4 could be
+alternatively achieved by adjusting the convection areas (Real Constants
+7 and 8) but it is not as convenient.</p><p>The coefficient of friction (input as property MU) is the starting
+value of the Moody friction factor (f).  The friction factor for the
+first iteration is always assumed to be MU.  The smooth-pipe empirical
+correlations are a function of Reynolds number (Re) and depend on
+whether the flow is laminar or turbulent (Re&gt;2500).  If a friction
+table is supplied (<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,FCON), the friction factor
+is recomputed each substep from the table (using linear interpolation
+where necessary).  The table is also explained in detail in <a class="xref" href="Hlp_E_FLUID116.html#tabl" title="Table&nbsp;116.2:&nbsp;&nbsp;FLUID116 Empirical Data Table (Optional)">Table&nbsp;116.2:&nbsp;FLUID116 Empirical Data Table (Optional)</a>.</p><p>The word PRES (or TEMP) should be input for the <span class="italic"><em>Lab</em></span> variable on the <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a> command
+and the pressure (or temperature) value input for the value. If a
+nodal heat (or fluid) flow rate is defined with the <a href="../ans_cmd/Hlp_C_F.html" class="olink"><span class="command"><strong>F</strong></span></a> command, input the word HEAT (or FLOW) for the <span class="italic"><em>Lab</em></span> variable and input the flow rate for the value. If
+temperature is the only degree of freedom, (KEYOPT(1) = 1), you can
+input a known flow rate in units of mass/time via an <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a>,,,HFLUX command (rather than <a href="../ans_cmd/Hlp_C_F.html" class="olink"><span class="command"><strong>F</strong></span></a>,,FLOW). Fluid
+weight effects are activated by specifying a nonzero acceleration
+and/or rotation vector [<a href="../ans_cmd/Hlp_C_ACEL.html" class="olink"><span class="command"><strong>ACEL</strong></span></a> and/or <a href="../ans_cmd/Hlp_C_OMEGA.html" class="olink"><span class="command"><strong>OMEGA</strong></span></a>].</p><p>When using the rotational speed and slip factor real constants
+(real constants 7-10 in <a class="xref" href="Hlp_E_FLUID116.html#aXvgr12bldm" title="Table&nbsp;116.1:&nbsp;&nbsp;FLUID116 Element Real Constants">Table&nbsp;116.1:&nbsp;FLUID116 Element Real Constants</a>), you can specify
+either numerical values or table inputs.  If specifying table inputs,
+enclose the table name in % signs (for example, %<em class="replaceable"><code>tabname</code></em>%).  Also, if using table inputs for rotational
+speed, either both real constants 7 and 8 should have the same table
+name reference, or real constant 8 should be unspecified.  Similarly,
+if using table inputs for slip factor, either both real constants
+9 and 10 should have the same table name reference, or real constant
+10 should be unspecified.  Both rotational speed and the slip factor
+can vary with time and location.</p><p>If tabular real constants are used, then any node in a
+    <span class="structname">FLUID116</span> network must refer to a single table name. For correct
+   results, at any node, the table names from different elements must all be the same, and a table
+   name cannot be used along with any numerical real constant from a different element. Note that
+   the table primary variables (for example, X, Y, Z, or ELEM) refer to the coordinates and element
+   numbers of attached <a class="link" href="Hlp_E_SURF151.html" title="SURF151"><span class="structname">SURF151</span></a> or <a class="link" href="Hlp_E_SURF152.html" title="SURF152"><span class="structname">SURF152</span></a> elements
+   (KEYOPT(2) = 1).</p><p>See <a href="../ans_the/Hlp_G_THE2.html" class="olink">Steady-State
+Thermal Analysis</a> in the <a href="../ans_the/Hlp_G_TheTOC.html" class="olink"><em class="citetitle">Thermal Analysis Guide</em></a> for more information on using
+table inputs.</p><p>Element loads are described in <a class="xref" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">Nodal Loading</a>.
+ Element body loads may be input as heat generation rates at the nodes.
+ The node J heat generation rate HG(J) defaults to the node I heat
+generation rate HG(I).</p><p>KEYOPT(8) is used for inputting flow losses (see <a class="xref" href="Hlp_E_FLUID116.html#aXvgr12bldm" title="Table&nbsp;116.1:&nbsp;&nbsp;FLUID116 Element Real Constants">Table&nbsp;116.1:&nbsp;FLUID116 Element Real Constants</a>).  Momentum losses in pipes due to bends,
+elbows, joints, valves, etc., may be represented by a fictitious (equivalent)
+length of pipe L<sub>a.</sub>This equivalent length may
+be input directly or calculated from an input constant K, the hydraulic
+diameter D, and the friction factor f.</p><p>You can connect <span class="structname">FLUID116</span> elements to the
+   pressure nodes of hydrostatic fluid elements (<a class="link" href="Hlp_E_HSFLD241.html" title="HSFLD241"><span class="structname">HSFLD241</span></a> or
+    <a class="link" href="Hlp_E_HSFLD242.html" title="HSFLD242"><span class="structname">HSFLD242</span></a>) to model the following two scenarios: fluid flow between two
+   fluid volumes modeled by hydrostatic fluid elements, or fluid flow through an orifice between a
+   fluid volume (hydrostatic fluid elements) and the environment. In either case, a single
+    <span class="structname">FLUID116</span> element is recommended. For the case of flow between two fluid
+   volumes, the <span class="structname">FLUID116</span> element uses the current density of the fluid
+   having a larger pressure among the two hydrostatic pressure nodes. For the case of fluid exchange
+   with the environment, the <span class="structname">FLUID116</span> element uses the current density of
+   the fluid modeled by the hydrostatic fluid elements. If more than one
+    <span class="structname">FLUID116</span> elements are used, the elements that are not directly
+   connected to hydrostatic fluid elements use the density defined by the
+    <span class="structname">FLUID116</span> material property. For <span class="structname">FLUID116</span>
+   elements that are directly or indirectly connected to a hydrostatic fluid element, you must set
+   KEYOPT(1) = 3 to convert the fluid element mass flow rate to volume change (for compatibility
+   with the hydrostatic fluid elements).</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_FLUID116.html#aYPLXq1cbctg" title="FLUID116 Input Summary">"FLUID116 Input Summary"</a>.  A general description of element input
+is given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>.</p><div class="refsect2" title="FLUID116 Input Summary"><a name="aYPLXq1cbctg"></a><h3>FLUID116 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J  or  I, J, K, L (see KEYOPT(2))</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>PRES, TEMP if KEYOPT(1) = 0</td></tr><tr><td>TEMP if KEYOPT(1) = 1</td></tr><tr><td>PRES if KEYOPT(1) = 2 or 3</td></tr></table></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><p>See <a class="xref" href="Hlp_E_FLUID116.html#aXvgr12bldm" title="Table&nbsp;116.1:&nbsp;&nbsp;FLUID116 Element Real Constants">Table&nbsp;116.1:&nbsp;FLUID116 Element Real Constants</a>
+</p></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p>
+<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: KXX, C, DENS, MU, VISC,
+HF</p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><p>You can specify imposed mass flow via an <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a>,,,HFLUX command. Valid only when KEYOPT(1) = 1.</p></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Heat Generations&nbsp;--&nbsp;</b></span></dt><dd><p>HG(I),
+HG(J)</p></dd></dl></div></div></dd><dt><span><b class="term">Special Features</b></span></dt><dd><p>
+<a href="../ans_str/Hlp_G_STRnlbasin.html" class="olink">Nonlinearity</a>
+</p></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Pressure and temperature degrees of freedom:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>PRES and TEMP degrees
+of freedom</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>TEMP degrees of freedom
+only</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>PRES degrees of freedom
+only. This option is not valid when <span class="structname">FLUID116</span> is connected to <a class="link" href="Hlp_E_HSFLD241.html" title="HSFLD241"><span class="structname">HSFLD241</span></a> or <a class="link" href="Hlp_E_HSFLD242.html" title="HSFLD242"><span class="structname">HSFLD242</span></a>.</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>PRES degrees of freedom
+only. This option is valid only when <span class="structname">FLUID116</span> is directly or indirectly connected to <a class="link" href="Hlp_E_HSFLD241.html" title="HSFLD241"><span class="structname">HSFLD241</span></a> or <a class="link" href="Hlp_E_HSFLD242.html" title="HSFLD242"><span class="structname">HSFLD242</span></a>.</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(2) (used only if KEYOPT(1) = 0 or 1)</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>2 nodes and no convection
+surface or convection information</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>2  nodes and convection
+information passed to <a class="link" href="Hlp_E_SURF151.html" title="SURF151"><span class="structname">SURF151</span></a> or <a class="link" href="Hlp_E_SURF152.html" title="SURF152"><span class="structname">SURF152</span></a>
+</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>4 nodes and convection
+surface logic included with this element, convection area shared between
+nodes I and J</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>4 nodes and convection
+surface logic included with this element, convection area only at
+node I </p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>4 nodes and convection
+surface logic included with this element, convection area only at
+node J </p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(4) (used only if KEYOPT(2) = 2, 3, or 4)</b></span></dt><dd><p>Film coefficient (h<sub>f</sub>) definition</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Use <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,HF</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Use real constants 9 thru
+12 (see <a class="xref" href="Hlp_E_FLUID116.html#aXvgr12bldm" title="Table&nbsp;116.1:&nbsp;&nbsp;FLUID116 Element Real Constants">Table&nbsp;116.1:&nbsp;FLUID116 Element Real Constants</a>)</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Use <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,HFLM for h<sub>f</sub> as a function of temperature
+and average velocity</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Use <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,HFLM for h<sub>f</sub> as a function of temperature
+and Reynold's number</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>Use <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,HFLM for Nu as a function of temperature and Reynold's number (h<sub>f</sub> = K<sub>xx</sub>*Nu/diam)</p></dd><dt><span><b class="term">5&nbsp;--&nbsp;</b></span></dt><dd><p>Use call to User116Hf</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(5) (used only if KEYOPT(4) = 0, 2, 3, 4, or 5)</b></span></dt><dd><p>Evaluation of film coefficient:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Average fluid temperature
+(TI + TJ)/2</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Average wall temperature
+(TK +TL)/2</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Average film temperature
+(TI + TJ + TK + TL)/4</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Differential temperature
+(TI + TJ)/2 - (TK + TL)/2</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(6) (used only if KEYOPT(1) = 0 or 2)</b></span></dt><dd><p>Fluid conductance coefficient definition:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Use conductance formula</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Use real constant C</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Use <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,FCON as a function of temperature and average velocity</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Use <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,FCON as a function of temperature and Reynold's number</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>Use call to User116Cond</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(7) (used only if KEYOPT(6) = 0)</b></span></dt><dd><p>Friction factor calculation:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Use smooth pipe empirical
+correlations</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Use <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,MU</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Use <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,FCON with friction factor being a function of temperature and average
+velocity</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Use <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,FCON with friction factor being a function of temperature and Reynold's
+number</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(8) (used only if KEYOPT(6) = 0)</b></span></dt><dd><p>Flow losses specified by input:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Use real constant L<sub>a</sub> as the additional length</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Use real constant K as
+loss coefficient</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(9)</b></span></dt><dd><p>Discretization scheme:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Upwind difference linear
+shape function (default). This scheme has lower order accuracy than
+the other schemes.</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Central difference linear
+shape function. This scheme has higher order accuracy but it can lead
+to oscillations near bends.</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Upwind difference exponential
+shape function. This scheme has high accuracy and does not produce
+oscillations near bends.</p></dd></dl></div></div></dd></dl></div></div><div class="table"><a name="aXvgr12bldm"></a><p class="title"><b>Table&nbsp;116.1:&nbsp;&nbsp;FLUID116 Element Real Constants</b></p><div class="table-contents"><table summary="FLUID116 Element Real Constants" border="1" width="95%"><colgroup><col width="57" align="center" class="col1"><col width="72" class="col2"><col width="384" class="col3"><col width="100" class="col4"></colgroup><thead><tr><th colspan="4" align="center" valign="top">(Given in the order required for input in the real constant table)</th></tr><tr><th align="center" valign="top">No.</th><th align="center" valign="top">Name</th><th align="center" valign="top">Definition</th><th align="center" valign="top">Units</th></tr></thead><tbody><tr><td align="center">
+<span class="bold"><strong>1</strong></span>
+</td><td>
+<span class="bold"><strong>D</strong></span>
+</td><td>Hydraulic diameter.</td><td>Length</td></tr><tr><td align="center">
+<span class="bold"><strong>2</strong></span>
+</td><td>
+<span class="bold"><strong>A</strong></span>
+</td><td>Flow cross-sectional area.</td><td>Length<sup>2</sup>
+</td></tr><tr><td align="center">
+<span class="bold"><strong>3</strong></span>
+</td><td>
+<span class="bold"><strong>N<sub>c</sub>
+</strong></span>
+</td><td>Number of flow channels (defaults
+to 1).  If greater than 1, real constants  and element output are
+on a per channel basis.</td><td>&nbsp;</td></tr><tr><td align="center">
+<span class="bold"><strong>4-6</strong></span>
+</td><td>&nbsp;</td><td>not currently used</td><td>&nbsp;</td></tr><tr><td align="center">
+<span class="bold"><strong>7</strong></span>
+</td><td>
+<span class="bold"><strong>(A<sub>n</sub>
+<span class="bold"><strong>)</strong></span>
+<sub>I</sub>
+</strong></span>
+</td><td>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>If KEYOPT(2) = 1, angular velocity associated with node I.</td></tr><tr><td>If KEYOPT(2) = 2, 3, or 4, convection area between  nodes
+I and K.  Defaults to&nbsp;&#960;DL/2 if KEYOPT(2) = 2, defaults to &#960;DL
+if KEYOPT(2) = 3</td></tr><tr><td>where:</td></tr><tr><td>L = element length</td></tr></table>
+</td><td>Length<sup>2</sup>
+</td></tr><tr><td align="center">
+<span class="bold"><strong>8</strong></span>
+</td><td>
+<span class="bold"><strong>(A<sub>n</sub>)<sub>J</sub>
+</strong></span>
+</td><td>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>If KEYOPT(2) = 1, angular velocity associated with node J.
+Defaults to value at node I.</td></tr><tr><td>If KEYOPT(2) = 2, 3, or 4, convection area between nodes J
+and L.  Defaults to&nbsp;&#960;DL/2 if KEYOPT(2) = 2, defaults to &#960;DL
+if KEYOPT(2) = 4</td></tr></table>
+</td><td>Length<sup>2</sup>
+</td></tr><tr><td align="center">
+<span class="bold"><strong>9</strong></span>
+</td><td>
+<span class="bold"><strong>SLIPFAI</strong></span>
+</td><td>If KEYOPT(2)
+= 1, slip factor at node I.</td><td>&nbsp;</td></tr><tr><td align="center">
+<span class="bold"><strong>10</strong></span>
+</td><td>
+<span class="bold"><strong>SLIPFAJ</strong></span>
+</td><td>If KEYOPT(2)
+= 1, slip factor at node J.  Defaults to value at node I.</td><td>&nbsp;</td></tr><tr><td align="center">
+<span class="bold"><strong>9-12</strong></span>
+</td><td>
+<span class="bold"><strong>N1, N2, N3, N4</strong></span>
+</td><td>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>(Used if KEYOPT(4) = 1 and KEYOPT(2) = 2, 3, or 4)</td></tr><tr><td>Nu = N1 + N2 Re<sup> N3 </sup>Pr<sup>N4</sup>
+</td></tr><tr><td>where:</td></tr><tr><td>Re = Reynolds number (WD/&nbsp;&micro;A)</td></tr><tr><td>Pr = Prandtl number &nbsp;(C<sub>p</sub>&#956;/KXX)</td></tr><tr><td>C<sub>p</sub> = specific heat</td></tr><tr><td>For example, the Dittus-Boelter correlation for full-developed
+turbulent flow in  smooth pipes may be input with N1 = 0.0, N2 = 0.023,
+N3 = 0.8, and N4 = 0.4 (heating).</td></tr></table>
+</td><td>&nbsp;</td></tr><tr><td align="center">
+<span class="bold"><strong>13</strong></span>
+</td><td>
+<span class="bold"><strong>P<sub>p</sub>
+</strong></span>
+</td><td>Pump pressure.</td><td>Force / Length<sup>2</sup>
+</td></tr><tr><td rowspan="4" align="center">
+<span class="bold"><strong>14</strong></span>
+</td><td>&nbsp;</td><td>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>Used to compute conductance coefficient C</td></tr><tr><td>where:</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqc73af18f-8c6e-4bd3-b103-2148b0cd6478.svg"></span>
+</td></tr><tr><td>&#916;p = pressure drop</td></tr></table>
+</td><td>&nbsp;</td></tr><tr><td>
+<span class="bold"><strong>C<sub>r</sub>
+</strong></span>
+</td><td>If KEYOPT(6) = 1, conductance coefficient is used to calculate
+flow. Hence, 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq7301e590-5faf-49e0-badf-f7241c1648e5.svg"></span>
+</td><td>&nbsp;</td></tr><tr><td>
+<span class="bold"><strong>L<sub>a</sub>
+</strong></span>
+</td><td>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>If KEYOPT(6) = 0, and KEYOPT(8) = 0, additional Length of
+pipe to account for flow losses (for example, valves, orifices, etc.)
+Hence, 
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqe99e9485-c7ee-412f-af59-8753a477903c.svg"></span>
+</td></tr><tr><td>where:</td></tr><tr><td>&#961; = DENS</td></tr><tr><td>F = friction coefficient</td></tr></table>
+</td><td>&nbsp;</td></tr><tr><td>
+<span class="bold"><strong> K</strong></span>
+</td><td>If KEYOPT(6) = 0 and KEYOPT(8) = 1, this real constant
+is the loss coefficient K.  Hence, 
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqa09b7cc3-bcb6-4643-846c-e4d9defd3312.svg"></span>
+</td><td>&nbsp;</td></tr><tr><td align="center">
+<span class="bold"><strong>15-18</strong></span>
+</td><td>&nbsp;</td><td>not currently used</td><td>&nbsp;</td></tr><tr><td align="center">
+<span class="bold"><strong>19</strong></span>
+</td><td>
+<span class="bold"><strong>R<sub>gas</sub>
+</strong></span>
+</td><td>Gas constant in ideal gas law
+(&#961; = p/(R<sub>gas</sub>T<sub>abs</sub>)), where T<sub>abs</sub> is the  absolute temperature
+and p = average pressure.  If zero, use &#961; as specified by the
+DENS material property.</td><td>Length<sup>2 </sup>/ Deg * Time<sup>2</sup>
+</td></tr><tr><td align="center">
+<span class="bold"><strong>20</strong></span>
+</td><td>
+<span class="bold"><strong>V<sub>DF</sub>
+</strong></span>
+</td><td>Viscous damping multiplier.  Default 0.0</td><td>&nbsp;</td></tr><tr><td align="center">
+<span class="bold"><strong>21</strong></span>
+</td><td>
+<span class="bold"><strong>C<sub>ver</sub>
+</strong></span>
+</td><td>Units conversion factor for viscous
+damping.  Default = 1.0 Q<sub>v</sub> = V<sub>DF</sub>C<sub>ver</sub>F&#960;VISC(VELOC)<sup>2</sup>L = viscous heating for element, with F = 8.0 for  laminar and 0.21420
+for turbulent flow.</td><td>&nbsp;</td></tr></tbody></table></div></div><br class="table-break"><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;Real constants 7 through 12 and 20
+and 21 are used only if KEYOPT(1) = 0 or 1 and real constants 13 through
+19 are used only if KEYOPT(1) = 0 or 2.</p><hr></div><p>The data in <a class="xref" href="Hlp_E_FLUID116.html#tabl" title="Table&nbsp;116.2:&nbsp;&nbsp;FLUID116 Empirical Data Table (Optional)">Table&nbsp;116.2:&nbsp;FLUID116 Empirical Data Table (Optional)</a> is entered in the data table
+with the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> commands.  The curves are initialized
+by using the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command.  The temperature for the
+first curve is input with the <a href="../ans_cmd/Hlp_C_TBTEMP.html" class="olink"><span class="command"><strong>TBTEMP</strong></span></a> command, followed
+by <a href="../ans_cmd/Hlp_C_TBPT.html" class="olink"><span class="command"><strong>TBPT</strong></span></a> commands for up to 100 points.  Up to 20
+temperature-dependent curves (NTEMP = 20 maximum on the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command) may be defined in this manner.  The constants (X, Y) entered
+on the <a href="../ans_cmd/Hlp_C_TBPT.html" class="olink"><span class="command"><strong>TBPT</strong></span></a> command (two per command).</p><div class="table"><a name="tabl"></a><p class="title"><b>Table&nbsp;116.2:&nbsp;&nbsp;FLUID116 Empirical Data Table (Optional)</b></p><div class="table-contents"><table summary="FLUID116 Empirical Data Table (Optional)" border="1" width="95%"><colgroup><col width="72" align="center" class="col1"><col width="504" class="col2"></colgroup><thead><tr><th align="center">Constant</th><th>Meaning</th></tr></thead><tbody><tr><td colspan="2" align="center"> <span class="bold"><strong>Film Coefficient</strong></span> The film coefficient table is initialized
+with the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,HFLM command. The <a href="../ans_cmd/Hlp_C_TBPT.html" class="olink"><span class="command"><strong>TBPT</strong></span></a> data are:</td></tr><tr><td align="center">X</td><td>Velocity (Length/Time)</td></tr><tr><td align="center">Y</td><td>Film Coefficient
+(Heat/(time*area*temp)  The velocity may be replaced with the Reynold's
+number, and the film coefficient may be replaced with the Nusselt
+number, depending on KEYOPT(4).</td></tr><tr><td colspan="2" align="center"> <span class="bold"><strong>Fluid Conductance/Friction Factor</strong></span> The fluid conductance/friction factor is initialized with the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,FCON command. The <a href="../ans_cmd/Hlp_C_TBPT.html" class="olink"><span class="command"><strong>TBPT</strong></span></a> data are:</td></tr><tr><td align="center">X</td><td>Velocity (Length/Time)</td></tr><tr><td align="center">Y</td><td>Corresponding friction
+factor value (Dimensionless)</td></tr><tr><td colspan="2" align="left">The velocity may be replaced with the
+Reynold's number, and the friction factor may be replaced with the
+fluid conductance, depending on KEYOPT(6) and KEYOPT(7).</td></tr></tbody></table></div></div><br class="table-break"></div></div><div class="refsect1" title="FLUID116 Output Data"><a name="aKzNxq3cfmcm"></a><h2>FLUID116 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal degrees of freedom included in the overall nodal
+solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_FLUID116.html#auOLXq3d8ctg" title="Table&nbsp;116.3:&nbsp;&nbsp;FLUID116 Element Output Definitions">Table&nbsp;116.3:&nbsp;FLUID116 Element Output Definitions</a>
+</p></li></ul></div><p>
+</p><p>The fluid flow rate is expressed in units of Mass/Time and is
+positive from node I to node J.  In an axisymmetric analysis these
+flow rates and all other output are on a full 360&deg; basis.  The
+fluid flow rate and the heat flow rate at the nodes may be printed
+with the <a href="../ans_cmd/Hlp_C_OUTPR.html" class="olink"><span class="command"><strong>OUTPR</strong></span></a> command.  A general description
+of solution output is given in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a>.  See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for
+ways to view results.</p><p>The following notation is used in <a class="xref" href="Hlp_E_FLUID116.html#auOLXq3d8ctg" title="Table&nbsp;116.3:&nbsp;&nbsp;FLUID116 Element Output Definitions">Table&nbsp;116.3:&nbsp;FLUID116 Element Output Definitions</a>:</p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="auOLXq3d8ctg"></a><p class="title"><b>Table&nbsp;116.3:&nbsp;&nbsp;FLUID116 Element Output Definitions</b></p><div class="table-contents"><table summary="FLUID116 Element Output Definitions" border="1" width="95%"><colgroup><col width="129" class="col1"><col width="350" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th align="center">Name</th><th align="center">Definition</th><th align="center">O</th><th align="center">R</th></tr></thead><tbody><tr><td>EL</td><td>Element Number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Nodes - I, J, K, L</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>MAT</td><td>Material number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>XC, YC, ZC</td><td>Location where
+results are reported</td><td align="center">Y</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.2.ft.4">4</a>
+</td></tr><tr><td>VELOC</td><td>Average velocity</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>RE</td><td>Reynolds number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>FLOW RATE</td><td>Flow rate from node I to node J</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>HT COND RATE</td><td>Heat flow rate from node I to node J due to conduction</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.3.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.3.ft.1">1</a>
+</td></tr><tr><td>HT TRANSP
+RATE</td><td>Heat flow rate at node I due to mass transport</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.3.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.3.ft.1">1</a>
+</td></tr><tr><td>CONV AREAS
+(I, J)</td><td>Convection areas at nodes I and J</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.3.ft.3">3</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.3.ft.3">3</a>
+</td></tr><tr><td>HFILM</td><td>Film coefficient</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.3.ft.3">3</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.3.ft.3">3</a>
+</td></tr><tr><td>NUS</td><td>Nusselt number</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.3.ft.3">3</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.3.ft.3">3</a>
+</td></tr><tr><td>PR</td><td>Prandtl number</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.3.ft.3">3</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.3.ft.3">3</a>
+</td></tr><tr><td>HT CONV RATES
+(I, J)</td><td>Heat flow rates from nodes I to K and from nodes
+J to L due to convection</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.3.ft.3">3</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.3.ft.3">3</a>
+</td></tr><tr><td>HGVD</td><td>Heat generation due to direct input and viscous damping</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.3.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.3.ft.1">1</a>
+</td></tr><tr><td>TEMP</td><td>Temperature</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.3.ft.1">1</a>
+</td></tr><tr><td>PUMP PR</td><td>Pump pressure</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.3.ft.2">2</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.3.ft.2">2</a>
+</td></tr><tr><td>FRICTION</td><td>Friction factor</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.3.ft.2">2</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.3.ft.2">2</a>
+</td></tr><tr><td>PRES</td><td>Pressure</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_FLUID116.html#fluid116.tab.3.ft.2">2</a>
+</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="fluid116.tab.3.ft.1"></a>If KEYOPT(1) = 0 or 1</p></li><li class="listitem"><p><a name="fluid116.tab.3.ft.2"></a>If KEYOPT(1) = 0 or 2</p></li><li class="listitem"><p><a name="fluid116.tab.3.ft.3"></a>If KEYOPT(2) = 2, 3, or 4</p></li><li class="listitem"><p><a name="fluid116.tab.2.ft.4"></a>Available only at centroid
+as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item. </p></li></ol></div><p>
+<a class="xref" href="Hlp_E_FLUID116.html#aqvLXq268ctg" title="Table&nbsp;116.4:&nbsp;&nbsp;FLUID116 Item and Sequence Numbers">Table&nbsp;116.4:&nbsp;FLUID116 Item and Sequence Numbers</a> lists output available through
+the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method.
+ See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General Postprocessor
+(POST1)</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in
+this reference for more information.  The following notation is used
+in <a class="xref" href="Hlp_E_FLUID116.html#aqvLXq268ctg" title="Table&nbsp;116.4:&nbsp;&nbsp;FLUID116 Item and Sequence Numbers">Table&nbsp;116.4:&nbsp;FLUID116 Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="Hlp_E_FLUID116.html#auOLXq3d8ctg" title="Table&nbsp;116.3:&nbsp;&nbsp;FLUID116 Element Output Definitions">Table&nbsp;116.3:&nbsp;FLUID116 Element Output Definitions</a>
+</p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element
+data</p></dd><dt><span><b class="term">I,J,K,L</b></span></dt><dd><p>sequence number for data at nodes I,J,K,L</p></dd></dl></div></div><p>
+</p><div class="table"><a name="aqvLXq268ctg"></a><p class="title"><b>Table&nbsp;116.4:&nbsp;&nbsp;FLUID116 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="FLUID116 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="120" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"><col width="48" align="center" class="col5"><col width="48" align="center" class="col6"><col width="48" align="center" class="col7"></colgroup><thead><tr><th rowspan="2" align="center" valign="middle">Output Quantity
+Name</th><th colspan="6" align="center">
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th align="center">Item</th><th align="center">E</th><th align="center">I</th><th align="center">J</th><th align="center">K</th><th align="center">L</th></tr></thead><tbody><tr><td align="center">VELOC</td><td align="center">NMISC</td><td align="center">1</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">RE</td><td align="center">NMISC</td><td align="center">2</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">FLOW RATE</td><td align="center">NMISC</td><td align="center">3</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">HEAT COND RATE</td><td align="center">NMISC</td><td align="center">4</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">HEAT TRANSP RATE</td><td align="center">NMISC</td><td align="center">5</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">CONV AREA</td><td align="center">NMISC</td><td align="center">-</td><td align="center">6</td><td align="center">7</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">HFILM</td><td align="center">NMISC</td><td align="center">8</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">NUS</td><td align="center">NMISC</td><td align="center">9</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">PR</td><td align="center">NMISC</td><td align="center">10</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">HEAT CONV RATE</td><td align="center">NMISC</td><td align="center">-</td><td align="center">11</td><td align="center">12</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">HGVD</td><td align="center">NMISC</td><td align="center">-</td><td align="center">13</td><td align="center">14</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">TEMP</td><td align="center">NMISC</td><td align="center">-</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td></tr><tr><td align="center">PUMP PR</td><td align="center">NMISC</td><td align="center">19</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">FRICTION</td><td align="center">NMISC</td><td align="center">20</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">PRES</td><td align="center">NMISC</td><td align="center">-</td><td align="center">21</td><td align="center">22</td><td align="center">-</td><td align="center">-</td></tr></tbody></table></div></div><br class="table-break"></div><div class="refsect1" title="FLUID116 Assumptions and Restrictions"><a name="aLzNxq8cmcm"></a><h2>FLUID116 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The element must not have a zero length, so nodes
+I and J must not be coincident.</p></li><li class="listitem"><p> Nodes K and L may be located anywhere in space, even
+coincident with I and J, respectively.</p></li><li class="listitem"><p>D must always be nonzero.</p></li><li class="listitem"><p>A defaults to&nbsp;&#960;D<sup>2</sup>/4.0 and is assumed to remain constant for the element.</p></li><li class="listitem"><p>Compressibility and flow inertia effects of the fluid
+are not included in the element formulation.</p></li><li class="listitem"><p>If temperatures are degrees of freedom, the resulting
+unsymmetric matrix requires twice as much memory storage for the solution
+as other ANSYS elements.  </p></li><li class="listitem"><p>HF must be nonzero for the four node element.</p></li><li class="listitem"><p>MU and DENS must be nonzero if a flow solution is
+desired and KEYOPT(6) is not zero.</p></li><li class="listitem"><p>If the flow is specified at a node also having a specified
+pressure, the flow constraint is ignored.</p></li><li class="listitem"><p>In general, flow is usually specified at the inlet,
+pressure at the outlet.</p></li><li class="listitem"><p>For problems involving pressure specification on inlets
+and outlets, the solution may converge too soon (i.e., the PRES degree
+of freedom has converged but FLOW has not due to a loose convergence
+criterion). Be sure to check your results carefully. To force more
+iterations, you can tighten the convergence criteria (i.e., <a href="../ans_cmd/Hlp_C_CNVTOL.html" class="olink"><span class="command"><strong>CNVTOL</strong></span></a>,flow,,1e-30 ), or you can specify a nonzero initial
+condition on pressure, which could be an average of the specified
+inlet and outlet pressures (i.e., <a href="../ans_cmd/Hlp_C_IC.html" class="olink"><span class="command"><strong>IC</strong></span></a>,all,pres,pavg).
+You can use both options together; however, ANSYS, Inc. recommends
+using a nonzero initial condition. Tightening the convergence requires
+you to estimate a suitable tolerance. </p></li><li class="listitem"><p>More substeps are required for convergence as the
+flow approaches zero. </p></li><li class="listitem"><p>See the <a href="../ans_cmd/Hlp_C_CNVTOL.html" class="olink"><span class="command"><strong>CNVTOL</strong></span></a> command for convergence
+control.</p></li><li class="listitem"><p>If pressure (PRES) is a degree of freedom, the element
+is nonlinear and requires an iterative solution.</p></li><li class="listitem"><p>Because pressure (PRES) is used as a degree of freedom,
+the correct label to use for an independent variable is PRESSURE.</p></li></ul></div></div><div class="refsect1" title="FLUID116 Product Restrictions"><a name="aLzNxqfdmcm"></a><h2>FLUID116 Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific
+restrictions apply to this element in addition to the general assumptions
+and restrictions given in the previous section.</p><p title="ANSYS Mechanical Pro"><b>ANSYS Mechanical Pro&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The PRES degree of freedom (KEYOPT (1) = 0, 2) is not available.</p></li></ul></div><p title="ANSYS Mechanical Pro">
+   </p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The PRES degree of freedom (KEYOPT (1) = 0, 2) is not available.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+   </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

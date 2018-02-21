@@ -1,0 +1,22 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:47-04:00"><title>RMFLVEC</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_R_TOC.html" title="R Commands"><link rel="prev" href="Hlp_C_RMDIR.html" title="/RMDIR"><link rel="next" href="Hlp_C_RMLVSCALE.html" title="RMLVSCALE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="RMFLVEC"><a name="RMFLVEC"></a><div class="titlepage"></div><a class="indexterm" name="d0e229254"></a><span class="refentrytitle"><span class="command"><strong>RMFLVEC</strong></span></span><div class="refnamediv"><p><span class="command"><strong>RMFLVEC</strong></span><br><b class="refpurpose">Writes eigenvectors of fluid nodes to a file for use in damping
+parameter extraction.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1sppurpjla070199" title="Table&nbsp;2.91:&nbsp;&nbsp;Special Purpose"><span class="type">Special Purpose</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsect1" title="Notes"><a name="RMFLVEC.notes"></a><h2>Notes</h2><p><span class="command"><strong>RMFLVEC</strong></span> extracts the modal information from the modal
+results file for all nodes specified in a node component called 'FLUN'. This
+component should include all nodes which are located at the fluid-structural
+interface. Mode shapes, element normal orientation, and a scaling factor are
+computed and stored in a file <span class="filename"><strong>Jobname.EFL</strong></span>. For damping
+parameter extraction, use the <a class="link" href="Hlp_C_DMPEXT.html" title="DMPEXT"><span class="command"><strong>DMPEXT</strong></span></a> command macro. See <a href="../ans_flu/Hlp_G_FLU_FLU1.html" class="olink">Introduction</a> for more
+information on thin film analyses.</p><p><a href="../ans_elem/Hlp_E_FLUID136.html" class="olink"><span class="structname">FLUID136</span></a> and <a href="../ans_elem/Hlp_E_FLUID138.html" class="olink"><span class="structname">FLUID138</span></a> are
+used to model the fluid interface. Both the structural and fluid element types
+must be active. The fluid interface nodes must be grouped into a component
+'FLUN'. A results file of the last modal analysis must be available. </p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p></div><div class="refsect1" title="Menu Paths"><a name="RMFLVEC.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;ThinFilm&gt;Extract Eigv</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;ThinFilm&gt;DampExtract&gt;Eigenfrequency</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;ThinFilm&gt;DampExtract&gt;Frequency Range</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;ThinFilm&gt;RayleighDamp</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:50-04:00"><title>RSYMM</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_R_TOC.html" title="R Commands"><link rel="prev" href="Hlp_C_RSURF.html" title="RSURF"><link rel="next" href="Hlp_C_RSYS.html" title="RSYS"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="RSYMM"><a name="RSYMM"></a><div class="titlepage"></div><a class="indexterm" name="d0e233464"></a><span class="refentrytitle">
+<span class="command"><strong>RSYMM</strong></span>
+</span><div class="refnamediv"><p>
+   <span class="command"><strong>RSYMM</strong></span>, <em class="replaceable"><code>Option</code></em>, <em class="replaceable"><code>CS</code></em>,
+    <em class="replaceable"><code>Axis</code></em>, <em class="replaceable"><code>NSECT</code></em>,
+    <em class="replaceable"><code>CONDVALUE</code></em>, <em class="replaceable"><code>SVAL</code></em>,
+    <em class="replaceable"><code>EVAL</code></em><br><b class="refpurpose">Defines symmetry, rotation, or extrusion parameters for the
+   radiosity method.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolradiosity" title="Table&nbsp;2.73:&nbsp;&nbsp;Radiosity"><span class="type">Radiosity</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code> Option</code></em>
+</b></span></dt><dd><p>Command options: </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CLEAR </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Deletes all symmetry/extrusion definitions. Other command options are
+         ignored.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DEFINE </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Defines the symmetry/extrusion definition (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">STAT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Shows the status/listing. Other command
+options are ignored.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">COND</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Activates or deactivates condensation in the radiosity solver for all
+         defined radiation symmetries/extrusions. Condensation is the process where the radiosity
+         equation system is reduced in size. Default is off. (See <a class="xref" href="Hlp_C_RSYMM.html#cmd_rsymm_fig1" title="Figure&nbsp;9:&nbsp;&nbsp;Usage Example: Option = COND">Figure&nbsp;9:&nbsp;Usage Example: <em class="replaceable"><code>Option</code></em> = COND </a>.)</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term">
+<em class="replaceable"><code>CS </code></em>
+</b></span></dt><dd><p>Local coordinate system ( <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq440ac04f-cd90-43c1-b2ef-27a01b1ede50.svg"></span>11) as defined using the <a class="link" href="Hlp_C_LOCAL.html" title="LOCAL"><span class="command"><strong>LOCAL</strong></span></a> or <a class="link" href="Hlp_C_CS.html" title="CS"><span class="command"><strong>CS</strong></span></a>
+      commands or the global coordinate system (0). For planar reflection, the coordinate system
+      origin must be on the plane of symmetry (POS) and one of its axes must be normal to the POS.
+      For cyclic reflection, the coordinate system origin must be coincident with the center of
+      rotation (COR). Only Cartesian systems are valid. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Axis</code></em> </b></span></dt><dd><p>Axis label of the coordinate system (<em class="replaceable"><code>CS</code></em>) that is normal to the
+      POS for planar reflection, or label to indicate the type of extrusion. For cyclic reflection,
+      this field must be blank, and it is assumed that the Z axis is aligned with the axis of
+      rotation.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">X, Y, or Z </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Planar reflection. For 2-D model planar reflections, valid labels are X or Y. For 3-D
+         model planar reflections, valid labels are X, Y, or Z.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ZEXT </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Linear extrusion of a line element in the X-Y plane, in the Z direction, to create
+         4-noded <a href="../ans_elem/Hlp_E_SURF252.html" class="olink"><span class="structname">SURF252</span></a> elements. <em class="replaceable"><code>NSECT</code></em>
+         indicates how many elements will be created. <em class="replaceable"><code>SVAL</code></em> is the
+         starting Z value, and <em class="replaceable"><code>EVAL</code></em> is the ending Z value.
+          <em class="replaceable"><code>CS</code></em> must be 0. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CEXT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Circumferential extrusion (theta direction) around the global Y-axis. A 2-noded line
+         element in the X-Y plane is extruded to create 4-noded <a href="../ans_elem/Hlp_E_SURF252.html" class="olink"><span class="structname">SURF252</span></a>
+         elements. <em class="replaceable"><code>NSECT</code></em> indicates how many elements will be created.
+          <em class="replaceable"><code>SVAL</code></em> is the starting angle, and EVAL is the ending angle (in
+         degrees). The angles are with respect to the global X-axis. <em class="replaceable"><code>CS</code></em>
+         must be 0. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">(blank) </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Cyclic reflection.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term">
+     <em class="replaceable"><code>NSECT</code></em>
+    </b></span></dt><dd><p>Number of cyclic reflections to be done, or number of elements in the extrusion
+      direction. </p><p>For planar reflection, this field must be 0 or blank. </p><p>For cyclic reflection, this field must be &#8805; 1 or &#8804; -1. Use a positive value if you
+      want the sector angle to be computed automatically. Use a negative value if you want the
+      sector angle to be computed manually. See <a class="link" href="Hlp_C_RSYMM.html#rsymm.notes" title="Notes">Notes</a> for
+      details.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>CONDVALUE</code></em> </b></span></dt><dd><p>Condensation key. Valid only when <em class="replaceable"><code>Option</code></em> = COND.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ON</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Activates condensation in the radiosity solver for all defined radiation
+         symmetries/extrusions.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Deactivates condensation in the radiosity solver for all defined radiation
+         symmetries/extrusions (default).</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term">
+     <em class="replaceable"><code>SVAL</code></em>, <em class="replaceable"><code>EVAL</code></em>
+    </b></span></dt><dd><p>Starting and ending Z values (if <em class="replaceable"><code>Axis</code></em> = ZEXT) or angle values
+      (if <em class="replaceable"><code>Axis</code></em> = CEXT) used for the extrusion. Not used for planar or
+      cyclic reflection.  </p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="rsymm.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>RSYMM</strong></span> command is used to define the plane of
+   symmetry (POS) for planar reflection or the center of rotation (COR) for cyclic reflection. It
+   can also be used to set parameters for a linear or circumferential extrusion. The input provided
+   on this command is used to generate radiosity surface elements
+    (<a href="../ans_elem/Hlp_E_SURF251.html" class="olink"><span class="structname">SURF251</span></a>/<a href="../ans_elem/Hlp_E_SURF252.html" class="olink"><span class="structname">SURF252</span></a>) when the
+    <a class="link" href="Hlp_C_RSURF.html" title="RSURF"><span class="command"><strong>RSURF</strong></span></a> command is issued.</p><p>The <span class="command"><strong>RSYMM</strong></span> command must be issued before
+    <a class="link" href="Hlp_C_RSURF.html" title="RSURF"><span class="command"><strong>RSURF</strong></span></a>, and it may be issued multiple times to have more than one
+   planar/cyclic reflection or extrusion. The <a class="link" href="Hlp_C_RSURF.html" title="RSURF"><span class="command"><strong>RSURF</strong></span></a> command processes
+    <span class="command"><strong>RSYMM</strong></span> commands in the order they are issued.</p><p>For planar reflection, you must define a local coordinate system ( <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq82a7b85f-9c07-4113-9f69-35f73e731f52.svg"></span>11) with its origin on the POS. One of its axes must be aligned so that it is
+   normal to the plane. If possible, use the existing global coordinate system (0).</p><p>For cyclic reflection, you must define a local coordinate system ( <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqb9cdd317-3a45-4968-886d-46329acacfe5.svg"></span>11) with its origin coincident with the COR. Reflections occur about the local
+   Z-axis in the counterclockwise direction. You must align the Z-axis properly. If possible, use
+   the existing global coordinate system (0).</p><p>For cyclic reflection, <em class="replaceable"><code>NSECT</code></em> is used as
+   follows:</p><p>
+   <span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqRSYMM-1.svg"></span>
+  </p><p>
+   <span class="inlineequation" style="&#xA;          vertical-align:-3.000000px"><img src="graphics/eqRSYMM-2.svg"></span>
+  </p><p>where &#952;<sub>max</sub> and
+    &#952;<sub>min</sub> are computed internally based on location of the RDSF
+   (surface-to-surface radiation) flagged surfaces.</p><p>See <a class="xref" href="Hlp_C_RSYMM.html#cmd_rsymm_fig2" title="Figure&nbsp;10:&nbsp;&nbsp;Usage Example: Positve and Negative NSECT Values">Figure&nbsp;10:&nbsp;Usage Example: Positve and Negative <em class="replaceable"><code>NSECT</code></em> Values</a> for an example of
+    <em class="replaceable"><code>NSECT</code></em> usage.</p><p>For linear or circumferential extrusion
+    (<em class="replaceable"><code>Axis</code></em> = ZEXT or CEXT), you must ensure that the extruded area matches
+   the area of the underlying element; otherwise, the results may not be correct. For example, in
+   the case of <a href="../ans_elem/Hlp_E_PLANE55.html" class="olink"><span class="structname">PLANE55</span></a> elements with a planar depth = 10, use
+    <em class="replaceable"><code>Axis</code></em> = ZEXT and set <em class="replaceable"><code>SVAL</code></em> and
+    <em class="replaceable"><code>EVAL</code></em> such that <em class="replaceable"><code>EVAL</code></em> -
+    <em class="replaceable"><code>SVAL</code></em> = 10. Likewise, for axisymmetric
+    <a href="../ans_elem/Hlp_E_PLANE55.html" class="olink"><span class="structname">PLANE55</span></a> elements, use <em class="replaceable"><code>Axis</code></em> = CEXT and set
+    <em class="replaceable"><code>SVAL</code></em> and <em class="replaceable"><code>EVAL</code></em> such that
+    <em class="replaceable"><code>EVAL</code></em> - <em class="replaceable"><code>SVAL</code></em> = 360. You must also issue
+    <a class="link" href="Hlp_C_V2DOPT.html" title="V2DOPT"><span class="command"><strong>V2DOPT</strong></span></a>,1 for the axisymmetric case. See <a class="xref" href="Hlp_C_RSYMM.html#cmd_rsymm_fig3" title="Figure&nbsp;11:&nbsp;&nbsp;Usage Example: Extrusions with Axis = ZEXT and CEXT">Figure&nbsp;11:&nbsp;Usage Example: Extrusions with <em class="replaceable"><code>Axis</code></em> = ZEXT and CEXT</a> for
+   extrusion examples. </p><p>The <em class="replaceable"><code>Axis</code></em>= ZEXT and CEXT options are not
+   valid for <a href="../ans_elem/Hlp_E_SHELL131.html" class="olink"><span class="structname">SHELL131</span></a> and <a href="../ans_elem/Hlp_E_SHELL132.html" class="olink"><span class="structname">SHELL132</span></a>
+   elements.</p><p>New surface elements generated by the <span class="command"><strong>RSYMM</strong></span>
+   command inherit the properties of the original elements.</p><p>For 2-D axisymmetric models, <span class="command"><strong>RSYMM</strong></span> can be used only for symmetrization in
+   the YR plane. It cannot be used for the theta direction. Use <a class="link" href="Hlp_C_V2DOPT.html" title="V2DOPT"><span class="command"><strong>V2DOPT</strong></span></a> in that
+   case.</p><p>For 2-D axisymmetric YR models, the newly-generated nodes can have only positive X
+   coordinates.</p><div class="figure"><a name="cmd_rsymm_fig1"></a><p class="title"><b>Figure&nbsp;9:&nbsp;&nbsp;Usage Example: <em class="replaceable"><code>Option</code></em> = COND </b></p><div class="figure-contents"><div><img src="graphics/gcmdrsymm1.png" alt="Usage Example: Option = COND"></div></div></div><br class="figure-break"><div class="figure"><a name="cmd_rsymm_fig2"></a><p class="title"><b>Figure&nbsp;10:&nbsp;&nbsp;Usage Example: Positve and Negative <em class="replaceable"><code>NSECT</code></em> Values</b></p><div class="figure-contents"><div class="informaltable"><table border="0" width="95%"><colgroup><col width="50%" class="c1"><col width="50%" class="c2"></colgroup><tbody><tr><td align="center">
+        <div><img src="graphics/gcmdrsymm2.png" alt="Usage Example: Positve and Negative NSECT Values"></div>
+       </td><td align="center">
+        <div><img src="graphics/gcmdrsymm5.png" alt="Usage Example: Positve and Negative NSECT Values"></div>
+       </td></tr><tr><td align="center">
+        <p><span class="command"><strong>RSYMM</strong></span>,,,4</p>
+        <p>
+         <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqRSYMM-3.svg" alt="Usage Example: Positve and Negative NSECT Values"></span>
+        </p>
+       </td><td align="center">
+        <p><span class="command"><strong>RSYMM</strong></span>,,,-4</p>
+        <p>
+         <span class="inlineequation" style="&#xA;          vertical-align:-14.000000px"><img src="graphics/eqRSYMM-4.svg" alt="Usage Example: Positve and Negative NSECT Values"></span>
+        </p>
+       </td></tr></tbody></table></div></div></div><br class="figure-break"><div class="figure"><a name="cmd_rsymm_fig3"></a><p class="title"><b>Figure&nbsp;11:&nbsp;&nbsp;Usage Example: Extrusions with <em class="replaceable"><code>Axis</code></em> = ZEXT and CEXT</b></p><div class="figure-contents"><div class="informaltable"><table border="0" width="95%"><colgroup><col width="50%" class="c1"><col width="50%" class="c2"></colgroup><tbody><tr><td align="center">
+        <div><img src="graphics/gcmdrsymm3.png" alt="Usage Example: Extrusions with Axis = ZEXT and CEXT"></div>
+       </td><td align="center">
+        <div><img src="graphics/gcmdrsymm4.png" alt="Usage Example: Extrusions with Axis = ZEXT and CEXT"></div>
+       </td></tr></tbody></table></div></div></div><br class="figure-break"><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e233935"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Radiation Opts&gt;Advanced Solution Option&gt;Radiation Symmetry Options&gt;Clear Symmetry</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Radiation Opts&gt;Advanced Solution Option&gt;Radiation Symmetry Options&gt;Condensation</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Radiation Opts&gt;Advanced Solution Option&gt;Radiation Symmetry Options&gt;Cyclic Symmetry</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Radiation Opts&gt;Advanced Solution Option&gt;Radiation Symmetry Options&gt;Planar Symmetry</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Radiation Opts&gt;Advanced Solution Option&gt;Radiation Symmetry Options&gt;Clear Symmetry</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Radiation Opts&gt;Advanced Solution Option&gt;Radiation Symmetry Options&gt;Condensation</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Radiation Opts&gt;Advanced Solution Option&gt;Radiation Symmetry Options&gt;Cyclic Symmetry</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Radiation Opts&gt;Advanced Solution Option&gt;Radiation Symmetry Options&gt;Planar Symmetry</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

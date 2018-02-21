@@ -1,0 +1,105 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:15-04:00"><title>MATRIX50</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_INFIN47.html" title="INFIN47"><link rel="next" href="Hlp_E_PLANE55.html" title="PLANE55"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="MATRIX50"><a name="MATRIX50"></a><div class="titlepage"></div><a class="indexterm" name="d0e32745"></a><span class="refentrytitle"><span class="structname">MATRIX50</span> </span><div class="refnamediv"><p><br><b class="refpurpose">Superelement
+(or Substructure)</b><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_E_MATRIX50.html#aOlNxq17fmcm" title="MATRIX50 Product Restrictions">Product Restrictions</a></span></div></div></div></p></div><div class="refsect1" title="MATRIX50 Element Description"><a name="ELEMmatrix50descfdb"></a><h2>MATRIX50 Element Description</h2><p><span class="structname">MATRIX50</span> is a group of previously assembled
+ANSYS elements that is treated as a single element.  The superelement,
+once generated, may be included in any ANSYS model and used in any
+analysis type for which it is applicable.  The superelement can greatly
+decrease the cost of many analyses.  Once the superelement matrices
+have been formed, they are stored in a file and can be used in other
+analyses the same way any other ANSYS elements are used.  Multiple
+load vectors may also be stored with the superelement matrices, thereby
+allowing various loading options.  See <a href="../ans_thry/thy_el50.html" class="olink">MATRIX50</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for more
+details about this element.</p><div class="figure"><a name="aNlNxq340mcm"></a><p class="title"><b>Figure&nbsp;50.1:&nbsp;&nbsp;MATRIX50 Schematic</b></p><div class="figure-contents"><div><img src="graphics/gELEM50-1.svg" alt="MATRIX50 Schematic"></div></div></div><br class="figure-break"></div><div class="refsect1" title="MATRIX50 Input Data"><a name="aNlNxq3admcm"></a><h2>MATRIX50 Input Data</h2><p>The superelement, which is a mathematical matrix representation
+of an arbitrary structure, has no fixed geometrical identity and is
+conceptually shown in <a class="xref" href="Hlp_E_MATRIX50.html#aNlNxq340mcm" title="Figure&nbsp;50.1:&nbsp;&nbsp;MATRIX50 Schematic">Figure&nbsp;50.1:&nbsp;MATRIX50 Schematic</a>.  Any analysis
+using a superelement as one of its element types is called a superelement
+use pass (or run).  The degrees of freedom are the master degrees
+of freedom specified during the generation pass.</p><p>The element name is <span class="structname">MATRIX50</span> (the number 50 or the name
+    <span class="structname">MATRIX50</span> should be input for the variable <span class="italic"><em>ENAME</em></span> on the <a href="../ans_cmd/Hlp_C_ET.html" class="olink"><span class="command"><strong>ET</strong></span></a> command). The <a href="../ans_cmd/Hlp_C_SE.html" class="olink"><span class="command"><strong>SE</strong></span></a> command is
+   used to define a superelement. <a href="../ans_cmd/Hlp_C_SE.html" class="olink"><span class="command"><strong>SE</strong></span></a> reads the superelement from
+    <span class="filename"><strong>Jobname.SUB</strong></span> (defaults to <span class="filename"><strong>File.SUB</strong></span>) in the working
+   directory. <span>The material number [<a href="../ans_cmd/Hlp_C_MAT.html" class="olink"><span class="command"><strong>MAT</strong></span></a>] is only
+    used when material dependent damping (<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,ALPD, <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,BETD, or
+     <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,DMPR) or electrical permittivity [<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,PERX] is an
+    input.</span> The real constant table number [<a href="../ans_cmd/Hlp_C_REAL.html" class="olink"><span class="command"><strong>REAL</strong></span></a>] is not used. However,
+   the appropriate element type number [<a href="../ans_cmd/Hlp_C_TYPE.html" class="olink"><span class="command"><strong>TYPE</strong></span></a>] must be entered.</p><p>An element load vector is generated along with the element at each load step of the
+   superelement generation pass. <span>Up to 1000 load vectors may be
+    generated by default. To increase this limit, the <a href="../ans_cmd/Hlp_C_CONFIG.html" class="olink"><span class="command"><strong>/CONFIG</strong></span></a> command with
+     <em class="replaceable"><code>Lab</code></em> = NUMSUBLV can be used.</span> Load vectors may be
+   proportionately scaled in the use pass. The scale factor is input on the element surface load
+   command [<a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a>]. The load label is input as SELV, the load key is the load
+   vector number, <em class="replaceable"><code>KVAL</code></em> determines whether the load vector is real or
+   imaginary, and the load value is the scale factor. The load vector number is determined from the
+   load step number associated with the superelement generation. If a superelement load vector has a
+   zero scale factor (or is not scaled at all), this load vector is not included in the analysis.
+   Any number of load vector-scale factor combinations may be used in the use pass.</p><p>In a large rotation analysis (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON),
+you can use KEYOPT(3) to specify whether the load vectors associated
+with this element type rotates with the element (as you would for
+a pressure load) or remains in the original (unrotated) direction
+(as you would for a non-follower force load); all load vectors (if
+multiple load vectors) are rotated or left unrotated. You can use
+KEYOPT(4) to indicate that the superelement was generated with constraints
+(<a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a>) so that it cannot translate or rotate freely
+in the use pass as expected (although you can apply constraints in
+the use pass to the master degrees of freedom to prevent such motion.) </p><p>The KEYOPT(1) option is for the special case where the superelement
+is to be used with a T<sup>4</sup> nonlinearity, such
+as for radiation.  The <span class="filename"><strong>File.SUB</strong></span> for this case
+may be constructed directly by the user or may be generated by AUX12,
+the radiation matrix generator.</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_MATRIX50.html#aOlNxq35mcm" title="MATRIX50 Input Summary">"MATRIX50 Input Summary"</a>.  A general description of element input is
+given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>.</p><div class="refsect2" title="MATRIX50 Input Summary"><a name="aOlNxq35mcm"></a><h3>MATRIX50 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>None input (supplied by element)</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>As determined from the included element types  (a
+mixture of multi-field degrees of freedom is not allowed)</p></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p><a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: ALPD, BETD, PERX, <span>DMPR</span></p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><p>Surface load effects may be applied through a generated load vector and scale factors. Use the
+        <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> command to supply scale factors with <span class="italic"><em>LAB</em></span> = SELV, <span class="italic"><em>LKEY</em></span> = load vector number , <em class="replaceable"><code>KVAL</code></em> = real or
+       imaginary, and <span class="italic"><em>VAL1</em></span> = scale factor.</p></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><p>Body loads may be applied through a generated load
+vector and scale factors as described for surface loads.</p></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td><a href="../ans_cmd/Hlp_C_CORIOLIS.html" class="olink">Coriolis effect</a></td></tr><tr><td><a href="../ans_thry/thy_geo2.html" class="olink">Large
+rotation</a></td></tr><tr><td><a href="../ans_the/Hlp_G_THE4.html" class="olink">Radiation</a> (if KEYOPT(1) = 1) </td></tr></table></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Element behavior:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Normal substructure</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Special radiation substructure</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(3)</b></span></dt><dd><p>Load vector update with large rotations (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON):</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Load vector(s) rotate
+with the substructure as it rotates</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Load vector(s) do not
+rotate and remain in their original direction</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(4)</b></span></dt><dd><p>Constrained substructure with large rotations (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON):</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Substructure was unconstrained
+in the generation pass</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Substructure was constrained
+in the generation pass</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(6)</b></span></dt><dd><p>Nodal force output:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Do not print nodal forces</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Print nodal forces</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="MATRIX50 Output Data"><a name="aOlNxqa3mcm"></a><h2>MATRIX50 Output Data</h2><p>Displacements and forces may be printed for each (master) degree
+of freedom in a structural superelement in the <span class="quote">"<span class="quote">use</span>"</span> pass.
+Energies are also available when requested.  The nodal forces may
+be output if KEYOPT(6) = 1.  The stress distribution within the superelement
+and the expanded nodal displacements can be obtained from a subsequent
+stress pass.  In addition to the database and substructure files from
+the generation run, <span class="filename"><strong>File.DSUB</strong></span> must be saved from
+the superelement <span class="quote">"<span class="quote">use</span>"</span> pass and input to the expansion
+pass (if an expansion pass is desired).  A general description of
+solution output is given in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a>.</p></div><div class="refsect1" title="MATRIX50 Assumptions and Restrictions"><a name="aOlNxq110mcm"></a><h2>MATRIX50 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>A superelement may contain elements of any type except
+Lagrange multiplier-based elements (such as <a class="link" href="Hlp_E_MPC184.html" title="MPC184"><span class="structname">MPC184</span></a>, <a class="link" href="Hlp_E_PLANE182.html" title="PLANE182"><span class="structname">PLANE182</span></a> with KEYOPT(6) = 1, and <a class="link" href="Hlp_E_CONTA171.html" title="CONTA171"><span class="structname">CONTA171</span></a> with KEYOPT(2) = 3).</p></li><li class="listitem"><p>See the <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a> command for degree of
+freedom field groups.</p></li><li class="listitem"><p>Superelements of different field types may be mixed
+within the use run.</p></li><li class="listitem"><p>The nonlinear portion of any element included in a
+superelement will be ignored and any bilinear element will maintain
+its initial status throughout the analysis.</p></li><li class="listitem"><p>Superelements may contain other superelements.</p></li><li class="listitem"><p>The relative locations of the superelement attachment
+points in the nonsuperelement portion of the model (if any) should
+match the initial superelement geometry.</p></li><li class="listitem"><p>If the superelement contains a mass matrix, acceleration
+[<a href="../ans_cmd/Hlp_C_ACEL.html" class="olink"><span class="command"><strong>ACEL</strong></span></a>] defined in the use run will be applied to
+the superelement. </p></li><li class="listitem"><p>If a load vector containing acceleration effects is
+also applied in the use run, <span class="italic"><em>both</em></span> accelerations (the <a href="../ans_cmd/Hlp_C_ACEL.html" class="olink"><span class="command"><strong>ACEL</strong></span></a> command and the load
+vector) will be applied to the superelement.  </p></li><li class="listitem"><p>Similarly, if the superelement contains a damping
+matrix (as specified in the generation run) and&nbsp;<font face="Arial Unicode Ms"><span class="markup">&#945;</span></font> and &#946; damping multipliers
+[<span class="bold"><strong>ALPHA</strong></span> and <span class="bold"><strong>BETA</strong></span>] are defined in the use run, additional damping effects
+will be applied to the superelement. </p></li><li class="listitem"><p>You should be careful to avoid duplicating acceleration
+and damping effects.</p></li><li class="listitem"><p>Pressure and thermal effects may be included in a
+superelement only through its load vectors.</p></li><li class="listitem"><p>The dimensionality of the superelement corresponds
+to the maximum dimensionality of any element used in its generation.
+ A 2-D superelement should only be used in 2-D analyses, and 3-D superelements
+in 3-D analyses.</p></li><li class="listitem"><p>See <a href="../ans_thry/thy_anproc6.html" class="olink">Substructuring Analysis</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for a discussion of the substructure matrix
+procedure.</p></li></ul></div></div><div class="refsect1" title="MATRIX50 Product Restrictions"><a name="aOlNxq17fmcm"></a><h2>MATRIX50 Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific
+restrictions apply to this element in addition to the general assumptions
+and restrictions given in the previous section.</p><p title="ANSYS Mechanical Pro"><b>ANSYS Mechanical Pro&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>This element may be used as a radiation substructure only. KEYOPT(1) defaults to 1
+       instead of 0 and cannot be changed.</p></li></ul></div><p title="ANSYS Mechanical Pro">
+   </p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>This element may be used as a radiation substructure only. KEYOPT(1) defaults to 1
+       instead of 0 and cannot be changed.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+   </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

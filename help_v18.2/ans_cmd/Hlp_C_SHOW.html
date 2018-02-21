@@ -1,0 +1,93 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:09-04:00"><title>/SHOW</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_S_TOC.html" title="S Commands"><link rel="prev" href="Hlp_C_SHELL.html" title="SHELL"><link rel="next" href="Hlp_C_SHOWDISP.html" title="/SHOWDISP"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="/SHOW"><a name="s-SHOW"></a><div class="titlepage"></div><a class="indexterm" name="d0e251370"></a><span class="refentrytitle"><a href="Hlp_C_SHOW.html" class="olink"><span class="command"><strong>/SHOW</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>/SHOW</strong></span>, <em class="replaceable"><code>Fname</code></em>, <em class="replaceable"><code>Option</code></em>, <em class="replaceable"><code>VECT</code></em>, <em class="replaceable"><code>NCPL</code></em><br><b class="refpurpose">Specifies the device and other parameters for graphics
+displays.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_3.html" title="2.3.&nbsp;GRAPHICS Commands"><code class="classname">GRAPHICS</code></a>: <a class="link" href="Hlp_C_CH2_3.html#cmdgraphicsetupjla070199" title="Table&nbsp;2.11:&nbsp;&nbsp;Setup"><span class="type">Set Up</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="s-SHOW.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Fname</code></em></b></span></dt><dd><p>Device name, file name, or keyword, as listed below:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">&lt;<span class="italic"><em>device&nbsp;name</em></span>&gt;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Any valid graphics display device name (e.g., X11,
+3-D etc.).  Defaults to X11 for most systems.  See <a href="../ans_bas/Hlp_G_BAS8.html" class="olink">Getting Started with
+Graphics</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for details.  A device name must
+be defined before activating the Graphical User Interface (GUI). 
+Once the GUI is activated, the device name cannot be changed for that
+session, except for switching between X11 and X11C.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">&lt;<span class="italic"><em>filename</em></span>&gt;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Name of graphics file to which graphics displays are
+to be diverted (248 characters maximum).  Should not be the same as
+a valid device name or any other <em class="replaceable"><code>Fname</code></em> option.
+Plots are written to the file <span class="filename"><strong><em class="replaceable"><code>Filename.Ext</code></em></strong></span> (or just <span class="filename"><strong><em class="replaceable"><code>Filename.Ext</code></em></strong></span> if <em class="replaceable"><code>Ext</code></em> is left blank) in the
+working directory. This file can be appended only during the same
+session; reissuing the same file name in a new session will overwrite
+existing file names from previous sessions. Although multiple file
+names can be used within one session, only the last file created or
+accessed will be appended.  Issuing /SHOW, CLOSE, or starting a new
+session will prevent access to any previously created files.  </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TERM</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Graphics displays are switched back
+to the last-specified device name.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CLOSE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>This option purges the graphics
+file buffer. The CLOSE option should be issued any time you are changing
+graphics devices or file output types during a session. Graphics displays
+are switched back to the last-specified device name, and any open
+graphics files are closed. The CLOSE option is similar to the TERM
+option, however, with the CLOSE option, another process, such as the
+DISPLAY program, can access the data in the graphics file. The CLOSE
+option causes graphics file buffers to be flushed to the graphics
+file. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">FILE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Graphics displays are switched back
+to the last-specified file name.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Graphics display requests are ignored.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">(blank)</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If blank in interactive mode,
+graphics will be displayed on screen as requested by display commands
+(no file written);  If blank in batch mode, graphics data will be
+written to <span class="filename"><strong>Jobname.GRPH</strong></span>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">PSCR</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Creates PostScript graphic files
+that are named <span class="filename"><strong>Jobname<em class="replaceable"><code>nnn</code></em>.eps</strong></span>, where <em class="replaceable"><code>nnn</code></em> is
+a numeric value that is incremented by one as each additional file
+is created; that is, <span class="filename"><strong>Jobname000.eps</strong></span>, <span class="filename"><strong>Jobname001.eps</strong></span>, <span class="filename"><strong>Jobname002.eps</strong></span>, and
+so on .  (See the <a class="link" href="Hlp_C_PSCR.html" title="PSCR"><span class="command"><strong>PSCR</strong></span></a> command for options.)  Ignores
+the <em class="replaceable"><code>Ext</code></em> and <em class="replaceable"><code>NCPL</code></em> fields.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">HPGL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Creates Hewlett-Packard Graphics
+Language files that are named <span class="filename"><strong>Jobname<em class="replaceable"><code>nnn</code></em>.hpgl</strong></span>, where <em class="replaceable"><code>nnn</code></em> is a numeric value that is incremented by one as
+each additional file is created; that is, <span class="filename"><strong>Jobname000.hpgl</strong></span>, <span class="filename"><strong>Jobname001.hpgl</strong></span>, <span class="filename"><strong>Jobname002.hpgl</strong></span>, and so on.  (See the <a class="link" href="Hlp_C_HPGL.html" title="HPGL"><span class="command"><strong>HPGL</strong></span></a> command for options.)
+ Ignores the <em class="replaceable"><code>Ext</code></em> and <em class="replaceable"><code>NCPL</code></em> fields.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">HPGL2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Creates Hewlett-Packard Graphics
+Language files that are named <span class="filename"><strong>Jobname<em class="replaceable"><code>nnn</code></em>.hpgl</strong></span>, where <em class="replaceable"><code>nn</code></em> is a numeric value that is incremented by one as
+each additional file is created; that is, <span class="filename"><strong>Jobname000.hpgl</strong></span>, <span class="filename"><strong>Jobname001.hpgl</strong></span>, <span class="filename"><strong>Jobname02.hpgl</strong></span>, and so on.  The <span class="italic"><em>HPGL2</em></span> files
+have enhanced color.  (See the <a class="link" href="Hlp_C_HPGL.html" title="HPGL"><span class="command"><strong>HPGL</strong></span></a> command for
+options.)  Ignores the <em class="replaceable"><code>Ext</code></em> field.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">JPEG</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Creates JPEG files that are named <span class="filename"><strong>Jobname<em class="replaceable"><code>nnn</code></em>.jpg</strong></span>,
+where <em class="replaceable"><code>nnn</code></em> is a numeric value
+that is incremented by one as each additional file is created; that
+is, <span class="filename"><strong>Jobname000.jpg</strong></span>, <span class="filename"><strong>Jobname001.jpg</strong></span>, <span class="filename"><strong>Jobname002.jpg</strong></span>, and so on. Ignores the <em class="replaceable"><code>Ext</code></em> field.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TIFF</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Creates tagged image format files
+that are named <span class="filename"><strong>Jobname<em class="replaceable"><code>nnn</code></em>.tif</strong></span>, where <em class="replaceable"><code>nnn</code></em> is
+a numeric value that is incremented by one as each additional file
+is created; that is, <span class="filename"><strong>Jobname000.tif</strong></span>, <span class="filename"><strong>Jobname001.tif</strong></span>, <span class="filename"><strong>Jobname002.tif</strong></span>, and
+so on. This value for the <em class="replaceable"><code>Fname</code></em> argument
+ignores the <em class="replaceable"><code>Ext</code></em> field. (See the <a class="link" href="Hlp_C_TIFF.html" title="TIFF"><span class="command"><strong>TIFF</strong></span></a> command for options.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">PNG</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Creates PNG (Portable Network Graphics)
+files that are named <span class="filename"><strong>Jobname<em class="replaceable"><code>nnn</code></em>.png</strong></span>, where <em class="replaceable"><code>nnn</code></em> is
+a numeric value that is incremented by one as each additional file
+is created; that is, <span class="filename"><strong>Jobname000.png</strong></span>, <span class="filename"><strong>Jobname001.png</strong></span>, <span class="filename"><strong>Jobname002.png</strong></span>, and
+so on. This value for the <em class="replaceable"><code>Fname</code></em> argument
+ignores the <em class="replaceable"><code>Ext</code></em> field. (See the <a class="link" href="Hlp_C_PNGR.html" title="PNGR"><span class="command"><strong>PNGR</strong></span></a> command for options.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">VRML</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Creates Virtual Reality Meta Language
+files named <span class="filename"><strong>Jobname000.wrl</strong></span> that can be displayed
+on 3-D Internet web browsers.  Ignores the <em class="replaceable"><code>Ext</code></em> and <em class="replaceable"><code>NCPL</code></em> fields.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Option</code></em></b></span></dt><dd><p>Assign a file name extension or specify reverse video
+output:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term"><em class="replaceable"><code>Ext</code></em></b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p> File name
+extension (eight-character maximum).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">REV</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Reverse background/image (black/white)
+colors. Valid with <em class="replaceable"><code>Fname</code></em> = PNG (recommended),
+JPEG, PSCR, TIFF, and HPGL. This option is ignored if a previously
+specified color map table  (<a href="Hlp_C_CMAP.html" class="olink"><span class="command"><strong>/CMAP</strong></span></a> or <a href="Hlp_C_RGB.html" class="olink"><span class="command"><strong>/RGB</strong></span></a>) is in effect.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>VECT</code></em></b></span></dt><dd><p>Specifies raster or vector display mode.  This affects
+area, volume, and element displays, as well as geometric results displays
+such as contour plots.  See the <a href="Hlp_C_DEVICE.html" class="olink"><span class="command"><strong>/DEVICE</strong></span></a> command
+for an alternate way to toggle between raster and vector mode.  Changing <em class="replaceable"><code>VECT</code></em> also resets the <a href="Hlp_C_TYPE_sl.html" class="olink"><span class="command"><strong>/TYPE</strong></span></a> command
+to its default.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Raster display (color filled entities;
+default)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Vector display (outlined entities; i.e.,
+"wireframe")</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>NCPL</code></em></b></span></dt><dd><p>Sets the number of color planes (4 to 8).  Default
+is device-dependent.  <em class="replaceable"><code>NCPL</code></em> is not supported
+by all graphics devices.</p></dd></dl></div></div></div><div class="refsect1" title="Command Default"><a name="s-SHOW.default"></a><h2>Command Default</h2><p>For interactive runs, display is shown on the screen; for batch
+runs, display commands are ignored (graphics file not written).</p></div><div class="refsect1" title="Notes"><a name="s-SHOW.notes"></a><h2>Notes</h2><p>Specifies the device to be used for graphics displays, and specifies
+other graphics display parameters.  Display may be shown at the time
+of generation (for interactive runs at a graphics display terminal)
+or diverted to a file for later processing with the DISPLAY program.
+ Issue <a href="Hlp_C_PSTATUS.html" class="olink"><span class="command"><strong>/PSTATUS</strong></span></a> for display status.</p><p>Batch runs do not have access to the fonts available on your
+system. The Courier and Helvetica font files used for JPEG, PNG and
+TIFF batch output are copyrighted by Adobe Systems Inc. and Digital
+Equipment Corp. Permission to use these trademarks is hereby granted
+only in association with the images described above. Batch run JPEG
+output is produced at the default  quality index value of 75, unless
+specified otherwise. </p><p>Interactive displays default to eight color planes (<em class="replaceable"><code>NCPL</code></em> = 8) for most monitors, while graph file output
+defaults to eight color planes for VRML output, and four color planes
+for PSCR, HPGL, HPGL2, JPEG, PNG, TIFF and FILE33. </p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="s-SHOW.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;Device Options</strong></span></td></tr><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;Redirect Plots&gt;To GRPH File</strong></span></td></tr><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;Redirect Plots&gt;To HPGL File</strong></span></td></tr><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;Redirect Plots&gt;To HPGL2 File</strong></span></td></tr><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;Redirect Plots&gt;To PSCR File</strong></span></td></tr><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;Redirect Plots&gt;To Screen</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:03-04:00"><title>FRQSCL</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_F_TOC.html" title="F Commands"><link rel="prev" href="Hlp_C_FREQ.html" title="FREQ"><link rel="next" href="Hlp_C_FSCALE.html" title="FSCALE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="FRQSCL"><a name="FRQSCL"></a><div class="titlepage"></div><a class="indexterm" name="d0e112880"></a><span class="refentrytitle"><span class="command"><strong>FRQSCL</strong></span></span><div class="refnamediv"><p><span class="command"><strong>FRQSCL</strong></span>, <em class="replaceable"><code>Scaling </code></em><br><b class="refpurpose">Turns on automatic scaling of the entire mass matrix and
+   frequency range for modal analyses.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoludynoptjla070199" title="Table&nbsp;2.51:&nbsp;&nbsp;Dynamic Options"><span class="type">Dynamic Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Scaling </code></em></b></span></dt><dd><p> </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">Off </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Do not use automatic scaling of the mass
+matrix and frequency range.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">On </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use automatic scaling of the mass matrix and
+frequency range.</p></td></tr></tbody></table></div></div></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="d0e112933"></a><h3>Command Default</h3><p>ANSYS will use automatic scaling if appropriate.</p></div></div><div class="refsect1" title="Notes"><a name="d0e112938"></a><h2>Notes</h2><p>This command is available only for modal analyses using the
+   Block Lanczos, PCG Lanczos, Supernode, Subspace, or Unsymmetric mode extraction method
+    (<a class="link" href="Hlp_C_MODOPT.html" title="MODOPT"><span class="command"><strong>MODOPT</strong></span></a>,LANB, LANPCG, SNODE, SUBPS, or UNSYM).</p><p>Use this command to deactivate or force activation of automatic scaling of the entire mass
+      matrix and frequency range for modal analyses where the entire mass matrix is significantly
+      different (that is, orders of magnitude different) than the entire stiffness matrix (for
+      example, due to the particular unit system being used). Where the mass matrix is significantly
+      smaller compared to the stiffness matrix, the eigenvalues will tend to approach very large
+      numbers (&gt;10e12), making the <span>selected</span> mode
+      extraction method less efficient and more likely to miss modes. </p><p>ANSYS uses scaling (if appropriate) by default. However, you can issue <span class="command"><strong>FRQSCL</strong></span>,ON
+to force the entire mass matrix and frequency range to be scaled to bring
+the stiffness and mass matrices closer together in terms of orders of magnitude,
+improving efficiency and reducing the likelihood of missed modes.  The resulting
+eigenvalues are then automatically scaled back to the original system. If
+you are using micro MKS units, where the density is typically very small compared
+to the stiffness, you may want to issue <span class="command"><strong>FRQSCL</strong></span>,ON to force
+scaling on.</p><p>If the stiffness and mass are on the same scale, <span class="command"><strong>FRQSCL</strong></span>,ON
+has no effect.</p><p>This command is not valid and has no effect when used in conjunction
+with the <a class="link" href="Hlp_C_MSAVE.html" title="MSAVE"><span class="command"><strong>MSAVE</strong></span></a>,ON command in a modal analysis with the
+PCG Lanczos mode extraction method.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e112971"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

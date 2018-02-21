@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:24-04:00"><title>*ASK</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_A_TOC.html" title="A Commands"><link rel="prev" href="Hlp_C_ASIFILE.html" title="ASIFILE"><link rel="next" href="Hlp_C_ASKIN.html" title="ASKIN"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="*ASK"><a name="a-ASK"></a><div class="titlepage"></div><a class="indexterm" name="d0e29855"></a><span class="refentrytitle"><a href="Hlp_C_ASK.html" class="olink"><span class="command"><strong>*ASK</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>*ASK</strong></span>, <em class="replaceable"><code>Par</code></em>, <em class="replaceable"><code>Query</code></em>, <em class="replaceable"><code>DVAL</code></em><br><b class="refpurpose">Prompts the user to input a parameter value.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_4.html" title="2.4.&nbsp;APDL Commands"><code class="classname">APDL</code></a>: <a class="link" href="Hlp_C_CH2_4.html#cmdapdlparadefjla070199" title="Table&nbsp;2.18:&nbsp;&nbsp;Parameter Definition"><span class="type">Parameters</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsect1" title="Argument Descriptions"><a name="a-ASK.argdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Par</code></em></b></span></dt><dd><p>An alphanumeric name used to identify the scalar parameter.
+ See <a href="Hlp_C_SET_st.html" class="olink"><span class="command"><strong>*SET</strong></span></a> for name restrictions.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Query</code></em></b></span></dt><dd><p>Text string to be displayed on the next line as the query
+(32 characters maximum).  Characters having special meaning (such as $ ! ,)
+should not be included.</p></dd><dt><span><b class="term"><em class="replaceable"><code>DVAL</code></em></b></span></dt><dd><p>Default value assigned to the parameter if the user issues
+a blank response.  May be a number or character string (up to 8 characters
+enclosed in single quotes).  If a default is not assigned, a blank response
+will delete the parameter.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="a-ASK.notes"></a><h2>Notes</h2><p>Intended primarily for use in macros, the command prints the query (after
+the word <code class="computeroutput">ENTER</code>) on the next line and waits
+for a response.  The response is read from the keyboard, except in batch mode
+[<a href="Hlp_C_BATCH.html" class="olink"><span class="command"><strong>/BATCH</strong></span></a>], when the response(s) must be the next-read input
+line(s).  The response may be a number, a character string (up to 8 characters
+enclosed in single quotes), a parameter (numeric or character) or an expression
+that evaluates to a number.  The scalar parameter is then set to the response
+value.  For example,  <a href="Hlp_C_ASK.html" class="olink"><span class="command"><strong>*ASK</strong></span></a>,NN,PARAMETER NN  will set NN
+to the value entered on the next line (after the prompt <code class="computeroutput">ENTER
+PARAMETER NN</code>).</p><p>The <a href="Hlp_C_ASK.html" class="olink"><span class="command"><strong>*ASK</strong></span></a> command is not written to <span class="filename"><strong>File.LOG</strong></span>,
+ but the responses are written there as follows:  If <a href="Hlp_C_ASK.html" class="olink"><span class="command"><strong>*ASK</strong></span></a> is
+contained in a macro, the response(s) (only) is written to <span class="filename"><strong>File.LOG</strong></span> on
+the line(s) following the macro name.   If not contained in a macro, the response
+is written to <span class="filename"><strong>File.LOG</strong></span> as a parameter assignment (i.e., <em class="replaceable"><code>Par</code></em> =
+"user-response").</p><p>If used within a do-loop that is executed interactively, <a href="Hlp_C_ASK.html" class="olink"><span class="command"><strong>*ASK</strong></span></a> should
+be contained in a macro.  If not contained in a macro, <a href="Hlp_C_ASK.html" class="olink"><span class="command"><strong>*ASK</strong></span></a> will
+still query the user as intended, but the resulting log file will <span class="italic"><em>not</em></span>  reproduce the effects of the original run.</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e29976"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

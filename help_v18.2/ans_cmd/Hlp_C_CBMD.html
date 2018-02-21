@@ -1,0 +1,40 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:28-04:00"><title>CBMD</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_C_CTOC.html" title="C Commands"><link rel="prev" href="Hlp_C_CBDOF.html" title="CBDOF"><link rel="next" href="Hlp_C_CBMX.html" title="CBMX"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="CBMD"><a name="CBMD"></a><div class="titlepage"></div><a class="indexterm" name="d0e41323"></a><span class="refentrytitle">
+<span class="command"><strong>CBMD</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>CBMD</strong></span>, <em class="replaceable"><code>ROW</code></em>, <em class="replaceable"><code>C<sub>(R)(R)</sub>
+</code></em>, <em class="replaceable"><code>C<sub>(R)(R+1)</sub>
+</code></em>, <em class="replaceable"><code>C<sub>(R)(R+2)</sub>
+</code></em>, <em class="replaceable"><code>C<sub>(R)(R+3)</sub>
+</code></em>, <em class="replaceable"><code>C<sub>(R)(R+4)</sub>
+</code></em>, <em class="replaceable"><code>C<sub>(R)(R+5)</sub>
+</code></em>
+<br><b class="refpurpose">Specifies preintegrated section mass matrix for composite-beam
+sections.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7crosssectldm061600" title="Table&nbsp;2.45:&nbsp;&nbsp;Sections"><span class="type">Cross Sections</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="CBMD.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>ROW</code></em>
+</b></span></dt><dd><p>Row number of the matrix.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>C<sub>(R)(R)</sub>
+</code></em>, .
+. . , <em class="replaceable"><code>C<sub>(R)(R+5)</sub>
+</code></em>
+</b></span></dt><dd><p>Upper triangle of the cross-section mass matrix <span class="bold"><strong>[C]</strong></span>.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="d0e41426"></a><h2>Notes</h2><p>With a unit beam length, the section mass matrix relates the
+resultant forces and torques to accelerations and angular accelerations
+as follows (applicable to the local element coordinate system):</p><div class="informalequation"><a name="eq4767f299-5e40-487e-a551-62877abed08a"></a><div><img src="graphics/eq4767f299-5e40-487e-a551-62877abed08a.svg"></div></div><p>The <span class="command"><strong>CBMD</strong></span> command, one of several <a href="../ans_str/Hlp_G_PREBEAMSECT_5.html#strprebeamdef" class="olink">composite beam section
+commands</a>, specifies the section mass matrix (submatrix
+[<span class="bold"><strong>
+<em class="replaceable"><code>C</code></em>
+</strong></span>] data)
+for a composite beam section. The section data defined is associated
+with the section most recently defined (<a class="link" href="Hlp_C_SECTYPE.html" title="SECTYPE"><span class="command"><strong>SECTYPE</strong></span></a>) at the specified temperature (<a class="link" href="Hlp_C_CBTMP.html" title="CBTMP"><span class="command"><strong>CBTMP</strong></span></a>).</p><p>Unspecified values default to zero.</p><p>Related commands are <a class="link" href="Hlp_C_CBTMP.html" title="CBTMP"><span class="command"><strong>CBTMP</strong></span></a>, <a class="link" href="Hlp_C_CBTE.html" title="CBTE"><span class="command"><strong>CBTE</strong></span></a>, and <a class="link" href="Hlp_C_CBMX.html" title="CBMX"><span class="command"><strong>CBMX</strong></span></a>.</p><p>For complete information, see <a href="../ans_str/Hlp_G_PREBEAMSECT_5.html" class="olink">Using Preintegrated Composite Beam Sections</a>.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e41475"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Beam&gt;Composite Sections</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

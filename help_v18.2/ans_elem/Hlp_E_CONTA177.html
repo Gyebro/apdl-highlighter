@@ -1,0 +1,629 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:36:25-04:00"><title>CONTA177</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_CONTA176.html" title="CONTA176"><link rel="next" href="Hlp_E_CONTA178.html" title="CONTA178"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="CONTA177"><a name="CONTA177"></a><div class="titlepage"></div><a class="indexterm" name="d0e107780"></a><span class="refentrytitle">
+<span class="structname">CONTA177</span>
+</span><div class="refnamediv"><p><br><b class="refpurpose">3-D Line-to-Surface
+Contact</b><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  DesSpc | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+<div class=""><div class="application"><span class="application">
+<a class="link" href="Hlp_E_CONTA177.html#conta177restrict" title="CONTA177 Product Restrictions">Product Restrictions</a>
+</span></div></div>
+</div></p></div><div class="refsect1" title="CONTA177 Element Description"><a name="conta177descjjw"></a><h2>CONTA177 Element Description</h2><p>
+<span class="structname">CONTA177</span> is
+used to represent contact and sliding between 3-D target surfaces
+and a deformable line segment, defined by this element. The element
+is applicable to 3-D beam-to-surface, 3-D shell edge-to-surface, and
+3-D beam-to-beam (or edge-to-edge) structural contact analyses. It
+can be used for both pair-based contact and general contact.</p><p>This element is located on the surfaces
+of 3-D beam or pipe elements with or without midside nodes (such as <a class="link" href="Hlp_E_BEAM188.html" title="BEAM188"><span class="structname">BEAM188</span></a>, <a class="link" href="Hlp_E_BEAM189.html" title="BEAM189"><span class="structname">BEAM189</span></a>, <a class="link" href="Hlp_E_PIPE288.html" title="PIPE288"><span class="structname">PIPE288</span></a>, <a class="link" href="Hlp_E_PIPE289.html" title="PIPE289"><span class="structname">PIPE289</span></a>, and <a class="link" href="Hlp_E_ELBOW290.html" title="ELBOW290"><span class="structname">ELBOW290</span></a>). It can also be located on feature edges of
+3-D solid elements and perimeter edges of 3-D shell elements, with
+or without midside nodes (such as <a class="link" href="Hlp_E_SHELL181.html" title="SHELL181"><span class="structname">SHELL181</span></a> and <a class="link" href="Hlp_E_SHELL281.html" title="SHELL281"><span class="structname">SHELL281</span></a>). Contact occurs when the
+element surface penetrates an associated target surface. </p><p>In the case of pair-based contact, the
+target surface is defined by the 3-D target element type, <a class="link" href="Hlp_E_TARGE170.html" title="TARGE170"><span class="structname">TARGE170</span></a>. In the case of general contact, the target
+surface can be defined by <a class="link" href="Hlp_E_CONTA173.html" title="CONTA173"><span class="structname">CONTA173</span></a> and/or <a class="link" href="Hlp_E_CONTA174.html" title="CONTA174"><span class="structname">CONTA174</span></a> elements (for deformable surfaces), CONTA177
+elements (for 3-D beams and 3-D edges), or <a class="link" href="Hlp_E_TARGE170.html" title="TARGE170"><span class="structname">TARGE170</span></a> elements (for rigid bodies only). </p><p>Coulomb friction, shear stress friction, user-defined friction
+with the <code class="function">USERFRIC</code> subroutine, and user-defined
+contact interaction with the <code class="function">USERINTER</code> subroutine
+are allowed. This element also allows separation of bonded contact
+to simulate interface delamination. </p><p>See <a href="../ans_thry/thy_el177.html" class="olink">CONTA177</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for
+   more details about this element. The line-to-line contact element,
+    <a class="link" href="Hlp_E_CONTA176.html" title="CONTA176"><span class="structname">CONTA176</span></a>, is also available to model beam-to-beam contact. </p><div class="figure"><a name="conta177.fig1"></a><p class="title"><b>Figure&nbsp;177.1:&nbsp;&nbsp;CONTA177 Geometry</b></p><div class="figure-contents"><div class="informaltable"><table border="0" width="95%"><colgroup><col width="384" class="col1"><col width="192" class="col2"></colgroup><tbody><tr><td>
+<div><img src="graphics/gelem177-1.svg" alt="CONTA177 Geometry"></div>
+</td><td valign="middle">
+<div><img src="graphics/gelem177-1a.svg" alt="CONTA177 Geometry"></div>
+</td></tr></tbody></table></div></div></div><br class="figure-break"></div><div class="refsect1" title="CONTA177 Input Data"><a name="conta177inputdata"></a><h2>CONTA177 Input Data</h2><p>The geometry and node locations are shown in <a class="xref" href="Hlp_E_CONTA177.html#conta177.fig1" title="Figure&nbsp;177.1:&nbsp;&nbsp;CONTA177 Geometry">Figure&nbsp;177.1:&nbsp;CONTA177 Geometry</a>. The element is defined by two nodes (if
+the underlying beam or shell element does not have a midside node)
+or three nodes (if the underlying beam or shell element has a midside
+node). The element x-axis is along the I-J line of the element.  Correct
+node ordering of the contact element is critical for proper detection
+of contact. The nodes must be ordered in a sequence that defines a
+continuous line.</p><p>Four different scenarios can be modelled by <span class="structname">CONTA177</span>:</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Contact between one beam (or edge) and the surface of a solid or shell</p></li><li class="listitem"><p>Internal contact where one beam (or pipe) slides inside another hollow beam (or pipe);
+      see <a class="xref" href="Hlp_E_CONTA177.html#conta177_beamslide" title="Figure&nbsp;177.2:&nbsp;&nbsp;Beam Sliding Inside a Hollow Beam">Figure&nbsp;177.2:&nbsp;Beam Sliding Inside a Hollow Beam</a>
+     </p></li><li class="listitem"><p>External contact between two beams (or edges) that lie next to each other and are roughly
+      parallel; see <a class="xref" href="Hlp_E_CONTA177.html#conta177_beampara" title="Figure&nbsp;177.3:&nbsp;&nbsp;Parallel Beams in Contact">Figure&nbsp;177.3:&nbsp;Parallel Beams in Contact</a></p></li><li class="listitem"><p>External contact between two beams (or edges) that cross; see <a class="xref" href="Hlp_E_CONTA177.html#conta177_beamcross" title="Figure&nbsp;177.4:&nbsp;&nbsp;Crossing Beams in Contact">Figure&nbsp;177.4:&nbsp;Crossing Beams in Contact</a></p></li></ol></div><p>
+</p><p>KEYOPT(3) controls which of the above scenarios
+are allowed for the element type, and also controls the contact model
+used (force-based or traction-based):</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Use KEYOPT(3) = 0 for the first three scenarios. The contact condition is only checked at
+      contact nodes. The program reports contact force (contact force-based model).</p></li><li class="listitem"><p>Use KEYOPT(3) = 1 for the first three scenarios. The contact condition is only checked at
+      contact nodes. The program reports contact pressure (contact traction-based model).</p></li><li class="listitem"><p>Use KEYOPT(3) = 2 for all scenarios. The contact condition is only checked at contact
+      nodes for the first three scenarios, and on an intersection along the beams for the fourth
+      scenario. The program reports contact pressure (contact traction-based model).</p></li><li class="listitem"><p>Use KEYOPT(3) = 3 for the fourth scenario. The contact condition is only checked on an
+      intersection along the beams. The program reports contact pressure (contact traction-based
+      model).</p></li><li class="listitem"><p>Use KEYOPT(3) = 4 for the fourth scenario. The contact condition is only checked on an
+      intersection along the beams. The program reports contact force (contact force-based
+      model).</p></li></ul></div><p>
+</p><p>The units for certain real constants (FKN, FKT, TNOP) and postprocessing items (PRES, TAUR,
+   TAUS, SFRIC, and so on) vary by a factor of AREA, depending on whether the contact force-based
+   model (KEYOPT(3) = <span>0 or 4</span>) or the contact traction-based
+   model (KEYOPT(3) = 1, 2, or 3) is specified. See the <a class="link" href="Hlp_E_CONTA177.html#rc177" title="Table&nbsp;177.1:&nbsp;&nbsp;CONTA177 Real Constants">real constant
+    table</a> and <a class="link" href="Hlp_E_CONTA177.html#conta177eloutput" title="Table&nbsp;177.2:&nbsp;&nbsp;CONTA177 Element Output Definitions">output definitions table</a> for details.
+   For more information on using KEYOPT(3) with <span class="structname">CONTA177</span>, see <a href="../ans_ctec/cteclinesurfanal.html#ctec177fknfkt" class="olink">KEYOPT(3)</a> in the <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a>.</p><div class="figure"><a name="conta177_beamslide"></a><p class="title"><b>Figure&nbsp;177.2:&nbsp;&nbsp;Beam Sliding Inside a Hollow Beam</b></p><div class="figure-contents"><div><img src="graphics/gelem177-2.svg" alt="Beam Sliding Inside a Hollow Beam"></div></div></div><br class="figure-break"><div class="figure"><a name="conta177_beampara"></a><p class="title"><b>Figure&nbsp;177.3:&nbsp;&nbsp;Parallel Beams in Contact</b></p><div class="figure-contents"><div><img src="graphics/gelem177-3.svg" alt="Parallel Beams in Contact"></div></div></div><br class="figure-break"><div class="figure"><a name="conta177_beamcross"></a><p class="title"><b>Figure&nbsp;177.4:&nbsp;&nbsp;Crossing Beams in Contact</b></p><div class="figure-contents"><div><img src="graphics/gelem177-4.svg" alt="Crossing Beams in Contact"></div></div></div><br class="figure-break"><h4><a name="d0e107986"></a>Pair-Based Contact versus General Contact</h4><p>There are two methods to define a contact interaction: the pair-based
+contact definition and the general contact definition. Both contact
+definitions can exist in the same model. <span class="structname">CONTA177</span> can be used in either type of contact definition.</p><p>The pair-based contact definition is usually more efficient
+and more robust than the general contact definition; it supports more
+options and specific contact features. </p><p>
+<span class="bold"><strong>
+<span class="italic"><em>Pair-Based Contact</em></span>
+</strong></span>
+</p><p>In a <a href="../ans_ctec/Hlp_ctec_surtsur.html" class="olink">pair-based
+contact definition</a>, the 3-D line contact elements (<span class="structname">CONTA177</span>) are associated with 3-D target segment elements
+(<a class="link" href="Hlp_E_TARGE170.html" title="TARGE170"><span class="structname">TARGE170</span></a>) via a shared real constant set.
+The program looks for contact only between contact and target surfaces
+with the same real constant set ID (which is greater than zero). The
+material ID associated with the contact element is used to specify
+interaction properties (such as friction coefficient) defined by <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> or <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> commands. </p><p>If more than one target surface will make contact with the same
+boundary of line elements, you must define several contact elements
+that share the same geometry but relate to separate targets (targets
+which have different real constant numbers). Alternatively, you can
+combine several target surfaces into one (that is, multiple targets
+sharing the same real constant numbers). See <a href="../ans_ctec/Hlp_ctec_idpairs.html" class="olink">Identifying Contact Pairs</a> in the <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a> for more information.</p><p>For rigid-flexible and flexible-flexible contact, one of the
+deformable <span class="quote">"<span class="quote">surfaces</span>"</span> (beam or shell edge) must be represented
+by a contact surface. See <a href="../ans_ctec/Hlp_ctec_dessurf.html" class="olink">Designating Contact and Target Surfaces</a> in the <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a> for more information. </p><p>See <a href="../ans_ctec/Hlp_ctec_defsurf.html#strgent9jla072099" class="olink">Generating Contact Elements</a> in the <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a> for more information on generating elements
+automatically using the <a href="../ans_cmd/Hlp_C_ESURF.html" class="olink"><span class="command"><strong>ESURF</strong></span></a> command.</p><p>
+<span class="bold"><strong>
+<span class="italic"><em>General Contact</em></span>
+</strong></span>
+</p><p>In a <a href="../ans_ctec/ctec_gencont.html" class="olink">general
+    contact definition</a>, the general contact surfaces are generated automatically by the
+    <a href="../ans_cmd/Hlp_C_GCGEN.html" class="olink"><span class="command"><strong>GCGEN</strong></span></a> command based on physical parts and geometric shapes in the model. The
+   program overlays contact surface elements (<a class="link" href="Hlp_E_CONTA174.html" title="CONTA174"><span class="structname">CONTA174</span></a>) on 3-D deformable
+   bodies (on both lower- and higher-order elements); 3-D contact line elements
+    (<span class="structname">CONTA177</span>) on 3-D beams, on feature edges of 3-D deformable bodies, and
+   on the perimeter edges of shell structures; and vertex-to-surface elements
+    (<a class="link" href="Hlp_E_CONTA175.html" title="CONTA175"><span class="structname">CONTA175</span></a>) on convex corners of 3-D solid bodies and/or shell
+   structures. The general contact definition may also contain target elements
+    (<a class="link" href="Hlp_E_TARGE170.html" title="TARGE170"><span class="structname">TARGE170</span></a>) overlaid on the surfaces of standalone rigid bodies and
+   lower-order contact surface elements (<a class="link" href="Hlp_E_CONTA173.html" title="CONTA173"><span class="structname">CONTA173</span></a>) overlaid on 3-D
+   deformable bodies.</p><p>The <a href="../ans_cmd/Hlp_C_GCGEN.html" class="olink"><span class="command"><strong>GCGEN</strong></span></a> command automatically assigns section
+IDs and element type IDs for each general contact surface. As a result,
+each general contact surface consists of contact or target elements
+that are easily identified by a unique section ID number. The real
+constant ID and material ID are always set to zero for contact and
+target elements in the general contact definition. </p><p>The program looks for contact interaction among all surface
+and within each surface. You can further control contact interactions
+between specific surfaces that could potentially be in contact by
+using the <a href="../ans_cmd/Hlp_C_GCDEF.html" class="olink"><span class="command"><strong>GCDEF</strong></span></a> command. The material ID and real
+constant ID input on <a href="../ans_cmd/Hlp_C_GCDEF.html" class="olink"><span class="command"><strong>GCDEF</strong></span></a> identify interface properties
+(defined by <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> or <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> commands)
+and contact control parameters (defined by the <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) for a specific contact interaction. Unlike a pair-based
+contact definition, the contact and target elements in the general
+contact definition are not associated with these material and real
+constant ID numbers.</p><p>If both pair-based contact and general contact are defined in
+a model, the pair-based contact definitions are preserved, and the
+general contact definition automatically excludes overlapping interactions
+wherever pair-based contact exists.</p><p>Some element key options are not used or are set automatically
+for general contact. See the individual KEYOPT descriptions in <a class="xref" href="Hlp_E_CONTA177.html#conta177inputsum" title="CONTA177 Input Summary">"CONTA177 Input Summary"</a> for details.</p><h4><a name="d0e108124"></a>Contact Radius and Target Radius</h4><p>To model beam-to-beam or edge-to-edge 
+contact, the contact/target surface is assumed to be the surface of
+a cylinder. For a general beam cross section other than the circular
+section, you need to estimate an equivalent circular radius. Follow
+these guidelines to define the equivalent radius:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Determine the smallest cross section along the beam
+axis.</p></li><li class="listitem"><p>Determine the largest circle embedded in that cross
+section.</p></li></ul></div><p>
+</p><div class="figure"><a name="conta177.fig2"></a><p class="title"><b>Figure&nbsp;177.5:&nbsp;&nbsp;Equivalent Circular Cross Section</b></p><div class="figure-contents"><div><img src="graphics/gelem176-2.svg" alt="Equivalent Circular Cross Section"></div></div></div><br class="figure-break"><p>By default, the program models contact between exterior surfaces of two
+   cylindrical beams for both pair-based and general contact. However, defining contact and target
+   radii differs for the two contact methods.</p><p>In a pair-based contact definition, the associated
+    <a class="link" href="Hlp_E_TARGE170.html" title="TARGE170"><span class="structname">TARGE170</span></a> target segment elements are either LINE or PARA segment types.
+   Use the first real constant, R1, to define the equivalent radius on the target side, and use the
+   second real constant, R2, to define the equivalent radius on the contact side. To specify
+   internal beam-to-beam contact (a beam sliding inside a hollow beam, or pipe sliding inside
+   another pipe), set KEYOPT(9) = 1 for the associated <a class="link" href="Hlp_E_TARGE170.html" title="TARGE170"><span class="structname">TARGE170</span></a> element
+   type and input R1 as the inner radius of the outer beam (see <a class="xref" href="Hlp_E_CONTA177.html#conta177_beamslide" title="Figure&nbsp;177.2:&nbsp;&nbsp;Beam Sliding Inside a Hollow Beam">Figure&nbsp;177.2:&nbsp;Beam Sliding Inside a Hollow Beam</a>).</p><p>In a general contact definition, the equivalent beam radius is specified via
+    <a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a> and <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> commands as shown below:</p><pre class="programlisting">SECTYPE,<em class="replaceable"><code>SECID</code></em>,CONTACT,RADIUS   ! Set Type = CONTACT and Subtype = RADIUS for user-defined contact radius
+SECDATA,<em class="replaceable"><code>VAL1</code></em>,<em class="replaceable"><code>VAL2</code></em>,<em class="replaceable"><code>VAL3</code></em>         ! <em class="replaceable"><code>VAL1</code></em> = equivalent outer radius (external beam-to-beam contact)
+                               ! <em class="replaceable"><code>VAL2</code></em> = equivalent inner radius; also set VAL3 = 1 for internal beam-to-beam
+</pre><p>To model internal beam-to-beam contact in a general contact definition,
+   specify <em class="replaceable"><code>VAL3</code></em> = 1 and input <em class="replaceable"><code>VAL2</code></em> equal to
+   the inner radius of the outer beam.</p><p>For the case of internal contact, the inner beam should usually be
+   considered the contact surface and the outer beam should be the target surface. The inner beam
+   can be considered as the target surface only when the inner beam is much stiffer than the outer
+   beam.</p><p>Contact is detected when two circular beams touch or overlap each
+   other. The non-penetration condition for beams with a circular cross section can be defined as
+   follows.</p><p>For internal contact:</p><div class="informalequation"><a name="eqelem177-1"></a><div><img src="graphics/eq69611eff-921d-4345-a097-ad62af9dcd49.svg"></div></div><p>and for external contact:</p><div class="informalequation"><a name="eqelem177-2"></a><div><img src="graphics/eq5f19c91a-e3e9-450f-acfc-5db5f0aa4fe1.svg"></div></div><p>where r<sub>c</sub> and r<sub>t</sub> are the
+   radii of the cross sections of the beams on the contact and target sides, respectively; and d is
+   the minimal distance between the two beams which also determines the contact normal direction
+   (see <a class="xref" href="Hlp_E_CONTA177.html#conta177_beamcross" title="Figure&nbsp;177.4:&nbsp;&nbsp;Crossing Beams in Contact">Figure&nbsp;177.4:&nbsp;Crossing Beams in Contact</a>). Contact occurs for negative values of g.</p><p>For beam-to-beam contact modeled with either pair-based contact or
+   general contact, if the contact radius and/or target radius are not defined, the program
+   automatically calculates the equivalent radius for each individual contact/target element based
+   on the associated geometry of underlying elements. As a result, the equivalent radius may vary
+   within a contact pair or within a general contact surface.</p><p>For rigid targets, the program cannot compute the target radius since
+   underlying elements do not exist. In this case you must explicitly specify the target
+   radius.</p><h4><a name="d0e108218"></a>Friction</h4><p>
+<span class="structname">CONTA177</span> supports isotropic and orthotropic
+Coulomb friction. For isotropic friction, specify a single coefficient
+of friction, MU, using either <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command input
+(recommended) or the <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command. For orthotropic
+friction, specify two coefficients of friction, MU1 and MU2, in two
+principal directions using <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command input. (See <a href="../ans_mat/contfriction.html" class="olink">Contact Friction in the <span class="olinkdocname">Mechanical APDL Material Reference</span></a> for more information.) </p><p>For isotropic friction, local element
+coordinates based on the nodal connectivity are used as principal
+directions. In the case of two crossing beams in contact, the first
+principal direction is defined by 1/2(<span class="bold"><strong>t<sub>1</sub>
+</strong></span> + <span class="bold"><strong>t<sub>2</sub>
+</strong></span>). The first vector, <span class="bold"><strong>t<sub>1</sub>
+</strong></span>, points from the first contact node to the
+second contact node, and the second vector, <span class="bold"><strong>t<sub>2</sub>
+</strong></span>, points from the first target
+node to the second target node. In all other cases, the first principal
+direction points from node I to node J, and the second principal direction
+is defined by taking a cross product of the first principal direction
+and the contact normal.</p><p>For orthotropic friction, the principal directions are determined
+as follows. The global coordinate system is used by default, or you
+may define a local element coordinate system with the <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a> command. The first principal direction is defined by projecting
+the first direction of the chosen coordinate system onto the contact
+element. The second principal direction is defined by taking a cross
+product of the first principal direction and the contact normal. These
+directions also follow the rigid body rotation of the contact element
+to correctly model the directional dependence of friction. Be careful
+to choose the coordinate system (global or local) so that the first
+direction of that system is within 45&deg; of the tangent to the contact
+surface. </p><p>If you want to set the coordinate directions for isotropic friction
+(to the global Cartesian system or another system via <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a>), you can define orthotropic friction and set MU1 = MU2.</p><p>To define a coefficient of friction for isotropic or orthotropic
+friction that is dependent on temperature, time, normal pressure,
+sliding distance, or sliding relative velocity, use the <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink"><span class="command"><strong>TBFIELD</strong></span></a> command along with <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,FRIC. See <a href="../ans_mat/contfriction.html" class="olink">Contact Friction in the <span class="olinkdocname">Mechanical APDL Material Reference</span></a> for more information.</p><p>To implement a user-defined friction model, use the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,FRIC command with
+    <em class="replaceable"><code>TBOPT</code></em> = USER to specify friction properties and write a
+    <code class="function">USERFRIC</code> subroutine to compute friction forces. See <a href="../ans_ctec/ctecuserinterfacial.html#ctecuserfriclaws" class="olink">Writing Your Own Friction Law (<code class="function">USERFRIC</code>) in the <span class="olinkdocname">Mechanical APDL Contact Technology Guide</span></a> for more
+   information on how to use this feature. See also the <a href="../ans_prog/Hlp_P_UPFTOC.html" class="olink">Guide to User-Programmable Features in the <span class="olinkdocname">Mechanical APDL Programmer's Reference</span></a> for a detailed description of the <code class="function">USERFRIC</code>
+   subroutine.</p><h4><a name="d0e108308"></a>Other Input</h4><p>The contact interaction subroutine <code class="function">USERINTER</code> is available for
+   user-defined interface interactions, including interactions in the normal and tangential
+   directions. See <a href="../ans_ctec/ctecuserinterfacial.html#ctecuserinteract" class="olink">Defining Your Own Contact Interaction (<code class="function">USERINTER</code>) in the <span class="olinkdocname">Mechanical APDL Contact Technology Guide</span></a> for more information on how to use this feature. See also the
+    <a href="../ans_prog/Hlp_P_UPFTOC.html" class="olink">Guide to User-Programmable Features in the <span class="olinkdocname">Mechanical APDL Programmer's Reference</span></a> for a detailed description of
+   the <code class="function">USERINTER</code> subroutine.</p><p>To model proper momentum transfer and energy balance between
+contact and target surfaces, impact constraints should be used in
+transient dynamic analysis. See the description of KEYOPT(7) below
+and the <a href="../ans_thry/thy_el174.html" class="olink">contact
+element discussion</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for details.</p><p>To model separation of bonded contact with KEYOPT(12) = 2, 3,
+4, 5, or 6, use the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command with the CZM label.
+See <a href="../ans_ctec/ctec_debonding.html" class="olink">Debonding</a> in the <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a> for more information.</p><p>See the <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a> for a detailed discussion on contact and using the
+   contact elements. <a href="../ans_ctec/ctecbeambeamcont.html" class="olink">3-D Beam-to-Beam Contact (Pair-Based)</a> and <a href="../ans_ctec/cteclinesurfcont.html" class="olink">Line-to-Surface Contact (Pair-Based)</a> discuss <span class="structname">CONTA177</span> specifically, including
+   the use of real constants and KEYOPTs.</p><p>The following table summarizes the element input. <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a> gives a general description of element input.</p><div class="refsect2" title="CONTA177 Input Summary"><a name="conta177inputsum"></a><h3>CONTA177 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J, (K)</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>UX, UY, UZ</td></tr></table></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>R1, R2, FKN, FTOLN, ICONT, PINB,</td></tr><tr><td>PMAX, PMIN, TAUMAX, CNOF, FKOP, FKT,</td></tr><tr><td>COHE, (Blank), (Blank), (Blank), (Blank), (Blank),</td></tr><tr><td>(Blank), (Blank), FACT, DC, SLTO, TNOP,</td></tr><tr><td>TOLS, (Blank),  (Blank), (Blank), COR, STRM</td></tr><tr><td>FDMN, FDMT, , , TBND</td></tr><tr><td>See <a class="xref" href="Hlp_E_CONTA177.html#rc177" title="Table&nbsp;177.1:&nbsp;&nbsp;CONTA177 Real Constants">Table&nbsp;177.1:&nbsp;CONTA177 Real Constants</a> for descriptions of the real constants.</td></tr></table></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command: See <a class="xref" href="elem_matsupp.html" title="Chapter&nbsp;4:&nbsp;Element Support for Material Models">Element Support for Material Models</a> for this element.</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: MU, DMPR</td></tr></table></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth
+and death</a>
+</td></tr><tr><td>
+<a href="../ans_ctec/ctec_debonding.html" class="olink">Debonding</a>
+</td></tr><tr><td>
+<a href="../ans_mat/contfriction.html#isofriction" class="olink">Isotropic
+friction</a>
+</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink">Large deflection</a>
+</td></tr><tr><td>
+<a href="../ans_str/strlinperturb.html" class="olink">Linear
+perturbation</a>
+</td></tr><tr><td>
+<a href="../ans_str/Hlp_G_STRnlbasin.html" class="olink">Nonlinearity</a>
+</td></tr><tr><td>
+<a href="../ans_mat/contfriction.html#orthofriction" class="olink">Orthotropic
+friction</a>
+</td></tr><tr><td>
+<a href="../ans_ctec/ctecuserinterfacial.html#ctecuserinteract" class="olink">User-defined
+contact interaction</a>
+</td></tr><tr><td>
+<a href="../ans_ctec/ctecuserinterfacial.html#ctecuserfriclaws" class="olink">User-defined
+friction</a>
+</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink">Section definition</a> for the <a href="../ans_ctec/ctec_gcgeomcor.html" class="olink">equivalent beam/edge
+radius</a>.</td></tr></table></dd><dt><span><b class="term">KEYOPTs</b></span></dt><dd><p>Presented below is a list of KEYOPTS available for
+this element. Included are links to sections in the <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a> where
+more information is available on a particular topic.</p></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Selects degrees of freedom. Currently, the default
+(UX, UY, UZ) is the only valid option:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>UX, UY, UZ</p></dd></dl></div></div></dd><dt><span><b class="term">
+<a href="../ans_ctec/Hlp_ctec_realkey.html#stralgo2jla072099" class="olink">KEYOPT(2)</a>
+</b></span></dt><dd><p>Contact algorithm:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Augmented Lagrangian (default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Penalty function</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Multipoint constraint
+(MPC); see <a href="../ans_ctec/Hlp_ctec_mpcassm.html" class="olink">Multipoint Constraints and Assemblies</a> in the <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a> for more information</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Lagrange multiplier on
+contact normal and penalty on tangent</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>Pure Lagrange multiplier
+on contact normal and tangent</p></dd></dl></div></div><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;For general contact, the <a href="../ans_cmd/Hlp_C_GCGEN.html" class="olink"><span class="command"><strong>GCGEN</strong></span></a> command
+automatically sets KEYOPT(2) = 1 (penalty function).</p><hr></div></dd><dt><span><b class="term">
+<a href="../ans_ctec/cteclinesurfanal.html#ctec177fknfkt" class="olink">KEYOPT(3)</a>
+</b></span></dt><dd><p>Contact model:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Exclude crossing beam-to-beam
+contact (contact force-based model) (default)</p></dd></dl></div></div><div><div class="variablelist"><dl><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Exclude crossing beam-to-beam
+contact (contact traction-based model)</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Include all scenarios: beam/edge to surface contact, parallel beam-to-beam contact,
+          and crossing beam-to-beam contact (contact traction-based model)</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Crossing beam-to-beam contact (contact traction-based model)</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>Crossing beam-to-beam contact (contact force-based model)</p></dd></dl></div></div><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;For general contact, the <a href="../ans_cmd/Hlp_C_GCGEN.html" class="olink"><span class="command"><strong>GCGEN</strong></span></a> command
+automatically sets KEYOPT(3) = 2.</p><hr></div></dd><dt><span><b class="term">
+<a href="../ans_ctec/cteclinesurfanal.html#ctec177key4" class="olink">KEYOPT(4)</a>
+</b></span></dt><dd><p>Type of surface-based constraint (see <a href="../ans_ctec/Hlp_ctec_surfcon.html" class="olink">Surface-based Constraints</a> for more information):</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Rigid surface constraint</p></dd></dl></div></div><div><div class="variablelist"><dl><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Force-distributed constraint</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Coupling constraint</p></dd></dl></div></div><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;KEYOPT(4) is not supported for contact elements used in
+a general contact definition.</p><hr></div></dd><dt><span><b class="term">
+<a href="../ans_ctec/Hlp_ctec_realkey.html#stradjin5jla072099" class="olink">KEYOPT(5)</a>
+</b></span></dt><dd><p>CNOF/ICONT Automated adjustment:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>No automated adjustment</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Close gap with auto CNOF</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Reduce penetration with
+auto CNOF</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Close gap/reduce penetration
+with auto CNOF</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>Auto ICONT</p></dd></dl></div></div></dd><dt><span><b class="term">
+<a href="../ans_ctec/Hlp_ctec_realkey.html#usingkey6" class="olink">KEYOPT(6)</a>
+</b></span></dt><dd><p>Contact stiffness variation (used to enhance stiffness updating when
+       KEYOPT(10) &#8800; 1):</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Use default range for
+stiffness updating</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Make a nominal refinement
+to the allowable stiffness range</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Make an aggressive refinement
+to the allowable stiffness range</p></dd></dl></div></div></dd><dt><span><b class="term">
+<a href="../ans_ctec/Hlp_ctec_realkey.html#strustst2jla072099" class="olink">KEYOPT(7)</a>
+</b></span></dt><dd><p>Element level time incrementation control / impact
+constraints:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>No control</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Automatic bisection of
+increment</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Change in contact predictions
+are made to maintain a reasonable time/load increment</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Change in contact predictions
+made to achieve the minimum time/load increment whenever a change
+in contact status occurs</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>Use impact constraints
+for standard or rough contact (KEYOPT(12) = 0 or 1) in a transient
+dynamic analysis with automatic adjustment of time increment</p></dd></dl></div></div><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;KEYOPT(7) = 4 is not supported for contact elements used
+in a general contact definition.</p><hr></div></dd><dt><span><b class="term"><a href="../ans_ctec/Hlp_ctec_dessurf.html#axFIr3aalcd" class="olink">KEYOPT(8)</a>
+     </b></span></dt><dd><p>Asymmetric contact selection for beam-to-beam (edge-to-edge) contact:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>No action</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>The program internally selects which asymmetric contact pair is used at the solution
+          stage (used only when symmetry contact is defined)</p></dd></dl></div></div><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;KEYOPT(8) is ignored for contact elements used in a general contact definition.
+        Instead, use the command <a href="../ans_cmd/Hlp_C_GCDEF.html" class="olink"><span class="command"><strong>GCDEF</strong></span></a>,AUTO to enable auto-asymmetric pairing
+        logic.</p><hr></div></dd><dt><span><b class="term">
+<a href="../ans_ctec/Hlp_ctec_realkey.html#stradjin5jla072099" class="olink">KEYOPT(9)</a>
+</b></span></dt><dd><p>Effect of initial penetration or gap:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Include both initial geometrical
+penetration or gap and offset</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Exclude both initial geometrical
+penetration or gap and offset</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Include both initial geometrical
+penetration or gap and offset, but with ramped effects</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Include offset only (exclude
+initial geometrical penetration or gap)</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>Include offset only (exclude
+initial geometrical penetration or gap), but with ramped effects</p></dd><dt><span><b class="term">5&nbsp;--&nbsp;</b></span></dt><dd><p>Include offset only (exclude
+initial geometrical penetration or gap) regardless of the initial
+contact status (near-field or closed) </p></dd><dt><span><b class="term">6&nbsp;--&nbsp;</b></span></dt><dd><p>Include offset only (exclude
+initial geometrical penetration or gap), but with ramped effects regardless
+of the initial contact status (near-field or closed)</p></dd></dl></div></div><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;The effects of KEYOPT(9) are dependent on settings for
+other KEYOPTs. The indicated initial gap effect is considered only
+if KEYOPT(12) = 4 or 5. See the discussion on <a href="../ans_ctec/Hlp_ctec_realkey.html#cteckeyopt9" class="olink">using KEYOPT(9)</a> in the <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a> for more information.</p><hr></div><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;KEYOPT(9) is not supported for contact elements used in
+a general contact definition. Instead, use the command <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a>,,<em class="replaceable"><code>C1</code></em> in conjunction with <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,INTER to specify the effect of initial penetration or gap. If <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a>,,<em class="replaceable"><code>C1</code></em> is not specified,
+the default for general contact is to exclude initial penetration/gap
+and offset. For more information, see <a href="../ans_mat/continteraction.html#contintergen" class="olink">Interaction Options for General Contact Definitions</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><hr></div></dd><dt><span><b class="term">
+<a href="../ans_ctec/Hlp_ctec_realkey.html#usingkeyopt10" class="olink">KEYOPT(10)</a>
+</b></span></dt><dd><p>Contact Stiffness Update:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Each iteration based on the current mean stress of underlying elements. The actual
+          elastic slip does not exceed the maximum allowable limit (SLTO) within a substep.</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Each load step if FKN is redefined during the load step. </p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Each iteration based on the current mean stress of underlying elements. The actual
+          elastic slip never exceeds the maximum allowable limit (SLTO) during the entire
+          solution.</p></dd></dl></div></div><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;For general contact, the <a href="../ans_cmd/Hlp_C_GCGEN.html" class="olink"><span class="command"><strong>GCGEN</strong></span></a> command automatically sets KEYOPT(10)
+        = 0.</p><hr></div></dd><dt><span><b class="term">
+<a href="../ans_ctec/Hlp_ctec_realkey.html#straccth1jla072099" class="olink">KEYOPT(11)</a>
+</b></span></dt><dd><p>Shell/beam thickness effect (line-to-surface contact only):</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Exclude</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Include</p></dd></dl></div></div><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;In the case of general contact, the <a href="../ans_cmd/Hlp_C_GCGEN.html" class="olink"><span class="command"><strong>GCGEN</strong></span></a> command automatically sets
+        KEYOPT(11) = 1 for beam-to-surface contact.</p><hr></div></dd><dt><span><b class="term">
+<a href="../ans_ctec/Hlp_ctec_realkey.html#strsurin8jla072099" class="olink">KEYOPT(12)</a>
+</b></span></dt><dd><p>Behavior of contact surface:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Standard</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Rough</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>No separation (sliding
+permitted)</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Bonded</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>No separation (always)</p></dd><dt><span><b class="term">5&nbsp;--&nbsp;</b></span></dt><dd><p>Bonded (always)</p></dd><dt><span><b class="term">6&nbsp;--&nbsp;</b></span></dt><dd><p>Bonded (initial contact)</p></dd></dl></div></div><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;When KEYOPT(12) = 5 or 6 is used with the MPC algorithm
+to model <a href="../ans_ctec/Hlp_ctec_surfcon.html" class="olink">surface-based
+constraints</a>, the KEYOPT(12) setting will have an impact on
+the local coordinate system of the contact element nodes. See <a href="../ans_ctec/Hlp_ctec_surfcon.html#cteclocsys" class="olink">Specifying a Local Coordinate System</a> in the <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a> for
+more information.</p><hr></div><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;KEYOPT(12) is not supported for contact elements used
+in a general contact definition. Instead, use the command <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,INTER with the appropriate <em class="replaceable"><code>TBOPT</code></em> label to specify the behavior at the contact surface. For more information,
+see <a href="../ans_mat/continteraction.html#contintergen" class="olink">Interaction Options for General Contact Definitions</a> in
+the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><hr></div></dd><dt><span><b class="term"><a href="../ans_ctec/cteclinesurfanal.html#cteckey14b" class="olink">KEYOPT(14)</a></b></span></dt><dd><p>Number of target segments interacting with each contact detection point:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Only one target segment</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Up to four target segments</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Up to eight target segments</p></dd></dl></div></div><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;In the case of general contact, the <a href="../ans_cmd/Hlp_C_GCGEN.html" class="olink"><span class="command"><strong>GCGEN</strong></span></a> command automatically sets
+        KEYOPT(14) = 1 for beam-to-beam contact.</p><hr></div></dd><dt><span><b class="term">
+<a href="../ans_ctec/Hlp_ctec_realkey.html#ctecfdminfdmt" class="olink">KEYOPT(15)</a>
+</b></span></dt><dd><p>Effect of contact stabilization damping:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Damping is activated only
+in the first load step (default).</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Deactivate automatic damping.</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Damping is activated for
+all load steps.</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Damping is activated at
+all times regardless of the contact status of previous substeps.</p></dd></dl></div></div><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;Normal stabilization damping is only applied to the contact
+element when the current contact status of the contact detection point
+is near-field. When KEYOPT(15) = 0, 1, or 2, normal stabilization
+damping is not applied in the current substep if any contact detection
+point has a closed status. However, when KEYOPT(15) = 3, normal stabilization
+damping is always applied as long as the current contact status of
+the contact detection point is near-field. Tangential stabilization
+damping is automatically activated when normal damping is activated.
+Tangential damping can also be applied independent of normal damping
+for sliding contact. See <a href="../ans_ctec/Hlp_ctec_realkey.html#ctecstabdamp" class="olink">Applying Contact Stabilization Damping</a> in the <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a> for more information.</p><hr></div></dd><dt><span><b class="term"><a href="../ans_ctec/Hlp_ctec_realkey.html#ctec_slidinglogic" class="olink">KEYOPT(18)</a></b></span></dt><dd><p>Sliding behavior:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Finite sliding (default). The contacting interface can undergo separation, relative
+          large sliding, and arbitrary rotation.</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Small sliding. The contacting interface can undergo only small sliding; arbitrary
+          rotation is permitted.</p></dd></dl></div></div></dd></dl></div></div><div class="table"><a name="rc177"></a><p class="title"><b>Table&nbsp;177.1:&nbsp;&nbsp;CONTA177 Real Constants</b></p><div class="table-contents"><table summary="CONTA177 Real Constants" border="1" width="95%"><colgroup><col width="72" class="col1"><col width="72" class="col2"><col width="288" class="col3"><col width="192" align="left" class="col4"></colgroup><thead><tr><th>No.</th><th align="center">Name</th><th align="center">Description</th><th align="left">For more information, see this section in the <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a> . . .</th></tr></thead><tbody><tr><td rowspan="2">1</td><td rowspan="2">R1</td><td>
+        <p>Target radius for cylinder, cone, or sphere, used for line-to-surface contact (rigid
+         target)</p>
+       </td><td align="left">
+        <p>
+         <a href="../ans_ctec/Hlp_ctec_targsur.html" class="olink">Defining the Target Surface</a>
+        </p>
+       </td></tr><tr><td>Target radius for beam-to-beam contact </td><td align="left">
+        <a href="../ans_ctec/ctec3dbeamanal.html#ctecr1r2" class="olink">Real constants R1, R2</a>
+       </td></tr><tr><td rowspan="2">2</td><td rowspan="2">R2</td><td>
+        <p>Target radius at second node of cone, used for line-to-surface contact (rigid
+         target)</p>
+       </td><td align="left">
+        <p>
+         <a href="../ans_ctec/Hlp_ctec_targsur.html" class="olink">Defining the Target Surface</a>
+        </p>
+       </td></tr><tr><td>Contact radius for beam-to-beam contact</td><td align="left">
+        <a href="../ans_ctec/ctec3dbeamanal.html#ctecr1r2" class="olink">Real constants R1, R2</a>
+       </td></tr><tr><td>3</td><td>FKN[<a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.1.ft.1">1</a>]</td><td>
+        <p>Normal penalty stiffness factor [<a class="xref" href="Hlp_E_CONTA177.html#CONTA177.tab.1.ft.2">2</a>] [<a class="xref" href="Hlp_E_CONTA177.html#CONTA177.tab.1.ft.3">3</a>]</p>
+       </td><td align="left">
+        <p>
+         <a href="../ans_ctec/Hlp_ctec_realkey.html#strdetsif3jla072099" class="olink">Determining Contact Stiffness
+          and Penetration</a>
+        </p>
+       </td></tr><tr><td>4</td><td>FTOLN</td><td>
+        <p>Penetration tolerance factor</p>
+       </td><td align="left">
+        <p>
+         <a href="../ans_ctec/Hlp_ctec_realkey.html#strdetsif3jla072099" class="olink">Determining Contact Stiffness
+          and Penetration</a>
+        </p>
+       </td></tr><tr><td>5</td><td>ICONT</td><td>
+        <p>Initial contact closure</p>
+       </td><td align="left">
+        <p>
+         <a href="../ans_ctec/Hlp_ctec_realkey.html#stradjin5jla072099" class="olink">Adjusting Initial Contact
+          Conditions</a>
+        </p>
+       </td></tr><tr><td>6</td><td>PINB</td><td>
+        <p>Pinball region</p>
+       </td><td align="left">
+        <p>
+         <a href="../ans_ctec/Hlp_ctec_realkey.html#strdetpi5jla072099" class="olink">Determining Contact Status and
+          the Pinball Region</a>
+        </p>or <p>
+         <a href="../ans_ctec/Hlp_ctec_surfcon.html#ctecdefinflrng" class="olink">Defining Influence Range
+          (PINB)</a>
+        </p>
+       </td></tr><tr><td>7</td><td>PMAX</td><td>
+        <p>Upper limit of initial allowable penetration</p>
+       </td><td align="left">
+        <p>
+         <a href="../ans_ctec/Hlp_ctec_realkey.html#stradjin5jla072099" class="olink">Adjusting Initial Contact
+          Conditions</a>
+        </p>
+       </td></tr><tr><td>8</td><td>PMIN</td><td>
+        <p>Lower limit of initial allowable penetration</p>
+       </td><td align="left">
+        <p>
+         <a href="../ans_ctec/Hlp_ctec_realkey.html#stradjin5jla072099" class="olink">Adjusting Initial Contact
+          Conditions</a>
+        </p>
+       </td></tr><tr><td>9</td><td>TAUMAX</td><td>
+        <p>Maximum friction stress [<a class="xref" href="Hlp_E_CONTA177.html#CONTA177.tab.1.ft.2">2</a>] [<a class="xref" href="Hlp_E_CONTA177.html#CONTA177.tab.1.ft.3">3</a>]</p>
+       </td><td align="left">
+        <p>
+         <a href="../ans_ctec/Hlp_ctec_realkey.html#strchofr3jla072099" class="olink">Choosing a Friction
+          Model</a>
+        </p>
+       </td></tr><tr><td>10</td><td>CNOF</td><td>
+        <p>Contact surface offset [<a class="xref" href="Hlp_E_CONTA177.html#CONTA177.tab.1.ft.2">2</a>] [<a class="xref" href="Hlp_E_CONTA177.html#CONTA177.tab.1.ft.3">3</a>]</p>
+       </td><td align="left">
+        <p>
+         <a href="../ans_ctec/cteclinesurfanal.html#ctec177cnof" class="olink">Accounting for Thickness Effect (CNOF
+          and KEYOPT(11))</a>
+        </p>
+       </td></tr><tr><td>11</td><td>FKOP</td><td>
+        <p>Contact opening stiffness [<a class="xref" href="Hlp_E_CONTA177.html#CONTA177.tab.1.ft.2">2</a>] [<a class="xref" href="Hlp_E_CONTA177.html#CONTA177.tab.1.ft.3">3</a>]</p>
+       </td><td align="left">
+        <p>
+         <a href="../ans_ctec/Hlp_ctec_realkey.html#strsurin8jla072099" class="olink">Selecting Surface Interaction
+          Models</a>
+        </p>
+       </td></tr><tr><td>12</td><td>FKT[<a class="xref" href="Hlp_E_CONTA176.html#conta176.tab.1.ft.1">1</a>]</td><td>
+        <p>Tangent penalty stiffness factor [<a class="xref" href="Hlp_E_CONTA177.html#CONTA177.tab.1.ft.2">2</a>] [<a class="xref" href="Hlp_E_CONTA177.html#CONTA177.tab.1.ft.3">3</a>]</p>
+       </td><td align="left">
+        <p>
+         <a href="../ans_ctec/Hlp_ctec_realkey.html#strdetsif3jla072099" class="olink">Determining Contact
+          Stiffness</a>
+        </p>
+       </td></tr><tr><td>13</td><td>COHE</td><td>
+        <p>Contact cohesion</p>
+       </td><td align="left">
+        <p>
+         <a href="../ans_ctec/Hlp_ctec_realkey.html#strchofr3jla072099" class="olink">Choosing a Friction
+          Model</a>
+        </p>
+       </td></tr><tr><td>21</td><td>FACT</td><td>
+        <p>Static/dynamic ratio</p>
+       </td><td align="left">
+        <p>
+         <a href="../ans_ctec/Hlp_ctec_realkey.html#africtioncoeffjjs62101229" class="olink">Static and Dynamic
+          Friction Coefficients</a>
+        </p>
+       </td></tr><tr><td>22</td><td>DC</td><td>
+        <p>Exponential decay coefficient</p>
+       </td><td align="left">
+        <p>
+         <a href="../ans_ctec/Hlp_ctec_realkey.html#africtioncoeffjjs62101229" class="olink">Static and Dynamic
+          Friction Coefficients</a>
+        </p>
+       </td></tr><tr><td>23</td><td>SLTO</td><td>
+        <p>Allowable elastic slip</p>
+       </td><td align="left">
+        <p>
+         <a href="../ans_ctec/Hlp_ctec_realkey.html#usingfkt" class="olink">Using FKT and SLTO</a>
+        </p>
+       </td></tr><tr><td>24</td><td>TNOP</td><td>
+        <p>Maximum allowable tensile contact force/pressure [<a class="xref" href="Hlp_E_CONTA177.html#CONTA177.tab.1.ft.4">4</a>]</p>
+       </td><td align="left">
+        <p>
+         <a href="../ans_ctec/Hlp_ctec_realkey.html#chatt" class="olink">Chattering Control Parameters</a>
+        </p>
+       </td></tr><tr><td>25</td><td>TOLS</td><td>
+        <p>Target edge extension factor</p>
+       </td><td align="left">
+        <p>
+         <a href="../ans_ctec/cteclinesurfanal.html#ctec177tols" class="olink">Real Constant TOLS</a>
+        </p>
+       </td></tr><tr><td>29</td><td>COR</td><td>
+        <p>Coefficient of restitution</p>
+       </td><td align="left">
+        <p>
+         <a href="../ans_ctec/ctecEnMom.html#ctecimpactrb" class="olink">Impact Between Rigid Bodies</a>
+        </p>
+       </td></tr><tr><td>30</td><td>STRM</td><td>
+        <p>Load step number for ramping penetration</p>
+       </td><td align="left">
+        <p>
+         <a href="../ans_ctec/Hlp_ctec_realkey.html#stradjin5jla072099" class="olink">Adjusting Initial Contact
+          Conditions</a>
+        </p>
+       </td></tr><tr><td>31</td><td>FDMN</td><td>Normal stabilization damping factor [<a class="xref" href="Hlp_E_CONTA177.html#CONTA177.tab.1.ft.2">2</a>] [<a class="xref" href="Hlp_E_CONTA177.html#CONTA177.tab.1.ft.3">3</a>]</td><td align="left">
+        <p>
+         <a href="../ans_ctec/Hlp_ctec_realkey.html#ctecstabdamp" class="olink">Applying Contact Stabilization
+          Damping</a>
+        </p>
+       </td></tr><tr><td>32</td><td>FDMT</td><td>Tangential stabilization damping factor [<a class="xref" href="Hlp_E_CONTA177.html#CONTA177.tab.1.ft.2">2</a>] [<a class="xref" href="Hlp_E_CONTA177.html#CONTA177.tab.1.ft.3">3</a>]</td><td align="left">
+        <p>
+         <a href="../ans_ctec/Hlp_ctec_realkey.html#ctecstabdamp" class="olink">Applying Contact Stabilization
+          Damping</a>
+        </p>
+       </td></tr><tr><td>35</td><td>TBND</td><td>Critical bonding temperature [<a class="xref" href="Hlp_E_CONTA177.html#CONTA177.tab.1.ft.2">2</a>] [<a class="xref" href="Hlp_E_CONTA177.html#CONTA177.tab.1.ft.3">3</a>]</td><td align="left">
+        <p>
+         <a href="../ans_ctec/Hlp_ctec_realkey.html#ctectbnd" class="olink">Using TBND</a>
+        </p>
+       </td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="conta177.tab.1.ft.1"></a>For the contact force-based model (KEYOPT(3) = 0 <span>or 4</span>),
+      the units of real constants FKN and FKT have a factor of AREA with respect to those used in
+      the surface-to-surface contact elements. See <a href="../ans_ctec/cteclinesurfanal.html" class="olink">Performing a 3-D Line-to-Surface Contact Analysis</a> for
+      more information.</p></li><li class="listitem"><p><a name="CONTA177.tab.1.ft.2"></a>This real constant can be
+defined as a <a href="../ans_ctec/Hlp_ctec_realkey.html#ctecrealtabular" class="olink">function of certain primary variables</a>.</p></li><li class="listitem"><p><a name="CONTA177.tab.1.ft.3"></a>This real constant can be
+defined by the <a href="../ans_ctec/Hlp_ctec_realkey.html#ctecrealuser" class="olink">user subroutine USERCNPROP.F</a>.</p></li><li class="listitem"><p><a name="CONTA177.tab.1.ft.4"></a>For the contact force-based
+model (KEYOPT(3) = 0), TNOP is the allowable tensile contact force.
+For the contact traction-based model (KEYOPT(3) = 1), TNOP is the
+allowable tensile contact pressure.</p></li></ol></div></div></div><div class="refsect1" title="CONTA177 Output Data"><a name="conta177output"></a><h2>CONTA177 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal displacements included in the overall nodal
+solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_CONTA177.html#conta177eloutput" title="Table&nbsp;177.2:&nbsp;&nbsp;CONTA177 Element Output Definitions">Table&nbsp;177.2:&nbsp;CONTA177 Element Output Definitions</a>.</p></li></ul></div><p>
+</p><p>A general description of solution output is given in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a>.  See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways to view results.</p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="conta177eloutput"></a><p class="title"><b>Table&nbsp;177.2:&nbsp;&nbsp;CONTA177 Element Output Definitions</b></p><div class="table-contents"><table summary="CONTA177 Element Output Definitions" border="1" width="95%"><colgroup><col width="120" class="col1"><col width="408" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th align="center">Name</th><th align="center">Definition</th><th align="center">O</th><th align="center">R</th></tr></thead><tbody><tr><td>EL</td><td>Element Number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Nodes I, J, K</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>XC, YC, ZC</td><td>Location where results are reported (same as nodal location)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>TEMP</td><td>Temperature T(I)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>VOLU</td><td>Length</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NPI</td><td>Number of integration points</td><td align="center">Y</td><td align="center">-</td></tr><tr><td>ITRGET</td><td>Target surface number (assigned by the program)</td><td align="center">Y</td><td align="center">-</td></tr><tr><td>ISOLID</td><td>Underlying beam or shell element number</td><td align="center">Y</td><td align="center">-</td></tr><tr><td>CONT:STAT</td><td>Current contact statuses</td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.1">1</a>
+      </td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.1">1</a>
+      </td></tr><tr><td>OLDST</td><td>Old contact statuses</td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.1">1</a>
+      </td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.1">1</a>
+      </td></tr><tr><td>ISEG</td><td>Current contacting target element number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>OLDSEG</td><td>Underlying old target number</td><td align="center">Y</td><td align="center">-</td></tr><tr><td>CONT:PENE</td><td>Current penetration (gap = 0; penetration = positive value)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>CONT:GAP</td><td>Current gap (gap = negative value; penetration = 0)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NGAP</td><td>New or current gap at current converged substep (gap = negative value;
+       penetration = positive value)</td><td align="center">Y</td><td align="center">-</td></tr><tr><td>OGAP</td><td>Old gap at previously converged substep (gap = negative value;
+       penetration = positive value)</td><td align="center">Y</td><td align="center">-</td></tr><tr><td>IGAP</td><td>Initial gap at start of current substep (gap = negative value;
+       penetration = positive value)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>GGAP</td><td>Geometric gap at current converged substep (gap = negative value; penetration =
+       positive value)</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>CONT:PRES</td><td>Normal contact force/pressure</td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.2">2</a>
+      </td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.2">2</a>
+      </td></tr><tr><td>TAUR/TAUS [<a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.7">7</a>]</td><td>Tangential contact forces/stresses</td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.2">2</a>
+      </td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.2">2</a>
+      </td></tr><tr><td>KN</td><td>Current normal contact stiffness (units: FORCE/LENGTH for contact force model,
+        FORCE/LENGTH<sup>3</sup> for contact traction model) </td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA176.html#conta176.tab.2.ft.5">5</a>
+      </td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA176.html#conta176.tab.2.ft.5">5</a>
+      </td></tr><tr><td>KT</td><td>Current tangent contact stiffness (same units as KN)</td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA176.html#conta176.tab.2.ft.5">5</a>
+      </td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA176.html#conta176.tab.2.ft.5">5</a>
+      </td></tr><tr><td>MU [<a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.8">8</a>]</td><td>Friction coefficient</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>TASS/TASR [<a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.7">7</a>]</td><td>Total (algebraic sum) sliding in S and R directions</td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.3">3</a>
+      </td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.3">3</a>
+      </td></tr><tr><td>AASS/AASR [<a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.7">7</a>]</td><td>Total (absolute sum) sliding in S and R directions</td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.3">3</a>
+      </td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.3">3</a>
+      </td></tr><tr><td>TOLN</td><td>Penetration tolerance</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>CONT:SFRIC</td><td>Frictional force/stress, SQRT (TAUR**2+TAUS**2) </td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.2">2</a>
+      </td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.2">2</a>
+      </td></tr><tr><td>CONT:STOTAL</td><td>Total force/stress, SQRT (PRES**2+TAUR**2+TAUS**2)</td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.2">2</a>
+      </td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.2">2</a>
+      </td></tr><tr><td>CONT:SLIDE</td><td>Amplitude of total accumulated sliding, SQRT (TASS**2+TASR**2) </td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.3">3</a>
+      </td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.3">3</a>
+      </td></tr><tr><td>FDDIS</td><td>Frictional energy dissipation</td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.6">6</a>
+      </td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.6">6</a>
+      </td></tr><tr><td>ELSI</td><td>Total equivalent elastic slip distance</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>PLSI</td><td>Total (accumulated) equivalent plastic slip due to frictional sliding</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>GSLID</td><td>Amplitude of total accumulated sliding (including near-field)</td><td align="center">-</td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.9">9</a>
+      </td></tr><tr><td>VREL</td><td>Equivalent sliding velocity (slip rate)</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>DBA</td><td>Penetration variation</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>PINB</td><td>Pinball Region</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>CONT:CNOS</td><td>Total number of contact status changes during substep</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>TNOP</td><td>Maximum allowable tensile contact force/pressure</td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.2">2</a>
+      </td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.2">2</a>
+      </td></tr><tr><td>SLTO</td><td>Allowable elastic slip</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>CAREA</td><td>Contacting area</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>R1</td><td>Target radius for beam-to-beam contact</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>R2</td><td>Contact radius for beam-to-beam contact</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>DTSTART</td><td>Load step time during debonding</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>DPARAM</td><td>Debonding parameter</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>DENERI [<a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.11">12</a>]</td><td>Energy released due to separation in normal direction - mode I debonding</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>DENERII [<a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.11">12</a>]</td><td>Energy released due to separation in tangential direction - mode II debonding</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>DENER [<a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.12">13</a>]</td><td>Total energy released due to debonding</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>CNFX [<a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.10">10</a>]</td><td>Contact element force - X component</td><td align="center">-</td><td align="center">
+       <a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.4">4</a>
+      </td></tr><tr><td>CNFY [<a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.10">10</a>]</td><td>Contact element force - Y component</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.4">4</a></td></tr><tr><td>CNFZ [<a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.10">10</a>]</td><td>Contact element force - Z component</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.4">4</a></td></tr><tr><td>CNTX [<a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.13">11</a>]</td><td>Contact element force due to tangential stresses - X component</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.4">4</a></td></tr><tr><td>CNTY [<a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.13">11</a>]</td><td>Contact element force due to tangential stresses - Y component</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.4">4</a></td></tr><tr><td>CNTZ [<a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.13">11</a>]</td><td>Contact element force due to tangential stresses - Z component</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.2.ft.4">4</a></td></tr><tr><td>SDAMP</td><td>Stabilization damping coefficient</td><td align="center">-</td><td align="center">Y</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="conta177.tab.2.ft.1"></a>The possible values of <span class="italic"><em>STAT</em></span> and <span class="italic"><em>OLDST</em></span> are:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>0 = Open and not near contact</td></tr><tr><td>1 = Open but near contact</td></tr><tr><td>2 = Closed and sliding</td></tr><tr><td>3 = Closed and sticking</td></tr></table></li><li class="listitem"><p><a name="conta177.tab.2.ft.2"></a>For
+the force-based model (KEYOPT(3) = 0), the unit of this quantity is
+FORCE. For the traction-based model (KEYOPT(3) = 1, 2, 3), the unit
+is FORCE/AREA.</p></li><li class="listitem"><p><a name="conta177.tab.2.ft.3"></a>Only accumulates the sliding
+for sliding and closed contact (STAT = 2,3).</p></li><li class="listitem"><p><a name="conta177.tab.2.ft.4"></a>Contact element forces are
+defined in the global Cartesian system</p></li><li class="listitem"><p><a name="conta177.tab.2.ft.5"></a>For
+the force-based model (KEYOPT(3) = 0), the unit of stiffness is FORCE/LENGTH.
+For the traction-based model (KEYOPT(3) = 1, 2, 3), the unit is FORCE/LENGTH<sup>3</sup>.</p></li><li class="listitem"><p><a name="conta177.tab.2.ft.6"></a>FDDIS = (contact friction
+stress)*(sliding distance of substep)/(time increment of substep)</p></li><li class="listitem"><p><a name="conta177.tab.2.ft.7"></a>For the case of orthotropic
+friction in contact between beams (or shell edges) and a 3-D surface,
+components are defined in the global Cartesian system.</p></li><li class="listitem"><p><a name="conta177.tab.2.ft.8"></a>For orthotropic friction,
+an equivalent coefficient of friction is output.</p></li><li class="listitem"><p><a name="conta177.tab.2.ft.9"></a>Accumulated sliding distance
+for near-field, sliding, and closed contact (STAT = 1,2,3).</p></li><li class="listitem"><p><a name="conta177.tab.2.ft.10"></a>The contact element force
+values (CNFX, CNFY, CNFZ) are calculated based on the individual contact
+element plus the surrounding contact elements. Therefore, the contact
+force values may not equal the contact element area times the contact
+pressure (CAREA * PRES).</p></li><li class="listitem"><p><a name="conta177.tab.2.ft.13"></a>CNTX, CNTY, and CNTZ report the total contact element forces due to tangential stresses.
+     Since CNFX, CNFY, and CNFZ report the total contact element forces, the contact element forces
+     due to normal pressure are (CNFX-CNTX), (CNFY-CNTY), and (CNFZ-CNTZ).</p></li><li class="listitem"><p><a name="conta177.tab.2.ft.11"></a>DENERI and DENERII are available
+only when one of the following material models is used: <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM,,,,CBDD or <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM,,,,CBDE.</p></li><li class="listitem"><p><a name="conta177.tab.2.ft.12"></a>DENER is available only
+when one of the following material models is used: <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM,,,,BILI or <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM,,,,EXPO.</p></li></ol></div><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;Contact results (including all element results) are generally
+not reported for elements that have a status of &#8220;open and not
+near contact&#8221; (far-field).</p><hr></div><p>The following table lists output available through the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method.  See <a href="../ans_bas/Hlp_G_BAS5_2.html#abOBsq267ldm" class="olink">Creating an Element Table</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in this reference
+for more information. </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in <a class="xref" href="Hlp_E_CONTA177.html#conta177eloutput" title="Table&nbsp;177.2:&nbsp;&nbsp;CONTA177 Element Output Definitions">Table&nbsp;177.2:&nbsp;CONTA177 Element Output Definitions</a>
+</p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element
+data</p></dd><dt><span><b class="term">I, J, K</b></span></dt><dd><p>sequence number for data at
+nodes I, J, K (contact results for line-to-surface and parallel beams
+in contact)</p></dd><dt><span><b class="term">IP</b></span></dt><dd><p>sequence number for data of crossing beams in contact
+(contact results at intersection point)</p></dd></dl></div></div><div class="table"><a name="conta177itemseq"></a><p class="title"><b>Table&nbsp;177.3:&nbsp;&nbsp;CONTA177 (3-D) Item and Sequence Numbers</b></p><div class="table-contents"><table summary="CONTA177 (3-D) Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="72" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"><col width="48" class="COLSPEC1"><col width="48" class="COLSPEC0"><col width="48" class="COLSPEC2"></colgroup><thead><tr><th rowspan="2" align="center" valign="middle">Output Quantity Name</th><th colspan="6" align="center">
+       <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th align="center">Item</th><th align="center">E</th><th align="center">I</th><th align="center">J</th><th align="center">K</th><th align="center">IP</th></tr></thead><tbody><tr><td align="center">PRES</td><td align="center">SMISC</td><td align="center">13</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td></tr><tr><td align="center">TAUR</td><td align="center">SMISC</td><td align="center">-</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td></tr><tr><td align="center">TAUS</td><td align="center">SMISC</td><td align="center">-</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td></tr><tr><td align="center">FDDIS</td><td align="center">SMISC</td><td align="center">-</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td></tr><tr><td align="center">STAT [<a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.3.ft.1">1</a>]</td><td align="center">NMISC</td><td align="center">41</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td></tr><tr><td align="center">OLDST</td><td align="center">NMISC</td><td align="center">-</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td></tr><tr><td align="center">PENE [<a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.3.ft.2">2</a>]</td><td align="center">NMISC</td><td align="center">-</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td></tr><tr><td align="center">DBA</td><td align="center">NMISC</td><td align="center">-</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td></tr><tr><td align="center">TASR</td><td align="center">NMISC</td><td align="center">-</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td></tr><tr><td align="center">TASS</td><td align="center">NMISC</td><td align="center">-</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td></tr><tr><td align="center">KN</td><td align="center">NMISC</td><td align="center">-</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td></tr><tr><td align="center">KT</td><td align="center">NMISC</td><td align="center">-</td><td align="center">29</td><td align="center">30</td><td align="center">31</td><td align="center">32</td></tr><tr><td align="center">TOLN</td><td align="center">NMISC</td><td align="center">-</td><td align="center">33</td><td align="center">34</td><td align="center">35</td><td align="center">36</td></tr><tr><td align="center">IGAP</td><td align="center">NMISC</td><td align="center">-</td><td align="center">37</td><td align="center">38</td><td align="center">39</td><td align="center">40</td></tr><tr><td align="center">PINB</td><td align="center">NMISC</td><td align="center">42</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">&nbsp;</td></tr><tr><td align="center">CNFX</td><td align="center">NMISC</td><td align="center">43</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">&nbsp;</td></tr><tr><td align="center">CNFY</td><td align="center">NMISC</td><td align="center">44</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">&nbsp;</td></tr><tr><td align="center">CNFZ</td><td align="center">NMISC</td><td align="center">45</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">&nbsp;</td></tr><tr><td align="center">CNTX</td><td align="center">NMISC</td><td align="center">186</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">CNTY</td><td align="center">NMISC</td><td align="center">187</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">CNTZ</td><td align="center">NMISC</td><td align="center">188</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">ISEG [<a class="xref" href="Hlp_E_CONTA177.html#conta177.tab.3.ft.3">3</a>]</td><td align="center">NMISC</td><td align="center">-</td><td align="center">46</td><td align="center">47</td><td align="center">48</td><td align="center">49</td></tr><tr><td align="center">AASR</td><td align="center">NMISC</td><td align="center">-</td><td align="center">50</td><td align="center">51</td><td align="center">52</td><td align="center">53</td></tr><tr><td align="center">AASS</td><td align="center">NMISC</td><td align="center">-</td><td align="center">54</td><td align="center">55</td><td align="center">56</td><td align="center">57</td></tr><tr><td align="center">CAREA</td><td align="center">NMISC</td><td align="center">58</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">&nbsp;</td></tr><tr><td align="center">MU</td><td align="center">NMISC</td><td align="center">-</td><td align="center">62</td><td align="center">63</td><td align="center">64</td><td align="center">65</td></tr><tr><td align="center">DTSTART</td><td align="center">NMISC</td><td align="center">-</td><td align="center">66</td><td align="center">67</td><td align="center">68</td><td align="center">69</td></tr><tr><td align="center">DPARAM</td><td align="center">NMISC</td><td align="center">-</td><td align="center">70</td><td align="center">71</td><td align="center">72</td><td align="center">73</td></tr><tr><td align="center">CNOS</td><td align="center">NMISC</td><td align="center">-</td><td align="center">112</td><td align="center">113</td><td align="center">114</td><td align="center">115</td></tr><tr><td align="center">TNOP</td><td align="center">NMISC</td><td align="center">-</td><td align="center">116</td><td align="center">117</td><td align="center">118</td><td align="center">119</td></tr><tr><td align="center">SLTO</td><td align="center">NMISC</td><td align="center">-</td><td align="center">120</td><td align="center">121</td><td align="center">122</td><td align="center">123</td></tr><tr><td align="center">ELSI</td><td align="center">NMISC</td><td align="center">-</td><td align="center">136</td><td align="center">137</td><td align="center">138</td><td align="center">139</td></tr><tr><td align="center">DENERI or DENER</td><td align="center">NMISC</td><td align="center">-</td><td align="center">140</td><td align="center">141</td><td align="center">142</td><td align="center">143</td></tr><tr><td align="center">DENERII</td><td align="center">NMISC</td><td align="center">-</td><td align="center">144</td><td align="center">145</td><td align="center">146</td><td align="center">147</td></tr><tr><td align="center">GGAP</td><td align="center">NMISC</td><td align="center">-</td><td align="center">152</td><td align="center">153</td><td align="center">154</td><td align="center">155</td></tr><tr><td align="center">VREL</td><td align="center">NMISC</td><td align="center">-</td><td align="center">156</td><td align="center">157</td><td align="center">158</td><td align="center">159</td></tr><tr><td align="center">SDAMP</td><td align="center">NMISC</td><td align="center">-</td><td align="center">160</td><td align="center">161</td><td align="center">162</td><td align="center">163</td></tr><tr><td align="center">PLSI</td><td align="center">NMISC</td><td align="center">-</td><td align="center">164</td><td align="center">165</td><td align="center">166</td><td align="center">167</td></tr><tr><td align="center">GSLID</td><td align="center">NMISC</td><td align="center">-</td><td align="center">168</td><td align="center">169</td><td align="center">170</td><td align="center">171</td></tr><tr><td align="center">R1</td><td align="center">NMISC</td><td align="center">-</td><td align="center">172</td><td align="center">173</td><td align="center">174</td><td align="center">175</td></tr><tr><td align="center">R2</td><td align="center">NMISC</td><td align="center">-</td><td align="center">176</td><td align="center">177</td><td align="center">178</td><td align="center">179</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="conta177.tab.3.ft.1"></a>Element Status = highest
+value of status of integration points within the element</p></li><li class="listitem"><p><a name="conta177.tab.3.ft.2"></a>Penetration = positive value,
+gap = negative value</p></li><li class="listitem"><p><a name="conta177.tab.3.ft.3"></a>The floating point output format for large integers may lead to incorrect ISEG values. You
+     should verify the NMISC values via the <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> command. For example,
+      *GET,<em class="replaceable"><code>Par</code></em>,ELEM,<em class="replaceable"><code>N</code></em>,NMISC,46 returns the
+     ISEG value for node I of element <em class="replaceable"><code>N</code></em>.</p></li></ol></div><p>You can display or list contact results through several POST1
+postprocessor commands.  The contact specific items for the <a href="../ans_cmd/Hlp_C_PLNSOL.html" class="olink"><span class="command"><strong>PLNSOL</strong></span></a>, <a href="../ans_cmd/Hlp_C_PLESOL.html" class="olink"><span class="command"><strong>PLESOL</strong></span></a>, <a href="../ans_cmd/Hlp_C_PRNSOL.html" class="olink"><span class="command"><strong>PRNSOL</strong></span></a>, and <a href="../ans_cmd/Hlp_C_PRESOL.html" class="olink"><span class="command"><strong>PRESOL</strong></span></a> commands are listed below:</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="120" class="col1"><col width="336" class="col2"></colgroup><tbody><tr><td>STAT</td><td>Contact status</td></tr><tr><td>PENE</td><td>Contact penetration</td></tr><tr><td>PRES</td><td>Contact pressure for the traction-based model.
+Contact normal force for the force-based model.</td></tr><tr><td>SFRIC</td><td>Contact friction stress for the traction-based
+model. Friction force for the force-based model.</td></tr><tr><td>STOT</td><td>Contact total stress (pressure plus friction)
+for the traction-based model. Total contact force for the force-based
+model.</td></tr><tr><td>SLIDE</td><td>Contact sliding
+distance</td></tr><tr><td>GAP</td><td>Contact gap distance</td></tr><tr><td>CNOS</td><td>Total number of contact status changes during substep</td></tr></tbody></table></div><p>Contact results (I, J, K columns in <a class="xref" href="Hlp_E_CONTA177.html#conta177itemseq" title="Table&nbsp;177.3:&nbsp;&nbsp;CONTA177 (3-D) Item and Sequence Numbers">Table&nbsp;177.3:&nbsp;CONTA177 (3-D) Item and Sequence Numbers</a>) are reported at contact nodes for 3-D
+beam-to-surface and parallel beam-to-beam contact. Contact results
+from crossing beam-to-beam contact (<span class="bold"><strong>IP </strong></span>column in <a class="xref" href="Hlp_E_CONTA177.html#conta177itemseq" title="Table&nbsp;177.3:&nbsp;&nbsp;CONTA177 (3-D) Item and Sequence Numbers">Table&nbsp;177.3:&nbsp;CONTA177 (3-D) Item and Sequence Numbers</a>) are reported at an intersection
+point of two crossing beams. When contact from crossing beams is detected,
+the associated contact pressure (PRES), the contact frictional stress
+(SFRIC), and the total stress (STOT)  are superimposed on each nodes.
+Maximum values are reported for other contact results (STAT, PENE,
+SLIDE, GAP, CNOS).</p></div><div class="refsect1" title="CONTA177 Assumptions and Restrictions"><a name="conta177assump"></a><h2>CONTA177 Assumptions and Restrictions</h2><p>
+</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>For line-to-surface contact, the thickness effects of underlying beam elements on the
+      contact side and underlying shell elements on the target side can be taken into account by
+      setting KEYOPT(11) = 1.</p></li><li class="listitem"><p>This element is nonlinear and requires a full Newton
+iterative solution, regardless of whether large or small deflections
+are specified. An exception to this is when MPC bonded contact is
+specified (KEYOPT(2) = 2 and KEYOPT(12) = 5 or 6).</p></li><li class="listitem"><p>The normal contact stiffness factor (FKN) must not
+be so large as to cause numerical instability.</p></li><li class="listitem"><p>FTOLN, PINB, and FKOP can be changed between load
+steps or during restart stages.</p></li><li class="listitem"><p>You can use this element in nonlinear static or nonlinear
+full transient analyses.</p></li><li class="listitem"><p>In addition, you can use it in modal analyses, eigenvalue
+buckling analyses, and harmonic analyses. For these analysis types,
+the program assumes that the initial status of the element (i.e.,
+the status at the completion of the static prestress analysis, if
+any) does not change.</p></li><li class="listitem"><p>Certain contact features are not supported when this
+element is used in a general contact definition. For details, see <a href="../ans_ctec/ctec_gencont.html" class="olink">General Contact</a> in the <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a>.</p></li></ul></div><p> </p></div><div class="refsect1" title="CONTA177 Product Restrictions"><a name="conta177restrict"></a><h2>CONTA177 Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific
+restrictions apply to this element in addition to the general assumptions
+and restrictions given in the previous section.</p><p title="ANSYS Mechanical Pro"><b>ANSYS Mechanical Pro&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li><li class="listitem"><p>Debonding is not available.</p></li><li class="listitem"><p>User-defined contact is not available.</p></li><li class="listitem"><p>User-defined friction is not available.</p></li><li class="listitem"><p>Linear perturbation is not available.</p></li></ul></div><p title="ANSYS Mechanical Pro">
+   </p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li><li class="listitem"><p>Debonding is not available.</p></li><li class="listitem"><p>User-defined contact is not available.</p></li><li class="listitem"><p>User-defined friction is not available.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+   </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

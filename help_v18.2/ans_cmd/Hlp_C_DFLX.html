@@ -1,0 +1,38 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:38-04:00"><title>DFLX</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_D_TOC.html" title="D Commands"><link rel="prev" href="Hlp_C_DFLAB.html" title="/DFLAB"><link rel="next" href="Hlp_C_DFSWAVE.html" title="DFSWAVE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="DFLX"><a name="DFLX"></a><div class="titlepage"></div><a class="indexterm" name="d0e68787"></a><span class="refentrytitle">
+<span class="command"><strong>DFLX</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>DFLX</strong></span>, <em class="replaceable"><code>NODE</code></em>, <em class="replaceable"><code>BX</code></em>, <em class="replaceable"><code>BY</code></em>, <em class="replaceable"><code>BZ</code></em>, <em class="replaceable"><code>BX2</code></em>, <em class="replaceable"><code>BY2</code></em>, <em class="replaceable"><code>BZ2</code></em>
+<br><b class="refpurpose">Imposes a uniform magnetic flux B on an edge-element electromagnetic
+model.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolufeconstjla070199" title="Table&nbsp;2.66:&nbsp;&nbsp;FE Constraints"><span class="type">FE Constraints</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="DFLX.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NODE</code></em>
+</b></span></dt><dd><p>Nodes at which the edge-flux (AZ) constraints corresponding
+to the uniform magnetic flux are to be specified.  Valid options are
+ALL (default) or Component Name. If ALL, constraints are applied to
+all selected nodes (<a class="link" href="Hlp_C_NSEL.html" title="NSEL"><span class="command"><strong>NSEL</strong></span></a>). </p></dd><dt><span><b class="term">
+<em class="replaceable"><code> BX, BY, BZ </code></em>
+</b></span></dt><dd><p>Real components of magnetic flux B.	</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>BX2, BY2, BZ2 </code></em>
+</b></span></dt><dd><p>Imaginary components of magnetic flux B.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="DFLX.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>DFLX</strong></span> command sets the constraints on
+the edge-flux (AZ) degrees of freedom to produce a uniform magnetic
+flux B in an edge-based electromagnetic analysis using elements <a href="../ans_elem/Hlp_E_SOLID236.html" class="olink"><span class="structname">SOLID236</span></a> and <a href="../ans_elem/Hlp_E_SOLID237.html" class="olink"><span class="structname">SOLID237</span></a>. The
+command ignores the corner nodes of the elements (even if they were
+selected) and imposes the AZ-constraints on the mid-side nodes only.
+The AZ-constraints are imposed in the active Cartesian coordinate
+system. A non-Cartesian coordinate system will be ignored by the <span class="command"><strong>DFLX</strong></span> command.</p><p>The edge-flux constraints at the mid-side nodes are derived
+from  the magnetic vector potential <span class="bold"><strong>A</strong></span>, which is related to the imposed magnetic flux <span class="bold"><strong>B</strong></span> as follows:</p><div class="informalequation"><a name="eq2caecfd9-651f-47d7-aa68-a4b0a4e6159a"></a><div><img src="graphics/eq2caecfd9-651f-47d7-aa68-a4b0a4e6159a.svg"></div></div><p>where <span class="bold"><strong>r</strong></span> is the position of
+the mid-side node.</p><p>The <span class="command"><strong>DFLX</strong></span> command creates
+a component named _DFLX for the constrained midside nodes. You can
+use this component to delete the constraints imposed by the <span class="command"><strong>DFLX</strong></span> command. </p><p>This command is also valid in PREP7.</p></div><div class="refsect1" title="Menu Paths"><a name="DFLX.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Menu path to be provided at release.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,730 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:05-04:00"><title>5.1.&nbsp;Continuum Stress Elements</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_StressAnalysisElems.html" title="Chapter&nbsp;5:&nbsp;Elements for Stress Analysis"><link rel="prev" href="Hlp_E_StressAnalysisElems.html" title="Chapter&nbsp;5:&nbsp;Elements for Stress Analysis"><link rel="next" href="Hlp_E_ShellElements.html" title="5.2.&nbsp;Shell Elements"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="5.1.&nbsp;Continuum Stress Elements"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="elem_continuumelems"></a>5.1.&nbsp;Continuum Stress Elements</h2></div></div></div><p>Continuum stress elements represent the volume of a model used for deflection and
+            stress analysis. They do <span class="italic"><em>not</em></span> include shell, surface,
+            contact, beam, pipe or other special elements.</p><p>Continuum stress elements have few, if any, basic deformation assumptions and are the
+            primary elements for stress analysis, especially for solid structures. </p><p>Elements can be either 2-D or 3-D and are usually obtained by meshing areas or
+            volumes. They can be used for any structural analysis. </p><p>Although continuum stress elements may not be computationally efficient for structures
+            having one or two dimensions that are much smaller than the remaining dimension(s), they
+            are still useful for benchmarking purposes, or to obtain more detailed results for such
+            structures.</p><div class="highlights"><p>The following topics related to continuum elements are available:</p><ul><li><a href="Hlp_E_continuumelems.html#d0e12704" title="5.1.1.&nbsp;Stress States in 2-D Continuum Elements">Stress States in 2-D Continuum Elements</a></li><li><a href="Hlp_E_continuumelems.html#elem_elemtechs" title="5.1.2.&nbsp;Element Technologies">Element Technologies</a></li><li><a href="Hlp_E_continuumelems.html#EL2mixforjwf091100" title="5.1.3.&nbsp;Mixed u-P Formulation">Mixed u-P Formulation</a></li><li><a href="Hlp_E_continuumelems.html#el_genplstrainopts" title="5.1.4.&nbsp;Generalized Plane Strain Options">Generalized Plane Strain Options</a></li><li><a href="Hlp_E_continuumelems.html#d0e13551" title="5.1.5.&nbsp;Axisymmetric Elements with Nonaxisymmetric Loads">Axisymmetric Elements with Nonaxisymmetric Loads</a></li></ul></div><div class="sect2" title="5.1.1.&nbsp;Stress States in 2-D Continuum Elements"><div class="titlepage"><div><div><h3 class="title"><a name="d0e12704"></a>5.1.1.&nbsp;Stress States in 2-D Continuum Elements</h3></div></div></div><div class="highlights"><p>The following topics about stress states in continuum elements assumes global
+                    Cartesian directions and applies to the <a class="link" href="Hlp_E_PLANE182.html" title="PLANE182"><span class="structname">PLANE182</span></a> and
+                        <a class="link" href="Hlp_E_PLANE183.html" title="PLANE183"><span class="structname">PLANE183</span></a> elements unless otherwise noted:</p><ul><li><a href="Hlp_E_continuumelems.html#d0e12718" title="5.1.1.1.&nbsp;Plane Stress">Plane Stress</a></li><li><a href="Hlp_E_continuumelems.html#elem_planestrain" title="5.1.1.2.&nbsp;Plane Strain">Plane Strain</a></li><li><a href="Hlp_E_continuumelems.html#elegps010702" title="5.1.1.3.&nbsp;Generalized Plane Strain">Generalized Plane Strain</a></li><li><a href="Hlp_E_continuumelems.html#elem_axisintro" title="5.1.1.4.&nbsp;Axisymmetric">Axisymmetric</a></li><li><a href="Hlp_E_continuumelems.html#elem_genaxisintro" title="5.1.1.5.&nbsp;General Axisymmetric">General Axisymmetric</a></li></ul></div><div class="sect3" title="5.1.1.1.&nbsp;Plane Stress"><div class="titlepage"><div><div><h4 class="title"><a name="d0e12718"></a>5.1.1.1.&nbsp;Plane Stress</h4></div></div></div><p>Plane stress is a stress state that varies only in the X and Y directions. The
+                    stress in the Z direction is always zero, as are the XZ and YZ shear stresses. </p><p>Plane stress is generally used on flat, thin structures, where the deformation
+                    is assumed to be solely in the plane of the structure. For example, flat plates
+                    pulled in tension may be analyzed with plane stress. Although a unit thickness
+                    is generally assumed, you can input a thickness as well.</p></div><div class="sect3" title="5.1.1.2.&nbsp;Plane Strain"><div class="titlepage"><div><div><h4 class="title"><a name="elem_planestrain"></a>5.1.1.2.&nbsp;Plane Strain</h4></div></div></div><p>Plane strain is a stress state that varies only in the X and Y directions. The
+                    strain in the Z direction is always zero, as are the XZ and YZ shear strains. </p><p>Plane strain is generally used on thick structures such as the cross-section
+                    of a dam.</p></div><div class="sect3" title="5.1.1.3.&nbsp;Generalized Plane Strain"><div class="titlepage"><div><div><h4 class="title"><a name="elegps010702"></a>5.1.1.3.&nbsp;Generalized Plane Strain</h4></div></div></div><a class="indexterm" name="d0e12736"></a><a class="indexterm" name="d0e12739"></a><p>Generalized plane strain is similar to <a class="link" href="Hlp_E_continuumelems.html#elem_planestrain" title="5.1.1.2.&nbsp;Plane Strain">plane
+                        strain</a>, except that the Z direction strain is not required to be
+                    zero. The Z direction strain may vary linearly in the X and Y directions (but
+                    not in the Z direction), removing the implied restriction of plane strain that
+                    the model extends without limit in the Z direction. The model in the Z direction
+                    can also have a uniform curvature. </p><p>Generalized plane strain can be used for modeling a section of cylindrical
+                    geometries, or to model long structures with a load at the end. </p><p>For more information, see <a class="xref" href="Hlp_E_continuumelems.html#el_genplstrainopts" title="5.1.4.&nbsp;Generalized Plane Strain Options">Generalized Plane Strain Options</a>.</p></div><div class="sect3" title="5.1.1.4.&nbsp;Axisymmetric"><div class="titlepage"><div><div><h4 class="title"><a name="elem_axisintro"></a>5.1.1.4.&nbsp;Axisymmetric</h4></div></div></div><p>Axisymmetric geometry is defined in the X-Y plane with positive X values. The
+                    geometry can be thought of as the cross-section, which, when rotated about the
+                    global Cartesian Y axis, forms the actual model. Unless otherwise described,
+                    therefore, the model <span class="italic"><em>and</em></span> the loading and
+                    deformations are constant around the circumference. </p><p>An axisymmetric analysis can be used for a nuclear containment building under
+                    internal pressure or vertical earthquake. </p><p>Axisymmetric geometry is defined in the X-Y plane with
+                    positive X values. The geometry can be thought of as the cross-section, which,
+                    when rotated about the global Cartesian Y axis, forms the actual model. Unless
+                    otherwise described, therefore, the model <span class="italic"><em>and</em></span>
+                    the loading and deformations are constant around the circumference. Axisymmetric
+                    deformation can include the torsion about the global Cartesian Y axis.</p><p>An axisymmetric analysis can be used for a nuclear containment building under
+                    internal pressure or vertical earthquake. </p><p>Besides <a class="link" href="Hlp_E_PLANE182.html" title="PLANE182"><span class="structname">PLANE182</span></a> and
+                        <a class="link" href="Hlp_E_PLANE183.html" title="PLANE183"><span class="structname">PLANE183</span></a>, <a class="link" href="Hlp_E_SHELL208.html" title="SHELL208"><span class="structname">SHELL208</span></a> and
+                        <a class="link" href="Hlp_E_SHELL209.html" title="SHELL209"><span class="structname">SHELL209</span></a> support axisymmetric analyses.</p></div><div class="sect3" title="5.1.1.5.&nbsp;General Axisymmetric"><div class="titlepage"><div><div><h4 class="title"><a name="elem_genaxisintro"></a>5.1.1.5.&nbsp;General Axisymmetric</h4></div></div></div><p>General axisymmetric is the same as <a class="link" href="Hlp_E_continuumelems.html#elem_axisintro" title="5.1.1.4.&nbsp;Axisymmetric">axisymmetric</a> except that the deformations can be
+                    nonaxisymmetric.</p><p>ANSYS, Inc. recommends using the <a class="link" href="Hlp_E_SOLID272.html" title="SOLID272"><span class="structname">SOLID272</span></a> and
+                        <a class="link" href="Hlp_E_SOLID273.html" title="SOLID273"><span class="structname">SOLID273</span></a> elements to simulate general axisymmetric
+                    characteristics. The general axisymmetric elements offer the following
+                    benefits:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The deformations can be nonaxisymmetric.</p></li><li class="listitem"><p>The deformations are modeled internally as a Fourier series, with all
+                            terms of the Fourier series solved simultaneously. </p></li><li class="listitem"><p>All nonlinearities are supported.</p></li></ul></div><p>An example general axisymmetric application is simulating threaded pipe
+                    connections. </p><p>For more information, see <a class="xref" href="Hlp_E_continuumelems.html#elemgeneralaxis" title="5.1.5.1.&nbsp;General Axisymmetric Elements">General Axisymmetric Elements</a>.</p><div class="sect4" title="5.1.1.5.1.&nbsp;Alternate General Axisymmetric Method for Linear Problems"><div class="titlepage"><div><div><h5 class="title"><a name="d0e12824"></a>5.1.1.5.1.&nbsp;Alternate General Axisymmetric Method for Linear Problems</h5></div></div></div><p>Alternatively, general axisymmetric can be simulated with harmonic
+                        axisymmetric elements when the problem is linear.</p><p>The deformations are modeled as a Fourier series, with each term of the
+                        Fourier series solved separately and then combined in postprocessing, and
+                        you must perform both tasks manually. Supported elements are
+                            <a class="link" href="Hlp_E_PLANE25.html" title="PLANE25"><span class="structname">PLANE25</span></a>, <a class="link" href="Hlp_E_PLANE83.html" title="PLANE83"><span class="structname">PLANE83</span></a>, and
+                            <a class="link" href="Hlp_E_SHELL61.html" title="SHELL61"><span class="structname">SHELL61</span></a>.</p><p>Only linear behavior is supported. </p><p>An example axisymmetric-harmonic application is simulating a nuclear
+                        containment building subjected to a horizontal earthquake. </p><p>For more information, see <a class="xref" href="Hlp_E_continuumelems.html#axele520jjw" title="5.1.5.2.&nbsp;Harmonic Axisymmetric Elements">Harmonic Axisymmetric Elements</a>.</p><div class="informaltable"><table border="1" width="95%"><colgroup><col class="col1" width="100%"></colgroup><tbody><tr><td>
+                                        <p>Due to the limitations of axisymmetric-harmonic
+                                            elements, ANSYS, Inc. recommends using <a class="link" href="Hlp_E_continuumelems.html#elem_genaxisintro" title="5.1.1.5.&nbsp;General Axisymmetric">general
+                                                axisymmetric</a> elements instead. The method
+                                            presented here is provided for legacy support
+                                            only.</p>
+                                    </td></tr></tbody></table></div></div></div></div><div class="sect2" title="5.1.2.&nbsp;Element Technologies"><div class="titlepage"><div><div><h3 class="title"><a name="elem_elemtechs"></a>5.1.2.&nbsp;Element Technologies</h3></div></div></div><p>Traditional isoparametric continuum elements have never been sufficiently robust
+                or accurate enough for general stress analysis.</p><p>Even in a linear analysis, lower-order elements are prone to shear locking in
+                bending-dominated problems. Both lower- and higher-order elements experience
+                volumetric locking when materials are incompressible or nearly incompressible, yet
+                most nonlinear materials are either nearly or fully incompressible. </p><p>
+                <a href="Hlp_E_CH2_OLDNEW.html" class="olink">Current-technology</a> continuum elements are available to overcome such
+                problems. As technology advances, ANSYS, Inc. continues to develop robust new element
+                types using the latest technologies available. Current-technology elements are more
+                advanced and feature-rich than legacy elements.</p><div class="highlights"><p>The following topics concerning current element technologies for general
+                    stress analysis are available:</p><ul><li><a href="Hlp_E_continuumelems.html#elem_techsloworderquad" title="5.1.2.1.&nbsp;Technologies for Lower-Order Quad and Brick Elements">Technologies for Lower-Order Quad and Brick Elements</a></li><li><a href="Hlp_E_continuumelems.html#d0e12965" title="5.1.2.2.&nbsp;Technologies for Lower-Order Tetrahedron Elements">Technologies for Lower-Order Tetrahedron Elements</a></li><li><a href="Hlp_E_continuumelems.html#d0e12973" title="5.1.2.3.&nbsp;Technologies for Higher-Order Quad or Brick Elements">Technologies for Higher-Order Quad or Brick Elements</a></li><li><a href="Hlp_E_continuumelems.html#d0e12990" title="5.1.2.4.&nbsp;Technologies for Higher-Order Triangle or Tetrahedron Elements">Technologies for Higher-Order Triangle or Tetrahedron Elements</a></li></ul></div><div class="sect3" title="5.1.2.1.&nbsp;Technologies for Lower-Order Quad and Brick Elements"><div class="titlepage"><div><div><h4 class="title"><a name="elem_techsloworderquad"></a>5.1.2.1.&nbsp;Technologies for Lower-Order Quad and Brick Elements</h4></div></div></div><div class="highlights"><p>The following current technologies are available for lower-order quad and
+                        brick elements:</p><ul><li><a href="Hlp_E_continuumelems.html#elem_bbarsri" title="5.1.2.1.1.&nbsp;B-bar Method (Selective Reduced Integration)">B-bar Method (Selective Reduced Integration)</a></li><li><a href="Hlp_E_continuumelems.html#elem_enhancedstrain" title="5.1.2.1.2.&nbsp;Enhanced Strain Formulation">Enhanced Strain Formulation</a></li><li><a href="Hlp_E_continuumelems.html#elem_simplifenhanced" title="5.1.2.1.3.&nbsp;Simplified Enhanced Strain Formulation">Simplified Enhanced Strain Formulation</a></li><li><a href="Hlp_E_continuumelems.html#elem_uniformreduced" title="5.1.2.1.4.&nbsp;Uniform Reduced Integration">Uniform Reduced Integration</a></li></ul></div><div class="sect4" title="5.1.2.1.1.&nbsp;B-bar Method (Selective Reduced Integration)"><div class="titlepage"><div><div><h5 class="title"><a name="elem_bbarsri"></a>5.1.2.1.1.&nbsp;B-bar Method (Selective Reduced Integration)</h5></div></div></div><p>The B-bar ( <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq8ba66d28-47f5-4082-b263-b627a79ab1cd.svg"></span>) method helps to prevent volumetric locking in nearly
+                        incompressible cases. It replaces volumetric strain at the Gauss integration
+                        point with the average volumetric strain of the elements. </p><p>This method cannot, however, prevent any shear locking in
+                        bending-dominated problems. In such cases, use the enhanced strain
+                        formulation of the element. If it is not clear whether the deformation is
+                        bending-dominated, the enhanced strain formulation is still recommended. </p><p>This technology can be used with <a href="../ans_thry/thy_geo5.html#geoupform" class="olink">mixed u-P formulations</a>. </p></div><div class="sect4" title="5.1.2.1.2.&nbsp;Enhanced Strain Formulation"><div class="titlepage"><div><div><h5 class="title"><a name="elem_enhancedstrain"></a>5.1.2.1.2.&nbsp;Enhanced Strain Formulation</h5></div></div></div><p>The enhanced strain formulation prevents shear locking in
+                        bending-dominated problems and volumetric locking in nearly incompressible
+                        cases. The formulation introduces certain number of internal (and
+                        inaccessible) degrees of freedom to overcome shear locking, and an
+                        additional internal degree of freedom for volumetric locking (except for the
+                        case of plane stress in 2-D elements). All internal degrees of freedom are
+                        introduced automatically at the element level and condensed out during the
+                        solution phase of the analysis.</p><p>Because of the extra internal degrees of freedom and static condensation,
+                        the enhanced strain formulation option is less efficient than either the
+                            <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq8f0a2d23-b741-4aac-860f-a9ea14132938.svg"></span>
+                        <a class="link" href="Hlp_E_continuumelems.html#elem_bbarsri" title="5.1.2.1.1.&nbsp;B-bar Method (Selective Reduced Integration)">method</a> (selective reduced integration)
+                        option or the <a class="link" href="Hlp_E_continuumelems.html#elem_uniformreduced" title="5.1.2.1.4.&nbsp;Uniform Reduced Integration">uniform reduced
+                            integration</a> option. </p><p>This technology can be used with <a href="../ans_thry/thy_geo5.html#geoupform" class="olink">mixed u-P formulations</a>.</p></div><div class="sect4" title="5.1.2.1.3.&nbsp;Simplified Enhanced Strain Formulation"><div class="titlepage"><div><div><h5 class="title"><a name="elem_simplifenhanced"></a>5.1.2.1.3.&nbsp;Simplified Enhanced Strain Formulation</h5></div></div></div><p>The simplified enhanced strain formulation prevents shear locking in
+                        bending-dominated problems. This formulation is similar to the <a class="link" href="Hlp_E_continuumelems.html#elem_enhancedstrain" title="5.1.2.1.2.&nbsp;Enhanced Strain Formulation">enhanced strain formulation</a>, except
+                        that it introduces only the internal degrees of freedom necessary to prevent
+                        shear locking. For the plane stress state, this formulation is identical to
+                        the enhanced strain formulation. </p><p>Because there are no internal degrees of freedom to handle volumetric
+                        locking, this formulation is not ideal when the material is nearly
+                        incompressible, except when also using the <a href="../ans_thry/thy_geo5.html#geoupform" class="olink">mixed u-P formulation</a>. When used with
+                        mixed u-P, the simplified enhanced strain formulation yields the same
+                        results as the <a class="link" href="Hlp_E_continuumelems.html#elem_enhancedstrain" title="5.1.2.1.2.&nbsp;Enhanced Strain Formulation">enhanced strain</a>
+                        formulation. All internal degrees of freedom are introduced automatically at
+                        the element level and condensed out during the solution phase of the
+                        analysis.</p></div><div class="sect4" title="5.1.2.1.4.&nbsp;Uniform Reduced Integration"><div class="titlepage"><div><div><h5 class="title"><a name="elem_uniformreduced"></a>5.1.2.1.4.&nbsp;Uniform Reduced Integration</h5></div></div></div><p>The uniform reduced integration method helps to prevent shearing locking
+                        in bending-dominated problems and volumetric locking in nearly
+                        incompressible cases. Because it has only one integration point, this option
+                        is more efficient than the <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqf568db76-e2af-4b6b-895c-54651fd1ba16.svg"></span>
+                        <a class="link" href="Hlp_E_continuumelems.html#elem_bbarsri" title="5.1.2.1.1.&nbsp;B-bar Method (Selective Reduced Integration)">method</a> (selective reduced integration)
+                        and the <a class="link" href="Hlp_E_continuumelems.html#elem_enhancedstrain" title="5.1.2.1.2.&nbsp;Enhanced Strain Formulation">enhanced strain</a>
+                        formulations. Because the artificial energy introduced to control the
+                        hourglass effect can diminish solution accuracy, however, consider this
+                        option last.</p><p>When using uniform reduced integration, verify the solution accuracy by
+                        comparing the total energy (SENE label on the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>
+                        command) and the artificial energy (AENE label on the
+                            <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>) introduced by hourglass control. If the ratio
+                        of artificial energy to total energy is less than five percent, the solution
+                        is generally acceptable. If the ratio exceeds five percent, refine the mesh.
+                        You can also monitor the total energy and artificial energy during the
+                        solution phase of the analysis (<a href="../ans_cmd/Hlp_C_OUTPR.html" class="olink"><span class="command"><strong>OUTPR</strong></span></a>,VENG). </p></div></div><div class="sect3" title="5.1.2.2.&nbsp;Technologies for Lower-Order Tetrahedron Elements"><div class="titlepage"><div><div><h4 class="title"><a name="d0e12965"></a>5.1.2.2.&nbsp;Technologies for Lower-Order Tetrahedron Elements</h4></div></div></div><p>Linear tetrahedron elements use <a href="../ans_thry/thy_geo5.html#geoupform" class="olink">mixed u-P formulation</a> with pressure
+                    stabilization. The program achieves stabilization by enhancing the strain field
+                    with three internal degrees of freedom (which are condensed out at the element
+                    level). The stabilization allows for a robust and accurate element.</p></div><div class="sect3" title="5.1.2.3.&nbsp;Technologies for Higher-Order Quad or Brick Elements"><div class="titlepage"><div><div><h4 class="title"><a name="d0e12973"></a>5.1.2.3.&nbsp;Technologies for Higher-Order Quad or Brick Elements</h4></div></div></div><p>Higher-order elements (actually second-order here) do not have shear locking
+                    due to the quadratic shape functions, but they are prone to volumetric locking
+                    if the full-integration scheme is used. To avoid this problem, higher-order
+                    elements use <a class="link" href="Hlp_E_continuumelems.html#elem_uniformreduced" title="5.1.2.1.4.&nbsp;Uniform Reduced Integration">uniform reduced
+                        integration</a> as the default or only option. </p><p>The hourglass effect is not an issue if the model has at least two elements
+                    for 2-D problems, or at least two elements in each direction for 3-D problems,
+                    as it is difficult for hourglass mode to propagate beyond one element. Hourglass
+                    control is therefore not needed. </p><p>Uniform reduced integration can be used with <a href="../ans_thry/thy_geo5.html#geoupform" class="olink">mixed u-P formulation</a>. </p><p>The full integration option is used primarily for linear analysis, and for
+                    nonlinear analysis, uniform reduced integration is the better choice. If full
+                    integration is necessary for an analysis involving nonlinear material, use it
+                    with mixed u-P formulation to limit the risk of volumetric locking.</p></div><div class="sect3" title="5.1.2.4.&nbsp;Technologies for Higher-Order Triangle or Tetrahedron Elements"><div class="titlepage"><div><div><h4 class="title"><a name="d0e12990"></a>5.1.2.4.&nbsp;Technologies for Higher-Order Triangle or Tetrahedron Elements</h4></div></div></div><p>The second-order elements do not have shear locking, and volumetric locking is
+                    generally not an issue. If you observe volumetric locking, used <a href="../ans_thry/thy_geo5.html#geoupform" class="olink">mixed u-P
+                    formulation</a>.</p></div></div><div class="sect2" title="5.1.3.&nbsp;Mixed u-P Formulation"><div class="titlepage"><div><div><h3 class="title"><a name="EL2mixforjwf091100"></a>5.1.3.&nbsp;Mixed u-P Formulation</h3></div></div></div><a class="indexterm" name="d0e13002"></a><p>Mixed u-P elements use both displacement and hydrostatic pressure as primary
+                unknown variables. Mixed u-P formulation is available in
+                    <a class="link" href="Hlp_E_SOLID285.html" title="SOLID285"><span class="structname">SOLID285</span></a>, and in most other <a class="link" href="Hlp_E_CH2_OLDNEW.html#EL2oldnewtable" title="2.4.1.&nbsp;Legacy vs. Current Element Technologies">current-technology elements</a> where KEYOPT(6) &gt;
+                0, such as: <a class="link" href="Hlp_E_PLANE182.html" title="PLANE182"><span class="structname">PLANE182</span></a>, <a class="link" href="Hlp_E_PLANE183.html" title="PLANE183"><span class="structname">PLANE183</span></a>,
+                    <a class="link" href="Hlp_E_SOLID185.html" title="SOLID185"><span class="structname">SOLID185</span></a>, <a class="link" href="Hlp_E_SOLID186.html" title="SOLID186"><span class="structname">SOLID186</span></a>,
+                    <a class="link" href="Hlp_E_SOLID187.html" title="SOLID187"><span class="structname">SOLID187</span></a>, <a class="link" href="Hlp_E_SOLSH190.html" title="SOLSH190"><span class="structname">SOLSH190</span></a>,
+                    <a class="link" href="Hlp_E_SOLID272.html" title="SOLID272"><span class="structname">SOLID272</span></a>, and <a class="link" href="Hlp_E_SOLID273.html" title="SOLID273"><span class="structname">SOLID273</span></a>.</p><div class="highlights"><p>The following related topics are available:</p><ul><li><a href="Hlp_E_continuumelems.html#EL2mfeltejwf091100" title="5.1.3.1.&nbsp;Overview of Mixed u-P Element Technologies">Overview of Mixed u-P Element Technologies</a></li><li><a href="Hlp_E_continuumelems.html#EL218xmejwf091100" title="5.1.3.2.&nbsp;Mixed u-P Element Summary">Mixed u-P Element Summary</a></li><li><a href="Hlp_E_continuumelems.html#EL2appmfjwf091100" title="5.1.3.3.&nbsp;Applications of Mixed u-P Formulations">Applications of Mixed u-P Formulations</a></li><li><a href="Hlp_E_continuumelems.html#EL2omnusjwf091100" title="5.1.3.4.&nbsp;Mixed u-P Models and Overconstraint or No Unique Solution">Mixed u-P Models and Overconstraint or No Unique Solution</a></li></ul></div><div class="sect3" title="5.1.3.1.&nbsp;Overview of Mixed u-P Element Technologies"><div class="titlepage"><div><div><h4 class="title"><a name="EL2mfeltejwf091100"></a>5.1.3.1.&nbsp;Overview of Mixed u-P Element Technologies</h4></div></div></div><p>Incompressible material behavior may lead to difficulties in numerical
+                    simulation, such as volumetric locking, inaccuracy of solution, checkerboard
+                    pattern of stress distributions, or, occasionally, divergence. Mixed u-P
+                    elements are intended to overcome these problems.</p><p>Lagrange multiplier based mixed u-P elements (<a class="link" href="Hlp_E_CH2_OLDNEW.html#EL2oldnewtable" title="2.4.1.&nbsp;Legacy vs. Current Element Technologies">current-technology</a> solid elements with KEYOPT(6) &gt; 0 and
+                        <a class="link" href="Hlp_E_SOLID285.html" title="SOLID285"><span class="structname">SOLID285</span></a>) can also be used to overcome
+                    incompressible material problems. They are designed to model material behavior
+                    with high incompressibility such as fully or nearly incompressible hyperelastic
+                    materials and nearly incompressible elastoplastic materials (high Poisson ratio
+                    or undergoing large plastic strain). Lagrange multipliers extend the internal
+                    virtual work so that the volume constraint equation is included explicitly. This
+                    introduces hydrostatic pressure (or volume change rate for nearly incompressible
+                    hyperelastic materials) as a new independent variable. Unlike the hyperelastic
+                    elements, the hydrostatic pressure variables are not condensed on the element
+                    level, but are solved at the global level. For more infomration, see <a href="../ans_thry/thy_geo5.html#geoupform2" class="olink">u-P Formulation II in the <span class="olinkdocname">Mechanical APDL Theory Reference</span></a>.</p><p>The mixed u-P formulation of the <a class="link" href="Hlp_E_CH2_OLDNEW.html#EL2oldnewtable" title="2.4.1.&nbsp;Legacy vs. Current Element Technologies">current-technology</a> solid elements offers options for handling
+                    incompressible material behavior. You can combine the mixed u-P formulation with
+                    other element technologies such as the <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqac9594f5-82cc-4ede-83cc-30661ca8d8a7.svg"></span> method (also known as the selective reduced integration
+                    method) and the uniform reduced integration method. With current-technology
+                    elements, you can combine the mixed u-P formulation with the enhanced strain
+                    formulation method. Furthermore, the mixed u-P formulation is associated with
+                    hyperelastic models, such as Mooney-Rivlin, Neo-Hookean, Ogden, Arruda-Boyce,
+                    polynomial form, and user-defined.</p></div><div class="sect3" title="5.1.3.2.&nbsp;Mixed u-P Element Summary"><div class="titlepage"><div><div><h4 class="title"><a name="EL218xmejwf091100"></a>5.1.3.2.&nbsp;Mixed u-P Element Summary</h4></div></div></div><p>The number of independent hydrostatic pressure degrees of freedom depends on
+                    the element type, element technology, and the value of KEYOPT(6), as shown in
+                        <a class="xref" href="Hlp_E_continuumelems.html#EL2prdofjwf091100" title="Table&nbsp;5.1:&nbsp;&nbsp;Number of Independent Pressure Degrees of Freedom in One Element">Table&nbsp;5.1:&nbsp;Number of Independent Pressure Degrees of Freedom in One Element</a>.</p><div class="table"><a name="EL2prdofjwf091100"></a><p class="title"><b>Table&nbsp;5.1:&nbsp;&nbsp;Number of Independent Pressure Degrees of Freedom in One Element</b></p><div class="table-contents"><table summary="Number of Independent Pressure Degrees of Freedom in One Element" border="1" width="95%"><colgroup><col width="96" class="col2"><col width="254" class="COLSPEC6"><col width="91" class="COLSPEC2"><col width="76" class="COLSPEC1"><col width="105" class="COLSPEC0"></colgroup><thead><tr><th bgcolor="#E3E3E3">
+                                    
+                                    Element</th><th bgcolor="#E3E3E3" align="center">
+                                    
+                                    Basic Element Technology</th><th bgcolor="#E3E3E3" align="center">
+                                    
+                                    KEYOPT(6)</th><th bgcolor="#E3E3E3" align="center">
+                                    
+                                    Number of Pressure DOFs</th><th bgcolor="#E3E3E3" align="center">
+                                    
+                                    Interpolation Function</th></tr></thead><tbody><tr><td>
+                                    <a class="link" href="Hlp_E_PLANE182.html" title="PLANE182"><span class="structname">PLANE182</span></a>
+                                </td><td>
+                                    
+                                    <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqdd459c17-ce6a-47a7-98ca-5d9a9b0f5954.svg"></span> method (selective reduced integration)
+                                        <span class="italic"><em>or</em></span> uniform reduced
+                                    integration</td><td align="center">1</td><td align="center">1</td><td align="center">Constant</td></tr><tr><td>
+                                    <a class="link" href="Hlp_E_PLANE182.html" title="PLANE182"><span class="structname">PLANE182</span></a>
+                                </td><td>Enhanced strain formulation</td><td align="center">1</td><td align="center">3</td><td align="center">Linear</td></tr><tr><td>
+                                    <a class="link" href="Hlp_E_PLANE183.html" title="PLANE183"><span class="structname">PLANE183</span></a>
+                                </td><td>Uniform reduced integration (KEYOPT(1) =
+                                    0)</td><td align="center">1</td><td align="center">3</td><td align="center">Linear</td></tr><tr><td>
+                                    <a class="link" href="Hlp_E_PLANE183.html" title="PLANE183"><span class="structname">PLANE183</span></a>
+                                </td><td>3-point integration (KEYOPT(1) = 1)</td><td align="center">1</td><td align="center">3</td><td align="center">Linear</td></tr><tr><td>
+                                    <a class="link" href="Hlp_E_SOLID185.html" title="SOLID185"><span class="structname">SOLID185</span></a>
+                                </td><td>
+                                    
+                                    <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqffe31cb7-2999-4fd5-8f66-f7f884a5373e.svg"></span> method (selective reduced integration)
+                                        <span class="italic"><em>or</em></span> uniform reduced
+                                    integration</td><td align="center">1</td><td align="center">1</td><td align="center">Constant</td></tr><tr><td>
+                                    <a class="link" href="Hlp_E_SOLID185.html" title="SOLID185"><span class="structname">SOLID185</span></a>
+                                </td><td>Enhanced strain formulation</td><td align="center">1</td><td align="center">4</td><td align="center">Linear</td></tr><tr><td>
+                                    <a class="link" href="Hlp_E_SOLID186.html" title="SOLID186"><span class="structname">SOLID186</span></a>
+                                </td><td>Uniform reduced integration</td><td align="center">1</td><td align="center">4</td><td align="center">Linear</td></tr><tr><td>
+                                    <a class="link" href="Hlp_E_SOLID186.html" title="SOLID186"><span class="structname">SOLID186</span></a>
+                                </td><td>Full integration</td><td align="center">1</td><td align="center">4</td><td align="center">Linear</td></tr><tr><td>
+                                    <a class="link" href="Hlp_E_SOLID187.html" title="SOLID187"><span class="structname">SOLID187</span></a>
+                                </td><td>4-point integration</td><td align="center">1</td><td align="center">1</td><td align="center">Constant</td></tr><tr><td>
+                                    <a class="link" href="Hlp_E_SOLID187.html" title="SOLID187"><span class="structname">SOLID187</span></a>
+                                </td><td>4-point integration</td><td align="center">2</td><td align="center">4</td><td align="center">Linear</td></tr><tr><td>
+                                    <a class="link" href="Hlp_E_SOLSH190.html" title="SOLSH190"><span class="structname">SOLSH190</span></a>
+                                </td><td>Enhanced strain formulation</td><td align="center">1</td><td align="center">4</td><td align="center">Linear</td></tr><tr><td>
+                                    <a class="link" href="Hlp_E_SOLID272.html" title="SOLID272"><span class="structname">SOLID272</span></a>
+                                </td><td>Full integration in the r-z plane.</td><td align="center">1</td><td align="center">KEYOPT(2)</td><td align="center" valign="middle">Constant in the r-z
+                                    plane and Fourier interpolation in the circumferential
+                                    (&#952;) direction</td></tr><tr><td>
+                                    <a class="link" href="Hlp_E_SOLID273.html" title="SOLID273"><span class="structname">SOLID273</span></a>
+                                </td><td>Uniform integration in the r-z plane.</td><td align="center">1</td><td align="center">KEYOPT(2) x 3</td><td>Linear in the r-z plane and Fourier interpolation in the
+                                    circumferential (&#952;) direction</td></tr><tr><td>
+                                    <a class="link" href="Hlp_E_SOLID285.html" title="SOLID285"><span class="structname">SOLID285</span></a>
+                                </td><td>Stabilized pressure formulation</td><td align="center">--- </td><td align="center">4</td><td align="center">Linear</td></tr></tbody></table></div></div><br class="table-break"><p>The hydrostatic pressure has an interpolation function one order lower than
+                    the one for volumetric strain. Therefore, elastic strain only agrees with stress
+                    in an element on the average instead of point-wise.</p><p>For <a class="link" href="Hlp_E_CH2_OLDNEW.html#EL2oldnewtable" title="2.4.1.&nbsp;Legacy vs. Current Element Technologies">current-technology</a> mixed u-P elements, the volume constraint
+                    equation is checked for each element of a nonlinear analysis. The number of
+                    elements in which the constraint equation is not satisfied is reported in the
+                    output file. The default tolerance for the volumetric compatibility or volume
+                    constraint check is 1.0 x 10<sup>-3</sup>. You can change this
+                    value if necessary (<a href="../ans_cmd/Hlp_C_CNVTOL.html" class="olink"><span class="command"><strong>CNVTOL</strong></span></a>). </p><p>For the <a class="link" href="Hlp_E_SOLID285.html" title="SOLID285"><span class="structname">SOLID285</span></a> element, hydrostatic pressure is
+                    added as a degree of freedom at each node. The incompressibility is therefore
+                    checked at each node (similar to forces). For more information, see the
+                    documentation for the <a href="../ans_cmd/Hlp_C_CNVTOL.html" class="olink"><span class="command"><strong>CNVTOL</strong></span></a> command. </p><p>The mixed u-P formulation is not needed in plane stress; the incompressibility
+                    condition is assumed, and the thickness is adjusted based on this incompressible
+                    assumption. For 2-D elements <a class="link" href="Hlp_E_PLANE182.html" title="PLANE182"><span class="structname">PLANE182</span></a> and
+                        <a class="link" href="Hlp_E_PLANE183.html" title="PLANE183"><span class="structname">PLANE183</span></a>, using the mixed u-P formulation with
+                    either of the plane stress options (KEYOPT(3) = 0 or 3), the program resets any
+                    KEYOPT(6) setting to 0 automatically for pure displacement formulation.</p></div><div class="sect3" title="5.1.3.3.&nbsp;Applications of Mixed u-P Formulations"><div class="titlepage"><div><div><h4 class="title"><a name="EL2appmfjwf091100"></a>5.1.3.3.&nbsp;Applications of Mixed u-P Formulations</h4></div></div></div><p>Incompressible material behavior can be divided into two categories: fully
+                    incompressible materials and nearly incompressible materials. Typical fully
+                    incompressible materials are hyperelastic materials. You must use a <a class="link" href="Hlp_E_CH2_OLDNEW.html#EL2oldnewtable" title="2.4.1.&nbsp;Legacy vs. Current Element Technologies">current-technology</a> element with mixed u-P
+                    formulation or <a class="link" href="Hlp_E_SOLID285.html" title="SOLID285"><span class="structname">SOLID285</span></a> to model this material
+                    behavior. For element <a class="link" href="Hlp_E_SOLID187.html" title="SOLID187"><span class="structname">SOLID187</span></a>, set KEYOPT(6) =
+                    1.</p><p>Nearly incompressible materials include hyperelastic materials and
+                    elastoplastic materials. The current-technology elements with mixed u-P
+                    formulation and <a class="link" href="Hlp_E_SOLID285.html" title="SOLID285"><span class="structname">SOLID285</span></a> are available for nearly
+                    incompressible hyperelastic materials. </p><p>The best element choice varies from problem to problem, as indicated in these
+                    general guidelines: </p><p>
+                    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                                <span class="bold"><strong>For material behavior with very small
+                                    compressibility:</strong></span> Use a current-technology element
+                                with mixed u-P formulation or
+                                <a class="link" href="Hlp_E_SOLID285.html" title="SOLID285"><span class="structname">SOLID285</span></a>.</p></li><li class="listitem"><p>
+                                <span class="bold"><strong>For moderate compressibility:</strong></span> Use
+                                    <a class="link" href="Hlp_E_PLANE182.html" title="PLANE182"><span class="structname">PLANE182</span></a>/<a class="link" href="Hlp_E_SOLID185.html" title="SOLID185"><span class="structname">SOLID185</span></a>
+                                with <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq666935ac-a962-4a6e-99c7-4a6167ba52b7.svg"></span> (most efficient), a <a class="link" href="Hlp_E_CH2_OLDNEW.html#EL2oldnewtable" title="2.4.1.&nbsp;Legacy vs. Current Element Technologies">current-technology</a> element with mixed u-P formulation,
+                                or <a class="link" href="Hlp_E_SOLID285.html" title="SOLID285"><span class="structname">SOLID285</span></a>. </p></li><li class="listitem"><p>
+                                <span class="bold"><strong>When deformation is highly
+                                    confined:</strong></span> Use a current-technology element with mixed
+                                u-P formulation.</p></li></ul></div><p>
+                </p><p>Nearly incompressible elastoplastic materials are materials with Poisson's
+                    ratio close to 0.5, or elastoplastic materials undergoing very large plastic
+                    deformation. For such cases, especially when the deformation is close to being
+                    fully incompressible, the mixed u-P formulation of the current-technology
+                    elements and <a class="link" href="Hlp_E_SOLID285.html" title="SOLID285"><span class="structname">SOLID285</span></a> is more robust, yielding better
+                    performance. Try pure displacement formulation (KEYOPT(6) = 0) first, however,
+                    because the extra pressure degrees of freedom are involved in mixed formulation.
+                    If you are using mixed formulation with element
+                        <a class="link" href="Hlp_E_SOLID187.html" title="SOLID187"><span class="structname">SOLID187</span></a>, it is good practice to specify
+                    hydrostatic pressure interpolation (KEYOPT(6) = 2).</p></div><div class="sect3" title="5.1.3.4.&nbsp;Mixed u-P Models and Overconstraint or No Unique Solution"><div class="titlepage"><div><div><h4 class="title"><a name="EL2omnusjwf091100"></a>5.1.3.4.&nbsp;Mixed u-P Models and Overconstraint or No Unique Solution</h4></div></div></div><p>Avoid overconstrained models when using <a class="link" href="Hlp_E_CH2_OLDNEW.html#EL2oldnewtable" title="2.4.1.&nbsp;Legacy vs. Current Element Technologies">current-technology elements</a> with mixed u-P formulation. An
+                    overconstrained model means that globally or locally, the number of displacement
+                    degrees of freedom without any prescribed values (<em class="replaceable"><code>Nd</code></em>)
+                    is less than the number of hydrostatic pressure degrees of freedom
+                        (<em class="replaceable"><code>Np</code></em>). <em class="replaceable"><code>Np</code></em> can be
+                    calculated by the number of elements times the number of pressure degrees of
+                    freedom within each element. (See <a class="xref" href="Hlp_E_continuumelems.html#EL2prdofjwf091100" title="Table&nbsp;5.1:&nbsp;&nbsp;Number of Independent Pressure Degrees of Freedom in One Element">Table&nbsp;5.1:&nbsp;Number of Independent Pressure Degrees of Freedom in One Element</a> for the
+                    specific numbers used with the current-technology elements.) If different type
+                    elements are included, <em class="replaceable"><code>Np</code></em> is the summation of the
+                    products over each type of mixed formulation element. The overconstrained
+                    problem can be overcome by increasing the number of nodes without any
+                    displacement boundary conditions, or by refining the mesh. The optimal values
+                    for <em class="replaceable"><code>Np</code></em> and <em class="replaceable"><code>Nd</code></em> are
+                        <em class="replaceable"><code>Nd/Np</code></em> = 2 for 2-D problems and
+                        <em class="replaceable"><code>Nd/Np</code></em> = 3 for 3-D problems. </p><p>On the other hand, <a class="link" href="Hlp_E_SOLID285.html" title="SOLID285"><span class="structname">SOLID285</span></a> is not likely to be
+                    overconstrained. At each node, it has one pressure degree of freedom and three
+                    degrees of freedom (UX, UY, and UZ). These are the best values for
+                        <em class="replaceable"><code>Nd</code></em>/<em class="replaceable"><code>Np</code></em>.</p><p>When the mixed u-P formulation of the current-technology plane and solid
+                    elements is applied to fully incompressible hyperelastic materials, you must
+                    also avoid the &#8220;no unique solution&#8221; situation. No unique solution
+                    occurs if all boundary nodes have prescribed displacements in each direction and
+                    the material is fully incompressible. Since hydrostatic pressure is independent
+                    from deformation, it should be determined by the force/pressure boundary
+                    condition. If no force/pressure boundary condition is applied, the hydrostatic
+                    pressure cannot be determined, or the solution is not unique. In this case, any
+                    stress field in equilibrium would be still in equilibrium and not cause any
+                    further deformation by adding an arbitrary value of hydrostatic pressure. This
+                    problem can be solved simply by having at least one node on the boundary in at
+                    least one direction without a prescribed displacement boundary condition. This
+                    direction cannot be the tangential direction of the boundary at this node. That
+                    means the solution is the particular one with zero force at the node in that
+                    direction where no displacement is prescribed.</p></div></div><div class="sect2" title="5.1.4.&nbsp;Generalized Plane Strain Options"><div class="titlepage"><div><div><h3 class="title"><a name="el_genplstrainopts"></a>5.1.4.&nbsp;Generalized Plane Strain Options</h3></div></div></div><p>The generalized plane strain feature assumes a finite deformation domain length in
+                the Z direction, rather than the infinite value assumed for standard plane strain.
+                Generalized plane strain, therefore, gives more practical results for deformation
+                problems where the Z-direction dimension is not long enough. It also offers a more
+                efficient way to simulate certain 3-D deformations using 2-D element options.</p><p>The deformation domain or structure is formed by extruding a plane area along a
+                curve with a constant curvature, as shown in the following figure:</p><div class="figure"><a name="elem2gpsfig010702"></a><p class="title"><b>Figure&nbsp;5.1:&nbsp;&nbsp;Generalized Plane Strain Deformation</b></p><div class="figure-contents"><div><img src="graphics/gelemplanestrain.svg" alt="Generalized Plane Strain Deformation"></div></div></div><br class="figure-break"><p>The extrusion begins at the starting (or reference) plane and stops at the ending
+                plane. The curve direction along the extrusion path is called the fiber direction.
+                The starting and ending planes must be perpendicular to this fiber direction at the
+                beginning and ending intersections. </p><p>If the boundary conditions and loads in the fiber direction do not change over the
+                course of the curve, and if the starting plane and ending plane remain perpendicular
+                to the fiber direction during deformation, then the amount of deformation of all
+                cross sections is identical throughout the curve, and does not vary at any curve
+                position in the fiber direction. Any deformation, therefore, can be represented by
+                the deformation on the starting plane, and the 3-D deformation can be simulated by
+                solving the deformation problem on the starting plane. The existing plane strain and
+                axisymmetric options are particular cases of the generalized plane strain
+                option.</p><p>All inputs and outputs are in the global Cartesian coordinate system. The starting
+                plane must be the X-Y plane, and must be meshed. The applied nodal force on the
+                starting plane is the total force along the fiber length. The geometry in the fiber
+                direction is specified by the rotation about X and Y of the ending plane and the
+                fiber length passing through a point that you specify on the starting plane, called
+                the starting (or reference) point. The starting point creates an ending point on the
+                ending plane through the extrusion process. The boundary conditions and loads in the
+                fiber direction are specified by applying displacements or forces at the ending
+                point. This ending point can be different from regular nodes, in that it is
+                designated by the same X-Y coordinates that are fixed in plane during
+                deformation.</p><p>The generalized plane strain option introduces three new degrees of freedom for
+                each element. Two internal nodes are created automatically at the solution stage for
+                the generalized plane strain option to carry the extra three degrees of freedom. You
+                can apply boundary conditions and loads and check the results of the fiber length
+                and rotation angle changes, and reaction forces, using the commands
+                    <a href="../ans_cmd/Hlp_C_GSBDATA.html" class="olink"><span class="command"><strong>GSBDATA</strong></span></a>, <a href="../ans_cmd/Hlp_C_GSGDATA.html" class="olink"><span class="command"><strong>GSGDATA</strong></span></a>,
+                <a href="../ans_cmd/Hlp_C_GSSOL.html" class="olink"><span class="command"><strong>GSSOL</strong></span></a>, and <a href="../ans_cmd/Hlp_C_GSLIST.html" class="olink"><span class="command"><strong>GSLIST</strong></span></a>. The results of the fiber
+                length change, rotation angle change, and reaction forces can also be viewed through
+                    <a href="../ans_cmd/Hlp_C_OUTPR.html" class="olink"><span class="command"><strong>OUTPR</strong></span></a>.</p><p>The fiber length change is positive when the fiber length increases. The sign of
+                the rotation angle or angle change is determined by how the fiber length changes
+                when the coordinates of the ending point change. If the fiber length decreases when
+                the X coordinate of the ending point increases, the rotation angle about Y is
+                positive. If the fiber length increases when the Y coordinate of the ending point
+                increases, the rotation angle about X is positive. </p><p>In Eigenvalue analyses, such as Eigen buckling and modal analysis, the generalized
+                plane strain option usually reports fewer Eigenvalues and Eigenvectors than you
+                would obtain in a 3-D analysis. Because it reports only homogeneous deformation in
+                the fiber direction, generalized plane strain employs only three degrees of freedom
+                to account for these deformations. The same 3-D analysis would incorporate many more
+                degrees of freedom in the fiber direction. </p><p>Because the mass matrix terms relating to degrees of freedom in the fiber
+                direction are approximated for modal and transient analyses, you cannot use the
+                lumped mass matrix for these types of analyses, and the solution may be slightly
+                different from regular 3-D simulations when any of the three designated degrees of
+                freedom is not restrained. </p></div><div class="sect2" title="5.1.5.&nbsp;Axisymmetric Elements with Nonaxisymmetric Loads"><div class="titlepage"><div><div><h3 class="title"><a name="d0e13551"></a>5.1.5.&nbsp;Axisymmetric Elements with Nonaxisymmetric Loads</h3></div></div></div><p>Axisymmetric problems should be modeled using axisymmetric elements. An
+                axisymmetric model greatly reduces the modeling and analysis time compared to that
+                of an equivalent 3-D model. </p><p>If loading is also axisymmetric, the analysis is relatively straightforward.
+                However, loading often varies around the circumference. Two methods are available
+                for handling nonaxisymmetric loading: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                        <a class="link" href="Hlp_E_continuumelems.html#elemgeneralaxis" title="5.1.5.1.&nbsp;General Axisymmetric Elements">General Axisymmetric Elements</a> --
+                        Support any type of material or loading</p></li><li class="listitem"><p>
+                        <a class="link" href="Hlp_E_continuumelems.html#axele520jjw" title="5.1.5.2.&nbsp;Harmonic Axisymmetric Elements">Harmonic Axisymmetric Elements</a> --
+                        Restricted to linear materials and sinusoidal loading. </p></li></ul></div><div class="sect3" title="5.1.5.1.&nbsp;General Axisymmetric Elements"><div class="titlepage"><div><div><h4 class="title"><a name="elemgeneralaxis"></a>5.1.5.1.&nbsp;General Axisymmetric Elements</h4></div></div></div><a class="indexterm" name="d0e13575"></a><p>Different from <a class="link" href="Hlp_E_continuumelems.html#axele520jjw" title="5.1.5.2.&nbsp;Harmonic Axisymmetric Elements">harmonic axisymmetric
+                        elements</a>, general axisymmetric elements
+                        (<a class="link" href="Hlp_E_SOLID272.html" title="SOLID272"><span class="structname">SOLID272</span></a>, <a class="link" href="Hlp_E_SOLID273.html" title="SOLID273"><span class="structname">SOLID273</span></a>, and
+                        <a class="link" href="Hlp_E_SURF159.html" title="SURF159"><span class="structname">SURF159</span></a>) introduce the Fourier series into the
+                    interpolation functions to describe the change of displacements in the
+                    circumferential (&#952;) direction. The elements can therefore apply to any
+                    analysis type, including geometric nonlinear analyses, and can support any load
+                    and deformation mode. For more information, see <a href="../ans_thry/thysolid272.html" class="olink">SOLID272 - General Axisymmetric Solid with 4 Base Nodes</a> and <a href="../ans_thry/thy_el273.html" class="olink">SOLID273 - General Axisymmetric Solid with 8 Base Nodes</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>.</p><p>The elements can have any axis as the axisymmetric axis (defined via
+                        <a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a> and <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> commands). You
+                    need only define base elements on a flat plane.</p><div class="sidebar" title="General Axisymmetric Element Terminology"><a name="elemgenaxsidebar"></a><div class="titlepage"><div><div><div class="title"><b>General Axisymmetric Element Terminology</b></div></div></div></div><p>The plane on which quadrilaterals or triangles are defined is called the
+                            <span class="italic"><em>master plane</em></span>. The quadrilaterals,
+                        triangles, or lines on the master plane are called <span class="italic"><em>base elements</em></span>, and the nodes of the quadrilaterals,
+                        triangles, and lines are called <span class="italic"><em>base
+                            nodes</em></span>. </p><p>A <span class="italic"><em>nodal plane</em></span> (copied from the master
+                        plane) is a radial plane of Fourier nodes. There are n nodal planes (where
+                        KEYOPT(2) = n), equally spaced around the circumference. </p><p>An <span class="italic"><em>integration plane</em></span> is a plane which
+                        sits equally between any two adjacent nodal planes. Integration points in
+                        the circumferential direction are located on both the nodal and integration
+                        planes. For more information, see <a href="../ans_thry/thysolid272.html" class="olink">SOLID272 - General Axisymmetric Solid with 4 Base Nodes</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>.</p></div><p>The <a href="../ans_cmd/Hlp_C_NAXIS.html" class="olink"><span class="command"><strong>NAXIS</strong></span></a> command automatically creates a full 3-D
+                    finite-element model using the base elements, the axisymmetric axis, and the
+                    number of Fourier nodes specified via KEYOPT(2). The axisymmetric axis must be
+                    on the master plane, and the base elements must be on one side of the axis. A
+                    base element or base node must be associated with one axisymmetric axis
+                        <span class="italic"><em>before</em></span> issuing the
+                        <a href="../ans_cmd/Hlp_C_NAXIS.html" class="olink"><span class="command"><strong>NAXIS</strong></span></a> command. All generated nodes are equally
+                    distributed circumferentially.</p><p>The default element coordinate system is a cylindrical coordinate system
+                    having the axisymmetric axis as z, the origin defined via the
+                        <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> command, and &#952; = 0 at the master plane.
+                    The right-hand rule determines the direction of &#952;, resulting in x(r),
+                    y(&#952;), and z from the right-hand coordinate system, as shown:</p><div class="figure"><a name="d0e13664"></a><p class="title"><b>Figure&nbsp;5.2:&nbsp;&nbsp;General Axisymmetric Elements and Their Coordinate Systems (KEYOPT(2) =
+                        3)</b></p><div class="figure-contents"><div><img src="graphics/gThyELEM272a.gif" alt="General Axisymmetric Elements and Their Coordinate Systems (KEYOPT(2) = 3)"></div></div></div><br class="figure-break"><p>The displacements in the r, &#952;, and z directions, however, are
+                    interpolated by </p><p>u<sub>i</sub> =
+                        h<sub>i</sub>(s,t)(c<sub>1</sub> +
+                        a<sub>1</sub>cos&#952; + b<sub>1</sub>sin&#952;
+                    + a<sub>2</sub>cos2&#952; + b<sub>2</sub>sin2&#952;
+                    + a<sub>3</sub>cos3&#952; + b<sub>3</sub>sin3&#952;
+                    . . .)</p><p> where</p><p>i = r, &#952;, z </p><p> and</p><p>h<sub>i</sub>(s,t) is the standard interpolation function for 2-D
+                    elements.</p><p>The nodes can have their own coordinate systems defined in any direction, as
+                    is the case with the nodes of any other solid element. For more detailed
+                    information, see <a href="../ans_thry/thy_shp8.html#genaxisymsolids" class="olink">General
+                        Axisymmetric Solids</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>. </p><p>General axisymmetric elements differ from <a class="link" href="Hlp_E_continuumelems.html#axele520jjw" title="5.1.5.2.&nbsp;Harmonic Axisymmetric Elements">harmonic
+                        axisymmetric elements</a> in that you do not specify the symmetric and
+                    unsymmetric terms, input peak values of loads, and solve for each term as one
+                    load step. Instead, you apply all physical loads (forces and displacements) at
+                    the nodes and solve the problem only once to obtain the solution.</p><p>The order of h<sub>i</sub>(s,t) is determined by the element type.
+                        (<a class="link" href="Hlp_E_SOLID272.html" title="SOLID272"><span class="structname">SOLID272</span></a> is a lower-order element and
+                        <a class="link" href="Hlp_E_SOLID273.html" title="SOLID273"><span class="structname">SOLID273</span></a> is a higher-order element.) The order of
+                    Fourier terms is determined by the number of Fourier nodes, or the number of
+                    nodes created in the circumferential direction for one base node (including the
+                    base node itself). This number is also the number of nodal planes in the
+                    circumferential direction, which you input via the element's KEYOPT(2). The
+                    KEYOPT(2) setting, the number of Fourier nodes, and the Fourier terms are shown
+                    in <a class="xref" href="Hlp_E_continuumelems.html#elemch2_fouriertermsgenax" title="Table&nbsp;5.2:&nbsp;&nbsp;Fourier Terms for General Axisymmetric Elements">Table&nbsp;5.2:&nbsp;Fourier Terms for General Axisymmetric Elements</a>. Generally, each Fourier term has
+                    different coefficients except when KEYOPT(2) is an even number (in which case
+                    the highest terms of the sine and cosine have the same coefficient).</p><div class="table"><a name="elemch2_fouriertermsgenax"></a><p class="title"><b>Table&nbsp;5.2:&nbsp;&nbsp;Fourier Terms for General Axisymmetric Elements</b></p><div class="table-contents"><table summary="Fourier Terms for General Axisymmetric Elements" border="1" width="95%"><colgroup><col width="96" class="col1"><col width="96" class="col2"><col width="216" class="col3"><col width="96" class="COLSPEC0"></colgroup><thead><tr><th bgcolor="#CCCCCC" valign="top">
+                                    
+                                    KEYOPT(2) Value</th><th bgcolor="#CCCCCC" valign="top">
+                                    
+                                    Number of Fourier Nodes (and Nodal
+                                    Planes)</th><th bgcolor="#CCCCCC" valign="top">
+                                    
+                                    Fourier Terms</th><th bgcolor="#CCCCCC" valign="top">
+                                    
+                                    Degrees Between Nodal Planes</th></tr></thead><tbody><tr><td align="center">1</td><td align="center">1</td><td>c<sub>1</sub>
+                                </td><td align="center">360</td></tr><tr><td align="center">3</td><td align="center">3</td><td>c<sub>1</sub>,
+                                    a<sub>1</sub>cos&#952;,
+                                    b<sub>1</sub>sin&#952;</td><td align="center">120</td></tr><tr><td align="center">4</td><td align="center">4</td><td>c<sub>1</sub>,
+                                    a<sub>1</sub>cos&#952;,
+                                    b<sub>1</sub>sin&#952;,
+                                    a<sub>2</sub>cos2&#952;,
+                                    a<sub>2</sub>sin2&#952;</td><td align="center">90</td></tr><tr><td align="center">5</td><td align="center">5</td><td>c<sub>1</sub>,
+                                    a<sub>1</sub>cos&#952;,
+                                    b<sub>1</sub>sin&#952;,
+                                    a<sub>2</sub>cos2&#952;,
+                                    b<sub>2</sub>sin2&#952;</td><td align="center">72</td></tr><tr><td align="center">6</td><td align="center">6</td><td>
+                                    <p>c<sub>1</sub>,
+                                        a<sub>1</sub>cos&#952;,
+                                            b<sub>1</sub>sin&#952;,
+                                            a<sub>2</sub>cos2&#952;,
+                                            b<sub>2</sub>sin2&#952;,
+                                            a<sub>3</sub>cos3&#952;,
+                                            a<sub>3</sub>sin3&#952;</p>
+                                </td><td align="center">60</td></tr><tr><td align="center">7</td><td align="center">7</td><td>
+                                    <p>c<sub>1</sub>,
+                                        a<sub>1</sub>cos&#952;,
+                                            b<sub>1</sub>sin&#952;,
+                                            a<sub>2</sub>cos2&#952;,
+                                            b<sub>2</sub>sin2&#952;,
+                                            a<sub>3</sub>cos3&#952;,
+                                            b<sub>3</sub>sin3&#952;</p>
+                                </td><td align="center">51.43</td></tr><tr><td align="center">8</td><td align="center">8</td><td>
+                                    <p>c<sub>1</sub>,
+                                        a<sub>1</sub>cos&#952;,
+                                            b<sub>1</sub>sin&#952;, ... ,
+                                            a<sub>4</sub>cos4&#952;,
+                                            a<sub>4</sub>sin4&#952;</p>
+                                </td><td align="center">45</td></tr><tr><td align="center">9</td><td align="center">9</td><td>
+                                    <p>c<sub>1</sub>,
+                                        a<sub>1</sub>cos&#952;,
+                                            b<sub>1</sub>sin&#952;, ... ,
+                                            a<sub>4</sub>cos4&#952;,
+                                            b<sub>4</sub>sin4&#952;</p>
+                                </td><td align="center">40</td></tr><tr><td align="center">10</td><td align="center">10</td><td>
+                                    <p>c<sub>1</sub>,
+                                        a<sub>1</sub>cos&#952;,
+                                            b<sub>1</sub>sin&#952;, ... ,
+                                            a<sub>5</sub>cos5&#952;,
+                                            a<sub>5</sub>sin5&#952;</p>
+                                </td><td align="center">36</td></tr><tr><td align="center">11</td><td align="center">11</td><td>
+                                    <p>c<sub>1</sub>,
+                                        a<sub>1</sub>cos&#952;,
+                                            b<sub>1</sub>sin&#952;, ... ,
+                                            a<sub>5</sub>cos5&#952;,
+                                            b<sub>5</sub>sin5&#952;</p>
+                                </td><td align="center">32.73</td></tr><tr><td align="center">12</td><td align="center">12</td><td>
+                                    <p>c<sub>1</sub>,
+                                        a<sub>1</sub>cos&#952;,
+                                            b<sub>1</sub>sin&#952;, ... ,
+                                            a<sub>6</sub>cos6&#952;,
+                                            a<sub>6</sub>sin6&#952;</p>
+                                </td><td align="center">30</td></tr></tbody></table></div></div><br class="table-break"><p>For KEYOPT(2) = 1, the deformation is also axisymmetric but, unlike the
+                    axisymmetric option of 2-D elements such as <a class="link" href="Hlp_E_PLANE182.html" title="PLANE182"><span class="structname">PLANE182</span></a>,
+                    the general axisymmetric elements allow torsion. If no torsion load exists, it
+                    is more efficient to use the axisymmetric elements.</p><p>To simulate unsymmetric deformation, set KEYOPT(2) &gt; 1. The greater the
+                    number of Fourier nodes, the more accurate the simulation of complicated
+                    deformation modes. </p><p>Solve localized deformation problems with a greater number of Fourier nodes
+                    (higher-order Fourier terms). Be aware that the deformation is not as localized
+                    as it would be when using standard 3-D solid elements; with general axisymmetric
+                    elements, displacements are interpolated using Fourier terms in the
+                    circumferential direction (rather than being interpolated piecewise using
+                    linear/quadratic functions as in 3-D solid elements).</p><p>Contact is usually a local phenomenon. Generally, higher-order Fourier terms
+                    are necessary.</p><p>The maximum allowed number of Fourier nodes is 12. If more than 12 nodes are
+                    necessary, a general axisymmetric element may not be computationally efficient;
+                    therefore, it is better to use a standard 3-D solid element for such
+                    cases.</p><div class="sect4" title="5.1.5.1.1.&nbsp;Example: 3-D General Axisymmetric Model"><div class="titlepage"><div><div><h5 class="title"><a name="d0e14067"></a>5.1.5.1.1.&nbsp;Example: 3-D General Axisymmetric Model</h5></div></div></div><p>The following example input file shows how to use commands and the
+                            <a class="link" href="Hlp_E_SOLID272.html" title="SOLID272"><span class="structname">SOLID272</span></a> element to generate a 3-D general
+                        axisymmetric model. The model represents a simple thread connection made of
+                        two parts, a bolt and a nut, both modeled with 12 Fourier nodes (KEYOPT(2) =
+                        12) and the global Y axis as the axis of symmetry.</p><pre class="programlisting">/batch,list
+/title, Sample input for generating general axisymmetric solid elements
+/prep7
+!
+et,1,272,,12       !define general axisymmetric SOLID272 with 12 nodes along circumferential direction
+et,2,272,,12
+!
+sect,1,axis        !define general axisymmetric section 
+secd,2,0,2         !use pattern 2 with global cartesian coordinate system (0)and y as axis of symmetry (2)
+!
+mp,ex,1,2.0e5      !define elastic material properties
+mp,nuxy,1,0.3
+!
+!
+! Create  2D  geometry of thread connection (bolt/nut)
+!
+k,1,1.0,0      
+k,2,4.0,0
+k,3,4,1.5
+k,4,5.0,2.5
+k,5,5.0,3.5
+k,6,4.0,4.5
+k,7,4.0,5.5
+k,8,5.0,6.5
+k,9,5.0,7.5
+k,10,4.0,8.5
+k,11,4.0,10
+k,12,1.0,10
+k,13,7.0,0
+k,14,7.0,10
+!
+k,15,4.0,0
+k,16,4,1.5
+k,17,5.0,2.5
+k,18,5.0,3.5
+k,19,4.0,4.5
+k,20,4.0,5.5
+k,21,5.0,6.5
+k,22,5.0,7.5
+k,23,4.0,8.5
+k,24,4.0,10
+!
+a,1,2,3,4,5,6,7,8,9,10,11,12              
+a,15,16,17,18,19,20,21,22,23,24,14,13   
+!
+!
+!Mesh 2D geometry
+! 
+esize,0.5        
+type,1             !use type 1 for bolt component
+mat,1
+secn,1             !use general axisymmetric section
+amesh,1            !generate the master plane nodes and elements for bolt component
+!
+esize,1            !use different mesh
+type,2             !use type 2 for nut component
+mat,1
+secn,1             !use general axisymmetric section
+amesh,2            !generate the master plane nodes and elements for nut component
+!
+/PNUM,TYPE,1       !display element type numbers
+/NUMBER,1          !numbering shown with colors only
+eplot              !visualise the 2D model
+!
+!
+!Generate full 3D axisymmetric model of bolt and nut using 12 planes 
+!
+naxis 
+!
+/view,1,1,1,1      !isometric view
+!
+nplot              !display the 12 nodal planes along circumferential direction          
+!
+/eshape,1          !display elements with general axisymmetric shape
+!
+esel,s,type,,1     !display 3D axisymmetric model of bolt
+eplot
+!
+esel,s,type,,2     !display 3D axisymmetric model of nut
+eplot
+!
+esel,all
+!
+eplot              !display full 3D axisymmetric model of bolt and nut
+!
+fini
+</pre><p>The input listing generates the following 2-D and 3-D meshes:</p><div><img src="graphics/gelemboltnut2d.jpg"></div><div><img src="graphics/gelemboltnut3d.jpg"></div><p>The general axisymmetric elements representing the bolt and nut are shown
+                        separately in the figures below:</p><div><img src="graphics/gelembolt3d.jpg"></div><div><img src="graphics/gelemnut3d.jpg"></div></div></div><div class="sect3" title="5.1.5.2.&nbsp;Harmonic Axisymmetric Elements"><div class="titlepage"><div><div><h4 class="title"><a name="axele520jjw"></a>5.1.5.2.&nbsp;Harmonic Axisymmetric Elements</h4></div></div></div><a class="indexterm" name="d0e14090"></a><p>An axisymmetric structure can be represented by a plane (X,Y) finite-element
+                    model. </p><p>ANSYS, Inc. recommends <a class="link" href="Hlp_E_continuumelems.html#elemgeneralaxis" title="5.1.5.1.&nbsp;General Axisymmetric Elements">general axisymmetric
+                        elements</a>
+                    <a class="link" href="Hlp_E_SOLID272.html" title="SOLID272"><span class="structname">SOLID272</span></a> and <a class="link" href="Hlp_E_SOLID273.html" title="SOLID273"><span class="structname">SOLID273</span></a> for such
+                    applications because they can accept any type of load and can support nonlinear
+                    analyses. However, you can also use a special class of axisymmetric elements
+                    called <span class="italic"><em>harmonic elements</em></span>:
+                        <a class="link" href="Hlp_E_PLANE25.html" title="PLANE25"><span class="structname">PLANE25</span></a>, <a class="link" href="Hlp_E_SHELL61.html" title="SHELL61"><span class="structname">SHELL61</span></a>,
+                        <a class="link" href="Hlp_E_PLANE75.html" title="PLANE75"><span class="structname">PLANE75</span></a>, <a class="link" href="Hlp_E_PLANE78.html" title="PLANE78"><span class="structname">PLANE78</span></a>, and
+                        <a class="link" href="Hlp_E_PLANE83.html" title="PLANE83"><span class="structname">PLANE83</span></a>. The harmonic elements allow a
+                    nonaxisymmetric load and support linear analyses. </p><p>Axisymmetric elements are modeled on a 360&deg; basis, so all input and output
+                    nodal heat flows, forces, moments, fluid flows, current flows, electric charges,
+                    magnetic fluxes, and magnetic current segments must be input in this manner.
+                    Similarly, input real constants representing volumes, convection areas, thermal
+                    capacitances, heat generations, spring constants, and damping coefficients must
+                    also be input in on a 360&deg; basis.</p><p>Unless otherwise stated, the model must be defined in the Z = 0.0 plane. The
+                    global Cartesian Y axis is assumed to be the axis of symmetry. Further, the
+                    model is developed only in the +X quadrants. Hence, the radial direction is in
+                    the +X direction.</p><p>The boundary conditions are described in terms of the structural elements. The
+                    forces (FX, FY, etc.) and displacements (UX, UY, etc.) for the structural
+                    elements are input and output in the nodal coordinate system. All nodes along
+                    the y axis centerline (at x = 0.0) should have the radial displacements (UX if
+                    not rotated) specified as zero, unless a pinhole effect is desired. At least one
+                    value of UY should be specified or constrained to prevent rigid body motions.
+                    Torsion, while axisymmetric, is available only for a few element types. If an
+                    element type allows torsion, all UZ degrees of freedom should be set to 0.0 on
+                    the centerline, and one node with a positive X coordinate must also have a
+                    specified or constrained value of UZ. Pressures and temperatures may be applied
+                    directly. Acceleration, if any, is usually input only in the axial (Y)
+                    direction. Similarly, angular velocity, if any, is usually input only about the
+                    Y axis. </p><p>For more information, see <a class="xref" href="Hlp_E_continuumelems.html#aD19sq339ldm" title="5.1.5.2.1.&nbsp;Harmonic Axisymmetric Elements with Nonaxisymmetric Loads">Harmonic Axisymmetric Elements with Nonaxisymmetric Loads</a>. </p><div class="sect4" title="5.1.5.2.1.&nbsp;Harmonic Axisymmetric Elements with Nonaxisymmetric Loads"><div class="titlepage"><div><div><h5 class="title"><a name="aD19sq339ldm"></a>5.1.5.2.1.&nbsp;Harmonic Axisymmetric Elements with Nonaxisymmetric Loads</h5></div></div></div><a class="indexterm" name="d0e14146"></a><p>An axisymmetric structure (defined with the axial direction along the
+                        global Y axis and the radial direction parallel to the global X axis) can be
+                        represented by a plane (X, Y) finite-element model. The use of an
+                        axisymmetric model greatly reduces the modeling and analysis time compared
+                        to that of an equivalent 3-D model. The harmonic axisymmetric elements allow
+                        nonaxisymmetric loads. For these elements (<a class="link" href="Hlp_E_PLANE25.html" title="PLANE25"><span class="structname">PLANE25</span></a>,
+                            <a class="link" href="Hlp_E_SHELL61.html" title="SHELL61"><span class="structname">SHELL61</span></a>, <a class="link" href="Hlp_E_PLANE75.html" title="PLANE75"><span class="structname">PLANE75</span></a>,
+                            <a class="link" href="Hlp_E_PLANE78.html" title="PLANE78"><span class="structname">PLANE78</span></a>, and <a class="link" href="Hlp_E_PLANE83.html" title="PLANE83"><span class="structname">PLANE83</span></a>),
+                        the load is defined as a series of harmonic functions (Fourier series). For
+                        example, a load F is given by: </p><div class="blockquote"><blockquote class="blockquote"><p>F(&#952;) = A<sub>0</sub> + A<sub>1</sub>
+                            cos &#952; + B<sub>1</sub> sin &#952; +
+                                A<sub>2</sub> cos 2&nbsp;&#952; +
+                                B<sub>2</sub> sin 2&nbsp;&#952; + A<sub>3
+                            </sub>cos 3&nbsp;&#952; + B<sub>3</sub> sin
+                            3&nbsp;&#952; + ...</p></blockquote></div><p>Each term of the above series must be defined as a separate load step. A
+                        term is defined by the load coefficient (A&nbsp; <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq773114bf-f0e0-4039-a20f-63e8b4ec5aa8.svg"></span> or B&nbsp; <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq6fa60353-abdb-427e-ba19-7bfea733e182.svg"></span>), the number of harmonic waves ( <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq2960a24b-9508-4522-beef-51c958fe2452.svg"></span>), and the symmetry condition (cos <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqf22c704b-e013-4e7f-b02e-d41645da7c91.svg"></span>&nbsp;&#952; or sin <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqe67ff411-8904-4a49-b8b0-9683b57774d7.svg"></span>&nbsp;&#952;). The number of harmonic waves, or the mode
+                        number, is input with the <a href="../ans_cmd/Hlp_C_MODE.html" class="olink"><span class="command"><strong>MODE</strong></span></a> command. Note that
+                            <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqa2c9ea6a-5d5b-431d-bec1-2aa960434995.svg"></span> = 0 represents the axisymmetric term
+                            (A<sub>0</sub>). &nbsp;&#952; is the circumferential
+                        coordinate implied in the model. The load coefficient is determined from the
+                        standard boundary condition input (i.e., displacements, forces, pressures,
+                        etc.). Input values for temperature, displacement, and pressure should be
+                        the peak value. The input value for force and heat flow should be a number
+                        equal to the peak value per unit length times the circumference. The
+                        symmetry condition is determined from the <span class="italic"><em>ISYM</em></span> value also input on the <a href="../ans_cmd/Hlp_C_MODE.html" class="olink"><span class="command"><strong>MODE</strong></span></a>
+                        command. The description of the element given in <a class="xref" href="Hlp_E_LIBRARY.html" title="Chapter&nbsp;7:&nbsp;Element Library">Element Library</a> and in the appropriate sections of the
+                        <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> should be reviewed to see which deformation shape corresponds to
+                        the symmetry conditions.</p><p>Results of the analysis are written to the results file. The deflections
+                        and stresses are output at the peak value of the sinusoidal function. The
+                        results may be scaled and summed at various circumferential (&#952;)
+                        locations with POST1. This may be done by storing results data at the
+                        desired &#952; location using the <span class="italic"><em>ANGLE</em></span>
+                        argument of the <a href="../ans_cmd/Hlp_C_SET.html" class="olink"><span class="command"><strong>SET</strong></span></a> command. A load case may be defined
+                        with <a href="../ans_cmd/Hlp_C_LCWRITE.html" class="olink"><span class="command"><strong>LCWRITE</strong></span></a>. Repeat for each set of results, then
+                        combine or scale the load cases as desired with <a href="../ans_cmd/Hlp_C_LCOPER.html" class="olink"><span class="command"><strong>LCOPER</strong></span></a>.
+                        Stress (and temperature) contour displays and distorted shape displays of
+                        the combined results can also be made.</p><p>Caution should be used if the harmonic elements are mixed with other,
+                        nonharmonic elements. The harmonic elements should not be used in nonlinear
+                        analyses, such as large deflection and/or contact analyses.</p><p>The element matrices for harmonic elements are dependent upon the number
+                        of harmonic waves <span class="italic"><em>(MODE</em></span>) and the symmetry
+                        condition (<span class="italic"><em>ISYM</em></span>). For this reason,
+                        neither the element matrices nor the triangularized matrix is reused in
+                        succeeding substeps if the <span class="italic"><em>MODE</em></span> and
+                            <span class="italic"><em>ISYM</em></span> parameters are changed. In
+                        addition, a superelement generated with particular <span class="italic"><em>MODE</em></span> and <span class="italic"><em>ISYM</em></span> values must
+                        have the same values in the "use" pass.</p><p>For stress stiffened (prestressed) structures, only the stress state of
+                        the most recent previous <span class="italic"><em>MODE</em></span> = 0 load
+                        case is used, regardless of the current value of <span class="italic"><em>MODE</em></span>.</p><p>
+                        <span class="bold"><strong>Loading Cases</strong></span> - The following cases are
+                        provided to aid you in obtaining a physical understanding of the <span class="italic"><em>MODE</em></span> parameter and the symmetric
+                            (<span class="italic"><em>ISYM</em></span>=1) and antisymmetric (<span class="italic"><em>ISYM</em></span>=-1) loading conditions. The loading cases
+                        are described in terms of the structural elements. The forces (FX, FY, etc.)
+                        and displacements (UX, UY, etc.) for the structural elements are input and
+                        output in the nodal coordinate system. In all cases illustrated, it is
+                        assumed that the nodal coordinate system is parallel to the global Cartesian
+                        coordinate system. The loading description may be extended to any number of
+                        modes. The harmonic thermal elements (<a class="link" href="Hlp_E_PLANE75.html" title="PLANE75"><span class="structname">PLANE75</span></a> and
+                            <a class="link" href="Hlp_E_PLANE78.html" title="PLANE78"><span class="structname">PLANE78</span></a>) are treated the same as
+                            <a class="link" href="Hlp_E_PLANE25.html" title="PLANE25"><span class="structname">PLANE25</span></a> and <a class="link" href="Hlp_E_PLANE83.html" title="PLANE83"><span class="structname">PLANE83</span></a>,
+                        respectively, with the following substitutions: UY to TEMP, and FY to HEAT.
+                        The effects of UX, UZ, ROTZ, FX, FZ and MZ are all ignored for thermal
+                        elements.</p><p>
+                        <span class="italic"><em>Case A:</em></span> (<span class="italic"><em>MODE</em></span> = 0, <span class="italic"><em>ISYM</em></span> not used)
+                        - This is the case of axisymmetric loading except that torsional effects are
+                        included. <a class="xref" href="Hlp_E_continuumelems.html#awzvSi1d8dank" title="Figure&nbsp;5.3:&nbsp;&nbsp;Axisymmetric Radial, Axial, Torsion and Moment Loadings">Figure&nbsp;5.3:&nbsp;Axisymmetric Radial, Axial, Torsion and Moment Loadings</a> shows the various axisymmetric
+                        loadings. Pressures and temperatures may be applied directly. Acceleration,
+                        if any, is usually input only in the axial (Y) direction. Similarly, angular
+                        velocity, if any, is usually input only about the Y axis. </p><div class="figure"><a name="awzvSi1d8dank"></a><p class="title"><b>Figure&nbsp;5.3:&nbsp;&nbsp;Axisymmetric Radial, Axial, Torsion and Moment Loadings</b></p><div class="figure-contents"><div><img src="graphics/gELEMch2-5b.gif" alt="Axisymmetric Radial, Axial, Torsion and Moment Loadings"></div></div></div><br class="figure-break"><p>The total force (F) acting in the axial direction due to an axial input
+                        force (FY) is: </p><div class="informalequation"><a name="eq33e25ba0-0e49-49a6-bfa3-cb85ec940c3b"></a><div><img src="graphics/eq33e25ba0-0e49-49a6-bfa3-cb85ec940c3b.svg"></div></div><div class="informalequation"><a name="eqc28c1618-1dba-4816-abd9-c350cba6cd46"></a><div><img src="graphics/eqc28c1618-1dba-4816-abd9-c350cba6cd46.svg"></div></div><p>where FY is on a full 360&deg; basis.</p><p>The total applied moment (M) due to a tangential input force (FZ) acting
+                        about the global axis is: </p><div class="informalequation"><a name="eq96b563bd-9365-48e5-adf1-de67da22370b"></a><div><img src="graphics/eq96b563bd-9365-48e5-adf1-de67da22370b.svg"></div></div><div class="informalequation"><a name="eqe419bb66-d870-488c-a0cc-8f0e3f1ee2db"></a><div><img src="graphics/eqe419bb66-d870-488c-a0cc-8f0e3f1ee2db.svg"></div></div><p>where FZ is on a full 360&deg; basis. Calculated reaction forces are also
+                        on a full 360&deg; basis and the above expressions may be used to find the
+                        total force. Nodes at the centerline (X = 0.0) should have UX and UZ (and
+                        ROTZ, for <a class="link" href="Hlp_E_SHELL61.html" title="SHELL61"><span class="structname">SHELL61</span></a>) specified as zero, unless a
+                        pinhole effect is desired. At least one value of UY should be specified or
+                        constrained to prevent rigid body motions. Also, one node with a nonzero,
+                        positive X coordinate must have a specified or constrained value of UZ if
+                        applicable. When Case A defines the stress state used in stress stiffened
+                        analyses, torsional stress is not allowed.</p><p>
+                        <span class="italic"><em>Case B:</em></span> (<span class="italic"><em>MODE</em></span> = 1, <span class="italic"><em>ISYM</em></span>=1) - An
+                        example of this case is the bending of a pipe. <a class="xref" href="Hlp_E_continuumelems.html#aK4tSi90dank" title="Figure&nbsp;5.4:&nbsp;&nbsp;Bending and Shear Loading (ISYM = 1)">Figure&nbsp;5.4:&nbsp;Bending and Shear Loading (ISYM = 1)</a> shows the corresponding forces or displacements on a nodal circle. All
+                        functions are based on sin&nbsp;&#952; or cos&nbsp;&#952;. The input and
+                        output values of UX, FX, etc., represent the peak values of the
+                        displacements or forces. The peak values of UX, UY, FX and FY (and ROTZ and
+                        MZ for <a class="link" href="Hlp_E_SHELL61.html" title="SHELL61"><span class="structname">SHELL61</span></a>) occur at &nbsp;&#952; = 0&deg;,
+                        whereas the peak values of UZ and FZ occur at &nbsp;&#952; = 90&deg;.
+                        Pressures and temperatures are applied directly as their peak values at
+                        &#952; = 0&deg;. The thermal load vector is computed from
+                            T<sub>peak</sub>, where T<sub>peak</sub> is the
+                        input element or nodal temperature. The reference temperature for thermal
+                        strain calculations (<a href="../ans_cmd/Hlp_C_TREF.html" class="olink"><span class="command"><strong>TREF</strong></span></a>) is internally set to zero in
+                        the thermal strain calculation for the harmonic elements if <span class="italic"><em>MODE</em></span> &gt; 0. Gravity (g) acting in the global X
+                        direction should be input (<a href="../ans_cmd/Hlp_C_ACEL.html" class="olink"><span class="command"><strong>ACEL</strong></span></a>) as <span class="italic"><em>ACELX</em></span> = g, <span class="italic"><em>ACELY</em></span> = 0.0, and <span class="italic"><em>ACELZ</em></span> =
+                        -g. The peak values of &nbsp;&#963;<sub>x</sub>,
+                            &#963;<sub>&nbsp;y</sub>, &nbsp;&#963;<sub>z</sub>
+                        and &#963;<sub>&nbsp;xy</sub> occur at &#952; = 0&deg;&nbsp; ,
+                        whereas the peak values of &#963;<sub>&nbsp;yz</sub> and
+                            &#963;<sub>&nbsp;xz</sub> occur at 90&nbsp;&deg;.</p><div class="figure"><a name="aK4tSi90dank"></a><p class="title"><b>Figure&nbsp;5.4:&nbsp;&nbsp;Bending and Shear Loading (ISYM = 1)</b></p><div class="figure-contents"><div><img src="graphics/gELEMch2-6b.gif" alt="Bending and Shear Loading (ISYM = 1)"></div></div></div><br class="figure-break"><p>The total applied force in the global X direction (F) due to both an input
+                        radial force (FX) and a tangential force (FZ) is:</p><div class="informalequation"><a name="eq6efc5ff6-1378-4f24-ad1d-43f330c53a98"></a><div><img src="graphics/eq6efc5ff6-1378-4f24-ad1d-43f330c53a98.svg"></div></div><div class="informalequation"><a name="eq9c78bd4d-9f96-40bd-ab57-33f823c3a1a8"></a><div><img src="graphics/eq9c78bd4d-9f96-40bd-ab57-33f823c3a1a8.svg"></div></div><div class="informalequation"><a name="eq027bb169-fcb4-4bc9-9926-6021e8831830"></a><div><img src="graphics/eq027bb169-fcb4-4bc9-9926-6021e8831830.svg"></div></div><p>where FX and FZ are the peak forces on a full 360&deg; basis. Calculated
+                        reaction forces are also the peak values on a full 360&deg; basis and the
+                        above expression may be used to find the total force. These net forces are
+                        independent of radius so that they may be applied at any radius (including X
+                        = 0.0) for the same net effect.</p><p>An applied moment (M) due to an axial input force (FY) for this case can
+                        be computed as follows:</p><div class="informalequation"><a name="eq0234f228-5b11-4c55-84be-79ebdd6296ea"></a><div><img src="graphics/eq0234f228-5b11-4c55-84be-79ebdd6296ea.svg"></div></div><div class="informalequation"><a name="eqe403fe0d-c09c-44c5-8f83-a6fc1574fa4c"></a><div><img src="graphics/eqe403fe0d-c09c-44c5-8f83-a6fc1574fa4c.svg"></div></div><p>An additional applied moment (M) is generated based on the input moment
+                        (MZ):</p><div class="informalequation"><a name="eq1f9a3779-7ac7-4121-8e49-5bbe9b55170a"></a><div><img src="graphics/eq1f9a3779-7ac7-4121-8e49-5bbe9b55170a.svg"></div></div><div class="informalequation"><a name="eqae6fcef9-7a1e-4ffe-b86d-d6cb2a82e819"></a><div><img src="graphics/eqae6fcef9-7a1e-4ffe-b86d-d6cb2a82e819.svg"></div></div><p>If it is desired to impose a uniform lateral displacement (or force) on
+                        the cross section of a cylindrical structure in the global X direction,
+                        equal magnitudes of UX and UZ (or FX and FZ) may be combined as shown in
+                            <a class="xref" href="Hlp_E_continuumelems.html#aAwSi3a2dank" title="Figure&nbsp;5.5:&nbsp;&nbsp;Uniform Lateral Loadings">Figure&nbsp;5.5:&nbsp;Uniform Lateral Loadings</a>. </p><div class="figure"><a name="aAwSi3a2dank"></a><p class="title"><b>Figure&nbsp;5.5:&nbsp;&nbsp;Uniform Lateral Loadings</b></p><div class="figure-contents"><div><img src="graphics/gELEMch2-7b.gif" alt="Uniform Lateral Loadings"></div></div></div><br class="figure-break"><p>When UX and UZ are input in this manner, the nodal circle moves in an
+                        uniform manner. When FX and FZ are input in this manner, a uniform load is
+                        applied about the circumference, but the resulting UX and UZ are not, in
+                        general, of the same magnitude. If it is necessary to have the nodal circle
+                        moving in a rigid manner, it can be done via constraint equations
+                            (<a href="../ans_cmd/Hlp_C_CE.html" class="olink"><span class="command"><strong>CE</strong></span></a>) so that UX = -UZ.</p><p>Node points on the centerline (X = 0.0) should have UY specified as zero.
+                        Further, UX must equal -UZ at all points along the centerline, which may be
+                        enforced with constraint equations. To prevent rigid body motions, at least
+                        one value of UX or UZ, as well as one value of UY (not at the centerline),
+                        or ROTZ, should be specified or constrained in some manner. For
+                            <a class="link" href="Hlp_E_SHELL61.html" title="SHELL61"><span class="structname">SHELL61</span></a>, if plane sections (Y = constant) are
+                        to remain plane, ROTZ should be related to UY by means of constraint
+                        equations at the loaded nodes.</p><p>
+                        <span class="italic"><em>Case C:</em></span> (<span class="italic"><em>MODE</em></span> = 1, <span class="italic"><em>ISYM</em></span> = -1) -
+                        This case (shown in <a class="xref" href="Hlp_E_continuumelems.html#aQ5wSi18adank" title="Figure&nbsp;5.6:&nbsp;&nbsp;Bending and Shear Loading (ISYM = -1)">Figure&nbsp;5.6:&nbsp;Bending and Shear Loading (<span class="italic"><em>ISYM</em></span> =
+                            -1)</a>) represents a pipe
+                        bending in a direction 90&deg; to that described in Case B. </p><div class="figure"><a name="aQ5wSi18adank"></a><p class="title"><b>Figure&nbsp;5.6:&nbsp;&nbsp;Bending and Shear Loading (<span class="italic"><em>ISYM</em></span> =
+                            -1)</b></p><div class="figure-contents"><div><img src="graphics/gELEMch2-8b.gif" alt="Bending and Shear Loading (ISYM = -1)"></div></div></div><br class="figure-break"><p>The same description applying to Case B applies also to Case C, except
+                        that the negative signs on UZ, FZ, and the direction cosine are changed to
+                        positive signs. Also, the location of the peak values of various quantities
+                        are switched between the 0&deg; and 90&deg; locations.</p><p>
+                        <span class="italic"><em>Case D:</em></span> (<span class="italic"><em>MODE</em></span> = 2, <span class="italic"><em>ISYM</em></span> = 1) - The
+                        displacement and force loadings associated with this case are shown in <a class="xref" href="Hlp_E_continuumelems.html#aj5wSi187dank" title="Figure&nbsp;5.7:&nbsp;&nbsp;Displacement and Force Loading Associated with MODE = 2 and ISYM = 1">Figure&nbsp;5.7:&nbsp;Displacement and Force Loading Associated with <span class="italic"><em>MODE</em></span> = 2 and <span class="italic"><em>ISYM</em></span> = 1</a>. All functions are based on sin
+                        2&nbsp;&#952; and cos 2&nbsp;&#952;. </p><div class="figure"><a name="aj5wSi187dank"></a><p class="title"><b>Figure&nbsp;5.7:&nbsp;&nbsp;Displacement and Force Loading Associated with <span class="italic"><em>MODE</em></span> = 2 and <span class="italic"><em>ISYM</em></span> = 1</b></p><div class="figure-contents"><div><img src="graphics/gELEMch2-9b.gif" alt="Displacement and Force Loading Associated with MODE = 2 and ISYM = 1"></div></div></div><br class="figure-break"><p>
+                        <span class="bold_italic">Additional Cases:</span> There is no
+                        programmed limit to the value of <span class="italic"><em>MODE</em></span>.
+                        Additional cases can be defined.</p></div></div></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

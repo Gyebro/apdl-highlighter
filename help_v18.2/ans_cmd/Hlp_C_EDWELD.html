@@ -1,0 +1,64 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:48-04:00"><title>EDWELD</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_EDVEL.html" title="EDVEL"><link rel="next" href="Hlp_C_EDWRITE.html" title="EDWRITE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="EDWELD"><a name="EDWELD"></a><div class="titlepage"></div><a class="indexterm" name="d0e90006"></a><span class="refentrytitle">
+<span class="command"><strong>EDWELD</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>EDWELD</strong></span>, <em class="replaceable"><code>Option</code></em>, <em class="replaceable"><code>NWELD</code></em>, <em class="replaceable"><code>N1</code></em>, <em class="replaceable"><code>N2</code></em>, <em class="replaceable"><code>SN</code></em>, <em class="replaceable"><code>SS</code></em>, <em class="replaceable"><code>EXPN</code></em>, <em class="replaceable"><code>EXPS</code></em>, <em class="replaceable"><code>EPSF</code></em>, <em class="replaceable"><code>TFAIL</code></em>, <em class="replaceable"><code>NSW</code></em>, <em class="replaceable"><code>CID</code></em>
+<br><b class="refpurpose">Defines a massless spotweld or generalized weld for use in an
+explicit dynamic analysis.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7expdynldm061600" title="Table&nbsp;2.44:&nbsp;&nbsp;Explicit Dynamics"><span class="type">Explicit Dynamics</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | DYNA</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="EDWELD.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Option</code></em>
+</b></span></dt><dd><p>Label identifying the option to be performed:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ADD</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Define a weld (default). This weld may be
+a spotweld between two nodes or a generalized weld. A massless spotweld will
+be defined if valid node numbers are specified in fields <em class="replaceable"><code>N1</code></em> and <em class="replaceable"><code>N2</code></em>.
+A generalized weld will be defined if a node component is specified in field <em class="replaceable"><code>N1</code></em>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DELE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Delete specified weld. If <em class="replaceable"><code>NWELD</code></em> is
+blank, all welds are deleted.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LIST</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>List specified weld. If <em class="replaceable"><code>NWELD</code></em> is
+blank, all welds are listed.</p></td></tr></tbody></table></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NWELD</code></em>
+</b></span></dt><dd><p>Reference number identifying the spotweld or generalized weld.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>N1</code></em>, <em class="replaceable"><code>N2</code></em>
+</b></span></dt><dd><p>For a spotweld, <em class="replaceable"><code>N1</code></em> and <em class="replaceable"><code>N2</code></em> are
+the nodes which are connected by the spotweld. For a generalized weld, input
+a nodal component name in <em class="replaceable"><code>N1</code></em> and leave <em class="replaceable"><code>N2</code></em> blank.
+The nodal component should contain all nodes that are to be included in the
+generalized weld.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>SN</code></em>
+</b></span></dt><dd><p>Normal force at spotweld failure.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>SS</code></em>
+</b></span></dt><dd><p>Shear force at spotweld failure.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>EXPN</code></em>
+</b></span></dt><dd><p>Exponent for normal spotweld force.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>EXPS</code></em>
+</b></span></dt><dd><p>Exponent for shear spotweld force.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>EPSF</code></em>
+</b></span></dt><dd><p>Effective plastic strain at ductile failure (used only for
+a generalized weld).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TFAIL</code></em>
+</b></span></dt><dd><p>Failure time for constraint set (used only for a generalized
+weld); default = 1.0e20.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NSW</code></em>
+</b></span></dt><dd><p>Number of spot welds for the generalized weld.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>CID</code></em>
+</b></span></dt><dd><p>Coordinate system ID number (CID) to be used for output data
+(used only for a generalized weld). The coordinate system must be previously
+defined with the <a class="link" href="Hlp_C_EDLCS.html" title="EDLCS"><span class="command"><strong>EDLCS</strong></span></a> command.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="EDWELD.notes"></a><h2>Notes</h2><p>This command can be used to define a massless spotweld between two nodes
+or a generalized weld for a group of nodes.  For a spotweld, the nodes specified
+by <em class="replaceable"><code>N1</code></em> and <em class="replaceable"><code>N2</code></em> must not
+be coincident. For a generalized weld, coincident nodes are permitted, but <em class="replaceable"><code>CID</code></em> must
+be specified when using coincident nodes. <span class="command"><strong>EDWELD</strong></span> is not
+updated after a node merge operation; therefore, node merging [<a class="link" href="Hlp_C_NUMMRG.html" title="NUMMRG"><span class="command"><strong>NUMMRG</strong></span></a>,NODE]
+should be done before any <span class="command"><strong>EDWELD</strong></span> definitions. Nodes connected
+by a spotweld or generalized weld cannot be constrained in any other way. </p><p>Failure of the weld occurs when: </p><div class="informalequation"><a name="eq25a36e79-f6af-4f7a-a28e-cabbc981ad9c"></a><div><img src="graphics/eq25a36e79-f6af-4f7a-a28e-cabbc981ad9c.svg"></div></div><p>where f<sub>n</sub> and f<sub>s</sub> are normal
+and shear interface forces. Normal interface force f<sub>n</sub> is
+nonzero for tensile values only.</p><p>You can graphically display spotwelds by issuing the command <a href="Hlp_C_PBC.html" class="olink"><span class="command"><strong>/PBC</strong></span></a>,WELD,,1.</p><p>This command is also valid in SOLUTION.</p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p></div><div class="refsect1" title="Menu Paths"><a name="EDWELD.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;LS-DYNA Options&gt;Spotweld&gt;Delete</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;LS-DYNA Options&gt;Spotweld&gt;Genrlizd Spotwld</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;LS-DYNA Options&gt;Spotweld&gt;List</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;LS-DYNA Options&gt;Spotweld&gt;Massless Spotwld</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

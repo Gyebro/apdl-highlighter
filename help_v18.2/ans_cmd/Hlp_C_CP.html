@@ -1,0 +1,93 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:34-04:00"><title>CP</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_C_CTOC.html" title="C Commands"><link rel="prev" href="Hlp_C_COVAL.html" title="COVAL"><link rel="next" href="Hlp_C_CPCYC.html" title="CPCYC"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="CP"><a name="CP"></a><div class="titlepage"></div><a class="indexterm" name="d0e55973"></a><span class="refentrytitle"><span class="command"><strong>CP</strong></span></span><div class="refnamediv"><p><span class="command"><strong>CP</strong></span>, <em class="replaceable"><code>NSET</code></em>, <em class="replaceable"><code>Lab</code></em>, <em class="replaceable"><code>NODE1</code></em>, <em class="replaceable"><code>NODE2</code></em>, <em class="replaceable"><code>NODE3</code></em>, <em class="replaceable"><code>NODE4</code></em>, <em class="replaceable"><code>NODE5</code></em>, <em class="replaceable"><code>NODE6</code></em>, <em class="replaceable"><code>NODE7</code></em>, <em class="replaceable"><code>NODE8</code></em>, <em class="replaceable"><code>NODE9</code></em>, <em class="replaceable"><code>NODE10</code></em>, <em class="replaceable"><code>NODE11</code></em>, <em class="replaceable"><code>NODE12</code></em>, <em class="replaceable"><code>NODE13</code></em>, <em class="replaceable"><code>NODE14</code></em>, <em class="replaceable"><code>NODE15</code></em>, <em class="replaceable"><code>NODE16</code></em>, <em class="replaceable"><code>NODE17</code></em><br><b class="refpurpose">Defines (or modifies) a set of coupled degrees of freedom.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7coupleddofldm061600" title="Table&nbsp;2.41:&nbsp;&nbsp;Coupled Degrees of Freedom"><span class="type">Coupled DOF</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="CP.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NSET</code></em></b></span></dt><dd><p>Set reference number:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term"><em class="replaceable"><code>n</code></em></b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Arbitrary
+set number.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">HIGH</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The highest defined coupled set number
+will be used (default, unless <em class="replaceable"><code>Lab</code></em> = ALL).
+ This option is useful when adding nodes to an existing set.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NEXT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The highest defined coupled set number
+plus one will be used (default if <em class="replaceable"><code>Lab</code></em> =
+ALL).  This option automatically numbers coupled sets so that existing
+sets are not modified.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><p>Degree of freedom label for coupled nodes (in the
+nodal coordinate system).  Defaults to label previously defined with <em class="replaceable"><code>NSET</code></em> if set <em class="replaceable"><code>NSET</code></em> already
+exists. A different label redefines the previous label associated
+with <em class="replaceable"><code>NSET</code></em>.  Valid labels are: Structural
+labels:  UX, UY, or UZ (displacements); ROTX, ROTY, or ROTZ (rotations)
+(in radians); HDSP (hydrostatic pressure). Thermal labels: TEMP, TBOT,
+TE2, TE3, . . ., TTOP (temperature).  Fluid labels:  PRES (pressure);
+ VX, VY, or VZ (velocities).  Electric labels:  VOLT (voltage);  EMF
+(electromotive force drop);  CURR (current).  Magnetic labels:  MAG
+(scalar magnetic potential); AZ (vector magnetic potential);
+ CURR (current). Diffusion label: CONC (concentration). Explicit analysis
+labels:  UX, UY, or UZ (displacements).</p><p>When <em class="replaceable"><code>Lab</code></em> = ALL:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Sets are generated for <span class="italic"><em>each</em></span> active degree of freedom (that is, one set for the UX degree of
+freedom, another set for UY, etc.), and <em class="replaceable"><code>NSET</code></em> is incremented automatically to prevent overwriting existing sets.
+ </p></li><li class="listitem"><p>Existing sets are <span class="italic"><em>not</em></span> modified. <em class="replaceable"><code>NSET</code></em> must be a new set number <em class="replaceable"><code>n</code></em> or NEXT. </p></li><li class="listitem"><p>The degree of freedom set is determined according
+to all element types defined and the <a class="link" href="Hlp_C_DOF.html" title="DOF"><span class="command"><strong>DOF</strong></span></a> command,
+if used. </p></li><li class="listitem"><p>Hydrostatic pressure (HDSP) is not included.</p></li></ul></div></dd><dt><span><b class="term"><em class="replaceable"><code>NODE1</code></em>, <em class="replaceable"><code>NODE2</code></em>,
+      <em class="replaceable"><code>NODE3</code></em>, . . . , <em class="replaceable"><code>NODE17</code></em></b></span></dt><dd><p>List of nodes to be included in set. Duplicate nodes are ignored. If a node number is
+      input as negative, the node is deleted from the coupled set. The first node in the list is the
+      primary (retained) node, and the remaining nodes represent the removed degrees of freedom. </p><p>If <em class="replaceable"><code>NODE1</code></em> = ALL, <em class="replaceable"><code>NODE2</code></em> through
+       <em class="replaceable"><code>NODE17</code></em> are ignored and all selected nodes
+      (<a class="link" href="Hlp_C_NSEL.html" title="NSEL"><span class="command"><strong>NSEL</strong></span></a>) are included in the set, and the node with the lowest node number
+      becomes the primary node. </p><p>If <em class="replaceable"><code>NODE1</code></em> = P, graphical picking is enabled and all remaining
+      command fields are ignored (valid only in the GUI).</p><p> A component name can be substituted for <em class="replaceable"><code>NODE1</code></em>. The component
+      consists of the node group to be coupled. The node with the lowest node number becomes the
+      primary node among the node group. To display the generated and coupled node sets, issue the
+       <a class="link" href="Hlp_C_CPLIST.html" title="CPLIST"><span class="command"><strong>CPLIST</strong></span></a> command. </p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="CP.notes"></a><h2>Notes</h2><p>Do not include the same degree of freedom in more than one coupled
+set.  Repeat <span class="command"><strong>CP</strong></span> command for additional nodes.</p><p>Coupling degrees of freedom into a set causes the results calculated
+for one member of the set to be the same for all members of the set.
+ Coupling can be used to model various joint and hinge effects.  A
+more general form of coupling can be done with constraint equations
+(<a class="link" href="Hlp_C_CE.html" title="CE"><span class="command"><strong>CE</strong></span></a>).  For structural analyses, a list of nodes
+is defined along with the nodal directions in which these nodes are
+to be coupled.  As a result of this coupling, these nodes are forced
+to take the same displacement in the specified <span class="italic"><em>nodal coordinate direction</em></span>.  The amount of the displacement
+is unknown until the analysis is completed.  A set of coupled nodes
+which are not coincident, or which are not along the line of the coupled
+displacement direction, may produce an applied moment which will not
+appear in the reaction forces.  The actual degrees of freedom available
+for a particular node depends upon the degrees of freedom associated
+with element types (<a class="link" href="Hlp_C_ET.html" title="ET"><span class="command"><strong>ET</strong></span></a>) at that node. For scalar
+field analysis, this command is used to couple nodal temperatures,
+pressures, voltages, etc.</p><p>For an explicit dynamic analysis, the only valid DOF labels
+for coupling are UX, UY, and UZ. Since the rotational DOF (ROTX, ROTY,
+ROTZ) are not allowed. The <span class="command"><strong>CP</strong></span> family of commands
+should not be used in an explicit analysis to model rigid body behavior
+that involves rotations. If <span class="command"><strong>CP</strong></span> is used in this
+manner, it could lead to nonphysical responses.</p><p>A set of coupled nodes which are not coincident, or which are
+not along the line of the coupled displacement direction, produce
+an artificial moment constraint.  If the structure rotates, a moment
+may be produced in the coupled set in the form of a force couple.
+ This moment is in addition to the real reaction forces and may make
+it appear that moment equilibrium is not satisfied by just the applied
+forces and the reaction forces. Note, however, that in an explicit
+dynamic analysis, this artificial moment will not be produced. Rather,
+just the applied forces and the reaction forces will satisfy the moment
+equilibrium in the model. Thus, in an explicit analysis, the magnitude
+of nodal displacements for this set of nodes will depend on the distance
+from each node to the center of the coupled set, and the direction
+of displacement will depend on the resulting moment. This may lead
+to a nonphysical response in some cases.</p><p>Additional sets of coupled nodes may be generated from a specified
+set.  Degrees of freedom are coupled within a set but are not coupled
+between sets.  No degree of freedom should appear in more than one
+coupled set.  Such an appearance would indicate that at least two
+sets were in fact part of a single larger set.  The first degree of
+freedom of the coupled set is the "prime" degree of freedom.  All
+other degrees of freedom in the coupled sets are eliminated from the
+solution matrices by their relationship to the prime degree of freedom.
+ Forces applied to coupled nodes (in the coupled degree of freedom
+direction) will be summed and applied to the prime degree of freedom.
+ Output forces are also summed at the prime degree of freedom.  Degrees
+of freedom with specified constraints (<a class="link" href="Hlp_C_D.html" title="D"><span class="command"><strong>D</strong></span></a>) should
+not be included in a coupled set (unless the degree of freedom is
+prime).</p><p>If master degrees of freedom are defined for coupled nodes,
+only the prime degree of freedom should be so defined. The use of
+coupled nodes reduces the set of coupled degrees of freedom to only
+one degree of freedom.</p><p>The removed degrees of freedom defined by the <span class="command"><strong>CP</strong></span> command cannot be included in any <a class="link" href="Hlp_C_CE.html" title="CE"><span class="command"><strong>CE</strong></span></a> or <a class="link" href="Hlp_C_CERIG.html" title="CERIG"><span class="command"><strong>CERIG</strong></span></a> command.</p></div><div class="refsect1" title="Menu Paths"><a name="CP.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Coupling / Ceqn&gt;Couple DOFs</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Coupling / Ceqn&gt;Cupl DOFs w/Mstr</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

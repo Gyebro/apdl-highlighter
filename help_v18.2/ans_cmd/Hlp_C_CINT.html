@@ -1,0 +1,181 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:30-04:00"><title>CINT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_C_CTOC.html" title="C Commands"><link rel="prev" href="Hlp_C_CHKMSH.html" title="CHKMSH"><link rel="next" href="Hlp_C_CIRCLE.html" title="CIRCLE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="CINT"><a name="CINT"></a><div class="titlepage"></div><a class="indexterm" name="d0e45775"></a><span class="refentrytitle">
+<span class="command"><strong>CINT</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>CINT</strong></span>, <em class="replaceable"><code>Action</code></em>, <em class="replaceable"><code>Par1</code></em>, <em class="replaceable"><code>Par2</code></em>, <em class="replaceable"><code>Par3</code></em>, <em class="replaceable"><code>Par4</code></em>, <em class="replaceable"><code>Par5</code></em>, <em class="replaceable"><code>Par6</code></em>, <em class="replaceable"><code>Par7</code></em>
+<br><b class="refpurpose">Defines parameters associated with fracture parameter
+calculations</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7specpurpldm061600" title="Table&nbsp;2.48:&nbsp;&nbsp;Special Purpose"><span class="type">Special Purpose</span></a></span></div></div><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="CINT.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Action</code></em>
+</b></span></dt><dd><p>Specifies action for defining or manipulating initial
+crack data:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NEW</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_CINT.html#cint_new" title="Command Specification for Action = NEW">Initiate
+a new calculation and assign an ID.</a> </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CTNC</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+                                    <a class="link" href="Hlp_C_CINT.html#cint_ctncomp" title="Command Specifications for Action = CTNC">Define the crack-tip node
+                                        component.</a>
+                                </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CENC</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+                                    <a class="link" href="Hlp_C_CINT.html#cint_cencomp" title="Command Specifications for Action = CENC">Define the crack-extension node
+                                        component, the crack-tip node, and the crack extension
+                                        direction.</a>
+                                </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TYPE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_CINT.html#cint_type" title="Command Specifications for Action = TYPE">Define
+the type of calculation to perform.</a>
+</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DELE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_CINT.html#cint_dele" title="Command Specifications for Action = DELE">Delete
+the <span class="command"><strong>CINT</strong></span> object associated with the specified ID.</a>
+</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NCON</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+                                    <a class="link" href="Hlp_C_CINT.html#cint_ncontour" title="Command Specifications for Action = NCON">Specify the number of contours to
+                                        calculate in the contour-integral calculation.</a>
+                                </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SYMM</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_CINT.html#cint_symmetric" title="Command Specifications for Action = SYMM">Indicate
+whether the crack is on a symmetrical line or plane.</a>
+</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NORM</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_CINT.html#cint_normal" title="Command Specifications for Action = NORM">Define
+the crack plane normal.</a>
+</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">UMM</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_CINT.html#cint_umm" title="Command Specifications for Action = UMM">Activate
+or deactivate the unstructured mesh method.</a>
+</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">EDIR</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_CINT.html#cint_caextdir" title="Command Specifications for Action = EDIR">Crack-assist
+extension direction.</a>
+</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">PLOT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+                                    <a class="link" href="Hlp_C_CINT.html#cint_plot" title="Command Specifications for Action = PLOT">Plots the crack-front and crack-tip
+                                        coordinate system.</a>
+                                </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CXFE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+                                    <a class="link" href="Hlp_C_CINT.html#cint_cxfe" title="Command Specifications for Action = CXFE">Define the crack-tip element or
+                                        crack-front element set.</a> Valid for <a href="../ans_frac/Hlp_G_FRACXFEM.html" class="olink">XFEM-based
+                                        crack-growth</a> analysis only.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">RADIUS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_CINT.html#cint_radius" title="Command Specifications for Action = RADIUS">Define
+the radius at which the given value is to be evaluated.</a> Valid
+for XFEM-based crack-growth analysis only.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">RSWEEP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_CINT.html#cint_rsweep" title="Command Specifications for Action = RSWEEP">Define
+the minimum and maximum sweep angle from existing crack direction.</a> Valid for XFEM-based crack-growth analysis only.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Command Specification for Action = NEW"><a name="cint_new"></a><h2>Command Specification for <em class="replaceable"><code>Action</code></em> = NEW</h2><div class="refsect2" title="CINT, NEW, Par1"><a name="d0e45995"></a><h3>
+<span class="command"><strong>CINT</strong></span>, NEW, <em class="replaceable"><code>Par1</code></em>
+</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Par1</code></em> --</b></span></dt><dd><p>
+<span class="command"><strong>CINT</strong></span> ID number.</p></dd></dl></div></div></div></div><div class="refsect1" title="Command Specifications for Action = CTNC"><a name="cint_ctncomp"></a><h2>Command Specifications for <em class="replaceable"><code>Action</code></em> = CTNC</h2><div class="refsect2" title="CINT, CTNC, Par1, Par2, Par3"><a name="d0e46023"></a><h3>
+<span class="command"><strong>CINT</strong></span>, CTNC, <em class="replaceable"><code>Par1</code></em>, <em class="replaceable"><code>Par2</code></em>, <em class="replaceable"><code>Par3</code></em>
+</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Par1</code></em> --</b></span></dt><dd><p>Crack-tip node component name.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Par2</code></em> --</b></span></dt><dd><p>Crack-extension direction calculation-assist node.
+Any node on the open side of the crack.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Par3</code></em> --</b></span></dt><dd><p>Crack front&#8217;s end-node crack-extension direction override flag: </p><div><div class="variablelist"><dl><dt><span><b class="term">0 --</b></span></dt><dd><p>Align the extension direction with
+the edges attached at the two end nodes of the crack front (default).</p></dd><dt><span><b class="term">1 --</b></span></dt><dd><p>Align the extension direction to
+be perpendicular to the crack front.</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="Command Specifications for Action = CENC"><a name="cint_cencomp"></a><h2>Command Specifications for <em class="replaceable"><code>Action</code></em> = CENC</h2><div class="refsect2" title="CINT, CENC, Par1, Par2, Par3, Par4, Par5, Par6, Par7"><a name="d0e46085"></a><h3>
+<span class="command"><strong>CINT</strong></span>, CENC, <em class="replaceable"><code>Par1</code></em>, <em class="replaceable"><code>Par2</code></em>, <em class="replaceable"><code>Par3</code></em>, <em class="replaceable"><code>Par4</code></em>, <em class="replaceable"><code>Par5</code></em>, <em class="replaceable"><code>Par6</code></em>, <em class="replaceable"><code>Par7</code></em>
+</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Par1</code></em> --</b></span></dt><dd><p>Crack extension node component name (<a class="link" href="Hlp_C_CM.html" title="CM"><span class="command"><strong>CM</strong></span></a>). </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Par2</code></em> --</b></span></dt><dd><p>Crack-tip node. The crack-tip node defaults to the first node of the crack extension node
+                            component. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Par3</code></em>, <em class="replaceable"><code>Par4</code></em> --</b></span></dt><dd><p>Coordinate system number (<em class="replaceable"><code>Par3</code></em>) and the number of the axis that is coincident with the crack direction
+(<em class="replaceable"><code>Par4</code></em>). When these parameters are defined, <em class="replaceable"><code>Par5</code></em>, <em class="replaceable"><code>Par6</code></em> and <em class="replaceable"><code>Par7</code></em> are ignored.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Par5</code></em>, <em class="replaceable"><code>Par6</code></em>, <em class="replaceable"><code>Par7</code></em> --</b></span></dt><dd><p>Global x, y, and z components of the crack extension
+direction vector. (<em class="replaceable"><code>Par3</code></em> and <em class="replaceable"><code>Par4</code></em> must be blank.)</p></dd></dl></div></div></div></div><div class="refsect1" title="Command Specifications for Action = TYPE"><a name="cint_type"></a><h2>Command Specifications for <em class="replaceable"><code>Action</code></em> = TYPE</h2><div class="refsect2" title="CINT, TYPE, Par1"><a name="d0e46189"></a><h3>
+<span class="command"><strong>CINT</strong></span>, TYPE, <em class="replaceable"><code>Par1</code></em>
+</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Par1</code></em> --</b></span></dt><dd><p>Type of calculation to perform:</p><div><div class="variablelist"><dl><dt><span><b class="term">JINT -- </b></span></dt><dd><p>Calculate <a href="../ans_frac/strjintcalc.html" class="olink">J-integral</a> (default).</p></dd><dt><span><b class="term">MFOR -- </b></span></dt><dd><p>Calculate <a href="../ans_frac/strmatforcecalc.html" class="olink">material forces</a>.</p></dd><dt><span><b class="term">SIFS -- </b></span></dt><dd><p>Calculate <a href="../ans_frac/strsfiscalc.html" class="olink">stress-intensity factors</a>.</p></dd><dt><span><b class="term">TSTRESS -- </b></span></dt><dd><p>Calculate <a href="../ans_frac/strtstresscalc.html" class="olink">T-stress</a>.</p></dd><dt><span><b class="term">VCCT -- </b></span></dt><dd><p>Calculate <a href="../ans_frac/strenergyrelrates.html" class="olink"> energy-release rate</a> using the
+VCCT method.</p></dd><dt><span><b class="term">CSTAR -- </b></span></dt><dd><p>Calculate <a href="../ans_frac/strcstarintcalc.html" class="olink">C*-integral</a>.</p></dd><dt><span><b class="term">PSMAX -- </b></span></dt><dd><p>Calculate circumferential stress
+at the location where <span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq18c83484-8451-4611-a990-6b3c3471aab8.svg"></span>when sweeping around the crack tip at the given radius.
+Valid in an <a href="../ans_frac/Hlp_G_FRACXFEM.html" class="olink">XFEM-based crack-growth</a> analysis only.</p></dd><dt><span><b class="term">STTMAX -- </b></span></dt><dd><p>Calculate maximum circumferential
+stress when sweeping around the crack tip at the given radius. Valid
+in an XFEM-based crack-growth analysis only.</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="Command Specifications for Action = DELE"><a name="cint_dele"></a><h2>Command Specifications for <em class="replaceable"><code>Action</code></em> = DELE</h2><div class="refsect2" title="CINT, DELE, Par1"><a name="d0e46287"></a><h3>
+<span class="command"><strong>CINT</strong></span>, DELE, <em class="replaceable"><code>Par1</code></em>
+</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Par1</code></em> --</b></span></dt><dd><p>
+<span class="command"><strong>CINT</strong></span> ID (default = ALL).</p></dd></dl></div></div></div></div><div class="refsect1" title="Command Specifications for Action = NCON"><a name="cint_ncontour"></a><h2>Command Specifications for <em class="replaceable"><code>Action</code></em> = NCON</h2><div class="refsect2" title="CINT, NCON, Par1"><a name="d0e46315"></a><h3>
+<span class="command"><strong>CINT</strong></span>, NCON, <em class="replaceable"><code>Par1</code></em>
+</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Par1</code></em> --</b></span></dt><dd><p>Number of contours to be calculated.</p></dd></dl></div></div></div></div><div class="refsect1" title="Command Specifications for Action = SYMM"><a name="cint_symmetric"></a><h2>Command Specifications for <em class="replaceable"><code>Action</code></em> = SYMM</h2><div class="refsect2" title="CINT, SYMM, Par1"><a name="d0e46340"></a><h3>
+<span class="command"><strong>CINT</strong></span>, SYMM, <em class="replaceable"><code>Par1</code></em>
+</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Par1</code></em> --</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">OFF, 0, <span class="italic"><em>or</em></span> NO --</b></span></dt><dd><p>No symmetry (default).</p></dd><dt><span><b class="term">ON, 1, <span class="italic"><em>or</em></span> YES --</b></span></dt><dd><p>Symmetric about the crack line/plane. </p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="Command Specifications for Action = UMM"><a name="cint_umm"></a><h2>Command Specifications for <em class="replaceable"><code>Action</code></em> = UMM</h2><div class="refsect2" title="CINT, UMM, Par1"><a name="d0e46382"></a><h3>
+<span class="command"><strong>CINT</strong></span>, UMM, <em class="replaceable"><code>Par1</code></em>
+</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Par1</code></em> --</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">OFF, 0, <span class="italic"><em>or</em></span> NO --</b></span></dt><dd><p>Deactivate <a href="../ans_frac/fracumm.html" class="olink">Unstructured Mesh Method (UMM)</a>.</p></dd><dt><span><b class="term">ON, 1, <span class="italic"><em>or</em></span> YES --</b></span></dt><dd><p>Activate .</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="Command Specifications for Action = NORM"><a name="cint_normal"></a><h2>Command Specifications for <em class="replaceable"><code>Action</code></em> = NORM</h2><div class="refsect2" title="CINT, NORM, Par1, Par2"><a name="d0e46426"></a><h3>
+<span class="command"><strong>CINT</strong></span>, NORM, <em class="replaceable"><code>Par1</code></em>, <em class="replaceable"><code>Par2</code></em>
+</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Par1</code></em> --</b></span></dt><dd><p>Coordinate system number (default = 0, global Cartesian).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Par2</code></em> --</b></span></dt><dd><p>Axis of coordinate system (default = 2, global Cartesian
+Y-axis).</p></dd></dl></div></div></div></div><div class="refsect1" title="Command Specifications for Action = EDIR"><a name="cint_caextdir"></a><h2>Command Specifications for <em class="replaceable"><code>Action</code></em> = EDIR</h2><div class="refsect2" title="CINT, EDIR, ITYPE, Par1, Par2, Par3, Par4"><a name="d0e46463"></a><h3>
+<span class="command"><strong>CINT</strong></span>, EDIR, <em class="replaceable"><code>ITYPE</code></em>, <em class="replaceable"><code>Par1</code></em>, <em class="replaceable"><code>Par2</code></em>, <em class="replaceable"><code>Par3</code></em>, <em class="replaceable"><code>Par4</code></em>
+</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>ITYPE</code></em> --</b></span></dt><dd><p>Input type for the crack-assist extension direction.
+Valid values are CS (coordinate system number) or COMP (component
+x or y extension direction). </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Par1</code></em> --</b></span></dt><dd><p>If <em class="replaceable"><code>ITYPE</code></em> = CS, the coordinate
+system number. </p><p>If <em class="replaceable"><code>ITYPE</code></em> =
+COMP, the x component of the crack-assist extension direction.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Par2</code></em> --</b></span></dt><dd><p>If <em class="replaceable"><code>ITYPE</code></em> is CS, the axis
+representing the crack-assist extension direction.</p><p>If <em class="replaceable"><code>ITYPE</code></em> = COMP, the y component of the crack-assist extension
+direction.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Par3</code></em> --</b></span></dt><dd><p>For <em class="replaceable"><code>ITYPE</code></em> = CS, this value
+is not specified.</p><p>For <em class="replaceable"><code>ITYPE</code></em> = COMP, the z component of the crack-assist extension direction. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Par4</code></em> --</b></span></dt><dd><p>A reference node on the crack front attached to the crack-assist extension direction. To
+                            accurately calculate and flip the crack extension directions, the
+                            crack-assist extension direction defined at this node is rotated as the
+                            tangent along the crack front rotates. This capability is useful when
+                            the crack-extension directions vary by more than 180 degrees along the
+                            crack front. </p></dd></dl></div></div></div></div><div class="refsect1" title="Command Specifications for Action = PLOT"><a name="cint_plot"></a><h2>Command Specifications for <em class="replaceable"><code>Action</code></em> = PLOT</h2><div class="refsect2" title="CINT, PLOT, Par1, Par2"><a name="d0e46560"></a><h3>
+<span class="command"><strong>CINT</strong></span>, PLOT, <em class="replaceable"><code>Par1</code></em>, <em class="replaceable"><code>Par2</code></em>
+</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Par1</code></em> --</b></span></dt><dd><p>Crack ID.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Par2</code></em> --</b></span></dt><dd><p>0 -- Disable plotting of crack-tip coordinate system. </p><p>1 -- Enable plotting of crack-tip coordinate system (default). </p><p>Color codes are white for crack-extension direction, green for crack normal, and red for the
+                            direction tangential to the crack front. To clear or delete the plots,
+                            issue the <a href="Hlp_C_ANNOT.html" class="olink"><span class="command"><strong>/ANNOT</strong></span></a> command. </p></dd></dl></div></div></div></div><div class="refsect1" title="Command Specifications for Action = CXFE"><a name="cint_cxfe"></a><h2>Command Specifications for <em class="replaceable"><code>Action</code></em> = CXFE</h2><div class="refsect2" title="CINT, CXFE, Par1"><a name="d0e46605"></a><h3>
+<span class="command"><strong>CINT</strong></span>, CXFE, <em class="replaceable"><code>Par1</code></em>
+</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Par1</code></em> --</b></span></dt><dd><p>Crack-tip element number or crack-front component name.</p></dd></dl></div></div></div></div><div class="refsect1" title="Command Specifications for Action = RADIUS"><a name="cint_radius"></a><h2>Command Specifications for <em class="replaceable"><code>Action</code></em> = RADIUS</h2><div class="refsect2" title="CINT, RADIUS, Par1"><a name="d0e46630"></a><h3>
+<span class="command"><strong>CINT</strong></span>, RADIUS, <em class="replaceable"><code>Par1</code></em>
+</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Par1</code></em> --</b></span></dt><dd><p>Radius at which a value is evaluated (used with <span class="command"><strong>CINT</strong></span>,TYPE,PSMAX or <span class="command"><strong>CINT</strong></span>,TYPE,STTMAX
+only). </p></dd></dl></div></div></div></div><div class="refsect1" title="Command Specifications for Action = RSWEEP"><a name="cint_rsweep"></a><h2>Command Specifications for <em class="replaceable"><code>Action</code></em> = RSWEEP</h2><div class="refsect2" title="CINT, RSWEEP, Par1, Par2, Par3"><a name="d0e46661"></a><h3>
+<span class="command"><strong>CINT</strong></span>, RSWEEP, <em class="replaceable"><code>Par1</code></em>, <em class="replaceable"><code>Par2</code></em>, <em class="replaceable"><code>Par3</code></em>
+</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Par1</code></em> --</b></span></dt><dd><p>Number of intervals for the sweep.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Par2</code></em> --</b></span></dt><dd><p>Minimum angle of the sweep.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Par3</code></em> --</b></span></dt><dd><p>Maximum angle of the sweep</p></dd></dl></div></div></div></div><div class="refsect1" title="Notes"><a name="cint_notes"></a><h2>Notes</h2><p>Initiate a new calculation via the <em class="replaceable"><code>Action</code></em> = NEW parameter. Subsequent <span class="command"><strong>CINT</strong></span> commands (with
+parameters other than NEW) define the input required for the fracture
+parameter calculations.</p><p>The simplest method is to define crack information using
+    <em class="replaceable"><code>Action</code></em> = CTNC; however, this method limits you to only one node for a
+   given location along the crack front. Use the CTNC option only when all nodes that define the
+   crack front lie in a single plane.</p><p>To define crack information at multiple locations along the crack front, use
+                <em class="replaceable"><code>Action</code></em> = CENC. You can issue
+            <span class="command"><strong>CINT</strong></span>,CENC, <em class="replaceable"><code>Par1</code></em>, etc. multiple times to
+            define the crack-extension node component, the crack tip, and the crack-extension
+            directions at multiple locations along the crack front.</p><p>Although you can vary the sequence of your definitions, all specified crack-tip nodes must be
+            at the crack front, and no crack-tip node can be omitted.</p><p>You can define the crack extension direction directly by specifying either
+                <em class="replaceable"><code>Action</code></em> = CENC or <em class="replaceable"><code>Action</code></em> =
+            NORM.</p><p>The crack-assist extension direction (<em class="replaceable"><code>Action</code></em> = EDIR) provides a
+            generic extension direction when <em class="replaceable"><code>Action</code></em> = CTNC is specified.
+            It is used to help define crack extension directions based on the connectivity of the
+            crack-front elements. For a 2-D case, when the crack tangent cannot be calculated, the
+            crack-assist extension direction provided is used directly.</p><p>For <em class="replaceable"><code>Action</code></em> = UMM, the default value can be OFF or ON <a href="../ans_frac/fracumm.html#fracummdefaults" class="olink">depending on the element type</a>. The
+                <span class="command"><strong>CINT</strong></span> command overrides the default setting for the given
+            element.</p><p>For an <a href="../ans_frac/Hlp_G_FRACXFEM.html" class="olink">XFEM-based crack-growth</a> analysis:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                        <em class="replaceable"><code>Action</code></em> = CTNC, CENC, NCON, SYMM, UMM, or EDIR
+                        have no effect.</p></li><li class="listitem"><p>
+                        <em class="replaceable"><code>Action</code></em> = CXFE, RADIUS, or RSWEEP are
+                        XFEM-specific and invalid for any other type of crack-growth
+                        analysis.</p></li><li class="listitem"><p>For <span class="command"><strong>CINT</strong></span>,TYPE, only <em class="replaceable"><code>Par1</code></em> =
+                        PSMAX or STTMAX are valid. Other <em class="replaceable"><code>Par1</code></em> values have
+                        no effect.</p></li></ul></div><p>
+        </p><p>The stress-intensity factors calculation (<span class="command"><strong>CINT</strong></span>,TYPE,SIFS) applies only to
+            isotropic linear elasticity. Use only one material type for the crack-tip elements that
+            are used for the calculations.</p><p>When calculating energy release rates (<span class="command"><strong>CINT</strong></span>,TYPE,VCCT), do not restrict the
+            results from being written to the database (<a href="Hlp_C_CONFIG.html" class="olink"><span class="command"><strong>/CONFIG</strong></span></a>,NOELDB,1) after
+            solution processing; otherwise, incorrect and potentially random results are
+            possible.</p><p>The <span class="command"><strong>CINT</strong></span> command supports only strain data for
+            initial state (<a class="link" href="Hlp_C_INISTATE.html" title="INISTATE"><span class="command"><strong>INISTATE</strong></span></a>,SET,DTYP,EPEL). Other initial state
+            capabilities are not supported.</p><p>For more information about using the <span class="command"><strong>CINT</strong></span> command, including supported
+            element types and material behavior, see <a href="../ans_frac/Hlp_G_FREVALPARM.html" class="olink">Evaluation of Fracture Mechanics Parameters in the <span class="olinkdocname">Mechanical APDL Fracture Analysis Guide</span></a>.</p></div><div class="refsect1" title="Menu Paths"><a name="CINT.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

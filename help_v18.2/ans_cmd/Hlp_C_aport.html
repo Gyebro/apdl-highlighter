@@ -1,0 +1,91 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:23-04:00"><title>APORT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_A_TOC.html" title="A Commands"><link rel="prev" href="Hlp_C_APLOT.html" title="APLOT"><link rel="next" href="Hlp_C_APPEND.html" title="APPEND"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="APORT"><a name="APORT"></a><div class="titlepage"></div><a class="indexterm" name="d0e25976"></a><span class="refentrytitle">
+<span class="command"><strong>APORT</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>APORT</strong></span>, <em class="replaceable"><code>PortNum</code></em>,                 <em class="replaceable"><code>Label</code></em>, <em class="replaceable"><code>KCN</code></em>,                 <em class="replaceable"><code>PRES</code></em>, <em class="replaceable"><code>PHASE</code></em>, --,                 <em class="replaceable"><code>VAL1</code></em>, <em class="replaceable"><code>VAL2</code></em>,            
+    <em class="replaceable"><code>VAL3</code></em>, <em class="replaceable"><code>VAL4</code></em>
+<br><b class="refpurpose">Specifies input data for plane wave and acoustic duct
+ports.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolumiscldsjla070199" title="Table&nbsp;2.59:&nbsp;&nbsp;Miscellaneous Loads"><span class="type">Misc Loads</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="aport.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>PortNum</code></em>
+</b></span></dt><dd><p>Port number. This number is associated with an exterior
+port or interior port previously specified by the <a class="link" href="Hlp_C_SF.html" title="SF"><span class="command"><strong>SF</strong></span></a> and <a class="link" href="Hlp_C_BF.html" title="BF"><span class="command"><strong>BF</strong></span></a> family of commands, respectively.  The
+number must be between 1 and 50.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Label</code></em>
+</b></span></dt><dd><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">PLAN</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Incident plane wave.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">RECT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Rectangular duct.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CIRC</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Circular duct.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">COAX</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Coaxial duct.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LIST</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>List the port settings. If <em class="replaceable"><code>PortNum</code></em>                                     = ALL,
+list the port settings for all defined ports.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DELE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Delete defined ports.  If <em class="replaceable"><code>PortNum</code></em> =                                     ALL,
+delete all defined ports.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term">
+<em class="replaceable"><code>KCN</code></em>
+</b></span></dt><dd><p>A previously-defined local (<em class="replaceable"><code>KCN</code></em> &gt;10) or global
+                            (<em class="replaceable"><code>KCN</code></em> = 0) Cartesian coordinate system number
+                        used to specify the geometric properties of the duct. Defaults to the global
+                        Cartesian coordinate system (0). The local Z-direction must be the direction
+                        of wave propagation. The origin of the local coordinate system must be
+                        centered about the face of the duct port without considering
+                        symmetry.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>PRES</code></em>
+</b></span></dt><dd><p>Zero-to-peak amplitude of the pressure.  If blank,
+the port will appear as                         a matching impedance.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>PHASE</code></em>
+</b></span></dt><dd><p>Phase angle of the applied pressure in degrees.  Defaults
+to 0.</p></dd><dt><span><b class="term">--</b></span></dt><dd><p>Unused field.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL1</code></em>, <em class="replaceable"><code>VAL2</code></em>,                         <em class="replaceable"><code>VAL3</code></em>, <em class="replaceable"><code>VAL4</code></em>
+</b></span></dt><dd><p>Additional input. The meaning of <em class="replaceable"><code>VAL1</code></em> through                             <em class="replaceable"><code>VAL4</code></em> varies depending on the specified                             <em class="replaceable"><code>Label</code></em>.</p><p>
+<em class="replaceable"><code>Label</code></em> = PLAN:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>VAL1</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+                                    <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq1d5e9a9b-be77-41e5-a279-490cb73cc635.svg"></span> angle from positive X-axis to positive Y-axis
+                                    in the local Cartesian coordinates
+                                        (<em class="replaceable"><code>KCN</code></em>).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>VAL2</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+                                    <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqf99fc714-4361-4614-9a0a-fae757ef1334.svg"></span> angle away from positive Z-axis in the local
+                                    Cartesian coordinates (<em class="replaceable"><code>KCN</code></em>).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>VAL3-VAL4</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Not used.</p></td></tr></tbody></table></div></div><p>
+<em class="replaceable"><code>Label</code></em> = RECT:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>VAL1</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Width of the rectangular duct.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>VAL2</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Height of the rectangular duct.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>VAL3</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Mode index for pressure variation along the width (defaults to 0).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>VAL4</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Mode index for pressure variation along the height (defaults to 0).</p></td></tr></tbody></table></div></div><p>
+<em class="replaceable"><code>Label</code></em> = CIRC:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>VAL1</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Radius of the circular duct.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>VAL2</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Not used.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>VAL3</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Mode index for pressure variation along the azimuth (defaults
+                                    to 0).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>VAL4</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Mode index for pressure variation along the radii (defaults to
+                                    0).</p></td></tr></tbody></table></div></div><p>
+                        <em class="replaceable"><code>Label</code></em> = COAX:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+                                <em class="replaceable"><code>VAL1</code></em>
+                            </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Inner radius of the coaxial duct.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+                                <em class="replaceable"><code>VAL2</code></em>
+                            </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Outer radius of the coaxial duct.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+                                <em class="replaceable"><code>VAL3</code></em>
+                            </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Mode index for pressure variation along the azimuth (defaults
+                                    to 0).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+                                <em class="replaceable"><code>VAL4</code></em>
+                            </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Mode index for pressure variation along the radii (defaults to
+                                    0).</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="APORT.notes"></a><h2>Notes</h2><p>Use the <span class="command"><strong>APORT</strong></span> command to launch a specified analytic acoustic mode
+            into a guided duct. </p><p>The low-order <a href="../ans_elem/Hlp_E_FLUID30.html" class="olink"><span class="structname">FLUID30</span></a> element does not support the higher
+            modes in the coaxial duct (<em class="replaceable"><code>Label</code></em> = COAX).</p><p>For more information, see <a href="../ans_acous/acous_excit_src.html#acous_excit_duct" class="olink">Specified Mode Excitation in an Acoustic Duct</a>
+            in the <a href="../ans_acous/ans_acous.html" class="olink"><em class="citetitle">Acoustic Analysis Guide</em></a>, and <a href="../ans_thry/thyacous_proprad.html#thyacous_portmodeduct" class="olink">Analytic Port Modes in a Duct</a> in
+            the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>.</p></div><div class="refsect1" title="Menu Paths"><a name="aport.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

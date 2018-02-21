@@ -1,0 +1,200 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:15-04:00"><title>PLANE55</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_MATRIX50.html" title="MATRIX50"><link rel="next" href="Hlp_E_SHELL61.html" title="SHELL61"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="PLANE55"><a name="PLANE55"></a><div class="titlepage"></div><a class="indexterm" name="d0e33186"></a><span class="refentrytitle">
+<span class="structname">PLANE55</span> </span><div class="refnamediv"><p><br><b class="refpurpose">2-D Thermal
+Solid</b><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+<div class=""><div class="application"><span class="application">
+<a class="link" href="Hlp_E_PLANE55.html#acmNxq19cmcm" title="PLANE55 Product Restrictions">Product Restrictions</a>
+</span></div></div>
+</div></p></div><div class="refsect1" title="PLANE55 Element Description"><a name="ELEMplane55desc"></a><h2>PLANE55 Element Description</h2><p>
+<span class="structname">PLANE55</span> can be used as a plane element
+or as an axisymmetric ring element with a 2-D thermal conduction capability.
+ The element has four nodes with a single degree of freedom, temperature,
+at each node.</p><p>The element is applicable to a 2-D, steady-state or transient
+thermal analysis.  The element can also compensate for mass transport
+heat flow from a constant velocity field.  If the model containing
+the temperature element is also to be analyzed structurally, the element
+should be replaced by an equivalent structural element (such as <a class="link" href="Hlp_E_PLANE182.html" title="PLANE182"><span class="structname">PLANE182</span></a>).  </p><p>A similar element with midside node capability is <a class="link" href="Hlp_E_PLANE77.html" title="PLANE77"><span class="structname">PLANE77</span></a>.  A similar axisymmetric element which accepts
+nonaxisymmetric loading is <a class="link" href="Hlp_E_PLANE75.html" title="PLANE75"><span class="structname">PLANE75</span></a>.</p><p>An option exists that allows the element to model nonlinear
+steady-state fluid flow through a porous medium.  With this option
+the thermal parameters are interpreted as analogous fluid flow parameters.
+ See <a href="../ans_thry/thy_el55.html" class="olink">
+<span class="structname">PLANE55</span>
+</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for more details about
+this element.</p><div class="figure"><a name="axJ4yg347ctg"></a><p class="title"><b>Figure&nbsp;55.1:&nbsp;&nbsp;PLANE55 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM29-1.svg" alt="PLANE55 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="PLANE55 Input Data"><a name="acmNxq49mcm"></a><h2>PLANE55 Input Data</h2><p>The geometry, node locations, and the coordinate system for
+this element are shown in <a class="xref" href="Hlp_E_PLANE55.html#axJ4yg347ctg" title="Figure&nbsp;55.1:&nbsp;&nbsp;PLANE55 Geometry">Figure&nbsp;55.1:&nbsp;PLANE55 Geometry</a>.  The element
+is defined by four nodes and the orthotropic material properties.
+ Orthotropic material directions correspond to the element coordinate
+directions. The element coordinate system orientation is as described
+in <a class="xref" href="Hlp_E_CH2_3.html" title="3.3.&nbsp;Coordinate Systems">Coordinate Systems</a>. Specific heat and density are
+ignored for steady-state solutions. Properties not input default
+as described in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>Element loads are described in <a class="xref" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">Nodal Loading</a>.
+ Convection or heat flux (but not both) and radiation may be input
+as surface loads at the element faces as shown by the circled numbers
+on <a class="xref" href="Hlp_E_PLANE55.html#axJ4yg347ctg" title="Figure&nbsp;55.1:&nbsp;&nbsp;PLANE55 Geometry">Figure&nbsp;55.1:&nbsp;PLANE55 Geometry</a>.</p><p>Heat generation rates may be input as element body loads at
+the nodes.  If the node I heat generation rate HG(I) is input, and
+all others are unspecified, they default to HG(I).</p><p>A mass transport option is available with KEYOPT(8).  With this
+option the velocities VX and VY must be input as real constants (in
+the element coordinate system).  Also, temperatures should be specified
+along the entire inlet boundary to assure a stable solution.  With
+mass transport, you should use specific heat (C) and density (DENS)
+material properties instead of enthalpy (ENTH).</p><p>The nonlinear porous flow option is selected with KEYOPT(9)
+= 1.  For this option, temperature is interpreted as pressure and
+the absolute permeabilities of the medium are input as material properties
+KXX and KYY.  Properties DENS and VISC are used for the mass density
+and viscosity of the fluid.  See the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for a description
+of the properties C and MU, which are used in calculating the coefficients
+of permeability, with reference to the Z terms ignored.  Temperature
+boundary conditions input with the <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a> command are
+interpreted as pressure boundary conditions, and heat flow boundary
+conditions input with the <a href="../ans_cmd/Hlp_C_F.html" class="olink"><span class="command"><strong>F</strong></span></a> command are interpreted
+as mass flow rate (mass/time).</p><p>This element can also have a Z-depth specified by KEYOPT(3)
+and real constant THK. Be careful when using this option with other
+physics, especially radiation. Radiation view factors will be based
+on a unit Z-depth (only).</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_PLANE55.html#aSK4yg3e0ctg" title="PLANE55 Input Summary">"PLANE55 Input Summary"</a>.  A general description of element input
+is given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>. For axisymmetric applications
+see <a class="xref" href="Hlp_E_continuumelems.html#axele520jjw" title="5.1.5.2.&nbsp;Harmonic Axisymmetric Elements">Harmonic Axisymmetric Elements</a>.</p><div class="refsect2" title="PLANE55 Input Summary"><a name="aSK4yg3e0ctg"></a><h3>PLANE55 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J, K, L</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>TEMP</p></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><p>THK, VX, VY</p><p>THK = Thickness (used only
+if KEYOPT(3) = 3)</p><p>VX = Mass transport velocity in X (used only if KEYOPT(8) &gt;
+0)</p><p>VY = Mass transport velocity in Y (used only if KEYOPT(8) &gt;
+0)</p></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p>
+<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: KXX, KYY, DENS, C,
+ENTH, VISC, MU (VISC and MU used only if KEYOPT (9) = 1.  </p><p>Do not use ENTH with KEYOPT(8) = 1 or 2.</p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Convection&nbsp;or Heat Flux (but not both) and Radiation (using
+Lab = RDSF) --&nbsp;</b></span></dt><dd><p>face 1 (J-I), face 2 (K-J), face 3 (L-K), face 4 (I-L)</p></dd></dl></div></div></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Heat Generations&nbsp;--&nbsp;</b></span></dt><dd><p>HG(I),
+HG(J), HG(K), HG(L)</p></dd></dl></div></div></dd><dt><span><b class="term">Special Features</b></span></dt><dd><p>
+<a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth and death</a>
+</p></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>How to evaluate film coefficient:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Evaluate film coefficient
+(if any) at average film temperature, (TS + TB)/2</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Evaluate at element surface
+temperature, TS</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Evaluate at fluid bulk
+temperature, TB</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Evaluate at differential
+temperature, |TS - TB|</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(3)</b></span></dt><dd><p>Element behavior:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Plane</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Axisymmetric</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Plane with Z-depth, specified
+via real constant THK.</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(4)</b></span></dt><dd><p>Element coordinate system:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Element coordinate system
+is parallel to the global coordinate system</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Element coordinate system
+is based on the element I-J side.</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(8)</b></span></dt><dd><p>Mass transport effects:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>No mass transport effects</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Mass transport with VX
+and VY</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Same as 1 but also print
+mass transport heat flow</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(9)</b></span></dt><dd><p>Nonlinear fluid flow option:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Standard heat transfer
+element</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Nonlinear steady-state
+fluid flow analogy element  (temperature degree of freedom interpreted
+as pressure)</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="PLANE55 Output Data"><a name="acmNxqbamcm"></a><h2>PLANE55 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal temperatures included in the overall nodal solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_PLANE55.html#a2L4yga0ctg" title="Table&nbsp;55.1:&nbsp;&nbsp;PLANE55 Element Output Definitions">Table&nbsp;55.1:&nbsp;PLANE55 Element Output Definitions</a>
+</p></li></ul></div><p>
+</p><p>For an axisymmetric analysis the face area and the heat flow
+rate are on a full 360&deg; basis.  Convection heat flux is positive
+out of the element; applied heat flux is positive into the element.
+ If KEYOPT(9) = 1, the standard thermal output should be interpreted
+as the analogous fluid flow output.  The element output directions
+are parallel to the element coordinate system.  A general description
+of solution output is given in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a> and of
+postprocessing data in <a class="xref" href="Hlp_E_CH2_8.html" title="2.5.&nbsp;Degenerated Shape Elements">Degenerated Shape Elements</a>.  See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for
+ways to view results.</p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="a2L4yga0ctg"></a><p class="title"><b>Table&nbsp;55.1:&nbsp;&nbsp;PLANE55 Element Output Definitions</b></p><div class="table-contents"><table summary="PLANE55 Element Output Definitions" border="1" width="95%"><colgroup><col width="120" class="col1"><col width="360" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th align="center">Name</th><th align="center">Definition</th><th align="center">O</th><th align="center">R</th></tr></thead><tbody><tr><td>EL</td><td>Element Number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Nodes - I, J, K, L</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>MAT</td><td>Material number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>VOLU:</td><td>Volume</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>XC, YC</td><td>Location where results are reported</td><td align="center">Y</td><td align="center">
+<a class="xref" href="Hlp_E_PLANE55.html#plane55.tab.2.ft.4">4</a>
+</td></tr><tr><td>HGEN</td><td>Heat generations HG(I), HG(J), HG(K), HG(L)</td><td align="center">Y</td><td align="center">-</td></tr><tr><td>TG:X, Y, SUM</td><td>Thermal gradient components and
+vector sum at centroid</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>TF:X, Y, SUM</td><td>Thermal flux (heat flow rate/cross-sectional area) components and
+vector sum at centroid</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>FACE</td><td>Face
+label</td><td align="center">
+<a class="xref" href="Hlp_E_PLANE55.html#plane55.tab.2.ft.1">1</a>
+</td><td align="center">-</td></tr><tr><td>AREA</td><td>Face
+area</td><td align="center">
+<a class="xref" href="Hlp_E_PLANE55.html#plane55.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_PLANE55.html#plane55.tab.2.ft.1">1</a>
+</td></tr><tr><td>NODES</td><td>Face nodes</td><td align="center">
+<a class="xref" href="Hlp_E_PLANE55.html#plane55.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_PLANE55.html#plane55.tab.2.ft.1">1</a>
+</td></tr><tr><td>HFILM</td><td>Film coefficient at each node of face</td><td align="center">
+<a class="xref" href="Hlp_E_PLANE55.html#plane55.tab.2.ft.1">1</a>
+</td><td align="center">-</td></tr><tr><td>TBULK</td><td>Bulk temperature at
+each node of face</td><td align="center">
+<a class="xref" href="Hlp_E_PLANE55.html#plane55.tab.2.ft.1">1</a>
+</td><td align="center">-</td></tr><tr><td>TAVG</td><td>Average face temperature</td><td align="center">
+<a class="xref" href="Hlp_E_PLANE55.html#plane55.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_PLANE55.html#plane55.tab.2.ft.1">1</a>
+</td></tr><tr><td>HEAT RATE</td><td>Heat flow rate across face by convection</td><td align="center">
+<a class="xref" href="Hlp_E_PLANE55.html#plane55.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_PLANE55.html#plane55.tab.2.ft.1">1</a>
+</td></tr><tr><td>HFAVG</td><td>Average film coefficient of the face</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_PLANE55.html#plane55.tab.2.ft.1">1</a>
+</td></tr><tr><td>TBAVG</td><td>Average face bulk temperature</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_PLANE55.html#plane55.tab.2.ft.1">1</a>
+</td></tr><tr><td>HFLXAVG</td><td>Heat flow rate per
+unit area across face caused by input heat flux</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_PLANE55.html#plane55.tab.2.ft.1">1</a>
+</td></tr><tr><td>HEAT RATE/AREA</td><td>Heat flow
+rate per unit area across face by convection</td><td align="center">
+<a class="xref" href="Hlp_E_PLANE55.html#plane55.tab.2.ft.1">1</a>
+</td><td align="center">-</td></tr><tr><td>HFLUX</td><td>Heat flux at each node of face</td><td align="center">
+<a class="xref" href="Hlp_E_PLANE55.html#plane55.tab.2.ft.1">1</a>
+</td><td align="center">-</td></tr><tr><td>HEAT FLOW BY MASS TRANSPORT</td><td>Heat flow rate across face by mass transport</td><td align="center">
+<a class="xref" href="Hlp_E_PLANE55.html#plane55.tab.2.ft.2">2</a>
+</td><td align="center">-</td></tr><tr><td>PRESSURE GRAD</td><td>Total pressure gradient
+and its X and Y components</td><td align="center">
+<a class="xref" href="Hlp_E_PLANE55.html#plane55.tab.2.ft.3">3</a>
+</td><td align="center">-</td></tr><tr><td>MASS FLUX</td><td>Mass flow rate per unit
+cross-sectional area</td><td align="center">
+<a class="xref" href="Hlp_E_PLANE55.html#plane55.tab.2.ft.3">3</a>
+</td><td align="center">-</td></tr><tr><td>FLUID VELOCITY</td><td>Total fluid velocity and its X and Y components</td><td align="center">
+<a class="xref" href="Hlp_E_PLANE55.html#plane55.tab.2.ft.3">3</a>
+</td><td align="center">-</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="plane55.tab.2.ft.1"></a>If a surface load is input</p></li><li class="listitem"><p><a name="plane55.tab.2.ft.2"></a>If KEYOPT(8) = 2</p></li><li class="listitem"><p><a name="plane55.tab.2.ft.3"></a>If KEYOPT(9) = 1</p></li><li class="listitem"><p><a name="plane55.tab.2.ft.4"></a>Available only at centroid
+as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item.</p></li></ol></div><p>
+<a class="xref" href="Hlp_E_PLANE55.html#aOn2k244epc3" title="Table&nbsp;55.2:&nbsp;&nbsp;PLANE55 Item and Sequence Numbers">Table&nbsp;55.2:&nbsp;PLANE55 Item and Sequence Numbers</a> lists output available through
+the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method.
+See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General Postprocessor
+(POST1)</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> of
+this reference for more information.  The following notation is used
+in <a class="xref" href="Hlp_E_PLANE55.html#aOn2k244epc3" title="Table&nbsp;55.2:&nbsp;&nbsp;PLANE55 Item and Sequence Numbers">Table&nbsp;55.2:&nbsp;PLANE55 Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="Hlp_E_PLANE55.html#a2L4yga0ctg" title="Table&nbsp;55.1:&nbsp;&nbsp;PLANE55 Element Output Definitions">Table&nbsp;55.1:&nbsp;PLANE55 Element Output Definitions</a>
+</p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command</p></dd><dt><span><b class="term">FC<span class="italic"><em>n </em></span>
+</b></span></dt><dd><p>sequence number for solution items for element Face <span class="italic"><em>n</em></span>
+</p></dd></dl></div></div><p>
+</p><div class="table"><a name="aOn2k244epc3"></a><p class="title"><b>Table&nbsp;55.2:&nbsp;&nbsp;PLANE55 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="PLANE55 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="96" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"><col width="48" align="center" class="col5"><col width="48" align="center" class="col6"></colgroup><thead><tr><th rowspan="2" align="center" valign="middle">Output Quantity
+Name</th><th colspan="5" align="center">
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th align="center">Item</th><th align="center">FC1</th><th align="center">FC2</th><th align="center">FC3</th><th align="center">FC4</th></tr></thead><tbody><tr><td align="center">AREA</td><td align="center">NMISC</td><td align="center">1</td><td align="center">7</td><td align="center">13</td><td align="center">19</td></tr><tr><td align="center">HFAVG</td><td align="center">NMISC</td><td align="center">2</td><td align="center">8</td><td align="center">14</td><td align="center">20</td></tr><tr><td align="center">TAVG</td><td align="center">NMISC</td><td align="center">3</td><td align="center">9</td><td align="center">15</td><td align="center">21</td></tr><tr><td align="center">TBAVG</td><td align="center">NMISC</td><td align="center">4</td><td align="center">10</td><td align="center">16</td><td align="center">22</td></tr><tr><td align="center">HEAT RATE</td><td align="center">NMISC</td><td align="center">5</td><td align="center">11</td><td align="center">17</td><td align="center">23</td></tr><tr><td align="center">HFLXAVG</td><td align="center">NMISC</td><td align="center">6</td><td align="center">12</td><td align="center">18</td><td align="center">24</td></tr></tbody></table></div></div><br class="table-break"></div><div class="refsect1" title="PLANE55 Assumptions and Restrictions"><a name="acmNxq12bmcm"></a><h2>PLANE55 Assumptions and Restrictions</h2><p>
+</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The element must not have a negative or a zero area.</p></li><li class="listitem"><p>The element must lie in an X-Y plane as shown in <a class="xref" href="Hlp_E_PLANE55.html#axJ4yg347ctg" title="Figure&nbsp;55.1:&nbsp;&nbsp;PLANE55 Geometry">Figure&nbsp;55.1:&nbsp;PLANE55 Geometry</a> and the Y-axis must be the axis of symmetry
+for axisymmetric analyses.  An axisymmetric structure should be modeled
+in the +X quadrants.</p></li><li class="listitem"><p>A triangular element may be formed by defining duplicate
+K and L node numbers as described in <a class="xref" href="Hlp_E_CH2_8.html" title="2.5.&nbsp;Degenerated Shape Elements">Degenerated Shape Elements</a>.</p></li><li class="listitem"><p>The specific heat and enthalpy are evaluated at each
+integration point to allow for abrupt changes (such as melting) within
+a coarse grid of elements.</p></li><li class="listitem"><p>Because the element is linear,
+the heat flux distribution is piecewise constant and, hence, the accuracy
+is low if the mesh is too coarse. This becomes more pronounced for
+axisymmetric elements (KEYOPT(3) =1) in which radial variation of
+heat flux is expected. To obtain a more accurate heat flux, increase
+the mesh density.</p></li><li class="listitem"><p>If the thermal element is to be replaced by a <a class="link" href="Hlp_E_PLANE182.html" title="PLANE182"><span class="structname">PLANE182</span></a> structural element with surface stresses requested,
+the thermal element should be oriented with face IJ or face KL as
+a free surface.  A free surface of the element (that is, not adjacent
+to another element and not subjected to a boundary constraint) is
+assumed to be adiabatic.</p></li><li class="listitem"><p>Thermal transients having a fine integration time
+step and a severe thermal gradient at the surface will also require
+a fine mesh at the surface.</p></li><li class="listitem"><p>If KEYOPT(8) &gt; 0, unsymmetric matrices are produced.</p></li><li class="listitem"><p>When mass flow is activated (KEYOPT(8) = 1 or 2), the element Peclet number should be less
+      than 1: </p><p>
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqfb3a3375-57c6-46e8-b26a-13bf64b2bd71.svg"></span>
+</p><p>Where L is an element length scale based on the flow direction
+and element geometry. See <a href="../ans_thry/thy_el55.html" class="olink">
+<span class="structname">PLANE55</span>
+</a> in
+the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for more details.</p></li></ul></div><p>
+</p></div><div class="refsect1" title="PLANE55 Product Restrictions"><a name="acmNxq19cmcm"></a><h2>PLANE55 Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific restrictions apply to
+   this element in addition to the general assumptions and restrictions given in the previous
+   section.</p><p title="ANSYS Mechanical Pro"><b>ANSYS Mechanical Pro&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>This element does not have the mass transport or fluid flow options. KEYOPT(8) and
+       KEYOPT(9) default to 0 and cannot be changed.</p></li><li class="listitem"><p>Birth and death is not available.</p></li></ul></div><p title="ANSYS Mechanical Pro">
+   </p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>This element does not have the mass transport or fluid flow options. KEYOPT(8) and
+       KEYOPT(9) default to 0 and cannot be changed.</p></li><li class="listitem"><p>Birth and death is not available.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+   </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

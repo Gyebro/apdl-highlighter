@@ -1,0 +1,105 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:01-04:00"><title>3.3.&nbsp;Coordinate Systems</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_FEATURES.html" title="Chapter&nbsp;3:&nbsp;General Element Features"><link rel="prev" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output"><link rel="next" href="elem_matsupp.html" title="Chapter&nbsp;4:&nbsp;Element Support for Material Models"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="3.3.&nbsp;Coordinate Systems"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="aIm8sq3c7ldm"></a>3.3.&nbsp;Coordinate Systems</h2></div></div></div><a class="indexterm" name="d0e9981"></a><div class="highlights"><p>The following coordinate system topics are available:</p><ul><li><a href="Hlp_E_CH2_3.html#akm8sq3daldm" title="3.3.1.&nbsp;Understanding the Element Coordinate System">Understanding the Element Coordinate System</a></li><li><a href="Hlp_E_CH2_3.html#aOVqq14atlm" title="3.3.2.&nbsp;Elements That Operate in the Nodal Coordinate System">Elements That Operate in the Nodal Coordinate System</a></li><li><a href="Hlp_E_CH2_3.html#elem_solucoordsys" title="3.3.3.&nbsp;Solution Coordinate Systems">Solution Coordinate Systems</a></li></ul></div><div class="sect2" title="3.3.1.&nbsp;Understanding the Element Coordinate System"><div class="titlepage"><div><div><h3 class="title"><a name="akm8sq3daldm"></a>3.3.1.&nbsp;Understanding the Element Coordinate System</h3></div></div></div><p>The element coordinate system is used for:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Orthotropic material input </p></li><li class="listitem"><p>Pressure loading input on certain faces of the surface effect
+                        elements</p></li><li class="listitem"><p>Output of element quantities, such as stresses, strains, and thermal
+                        gradients</p></li></ul></div><p>A default element coordinate system orientation is associated with each element
+                type. In general, these systems are described below. Elements departing from this
+                description have their default element coordinate system orientation described in
+                    <a class="xref" href="Hlp_E_LIBRARY.html" title="Chapter&nbsp;7:&nbsp;Element Library">Element Library</a>.</p><p>Element coordinate systems are right-handed, orthogonal systems. </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                        <span class="bold"><strong>Line elements</strong></span>
+                    </p><p>The default orientation is generally with the x-axis along the element I-J
+                        line. </p></li><li class="listitem"><p>
+                        <span class="bold"><strong>Solid elements</strong></span>
+                    </p><p>The default orientation is generally parallel to the global Cartesian
+                        coordinate system. </p><p>If the program generates <a class="link" href="Hlp_E_SOLID185.html" title="SOLID185"><span class="structname">SOLID185</span></a> or
+                            <a class="link" href="Hlp_E_SOLID186.html" title="SOLID186"><span class="structname">SOLID186</span></a> elements during a 2-D to 3-D analysis
+                            (<a href="../ans_cmd/Hlp_C_MAP2DTO3D.html" class="olink"><span class="command"><strong>MAP2DTO3D</strong></span></a> and <a href="../ans_cmd/Hlp_C_EEXTRUDE.html" class="olink"><span class="command"><strong>EEXTRUDE</strong></span></a>), the
+                        element coordinate system's third direction is in the hoop direction about
+                        the global Y axis (axisymmetric cases) or in the global Z direction (plane
+                        strain cases). For more information, see <a href="../ans_adv/Hlp_G_ADV2DTO3D.html" class="olink">2-D to 3-D Analysis in the <span class="olinkdocname">Mechanical APDL Advanced Analysis Guide</span></a>.</p></li><li class="listitem"><p>
+                        <span class="bold"><strong>General axisymmetric elements</strong></span>
+                    </p><p>The general orientation for <a class="link" href="Hlp_E_SOLID272.html" title="SOLID272"><span class="structname">SOLID272</span></a> and
+                            <a class="link" href="Hlp_E_SOLID273.html" title="SOLID273"><span class="structname">SOLID273</span></a> elements is determined by the
+                        cylindrical coordinate system, with z and the origin defined via
+                            <a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a> and <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> commands, and
+                        &#952; = 0 on the master plane; the r, &#952;, and z directions adhere
+                        to the right-hand rule. For more information, see <a href="Hlp_E_continuumelems.html#elemgeneralaxis" class="olink">General Axisymmetric Elements</a>.</p></li><li class="listitem"><p>
+                        <span class="bold"><strong>Shell elements</strong></span>
+                    </p><p>The default orientation for current-technology elements
+                            <a class="link" href="Hlp_E_SHELL131.html" title="SHELL131"><span class="structname">SHELL131</span></a>, <a class="link" href="Hlp_E_SHELL132.html" title="SHELL132"><span class="structname">SHELL132</span></a>,
+                            <a class="link" href="Hlp_E_SHELL181.html" title="SHELL181"><span class="structname">SHELL181</span></a>, <a class="link" href="Hlp_E_SOLSH190.html" title="SOLSH190"><span class="structname">SOLSH190</span></a>,
+                        and <a class="link" href="Hlp_E_SHELL281.html" title="SHELL281"><span class="structname">SHELL281</span></a> has the S1 (shell surface coordinate)
+                        axis aligned with the first parametric direction of the element at the
+                        center of the element. For elements with edges IJ and KL parallel
+                        (rectangular or trapezoidal elements), the default orientation (S1 axis) can
+                        be interpreted as being parallel to edge IJ (as used by <a href="../ans_arch/archlegacyelements.html" class="olink">legacy elements</a> such as
+                        SHELL63).</p></li></ul></div><div class="sect3" title="3.3.1.1.&nbsp;Modifying the Element Orientation"><div class="titlepage"><div><div><h4 class="title"><a name="d0e10102"></a>3.3.1.1.&nbsp;Modifying the Element Orientation</h4></div></div></div><p>Unless otherwise changed, the element coordinate system orientation is the
+                    default orientation for that element type. The orientation may be changed for
+                    area and volume elements by making it parallel to a previously defined local
+                    system (<a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a>) or, for some elements, by a KEYOPT selection.
+                    If both are specified, the <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a> definition overrides. </p><p>The coordinate systems of axisymmetric elements may only be rotated about the
+                    global Z axis; however, <a class="link" href="Hlp_E_continuumelems.html#elemgeneralaxis" title="5.1.5.1.&nbsp;General Axisymmetric Elements">general axisymmetric
+                        elements</a> can be rotated about any axis.</p><div class="blockquote"><blockquote class="blockquote"><p title="Shell elements"><b>Shell elements&nbsp;</b>For shell elements, the <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a> orientation uses the
+                            projection of the local system on the shell surface. The element x-axis
+                            is determined from the projection of the local x-axis on the shell
+                            surface. If the projection is a point (or the angle between the local
+                            x-axis and the normal to the shell is 0&deg; (plus a tolerance of
+                            45&deg;)), the local y-axis projection is used for the element x-axis
+                            direction. The z and y-axes are determined as described for the default
+                            orientation. </p><p>For non-midside-node shell elements, the projection is evaluated at the
+                        element centroid and is assumed constant in direction throughout the
+                        element. For midside-node shell elements, the projection is evaluated at
+                        each integration point and may vary in direction throughout the element. </p><p title="Axisymmetric elements"><b>Axisymmetric elements&nbsp;</b>For axisymmetric elements, only rotations in the X-Y plane are valid.
+                            Some elements also allow element coordinate system orientations to be
+                            defined by user written subroutines. (See the <a href="../ans_prog/Hlp_P_UPFTOC.html" class="olink">Guide to User-Programmable Features in the <span class="olinkdocname">Mechanical APDL Programmer's Reference</span></a>.)</p><p title="Layered elements"><b>Layered elements&nbsp;</b>Layered elements use the x-axis of the element coordinate system as a
+                            base from which to rotate each layer to the layer coordinate system. The
+                            layers are rotated by the angles input on the <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a>
+                            or <a href="../ans_cmd/Hlp_C_RMORE.html" class="olink"><span class="command"><strong>RMORE</strong></span></a> commands. Material properties, stresses, and
+                            strains for layered elements are based on the layer coordinate system,
+                            not the element coordinate system.</p></blockquote></div><p>All element coordinate systems shown in the element figures assume that no
+                        <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a> orientation is specified. </p><p>The orientation of output element quantities can be adjusted. See <a href="../ans_bas/Hlp_G_BAS5_4.html#aQWsq3b9ldm" class="olink">Rotating Results to a Different Coordinate System in the <span class="olinkdocname">Mechanical APDL Basic Analysis Guide</span></a>.</p><p>Element coordinate systems can be displayed as a triad with the
+                        <a href="../ans_cmd/Hlp_C_PSYMB.html" class="olink"><span class="command"><strong>/PSYMB</strong></span></a> command or as an <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a> number
+                    (if specified) with the <a href="../ans_cmd/Hlp_C_PNUM.html" class="olink"><span class="command"><strong>/PNUM</strong></span></a> command. Triad displays do not
+                    include the effects of any real constant angle. </p><p>For large-deflection analyses, the element coordinate system rotates from the
+                    initial orientation described above by the amount of rigid body rotation of the
+                    element.</p><p>2-D and axisymmetric elements operate in the global Cartesian X-Y plane.
+                    Accordingly, rotations of the element coordinate system (and/or the coordinate
+                    system of any node used by the element) can occur in the X-Y plane only. For
+                    example, if a Y-Z rotation is input for such an element, the program issues an
+                    error message.</p></div></div><div class="sect2" title="3.3.2.&nbsp;Elements That Operate in the Nodal Coordinate System"><div class="titlepage"><div><div><h3 class="title"><a name="aOVqq14atlm"></a>3.3.2.&nbsp;Elements That Operate in the Nodal Coordinate System</h3></div></div></div><p>A few special elements operate solely within the nodal coordinate system:</p><table border="0" summary="Simple list" class="simplelist"><tr><td><a class="link" href="Hlp_E_COMBIN14.html" title="COMBIN14"><span class="structname">COMBIN14</span></a> Spring-Damper with KEYOPT(2) = 1, 2, 3, 4,
+                    5, or 6</td></tr><tr><td><a class="link" href="Hlp_E_MATRIX27.html" title="MATRIX27"><span class="structname">MATRIX27</span></a> Stiffness, Damping, or Mass
+                    Matrix</td></tr><tr><td><a class="link" href="Hlp_E_COMBIN37.html" title="COMBIN37"><span class="structname">COMBIN37</span></a> Control Element</td></tr><tr><td><a class="link" href="Hlp_E_FLUID38.html" title="FLUID38"><span class="structname">FLUID38</span></a> Dynamic Fluid Coupling</td></tr><tr><td><a class="link" href="Hlp_E_COMBIN39.html" title="COMBIN39"><span class="structname">COMBIN39</span></a> Nonlinear Spring with KEYOPT(4) =
+                    0</td></tr><tr><td><a class="link" href="Hlp_E_COMBIN40.html" title="COMBIN40"><span class="structname">COMBIN40</span></a> Combination Element</td></tr><tr><td><a class="link" href="Hlp_E_TRANS126.html" title="TRANS126"><span class="structname">TRANS126</span></a> Electromechanical Transducer</td></tr><tr><td><a class="link" href="Hlp_E_COMBI214.html" title="COMBI214"><span class="structname">COMBI214</span></a> 2-D Spring-Damper Bearing</td></tr></table><p>These elements, defined in the nodal coordinate system, allow for easy directional
+                control, especially for the case of two-node elements with coincident nodes. </p><p>If UX, UY, or UZ degrees of freedom are being used, the nodes are not coincident,
+                and the load is not acting parallel to the line connecting the two nodes, there is
+                no mechanism for the element to transfer the resulting moment load, resulting in
+                loss of moment equilibrium. The sole exception is <a class="link" href="Hlp_E_MATRIX27.html" title="MATRIX27"><span class="structname">MATRIX27</span></a>,
+                which can include moment coupling when appropriate additional terms are added to the
+                matrix.</p><p>You cannot sum nodal force and moment contributions (<a href="../ans_cmd/Hlp_C_FSUM.html" class="olink"><span class="command"><strong>FSUM</strong></span></a>) for
+                these elements if the 1-D option is activated and nodes are rotated
+                    (<a href="../ans_cmd/Hlp_C_NROTAT.html" class="olink"><span class="command"><strong>NROTAT</strong></span></a>).</p><p>If any of the nodes have been rotated (<a href="../ans_cmd/Hlp_C_NROTAT.html" class="olink"><span class="command"><strong>NROTAT</strong></span></a>), consider the
+                    following:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>If the nodes of elements containing more than one node are not
+                            rotated in precisely the same way, force equilibrium may not be
+                            maintained.</p></li><li class="listitem"><p>Accelerations operate normally in the global Cartesian system.
+                            Because no transformation is done between the nodal and global systems,
+                            however, the accelerations effectively act on any element mass in the
+                            nodal system, giving unexpected results. It is therefore good practice
+                            not to apply accelerations when these elements use rotated
+                        nodes.</p></li><li class="listitem"><p>Mass and inertia relief calculations will not be correct.</p></li></ul></div></div><div class="sect2" title="3.3.3.&nbsp;Solution Coordinate Systems"><div class="titlepage"><div><div><h3 class="title"><a name="elem_solucoordsys"></a>3.3.3.&nbsp;Solution Coordinate Systems</h3></div></div></div><p>For homogeneous elements, element solution coordinate systems are generally
+                identical to the nodal or the element coordinate systems adopted by the
+                elements.</p><p>For composite elements, solution coordinate systems can be independently defined
+                for different components, such as layers in a layered-shell element
+                    (<a class="link" href="Hlp_E_SHELL181.html" title="SHELL181"><span class="structname">SHELL181</span></a>) and fibers in a discrete reinforcing element
+                    (<a class="link" href="Hlp_E_REINF264.html" title="REINF264"><span class="structname">REINF264</span></a>). The solution coordinate systems in
+                composite elements are also called <span class="italic"><em>layered coordinate
+                    systems</em></span>, and are specifically identified via the
+                    <a href="../ans_cmd/Hlp_C_RSYS.html" class="olink"><span class="command"><strong>RSYS</strong></span></a>,LSYS command. </p><p>For more information, see <a href="../ans_bas/Hlp_G_BAS5_4.html#aQWsq3b9ldm" class="olink">Rotating Results to a Different Coordinate System in the <span class="olinkdocname">Mechanical APDL Basic Analysis Guide</span></a>.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

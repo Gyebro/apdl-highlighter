@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:39-04:00"><title>THEXPAND</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_T_TOC.html" title="T Commands"><link rel="prev" href="Hlp_C_TERM.html" title="TERM"><link rel="next" href="Hlp_C_THOPT.html" title="THOPT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="THEXPAND"><a name="THEXPAND"></a><div class="titlepage"></div><a class="indexterm" name="d0e279511"></a><span class="refentrytitle"><span class="command"><strong>THEXPAND</strong></span></span><div class="refnamediv"><p><span class="command"><strong>THEXPAND</strong></span>, <em class="replaceable"><code>KEY</code></em><br><b class="refpurpose">Enables or disables thermal loading</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="THEXPAND.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>KEY</code></em></b></span></dt><dd><p>Activation key:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ON </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Thermal loading is included in the
+load vector (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Thermal loading is not included in
+the load vector. </p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="THEXPAND.notes"></a><h2>Notes</h2><p>Temperatures applied in the analysis are used by default to
+evaluate material properties and contribute to the load vector if
+the temperature does not equal the reference temperature and a coefficient
+of thermal expansion is specified. </p><p>Use <span class="command"><strong>THEXPAND</strong></span>,OFF to
+evaluate the material properties but not contribute to the load vector.
+This capability is particularly useful when performing a harmonic
+analysis where you do not want to include harmonically varying thermal
+loads. It is also useful in a modal analysis when computing a modal
+load vector but excluding the thermal load.</p><p>This command is valid for all analysis
+types except linear perturbation modal and linear perturbation harmonic
+analyses. For these two linear perturbation analysis types, the program
+internally sets <span class="command"><strong>THEXPAND</strong></span>,OFF, and it cannot be
+set to ON by using this command (<span class="command"><strong>THEXPAND</strong></span>,ON is
+ignored). </p></div><div class="refsect1" title="Menu Paths"><a name="THEXPAND.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

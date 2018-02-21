@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:45-04:00"><title>RESWRITE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_R_TOC.html" title="R Commands"><link rel="prev" href="Hlp_C_RESVEC.html" title="RESVEC"><link rel="next" href="Hlp_C_RETURN.html" title="*RETURN"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="RESWRITE"><a name="RESWRITE"></a><div class="titlepage"></div><a class="indexterm" name="d0e227208"></a><span class="refentrytitle"><span class="command"><strong>RESWRITE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>RESWRITE</strong></span>, <em class="replaceable"><code>Fname</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>cFlag</code></em><br><b class="refpurpose">Appends results data from the database to a results file.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1sppurpjla070199" title="Table&nbsp;2.91:&nbsp;&nbsp;Special Purpose"><span class="type">Special Purpose</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="RESWRITE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Fname</code></em></b></span></dt><dd><p>File name and directory path (248 characters maximum,
+including the characters needed for the directory path). An unspecified
+directory path defaults to the working directory; in this case, you
+can use all 248 characters for the file name. </p><p>The file
+name extension varies as follows: </p><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="filename"><strong>.RST</strong></span> for structural, fluid, or coupled-field
+analyses</td></tr><tr><td><span class="filename"><strong>.RTH</strong></span> for thermal or electrical analyses</td></tr><tr><td><span class="filename"><strong>.RMG</strong></span> for magnetic analyses</td></tr></table></dd><dt><span><b class="term"><em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused fields.</p></dd><dt><span><b class="term"><em class="replaceable"><code>cFlag</code></em></b></span></dt><dd><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The complex results flag is set to 0
+in the results file header. This is the default option.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The complex results flag is set to 1
+in the results file header.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="RESWRITE.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>RESWRITE</strong></span> command appends a data set to
+the specified file by writing the results data currently in the database.
+If the intended results file does not exist, it will be created and
+will include the geometry records. The current load step, substep,
+and time (or frequency) value are maintained. All data (summable and
+nonsummable) are written.</p><p>When complex results are appended, <em class="replaceable"><code>cFlag</code></em> must be set to 1 so that the header is consistent with the results
+written on the file.</p><p>The command is primarily intended for use in a <a href="../ans_substr/anzAuq26fldm.html" class="olink">top-down</a> <a href="../ans_substr/acBstq17cldm.html" class="olink">substructuring</a> analysis, where the full model is resumed and the results data read
+from the <a href="../ans_substr/an9Auq1d6ldm.html" class="olink">use
+pass</a> results file (<a class="link" href="Hlp_C_SET.html" title="SET"><span class="command"><strong>SET</strong></span></a>), and subsequently
+from all substructure <a href="../ans_substr/axcAuq367ldm.html" class="olink">expansion pass</a> results files (<a class="link" href="Hlp_C_APPEND.html" title="APPEND"><span class="command"><strong>APPEND</strong></span></a>). The full set of data in memory can then be written
+out via the <span class="command"><strong>RESWRITE</strong></span> command to create a complete
+results file (as though you had run a nonsubstructured analysis).</p><p>The <span class="command"><strong>RESWRITE</strong></span> command can also be used to
+write a global results file for a distributed parallel (Distributed ANSYS)
+solution. This should only be necessary if the <a class="link" href="Hlp_C_RESCOMBINE.html" title="RESCOMBINE"><span class="command"><strong>RESCOMBINE</strong></span></a> command was used to combine results from local results files into
+the database. The <span class="command"><strong>RESWRITE</strong></span> command can then be
+used to write the combined results into a new results file. This new
+results file will essentially contain the current set of results data
+for the entire (i.e., global) model.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e227356"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

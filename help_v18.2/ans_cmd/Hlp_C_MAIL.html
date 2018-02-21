@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:40-04:00"><title>/MAIL</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_M_TOC.html" title="M Commands"><link rel="prev" href="Hlp_C_MAGSOLV.html" title="MAGSOLV"><link rel="next" href="Hlp_C_MAP.html" title="MAP"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="/MAIL"><a name="s-MAIL"></a><div class="titlepage"></div><a class="indexterm" name="d0e159492"></a><span class="refentrytitle"><a href="Hlp_C_MAIL.html" class="olink"><span class="command"><strong>/MAIL</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>/MAIL</strong></span>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>Address</code></em>, <em class="replaceable"><code>Fname</code></em>, <em class="replaceable"><code>Ext</code></em><br><b class="refpurpose">Mails file to the specified address.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_4.html" title="2.4.&nbsp;APDL Commands"><code class="classname">APDL</code></a>: <a class="link" href="Hlp_C_CH2_4.html#cmdapdlmacrojla070199" title="Table&nbsp;2.19:&nbsp;&nbsp;Macro Files"><span class="type">Macro Files</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsect1" title="Argument Descriptions"><a name="s-MAIL.argdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused field.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Address</code></em></b></span></dt><dd><p>Email address (up to 64 characters) of the intended
+recipient of the file. </p></dd><dt><span><b class="term"><em class="replaceable"><code>Fname</code></em></b></span></dt><dd><p>File name and directory path (248 characters maximum, including the characters needed for the directory path).  An unspecified directory path defaults to the working directory; in this case, you can use all 248 characters for the file name. </p></dd><dt><span><b class="term"><em class="replaceable"><code>Ext</code></em></b></span></dt><dd><p>Filename extension (eight-character maximum).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="s-MAIL.notes"></a><h2>Notes</h2><p>Issue the <a href="Hlp_C_MAIL.html" class="olink"><span class="command"><strong>/MAIL</strong></span></a> command to alert someone
+when a long-running job has completed, as shown in this example:</p><pre class="programlisting">...
+SOLVE
+/MAIL,,<em class="replaceable"><code>YourName</code></em>@<em class="replaceable"><code>YourDomain.com</code></em>,jobdone,txt</pre><p>If you are running ANSYS in a Microsoft Windows environment,
+you must configure BLAT (a freeware program provided with ANSYS).
+Before issuing the <a href="Hlp_C_MAIL.html" class="olink"><span class="command"><strong>/MAIL</strong></span></a> command, enter this command
+from the C:\Program Files\Ansys Inc\V182\Ansys\Bin\Intel
+directory:</p><p>If you are running ANSYS in a Windows x64 environment, enter
+this command from the C:\Program Files\Ansys Inc\V182\Ansys\Bin\Winx64
+directory:</p><pre class="programlisting">blat -install <em class="replaceable"><code>&lt;email server name&gt;</code></em> <em class="replaceable"><code>&lt;username&gt;</code></em>@<em class="replaceable"><code>&lt;domain&gt;</code></em></pre><p>where:</p><p>&lt;email server name&gt; is the name of the user&#8217;s email
+server; for example, smtphost.xyz.com</p><p>&lt;username&gt;@&lt;domain&gt; is the email address of the
+user; for example, john.doe@xyz.com</p><p>Because Windows cannot operate on a busy file, you cannot mail
+standard ANSYS output.  Instead, redirect the output to a file and
+then mail that file, as shown in this example:</p><pre class="programlisting">...
+/PREP7
+/OUT,scratch.out
+:
+:
+FINISH
+/OUT
+/MAIL,,<em class="replaceable"><code>YourName</code></em>@<em class="replaceable"><code>YourDomain.com</code></em>,scratch.out
+FINISH</pre></div><div class="refsect1" title="Menu Paths"><a name="d0e159614"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

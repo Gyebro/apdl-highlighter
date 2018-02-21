@@ -1,0 +1,62 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:50-04:00"><title>*MSG</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_M_TOC.html" title="M Commands"><link rel="prev" href="Hlp_C_MSAVE.html" title="MSAVE"><link rel="next" href="Hlp_C_MSHAPE.html" title="MSHAPE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="*MSG"><a name="a-MSG"></a><div class="titlepage"></div><a class="indexterm" name="d0e173663"></a><span class="refentrytitle"><a href="Hlp_C_MSG.html" class="olink"><span class="command"><strong>*MSG</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>*MSG</strong></span>, <em class="replaceable"><code>Lab</code></em>, <em class="replaceable"><code>VAL1</code></em>, <em class="replaceable"><code>VAL2</code></em>, <em class="replaceable"><code>VAL3</code></em>, <em class="replaceable"><code>VAL4</code></em>, <em class="replaceable"><code>VAL5</code></em>, <em class="replaceable"><code>VAL6</code></em>, <em class="replaceable"><code>VAL7</code></em>, <em class="replaceable"><code>VAL8</code></em><br><b class="refpurpose">Writes an output message via the ANSYS message subroutine.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_4.html" title="2.4.&nbsp;APDL Commands"><code class="classname">APDL</code></a>: <a class="link" href="Hlp_C_CH2_4.html#cmdapdlmacrojla070199" title="Table&nbsp;2.19:&nbsp;&nbsp;Macro Files"><span class="type">Macro Files</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsect1" title="Argument Descriptions"><a name="a-MSG.argdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><p>Label for output and termination control:</p><div><div class="variablelist"><dl><dt><span><b class="term">INFO&nbsp;--&nbsp;</b></span></dt><dd><p>Writes the message with no
+heading (default).</p></dd><dt><span><b class="term">NOTE&nbsp;--&nbsp;</b></span></dt><dd><p>Writes the message with a "NOTE"
+heading.</p></dd><dt><span><b class="term">WARN&nbsp;--&nbsp;</b></span></dt><dd><p>Writes the message with a "WARNING"
+heading.  Also writes the message to the errors file, <span class="filename"><strong>Jobname.ERR</strong></span>.</p></dd><dt><span><b class="term">ERROR&nbsp;--&nbsp;</b></span></dt><dd><p>Writes the message with a
+"ERROR" heading and causes run termination (if batch) at earliest "clean exit"
+point.  Also writes the message to the errors file, <span class="filename"><strong>Jobname.ERR</strong></span>.</p></dd><dt><span><b class="term">FATAL&nbsp;--&nbsp;</b></span></dt><dd><p>Writes the message with a
+"FATAL ERROR" heading and causes run termination immediately.  Also writes
+the message to the errors file, <span class="filename"><strong>Jobname.ERR</strong></span>.</p></dd><dt><span><b class="term">UI&nbsp;--&nbsp;</b></span></dt><dd><p>Writes the message with a "NOTE"
+heading and displays it in the message dialog box.  This option is most useful
+in GUI mode.</p></dd></dl></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>VAL1</code></em>, <em class="replaceable"><code>VAL2</code></em>, <em class="replaceable"><code>VAL3</code></em>,
+. . . , <em class="replaceable"><code>VAL8</code></em></b></span></dt><dd><p>Numeric or alphanumeric character values to be included in
+message.  Values may be the results of parameter evaluations.  All numeric
+values are assumed to be double precision. The FORTRAN nearest integer (NINT)
+function is used to form integers for the %I specifier.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="a-MSG.notes"></a><h2>Notes</h2><p>Allows writing an output message via the ANSYS message subroutine. 
+Also allows run termination control.  This command is used only when contained
+in a prepared file read into the ANSYS program (i.e., <a href="Hlp_C_USE.html" class="olink"><span class="command"><strong>*USE</strong></span></a>,<a href="Hlp_C_INPUT.html" class="olink"><span class="command"><strong>/INPUT</strong></span></a>,
+etc.).  A message format must immediately follow the <a href="Hlp_C_MSG.html" class="olink"><span class="command"><strong>*MSG</strong></span></a> command
+(on a separate line, without parentheses, as described below).</p><p>The message format may be up to 80 characters long, consisting of text
+strings and predefined "data descriptors" between the strings where numeric
+or alphanumeric character data are to be inserted.  The normal descriptors
+are %I for integer data, %G for double precision data, %C for alphanumeric
+character data, and %/ for a line break.  The corresponding FORTRAN data descriptors
+are I9, 1PG16.9 and A8, respectively.  Each descriptor must be preceded by
+a blank.  There must be one data descriptor for each specified value (8 maximum)
+in the order of the specified values.</p><p>Enhanced descriptions may also be used:</p><div class="informaltable"><table border="0" width="95%"><colgroup><col width="120" class="col1"><col width="456" class="col2"></colgroup><tbody><tr><td>%w.pE</td><td>w is field width</td></tr><tr><td>%w.pG</td><td>p is precision</td></tr><tr><td>%w.pF</td><td>&nbsp;</td></tr><tr><td>%%</td><td>a single percent sign</td></tr><tr><td>%wC; %wS</td><td>character
+string</td></tr><tr><td>%-wC;
+%-wS</td><td>left justify string</td></tr><tr><td>%wX</td><td>w blank characters</td></tr><tr><td>%wI</td><td>integer
+format</td></tr><tr><td>%0wI</td><td>pad integer with leading zeros
+rather than blanks</td></tr><tr><td>%0w.pI</td><td>w is field width; p is number
+of characters filled</td></tr></tbody></table></div><p>Do not begin <a href="Hlp_C_MSG.html" class="olink"><span class="command"><strong>*MSG</strong></span></a> format lines with <a href="Hlp_C_IF.html" class="olink"><span class="command"><strong>*IF</strong></span></a>, <a href="Hlp_C_ELSE.html" class="olink"><span class="command"><strong>*ELSE</strong></span></a> , <a href="Hlp_C_ELSEIF.html" class="olink"><span class="command"><strong>*ELSEIF</strong></span></a> ,
+or <a href="Hlp_C_ENDIF.html" class="olink"><span class="command"><strong>*ENDIF</strong></span></a> .  If the last nonblank character of the message
+format is an ampersand (&amp;), a second line will also be read as a continuation
+of the format.  Up to nine continuations (ten total lines) may be read.  If
+normal descriptions are used, then consecutive blanks are condensed into one
+blank upon output, and a period is appended.  Up to ten lines of output of
+72 characters each may be produced (using the %/ descriptor).  Two examples
+follow. </p><p>Here is an example of the <a href="Hlp_C_MSG.html" class="olink"><span class="command"><strong>*MSG</strong></span></a> command and a format
+to print a message with two integer values and one real value:</p><pre class="programlisting">*MSG, INFO, 'Inner',25,1.2,148
+Radius ( %C) = %I, Thick = %G, Length = %I</pre><p>The output line is:</p><pre class="programlisting">Radius (Inner) = 25, Thick = 1.2, Length = 148.</pre><p>Here is an example illustrating multiline displays in GUI message windows:</p><pre class="programlisting">*MSG,UI,Vcoilrms,THTAv,Icoilrms,THTAi,Papprnt,Pelec,PF,indctnc
+Coil RMS voltage, RMS current, apparent pwr, actual pwr, pwr factor: %/&amp;
+Vcoil = %G V (electrical angle = %G DEG) %/&amp;
+Icoil = %G A (electrical angle = %G DEG) %/&amp;
+APPARENT POWER = %G W %/&amp;
+ACTUAL POWER = %G W %/&amp;
+Power factor: %G %/&amp;
+Inductance = %G %/&amp;
+VALUES ARE FOR ENTIRE COIL (NOT JUST THE MODELED SECTOR)</pre><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;The <a href="Hlp_C_UIS.html" class="olink"><span class="command"><strong>/UIS</strong></span></a>,MSGPOP command controls which messages
+are displayed in the message dialog box when the GUI is active.  All messages
+produced by the <a href="Hlp_C_MSG.html" class="olink"><span class="command"><strong>*MSG</strong></span></a> command are subject to the <a href="Hlp_C_UIS.html" class="olink"><span class="command"><strong>/UIS</strong></span></a> specification,
+with one exception,  If <em class="replaceable"><code>Lab</code></em> = UI, the message will
+be displayed in the dialog box regardless of the <a href="Hlp_C_UIS.html" class="olink"><span class="command"><strong>/UIS</strong></span></a> specification.</p><hr></div><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e173931"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

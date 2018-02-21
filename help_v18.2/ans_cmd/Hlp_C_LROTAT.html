@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:37-04:00"><title>LROTAT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_L_TOC.html" title="L Commands"><link rel="prev" href="Hlp_C_LREVERSE.html" title="LREVERSE"><link rel="next" href="Hlp_C_LSBA.html" title="LSBA"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="LROTAT"><a name="LROTAT"></a><div class="titlepage"></div><a class="indexterm" name="d0e154272"></a><span class="refentrytitle"><span class="command"><strong>LROTAT</strong></span></span><div class="refnamediv"><p><span class="command"><strong>LROTAT</strong></span>, <em class="replaceable"><code>NK1</code></em>, <em class="replaceable"><code>NK2</code></em>, <em class="replaceable"><code>NK3</code></em>, <em class="replaceable"><code>NK4</code></em>, <em class="replaceable"><code>NK5</code></em>, <em class="replaceable"><code>NK6</code></em>, <em class="replaceable"><code>PAX1</code></em>, <em class="replaceable"><code>PAX2</code></em>, <em class="replaceable"><code>ARC</code></em>, <em class="replaceable"><code>NSEG</code></em><br><b class="refpurpose">Generates circular lines by rotating a keypoint pattern about
+an axis.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7linesldm061600" title="Table&nbsp;2.32:&nbsp;&nbsp;Lines"><span class="type">Lines</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="LROTAT.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NK1</code></em>, <em class="replaceable"><code>NK2</code></em>, <em class="replaceable"><code>NK3</code></em>,
+. . . , <em class="replaceable"><code>NK6</code></em></b></span></dt><dd><p>List of keypoints in the pattern to be rotated (6 maximum
+if using keyboard entry).  If <em class="replaceable"><code>NK1</code></em> = P, graphical
+picking is enabled and all remaining command fields are ignored (valid only
+in the GUI).  If <em class="replaceable"><code>NK1</code></em> = ALL, all selected keypoints
+(except <em class="replaceable"><code>PAX1</code></em> and <em class="replaceable"><code>PAX2</code></em>)
+will define the pattern to be rotated.  A component name may also be substituted
+for <em class="replaceable"><code>NK1</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>PAX1</code></em>, <em class="replaceable"><code>PAX2</code></em></b></span></dt><dd><p>Keypoints defining the axis about which the keypoint pattern
+is to be rotated.</p></dd><dt><span><b class="term"><em class="replaceable"><code>ARC</code></em></b></span></dt><dd><p>Arc length (in degrees).  Positive follows right-hand rule
+about <em class="replaceable"><code>PAX1</code></em>-<em class="replaceable"><code>PAX2</code></em> vector.
+ Defaults to 360.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NSEG</code></em></b></span></dt><dd><p>Number of lines (8 maximum) around circumference.  Defaults
+to minimum required for 90&deg; (maximum) arcs, i.e., 4 for 360&deg;, 3 for
+270&deg;, etc.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="LROTAT.notes"></a><h2>Notes</h2><p>Generates circular lines (and their corresponding keypoints) by rotating
+a keypoint pattern about an axis.  Keypoint patterns are generated at regular
+angular locations (based on a maximum spacing of 90&deg;).  Line patterns
+are generated at the keypoint patterns.  Keypoint and line numbers are automatically
+assigned (beginning with the lowest available values [<a class="link" href="Hlp_C_NUMSTR.html" title="NUMSTR"><span class="command"><strong>NUMSTR</strong></span></a>]).</p></div><div class="refsect1" title="Menu Paths"><a name="LROTAT.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Operate&gt;Extrude&gt;Keypoints&gt;About Axis</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:44-04:00"><title>EDCRB</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_EDCPU.html" title="EDCPU"><link rel="next" href="Hlp_C_EDCSC.html" title="EDCSC"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="EDCRB"><a name="EDCRB"></a><div class="titlepage"></div><a class="indexterm" name="d0e80205"></a><span class="refentrytitle"><span class="command"><strong>EDCRB</strong></span></span><div class="refnamediv"><p><span class="command"><strong>EDCRB</strong></span>, <em class="replaceable"><code>Option</code></em>, <em class="replaceable"><code>NEQN</code></em>, <em class="replaceable"><code>PARTM</code></em>, <em class="replaceable"><code>PARTS</code></em><br><b class="refpurpose">Constrains two rigid bodies to act as one in an explicit dynamics
+analysis.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7expdynldm061600" title="Table&nbsp;2.44:&nbsp;&nbsp;Explicit Dynamics"><span class="type">Explicit Dynamics</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="EDCRB.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Option</code></em></b></span></dt><dd><p>Label identifying the option to be performed:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ADD</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Define an equation to constrain two rigid
+bodies (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DELE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Delete the equation (specified by <em class="replaceable"><code>NEQN</code></em>)
+that constrains two rigid bodies. If <em class="replaceable"><code>NEQN</code></em> is blank,
+all equations constraining rigid bodies are deleted.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LIST</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>List constrained rigid bodies specified by <em class="replaceable"><code>NEQN</code></em>.
+If <em class="replaceable"><code>NEQN</code></em> is blank, all constrained rigid bodies
+are listed.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>NEQN</code></em></b></span></dt><dd><p>Equation reference number. Defaults to <em class="replaceable"><code>PARTS</code></em>.
+ <em class="replaceable"><code>NEQN</code></em> should be a unique number for each pair of <em class="replaceable"><code>PARTM</code></em> and <em class="replaceable"><code>PARTS</code></em>.
+If it is not unique, the equation reference number defined last will overwrite
+any previously defined <em class="replaceable"><code>NEQN</code></em> with the same number.</p></dd><dt><span><b class="term"><em class="replaceable"><code>PARTM</code></em></b></span></dt><dd><p>PART number [<a class="link" href="Hlp_C_EDPART.html" title="EDPART"><span class="command"><strong>EDPART</strong></span></a>] identifying the master
+rigid body. This value is ignored if the DELE or LIST labels are specified.
+No default; you must enter a value.</p></dd><dt><span><b class="term"><em class="replaceable"><code>PARTS</code></em></b></span></dt><dd><p>PART number [<a class="link" href="Hlp_C_EDPART.html" title="EDPART"><span class="command"><strong>EDPART</strong></span></a>] identifying the slave
+rigid body. This value is ignored if the DELE or LIST labels are specified.
+No default; you must enter a value.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="EDCRB.notes"></a><h2>Notes</h2><p><span class="command"><strong>EDCRB</strong></span> is valid only for materials defined as rigid
+bodies with the <a class="link" href="Hlp_C_EDMP.html" title="EDMP"><span class="command"><strong>EDMP</strong></span></a>,RIGID command. <span class="command"><strong>EDCRB</strong></span> automatically
+generates a constraint equation to force the specified rigid bodies to behave
+as a single rigid body. The slave rigid body takes on the material properties
+and loading of the master rigid body. Any loads [<a class="link" href="Hlp_C_EDLOAD.html" title="EDLOAD"><span class="command"><strong>EDLOAD</strong></span></a>]
+existing on the slave rigid body are ignored.</p><p>To create a single large rigid body from several smaller bodies, use
+a series of <span class="command"><strong>EDCRB</strong></span> commands. With the first command, specify
+a master and slave to create the first combined rigid body. Then, using that
+body as the master, specify another slave to create a larger rigid body. Continue
+the process, using the expanding rigid body as the master and adding slave
+bodies until you have defined the desired large rigid body. All slave rigid
+bodies will take on the material properties and loading of the original master
+rigid body. Note that you will need to use different <em class="replaceable"><code>NEQN</code></em> values
+for each pair of <em class="replaceable"><code>PARTM</code></em> and <em class="replaceable"><code>PARTS</code></em>.
+ This command will be ignored if you specify the previously-defined master
+rigid body as a slave rigid body in the same analysis. To change the master
+and slave definitions, first use the DELE option to delete all master and
+slave definitions, and then use the ADD option to redefine them.</p><p>The equation number, <em class="replaceable"><code>NEQN</code></em>, is a reference
+number by which the constrained bodies can be identified for listing and deleting
+purposes on the <span class="command"><strong>EDCRB</strong></span> command. For any other reference
+to the constrained bodies (loading, contact definitions, etc.), use the master
+body part number (<em class="replaceable"><code>PARTM</code></em>).</p><p>This command is also valid in SOLUTION.</p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p></div><div class="refsect1" title="Menu Paths"><a name="EDCRB.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Coupling / Ceqn&gt;Rigid Body CE</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

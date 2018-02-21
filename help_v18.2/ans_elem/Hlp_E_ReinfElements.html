@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:06-04:00"><title>5.5.&nbsp;Reinforcing Elements</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_StressAnalysisElems.html" title="Chapter&nbsp;5:&nbsp;Elements for Stress Analysis"><link rel="prev" href="Hlp_E_PipeElements.html" title="5.4.&nbsp;Pipe Elements"><link rel="next" href="elem_surfelems.html" title="5.6.&nbsp;Surface Elements"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="5.5.&nbsp;Reinforcing Elements"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="elem_reinfelems"></a>5.5.&nbsp;Reinforcing Elements</h2></div></div></div><a class="indexterm" name="d0e14741"></a><p>Reinforced materials are used extensively in civil engineering construction and
+            composite structures. Use reinforcing elements to model reinforcement in either of two
+            forms: cable (such as steel rebar in reinforced concrete) or fiber (such as the carbon
+            fiber in fiber-reinforced composites). </p><div class="highlights"><p>Two methods are supported for modeling reinforcing cables or fibers: </p><ul><li><a href="Hlp_E_ReinfElements.html#d0e14757" title="5.5.1.&nbsp;Discrete Reinforcing">Discrete Reinforcing</a></li><li><a href="Hlp_E_ReinfElements.html#d0e14771" title="5.5.2.&nbsp;Smeared Reinforcing">Smeared Reinforcing</a></li></ul></div><p>For further information, see the documentation for the <a href="Hlp_E_CH3_2.html#allreinf" class="olink">reinforcing elements</a>
+                (REINF<em class="replaceable"><code>nnn</code></em>).</p><div class="sect2" title="5.5.1.&nbsp;Discrete Reinforcing"><div class="titlepage"><div><div><h3 class="title"><a name="d0e14757"></a>5.5.1.&nbsp;Discrete Reinforcing</h3></div></div></div><p>The <span class="italic"><em>discrete</em></span> reinforcing method allows
+                reinforcing fibers to be accounted for individually. This method is suitable for
+                modeling sparsely placed fibers, or fibers with nonuniform properties, such as
+                cross-section area, material, spacing, and orientation. </p><p>The discrete reinforcing element <a class="link" href="Hlp_E_REINF264.html" title="REINF264"><span class="structname">REINF264</span></a> is used to add
+                individual fibers to 3-D link, beam, shell and solid elements. Multiple reinforcing
+                fibers are allowed in a single element.</p></div><div class="sect2" title="5.5.2.&nbsp;Smeared Reinforcing"><div class="titlepage"><div><div><h3 class="title"><a name="d0e14771"></a>5.5.2.&nbsp;Smeared Reinforcing</h3></div></div></div><p>The <span class="italic"><em>smeared</em></span> reinforcing method is suitable for
+                modeling clusters of reinforcing fibers appearing in layer or sheet form. Each layer
+                of fibers is simplified as a homogeneous membrane having unidirectional stiffness. </p><p>Fibers in the same layer must have uniform cross-section, material, spacing, and
+                orientation. </p><p>The smeared reinforcing elements are:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                        <a class="link" href="Hlp_E_REINF263.html" title="REINF263"><span class="structname">REINF263</span></a> -- Used with 2-D solids such as plane
+                        stress, plane strain, axisymmetric and generalized plane strain, and
+                        axisymmetric shell elements. </p></li><li class="listitem"><p>
+                        <a class="link" href="Hlp_E_REINF265.html" title="REINF265"><span class="structname">REINF265</span></a> -- Used with 3-D solid and shell
+                        elements.</p></li></ul></div></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

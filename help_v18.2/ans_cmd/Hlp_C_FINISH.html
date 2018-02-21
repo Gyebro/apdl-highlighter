@@ -1,0 +1,21 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:02-04:00"><title>FINISH</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_F_TOC.html" title="F Commands"><link rel="prev" href="Hlp_C_FILNAME.html" title="/FILNAME"><link rel="next" href="Hlp_C_FITEM.html" title="FITEM"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="FINISH"><a name="FINISH"></a><div class="titlepage"></div><a class="indexterm" name="d0e110402"></a><span class="refentrytitle"><span class="command"><strong>FINISH</strong></span></span><div class="refnamediv"><p><span class="command"><strong>FINISH</strong></span><br><b class="refpurpose">Exits normally from a processor.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_1.html" title="2.1.&nbsp;SESSION Commands"><code class="classname">SESSION</code></a>: <a class="link" href="Hlp_C_CH2_1.html#cmdsessionprocjla062999" title="Table&nbsp;2.2:&nbsp;&nbsp;Processor Entry"><span class="type">Processor Entry</span></a></span></div></div>   <div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_14.html" title="2.14.&nbsp;DISPLAY Program Commands"><code class="classname">DISPLAY</code></a>: <a class="link" href="Hlp_C_CH2_14.html#cmddispactjla070199" title="Table&nbsp;2.111:&nbsp;&nbsp;Action"><span class="type">Action</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsect1" title="Notes"><a name="FINISH.notes"></a><h2>Notes</h2><p>Exits any of the ANSYS processors or the DISPLAY program.  For
+the ANSYS processors, data will remain intact in the database but
+the database is not automatically written to a file (use the <a class="link" href="Hlp_C_SAVE.html" title="SAVE"><span class="command"><strong>SAVE</strong></span></a> command to write the database to a file).  See also
+the <a href="Hlp_C_QUIT.html" class="olink"><span class="command"><strong>/QUIT</strong></span></a> command for an alternate processor exit
+command.  If exiting POST1, POST26, or OPT, see additional notes below.</p><p>POST1:  Data in the database will remain intact, including the
+POST1 element table data, the path table data, the fatigue table data,
+and the load case pointers.</p><p>POST26:  Data in the database will remain intact, except that
+POST26 variables are erased and specification commands (such as <a class="link" href="Hlp_C_FILE.html" title="FILE"><span class="command"><strong>FILE</strong></span></a>, <a class="link" href="Hlp_C_PRTIME.html" title="PRTIME"><span class="command"><strong>PRTIME</strong></span></a>, <a class="link" href="Hlp_C_NPRINT.html" title="NPRINT"><span class="command"><strong>NPRINT</strong></span></a>, etc.) are reset.  Use the <a href="Hlp_C_QUIT.html" class="olink"><span class="command"><strong>/QUIT</strong></span></a> command to exit
+the processor and bypass these exceptions.</p><p>This command is valid in any processor.  This command is not
+valid at the Begin level.</p></div><div class="refsect1" title="Menu Paths"><a name="FINISH.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Finish</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

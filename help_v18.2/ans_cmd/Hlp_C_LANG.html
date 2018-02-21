@@ -1,0 +1,38 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:32-04:00"><title>LANG</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_L_TOC.html" title="L Commands"><link rel="prev" href="Hlp_C_LANBOPTION.html" title="LANBOPTION"><link rel="next" href="Hlp_C_LARC.html" title="LARC"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="LANG"><a name="LANG"></a><div class="titlepage"></div><a class="indexterm" name="d0e146128"></a><span class="refentrytitle"><span class="command"><strong>LANG</strong></span></span><div class="refnamediv"><p><span class="command"><strong>LANG</strong></span>, <em class="replaceable"><code>NL1</code></em>, <em class="replaceable"><code>P3</code></em>, <em class="replaceable"><code>ANG</code></em>, <em class="replaceable"><code>PHIT</code></em>, <em class="replaceable"><code>LOCAT</code></em><br><b class="refpurpose">Generates a straight line at an angle with a line.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7linesldm061600" title="Table&nbsp;2.32:&nbsp;&nbsp;Lines"><span class="type">Lines</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="LANG.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NL1</code></em></b></span></dt><dd><p>Number of the line to be hit (touched by the end of the new
+line).  If negative, assume <em class="replaceable"><code>P1</code></em> (see
+below) is the second keypoint of the line instead of the first.  If <em class="replaceable"><code>NL1</code></em> =
+P, graphical picking is enabled and all remaining command fields are ignored
+(valid only in the GUI).</p></dd><dt><span><b class="term"><em class="replaceable"><code>P3</code></em></b></span></dt><dd><p>Keypoint at which generated line must end.</p></dd><dt><span><b class="term"><em class="replaceable"><code>ANG</code></em></b></span></dt><dd><p>Angle of intersection of generated line <em class="replaceable"><code>PHIT</code></em>-<em class="replaceable"><code>P3</code></em> with
+tangent to line <em class="replaceable"><code>P1</code></em>-<em class="replaceable"><code>P2</code></em> at <em class="replaceable"><code>PHIT</code></em>.
+ If 0 (default), the generated line is tangent to <em class="replaceable"><code>NL1</code></em> toward
+end P1; if 90, the generated line is perpendicular to <em class="replaceable"><code>NL1</code></em>.
+ If 180, the generated line is tangent to NL1 toward end P2. <em class="replaceable"><code>ANG</code></em> can
+be any value, but is adjusted to the corresponding acute angle with respect
+to <em class="replaceable"><code>LOCAT</code></em>. See <a class="xref" href="Hlp_C_LANG.html#LANG.notes" title="Notes">"Notes"</a> for
+a discussion of accuracy.</p></dd><dt><span><b class="term"><em class="replaceable"><code>PHIT</code></em></b></span></dt><dd><p>Number to be assigned to keypoint generated at hit location
+(defaults to lowest available keypoint number [<a class="link" href="Hlp_C_NUMSTR.html" title="NUMSTR"><span class="command"><strong>NUMSTR</strong></span></a>]).</p></dd><dt><span><b class="term"><em class="replaceable"><code>LOCAT</code></em></b></span></dt><dd><p>Approximate location of <em class="replaceable"><code>PHIT</code></em> in
+terms of the ratio of the distance along the line (<em class="replaceable"><code>NL1</code></em>)
+to the length of the line.  <em class="replaceable"><code>LOCAT</code></em> can range from
+0 to 1.  If <em class="replaceable"><code>LOCAT</code></em> is blank, the point will be located
+with less speed and accuracy, and an arbitrary location may result.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="LANG.notes"></a><h2>Notes</h2><p>Generates a straight line (<em class="replaceable"><code>PHIT</code></em>-<em class="replaceable"><code>P3</code></em>)
+at an angle (<em class="replaceable"><code>ANG</code></em>) with a line <em class="replaceable"><code>NL1</code></em> (<em class="replaceable"><code>P1</code></em>-<em class="replaceable"><code>P2</code></em>).  The
+location of <em class="replaceable"><code>PHIT</code></em> on the line is automatically calculated.
+ Line <em class="replaceable"><code>P1</code></em>-<em class="replaceable"><code>P2</code></em> becomes <em class="replaceable"><code>P1</code></em>-<em class="replaceable"><code>PHIT</code></em> and new lines <em class="replaceable"><code>PHIT</code></em>-<em class="replaceable"><code>P2</code></em> and <em class="replaceable"><code>PHIT</code></em>-<em class="replaceable"><code>P3</code></em> are
+generated.  Line divisions are set to zero (use <a class="link" href="Hlp_C_LESIZE.html" title="LESIZE"><span class="command"><strong>LESIZE</strong></span></a>,
+etc. to modify).</p><p><em class="replaceable"><code>PHIT</code></em> is positioned closest to <em class="replaceable"><code>LOCAT</code></em> for
+the given angle, <em class="replaceable"><code>ANG</code></em>.  To ensure better performance,
+it is recommended that <em class="replaceable"><code>LOCAT</code></em> be input, even if
+it is 0.</p><p>The program uses an iterative procedure to position <em class="replaceable"><code>PHIT</code></em>.
+ The procedure is not exact, with the result that the actual value of <em class="replaceable"><code>ANG</code></em> will
+sometimes differ slightly from the specified value.</p></div><div class="refsect1" title="Menu Paths"><a name="LANG.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Lines&gt;Lines&gt;At angle to line</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Lines&gt;Lines&gt;Normal to Line</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

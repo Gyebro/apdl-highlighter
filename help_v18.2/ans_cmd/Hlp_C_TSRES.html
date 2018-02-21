@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:43-04:00"><title>TSRES</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_T_TOC.html" title="T Commands"><link rel="prev" href="Hlp_C_TSPEC.html" title="/TSPEC"><link rel="next" href="Hlp_C_TUNIF.html" title="TUNIF"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="TSRES"><a name="TSRES"></a><div class="titlepage"></div><a class="indexterm" name="d0e283282"></a><span class="refentrytitle"><span class="command"><strong>TSRES</strong></span></span><div class="refnamediv"><p><span class="command"><strong>TSRES</strong></span>, <em class="replaceable"><code>Array</code></em><br><b class="refpurpose">Defines an array of key times at which the time-stepping strategy
+changes.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluldstepjla070199" title="Table&nbsp;2.53:&nbsp;&nbsp;Load Step Options"><span class="type">Load Step Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="TSRES.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Array</code></em></b></span></dt><dd><p>Identifies an <em class="replaceable"><code>N</code></em>x1x1
+array parameter containing the key times at which the heat transfer time-stepping
+strategy changes (the time step is reset to the initial time step based on <a class="link" href="Hlp_C_DELTIM.html" title="DELTIM"><span class="command"><strong>DELTIM</strong></span></a> or <a class="link" href="Hlp_C_NSUBST.html" title="NSUBST"><span class="command"><strong>NSUBST</strong></span></a> settings).
+ The array name must be enclosed by % signs (e.g., %<em class="replaceable"><code>array</code></em>%).
+ See <a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a> for more information on array parameters.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="TSRES.notes"></a><h2>Notes</h2><p>Time values in the array parameter must be in ascending order and must
+not exceed the time at the end of the load step as defined on the <a class="link" href="Hlp_C_TIME.html" title="TIME"><span class="command"><strong>TIME</strong></span></a> command.
+The time increment between time points in the array list must be larger than
+the initial time step defined on the <a class="link" href="Hlp_C_DELTIM.html" title="DELTIM"><span class="command"><strong>DELTIM</strong></span></a> or <a class="link" href="Hlp_C_NSUBST.html" title="NSUBST"><span class="command"><strong>NSUBST</strong></span></a> command.
+ Time values must also fall between the beginning and ending time values of
+the load step.  For multiple load step problems, you must either change the
+parameter values to fall between the beginning and ending time values of the
+load step or reissue the command with a new array parameter.  To clear the
+array parameter specification, issue <span class="command"><strong>TSRES</strong></span>,ERASE.  Results
+can be output at the requested time points if the array or time values in
+the array are also specified in the <a class="link" href="Hlp_C_OUTRES.html" title="OUTRES"><span class="command"><strong>OUTRES</strong></span></a> command using <em class="replaceable"><code>FREQ</code></em>=%<em class="replaceable"><code>array</code></em>%.
+ Use this command to reset the time-stepping strategy within a load step.
+You may need to reset the time-stepping strategy when using tabular time-varying
+boundary conditions.</p><p>See <a href="../ans_the/Hlp_G_THE2.html" class="olink">Steady-State
+Thermal Analysis</a> of the <a href="../ans_the/Hlp_G_TheTOC.html" class="olink"><em class="citetitle">Thermal Analysis Guide</em></a>  for more information on applying
+boundary conditions via tabular input.  See <a href="../ans_the/Hlp_G_THE3.html" class="olink">Transient
+Thermal Analysis</a> of the <a href="../ans_the/Hlp_G_TheTOC.html" class="olink"><em class="citetitle">Thermal Analysis Guide</em></a> for more information
+on defining the key time array.</p></div><div class="refsect1" title="Menu Paths"><a name="TSRES.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Load Step Opts&gt;Time/Frequenc&gt;Time - Time Step</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Load Step Opts&gt;Time/Frequenc&gt;Time and Substeps</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Load Step Opts&gt;Time/Frequenc&gt;Time - Time Step</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Load Step Opts&gt;Time/Frequenc&gt;Time and Substeps</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

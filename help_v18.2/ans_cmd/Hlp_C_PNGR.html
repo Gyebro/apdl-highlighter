@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:26-04:00"><title>PNGR</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_P_TOC.html" title="P Commands"><link rel="prev" href="Hlp_C_PMORE.html" title="/PMORE"><link rel="next" href="Hlp_C_PNUM.html" title="/PNUM"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="PNGR"><a name="PNGR"></a><div class="titlepage"></div><a class="indexterm" name="d0e208108"></a><span class="refentrytitle"><span class="command"><strong>PNGR</strong></span></span><div class="refnamediv"><p><span class="command"><strong>PNGR</strong></span>, <em class="replaceable"><code>Kywrd</code></em>, <em class="replaceable"><code>OPT</code></em>, <em class="replaceable"><code>VAL</code></em><br><b class="refpurpose">Provides PNG file export for ANSYS displays. </b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_3.html" title="2.3.&nbsp;GRAPHICS Commands"><code class="classname">GRAPHICS</code></a>: <a class="link" href="Hlp_C_CH2_3.html#cmdgraphicsetupjla070199" title="Table&nbsp;2.11:&nbsp;&nbsp;Setup"><span class="type">Set Up</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="PNGR.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Kywrd</code></em></b></span></dt><dd><p>Specifies various PNG file export options.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">COMP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If <em class="replaceable"><code>Kywrd </code></em>= COMP,
+then <em class="replaceable"><code>OPT</code></em> is either ON or OFF (blank is interpreted
+as OFF). This option allows you to turn PNG file compression ON or OFF. If
+OPT = ON, then The VAL field is read to determine the degree of compression.
+See the VALUE argument for acceptable compression values. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ORIENT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If <em class="replaceable"><code>Kywrd</code></em> = ORIENT,
+then <em class="replaceable"><code>OPT</code></em> will determine the orientation of the
+entire plot. <em class="replaceable"><code>OPT</code></em> can be either Horizontal (default)
+or Vertical. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">COLOR</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If <em class="replaceable"><code>Kywrd</code></em> = COLOR,
+then <em class="replaceable"><code>OPT</code></em> will determine the color depth of the
+saved file. <em class="replaceable"><code>OPT</code></em> can be 0, 1, or 2, corresponding
+to Black and White, Grayscale, and Color (default), respectively. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TMOD</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If <em class="replaceable"><code>Kywrd</code></em> = TMOD,
+then <em class="replaceable"><code>OPT</code></em> will determine the text method. <em class="replaceable"><code>OPT</code></em> can
+be either 1 or 0, corresponding to bitmap text (default) or line stroke text,
+respectively. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DEFAULT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If <em class="replaceable"><code>Kywrd</code></em> =
+DEFAULT, then all of the default values, for all of the Kywrd parameters listed
+above, are active.  </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">STAT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Shows the current status of PNG file export. </p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>OPT</code></em></b></span></dt><dd><p><em class="replaceable"><code>OPT</code></em> can have the following names
+or values, depending on the value for <em class="replaceable"><code>Kywrd</code></em> (see
+above).</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ON, OFF</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If <em class="replaceable"><code>Kywrd</code></em> =
+COMP, the values On and Off control the use of compression. The degree of
+compression is determined by VAL</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">Horizontal, Vertical</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If <em class="replaceable"><code>Kywrd</code></em> =
+ORIENT, the terms Horizontal or Vertical determine the orientation of the
+plot. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0,&nbsp;1,&nbsp;2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If <em class="replaceable"><code>Kywrd</code></em> = COLOR,
+the numbers 0, 1, and 2 correspond to Black and White, Grayscale and Color,
+respectively. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1,&nbsp;0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If <em class="replaceable"><code>Kywrd</code></em> = TMOD,
+the values 1 and 0 determine whether bitmap (1) or stroke text (0) fonts will
+be used </p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>VAL</code></em></b></span></dt><dd><p><em class="replaceable"><code>VAL</code></em> is active only when <em class="replaceable"><code>Kywrd</code></em> =
+COMP, and determines the degree of compression applied to the exported file
+(see above).</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Apply the default, optimum value for compression.
+This value represents the best combination of speed and compression. It varies
+according to the release level of the ZLIB compression package. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1-9&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use this value to specify a specific compression
+level. 1 is the lowest compression level (fastest) and 9 is the highest compression
+level (slowest). </p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Menu Paths"><a name="PNGR.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;Redirect Plots</strong></span></td></tr><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;Hard Copy</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

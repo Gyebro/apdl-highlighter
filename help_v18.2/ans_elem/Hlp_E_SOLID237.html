@@ -1,0 +1,188 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:18-04:00"><title>SOLID237</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_SOLID236.html" title="SOLID236"><link rel="next" href="Hlp_E_PLANE238.html" title="PLANE238"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SOLID237"><a name="SOLID237"></a><div class="titlepage"></div><a class="indexterm" name="d0e184603"></a><span class="refentrytitle"><span class="structname">SOLID237</span> </span><div class="refnamediv"><p><br><b class="refpurpose">3-D 10-Node
+Electromagnetic Solid</b><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_E_SOLID237.html#solid237prodrestjjs" title="SOLID237 Product Restrictions">Product Restrictions</a></span></div></div></div></p></div><div class="refsect1" title="SOLID237 Element Description"><a name="solid237desctwr"></a><h2>SOLID237 Element Description</h2><p><span class="structname">SOLID237</span> is a 3-D 10-node, element
+capable of modeling electromagnetic fields. The element has magnetic
+and electric degrees of freedom. Magnetic degrees of freedom are based
+on the edge-flux formulation. </p><p>The edge-flux (AZ) degrees of freedoms are the line integrals
+of the magnetic vector potential along the element edges. They are
+defined at the midside nodes only and there are no magnetic degrees
+of freedom associated with the corner nodes. The edge-flux formulation
+uses tree gauging (see the <a href="../ans_cmd/Hlp_C_GAUGE.html" class="olink"><span class="command"><strong>GAUGE</strong></span></a> command) to produce
+a unique solution.</p><p>In an electromagnetic analysis, the electric degree of freedom
+is the electric potential (VOLT) defined at each node. The element
+also has an option to perform an electromagnetic analysis with time-integrated
+electric potential.</p><p>In a stranded coil analysis, the electric degrees of freedom
+are the voltage drop across the coil (VOLT) and the electromotive
+force (EMF). In a coil region, all the VOLT and EMF degrees of freedom
+must be coupled using the <a href="../ans_cmd/Hlp_C_CP.html" class="olink"><span class="command"><strong>CP</strong></span></a> command. The element
+has the option to perform a stranded coil analysis with time-integrated
+voltage drop or time-integrated electromotive force.</p><p>The element is applicable to 3-D static, time-harmonic and time-transient
+electromagnetic analyses. The magnetic analysis option typically is
+used to model air, iron, nonferrous materials and permanent magnets.
+The analysis is driven by the current density applied as an element
+body load. </p><p>The electromagnetic analysis option is suitable for modeling
+solid (massive) conductors. The solid (massive) conductor may be voltage-
+or current-driven, as well as circuit-fed. The electromagnetic analysis
+has the option to suppress the eddy current effect in time-varying
+analyses to model stranded conductors. The Hall effect can be taken
+into account in a static or transient electromagnetic analysis. The
+velocity effects can be taken into account in a static, time-harmonic
+or time-transient electromagnetic analysis. </p><p>The stranded coil analysis option is suitable for modeling a
+stranded winding with a prescribed current flow direction vector.
+The stranded coil may be voltage- or current-driven, as well as circuit-fed.</p><p>The following command macros can be used with <span class="structname">SOLID237</span> for solution postprocessing: <a href="../ans_cmd/Hlp_C_EMAGERR.html" class="olink"><span class="command"><strong>EMAGERR</strong></span></a>, <a href="../ans_cmd/Hlp_C_EMFT.html" class="olink"><span class="command"><strong>EMFT</strong></span></a>, <a href="../ans_cmd/Hlp_C_MMF.html" class="olink"><span class="command"><strong>MMF</strong></span></a>, <a href="../ans_cmd/Hlp_C_POWERH.html" class="olink"><span class="command"><strong>POWERH</strong></span></a>. See <a href="../ans_lof/Hlp_G_ELE11.html" class="olink">Electric
+and Magnetic Macros</a> in the <a href="../ans_lof/Hlp_G_EleTOC.html" class="olink"><em class="citetitle">Low-Frequency Electromagnetic Analysis Guide</em></a> for more details.</p><p>The element has nonlinear magnetic capability for modeling B-H
+curves or permanent magnet demagnetization curves for static and time-transient
+analyses. See <span class="structname">SOLID237</span> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for
+more details about this element. </p><div class="figure"><a name="geometry237"></a><p class="title"><b>Figure&nbsp;237.1:&nbsp;&nbsp;SOLID237 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM87-1.svg" alt="SOLID237 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="SOLID237 Input Data"><a name="solid237inputwr"></a><h2>SOLID237 Input Data</h2><p>The geometry, node locations, and the coordinate system for
+this element are shown in <a class="xref" href="Hlp_E_SOLID237.html#geometry237" title="Figure&nbsp;237.1:&nbsp;&nbsp;SOLID237 Geometry">Figure&nbsp;237.1:&nbsp;SOLID237 Geometry</a>.  The element
+is defined by 10 node points and the material properties.</p><p>The type of units (MKS or user defined) is specified through
+the <a href="../ans_cmd/Hlp_C_EMUNIT.html" class="olink"><span class="command"><strong>EMUNIT</strong></span></a> command. <a href="../ans_cmd/Hlp_C_EMUNIT.html" class="olink"><span class="command"><strong>EMUNIT</strong></span></a> also
+determines the value of MUZRO and EPZRO. The <a href="../ans_cmd/Hlp_C_EMUNIT.html" class="olink"><span class="command"><strong>EMUNIT</strong></span></a> defaults are MKS units and MUZRO = 4&#960;10<sup>-7</sup> Henry/meter and EPZRO = 8.854 x 10<sup>-12</sup> Farad/meter.  In addition to MUZRO and EPZRO, orthotropic relative
+permeability and permittivity is available and is specified through
+the MURX, MURY, and MURZ and PERX, PERY, PERZ material options, respectively.
+Orthotropic resistivity is specified through RSVX, RSVY, and RSVZ
+material property labels. MGXX, MGYY, and MGZZ represent vector components
+of the coercive force for permanent magnet materials. The magnitude
+of the coercive force is the square root of the sum of the squares
+of the components. The direction of polarization is determined by
+the components MGXX, MGYY, and MGZZ. Permanent magnet polarization
+directions correspond to the element coordinate directions. The element
+coordinate system orientation is as described in <a class="xref" href="Hlp_E_CH2_3.html" title="3.3.&nbsp;Coordinate Systems">Coordinate Systems</a>. Nonlinear magnetic B-H properties are entered
+with the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command. Nonlinear orthotropic magnetic properties can be specified with a
+combination of a B-H curve and linear relative permeability. The B-H
+curve is used in each element coordinate direction where a zero
+value of relative permeability is specified. Only one B-H curve may
+be specified per material. In an electromagnetic analysis, the Hall
+coefficient is specified through the RH material option.</p><p>Nodal loads are defined with the <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a> and <a href="../ans_cmd/Hlp_C_F.html" class="olink"><span class="command"><strong>F</strong></span></a> commands.  For edge-based analyses, the edge-flux constraint
+is applied to the node using the <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a> command with <span class="italic"><em>Lab</em></span> = AZ. Flux-parallel boundary conditions
+are prescribed by setting AZ to zero. No AZ constraint is required
+to set flux-normal boundary conditions. The <a href="../ans_cmd/Hlp_C_DFLX.html" class="olink"><span class="command"><strong>DFLX</strong></span></a> command can be used to impose a uniform magnetic flux on the selected
+nodes.</p><p>For massive conductors (KEYOPT(1) = 1), <span class="italic"><em>Lab</em></span> = VOLT is valid with the <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a> command
+and <span class="italic"><em>VALUE</em></span> defines the electric
+potential. Note that electric potential is time-integrated if KEYOPT(2)
+= 2. With the <a href="../ans_cmd/Hlp_C_F.html" class="olink"><span class="command"><strong>F</strong></span></a> command, <span class="italic"><em>Lab</em></span> = AMPS and <span class="italic"><em>VALUE</em></span> corresponds to the total current.</p><p>For stranded coils (KEYOPT(1) = 2), <em class="replaceable"><code>Lab</code></em> = VOLT is valid with the <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a> command and <em class="replaceable"><code>VALUE</code></em> defines the voltage drop across the coil. The <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a> command with <em class="replaceable"><code>Lab</code></em> = EMF can
+be used to apply constraints on the electromotive force. Note that
+voltage drop and the electromotive force are time-integrated if KEYOPT(2)
+= 2. The total current through the coil can be applied with the <a href="../ans_cmd/Hlp_C_F.html" class="olink"><span class="command"><strong>F</strong></span></a> command using <em class="replaceable"><code>Lab</code></em> = AMPS.</p><p>The temperature (for material property evaluation only) body
+loads may be input based on their value at the element's nodes or
+as a single element value [<a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a>, <a href="../ans_cmd/Hlp_C_BFE.html" class="olink"><span class="command"><strong>BFE</strong></span></a>]. In general, unspecified nodal values of temperatures default to
+the uniform value specified with the <a href="../ans_cmd/Hlp_C_BFUNIF.html" class="olink"><span class="command"><strong>BFUNIF</strong></span></a> or <a href="../ans_cmd/Hlp_C_TUNIF.html" class="olink"><span class="command"><strong>TUNIF</strong></span></a> commands.</p><p>For modeling stranded conductors  KEYOPT(1) = 0, source current
+density may be applied to an area or volume [<a href="../ans_cmd/Hlp_C_BFE.html" class="olink"><span class="command"><strong>BFE</strong></span></a> or <a href="../ans_cmd/Hlp_C_BFV.html" class="olink"><span class="command"><strong>BFV</strong></span></a>] or input as an element value [<a href="../ans_cmd/Hlp_C_BFE.html" class="olink"><span class="command"><strong>BFE</strong></span></a>]. The vector components of the current density are
+with respect to the element coordinate system. See <a class="xref" href="Hlp_E_SOLID237.html#solid237assump" title="SOLID237 Assumptions and Restrictions">"SOLID237 Assumptions and Restrictions"</a> for a description of the solenoidal condition.</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_SOLID237.html#solid237insum" title="SOLID237 Input Summary">"SOLID237 Input Summary"</a>.  A general description of element input
+is given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>.</p><div class="refsect2" title="SOLID237 Input Summary"><a name="solid237insum"></a><h3>SOLID237 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J, K, L, M, N, O, P, Q, R</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>See KEYOPT(1)</p></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><p>There are no real constants for KEYOPT(1) = 0 or 1.</p><p>The following are the real constants for KEYOPT(1) = 2:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>SC, NC, VC, TX, TY, TZ</td></tr><tr><td>R, SYM</td></tr></table><p>See <a class="xref" href="Hlp_E_SOLID237.html#solid237realconstants" title="Table&nbsp;237.1:&nbsp;&nbsp;SOLID 237 Real Constants">Table&nbsp;237.1:&nbsp;SOLID 237 Real Constants</a> for more information.</p></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p><a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command: <a href="../ans_mat/mat_electricmagnet.html#bh" class="olink">Magnetic</a></p><p><a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: MURX, MURY, MURZ, MGXX, MGYY, MGZZ </p><p>RSVX, RSVY, RSVZ, RH, PERX, PERY, PERZ (see <a class="xref" href="Hlp_E_SOLID237.html#solid237assump" title="SOLID237 Assumptions and Restrictions">"SOLID237 Assumptions and Restrictions"</a>)</p><p><a href="../ans_cmd/Hlp_C_EMUNIT.html" class="olink"><span class="command"><strong>EMUNIT</strong></span></a> command: EPZRO, MUZERO</p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Temperature&nbsp;--</b></span></dt><dd><p>T(I), T(J), ..., T(P),
+T(Q), T(R)</p></dd><dt><span><b class="term">Source Current Density (valid for KEYOPT(1) = 0 only)</b></span></dt><dd><p>JSX(I), JSY(I), JSZ(I), PHASE(I),</p><p>JSX(J),
+JSY(J), JSZ(J), PHASE(J),</p><p>...</p><p>JSX(P), JSY(P), JSZ(P), PHASE(P), </p><p>JSX(Q), JSY(Q), JSZ(Q), PHASE(Q), </p><p>JSX(R), JSY(R), JSZ(R), PHASE(R) </p><p><span class="bold"><strong>Velocity (valid for KEYOPT(1) = 1 only)
+-- </strong></span></p><p>VELOX(I), VELOY(I), VELOZ(I), OMEGAX(I), OMEGAY(I), OMEGAZ(I)</p><p>VELOX(J), VELOY(J), VELOZ(J), OMEGAX(J), OMEGAY(J), OMEGAZ(J)</p><p>...</p><p>VELOX(P), VELOY(P), VELOZ(P), OMEGAX(P), OMEGAY(P), OMEGAZ(P)</p><p>VELOX(Q), VELOY(Q), VELOZ(Q), OMEGAX(Q), OMEGAY(Q), OMEGAZ(Q)</p><p>VELOX(R), VELOY(R), VELOZ(R), OMEGAX(R), OMEGAY(R), OMEGAZ(R)</p></dd></dl></div></div></dd><dt><span><b class="term">Special Features</b></span></dt><dd><p><a href="../ans_str/strlinperturb.html" class="olink">Linear perturbation</a></p></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Element capability and degrees of freedom:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Magnetic:</p><p>AZ </p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Electromagnetic:</p><p>AZ, VOLT</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Stranded coil:</p><p>AZ, VOLT, EMF</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Coupling method between magnetic and electric degrees
+of freedom (KEYOPT(1) = 1 or 2); also defines the meaning of the VOLT
+and EMF degrees of freedom for KEYOPT(1) = 1 or 2:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Strong (matrix) coupling.
+Produces an unsymmetric matrix. In a linear analysis, a coupled response
+is achieved after one iteration. Applicable to all analysis types</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Weak (load vector). Produces
+a symmetric matrix and requires at least two iterations to achieve
+a coupled response. Applicable to static and transient analyses only.
+(see <a class="xref" href="Hlp_E_SOLID237.html#solid237assump" title="SOLID237 Assumptions and Restrictions">"SOLID237 Assumptions and Restrictions"</a>)</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Strong (matrix) coupling
+with time-integrated electric potential (VOLT) for KEYOPT(1) = 1 (electromagnetic
+analysis). Produces a symmetric matrix.</p><p>Strong (matrix)
+coupling with time-integrated voltage drop (VOLT) and time-integrated
+electromotive force (EMF) for KEYOPT(1) = 2 (stranded coil analysis).
+Produces a symmetric matrix if the coil symmetry factor is 1; produces
+a nonsymmetric matrix if the coil symmetry factor is greater than
+1.</p><p>In a linear analysis, a coupled response is achieved after one
+iteration. Applicable to harmonic and transient analyses only.</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(5)</b></span></dt><dd><p>Eddy currents or velocity effects in electromagnetic
+(KEYOPT(1) =1) analyses:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Active</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Eddy currents are suppressed
+in harmonic or transient analyses</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Velocity effects are suppressed</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Eddy currents and velocity
+effects are suppressed</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(7)</b></span></dt><dd><p>Electromagnetic force output:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>At each element node (corner
+and midside)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>At element corner nodes
+only (midside nodes forces are condensed to the corner nodes)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(8)</b></span></dt><dd><p>Electromagnetic force calculation:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Maxwell</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Lorentz</p></dd></dl></div></div></dd></dl></div></div><div class="table"><a name="solid237realconstants"></a><p class="title"><b>Table&nbsp;237.1:&nbsp;&nbsp;SOLID 237 Real Constants</b></p><div class="table-contents"><table summary="SOLID 237 Real Constants" border="1" width="95%"><colgroup><col width="60" class="col1"><col width="56" class="col2"><col width="178" class="col3"><col width="65" class="COLSPEC0"><col width="214" class="COLSPEC1"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center" valign="top">No.</th><th bgcolor="#E3E3E3" align="center" valign="top">Name</th><th bgcolor="#E3E3E3" align="center" valign="top">Description</th><th bgcolor="#E3E3E3" align="center" valign="top">Default</th><th bgcolor="#E3E3E3" align="center" valign="top">Definition</th></tr></thead><tbody><tr><td align="center">1 </td><td>SC</td><td>Coil cross-sectional
+area</td><td>none</td><td>True physical cross-section
+of the coil regardless of symmetry modeling considerations. It includes
+the cross-sectional area of the wire and the non-conducting material
+filling the space between the winding.</td></tr><tr><td align="center">2</td><td>NC</td><td>Number of coil turns</td><td>1</td><td>Total number of winding turns in a coil regardless of any symmetry
+modeling considerations.</td></tr><tr><td align="center">3</td><td>VC</td><td>Coil volume</td><td>none</td><td>True physical
+volume of the coil regardless of symmetry modeling considerations.
+It includes the volume occupied by the wire and the non-conducting
+material filling the space between the winding.</td></tr><tr><td align="center">4</td><td>TX</td><td>Coil winding X-directional cosine</td><td>0</td><td rowspan="3">The coil direction
+vector T = {TX, TY, TZ}<sup>T</sup> is a unit vector
+tangent to the coil winding. It designates the current flow direction.</td></tr><tr><td align="center">5</td><td>TY</td><td>Coil winding Y-directional
+cosine</td><td>1</td></tr><tr><td align="center">6</td><td>TZ</td><td>Coil winding Z-directional cosine</td><td>0</td></tr><tr><td align="center">7</td><td>R</td><td>Coil resistance</td><td>none</td><td>Total coil DC resistance regardless of any
+symmetry modeling considerations.</td></tr><tr><td align="center">8</td><td>SYM</td><td>Coil symmetry factor </td><td>1</td><td>Ratio of the true physical volume of the coil  (real constant
+VC) to the modeled coil volume. The input should be greater or equal
+to 1.</td></tr></tbody></table></div></div><br class="table-break"></div></div><div class="refsect1" title="SOLID237 Output Data"><a name="solid237output"></a><h2>SOLID237 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal degrees of freedom included in the overall nodal
+solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_SOLID237.html#solid237outdef" title="Table&nbsp;237.2:&nbsp;&nbsp;SOLID237 Element Output Definitions">Table&nbsp;237.2:&nbsp;SOLID237 Element Output Definitions</a></p></li></ul></div><p>The element output directions are parallel to the element coordinate
+system.  A general description of solution output is given in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a>.  See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways to view results.</p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="solid237outdef"></a><p class="title"><b>Table&nbsp;237.2:&nbsp;&nbsp;SOLID237 Element Output Definitions</b></p><div class="table-contents"><table summary="SOLID237 Element Output Definitions" border="1" width="95%"><colgroup><col width="120" class="col1"><col width="360" class="col2"><col width="48" align="center" class="col3"><col width="62" align="center" class="col4"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center">Name</th><th bgcolor="#E3E3E3" align="center">Definition</th><th bgcolor="#E3E3E3" align="center">O</th><th bgcolor="#E3E3E3" align="center">R</th></tr></thead><tbody><tr><td>EL</td><td>Element Number</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Nodes - I, J,&#8230;, P, Q, R</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>MAT</td><td>Material number</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>VOLU:</td><td>Volume</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>XC, YC, ZC</td><td>Location where results are reported</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.2">2</a></td></tr><tr><td>TEMP</td><td>Input temperatures
+ T(I), T(J), ..., T(P), T(Q), T(R)</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>LOC</td><td>Output location (X, Y, Z)</td><td align="center">-</td><td align="center">-</td></tr><tr><td>B: X, Y, Z, SUM</td><td>Magnetic flux density components
+and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.1">1</a></td></tr><tr><td>H: X, Y,
+Z, SUM</td><td>Magnetic field intensity components and vector
+magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.1">1</a></td></tr><tr><td>EF: X, Y,
+Z, SUM</td><td>Electric field intensity components and magnitude
+[<a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.7">7</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.1">1</a></td></tr><tr><td>JC: X, Y, Z, SUM</td><td>Nodal
+conduction current density components and magnitude [<a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.7">7</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.1">1</a></td></tr><tr><td>FMAG: X, Y, Z, SUM </td><td>Electromagnetic force components and magnitude [<a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.3">3</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.1">1</a></td></tr><tr><td>JT: X, Y, Z, SUM</td><td>Element conduction current density components (in the
+global Cartesian coordinate system) and vector magnitude [<a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.6">6</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.1">1</a></td></tr><tr><td>JS: X, Y, Z, SUM</td><td>Element current density
+components (in the global Cartesian coordinate system) and vector
+magnitude [<a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.4">4</a>] [<a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.6">6</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.1">1</a></td></tr><tr><td>JHEAT:</td><td>Joule heat generation rate per
+unit volume  [<a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.3">3</a>] [<a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.5">5</a>] [<a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.6">6</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.1">1</a></td></tr><tr><td>SENE or MENE:</td><td>Magnetic energy  [<a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.3">3</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.1">1</a></td></tr><tr><td>COEN</td><td>Magnetic co-energy  [<a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.3">3</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.1">1</a></td></tr><tr><td>AENE</td><td>Apparent magnetic energy  [<a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.3">3</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.1">1</a></td></tr><tr><td>IENE</td><td>Incremental magnetic
+energy  [<a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.3">3</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID237.html#solid237.tab.2.ft.1">1</a></td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="solid237.tab.2.ft.1"></a>The solution value is output
+only if calculated  (based upon input data).  The element solution
+is at the centroid.</p></li><li class="listitem"><p><a name="solid237.tab.2.ft.2"></a>Available only at centroid
+as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item. </p></li><li class="listitem"><p><a name="solid237.tab.2.ft.3"></a>For a time-harmonic analysis,
+electromagnetic forces (FMAG), Joule losses (JHEAT) and stored energy
+(SENE, MENE) represent time-average values. These values are stored
+in both the real and imaginary data sets. In a <a href="../ans_str/strlinperturb.html" class="olink">linear perturbation</a> analysis, only incremental and apparent energy values are time-averaged.</p></li><li class="listitem"><p><a name="solid237.tab.2.ft.4"></a>JS represents the sum of
+element conduction and displacement current densities. </p></li><li class="listitem"><p><a name="solid237.tab.2.ft.5"></a>Calculated Joule heat generation
+rate per unit volume (JHEAT) may be made available for a subsequent
+thermal analysis with companion elements [<a href="../ans_cmd/Hlp_C_LDREAD.html" class="olink"><span class="command"><strong>LDREAD</strong></span></a>].</p></li><li class="listitem"><p><a name="solid237.tab.2.ft.6"></a>For the stranded coil analysis
+option (KEYOPT(1) = 2), JT and JS are the effective current densities
+as they are calculated based on the coil cross-sectional (SC) that
+includes the wire and the non-conducting material filling the space
+between the winding. JHEAT represents the effective Joule heat generation
+rate per unit volume as it is calculated based on the modeled coil
+volume that includes the wire and the non-conducting material filling
+the space between the winding.</p></li><li class="listitem"><p><a name="solid237.tab.2.ft.7"></a>Not available with the stranded
+coil option (KEYOPT(1) = 2).</p></li></ol></div><p><a class="xref" href="Hlp_E_SOLID237.html#solid237itemseqjjs" title="Table&nbsp;237.3:&nbsp;&nbsp;SOLID237 Item and Sequence Numbers">Table&nbsp;237.3:&nbsp;SOLID237 Item and Sequence Numbers</a> lists output available
+through the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number
+method.  See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General
+Postprocessor (POST1)</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in this reference for more information. 
+The following notation is used in <a class="xref" href="Hlp_E_SOLID236.html#solid236itemseqjjs" title="Table&nbsp;236.3:&nbsp;&nbsp;SOLID236 Item and Sequence Numbers">Table&nbsp;236.3:&nbsp;SOLID236 Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in <a class="xref" href="Hlp_E_SOLID237.html#solid237outdef" title="Table&nbsp;237.2:&nbsp;&nbsp;SOLID237 Element Output Definitions">Table&nbsp;237.2:&nbsp;SOLID237 Element Output Definitions</a></p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element
+data</p></dd></dl></div></div><div class="table"><a name="solid237itemseqjjs"></a><p class="title"><b>Table&nbsp;237.3:&nbsp;&nbsp;SOLID237 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="SOLID237 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="72" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"></colgroup><thead><tr><th bgcolor="#C0C0C0" rowspan="2" align="center" valign="middle">Output
+Quantity Name</th><th bgcolor="#C0C0C0" colspan="2" align="center"><a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th bgcolor="#E3E3E3" align="center">Item</th><th bgcolor="#E3E3E3" align="center">E</th></tr></thead><tbody><tr><td align="center">JTX</td><td align="center">NMISC</td><td align="center">1</td></tr><tr><td align="center">JTY</td><td align="center">NMISC</td><td align="center">2</td></tr><tr><td align="center">JTZ</td><td align="center">NMISC</td><td align="center">3</td></tr><tr><td align="center">JTSUM</td><td align="center">NMISC</td><td align="center">4</td></tr></tbody></table></div></div><br class="table-break"></div><div class="refsect1" title="SOLID237 Assumptions and Restrictions"><a name="solid237assump"></a><h2>SOLID237 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The element must not have a zero volume or a zero
+length side.  This occurs most frequently when the element is not
+numbered properly.  Elements may be numbered either as shown in <a class="xref" href="Hlp_E_SOLID237.html#geometry237" title="Figure&nbsp;237.1:&nbsp;&nbsp;SOLID237 Geometry">Figure&nbsp;237.1:&nbsp;SOLID237 Geometry</a> or in an opposite fashion.</p></li><li class="listitem"><p>Midside nodes may not be removed.</p></li><li class="listitem"><p>The magnetic analysis option (KEYOPT(1) = 0) requires
+the source current density specified with the <a href="../ans_cmd/Hlp_C_BFE.html" class="olink"><span class="command"><strong>BFE</strong></span></a>,,JS command to be solenoidal. </p></li><li class="listitem"><p>Permanent magnets are not permitted in a harmonic
+analysis.</p></li><li class="listitem"><p>It is not recommended to use the weak coupling option
+(KEYOPT(2) = 1) in a transient electromagnetic analysis with eddy
+currents or a transient stranded coil analysis because multiple iterations
+may be required to achieve convergence.</p></li><li class="listitem"><p>In a transient analysis, the <em class="replaceable"><code>THETA</code></em> integration parameter defaults to the values shown in the following
+table. You can use the <a href="../ans_cmd/Hlp_C_TINTP.html" class="olink"><span class="command"><strong>TINTP</strong></span></a> command to modify
+the default setting.</p><div class="table"><a name="solid237thetajjs"></a><p class="title"><b>Table&nbsp;237.4:&nbsp;&nbsp;THETA Default Values</b></p><div class="table-contents"><table summary="THETA Default Values" border="1" width="95%"><colgroup><col width="38%" class="col1"><col width="42%" class="col2"><col width="20%" class="COLSPEC0"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center" valign="middle">Analysis
+Type</th><th bgcolor="#E3E3E3" align="center" valign="middle">KEYOPT
+Values</th><th bgcolor="#E3E3E3" align="center" valign="middle">THETA
+Default Value</th></tr></thead><tbody><tr><td>Strongly coupled transient electromagnetic analysis
+with electric potential or stranded coil analysis with voltage drop
+(VOLT)</td><td>KEYOPT(1) = 1 or 2 and KEYOPT(2) = 0</td><td>1.0</td></tr><tr><td>Strongly coupled transient electromagnetic
+analysis with time-integrated electric potential or stranded coil
+analysis with time-integrated voltage drop (VOLT)</td><td>KEYOPT(1)
+= 1 or 2 and KEYOPT(2) = 2</td><td>0.5</td></tr></tbody></table></div></div><p><br class="table-break"></p></li><li class="listitem"><p>The electrical permittivity material input (<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,PERX, also PERY, PERZ) is applicable to electromagnetic
+harmonic analyses (KEYOPT(1) = 1) only.</p></li><li class="listitem"><p>In a stranded coil (KEYOPT(1) = 2) domain, the winding
+direction vector T = {TX, TY, TZ}<sup>T</sup> must
+be specified in the element coordinate system and all VOLT and EMF
+degrees of freedom must be coupled (<a href="../ans_cmd/Hlp_C_CP.html" class="olink"><span class="command"><strong>CP</strong></span></a> command).</p></li><li class="listitem"><p>This element may not be compatible with other elements
+having a VOLT degree of freedom. See <a href="../ans_lof/Hlp_G_ELE13_3.html" class="olink">Element Compatibility</a> in the <a href="../ans_lof/Hlp_G_EleTOC.html" class="olink"><em class="citetitle">Low-Frequency Electromagnetic Analysis Guide</em></a>)
+for more information. The electromagnetic analysis with time-integrated
+electric potential (KEYOPT(2) = 2) cannot be used with current-based
+circuit (e.g. <a class="link" href="Hlp_E_CIRCU124.html" title="CIRCU124"><span class="structname">CIRCU124</span></a>) or low-frequency
+electric (e.g. <a class="link" href="Hlp_E_SOLID232.html" title="SOLID232"><span class="structname">SOLID232</span></a>) elements.</p></li></ul></div></div><div class="refsect1" title="SOLID237 Product Restrictions"><a name="solid237prodrestjjs"></a><h2>SOLID237 Product Restrictions</h2><p>There are no product-specific restrictions for this element.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

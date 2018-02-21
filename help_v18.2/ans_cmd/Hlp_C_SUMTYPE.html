@@ -1,0 +1,28 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:22-04:00"><title>SUMTYPE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_S_TOC.html" title="S Commands"><link rel="prev" href="Hlp_C_SUMAP.html" title="SUMAP"><link rel="next" href="Hlp_C_SUPL.html" title="SUPL"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SUMTYPE"><a name="SUMTYPE"></a><div class="titlepage"></div><a class="indexterm" name="d0e264682"></a><span class="refentrytitle"><span class="command"><strong>SUMTYPE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>SUMTYPE</strong></span>, <em class="replaceable"><code>Label</code></em><br><b class="refpurpose">Sets the type of summation to be used in the following load case
+operations.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1resultjla070199" title="Table&nbsp;2.82:&nbsp;&nbsp;Results"><span class="type">Results</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="SUMTYPE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Label</code></em></b></span></dt><dd><p>Summation type</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">COMP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Combine element component stresses only.
+ Stresses such as average nodal stresses, principal stresses, equivalent stresses,
+and stress intensities are derived from the combined element component stresses.
+Default.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">PRIN</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Combine principal stress, equivalent stress,
+and stress intensity directly as stored on the results file.  Component stresses
+are not available with this option.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="SUMTYPE.notes"></a><h2>Notes</h2><p>Issue <span class="command"><strong>SUMTYPE</strong></span>,PRIN when you
+want to have a load case operation (<a class="link" href="Hlp_C_LCOPER.html" title="LCOPER"><span class="command"><strong>LCOPER</strong></span></a>) act on the
+principal / equivalent stresses instead of the component stresses. Also issue <span class="command"><strong>SUMTYPE</strong></span>,PRIN
+when you want to read in load cases (<a class="link" href="Hlp_C_LCASE.html" title="LCASE"><span class="command"><strong>LCASE</strong></span></a>). Note that
+the <span class="command"><strong>SUMTYPE</strong></span> setting is not maintained between /POST1
+sessions.</p><p><span class="command"><strong>SUMTYPE</strong></span>,PRIN also causes principal
+nodal values to be the average of the contibuting principal element nodal
+values (see <a class="link" href="Hlp_C_AVPRIN.html" title="AVPRIN"><span class="command"><strong>AVPRIN</strong></span></a>,1).</p><p><a href="../ans_elem/Hlp_E_BEAM188.html" class="olink"><span class="structname">BEAM188</span></a> and <a href="../ans_elem/Hlp_E_BEAM189.html" class="olink"><span class="structname">BEAM189</span></a> elements
+compute principal stress, equivalent stress, and stress intensity values on
+request instead of storing them on the results file;  <span class="command"><strong>SUMTYPE</strong></span>,PRIN
+does not apply for these elements.    </p></div><div class="refsect1" title="Menu Paths"><a name="SUMTYPE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Load Case&gt;Calc Options&gt;Stress Options</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

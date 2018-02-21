@@ -1,0 +1,233 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:49-04:00"><title>EINFIN</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_EIGEN.html" title="*EIGEN"><link rel="next" href="Hlp_C_EINTF.html" title="EINTF"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="EINFIN"><a name="EINFIN"></a><div class="titlepage"></div><a class="indexterm" name="d0e91785"></a><span class="refentrytitle"><span class="command"><strong>EINFIN</strong></span></span><div class="refnamediv"><p><span class="command"><strong>EINFIN</strong></span>,
+    <em class="replaceable"><code>CompName</code></em>, <em class="replaceable"><code>PNODE(NREF1)</code></em>,
+    <em class="replaceable"><code>NREF2</code></em>, <em class="replaceable"><code>NREF3</code></em>,
+    <em class="replaceable"><code>MATID</code></em><br><b class="refpurpose">Generates structural infinite elements from selected nodes.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7elementsldm061600" title="Table&nbsp;2.38:&nbsp;&nbsp;Elements"><span class="type">Elements</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | &#8211; | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="EINFIN.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>CompName</code></em></b></span></dt><dd><p>Component name containing the reference nodes for calculating the position of <span class="italic"><em>poles</em></span> for generating <a href="../ans_elem/Hlp_E_INFIN257.html" class="olink"><span class="structname">INFIN257</span></a> structural
+      infinite elements. </p><p>The number of poles and their positions are based on the number of included nodes: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>If the component includes only one node, the node becomes the pole node. The pole node
+         is typically located at or near the geometric center of the finite element domain if there
+         is a single pole.</p></li><li class="listitem"><p>If the component includes two (2-D) or three nodes (3-D), the program constructs an
+         infinite line or area, then calculates the pole positions by drawing a perpendicular line
+         from a selected node to the line or area.</p></li><li class="listitem"><p>If the component includes more than two (2-D) or three nodes (3-D), the program uses
+         the first two or three nodes calculate the position of poles.</p></li></ul></div></dd><dt><span><b class="term"><em class="replaceable"><code>PNODE</code></em> or <em class="replaceable"><code>NREF1</code></em></b></span></dt><dd><p>Node number for the direct input of the pole node. (A parameter or parametric expression
+      is also valid.) Specify this value when no <em class="replaceable"><code>CompName</code></em> has been
+      specified. (If <em class="replaceable"><code>CompName</code></em> is specified, this value is ignored.) </p><p>If <em class="replaceable"><code>NREF2</code></em>, or <em class="replaceable"><code>NREF2</code></em> and
+       <em class="replaceable"><code>NREF3</code></em>, are defined, this value becomes the first reference node
+       (<em class="replaceable"><code>NREF1</code></em>) used to calculate pole positions.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NREF2</code></em></b></span></dt><dd><p>Node number of the second reference node used to calculate pole positions. (A parameter
+      or parametric expression is also valid.) Specify this value when no
+       <em class="replaceable"><code>CompName</code></em> has been specified. (If
+       <em class="replaceable"><code>CompName</code></em> is specified, this value is ignored.) To input this
+      value, first specify <em class="replaceable"><code>NREF1</code></em> (replacing
+       <em class="replaceable"><code>PNODE</code></em>). Pole positions are calculated on an infinite line defined
+      by <em class="replaceable"><code>NREF1</code></em> and <em class="replaceable"><code>NREF2</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NREF3</code></em></b></span></dt><dd><p>Node number of the third reference node used to calculate pole positions. (A parameter or
+      parametric expression is also valid.) Specify this value when no
+       <em class="replaceable"><code>CompName</code></em> has been specified. (If
+       <em class="replaceable"><code>CompName</code></em> is specified, this value is ignored.) To input this
+      value, first specify <em class="replaceable"><code>NREF1</code></em> (replacing
+       <em class="replaceable"><code>PNODE</code></em>) and <em class="replaceable"><code>NREF2</code></em>. Pole positions are
+      calculated on an infinite line defined by <em class="replaceable"><code>NREF1</code></em>,
+       <em class="replaceable"><code>NREF2</code></em>, and <em class="replaceable"><code>NREF3</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>MATID</code></em></b></span></dt><dd><p>Optional material ID of the structural infinite element. (A parameter or parametric
+      expression is also valid.) If specified, this value defines the material properties of the
+      structural infinite elements explicitly; otherwise, the material ID is copied from the base
+      elements.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="EINFIN.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>EINFIN</strong></span> command generates structural infinite
+elements (<a href="../ans_elem/Hlp_E_INFIN257.html" class="olink"><span class="structname">INFIN257</span></a>) directly from the selected
+face of <a href="../ans_elem/Hlp_E_INFIN257.html#infin257.input" class="olink">valid
+base elements</a> (existing standard elements in your model).
+The command scans all base elements for the selected nodes and generates
+a compatible infinite element type for each base element. A combination
+of different base element types is allowed if the types are all compatible
+with the infinite elements.</p><p>The infinite element type requires no predefinition (<a class="link" href="Hlp_C_ET.html" title="ET"><span class="command"><strong>ET</strong></span></a>).</p><p>The faces of base elements are determined from the selected
+node set (<a class="link" href="Hlp_C_NSEL.html" title="NSEL"><span class="command"><strong>NSEL</strong></span></a>), and the geometry of the infinite
+element is determined based on the shape of the face. Element characteristics
+and options are determined according to the base element. For the
+face to be used, all nodes on the face of a base element must be selected </p><p>Use base elements to model the near-field domain that interacts
+with the solid structures or applied loads. To apply the truncated
+far-field effect, a single layer of infinite elements must be attached
+to the near-field domain. The outer surface of the near-field domain
+must be convex.</p><p>The material of the structural infinite elements can be defined in
+   either of two ways. If <em class="replaceable"><code>MATID</code></em> is specified, the command uses that value
+   to define the material property of the structural infinite elements. If
+    <em class="replaceable"><code>MATID</code></em> is <span class="italic"><em>not</em></span> specified, the
+   material ID of the base element is copied to the attached infinite element. Although only
+   isotropic material is allowed for the infinite elements, these options enable you to define
+   anisotropic material for the base elements in a static analysis. (In a transient analysis,
+   however, use the same isotropic material for both base elements and infinite elements.)</p><p>After the <span class="command"><strong>EINFIN</strong></span> command executes, you can
+verify the newly created infinite element types and elements (<a class="link" href="Hlp_C_ETLIST.html" title="ETLIST"><span class="command"><strong>ETLIST</strong></span></a>, <a class="link" href="Hlp_C_ELIST.html" title="ELIST"><span class="command"><strong>ELIST</strong></span></a>, <a class="link" href="Hlp_C_EPLOT.html" title="EPLOT"><span class="command"><strong>EPLOT</strong></span></a>).</p><p>Infinite elements do not account for any subsequent modifications made
+   to the base elements. It is good practice to issue the <span class="command"><strong>EINFIN</strong></span> command only
+    <span class="italic"><em>after</em></span> the base elements are finalized. If you delete or
+   modify base elements (via <a class="link" href="Hlp_C_EDELE.html" title="EDELE"><span class="command"><strong>EDELE</strong></span></a>, <a class="link" href="Hlp_C_EMODIF.html" title="EMODIF"><span class="command"><strong>EMODIF</strong></span></a>,
+    <a class="link" href="Hlp_C_ETCHG.html" title="ETCHG"><span class="command"><strong>ETCHG</strong></span></a>, <a class="link" href="Hlp_C_EMID.html" title="EMID"><span class="command"><strong>EMID</strong></span></a>, <a class="link" href="Hlp_C_EORIENT.html" title="EORIENT"><span class="command"><strong>EORIENT</strong></span></a>,
+    <a class="link" href="Hlp_C_NUMMRG.html" title="NUMMRG"><span class="command"><strong>NUMMRG</strong></span></a>, or <a class="link" href="Hlp_C_NUMCMP.html" title="NUMCMP"><span class="command"><strong>NUMCMP</strong></span></a> commands, for example) after generating
+   the structural infinite elements, remove all affected infinite elements and reissue the
+    <span class="command"><strong>EINFIN</strong></span> command; doing so prevents inconsistencies.</p></div><div class="refsect1" title="Command Usage Examples"><a name="d0e92043"></a><h2>Command Usage Examples</h2><div class="example"><a name="d0e92046"></a><span class="title"><b>Example&nbsp;1:&nbsp;&nbsp;Single Reference Node (Pole)</b></span><div class="example-contents"><p><span class="bold"><strong>2-D Elements:</strong></span></p><pre class="programlisting">/prep7  
+et,1,182
+mp,ex,1,1e9 
+mp,nuxy,1,0.3
+   
+type,1             ! Generate solid elements
+mat,1   
+rect,0,4,0,4
+elsize,1
+allsel  
+mshkey,1
+amesh,1 
+
+n1 = node(0,4,0)   ! Select reference node
+nsel,s,loc,x,4     ! Select nodes on base element
+nsel,a,loc,y,0
+EINFIN, ,n1
+</pre><p><img src="graphics/gEINFIN1a.png">&nbsp;</p><p><span class="bold"><strong>3-D Elements:</strong></span></p><pre class="programlisting">/prep7  
+et,1,185          ! Generate solid elements
+mp,ex,1,1e9 
+mp,nuxy,1,0.3   
+
+type,1  
+mat,1 
+block,0,4,0,4,0,4
+elsize,1
+
+mshkey,1
+vmesh,1
+
+n1 = node(0,0,4)  ! Select reference node
+nsel,,loc,x,4     ! Select nodes on base elements
+nsel,a,loc,y,4
+nsel,a,loc,z,0
+EINFIN, ,n1                   
+</pre><p><img src="graphics/gEINFIN1b.png">&nbsp;</p></div></div><br class="example-break"><div class="example"><a name="d0e92063"></a><span class="title"><b>Example&nbsp;2:&nbsp;&nbsp;Two Reference Nodes</b></span><div class="example-contents"><p><span class="bold"><strong>2-D Elements:</strong></span></p><pre class="programlisting">/prep7
+et,1,182            ! Generate solid elements  
+mp,ex,1,1e9 
+mp,nuxy,1,0.3
+type,1                      
+mat,1   
+rect,0,4,0,4
+elsize,1
+allsel  
+mshkey,1
+amesh,1 
+
+n1 = node(0,0,0)    ! Select reference nodes
+n2 = node(0,1,0) 
+
+nsel,,loc,x,4       ! Select nodes on base elements
+EINFIN, ,n1,n2
+</pre><p>Following is the equivalent input with a component: </p><pre class="programlisting">/prep7
+et,1,182            ! Generate solid elements  mp,ex,1,1e9 
+mp,nuxy,1,0.3
+type,1                      
+mat,1   
+rect,0,4,0,4
+elsize,1
+allsel  
+mshkey,1
+amesh,1 
+
+n1 = node(0,0,0)     ! Select  reference nodes
+n2 = node(0,1,0) 
+nsel,,node,,n1
+nsel,a,node,,n2
+cm, nrefs, node      ! Define component
+allsel
+nsel,,loc,x,4        ! Select nodes on base elements
+EINFIN, nrefs
+</pre><p><img src="graphics/gEINFIN2a.png">&nbsp;</p><p><span class="bold"><strong>3-D Elements:</strong></span></p><pre class="programlisting">prep7  
+
+et,1,185             ! Generate solid elements
+mp,ex,1,1e9 
+mp,nuxy,1,0.3   
+
+type,1  
+mat,1 
+block,0,4,0,4,0,4
+elsize,1
+mshkey,1
+vmesh,1
+
+n1 = node(0,1,4)    ! Select reference nodes
+n2 = node(0,0,4) 
+nsel,,loc,x,4       ! Select nodes on base elements
+EINFIN, ,n1, n2
+</pre><p><img src="graphics/gEINFIN2b.png">&nbsp;</p></div></div><br class="example-break"><div class="example"><a name="d0e92084"></a><span class="title"><b>Example&nbsp;3:&nbsp;&nbsp;Three Reference Nodes</b></span><div class="example-contents"><p><span class="bold"><strong>3-D Elements Only:</strong></span></p><pre class="programlisting">/prep7  
+
+et,1,185            ! Generate solid elements
+mp,ex,1,1e9 
+mp,nuxy,1,0.3   
+
+type,1  
+mat,1 
+block,0,4,0,4,0,4
+elsize,1
+mshkey,1
+vmesh,1
+
+n1 = node(0,4,4)    ! Select reference nodes
+n2 = node(0,0,4) 
+n3 = node(0,0,0)
+nsel,,loc,x,4       ! Select nodes on base elements
+EINFIN, ,n1,n2,n3
+</pre><p><img src="graphics/gEINFIN3.png">&nbsp;</p></div></div><br class="example-break"><div class="example"><a name="example_yh1_1gv_q5"></a><span class="title"><b>Example&nbsp;4:&nbsp;&nbsp;Multiple EINFIN Commands</b></span><div class="example-contents"><p><span class="bold"><strong>2-D Elements:</strong></span></p><pre class="programlisting">/prep7  
+et,1,182
+mp,ex,1,1e9 
+mp,nuxy,1,0.3
+   
+type,1             ! Generate solid elements
+mat,1   
+rect,0,4,0,4
+elsize,1
+allsel  
+mshkey,1
+amesh,1 
+
+n1 = node(0,0,0)
+n2 = node(0,4,0) 
+nsel,,loc,x,4,
+nsel,r,loc,y,0.5,5
+EINFIN,,n1,n2      ! upper right quad. elements
+nsel,all
+nsel,,loc,x,4
+nsel,r,loc,y,0,1.5
+EINFIN,,n2         ! Lower corner element
+nsel,all
+n3 = node(4,4,0)
+nsel,s,loc,y,0
+EINFIN,,n2,n3      ! Lower elements (y&lt;0)
+</pre><p><img src="graphics/gEINFIN4.png">&nbsp;</p><p><span class="bold"><strong>3-D Elements:</strong></span></p><pre class="programlisting">/prep7  
+
+et,1,185             ! Generate solid elements
+mp,ex,1,1e9 
+mp,nuxy,1,0.3   
+
+type,1  
+mat,1 
+
+block,0,4,0,4,0,4
+elsize,1
+
+mshkey,1
+vmesh,1
+
+n1 = node(0,0,0)
+n2 = node(0,0,4) 
+n3 = node(0,4,4)
+
+nsel,s,loc,x,4,
+nsel,u,loc,z,0
+EINFIN, , n1, n2, n3  ! Upper right part
+allsel
+nsel,s,loc,x,4
+nsel,r,loc,z,-0.1,1.2
+EINFIN,,n2,n3         ! Corner element
+allsel
+n5 = node(4,4,4)
+nsel,s,loc,z,0
+EINFIN,,n2,n3,n5      ! Lower part (z&lt;0)
+</pre><p><img src="graphics/gEINFIN5.png">&nbsp;</p></div></div><br class="example-break"></div><div class="refsect1" title="Menu Paths"><a name="EINFIN.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

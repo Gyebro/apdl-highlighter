@@ -1,0 +1,62 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:04-04:00"><title>FSUM</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_F_TOC.html" title="F Commands"><link rel="prev" href="Hlp_C_FSSPARM.html" title="FSSPARM"><link rel="next" href="Hlp_C_FTRAN.html" title="FTRAN"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="FSUM"><a name="FSUM"></a><div class="titlepage"></div><a class="indexterm" name="d0e113272"></a><span class="refentrytitle"><span class="command"><strong>FSUM</strong></span></span><div class="refnamediv"><p><span class="command"><strong>FSUM</strong></span>, <em class="replaceable"><code>LAB</code></em>, <em class="replaceable"><code>ITEM</code></em><br><b class="refpurpose">Sums the nodal force and moment contributions of elements.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1sppurpjla070199" title="Table&nbsp;2.91:&nbsp;&nbsp;Special Purpose"><span class="type">Special Purpose</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="FSUM.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>LAB</code></em></b></span></dt><dd><p>Coordinate system in which to perform summation.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">(blank)</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Sum all nodal forces in global
+Cartesian coordinate system (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">RSYS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Sum all nodal forces in the currently
+active RSYS coordinate system.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>ITEM</code></em></b></span></dt><dd><p>Selected set of nodes.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">(blank)</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Sum all nodal forces for all selected
+nodes (default), excluding contact elements.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CONT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Sum all nodal forces for contact
+nodes only.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BOTH</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Sum all nodal forces for all selected
+nodes, including contact elements.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="FSUM.notes"></a><h2>Notes</h2><p>Sums and prints, in each component direction for the total selected
+node set, the nodal force and moment contributions of the selected
+elements attached to the node set. Selecting a subset of nodes [<a class="link" href="Hlp_C_NSEL.html" title="NSEL"><span class="command"><strong>NSEL</strong></span></a>] and then issuing this command will give the total
+force acting on that set of nodes (default), excluding surface-to-surface,
+node-to-surface, line-to-line, and line-to-surface contact elements
+(<a href="../ans_elem/Hlp_E_TARGE169.html" class="olink"><span class="structname">TARGE169</span></a>, <a href="../ans_elem/Hlp_E_TARGE170.html" class="olink"><span class="structname">TARGE170</span></a>, <a href="../ans_elem/Hlp_E_CONTA171.html" class="olink"><span class="structname">CONTA171</span></a>, <a href="../ans_elem/Hlp_E_CONTA172.html" class="olink"><span class="structname">CONTA172</span></a>, <a href="../ans_elem/Hlp_E_CONTA173.html" class="olink"><span class="structname">CONTA173</span></a>, <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a>, <a href="../ans_elem/Hlp_E_CONTA175.html" class="olink"><span class="structname">CONTA175</span></a>, <a href="../ans_elem/Hlp_E_CONTA176.html" class="olink"><span class="structname">CONTA176</span></a>, and <a href="../ans_elem/Hlp_E_CONTA177.html" class="olink"><span class="structname">CONTA177</span></a>). </p><p>Setting <em class="replaceable"><code>ITEM</code></em> = CONT sums the nodal
+forces and moment contributions of the selected contact elements (<a href="../ans_elem/Hlp_E_CONTA171.html" class="olink"><span class="structname">CONTA171</span></a>, <a href="../ans_elem/Hlp_E_CONTA172.html" class="olink"><span class="structname">CONTA172</span></a>, <a href="../ans_elem/Hlp_E_CONTA173.html" class="olink"><span class="structname">CONTA173</span></a>, <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a>, <a href="../ans_elem/Hlp_E_CONTA175.html" class="olink"><span class="structname">CONTA175</span></a>, <a href="../ans_elem/Hlp_E_CONTA176.html" class="olink"><span class="structname">CONTA176</span></a>, and <a href="../ans_elem/Hlp_E_CONTA177.html" class="olink"><span class="structname">CONTA177</span></a>). Setting <em class="replaceable"><code>ITEM</code></em> =
+BOTH sums the nodal forces for all selected nodes, including contact
+elements.</p><p>Nodal forces associated with surface loads are not included.
+The effects of nodal coupling and constraint equations are ignored.
+Moment summations are about the global origin unless another point
+is specified with the <a class="link" href="Hlp_C_SPOINT.html" title="SPOINT"><span class="command"><strong>SPOINT</strong></span></a> command. This vector
+sum is printed in the global Cartesian system unless it is transformed
+[<a class="link" href="Hlp_C_RSYS.html" title="RSYS"><span class="command"><strong>RSYS</strong></span></a>] and a point is specified with the <a class="link" href="Hlp_C_SPOINT.html" title="SPOINT"><span class="command"><strong>SPOINT</strong></span></a> command. By default, the sum is done in global Cartesian,
+and the resulting vector is transformed to the requested system.</p><p>The <em class="replaceable"><code>LAB</code></em> = RSYS option transforms
+each of the nodal forces into the active coordinate system before
+summing and printing. The <a class="link" href="Hlp_C_FORCE.html" title="FORCE"><span class="command"><strong>FORCE</strong></span></a> command can be
+used to specify which component (static, damping, inertia, or total)
+of the nodal load is to be used. This command output is included in
+the <a class="link" href="Hlp_C_NFORCE.html" title="NFORCE"><span class="command"><strong>NFORCE</strong></span></a> command.</p><p>The command should not be used with axisymmetric elements because
+it might calculate a moment where none exists. Consider, for example,
+the axial load on a pipe modeled with an axisymmetric shell element.
+ The reaction force on the end of the pipe is the total force (for
+the full 360 degrees) at that location. The net moment about the centerline
+of the pipe would be zero, but the program would incorrectly calculate
+a moment at the end of the element as the force multiplied by the
+radius.</p><p>The command is not valid for <a href="../ans_elem/Hlp_E_CH2_3.html#aOVqq14atlm" class="olink">elements that operate
+solely within the nodal coordinate system</a> with 1-D option
+activated and rotated nodes (<a class="link" href="Hlp_C_NROTAT.html" title="NROTAT"><span class="command"><strong>NROTAT</strong></span></a>). </p></div><div class="refsect1" title="Using FSUM with the NLGEOM Command"><a name="d0e113471"></a><h2>Using <span class="command"><strong>FSUM</strong></span> with the <a class="link" href="Hlp_C_NLGEOM.html" title="NLGEOM"><span class="command"><strong>NLGEOM</strong></span></a> Command</h2><p>If you have activated large deflection (<a class="link" href="Hlp_C_NLGEOM.html" title="NLGEOM"><span class="command"><strong>NLGEOM</strong></span></a>,<code class="option">ON</code>), the
+    <span class="command"><strong>FSUM</strong></span> command generates the following message: </p><pre class="screen">Summations based on final geometry and
+   will not agree with solution reactions.</pre><p>The message warns that the moment summations may not equal the real
+   moment reactions. When calculating moment summations, the <span class="command"><strong>FSUM</strong></span> command assumes
+   that the summation of rotations applies; however, it does not apply for large rotations, which
+   require pseudovector representation to sum the rotations. </p><p>In contrast, the results for force reactions will be correct
+because they depend upon linear displacement vectors (which can be
+added).</p></div><div class="refsect1" title="Using FSUM in a Spectrum or PSD Analysis (ANTYPE, SPECTR)"><a name="d0e113503"></a><h2>Using <span class="command"><strong>FSUM</strong></span> in a Spectrum or PSD Analysis
+(<a class="link" href="Hlp_C_ANTYPE.html" title="ANTYPE"><span class="command"><strong>ANTYPE</strong></span></a>, SPECTR)</h2><p>When using <span class="command"><strong>FSUM</strong></span> in a spectrum analysis after
+the combination file has been input (<a href="Hlp_C_INPUT.html" class="olink"><span class="command"><strong>/INPUT</strong></span></a>,,MCOM),
+or in a PSD analysis when postprocessing 1-sigma results (loadstep
+3, 4, or 5), the following message will display in the printout header:</p><pre class="screen">(Spectrum analysis summation is used)</pre><p>This message means that the summation of the element nodal forces
+is performed prior to the combination of those forces. In this case, <a class="link" href="Hlp_C_RSYS.html" title="RSYS"><span class="command"><strong>RSYS</strong></span></a> does not apply. The forces are in the nodal coordinate
+systems, and the vector sum is always printed in the global coordinate
+system. </p><p>The spectrum analysis summation is available when the element
+results are written to the mode file, <span class="filename"><strong>Jobname.MODE</strong></span> (<em class="replaceable"><code>MSUPkey</code></em> = Yes on the <a class="link" href="Hlp_C_MXPAND.html" title="MXPAND"><span class="command"><strong>MXPAND</strong></span></a> command).</p><p>Because modal displacements cannot be used to calculate contact
+element nodal forces, <em class="replaceable"><code>ITEM</code></em> does not apply
+to spectrum and PSD analyses.</p></div><div class="refsect1" title="Menu Paths"><a name="FSUM.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Nodal Calcs&gt;Total Force Sum</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

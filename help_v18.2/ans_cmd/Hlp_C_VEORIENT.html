@@ -1,0 +1,53 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:50-04:00"><title>VEORIENT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_V_TOC.html" title="V Commands"><link rel="prev" href="Hlp_C_VEDIT.html" title="*VEDIT"><link rel="next" href="Hlp_C_VEXT.html" title="VEXT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="VEORIENT"><a name="VEORIENT"></a><div class="titlepage"></div><a class="indexterm" name="d0e291027"></a><span class="refentrytitle"><span class="command"><strong>VEORIENT</strong></span></span><div class="refnamediv"><p><span class="command"><strong>VEORIENT</strong></span>, <em class="replaceable"><code>VNUM</code></em>, <em class="replaceable"><code>Option</code></em>, <em class="replaceable"><code>VALUE1</code></em>, <em class="replaceable"><code>VALUE2</code></em><br><b class="refpurpose">Specifies brick element orientation for volume mapped (hexahedron)
+meshing.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7meshingldm061600" title="Table&nbsp;2.36:&nbsp;&nbsp;Meshing"><span class="type">Meshing</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>VNUM </code></em></b></span></dt><dd><p>Number identifying volume for which elements are to be oriented
+(no default).</p></dd><dt><span><b class="term"><em class="replaceable"><code>Option </code></em></b></span></dt><dd><p>Option for defining element orientation:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">KP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Orientation is determined by two keypoints
+on the volume. Input the keypoint numbers (KZ1 and KZ2) in fields<em class="replaceable"><code> VALUE1</code></em> and<em class="replaceable"><code> VALUE2</code></em>,
+respectively. The element z-axis points from KZ1 toward KZ2. Element x and
+y directions point away from KZ1 along edges of the volume to make a right-hand
+triad. (The element x- and y-axes are uniquely determined by this specification.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LINE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Orientation is determined by one of the lines
+defining the volume. Input the line number in field <em class="replaceable"><code>VALUE1</code></em>.
+The element z direction follows the direction of the line. Input a negative
+value if the desired z direction is opposite to the direction of the specified
+line. (The element x- and y-axes are uniquely determined by this specification.)
+(<em class="replaceable"><code>VALUE2</code></em> is not used.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">AREA</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Orientation is determined by one of the areas
+defining the volume. The area represents the desired element top surface.
+Input the area number as <em class="replaceable"><code>VALUE1</code></em>. The shortest line
+in the volume connected to the area will be used to specify the element z
+direction. (If more than one shortest line exists, the lowest numbered of
+those is used.) Element x and y directions are not uniquely specified by this
+option. (<em class="replaceable"><code>VALUE2</code></em> is not used.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">THIN</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Align the element z normal to the thinnest
+dimension of the volume. The shortest line in the volume is used to specify
+the element z direction. (If more than one shortest line exists, the lowest
+numbered of those is used.) Element x and y directions are not uniquely specified
+by this option. (<em class="replaceable"><code>VALUE1</code></em> and <em class="replaceable"><code>VALUE2</code></em> are
+not used.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DELE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Delete the previously defined volume orientation
+for the specified volume (<em class="replaceable"><code>VNUM</code></em>).  (<em class="replaceable"><code>VALUE1</code></em> and <em class="replaceable"><code>VALUE2</code></em> are
+not used.)</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>VALUE1</code></em>, <em class="replaceable"><code>VALUE2</code></em></b></span></dt><dd><p>Parameters required for the element z-axis direction specification.
+The meaning of <em class="replaceable"><code>VALUE1</code></em> and<em class="replaceable"><code> VALUE2</code></em> will
+depend on the chosen <em class="replaceable"><code>Option</code></em>. See the description
+of <em class="replaceable"><code>Option</code></em> above for details.</p></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="d0e291169"></a><h3>Command Default</h3><p>Elements are not oriented in any specific manner.</p></div></div><div class="refsect1" title="Notes"><a name="d0e291174"></a><h2>Notes</h2><p>Use <span class="command"><strong>VEORIENT</strong></span> before the <a class="link" href="Hlp_C_VMESH.html" title="VMESH"><span class="command"><strong>VMESH</strong></span></a> command
+to specify the desired orientation of brick elements in a mapped mesh. <span class="command"><strong>VEORIENT</strong></span> has
+no effect on tetrahedron meshes, extruded meshes (<a class="link" href="Hlp_C_VROTAT.html" title="VROTAT"><span class="command"><strong>VROTAT</strong></span></a>, <a class="link" href="Hlp_C_VDRAG.html" title="VDRAG"><span class="command"><strong>VDRAG</strong></span></a>, <a class="link" href="Hlp_C_VEXT.html" title="VEXT"><span class="command"><strong>VEXT</strong></span></a>,
+etc.), or swept meshes (<a class="link" href="Hlp_C_VSWEEP.html" title="VSWEEP"><span class="command"><strong>VSWEEP</strong></span></a>).</p><p>Proper brick orientation is essential for certain
+element types such as <a href="../ans_elem/Hlp_E_SOLID185.html" class="olink"><span class="structname">SOLID185</span></a> Layered
+Solid, <a href="../ans_elem/Hlp_E_SOLID186.html" class="olink"><span class="structname">SOLID186</span></a> Layered Solid, and <a href="../ans_elem/Hlp_E_SOLSH190.html" class="olink"><span class="structname">SOLSH190</span></a>.
+In such cases, use <span class="command"><strong>VEORIENT</strong></span> or <a class="link" href="Hlp_C_EORIENT.html" title="EORIENT"><span class="command"><strong>EORIENT</strong></span></a> to
+achieve the desired orientation. For other brick element types, you may need
+to specify element orientation to control orthotropic material property directions
+without concern for the element connectivity. For those cases, the <a class="link" href="Hlp_C_ESYS.html" title="ESYS"><span class="command"><strong>ESYS</strong></span></a> command
+is the preferred method of specifying the material property directions.</p><p>For <em class="replaceable"><code>Option</code></em> = LINE, AREA, and THIN, the orientation
+will be internally converted to an equivalent <em class="replaceable"><code>Option</code></em> =
+KP specification (KP,KZ1,KZ2). Use the <a class="link" href="Hlp_C_VLIST.html" title="VLIST"><span class="command"><strong>VLIST</strong></span></a> command to
+view the element orientations (in terms of KZ1 and KZ2) associated with each
+volume. </p></div><div class="refsect1" title="Menu Paths"><a name="d0e291242"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Mesh Attributes&gt;Volume Brick Orient&gt;Delete Specification</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Mesh Attributes&gt;Volume Brick Orient&gt;Z Along Line</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Mesh Attributes&gt;Volume Brick Orient&gt;Z by 2 Keypoints</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Mesh Attributes&gt;Volume Brick Orient&gt;Z in Thin Direction</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Mesh Attributes&gt;Volume Brick Orient&gt;Z Normal to Area</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:39-04:00"><title>FLUID139</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_FLUID138.html" title="FLUID138"><link rel="next" href="Hlp_E_ROM144.html" title="ROM144"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="FLUID139"><a name="FLUID139"></a><div class="titlepage"></div><a class="indexterm" name="d0e65185"></a><span class="refentrytitle"><span class="structname">FLUID139</span> </span><div class="refnamediv"><p><br><b class="refpurpose">3-D Slide
+Film Fluid Element</b><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_E_FLUID139.html#fl139prdres" title="FLUID139 Product Restrictions">Product Restrictions</a></span></div></div></div></p></div><div class="refsect1" title="FLUID139 Element Description"><a name="ELEMfluid139desc"></a><h2>FLUID139 Element Description</h2><p><span class="structname">FLUID139</span> is a uniaxial element which
+models the fluid behavior between a sliding surface and a fixed wall.
+ The viscous flow between surfaces is represented by a series connection
+of mass-damper elements whereby each node corresponds to a local fluid
+layer. The element has applications for modeling the fluid damping
+effects in microsystems such as comb drive fingers, large horizontally
+moving plates in seismic devices, etc.  The element can be used in
+conjunction with other elements to model complete structural-fluid
+damping interaction, or stand-alone to add damping effects in a lumped
+sense to a structure.  For low frequency applications, Couette flow
+assumptions is used.  At higher frequencies where inertial effects
+become important, Stokes flow theory is used.  First and second order
+slip flow models can be activated for systems which operate at high
+Knudsen numbers. The element is applicable to large deflection cases
+where the surface area exposed to a fixed wall changes with displacement
+(such as in comb fingers). See <a href="../ans_thry/thy_el139.html" class="olink"><span class="structname">FLUID139</span></a> in
+the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for more details about this element.</p></div><div class="refsect1" title="FLUID139 Input Data"><a name="fluid139indata"></a><h2>FLUID139 Input Data</h2><p>The element is defined by two nodes.  The I node is connected
+to the first "wall" and the J (or I+32) node is attached to the second
+"wall".  Either wall may be constrained from moving, or both walls
+may move with respect to one another.</p><div class="figure"><a name="FL139geom"></a><p class="title"><b>Figure&nbsp;139.1:&nbsp;&nbsp;FLUID139 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gflufluid139.svg" alt="FLUID139 Geometry"></div></div></div><br class="figure-break"><p>The 2-node option (KEYOPT(2) = 0) is recommended for <a href="../ans_flu/Hlp_G_FLU_THIN4.html" class="olink">systems which operate
+at frequencies below the cut-off frequency</a>.</p><p>The 32-node option (KEYOPT(2) = 1) is necessary for Stokes flow
+models where only a small fluid layer at the wall is accelerated due
+to fluid inertia. For the  32 node option (KEYOPT(2) = 1), the first
+node is node I, and the 32nd node is node J.  The intermediate node
+numbers (2-31) must be defined, but their location may be arbitrary.
+ The geometric location of node I and J is not important as their
+separation distance is computed from the real constant gap separation
+GAP.</p><p>The fluid environment is defined by the real constants.  </p><p>Gap is the local gap separation (i.e., width of fluid domain).
+AREA is the surface area. DADU is the change in the overlap area with
+respect to the surface displacement.  That is, DADU is the first derivative
+of AREA with respect to displacement.  If the surface area is constant,
+then DADU is the width of the overlap surface. PAMB is the ambient
+(i.e., surrounding) pressure. PREF is the reference pressure for which
+the mean free path of the fluid is defined. MFP is the mean free path
+of the fluid at PREF.  </p><p><span class="structname">FLUID139</span> can be used to model continuous
+flow or slip flow boundary conditions.   If the Knudsen number is
+less than 0.01, then continuous flow boundary conditions are valid.
+ If the Knudsen number is greater than 0.01, but not near 1, then
+first order slip flow boundary conditions are valid.  If the Knudsen
+number is near 1, then extended slip flow boundary conditions are
+valid.  KEYOPT(3) is used to specify fluid blow boundary conditions.
+ KEYOPT(3) = 0 specifies continuous flow. KEYOPT(3) = 1 specifies
+first order slip flow boundary conditions.  KEYOPT(3) = 2 specifies
+extended slip flow boundary conditions.  See <a href="../ans_flu/flowreg.html" class="olink">Flow Regime Considerations</a> in the <a href="../ans_flu/Hlp_G_cfdTOC.html" class="olink"><em class="citetitle">Fluids Analysis Guide</em></a> for a complete discussion
+of flow regimes and calculation of the Knudsen number. </p><p><span class="structname">FLUID139</span> can be loaded by nodal displacements
+at the interface nodes using the <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a> command or by
+nodal forces using the <a href="../ans_cmd/Hlp_C_F.html" class="olink"><span class="command"><strong>F</strong></span></a> command.  A combination
+of <span class="structname">FLUID139</span> and structural elements allows
+a simultaneous fluid-structure domain simulation.</p><div class="refsect2" title="FLUID139 Input Summary"><a name="fluid139insum"></a><h3>FLUID139 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J (KEYOPT(2) = 0)</p><p>I, J, node 32 (KEYOPT(2)
+= 1)</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>UX, UY, UZ (Depending on KEYOPT(1))</p></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><p>GAP, AREA, DADU, PAMB, (blank), (blank)</p><p>PREF, MFP</p></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p><a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: DENS (density), VISC
+(dynamic viscosity)</p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Special Features</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Operating Directions</p><div><div class="variablelist"><dl><dt><span><b class="term">0,1&nbsp;--&nbsp;</b></span></dt><dd><p>x-direction (UX DOF)</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>y-direction (UY DOF)</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>z-direction (UZ DOF)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Flow model</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>2-node element (Couette
+flow)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>32-node element (Stokes
+flow)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(3)</b></span></dt><dd><p>Continuous flow options</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Continuum theory</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>First order slip flow</p></dd><dt><span><b class="term">2 &nbsp;--&nbsp;</b></span></dt><dd><p>Extended slip flow theory</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="FLUID139 Output Data"><a name="fluid139outdata"></a><h2>FLUID139 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal degrees of freedom included in the overall nodal
+solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_FLUID129.html#aoyDp59ctg" title="Table&nbsp;129.1:&nbsp;&nbsp;FLUID129 Element Output Definitions">Table&nbsp;129.1:&nbsp;FLUID129 Element Output Definitions</a></p></li></ul></div><p>A general description of solution output is given in <a class="xref" href="Hlp_E_FLUID136.html#fl136outdeftab" title="Table&nbsp;136.2:&nbsp;&nbsp;FLUID136 Element Output Definitions">Table&nbsp;136.2:&nbsp;FLUID136 Element Output Definitions</a>.  See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways to view results.</p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="fl139outdeftab"></a><p class="title"><b>Table&nbsp;139.1:&nbsp;&nbsp;FLUID139 Element Output Definitions</b></p><div class="table-contents"><table summary="FLUID139 Element Output Definitions" border="1" width="95%"><colgroup><col width="120" class="col1"><col width="360" class="col2"><col width="48" align="center" class="col3"><col width="46" align="center" class="col4"></colgroup><thead><tr><th align="center">Name</th><th align="center">Definition</th><th align="center">O</th><th align="center">R</th></tr></thead><tbody><tr><td>EL</td><td>Element Number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Nodes - I, J</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>MAT</td><td>Material number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>VOL</td><td>Volume</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>GAP</td><td>Gap separation</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>AREA</td><td>Area</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>PRES (I, J)</td><td>P1 at node I, P2 at node J</td><td align="center">Y</td><td align="center">Y</td></tr></tbody></table></div></div><br class="table-break"><p><a class="xref" href="Hlp_E_FLUID138.html#fl138itnumtab" title="Table&nbsp;138.2:&nbsp;&nbsp;FLUID138 Item and Sequence Numbers">Table&nbsp;138.2:&nbsp;FLUID138 Item and Sequence Numbers</a> lists output available through
+the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method.
+ See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General Postprocessor
+(POST1)</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in
+this reference for more information.  The following notation is used
+in <a class="xref" href="Hlp_E_FLUID129.html#aVqyDp1e8ctg" title="Table&nbsp;129.2:&nbsp;&nbsp;FLUID129 Item and Sequence Numbers">Table&nbsp;129.2:&nbsp;FLUID129 Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="Hlp_E_FLUID129.html#aoyDp59ctg" title="Table&nbsp;129.1:&nbsp;&nbsp;FLUID129 Element Output Definitions">Table&nbsp;129.1:&nbsp;FLUID129 Element Output Definitions</a></p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element
+data</p></dd></dl></div></div><div class="table"><a name="fl139itnumtab"></a><p class="title"><b>Table&nbsp;139.2:&nbsp;&nbsp;FLUID139 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="FLUID139 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="144" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"></colgroup><thead><tr><th rowspan="2" align="center" valign="middle">Output Quantity
+Name</th><th colspan="2" align="center"><a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th align="center">Item</th><th align="center">E</th></tr></thead><tbody><tr><td align="center">Effective viscosity</td><td align="center">NMISC</td><td align="center">1</td></tr><tr><td align="center">GAP</td><td align="center">NMISC</td><td align="center">2</td></tr><tr><td align="center">AREA</td><td align="center">NMISC</td><td align="center">3</td></tr></tbody></table></div></div><br class="table-break"></div><div class="refsect1" title="FLUID139 Assumptions and Restrictions"><a name="fl139restr"></a><h2>FLUID139 Assumptions and Restrictions</h2><p>The element assumes isothermal viscous flow. All the fluid properties
+are at a constant temperature (<a href="../ans_cmd/Hlp_C_TUNIF.html" class="olink"><span class="command"><strong>TUNIF</strong></span></a>) within a
+load step, even if you specify material properties with temperature
+dependencies (using <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>). See <a href="../ans_thry/thy_flo9.html" class="olink">Slide Film</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for
+more information on the governing equations.</p><p>This element cannot be used in a distributed solution.</p></div><div class="refsect1" title="FLUID139 Product Restrictions"><a name="fl139prdres"></a><h2>FLUID139 Product Restrictions</h2><p>There are no product-specific restrictions for this element.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

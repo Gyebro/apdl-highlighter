@@ -1,0 +1,24 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:56-04:00"><title>NORA</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_N_TOC.html" title="N Commands"><link rel="prev" href="Hlp_C_NOPR.html" title="/NOPR"><link rel="next" href="Hlp_C_NORL.html" title="NORL"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="NORA"><a name="NORA"></a><div class="titlepage"></div><a class="indexterm" name="d0e181519"></a><span class="refentrytitle"><span class="command"><strong>NORA</strong></span></span><div class="refnamediv"><p><span class="command"><strong>NORA</strong></span>, <em class="replaceable"><code>AREA</code></em>, <em class="replaceable"><code>NDIR</code></em><br><b class="refpurpose">Rotates nodal coordinate systems to surface normal</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7nodesldm061600" title="Table&nbsp;2.37:&nbsp;&nbsp;Nodes"><span class="type">Nodes</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="NORA.argdesc"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>AREA</code></em></b></span></dt><dd><p>The area number containing the nodes to be rotated to their
+normals. If ALL, applies to all selected areas (see the <a class="link" href="Hlp_C_ASEL.html" title="ASEL"><span class="command"><strong>ASEL</strong></span></a> command).
+If AREA = P, graphical picking is enabled.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NDIR</code></em></b></span></dt><dd><p>Direction of the normal. If NDIR = -1, the nodal coordinate
+system is rotated in the opposite direction of the surface normal. The default
+is the same direction as the surface normal.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="NORA.notes"></a><h2>Notes</h2><p>The NORA command rotates the X-axis of the nodal coordinate system to
+the surface normal. The rotated nodal coordinate systems may be displayed
+through the <a href="Hlp_C_PSYMB.html" class="olink"><span class="command"><strong>/PSYMB</strong></span></a> command. In case multiple areas are
+selected, there could be conflicts at the boundaries. If a node belongs to
+two areas that have a different normal, its nodal coordinate system will be
+rotated to the area normal with the lowest number. You can use the <a class="link" href="Hlp_C_AREVERSE.html" title="AREVERSE"><span class="command"><strong>AREVERSE</strong></span></a> and <a class="link" href="Hlp_C_ANORM.html" title="ANORM"><span class="command"><strong>ANORM</strong></span></a> commands
+to rotate the surface normals in the appropriate direction. Keep the following
+in mind when using the NORA command:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>If the nodal coordinate system is parallel to the global Cartesian
+system, it is not displayed through the <a href="Hlp_C_PSYMB.html" class="olink"><span class="command"><strong>/PSYMB</strong></span></a> command.</p></li><li class="listitem"><p>Previously specified rotation on the selected nodes are overridden.</p></li></ul></div></div><div class="refsect1" title="Menu Paths"><a name="NORA.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Move / Modify&gt;RotateNode&gt;To Surf Norm&gt;On Areas</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

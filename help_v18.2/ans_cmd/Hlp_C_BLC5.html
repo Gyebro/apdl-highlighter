@@ -1,0 +1,28 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:27-04:00"><title>BLC5</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_B_TOC.html" title="B Commands"><link rel="prev" href="Hlp_C_BLC4.html" title="BLC4"><link rel="next" href="Hlp_C_BLOCK.html" title="BLOCK"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="BLC5"><a name="BLC5"></a><div class="titlepage"></div><a class="indexterm" name="d0e38790"></a><span class="refentrytitle"><span class="command"><strong>BLC5</strong></span></span><div class="refnamediv"><p><span class="command"><strong>BLC5</strong></span>, <em class="replaceable"><code>XCENTER</code></em>, <em class="replaceable"><code>YCENTER</code></em>, <em class="replaceable"><code>WIDTH</code></em>, <em class="replaceable"><code>HEIGHT</code></em>, <em class="replaceable"><code>DEPTH</code></em><br><b class="refpurpose">Creates a rectangular area or block volume by center and corner
+points.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7primitivesldm061600" title="Table&nbsp;2.29:&nbsp;&nbsp;Primitives"><span class="type">Primitives</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="BLC5.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>XCENTER</code></em>, <em class="replaceable"><code>YCENTER</code></em></b></span></dt><dd><p>Working plane X and Y coordinates of the center of the rectangle
+or block face.</p></dd><dt><span><b class="term"><em class="replaceable"><code>WIDTH</code></em></b></span></dt><dd><p>The total distance on or parallel to the working plane X-axis
+defining the width of the rectangle or block face.</p></dd><dt><span><b class="term"><em class="replaceable"><code>HEIGHT</code></em></b></span></dt><dd><p>The total distance on or parallel to the working plane Y-axis
+defining the height of the rectangle or block face.</p></dd><dt><span><b class="term"><em class="replaceable"><code>DEPTH</code></em></b></span></dt><dd><p>The perpendicular distance (either positive or negative based
+on the working plane Z direction) from the working plane representing the
+depth of the block.  If <em class="replaceable"><code>DEPTH</code></em> = 0 (default), a
+rectangular area is created on the working plane.   </p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;If you are
+working with a model imported from an IGES file (import option set to DEFAULT),
+you must supply a value for <em class="replaceable"><code>DEPTH</code></em> or the command
+is ignored.</p><hr></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="BLC5.notes"></a><h2>Notes</h2><p>Defines a rectangular area anywhere on the working plane or a hexahedral
+volume with one face anywhere on the working plane by specifying the center
+and corner points.  A rectangle will be defined with four keypoints and four
+lines.  A volume will be defined with eight keypoints, twelve lines, and six
+areas, with the top and bottom faces parallel to the working plane.  See the <a class="link" href="Hlp_C_BLC4.html" title="BLC4"><span class="command"><strong>BLC4</strong></span></a>, <a class="link" href="Hlp_C_RECTNG.html" title="RECTNG"><span class="command"><strong>RECTNG</strong></span></a>,
+and <a class="link" href="Hlp_C_BLOCK.html" title="BLOCK"><span class="command"><strong>BLOCK</strong></span></a> commands for alternate ways to create rectangles
+and blocks.</p></div><div class="refsect1" title="Menu Paths"><a name="BLC5.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Areas&gt;Rectangle&gt;By Centr &amp; Cornr</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Primitives&gt;Block</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Volumes&gt;Block&gt;By Centr,Cornr,Z</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

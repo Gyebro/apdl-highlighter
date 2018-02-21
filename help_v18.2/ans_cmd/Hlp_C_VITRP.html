@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:57-04:00"><title>*VITRP</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_V_TOC.html" title="V Commands"><link rel="prev" href="Hlp_C_VINV.html" title="VINV"><link rel="next" href="Hlp_C_VLEN.html" title="*VLEN"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="*VITRP"><a name="a-VITRP"></a><div class="titlepage"></div><a class="indexterm" name="d0e296023"></a><span class="refentrytitle"><a href="Hlp_C_VITRP.html" class="olink"><span class="command"><strong>*VITRP</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>*VITRP</strong></span>, <em class="replaceable"><code>ParR</code></em>, <em class="replaceable"><code>ParT</code></em>, <em class="replaceable"><code>ParI</code></em>, <em class="replaceable"><code>ParJ</code></em>, <em class="replaceable"><code>ParK</code></em><br><b class="refpurpose">Forms an array parameter by interpolation of a table.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_4.html" title="2.4.&nbsp;APDL Commands"><code class="classname">APDL</code></a>: <a class="link" href="Hlp_C_CH2_4.html#cmdapdlarrayparajla070199" title="Table&nbsp;2.21:&nbsp;&nbsp;Array Parameters"><span class="type">Array Parameters</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsect1" title="Argument Descriptions"><a name="a-VITRP.argdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>ParR</code></em></b></span></dt><dd><p>The name of the resulting array parameter.
+ See <a href="Hlp_C_SET_st.html" class="olink"><span class="command"><strong>*SET</strong></span></a> for name restrictions.</p></dd><dt><span><b class="term"><em class="replaceable"><code>ParT</code></em></b></span></dt><dd><p>The name of the TABLE array parameter.  The parameter must
+exist as a dimensioned array of type TABLE [<a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a>].</p></dd><dt><span><b class="term"><em class="replaceable"><code>ParI</code></em></b></span></dt><dd><p>Array parameter vector of I (row) index values for interpolation
+in <em class="replaceable"><code>ParT</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>ParJ</code></em></b></span></dt><dd><p>Array parameter vector of J (column) index values for interpolation
+in <em class="replaceable"><code>ParT</code></em> (which must be at least 2-D).</p></dd><dt><span><b class="term"><em class="replaceable"><code>ParK</code></em></b></span></dt><dd><p>Array parameter vector of K (depth) index values for interpolation
+in <em class="replaceable"><code>ParT</code></em> (which must be 3-D).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="a-VITRP.notes"></a><h2>Notes</h2><p>Forms an array parameter (of type ARRAY) by interpolating values of
+an array parameter (of type TABLE) at specified table index locations according
+to:</p><div class="informalexample"><p><em class="replaceable"><code>ParR</code></em> = f(<em class="replaceable"><code>ParT</code></em>, <em class="replaceable"><code>Parl</code></em>, <em class="replaceable"><code>ParJ</code></em>, <em class="replaceable"><code>ParK</code></em>)</p></div><p>where <em class="replaceable"><code>ParT</code></em> is the
+type TABLE array parameter, and <em class="replaceable"><code>ParI</code></em>, <em class="replaceable"><code>ParJ</code></em>, <em class="replaceable"><code>ParK</code></em> are
+the type ARRAY array parameter vectors of index values for interpolation in <em class="replaceable"><code>ParT</code></em>.
+ See the <a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a> command for TABLE and ARRAY declaration types.
+ Linear interpolation is used.  The starting array element number for the
+TABLE array (<em class="replaceable"><code>ParT</code></em>) is not used (but a value must
+be input).  Starting array element numbers must be defined for each array
+parameter vector if it does not start at the first location. For example, <a href="Hlp_C_VITRP.html" class="olink"><span class="command"><strong>*VITRP</strong></span></a>,R(5),TAB(1,1),X(2),Y(4)
+uses the second element of X and the fourth element of Y as index values (row
+and column) for a 2-D interpolation in TAB and stores the result in the fifth
+element of R.  Operations continue on successive array elements [<a href="Hlp_C_VLEN.html" class="olink"><span class="command"><strong>*VLEN</strong></span></a>, <a href="Hlp_C_VMASK.html" class="olink"><span class="command"><strong>*VMASK</strong></span></a>]
+with the default being all successive elements.  Absolute values and scale
+factors may be applied to the result parameter [<a href="Hlp_C_VABS.html" class="olink"><span class="command"><strong>*VABS</strong></span></a>, <a href="Hlp_C_VFACT.html" class="olink"><span class="command"><strong>*VFACT</strong></span></a>].
+ Results may be cumulative [<a href="Hlp_C_VCUM.html" class="olink"><span class="command"><strong>*VCUM</strong></span></a>].  See the <a href="Hlp_C_VOPER.html" class="olink"><span class="command"><strong>*VOPER</strong></span></a> command
+for details.</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e296197"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;Parameters&gt;Array Operations&gt;Vector Interpolate</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:48-04:00"><title>BEAM161</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_LINK160.html" title="LINK160"><link rel="next" href="Hlp_E_PLANE162.html" title="PLANE162"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="BEAM161"><a name="BEAM161"></a><div class="titlepage"></div><a class="indexterm" name="d0e76727"></a><span class="refentrytitle">
+<span class="structname">BEAM161</span>    </span><div class="refnamediv"><p><br><b class="refpurpose">Explicit
+3-D Beam</b><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | DYNA</span></div></div>
+<div class=""><div class="application"><span class="application">
+<a class="link" href="Hlp_E_BEAM161.html#a74Oxq1cemcm" title="BEAM161 Product Restrictions">Product Restrictions</a>
+</span></div></div>
+</div></p></div><div class="refsect1" title="BEAM161 Element Description"><a name="ELEMbeam161descfdb"></a><h2>BEAM161 Element Description</h2><p>
+<span class="structname">BEAM161</span> has several characteristics: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>It is incrementally objective (rigid body rotations
+do not generate strains), allowing for the treatment of finite strains
+that occur in many practical applications.</p></li><li class="listitem"><p>It is simple for computational efficiency and robustness.</p></li><li class="listitem"><p>It is compatible with the brick elements.</p></li><li class="listitem"><p>It includes finite transverse shear strains.  However,
+the added computations needed to retain this strain component, compared
+to those for the assumption of no transverse shear strain, are significant.</p></li></ul></div><p>
+</p><p>The Belytschko beam element formulation (KEYOPT(1) =  2, 4,
+5) is part of a family of structural finite elements that use a "co-rotational
+technique" for treating large rotation.</p><p>This element is used in explicit dynamic analyses only.  Refer
+to the <span class="italic"><em>LS-DYNA Theoretical Manual</em></span> for more information.</p><div class="figure"><a name="asySn2catlm"></a><p class="title"><b>Figure&nbsp;161.1:&nbsp;&nbsp;BEAM161 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM161-1.svg" alt="BEAM161 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="BEAM161 Input Data"><a name="a64Oxq23dmcm"></a><h2>BEAM161 Input Data</h2><p>The geometry, node locations, and the coordinate system for
+this element are shown in <a class="xref" href="Hlp_E_BEAM161.html#asySn2catlm" title="Figure&nbsp;161.1:&nbsp;&nbsp;BEAM161 Geometry">Figure&nbsp;161.1:&nbsp;BEAM161 Geometry</a>.  Node K determines
+the initial orientation of the cross section.</p><p>The element is defined by nodes I and J in the global coordinate
+system.  Node K defines a plane (with I and J) containing the element
+s-axis.  The element r-axis runs parallel to the centroidal line of
+the element and through nodes I and J.  Node K is always required
+to define the element axis system and it must not be colinear with
+nodes I and J.  The location of node K is used only to <span class="italic"><em>initially</em></span> orient the element.  (For information
+about orientation nodes and beam meshing, see <a href="../ans_mod/Hlp_G_MOD7.html" class="olink">Meshing Your Solid Model</a> in the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a>.)</p><p>Use the <a href="../ans_cmd/Hlp_C_EDLOAD.html" class="olink"><span class="command"><strong>EDLOAD</strong></span></a> command to apply nodal loads
+and other load types described below.  For detailed information on
+how to apply loads in an explicit dynamic analysis, see the <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink"><em class="citetitle">ANSYS LS-DYNA User's Guide</em></a>.</p><p>Pressures can be input as surface loads on the element faces
+as shown by the circled numbers in <a class="xref" href="Hlp_E_BEAM161.html#asySn2catlm" title="Figure&nbsp;161.1:&nbsp;&nbsp;BEAM161 Geometry">Figure&nbsp;161.1:&nbsp;BEAM161 Geometry</a>.
+ Note, however, that pressure <span class="italic"><em>is actually
+a traction load applied to the center line of the element</em></span>.  Use the <a href="../ans_cmd/Hlp_C_EDLOAD.html" class="olink"><span class="command"><strong>EDLOAD</strong></span></a> command to apply the pressure
+load, and input the pressure as a force per unit length value.  Positive
+normal pressures act into the element.</p><p>Base accelerations and angular velocities in the x, y, and z
+directions can be applied at the nodes using the <a href="../ans_cmd/Hlp_C_EDLOAD.html" class="olink"><span class="command"><strong>EDLOAD</strong></span></a> command.  To apply these loads, you need to first select the nodes
+and create a component.  The load is then applied to that component.</p><p>You can also use the <a href="../ans_cmd/Hlp_C_EDLOAD.html" class="olink"><span class="command"><strong>EDLOAD</strong></span></a> command to apply
+loads (displacements, forces, etc.) on rigid bodies.</p><p>You can choose from the following materials when working with <span class="structname">BEAM161</span>, with the restrictions as noted:  </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Isotropic Elastic</p></li><li class="listitem"><p>Bilinear Kinematic (Except KEYOPT(1) = 2)</p></li><li class="listitem"><p>Plastic Kinematic (Except KEYOPT(1) = 2)</p></li><li class="listitem"><p>Viscoelastic (KEYOPT(1) = 1 only)</p></li><li class="listitem"><p>Power Law Plasticity (KEYOPT(1) = 1 only)</p></li><li class="listitem"><p>Piecewise Linear Plasticity (KEYOPT(1) = 1 only)</p></li></ul></div><p>
+</p><p>KEYOPT(1) allows you to specify one of four element formulations
+for <span class="structname">BEAM161</span> (see <a class="xref" href="Hlp_E_BEAM161.html#aD7Sn3aatlm" title="BEAM161 Input Summary">"BEAM161 Input Summary"</a>).  For details of real constants to be specified for each element
+formulation, see <a class="xref" href="Hlp_E_BEAM161.html#a81zSnd3tlm" title="Table&nbsp;161.1:&nbsp;&nbsp;BEAM161 Real Constants">Table&nbsp;161.1:&nbsp;BEAM161 Real Constants</a>.</p><p>KEYOPT(2) is valid only with rectangular element formulations
+(KEYOPT(1) = 0, 1, 4).</p><p>The following illustrations show the valid standard beam cross
+sections when KEYOPT(4)&gt;0, and KEYOPT(5) = 2 (standard beam cross
+section). </p><div class="figure"><a name="a64Oxq2acmcm"></a><p class="title"><b>Figure&nbsp;161.2:&nbsp;&nbsp;Standard Beam Cross Sections</b></p><div class="figure-contents"><div><img src="graphics/gELEM161-2.svg" alt="Standard Beam Cross Sections"></div></div></div><br class="figure-break"><div class="figure"><a name="a64Oxq318mcm"></a><p class="title"><b>Figure&nbsp;161.3:&nbsp;&nbsp;Standard Beam Cross Sections (continued)</b></p><div class="figure-contents"><div><img src="graphics/gELEM161-3.svg" alt="Standard Beam Cross Sections (continued)"></div></div></div><br class="figure-break"><p>KEYOPT(5) is not valid when KEYOPT(1) = 2.</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_BEAM161.html#aD7Sn3aatlm" title="BEAM161 Input Summary">"BEAM161 Input Summary"</a>.  Additional information about real constants
+for this element is provided in <a class="xref" href="Hlp_E_BEAM161.html#a81zSnd3tlm" title="Table&nbsp;161.1:&nbsp;&nbsp;BEAM161 Real Constants">Table&nbsp;161.1:&nbsp;BEAM161 Real Constants</a>. For
+more information about this element, see the <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink"><em class="citetitle">ANSYS LS-DYNA User's Guide</em></a>.</p><div class="refsect2" title="BEAM161 Input Summary"><a name="aD7Sn3aatlm"></a><h3>BEAM161 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J, K (K is the orientation node)</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>UX, UY, UZ, VX, VY, VZ, AX, AY, AZ, ROTX, ROTY, ROTZ</p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;For explicit dynamics analyses, V(X, Y, Z) refers to nodal
+velocity, and A(X, Y, Z) refers to nodal acceleration.  Although V(X,
+Y, Z) and A(X, Y, Z) appear as DOFs, they are not actually physical
+DOFs.  However, these quantities are computed as DOF solutions and
+stored for postprocessing.</p><hr></div></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><p>See <a class="xref" href="Hlp_E_BEAM161.html#a81zSnd3tlm" title="Table&nbsp;161.1:&nbsp;&nbsp;BEAM161 Real Constants">Table&nbsp;161.1:&nbsp;BEAM161 Real Constants</a> for a description
+of the real constants.</p></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command: See <a class="xref" href="elem_matsupp.html" title="Chapter&nbsp;4:&nbsp;Element Support for Material Models">Element Support for Material Models</a> for this element.</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: EX, NUXY, DENS, ALPD, BETD, <span>DMPR</span>
+</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_EDMP.html" class="olink"><span class="command"><strong>EDMP</strong></span></a> command: RIGID (KEYOPT(1) = 1,2)</td></tr></table></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Pressure&nbsp;--&nbsp;</b></span></dt><dd><p>face 1 (I-J) (+r
+tangential direction), face 2 (I-J) (-s normal direction), face 3
+(I) (-t normal direction)</p></dd></dl></div></div></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Special Features</b></span></dt><dd><p>All nonlinear features allowed for an <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink">explicit dynamic analysis</a>.</p></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Element formulation:</p><div><div class="variablelist"><dl><dt><span><b class="term">0, 1&nbsp;--&nbsp;</b></span></dt><dd><p>Hughes-Liu with cross
+section integration (default)</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Belytschko-Schwer resultant
+beam (resultant)</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>Belytschko-Schwer full
+cross section integration</p></dd><dt><span><b class="term">5&nbsp;--&nbsp;</b></span></dt><dd><p>Belytschko-Schwer circular
+beam with cross section integration</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Quadrature rule:</p><div><div class="variablelist"><dl><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>One integration point</p></dd><dt><span><b class="term">0, 2&nbsp;--&nbsp;</b></span></dt><dd><p>2 x 2 Gauss quadrature
+(default)</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>3 x 3 Gauss quadrature</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>3 x 3 Lobatto quadrature</p></dd><dt><span><b class="term">5&nbsp;--&nbsp;</b></span></dt><dd><p>4 x 4 Gauss quadrature</p></dd></dl></div></div><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;KEYOPT(2) is valid only with rectangular element formulations
+(KEYOPT(1) = 0, 1, 4).</p><hr></div></dd><dt><span><b class="term">KEYOPT(4)</b></span></dt><dd><p>Integration rule for section:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Standard integration option</p></dd><dt><span><b class="term">n&nbsp;--&nbsp;</b></span></dt><dd><p>User-defined integration
+rule ID (valid range: 1 to 9999)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(5)</b></span></dt><dd><p>Cross section type:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Rectangular cross section</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Circular cross section</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Arbitrary cross section
+(user defined integration rule) or standard beam cross section, if
+KEYOPT (4) &gt; 0.</p></dd></dl></div></div></dd></dl></div></div><div class="table"><a name="a81zSnd3tlm"></a><p class="title"><b>Table&nbsp;161.1:&nbsp;&nbsp;BEAM161 Real Constants</b></p><div class="table-contents"><table summary="BEAM161 Real Constants" border="1" width="95%"><colgroup><col width="72" class="col1"><col width="72" class="col2"><col width="264" class="col3"><col width="192" align="left" class="col4"></colgroup><thead><tr><th>No.</th><th align="center">Name</th><th align="center">Description</th><th align="left">Use if...</th></tr></thead><tbody><tr><td>1</td><td>SHRF</td><td>
+<p>Shear
+factor. </p>
+<p>Default = 1.0</p> <p>Recommended for rectangular
+sections = 5/6.</p>
+</td><td align="left">
+<p>KEYOPT (1) = 0,1, 4, or
+5</p>
+</td></tr><tr><td>2</td><td>TS1</td><td>
+<p>Beam thickness in s direction at node 1; </p>
+<p>if KEYOPT
+(5) = 2, then use for arbitrary cross section only.</p>
+</td><td align="left">
+<p>KEYOPT (1) = 0, 1, or 4 </p>
+<p>KEYOPT (5) = 0 or
+2</p>
+</td></tr><tr><td>3</td><td>TS2</td><td>
+<p>Beam thickness in s direction at node 2; </p>
+<p>if KEYOPT
+(5) = 2, then use for arbitrary cross section only.</p>
+</td><td align="left">
+<p>KEYOPT (1) = 0, 1, or 4 </p>
+<p>KEYOPT (5) = 0 or
+2</p>
+</td></tr><tr><td>4</td><td>TT1</td><td>
+<p>Beam thickness in t direction at node 1;</p>
+<p>if KEYOPT
+(5) = 2, then use for arbitrary cross section only.</p>
+</td><td align="left">
+<p>KEYOPT (1) = 0, 1, or  4</p>
+<p>KEYOPT (5) = 0 or
+2</p>
+</td></tr><tr><td>5</td><td>TT2</td><td>
+<p>Beam thickness in t direction at node 2;</p>
+<p>if KEYOPT
+(5) = 2, then use for arbitrary cross section only.</p>
+</td><td align="left">
+<p>KEYOPT (1) = 0, 1, or 4</p>
+<p>KEYOPT (5) = 0 or
+2</p>
+</td></tr><tr><td>2</td><td>DS1</td><td>
+<p>Beam outer diameter at node 1[<a class="xref" href="Hlp_E_BEAM161.html#beam161.tab.2.ft.1">1</a>]</p>
+</td><td align="left">
+<p>KEYOPT (1) =  0, 1, or 5</p>
+<p>KEYOPT (4) = 0</p>
+<p>KEYOPT (5) = 1</p>
+</td></tr><tr><td>3</td><td>DS2</td><td>
+<p>Beam outer diameter
+at node 2[<a class="xref" href="Hlp_E_BEAM161.html#beam161.tab.2.ft.1">1</a>]</p>
+</td><td align="left">
+<p>KEYOPT (1) =  0, 1, or 5</p>
+<p>KEYOPT (4) = 0</p>
+<p>KEYOPT (5) = 1</p>
+</td></tr><tr><td>4</td><td>DT1</td><td>
+<p>Beam inner diameter at node 1[<a class="xref" href="Hlp_E_BEAM161.html#beam161.tab.2.ft.1">1</a>]</p>
+</td><td align="left">
+<p>KEYOPT
+(1) =  0, 1, or 5</p>
+<p>KEYOPT (4) = 0</p>
+<p>KEYOPT (5)
+= 1</p>
+</td></tr><tr><td>5</td><td>DT2</td><td>
+<p>Beam inner diameter at node 2[<a class="xref" href="Hlp_E_BEAM161.html#beam161.tab.2.ft.1">1</a>]</p>
+</td><td align="left">
+<p>KEYOPT (1) =  0, 1, or 5</p>
+<p>KEYOPT (4) = 0</p>
+<p>KEYOPT (5) = 1</p>
+</td></tr><tr><td>6</td><td>NSLOC</td><td>
+<p>Location of reference
+surface normal to s-axis</p>
+<p> =  1 side  at  s = 1</p>
+<p> =  0  center</p>
+<p> = -1 side  at  s = -1</p>
+</td><td align="left">
+<p>KEYOPT (1) = 0, 1, 4, or 5</p>
+<p>KEYOPT (4) = 0</p>
+</td></tr><tr><td>7</td><td>NTLOC</td><td>
+<p>Location of reference surface normal to t-axis</p>
+<p> =  1
+side  at  t = 1</p>
+<p> =  0  center</p>
+<p> = -1 side 
+at  t = -1</p>
+</td><td align="left">
+<p>KEYOPT (1) = 0, 1, 4, or 5</p>
+<p>KEYOPT (4) = 0</p>
+</td></tr><tr><td>8</td><td>A</td><td>
+<p>Cross sectional area</p>
+<p>See <a class="xref" href="Hlp_E_BEAM161.html#a64Oxq391mcm" title="Table&nbsp;161.2:&nbsp;&nbsp;Properties of Beam Cross Sections for Several Common Cross Sections">Table&nbsp;161.2:&nbsp;Properties of Beam Cross Sections for Several Common Cross
+Sections</a>
+</p>
+</td><td align="left">
+<p>KEYOPT (4) = 0</p>
+<p>KEYOPT (1)  = 2</p>
+</td></tr><tr><td>9</td><td>ISS</td><td>
+<p>Moment of inertia about s-axis</p>
+<p>See <a class="xref" href="Hlp_E_BEAM161.html#a64Oxq391mcm" title="Table&nbsp;161.2:&nbsp;&nbsp;Properties of Beam Cross Sections for Several Common Cross Sections">Table&nbsp;161.2:&nbsp;Properties of Beam Cross Sections for Several Common Cross
+Sections</a>
+</p>
+</td><td align="left">
+<p>KEYOPT
+(4) = 0</p>
+<p>KEYOPT (1)  = 2</p>
+</td></tr><tr><td>10</td><td>ITT</td><td>
+<p>Moment of inertia about
+t-axis</p>
+<p>See <a class="xref" href="Hlp_E_BEAM161.html#a64Oxq391mcm" title="Table&nbsp;161.2:&nbsp;&nbsp;Properties of Beam Cross Sections for Several Common Cross Sections">Table&nbsp;161.2:&nbsp;Properties of Beam Cross Sections for Several Common Cross
+Sections</a>
+</p>
+</td><td align="left">
+<p>KEYOPT (4) = 0</p>
+<p>KEYOPT (1)  = 2</p>
+</td></tr><tr><td>11</td><td>IRR</td><td>
+<p>Polar moment
+of inertia</p>
+<p>See <a class="xref" href="Hlp_E_BEAM161.html#a64Oxq391mcm" title="Table&nbsp;161.2:&nbsp;&nbsp;Properties of Beam Cross Sections for Several Common Cross Sections">Table&nbsp;161.2:&nbsp;Properties of Beam Cross Sections for Several Common Cross
+Sections</a>
+</p>
+</td><td align="left">
+<p>KEYOPT (4) = 0</p>
+<p>KEYOPT (1)  = 2</p>
+</td></tr><tr><td>12</td><td>SA</td><td>
+<p>Shear area</p>
+<p>See <a class="xref" href="Hlp_E_BEAM161.html#a64Oxq391mcm" title="Table&nbsp;161.2:&nbsp;&nbsp;Properties of Beam Cross Sections for Several Common Cross Sections">Table&nbsp;161.2:&nbsp;Properties of Beam Cross Sections for Several Common Cross
+Sections</a>
+</p>
+</td><td align="left">
+<p>KEYOPT (4) = 0</p>
+<p>KEYOPT (1)  = 2</p>
+</td></tr><tr><td>13</td><td>NIP</td><td>
+<p>Number of integration
+points</p>
+<p>See <a class="xref" href="Hlp_E_BEAM161.html#a74Oxq85mcm" title="Figure&nbsp;161.5:&nbsp;&nbsp;Definition of Integration Points for User Defined Integration Rule">Figure&nbsp;161.5:&nbsp;Definition of Integration Points for User Defined Integration
+Rule</a>
+</p>
+</td><td align="left">
+<p>KEYOPT (4) &gt; 0 and KEYOPT (5) = 2</p>
+</td></tr><tr><td>14</td><td>RA</td><td>
+<p>Relative area
+of cross section; that is, the actual cross-sectional area divided
+by the area defined by the product of the specified thickness in the
+s direction and the thickness in the t direction. </p>
+<p>See <a class="xref" href="Hlp_E_BEAM161.html#a74Oxq16mcm" title="Figure&nbsp;161.4:&nbsp;&nbsp;Definition of Relative Area for User Defined Integration Rule">Figure&nbsp;161.4:&nbsp;Definition of Relative Area for User Defined Integration Rule</a>.</p>
+</td><td align="left">
+<p>KEYOPT (4) &gt;
+0 and KEYOPT (5) = 2</p>
+</td></tr><tr><td>15</td><td>ICST</td><td>
+<p>Standard cross section type.</p> <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;If this type is nonzero, then NIP and RA should be zero.</p></div> <p>Cross section types are:</p>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>1 - W-section</td></tr><tr><td>2 - C-section</td></tr><tr><td>3 - Angle section</td></tr><tr><td>4 - T-section</td></tr><tr><td>5 - Rectangular tubing</td></tr><tr><td>6 - Z-section</td></tr><tr><td>7 - Trapezoidal section</td></tr></table>
+<p>See <a class="xref" href="Hlp_E_BEAM161.html#a64Oxq2acmcm" title="Figure&nbsp;161.2:&nbsp;&nbsp;Standard Beam Cross Sections">Figure&nbsp;161.2:&nbsp;Standard Beam Cross Sections</a>, <a class="xref" href="Hlp_E_BEAM161.html#a64Oxq318mcm" title="Figure&nbsp;161.3:&nbsp;&nbsp;Standard Beam Cross Sections (continued)">Figure&nbsp;161.3:&nbsp;Standard Beam Cross Sections (continued)</a>.</p>
+</td><td align="left">
+<p>KEYOPT (4) &gt;
+0[<a class="xref" href="Hlp_E_BEAM161.html#beam161.tab.2.ft.2">2</a>] and KEYOPT (5) = 2 (standard
+cross section only)</p>
+</td></tr><tr><td>16</td><td>W</td><td>
+<p>Flange width</p>
+</td><td align="left">
+<p>ICST &gt;
+0,  and NIP = RA  = 0</p>
+</td></tr><tr><td>17</td><td>TF</td><td>
+<p>Flange thickness</p>
+</td><td align="left">
+<p>ICST &gt; 0, and NIP = RA = 0</p>
+</td></tr><tr><td>18</td><td>D</td><td>
+<p>Depth</p>
+</td><td align="left">
+<p>ICST &gt;
+0, and NIP = RA = 0</p>
+</td></tr><tr><td>19</td><td>TW</td><td>
+<p>Web thickness</p>
+</td><td align="left">
+<p>ICST &gt;
+0, and NIP = RA = 0</p>
+</td></tr><tr><td>20</td><td>SREF</td><td>
+<p>Location of reference surface normal to
+s</p> <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;If KEYOPT (1) = 1 only</p></div>
+</td><td align="left">
+<p>ICST &gt; 0, and  NIP = RA = 0</p>
+</td></tr><tr><td>21</td><td>TREF</td><td>
+<p>Location
+of reference surface normal to t</p> <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;If KEYOPT (1) = 1 only</p></div>
+</td><td align="left">
+<p>ICST &gt; 0, and  NIP = RA = 0</p>
+</td></tr><tr><td>22, 25, 28, ...79</td><td>S(i)</td><td>
+<p>s coordinate of integration point</p>
+<p>i = 1, NIP (NIP
+= 20 max)[<a class="xref" href="Hlp_E_BEAM161.html#beam161.tab.2.ft.3">3</a>]</p>
+</td><td align="left">
+<p>KEYOPT (4) &gt; 0</p>
+<p>KEYOPT (5) = 2, arbitrary cross
+section only</p>
+<p>NIP &gt; 0, RA &gt; 0, ICST =  0</p>
+</td></tr><tr><td>23, 26, 29, ...80</td><td>T(i)</td><td>
+<p>t coordinate of integration point</p> <p>i = 1, NIP (NIP
+= 20 max)[<a class="xref" href="Hlp_E_BEAM161.html#beam161.tab.2.ft.3">3</a>]</p>
+</td><td align="left">
+<p>KEYOPT (4) &gt; 0</p> <p>KEYOPT (5) = 2, arbitrary cross
+section only</p> <p>NIP &gt; 0, RA &gt; 0,  ICST =  0</p>
+</td></tr><tr><td>24, 27, 30, ...81</td><td>WF(i)</td><td>
+<p>Weighting factor; that is, the area associated with the
+integration point divided by the actual cross-section area.</p> <p>i = 1, NIP (NIP = 20 max)[<a class="xref" href="Hlp_E_BEAM161.html#beam161.tab.2.ft.3">3</a>]</p> <p>See <a class="xref" href="Hlp_E_BEAM161.html#a64Oxq391mcm" title="Table&nbsp;161.2:&nbsp;&nbsp;Properties of Beam Cross Sections for Several Common Cross Sections">Table&nbsp;161.2:&nbsp;Properties of Beam Cross Sections for Several Common Cross
+Sections</a>
+</p>
+</td><td align="left">
+<p>KEYOPT (4) &gt; 0</p> <p>KEYOPT (5) = 2, arbitrary
+cross section only</p> <p>NIP &gt; 0, RA &gt; 0,  ICST =  0</p>
+</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="beam161.tab.2.ft.1"></a>DS1, DS2, DT1, and DT2 are
+used only if KEYOPT (5) = 1.  If KEYOPT (5) = 0 or 2, then use TS1,
+TS2, TT1, and TT2.</p></li><li class="listitem"><p><a name="beam161.tab.2.ft.2"></a>For KEYOPT (5) = 2, standard
+cross-section type, the integration point ID (KEYOPT (4) &gt; 0) is
+not used since NIP = RA = 0.  However, you must provide this input
+in any case.</p></li><li class="listitem"><p><a name="beam161.tab.2.ft.3"></a>Specify S(i), T(i), and WF(i)
+for each integration point.  For example, for 20 integration points,
+specify S(1), T(1), WF(1), S(2), T(2), WF(2), ... S(20), T(20), WF(20).</p></li></ol></div><div class="table"><a name="a64Oxq391mcm"></a><p class="title"><b>Table&nbsp;161.2:&nbsp;&nbsp;Properties of Beam Cross Sections for Several Common Cross
+Sections</b></p><div class="table-contents"><table summary="Properties of Beam Cross Sections for Several Common Cross&#xA;Sections" border="1" width="95%"><colgroup><col width="153" class="COLSPEC0"><col width="192" class="COLSPEC1"><col width="278" class="COLSPEC2"></colgroup><tbody><tr><td colspan="2" align="center"> <img src="graphics/gelem161-4a.svg">&nbsp; 
+<span class="inlineequation" style="&#xA;          vertical-align:-54.000000px"><img src="graphics/eq98e86088-b55f-45e5-b73c-7315eedbd3d1.svg"></span>
+</td><td rowspan="3" align="center">
+<div><img src="graphics/gelem161-4d.svg"></div>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-108.000000px"><img src="graphics/eq40801288-d783-4683-a921-bbf2d90935a9.svg"></span>
+</td></tr><tr><td colspan="2" align="center"> <img src="graphics/gelem161-4b.svg">&nbsp; 
+<span class="inlineequation" style="&#xA;          vertical-align:-45.000000px"><img src="graphics/eq9b14d48b-abdc-44ff-9cbc-a5b16f0a532e.svg"></span>
+</td></tr><tr><td colspan="2" align="center"> <img src="graphics/gelem161-4c.svg">&nbsp; 
+<span class="inlineequation" style="&#xA;          vertical-align:-78.000000px"><img src="graphics/eq7731649b-f8bc-4152-974a-dea33c61ed86.svg"></span>
+</td></tr><tr><td colspan="3" align="center" valign="middle">
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq046aa115-be0d-494c-a50f-dd440b6d49ea.svg"></span>
+</td></tr></tbody></table></div></div><br class="table-break"><div class="figure"><a name="a74Oxq16mcm"></a><p class="title"><b>Figure&nbsp;161.4:&nbsp;&nbsp;Definition of Relative Area for User Defined Integration Rule</b></p><div class="figure-contents"><div><img src="graphics/gELEM161-5.svg" alt="Definition of Relative Area for User Defined Integration Rule"></div></div></div><br class="figure-break"><div class="figure"><a name="a74Oxq85mcm"></a><p class="title"><b>Figure&nbsp;161.5:&nbsp;&nbsp;Definition of Integration Points for User Defined Integration
+Rule</b></p><div class="figure-contents"><div><img src="graphics/gELEM161-6.svg" alt="Definition of Integration Points for User Defined Integration Rule"></div></div></div><br class="figure-break"></div></div><div class="refsect1" title="BEAM161 Output Data"><a name="a74Oxqf1mcm"></a><h2>BEAM161 Output Data</h2><p>To store output data for this element, you first need to specify
+the number of integration points for which you want output data. 
+Use the <a href="../ans_cmd/Hlp_C_EDINT.html" class="olink"><span class="command"><strong>EDINT</strong></span></a>,,<em class="replaceable"><code>BEAMIP</code></em> command during the solution phase of your analysis to specify the
+number of integration points.  By default, output is written for 4
+integration points. For the resultant beam formulation (KEYOPT(1)
+= 2), there is no stress output (regardless of the <em class="replaceable"><code>BEAMIP</code></em> setting). If you set <em class="replaceable"><code>BEAMIP</code></em> = 0, no stress
+output is written for any of the beam elements. In this case, the
+beams will not appear in any POST1 plots because the program assumes
+they are failed elements.</p><p>To display the data for <span class="structname">BEAM161</span>, you
+must use the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command. Then, you can use
+the <a href="../ans_cmd/Hlp_C_PRETAB.html" class="olink"><span class="command"><strong>PRETAB</strong></span></a> command to print the output data. The <a href="../ans_cmd/Hlp_C_RSYS.html" class="olink"><span class="command"><strong>RSYS</strong></span></a> command has no effect when postprocessing output for
+this element.</p><p>The following items are available on the results file.</p><div class="table"><a name="a9KSn163tlm"></a><p class="title"><b>Table&nbsp;161.3:&nbsp;&nbsp;BEAM161 Element Output Definitions</b></p><div class="table-contents"><table summary="BEAM161 Element Output Definitions" border="1" width="95%"><colgroup><col width="120" class="col1"><col width="384" class="col2"></colgroup><thead><tr><th align="center">Name</th><th align="center">Definition</th></tr></thead><tbody><tr><td>S (r, rs, rt)</td><td>Stresses</td></tr><tr><td>EPEQ</td><td>Equivalent plastic strain</td></tr><tr><td>EPTO</td><td>Axial strain</td></tr><tr><td>MFORr</td><td>Member force in the element coordinate system,
+r direction</td></tr><tr><td>N (s, t )</td><td>Out-of-plane
+(s, t) shear</td></tr><tr><td>M (s, t )</td><td>Element
+(s, t)  moments</td></tr><tr><td>TORQ</td><td>Torsional
+resultant</td></tr></tbody></table></div></div><br class="table-break"><p>For each of these output data, one set of values, given at the
+centroid, is output for the entire beam.</p><p>
+<a class="xref" href="Hlp_E_BEAM161.html#aFMwVn1ddtlm" title="Table&nbsp;161.4:&nbsp;&nbsp;BEAM161 Item and Sequence Numbers">Table&nbsp;161.4:&nbsp;BEAM161 Item and Sequence Numbers</a> lists output available through
+the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> commands
+using the Sequence Number method.  See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General Postprocessor (POST1)</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in this reference for more information. 
+The following notation is used in <a class="xref" href="Hlp_E_BEAM161.html#aFMwVn1ddtlm" title="Table&nbsp;161.4:&nbsp;&nbsp;BEAM161 Item and Sequence Numbers">Table&nbsp;161.4:&nbsp;BEAM161 Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="Hlp_E_BEAM161.html#a9KSn163tlm" title="Table&nbsp;161.3:&nbsp;&nbsp;BEAM161 Element Output Definitions">Table&nbsp;161.3:&nbsp;BEAM161 Element Output Definitions</a>
+</p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> or <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> command</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element
+data</p></dd><dt><span><b class="term">1st IP</b></span></dt><dd><p>sequence number for the first integration point</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>n</code></em>th IP</b></span></dt><dd><p>sequence number for the <em class="replaceable"><code>n</code></em>th integration point as defined by the <a href="../ans_cmd/Hlp_C_EDINT.html" class="olink"><span class="command"><strong>EDINT</strong></span></a> command.</p></dd></dl></div></div><p>
+</p><div class="table"><a name="aFMwVn1ddtlm"></a><p class="title"><b>Table&nbsp;161.4:&nbsp;&nbsp;BEAM161 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="BEAM161 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="115" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"><col width="72" align="center" class="col4"><col width="96" align="center" class="col5"></colgroup><thead><tr><th rowspan="2" align="center" valign="middle">Output Quantity Name</th><th colspan="4" align="center">
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th align="center">Item</th><th align="center">E</th><th align="center">1st IP</th><th align="center">
+<em class="replaceable"><code>n</code></em>th IP</th></tr></thead><tbody><tr><td>MFORr</td><td align="center">SMISC</td><td align="center">1</td><td align="center">-</td><td align="center">-</td></tr><tr><td>Ns</td><td align="center">SMISC</td><td align="center">2</td><td align="center">-</td><td align="center">-</td></tr><tr><td>Nt</td><td align="center">SMISC</td><td align="center">3</td><td align="center">-</td><td align="center">-</td></tr><tr><td>Ms</td><td align="center">SMISC</td><td align="center">4</td><td align="center">-</td><td align="center">-</td></tr><tr><td>Mt</td><td align="center">SMISC</td><td align="center">5</td><td align="center">-</td><td align="center">-</td></tr><tr><td>TORQ</td><td align="center">SMISC</td><td align="center">6</td><td align="center">-</td><td align="center">-</td></tr><tr><td>Sr</td><td align="center">LS</td><td align="center">-</td><td align="center">1</td><td align="center">5 x (<em class="replaceable"><code>n</code></em>-1) +1</td></tr><tr><td>Srs</td><td align="center">LS</td><td align="center">-</td><td align="center">2</td><td align="center">5 x (<em class="replaceable"><code>n</code></em>-1) +2</td></tr><tr><td>Srt</td><td align="center">LS</td><td align="center">-</td><td align="center">3</td><td align="center">5 x (<em class="replaceable"><code>n</code></em>-1) +3</td></tr><tr><td>EPEQ</td><td align="center">LS</td><td align="center">-</td><td align="center">4</td><td align="center">5 x (<em class="replaceable"><code>n</code></em>-1) +4</td></tr><tr><td>EPTO</td><td align="center">LS</td><td align="center">-</td><td align="center">5</td><td align="center">5 x (<em class="replaceable"><code>n</code></em>-1) +5</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="beam161.tab.4.ft.1"></a>In this table, <em class="replaceable"><code>n</code></em> refers to the current integration point
+for which you want output data.</p></li></ol></div></div><div class="refsect1" title="BEAM161 Assumptions and Restrictions"><a name="a74Oxq164mcm"></a><h2>BEAM161 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The beam must not have a zero length.</p></li><li class="listitem"><p>The beam can have any open or single-cell closed cross-sectional
+shape for which the area and moments of inertia are nonzero.</p></li><li class="listitem"><p>Warping torsion is assumed negligible and the warping
+moment of inertia is not used in the stiffness computation.</p></li><li class="listitem"><p>Warping of the cross section is unconstrained and
+is the same for all cross-sections; therefore, the torsional rotation
+of the cross-section is assumed to vary linearly along the length.
+ However, warping is not applicable to the resultant beam formulation
+(KEYOPT(1) = 2).</p></li></ul></div></div><div class="refsect1" title="BEAM161 Product Restrictions"><a name="a74Oxq1cemcm"></a><h2>BEAM161 Product Restrictions</h2><p>There are no product-specific restrictions for this element.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

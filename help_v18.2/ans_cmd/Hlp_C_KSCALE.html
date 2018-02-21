@@ -1,0 +1,28 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:30-04:00"><title>KSCALE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_K_TOC.html" title="K Commands"><link rel="prev" href="Hlp_C_KREFINE.html" title="KREFINE"><link rel="next" href="Hlp_C_KSCON.html" title="KSCON"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="KSCALE"><a name="KSCALE"></a><div class="titlepage"></div><a class="indexterm" name="d0e143964"></a><span class="refentrytitle"><span class="command"><strong>KSCALE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>KSCALE</strong></span>, <em class="replaceable"><code>KINC</code></em>, <em class="replaceable"><code>NP1</code></em>, <em class="replaceable"><code>NP2</code></em>, <em class="replaceable"><code>NINC</code></em>, <em class="replaceable"><code>RX</code></em>, <em class="replaceable"><code>RY</code></em>, <em class="replaceable"><code>RZ</code></em><br><b class="refpurpose">Generates a scaled pattern of keypoints from a given keypoint
+pattern.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7keypointsldm061600" title="Table&nbsp;2.30:&nbsp;&nbsp;Keypoints"><span class="type">Keypoints</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="KSCALE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>KINC</code></em></b></span></dt><dd><p>Do this scaling operation one time, incrementing all keypoints
+in the given pattern by <em class="replaceable"><code>KINC</code></em>.  If <em class="replaceable"><code>KINC</code></em> =
+0, keypoints will be redefined at the scaled locations.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NP1</code></em>, <em class="replaceable"><code>NP2</code></em>, <em class="replaceable"><code>NINC</code></em></b></span></dt><dd><p>Scale keypoints from pattern beginning with <em class="replaceable"><code>NP1</code></em> to <em class="replaceable"><code>NP2</code></em> (defaults
+to <em class="replaceable"><code>NP1</code></em>) in steps of <em class="replaceable"><code>NINC</code></em> (defaults
+to 1).  If <em class="replaceable"><code>NP1</code></em> = ALL, <em class="replaceable"><code>NP2</code></em> and <em class="replaceable"><code>NINC</code></em> are
+ignored and pattern is all selected keypoints [<a class="link" href="Hlp_C_KSEL.html" title="KSEL"><span class="command"><strong>KSEL</strong></span></a>]. 
+If <em class="replaceable"><code>NP1</code></em> = P, graphical picking is enabled and all
+remaining command fields are ignored (valid only in the GUI).  A component
+name may also be substituted for <em class="replaceable"><code>NP1</code></em> (<em class="replaceable"><code>NP2</code></em> and <em class="replaceable"><code>NINC</code></em> are
+ignored).</p></dd><dt><span><b class="term"><em class="replaceable"><code>RX</code></em>, <em class="replaceable"><code>RY</code></em>, <em class="replaceable"><code>RZ</code></em></b></span></dt><dd><p>Scale factor ratios.  Scaling is relative to the origin of
+the active coordinate system (RR, R&#952;, RZ for cylindrical, RR, R&#952;,
+R&#934; for spherical).  If &gt; 1.0, pattern is enlarged.  If &lt; 1.0, pattern
+is reduced.  Ratios each default to 1.0.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="KSCALE.notes"></a><h2>Notes</h2><p>Generates a scaled pattern of keypoints from a given keypoint pattern.
+ Scaling is done in the active coordinate system (see analogous node scaling
+[<a class="link" href="Hlp_C_NSCALE.html" title="NSCALE"><span class="command"><strong>NSCALE</strong></span></a>]).  Solid modeling in a toroidal coordinate system
+is not recommended.</p></div><div class="refsect1" title="Menu Paths"><a name="KSCALE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

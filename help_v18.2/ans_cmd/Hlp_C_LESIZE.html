@@ -1,0 +1,59 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:35-04:00"><title>LESIZE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_L_TOC.html" title="L Commands"><link rel="prev" href="Hlp_C_LDREAD.html" title="LDREAD"><link rel="next" href="Hlp_C_LEXTND.html" title="LEXTND"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="LESIZE"><a name="LESIZE"></a><div class="titlepage"></div><a class="indexterm" name="d0e150977"></a><span class="refentrytitle"><span class="command"><strong>LESIZE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>LESIZE</strong></span>, <em class="replaceable"><code>NL1</code></em>, <em class="replaceable"><code>SIZE</code></em>, <em class="replaceable"><code>ANGSIZ</code></em>, <em class="replaceable"><code>NDIV</code></em>, <em class="replaceable"><code>SPACE</code></em>, <em class="replaceable"><code>KFORC</code></em>, <em class="replaceable"><code>LAYER1</code></em>, <em class="replaceable"><code>LAYER2</code></em>, <em class="replaceable"><code>KYNDIV</code></em><br><b class="refpurpose">Specifies the divisions and spacing ratio on unmeshed lines.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7meshingldm061600" title="Table&nbsp;2.36:&nbsp;&nbsp;Meshing"><span class="type">Meshing</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="LESIZE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NL1</code></em></b></span></dt><dd><p>Number of the line to be modified.  If ALL, modify all selected
+lines [<a class="link" href="Hlp_C_LSEL.html" title="LSEL"><span class="command"><strong>LSEL</strong></span></a>].  If <em class="replaceable"><code>NL1</code></em> = P, graphical
+picking is enabled and all remaining command fields are ignored (valid only
+in the GUI).  A component name may also be substituted for <em class="replaceable"><code>NL1</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>SIZE</code></em></b></span></dt><dd><p>If <em class="replaceable"><code>NDIV</code></em> is blank, <em class="replaceable"><code>SIZE</code></em> is
+the division (element edge) length.  The number of divisions is automatically
+calculated from the line length (rounded upward to next integer).  If <em class="replaceable"><code>SIZE</code></em> is
+zero (or blank), use <em class="replaceable"><code>ANGSIZ</code></em> or <em class="replaceable"><code>NDIV</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>ANGSIZ</code></em></b></span></dt><dd><p>The division arc (in degrees) spanned by the element edge
+(except for straight lines, which always result in one division).  The number
+of divisions is automatically calculated from the line length (rounded upward
+to next integer).</p></dd><dt><span><b class="term"><em class="replaceable"><code>NDIV</code></em></b></span></dt><dd><p>If positive, <em class="replaceable"><code>NDIV</code></em> is the number
+of element divisions per line.  If -1 (and <em class="replaceable"><code>KFORC</code></em> =
+1), <em class="replaceable"><code>NDIV</code></em> is assumed to be zero element divisions
+per line. TARGE169 with a rigid specification ignores <em class="replaceable"><code>NDIV</code></em> and
+will always mesh with one element division.</p></dd><dt><span><b class="term"><em class="replaceable"><code>SPACE</code></em></b></span></dt><dd><p>Spacing ratio.  If positive, nominal ratio of last division
+size to first division size (if &gt; 1.0, sizes increase, if &lt; 1.0, sizes
+decrease).  If negative, |<em class="replaceable"><code>SPACE</code></em>| is nominal ratio
+of center division(s) size to end divisions size.  Ratio defaults to 1.0 (uniform
+spacing). For layer-meshing, a value of 1.0 normally is used. If <em class="replaceable"><code>SPACE</code></em> =
+FREE, ratio is determined by other considerations</p></dd><dt><span><b class="term"><em class="replaceable"><code>KFORC</code></em></b></span></dt><dd><p><em class="replaceable"><code>KFORC</code></em> 0-3 are used only with <em class="replaceable"><code>NL1</code></em> =
+ALL.  Specifies which selected lines are to be modified.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Modify only selected lines having undefined
+(zero) divisions.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Modify all selected lines.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Modify only selected lines having fewer divisions
+(including zero) than specified with this command.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">3</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Modify only selected lines having more divisions
+than specified with this command.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">4</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Modify only nonzero settings for <em class="replaceable"><code>SIZE</code></em>, <em class="replaceable"><code>ANGSIZ</code></em>, <em class="replaceable"><code>NDIV</code></em>,  <em class="replaceable"><code>SPACE</code></em>, <em class="replaceable"><code>LAYER1</code></em>, and <em class="replaceable"><code>LAYER2</code></em>.
+ If <em class="replaceable"><code>KFORC</code></em> = 4, blank or 0 settings remain unchanged.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>LAYER1</code></em></b></span></dt><dd><p>Layer-meshing control parameter.  Distance which defines the
+thickness of the inner mesh layer, <em class="replaceable"><code>LAYER1</code></em>.  Elements
+in this layer are uniformly-sized with edge lengths equal to the specified
+element size for the line (either through <em class="replaceable"><code>SIZE</code></em> or
+line-length/<em class="replaceable"><code>NDIV</code></em>).  A positive value for <em class="replaceable"><code>LAYER1</code></em> is
+interpreted as an absolute length, while a negative value in interpreted as
+a multiplier on the specified element size for the line.  As a general rule,
+the resulting thickness of the inner mesh layer should be greater than or
+equal to the specified element size for the line.  If <em class="replaceable"><code>LAYER1</code></em> =
+OFF, layer-meshing control settings are cleared for the selected lines.  The
+default value is 0.0</p></dd><dt><span><b class="term"><em class="replaceable"><code>LAYER2</code></em></b></span></dt><dd><p>Layer-meshing control parameter.  Distance which defines the
+thickness of the outer mesh layer, <em class="replaceable"><code>LAYER2</code></em>.  Elements
+in this layer transition in size from those in <em class="replaceable"><code>LAYER1</code></em> to
+the global element size.  A positive value of <em class="replaceable"><code>LAYER2</code></em> is
+interpreted as an absolute length, while a negative value is interpreted as
+a mesh transition factor.  A value of <em class="replaceable"><code>LAYER2</code></em> =
+-2 would indicate that elements should approximately double in size as the
+mesh progresses normal to <em class="replaceable"><code>LAYER1</code></em>. The default value
+is 0.0.</p></dd><dt><span><b class="term"><em class="replaceable"><code>KYNDIV</code></em></b></span></dt><dd><p>0, No, and Off means that SmartSizing cannot override specified
+divisions and spacing ratios. Mapped mesh fails if divisions do not match.
+This defines the specification as <span class="quote">"<span class="quote">hard</span>"</span>.</p><p>1, Yes,
+and On means that SmartSizing can override specified divisions and spacing
+ratios for curvature or proximity. Mapped meshing can override divisions to
+obtain required matching divisions. This defines the specification as<span class="quote">"<span class="quote"> soft</span>"</span>.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="LESIZE.notes"></a><h2>Notes</h2><p>Defines the number of divisions and the spacing ratio on selected lines.
+ Lines with previously specified divisions may also be changed.</p><p>This command is also valid for <a href="../ans_adv/Hlp_G_ADVREZ.html" class="olink">rezoning</a>.</p></div><div class="refsect1" title="Menu Paths"><a name="LESIZE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Size Cntrls&gt;ManualSize&gt;Layers&gt;Clr Layers</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Size Cntrls&gt;ManualSize&gt;Layers&gt;Picked Lines</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Size Cntrls&gt;ManualSize&gt;Lines&gt;All Lines</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Size Cntrls&gt;ManualSize&gt;Lines&gt;Clr Size</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Size Cntrls&gt;ManualSize&gt;Lines&gt;Copy Divs</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Size Cntrls&gt;ManualSize&gt;Lines&gt;Flip Bias</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Size Cntrls&gt;ManualSize&gt;Lines&gt;Picked Lines</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

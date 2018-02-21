@@ -1,0 +1,24 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:06-04:00"><title>5.4.&nbsp;Pipe Elements</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_StressAnalysisElems.html" title="Chapter&nbsp;5:&nbsp;Elements for Stress Analysis"><link rel="prev" href="Hlp_E_BeamElements.html" title="5.3.&nbsp;Beam and Link (Truss) Elements"><link rel="next" href="Hlp_E_ReinfElements.html" title="5.5.&nbsp;Reinforcing Elements"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="5.4.&nbsp;Pipe Elements"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="elem_pipeelems"></a>5.4.&nbsp;Pipe Elements</h2></div></div></div><a class="indexterm" name="d0e14690"></a><p>Use pipe elements to represent straight, slender to moderately stubby/thick pipe
+            structures. The elements are especially useful in the offshore drilling industry, as
+            their cross-section data includes interior fluid and outside insulation. </p><p>A pipe element is a special form of <a class="link" href="Hlp_E_BeamElements.html" title="5.3.&nbsp;Beam and Link (Truss) Elements">beam
+            element</a>. As with beams, pipe elements are created by meshing lines or curves, and
+            the elements must be associated with section data. A pipe differs from a beam in the
+            following ways, however:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>A pipe cross-section is normally axisymmetric so that the bending resistance
+                    is the same in both directions.</p><p> Element orientation (via an orientation node) is still necessary, however, as
+                    the element loads can differ in the y and z directions.</p></li><li class="listitem"><p>A pipe can account for both internal and external pressures.</p></li><li class="listitem"><p>A pipe element has support for many nonlinear material models. </p></li></ul></div><p>The available pipe element types are: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                    <a class="link" href="Hlp_E_PIPE288.html" title="PIPE288"><span class="structname">PIPE288</span></a>, a 3-D two-node pipe</p></li><li class="listitem"><p>
+                    <a class="link" href="Hlp_E_PIPE289.html" title="PIPE289"><span class="structname">PIPE289</span></a>, a 3-D three-node pipe</p></li></ul></div><p>Both elements are based on Timoshenko beam theory which includes shear-deformation
+            effects. </p><p>Also available is <a class="link" href="Hlp_E_ELBOW290.html" title="ELBOW290"><span class="structname">ELBOW290</span></a>, a special 3-D three-node pipe
+            used for modeling curved pipes. The element can account for cross-sectional
+            distortion.</p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

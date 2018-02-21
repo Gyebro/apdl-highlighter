@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:41-04:00"><title>MCHECK</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_M_TOC.html" title="M Commands"><link rel="prev" href="Hlp_C_MATER.html" title="MATER"><link rel="next" href="Hlp_C_MDAMP.html" title="MDAMP"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="MCHECK"><a name="MCHECK"></a><div class="titlepage"></div><a class="indexterm" name="d0e160524"></a><span class="refentrytitle"><span class="command"><strong>MCHECK</strong></span></span><div class="refnamediv"><p><span class="command"><strong>MCHECK</strong></span>, <em class="replaceable"><code>Lab</code></em><br><b class="refpurpose">Checks mesh connectivity.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7meshingldm061600" title="Table&nbsp;2.36:&nbsp;&nbsp;Meshing"><span class="type">Meshing</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div> </div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="MCHECK.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><p>Operation:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ESEL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Unselects the valid elements.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="MCHECK.notes"></a><h2>Notes</h2><p> Wherever two area or volume elements share a common face, <span class="command"><strong>MCHECK</strong></span> verifies
+that the way the elements are connected to the face is consistent with their
+relative normals or integrated volumes. (This may detect folds or otherwise
+overlapping elements.)</p><p> <span class="command"><strong>MCHECK</strong></span> verifies that the element exterior faces
+form simply-connected closed surfaces. (This may detect unintended cracks
+in a mesh.)</p><p> <span class="command"><strong>MCHECK</strong></span> warns if the number of element facets in
+a 2-D loop or 3-D shell is not greater than a computed limit. This limit is
+the smaller of either three times the number of faces on one element, or one-tenth
+the total number of element faces in the model. (This may detect holes in
+the middle of a mesh.)</p><p>The <span class="command"><strong>MCHECK</strong></span> command will perform a number of validity
+checks on the selected elements, including:</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><span class="bold"><strong>Normal check: </strong></span> Wherever two
+area elements share a common edge, <span class="command"><strong>MCHECK</strong></span> verifies that
+the ordering of the nodes on each element is consistent with their relative
+normals.</p></li><li class="listitem"><p><span class="bold"><strong>Volume check: </strong></span> Wherever two
+volume elements share a common face, <span class="command"><strong>MCHECK</strong></span> verifies that
+the sign of the integrated volume of each element is consistent.</p></li><li class="listitem"><p><span class="bold"><strong>Closed surface check: </strong></span> <span class="command"><strong>MCHECK</strong></span> verifies
+that the element exterior faces form simply-connected closed surfaces (this
+may detect unintended cracks in a mesh).</p></li><li class="listitem"><p><span class="bold"><strong>Check for holes in the mesh: </strong></span> <span class="command"><strong>MCHECK</strong></span> warns
+if the number of element faces surrounding an interior void in the mesh is
+small enough to suggest one or more accidentally omitted elements, rather
+than a deliberately formed hole. For this test, the number of faces around
+the void is compared to the smaller of a) three times the number of faces
+on one element, or b) one-tenth the total number of element faces in the model.</p></li></ol></div></div><div class="refsect1" title="Menu Paths"><a name="MCHECK.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Check Mesh&gt;Connectivity&gt;Ck Connectvty</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Check Mesh&gt;Connectivity&gt;Sel Bad Connt</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

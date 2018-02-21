@@ -1,0 +1,46 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:23-04:00"><title>ASIFILE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_A_TOC.html" title="A Commands"><link rel="prev" href="Hlp_C_ASEL.html" title="ASEL"><link rel="next" href="Hlp_C_ASK.html" title="*ASK"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="ASIFILE"><a name="ASIFILE"></a><div class="titlepage"></div><a class="indexterm" name="d0e29637"></a><span class="refentrytitle"><span class="command"><strong>ASIFILE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>ASIFILE</strong></span>, <em class="replaceable"><code>Opt</code></em>, <em class="replaceable"><code>Fname</code></em>, <em class="replaceable"><code>Ext</code></em>, <em class="replaceable"><code>Oper</code></em>, <em class="replaceable"><code>kDim</code></em>, <em class="replaceable"><code>kOut</code></em>, <em class="replaceable"><code>LIMIT</code></em><br><b class="refpurpose">Writes or reads one-way acoustic-structural coupling data.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolumiscldsjla070199" title="Table&nbsp;2.59:&nbsp;&nbsp;Miscellaneous Loads"><span class="type">Misc Loads</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="ASIFILE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Opt</code></em></b></span></dt><dd><p>Command behavior option:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">WRITE </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Write the structural results to
+the specified file.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">READ </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Read the structural results from
+the specified file.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Fname</code></em></b></span></dt><dd><p>File name and directory path of a one-way acoustic-structural
+coupling data file (248 characters maximum, including the characters
+needed for the directory path). An unspecified directory path defaults
+to the working directory; in this case, you can use all 248 characters
+for the file name (defaults to <span class="filename"><strong>jobname</strong></span>). </p></dd><dt><span><b class="term"><em class="replaceable"><code>Ext</code></em></b></span></dt><dd><p>File name extension of the one-way acoustic-structural
+coupling data file (defaults to <span class="filename"><strong>.asi</strong></span>). </p></dd><dt><span><b class="term"><em class="replaceable"><code>Oper</code></em></b></span></dt><dd><p>Command operation:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NOMAP </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>No mapping occurs between the structural
+and acoustic models when reading the structural results from the specified
+file (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MAP </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Maps the results from the structural
+to the acoustic model. (See <a class="xref" href="Hlp_C_ASIFILE.html#ASIFILE.notes" title="Notes">"Notes"</a>.)</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>kDim</code></em></b></span></dt><dd><p>Interpolation criteria. Valid only when <em class="replaceable"><code>Oper</code></em> = MAP.</p><p>If <em class="replaceable"><code>kDim</code></em> = 2 or 0, two-dimensional interpolation is applied (that is, interpolate
+occurs on a surface). </p></dd><dt><span><b class="term"><em class="replaceable"><code>kOut</code></em></b></span></dt><dd><p>Outside region results. Valid only when <em class="replaceable"><code>Oper</code></em> = MAP.</p><p>If <em class="replaceable"><code>kOut</code></em> = 0, use the value(s) of the nearest region point for points outside
+of the region.</p><p>If <em class="replaceable"><code>kOut</code></em> = 1, set results extrapolated
+outside of the region to zero.</p></dd><dt><span><b class="term"><em class="replaceable"><code>LIMIT</code></em></b></span></dt><dd><p>Number of nearby nodes considered for interpolation.
+Valid only when <em class="replaceable"><code>Oper</code></em> = MAP.</p><p>Minimum = 5. Default = 20. </p><p>Lower values reduce processing time; however, some distorted
+or irregular meshes require a higher value to encounter three nodes
+for triangulation.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="ASIFILE.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>ASIFILE</strong></span> command writes to, or reads from,
+a file containing one-way acoustic-structural coupling data.</p><p>Results data on the one-way coupling interface (defined by the <a class="link" href="Hlp_C_SF.html" title="SF"><span class="command"><strong>SF</strong></span></a>,,FSIN) in the structural model are written to the one-way
+coupling result data file during the structural solution. </p><p>One-way coupling results data are read
+into the acoustic model as the velocity (harmonic) or acceleration
+(transient) excitation during the sequential acoustic solution.</p><p>If <em class="replaceable"><code>Oper</code></em> = NOMAP,
+both structural and acoustic models must share the same node number
+on the one-way coupling interface.</p><p>If <em class="replaceable"><code>Oper</code></em> = MAP:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The one-way coupling interface must be defined in
+the acoustic model (<a class="link" href="Hlp_C_SF.html" title="SF"><span class="command"><strong>SF</strong></span></a>,,FSIN) such that it corresponds
+to the field-surface interface number (FSIN) in the structural model.</p></li><li class="listitem"><p>The output points are correct
+only if they are within the boundaries set via the specified input
+points.</p></li><li class="listitem"><p>Calculations for out-of-bound
+points require much more processing time than do points that are within
+bounds.</p></li><li class="listitem"><p>For each point in the acoustic
+destination mesh, the command searches all possible triangles in the
+structural source mesh to find the best triangle containing each point,
+then performs a linear interpolation inside this triangle. For faster
+and more accurate results, consider your interpolation method and
+search criteria carefully (see <em class="replaceable"><code>LIMIT</code></em>).</p></li></ul></div><p>One-way coupling excitation can be applied
+to multiple frequencies or time steps.</p></div><div class="refsect1" title="Menu Paths"><a name="ASIFILE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:28-04:00"><title>INTSRF</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_I_TOC.html" title="I Commands"><link rel="prev" href="Hlp_C_INT1.html" title="INT1"><link rel="next" href="Hlp_C_IOPTN.html" title="IOPTN"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="INTSRF"><a name="INTSRF"></a><div class="titlepage"></div><a class="indexterm" name="d0e139219"></a><span class="refentrytitle"><span class="command"><strong>INTSRF</strong></span></span><div class="refnamediv"><p><span class="command"><strong>INTSRF</strong></span>, <em class="replaceable"><code>Lab</code></em><br><b class="refpurpose">Integrates nodal results on an exterior surface.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1sppurpjla070199" title="Table&nbsp;2.91:&nbsp;&nbsp;Special Purpose"><span class="type">Special Purpose</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="INTSRF.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><p>Label indicating degree of freedom to be integrated:     
+ </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">PRES</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Pressure.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TAUW</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Wall shear stress.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">FLOW</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Both pressure and wall shear stress.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="INTSRF.notes"></a><h2>Notes</h2><p>Integrates nodal results on a surface.  Use node selection (such as
+the EXT option of the <a class="link" href="Hlp_C_NSEL.html" title="NSEL"><span class="command"><strong>NSEL</strong></span></a> command) to indicate the surface(s)
+of element faces to be used in the integration.  A surface can be "created"
+by unselecting elements (such as unselecting non-fluid elements that are adjacent
+to fluid elements for the postprocessing of fluid flow result).  Element faces
+attached to the selected nodes will be automatically determined.  All nodes
+on a face must be selected for the face to be used.  The integration results
+will cancel for nodes on common faces of adjacent selected elements.</p><p>Integration results are in the active coordinate system (see the <a class="link" href="Hlp_C_RSYS.html" title="RSYS"><span class="command"><strong>RSYS</strong></span></a> command).
+The type of results coordinate system must match the type used in the analysis.
+However, you may translate and rotate forces and moments as needed. Use the <a href="Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> command
+(<span class="guimenu"><strong>Utility Menu&gt; Parameters&gt; Get Scalar Data</strong></span>) to retrieve
+the results.</p></div><div class="refsect1" title="Menu Paths"><a name="INTSRF.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Nodal Calcs&gt;Surface Integral</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

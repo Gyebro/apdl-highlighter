@@ -1,0 +1,68 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:42:04-04:00"><title>*VWRITE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_V_TOC.html" title="V Commands"><link rel="prev" href="Hlp_C_VUP.html" title="/VUP"><link rel="next" href="Hlp_W_TOC.html" title="W Commands"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="*VWRITE"><a name="a-VWRITE"></a><div class="titlepage"></div><a class="indexterm" name="d0e301927"></a><span class="refentrytitle"><a href="Hlp_C_VWRITE.html" class="olink"><span class="command"><strong>*VWRITE</strong></span></a> </span><div class="refnamediv"><p><span class="command"><strong>*VWRITE</strong></span>, <em class="replaceable"><code>Par1</code></em>, <em class="replaceable"><code>Par2</code></em>, <em class="replaceable"><code>Par3</code></em>, <em class="replaceable"><code>Par4</code></em>, <em class="replaceable"><code>Par5</code></em>, <em class="replaceable"><code>Par6</code></em>, <em class="replaceable"><code>Par7</code></em>, <em class="replaceable"><code>Par8</code></em>, <em class="replaceable"><code>Par9</code></em>, <em class="replaceable"><code>Par10</code></em>, <em class="replaceable"><code>Par11</code></em>, <em class="replaceable"><code>Par12</code></em>, <em class="replaceable"><code>Par13</code></em>, <em class="replaceable"><code>Par14</code></em>, <em class="replaceable"><code>Par15</code></em>, <em class="replaceable"><code>Par16</code></em>, <em class="replaceable"><code>Par17</code></em>, <em class="replaceable"><code>Par18</code></em>, <em class="replaceable"><code>Par19</code></em><br><b class="refpurpose">Writes data to a file in a formatted sequence.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_4.html" title="2.4.&nbsp;APDL Commands"><code class="classname">APDL</code></a>: <a class="link" href="Hlp_C_CH2_4.html#cmdapdlarrayparajla070199" title="Table&nbsp;2.21:&nbsp;&nbsp;Array Parameters"><span class="type">Array Parameters</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsect1" title="Argument Descriptions"><a name="a-VWRITE.argdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Par1</code></em>, <em class="replaceable"><code>Par2</code></em>, <em class="replaceable"><code>Par3</code></em>, . . . , <em class="replaceable"><code>Par19</code></em></b></span></dt><dd><p>You can write up to 19 parameters (or constants) at
+a time. Any <span class="italic"><em>Par</em></span> values after a
+blank  <span class="italic"><em>Par</em></span> value are ignored. 
+If you leave them all blank, one line will be written (to write a
+title or a blank line).  If you input the keyword SEQU, a sequence
+of numbers (starting from 1) will be written for that item.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="a-VWRITE.notes"></a><h2>Notes</h2><p>You use <a href="Hlp_C_VWRITE.html" class="olink"><span class="command"><strong>*VWRITE</strong></span></a> to write data to a file in
+a formatted sequence. Data items (<em class="replaceable"><code>Par1</code></em>, <em class="replaceable"><code>Par2</code></em>, etc.) may be array parameters, scalar parameters,
+character parameters (scalar or array), or constants.  You must evaluate
+expressions and functions in the data item fields before using the <a href="Hlp_C_VWRITE.html" class="olink"><span class="command"><strong>*VWRITE</strong></span></a> command, since initially they will be evaluated
+to a constant and remain constant throughout the operation.  Unless
+a file is defined with the <a href="Hlp_C_CFOPEN.html" class="olink"><span class="command"><strong>*CFOPEN</strong></span></a>  command, data
+is written to the standard output file. Data written to the standard
+output file may be diverted to a different file by first switching
+the current output file with the <a href="Hlp_C_OUTPUT.html" class="olink"><span class="command"><strong>/OUTPUT</strong></span></a> command.
+You can also use the <a href="Hlp_C_MWRITE_st.html" class="olink"><span class="command"><strong>*MWRITE</strong></span></a> command to write data
+to a specified file. Both commands contain format descriptors on the
+line immediately following the command. The format descriptors can
+be in either Fortran or C format. </p><p>You must enclose Fortran format descriptors in
+parentheses. They must immediately follow the <a href="Hlp_C_VWRITE.html" class="olink"><span class="command"><strong>*VWRITE</strong></span></a> command on a separate line of the same input file.  Do not include
+the word FORMAT. The format must specify the number of fields to be
+written per line, the field width, the placement of the decimal point,
+etc.  You should use one field descriptor for each data item written.
+ The write operation uses your system's available FORTRAN FORMAT conventions
+(see your system FORTRAN manual).  You can use any standard FORTRAN <span class="italic"><em>real</em></span> format (such as (4F6.0), (E10.3,2X,D8.2),
+etc.) and alphanumeric format (A). Alphanumeric strings are limited
+to a maximum of 8 characters for any field (A8) using the Fortran
+format. Use the &#8220;C&#8221; format for string arrays larger than
+8 characters. Integer (I) and list-directed (*) descriptors may <span class="italic"><em>not</em></span> be used.  You can include text in the
+format as a quoted string.  <span class="italic"><em>The parentheses
+must be included in the format</em></span> and the format must not
+exceed 80 characters (including parentheses).  The output line length
+is limited to 128 characters.</p><p>The &#8220;C&#8221; format descriptors
+are used if the first character of the format descriptor line is not
+a left parenthesis. &#8220;C&#8221; format descriptors are up to 80
+characters long, consisting of text strings and predefined "data descriptors"
+between the strings where numeric or alphanumeric character data will
+be inserted.  The normal descriptors are %I for integer data, %G for
+double precision data, %C for alphanumeric character data, and %/
+for a line break. There
+must be one data descriptor for each specified value (8 maximum) in
+the order of the specified values. The enhanced formats described
+in <a href="Hlp_C_MSG.html" class="olink"><span class="command"><strong>*MSG</strong></span></a> may also be used. </p><p>For array parameter items, you must define the starting array
+element number. Looping continues (incrementing the vector index number
+of each array parameter by one) each time you output a line, until
+the maximum array vector element is written.  For example, <a href="Hlp_C_VWRITE.html" class="olink"><span class="command"><strong>*VWRITE</strong></span></a>,A(1) followed by (F6.0) will write one value per
+output line, i.e., A(1), A(2), A(3), A(4), etc.  You write constants
+and scalar parameters with the same values for each loop.  You can
+also control the number of loops and loop skipping with the <a href="Hlp_C_VLEN.html" class="olink"><span class="command"><strong>*VLEN</strong></span></a> and <a href="Hlp_C_VMASK.html" class="olink"><span class="command"><strong>*VMASK</strong></span></a> commands.  The vector
+specifications <a href="Hlp_C_VABS.html" class="olink"><span class="command"><strong>*VABS</strong></span></a>,  <a href="Hlp_C_VFACT.html" class="olink"><span class="command"><strong>*VFACT</strong></span></a>, and <a href="Hlp_C_VCUM.html" class="olink"><span class="command"><strong>*VCUM</strong></span></a>  do not apply to this command.  If
+looping continues beyond the supplied data array's length, zeros will
+be output for numeric array parameters and blanks for character array
+parameters.  For multi-dimensioned array parameters, only the first
+(row) subscript is incremented.  See the <a href="Hlp_C_VOPER.html" class="olink"><span class="command"><strong>*VOPER</strong></span></a> command for details.  If you are in the GUI, the <a href="Hlp_C_VWRITE.html" class="olink"><span class="command"><strong>*VWRITE</strong></span></a> command must be contained in an externally prepared file and read
+into ANSYS (i.e., <a href="Hlp_C_USE.html" class="olink"><span class="command"><strong>*USE</strong></span></a>, <a href="Hlp_C_INPUT.html" class="olink"><span class="command"><strong>/INPUT</strong></span></a>, etc.).</p><p>If <em class="replaceable"><code>Par</code></em> is a table array name, the subscripts
+   refer to the index numbers of the table and not the index values of its primary variables. See
+    <a href="Hlp_C_SET_st.html" class="olink"><span class="command"><strong>*SET</strong></span></a> if you want to evaluate a table arry at certain values of its primary
+   variables for writing.</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e302143"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;Parameters&gt;Array Parameters&gt;Write to File</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

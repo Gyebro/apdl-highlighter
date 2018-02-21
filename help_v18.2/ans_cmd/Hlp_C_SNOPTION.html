@@ -1,0 +1,89 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:13-04:00"><title>SNOPTION</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_S_TOC.html" title="S Commands"><link rel="prev" href="Hlp_C_SMULT.html" title="SMULT"><link rel="next" href="Hlp_C_SOLU.html" title="SOLU"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SNOPTION"><a name="SNOPTION"></a><div class="titlepage"></div><a class="indexterm" name="d0e255548"></a><span class="refentrytitle"><span class="command"><strong>SNOPTION</strong></span></span><div class="refnamediv"><p><span class="command"><strong>SNOPTION</strong></span>, <em class="replaceable"><code>RangeFact</code></em>, <em class="replaceable"><code>BlockSize</code></em>, <em class="replaceable"><code>RobustLev</code></em>, <em class="replaceable"><code>Compute</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>Solve_Info</code></em><br><b class="refpurpose"> Specifies Supernode (SNODE) eigensolver options.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="SNOPTION.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code> RangeFact</code></em></b></span></dt><dd><p>Factor used to control the range of eigenvalues computed for each supernode. The value of
+       <em class="replaceable"><code>RangeFact</code></em> must be a number between 1.0 and 10.0. By default the
+       <em class="replaceable"><code>RangeFact</code></em> value is set to 2.0, which means that all eigenvalues
+      between 0 and 2*<em class="replaceable"><code>FREQE</code></em> are computed for each supernode (where
+       <em class="replaceable"><code>FREQE</code></em> is the upper end of the frequency range of interest as
+      specified on the <a class="link" href="Hlp_C_MODOPT.html" title="MODOPT"><span class="command"><strong>MODOPT</strong></span></a> command). As the
+       <em class="replaceable"><code>RangeFact</code></em> value increases, the eigensolution for the SNODE solver
+      becomes more accurate and the computational time increases.</p></dd><dt><span><b class="term"><em class="replaceable"><code>BlockSize</code></em></b></span></dt><dd><p><em class="replaceable"><code>BlockSize</code></em> to be used when computing
+the final eigenvectors. The value of <em class="replaceable"><code>Blocksize</code></em> must
+be either MAX or a number between 1 and <em class="replaceable"><code>NMODE</code></em>,
+where <em class="replaceable"><code>NMODE</code></em> is the number of modes to be computed
+as set on the <a class="link" href="Hlp_C_MODOPT.html" title="MODOPT"><span class="command"><strong>MODOPT</strong></span></a> command. Input a value of MAX to force
+the algorithm to allocate enough memory to hold all of the final eigenvectors
+in memory and, therefore, only read through the file containing the supernode
+eigenvectors once. Note that this setting is ONLY recommended when there is
+sufficient physical memory on the machine to safely hold all of the final
+eigenvectors in memory.</p></dd><dt><span><b class="term"><em class="replaceable"><code>RobustLev</code></em></b></span></dt><dd><p>Parameter used to control the robustness of the SNODE eigensolver.
+ The value of <em class="replaceable"><code>RobustLev</code></em> must be a number between
+0 and 10.  Lower values of <em class="replaceable"><code>RobustLev</code></em> allow the
+eigensolver to run in the most efficient manner for optimal performance. 
+Higher values of <em class="replaceable"><code>RobustLev</code></em> often slow down the
+performance of the eigensolver, but can increase the robustness; this may
+be desirable if a problem is detected with the eigensolver or its eigensolution.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Compute</code></em></b></span></dt><dd><p>Key to control which computations are performed by the Supernode
+eigensolver: </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">EVALUE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The eigensolver computes only the eigenvalues.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">EVECTOR</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The eigensolver computes only the eigenvectors
+(must be preceded by a modal analysis where the eigenvalues were computed
+using the Supernode eigensolver).  </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BOTH</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The eigensolver computes both the eigenvalues
+and eigenvectors in the same pass (default).</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused field</p></dd><dt><span><b class="term"><em class="replaceable"><code>Solve_Info</code></em></b></span></dt><dd><p>Solver output option:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Turns off additional output printing from
+the Supernode eigensolver (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">PERFORMANCE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Turns on additional output printing
+from the Supernode eigensolver, including a performance summary and a summary
+of file I/O for the Supernode eigensolver. Information on memory usage during
+assembly of the global matrices (that is, creation of the <span class="filename"><strong>Jobname.FULL</strong></span> file)
+is also printed with this option.</p></td></tr></tbody></table></div></div></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="SNOPTION.default"></a><h3>Command Default</h3><p><em class="replaceable"><code>RangeFact</code></em> = 2.0. <em class="replaceable"><code>BlockSize</code></em> is
+set to min(<em class="replaceable"><code>NMODE</code></em>,40), where <em class="replaceable"><code>NMODE</code></em> is
+the number of modes to be computed as set on the <a class="link" href="Hlp_C_MODOPT.html" title="MODOPT"><span class="command"><strong>MODOPT</strong></span></a> command. <em class="replaceable"><code>RobustLev</code></em> =
+0. <em class="replaceable"><code>Compute</code></em> = BOTH. Additional output is not printed
+(<em class="replaceable"><code>Solve_Info</code></em> = OFF).</p></div></div><div class="refsect1" title="Notes"><a name="SNOPTION.notes"></a><h2>Notes</h2><p>This command specifies options for the Supernode (SNODE) eigensolver.</p><p>Setting <em class="replaceable"><code>RangeFact</code></em> to a value between 2.0 and
+   10.0 will improve the accuracy of the computed eigenvalues and eigenvectors, but will often
+   increase the computing time of the SNODE eigensolver. Conversely, setting
+    <em class="replaceable"><code>RangeFact</code></em> to a value less than 2.0 will deteriorate the accuracy of
+   the computed eigenvalues and eigenvectors, but will often speed up the computing time of the
+   SNODE eigensolver. The default value of 2.0 has been set as a good blend of accuracy and
+   performance. If the model has rigid body modes, setting <em class="replaceable"><code>RangeFact</code></em>
+   higher than 2 is recommended to achieve better solution accuracy for the lower flexible
+   modes.</p><p>The SNODE eigensolver reads the eigenvectors and related information
+for each supernode from a file and uses that information to compute the final
+eigenvectors.  For each eigenvalue/eigenvector requested by the user, the
+program must do one pass through the entire file that contains the supernode
+eigenvectors.  By choosing a <em class="replaceable"><code>BlockSize</code></em> value greater
+than 1, the program can compute <em class="replaceable"><code>BlockSize</code></em> number
+of final eigenvectors for each pass through the file.  Therefore, smaller
+values of <em class="replaceable"><code>BlockSize</code></em> result in more I/O, and larger
+values of <em class="replaceable"><code>BlockSize</code></em> result in less I/O.  Larger
+values of  <em class="replaceable"><code>BlockSize</code></em> also result in significant
+additional memory usage, as <em class="replaceable"><code>BlockSize</code></em> number of
+final eigenvectors must be stored in memory. The default <em class="replaceable"><code>Blocksize</code></em> of
+min(<em class="replaceable"><code>NMODE</code></em>,40) is normally a good choice to balance
+memory and I/O usage.</p><p>The <em class="replaceable"><code>RobustLev</code></em> field should only be used when
+a problem is detected with the accuracy of the final solution or if the Supernode
+eigensolver fails while computing the eigenvalues/eigenvectors. Setting <em class="replaceable"><code>RobustLev</code></em> to
+a value greater than 0 will cause the performance of the eigensolver to deteriorate.
+If the performance deteriorates too much or if the eigensolver continues to
+fail when setting the <em class="replaceable"><code>RobustLev</code></em> field to higher
+values, then switching to another eigensolver such as Block Lanczos or PCG
+Lanczos is recommended.</p><p>Setting <em class="replaceable"><code>Compute</code></em> = EVALUE causes the Supernode
+eigensolver to compute only the requested eigenvalues.  During this process
+a <span class="filename"><strong>Jobname.SNODE</strong></span> file is written; however, a <span class="filename"><strong>Jobname.MODE</strong></span> file
+is not written. Thus, errors will likely occur in any downstream computations
+that require the <span class="filename"><strong>Jobname.MODE</strong></span> file (for example, participation
+factor computations, mode superpostion transient/harmonic analysis, PSD analysis).
+Setting <em class="replaceable"><code>Compute</code></em> = EVECTOR causes the Supernode
+eigensolver to compute only the corresponding eigenvectors. The <span class="filename"><strong>Jobname.SNODE</strong></span> file
+and the associated <span class="filename"><strong>Jobname.FULL</strong></span> file are required when
+requesting these eigenvectors. In other words, the eigenvalues must have already
+been computed for this model before computing the eigenvectors. This field
+can be useful in order to separate the two steps (computing eigenvalues and
+computing eigenvectors).</p><p>For more information on the eigensolver's accuracy and a discussion of
+      its known limitations, see <a href="../ans_thry/thy_tool13.html#thyeigsnode" class="olink">Supernode Method</a> in the
+      <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a></p></div><div class="refsect1" title="Menu Paths"><a name="SNOPTION.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Analysis Type&gt;Analysis Options</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Analysis Type&gt;Analysis Options</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

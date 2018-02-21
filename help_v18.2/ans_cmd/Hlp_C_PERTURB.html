@@ -1,0 +1,188 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:14-04:00"><title>PERTURB</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_P_TOC.html" title="P Commands"><link rel="prev" href="Hlp_C_PERBC2D.html" title="PERBC2D"><link rel="next" href="Hlp_C_PFACT.html" title="PFACT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="PERTURB"><a name="PERTURB"></a><div class="titlepage"></div><a class="indexterm" name="d0e198057"></a><span class="refentrytitle"><span class="command"><strong>PERTURB</strong></span></span><div class="refnamediv"><p><span class="command"><strong>PERTURB</strong></span>, <em class="replaceable"><code>Type</code></em>, <em class="replaceable"><code>MatKey</code></em>, <em class="replaceable"><code>ContKey</code></em>, <em class="replaceable"><code>LoadControl</code></em><br><b class="refpurpose">Sets linear perturbation analysis options.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="PERTURB.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Type</code></em></b></span></dt><dd><p>Type of linear perturbation analysis to be performed:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">STATIC&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Perform a linear perturbation
+static analysis.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MODAL&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Perform a linear perturbation
+modal analysis.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BUCKLE&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Perform a linear perturbation
+eigenvalue buckling analysis. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">HARMONIC&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Perform a linear
+perturbation full harmonic analysis.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SUBSTR&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Perform a linear perturbation
+substructure generation pass.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Do not perform a linear
+perturbation analysis (default).</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>MatKey</code></em></b></span></dt><dd><p>Key for specifying how the linear perturbation analysis
+uses material properties, valid for all structural elements except
+contact elements. For more information, see <a href="../ans_thry/thylinpert.html" class="olink">Linear Perturbation Analysis</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">AUTO&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The program selects the
+material properties for the linear perturbation analysis automatically
+(default). The materials are handled in the following way:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>For pure linear elastic materials used in the base
+analysis, the same properties are used in the linear perturbation
+analysis.</p></li><li class="listitem"><p>For hyperelastic materials used in the base analysis,
+the material properties are assumed to be linear elastic in the linear
+perturbation analysis. The material property data (or material Jacobian)
+is obtained based on the tangent of the hyperelastic material's constitutive
+law at the point where restart occurs.</p></li><li class="listitem"><p>For any nonlinear materials other than hyperelastic
+materials used in the base analysis, the material properties are assumed
+to be linear elastic in the linear perturbation analysis. The material
+data is the same as the linear portion of the nonlinear materials
+(that is, the parts defined by <a class="link" href="Hlp_C_MP.html" title="MP"><span class="command"><strong>MP</strong></span></a> commands).</p></li><li class="listitem"><p>For <a href="../ans_elem/Hlp_E_COMBIN39.html" class="olink"><span class="structname">COMBIN39</span></a>, the stiffness
+is that of the first segment of the force-deflection curve.</p></li></ul></div></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TANGENT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use the tangent (material Jacobian)
+on the material constitutive curve as the material property. The material
+property remains linear in the linear perturbation analysis and is
+obtained at the point of the base analysis where restart occurs. The
+materials are handled in the following way:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>For pure linear elastic materials used in the base
+analysis, the same properties are used in the linear perturbation
+analysis. Because the material constitutive curve is linear, the tangent
+is the same as the base analysis. </p></li><li class="listitem"><p>For hyperelastic materials used in the base analysis,
+the program uses the same tangent as that used for <em class="replaceable"><code>MatKey</code></em> = AUTO, and the results are therefore identical. </p></li><li class="listitem"><p>For any nonlinear materials other than hyperelastic
+materials used in the base analysis, the material properties are obtained
+via the material tangent on the material constitutive curve at the
+restart point of the base analysis. </p><p>The materials and
+properties typically differ from <em class="replaceable"><code>Matkey</code></em> = AUTO, but it is possible the results could be identical or very
+similar if a.) the material is elasto-plastic rate-independent and
+is unloading (or has neutral loading) at the restart point, or b.)
+the material is rate-dependent, depending on the material properties
+and loading conditions. </p></li><li class="listitem"><p>For <a href="../ans_elem/Hlp_E_COMBIN39.html" class="olink"><span class="structname">COMBIN39</span></a>, the stiffness
+is equal to the tangent of the current segment of the force-deflection
+curve.</p></li><li class="listitem"><p>In a modal restart solution that follows a linear
+perturbation modal analysis, the TANGENT option is overridden by the
+AUTO option and linear material properties are used for stress calculations
+in the modal restart. See the <a class="link" href="Hlp_C_PERTURB.html#TANmodrest">discussion
+in the Notes</a> for more information.</p></li></ul></div></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SPOFF</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Provide the same values as AUTO, but set the spin softening matrix to zero (ignoring
+          the spin softening effect).</p><p>The spin softening effect is excluded in all the linear perturbation analysis types
+          except for linear perturbation buckling.  Note that although the spin softening effect is
+          excluded in linear perturbation analysis, it is still included in the base static or full
+          transient analysis if <a class="link" href="Hlp_C_NLGEOM.html" title="NLGEOM"><span class="command"><strong>NLGEOM</strong></span></a>,ON is issued in the base analysis.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>ContKey</code></em></b></span></dt><dd><p>Key that controls contact status for the linear perturbation
+analysis. This key controls all contact elements (<a href="../ans_elem/Hlp_E_TARGE169.html" class="olink"><span class="structname">TARGE169</span></a>, <a href="../ans_elem/Hlp_E_TARGE170.html" class="olink"><span class="structname">TARGE170</span></a>, and <a href="../ans_elem/Hlp_E_CONTA171.html" class="olink"><span class="structname">CONTA171</span></a> through <a href="../ans_elem/Hlp_E_CONTA178.html" class="olink"><span class="structname">CONTA178</span></a>) globally for all contact
+pairs. Alternatively, contact status can be controlled locally per
+contact pair by using the <a class="link" href="Hlp_C_CNKMOD.html" title="CNKMOD"><span class="command"><strong>CNKMOD</strong></span></a> command. Note
+that the contact status from the base analysis solution is always
+adjusted by the local contact controls specified by <a class="link" href="Hlp_C_CNKMOD.html" title="CNKMOD"><span class="command"><strong>CNKMOD</strong></span></a> first and then modified by the global sticking or bonded control
+(<em class="replaceable"><code>ContKey</code></em> = STICKING or BONDED). The tables
+in the <a class="link" href="Hlp_C_PERTURB.html#PERTURB.notes" title="Notes">Notes</a> section show how
+the contact status is adjusted by <a class="link" href="Hlp_C_CNKMOD.html" title="CNKMOD"><span class="command"><strong>CNKMOD</strong></span></a> and/or
+the <em class="replaceable"><code>ContKey</code></em> setting.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CURRENT&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use the current contact
+status from the restart snapshot (default). If the previous run is
+nonlinear, then the nonlinear contact status at the point of restart
+is frozen and used throughout the linear perturbation analysis. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">STICKING&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>For frictional contact
+pairs (MU &gt; 0), use sticking contact (e.g., MU*KN for tangential
+contact stiffness)  everywhere the contact state is closed (i.e.,
+status is sticking or sliding). This option only applies to contact
+pairs that are in contact and have a frictional coefficient MU greater
+than zero. Contact pairs without friction (MU = 0) and in a sliding
+state remain free to slide in the linear perturbation analysis.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BONDED&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Any contact pairs that
+are in the closed (sticking or sliding) state are moved to bonded
+(for example, KN for both normal and tangential contact stiffness).
+Contact pairs that have a status of far-field or near-field remain
+open. </p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>LoadControl</code></em></b></span></dt><dd><p>Key that controls how the load vector of {F<sub>perturbed</sub>} is calculated. This control is provided for
+convenience of load generation for linear perturbation analysis. In
+general, a new set of loads is required for a linear perturbation
+analysis. This key controls all mechanical loads; it does not affect
+non-mechanical loads. Non-mechanical loads (including thermal loads)
+are always kept (i.e., not deleted).</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ALLKEEP&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Keep all the boundary
+conditions (loads and constraints) from the end of the load step of
+the current restart point. This option is convenient for further load
+application and is useful for a linear perturbation analysis restarted
+from a previous linear analysis. For this option, {F<sub>end</sub>} is the total load vector at the <span class="italic"><em>end</em></span> of the load step at the restart point.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">INERKEEP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Delete all loads and constraints
+from the restart step, except for displacement constraints and inertia
+loads (default). All displacement constraints and inertia loads are
+kept for convenience when performing the linear perturbation analysis.
+Note that nonzero and tabular displacement constraints can be considered
+as external loads; however, they are not deleted when using this option. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">PARKEEP&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Delete all loads and
+constraints from the restart step, except for displacement constraints.
+All displacement constraints are kept for convenience when performing
+the linear perturbation analysis. Note that nonzero and tabular displacement
+constraints can be considered as external loads; however, they are
+not deleted when using this option. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DZEROKEEP&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Behaves the same
+as the PARKEEP option, except that all nonzero displacement constraints
+are set to zero upon the onset of linear perturbation. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NOKEEP&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Delete all the loads
+and constraints, including all displacement constraints. For this
+option, {F<sub>end</sub>} is zero unless non-mechanical
+loads (e.g., thermal loads) are present.</p></td></tr></tbody></table></div></div></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="PERTURB.default"></a><h3>Command Default</h3><p>Linear perturbation analysis is disabled (<em class="replaceable"><code>Type</code></em> = OFF) by default. When the linear perturbation analysis is enabled,
+linear material property behavior is assumed for stress calculations;
+contact status for all contact pairs from the point of restart is
+used by default; and all loads and constraints from the restart step
+are deleted, except for displacement constraints and inertia loads,
+by default.</p></div></div><div class="refsect1" title="Notes"><a name="PERTURB.notes"></a><h2>Notes</h2><p>This command controls options relating to <a href="../ans_str/strlinperturb.html" class="olink">linear perturbation
+analyses</a>. It must be issued in the first phase of a linear
+perturbation analysis. </p><p>This command is also valid in PREP7.</p><div class="refsect2" title="Linear Perturbation Overview"><a name="d0e198362"></a><h3>Linear Perturbation Overview</h3><p>A linear perturbation analysis consists of two phases (two <a class="link" href="Hlp_C_SOLVE.html" title="SOLVE"><span class="command"><strong>SOLVE</strong></span></a> commands). The first phase is a restart from a base
+analysis. This base analysis must be a linear or nonlinear static
+analysis or full transient analysis. The first phase starts with the <a class="link" href="Hlp_C_ANTYPE.html" title="ANTYPE"><span class="command"><strong>ANTYPE</strong></span></a>,,RESTART,,,PERTURB command and ends with the <a class="link" href="Hlp_C_SOLVE.html" title="SOLVE"><span class="command"><strong>SOLVE</strong></span></a>,ELFORM command. The purpose of the first phase is
+to re-establish a snapshot of the stiffness matrices at the specified
+restart point. The second phase, ending with the second <a class="link" href="Hlp_C_SOLVE.html" title="SOLVE"><span class="command"><strong>SOLVE</strong></span></a> command, is for the actual linear perturbation analysis.</p><p>The total perturbed loads are calculated as follows:</p><p> {F<sub>perturbed</sub>} = {F<sub>end</sub>} + {F<sub>add</sub>}</p><p> where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>{F<sub>end</sub>} = total loads at the <span class="italic"><em>end</em></span> of the load step of the current restart
+point (load applications are read from the <span class="filename"><strong>.LDHI</strong></span> file). By default, all of the loads in {F<sub>end</sub>} are deleted except for displacement boundary conditions and inertia
+loads (see the description of<em class="replaceable"><code> LoadControl</code></em> above).</td></tr><tr><td>{F<sub>add</sub>} = Additional (new) loads prescribed
+by the user in the second phase of the linear perturbation analysis
+(after the first <a class="link" href="Hlp_C_SOLVE.html" title="SOLVE"><span class="command"><strong>SOLVE</strong></span></a> command is invoked).</td></tr></table><p>In the first phase of a linear perturbation analysis, the <a class="link" href="Hlp_C_ANTYPE.html" title="ANTYPE"><span class="command"><strong>ANTYPE</strong></span></a>,,RESTART command resumes the <span class="filename"><strong>Jobname.RDB</strong></span> database and reads in the <span class="filename"><strong>.LDHI</strong></span> file to establish
+the {F<sub>end</sub>} load. New load application (adding
+to  {F<sub>add</sub>}) or load removal (changing  {F<sub>end</sub>}) can be done only in the second phase of the linear
+perturbation analysis (after the first <a class="link" href="Hlp_C_SOLVE.html" title="SOLVE"><span class="command"><strong>SOLVE</strong></span></a> command),
+allowing flexibility in controlling the final {F<sub>perturbed</sub>} to be used.</p><p>For <em class="replaceable"><code>Type</code></em> = STATIC, {F<sub>perturbed</sub>} is the actual external load for the static analysis.</p><p>For <em class="replaceable"><code>Type</code></em> = MODAL, {F<sub>perturbed</sub>} is calculated and stored in the <span class="filename"><strong>.FULL</strong></span> and <span class="filename"><strong>.MODE</strong></span> files for a subsequent mode-superposition, PSD,
+or other type of modal-based linear dynamic analysis. Linear dynamic
+options such as multiple load generations (<a class="link" href="Hlp_C_MODCONT.html" title="MODCONT"><span class="command"><strong>MODCONT</strong></span></a>,ON), enforced motion (<a class="link" href="Hlp_C_MODCONT.html" title="MODCONT"><span class="command"><strong>MODCONT</strong></span></a>, ,ON), and residual
+vector methods (<a class="link" href="Hlp_C_RESVEC.html" title="RESVEC"><span class="command"><strong>RESVEC</strong></span></a>,ON) can be used in a linear
+perturbation analysis. For these methods, the <a class="link" href="Hlp_C_MODCONT.html" title="MODCONT"><span class="command"><strong>MODCONT</strong></span></a> or <a class="link" href="Hlp_C_RESVEC.html" title="RESVEC"><span class="command"><strong>RESVEC</strong></span></a> command must be invoked in the second
+phase (after the first <a class="link" href="Hlp_C_SOLVE.html" title="SOLVE"><span class="command"><strong>SOLVE</strong></span></a>) of the linear perturbation
+procedure. For the enforced motion method, the base identification
+number should be specified (<a class="link" href="Hlp_C_D.html" title="D"><span class="command"><strong>D</strong></span></a> command) in the second
+phase of the linear perturbation analysis. This base identification
+number is used later in the downstream mode-superposition or other
+mode-superposition based analysis.</p><p>For <em class="replaceable"><code>Type</code></em> = BUCKLE, {F<sub>perturbed</sub>} is the actual linear buckling load which is used to generate the
+linear stress stiffening matrix for the buckling analysis.</p><p>For <em class="replaceable"><code>Type</code></em> = HARMONIC, {F<sub>perturbed</sub>} is the actual external load for the full harmonic
+analysis. In this case, {F<sub>perturbed</sub>} can be
+frequency dependent and can use complex input.</p><p>For <em class="replaceable"><code>Type</code></em> = SUBSTR,
+{F<sub>perturbed</sub>} is used to generate the first
+reduced external load vector of the substructure.</p></div><div class="refsect2" title="Controlling Material Behavior"><a name="d0e198530"></a><h3>Controlling Material Behavior</h3><p>In most cases involving linear perturbation analysis, <em class="replaceable"><code>Matkey</code></em> = AUTO is the best option for controlling material
+behavior. <em class="replaceable"><code>Matkey</code></em> = TANGENT is often the
+better option, however, in special cases such as the following:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>A linear perturbation buckling analysis, to introduce
+preferred buckling modes into a subsequent post-buckling nonlinear
+analysis.</p></li><li class="listitem"><p>A linear perturbation modal analysis, to introduce
+preferred modes into a subsequent bifurcation analysis.</p></li></ul></div><p><a name="TANmodrest"></a>If the TANGENT option is used in conjunction
+with a modal restart solution that follows a linear perturbation modal
+analysis, then the AUTO option is assumed and linear material properties
+are used for stress calculations in the modal restart solution. This
+occurs because the TANGENT material properties are not available during
+the modal restart phase due to a data architecture limitation. Furthermore,
+linear material properties are used for the stress calculation in
+any downstream analysis that uses the modal restart solution.</p><p>For more information about the automatic and tangent options,
+see <a href="../ans_elem/Hlp_E_LinearPerturbElems.html#ELlinpertmatbehavior" class="olink">Specifying Material Behavior in Linear Perturbation</a> in the <a href="../ans_elem/Hlp_E_ElemTOC.html" class="olink"><em class="citetitle">Element Reference</em></a>. </p></div><div class="refsect2" title="Controlling Contact Status"><a name="d0e198558"></a><h3>Controlling Contact Status</h3><p>You can control the contact status for the linear perturbation
+analysis by using the <em class="replaceable"><code>ContKey</code></em> field on
+this command and/or the <a class="link" href="Hlp_C_CNKMOD.html" title="CNKMOD"><span class="command"><strong>CNKMOD</strong></span></a> command. The first
+table shows the effects of using only the <em class="replaceable"><code>ContKey</code></em> setting on the <span class="command"><strong>PERTURB</strong></span> command. The second table
+shows the effects of using both the <a class="link" href="Hlp_C_CNKMOD.html" title="CNKMOD"><span class="command"><strong>CNKMOD</strong></span></a> command
+and the <em class="replaceable"><code>ContKey</code></em> setting on <span class="command"><strong>PERTURB</strong></span>.</p><div class="table"><a name="d0e198586"></a><p class="title"><b>Table&nbsp;207:&nbsp;&nbsp;Adjusted Contact Status when PERTURB Command Is Issued</b></p><div class="table-contents"><table summary="Adjusted Contact Status when PERTURB Command Is Issued" border="1" width="95%"><colgroup><col width="25%" class="col1"><col width="44%" class="col2"><col width="31%" class="col3"></colgroup><tbody><tr><td rowspan="2"><span class="bold"><strong>Contact Status
+from the Base Analysis Solution at the Restart Point</strong></span></td><td colspan="2" align="center"><span class="bold"><strong><em class="replaceable"><code>ContKey</code></em> Setting on PERTURB Command</strong></span></td></tr><tr><td><em class="replaceable"><code>ContKey</code></em> Value</td><td>Adjusted Contact Status</td></tr><tr><td>0 - far-field </td><td>any</td><td>0 - far-field </td></tr><tr><td>1
+- near-field</td><td>any</td><td>1 - near-field</td></tr><tr><td rowspan="2">2 - sliding</td><td>CURRENT or
+STICKING (mu=0)</td><td>2 - sliding</td></tr><tr><td>STICKING (mu&gt;0) or BONDED</td><td>3 - sticking</td></tr><tr><td>3 - sticking</td><td>any</td><td>3 - sticking</td></tr></tbody></table></div></div><br class="table-break"><div class="table"><a name="d0e198644"></a><p class="title"><b>Table&nbsp;208:&nbsp;&nbsp;Adjusted Contact Status when Both CNKMOD and PERTURB Are Issued</b></p><div class="table-contents"><table summary="Adjusted Contact Status when Both CNKMOD and PERTURB Are Issued" border="1" width="95%"><colgroup><col width="15%" class="col1"><col width="17%" class="col2"><col width="18%" class="col3"><col width="32%" class="col4"><col width="18%" class="col5"></colgroup><tbody><tr><td rowspan="2"><span class="bold"><strong>Contact Status
+from the Base Analysis Solution at the Restart Point</strong></span></td><td colspan="2" align="center"><span class="bold"><strong>CNKMOD,<em class="replaceable"><code>ITYPE</code></em>,12,<em class="replaceable"><code>Value</code></em></strong></span></td><td colspan="2" align="center"><span class="bold"><strong><em class="replaceable"><code>ContKey</code></em> Setting
+on PERTURB Command</strong></span></td></tr><tr><td>KEYOPT(12)
+Value</td><td>Adjusted Contact Status</td><td><em class="replaceable"><code>ContKey</code></em> Value</td><td>Final Adjusted Contact
+Status</td></tr><tr><td>0 - far-field </td><td>any</td><td>0 - far-field </td><td>any</td><td>0 - far-field
+ </td></tr><tr><td rowspan="6">1 - near-field</td><td>0, 1, 2, 3, 6 </td><td>1 - near-field </td><td>any</td><td>1 - near-field</td></tr><tr><td rowspan="3">4 </td><td>1 - near-field<p>(if outside of the adjusted pinball region)</p></td><td>any</td><td>1 - near-field </td></tr><tr><td rowspan="2">2 - sliding<p>(if inside of the adjusted pinball
+region)</p></td><td>CURRENT or STICKING (mu=0)</td><td>2 - sliding</td></tr><tr><td>STICKING (mu&gt;0) or BONDED</td><td>3 - sticking</td></tr><tr><td rowspan="2">5 </td><td>1 - near-field<p>(if outside of the adjusted pinball region)</p></td><td>any</td><td>1 - near-field </td></tr><tr><td>3 - sticking<p>(if inside of the adjusted pinball region)</p></td><td>any</td><td>3 - sticking</td></tr><tr><td rowspan="3">2 - sliding</td><td rowspan="2">0, 2, 4 </td><td rowspan="2">2 - sliding</td><td>CURRENT or STICKING
+(mu=0)</td><td>2 - sliding</td></tr><tr><td>STICKING
+(mu&gt;0) or BONDED</td><td>3 - sticking</td></tr><tr><td>1, 3, 5, 6 </td><td>3 - sticking</td><td>any</td><td>3 - sticking</td></tr><tr><td>3 - sticking</td><td>any</td><td>3 - sticking</td><td>any</td><td>3
+- sticking</td></tr></tbody></table></div></div><br class="table-break"><p>When <em class="replaceable"><code>ContKey</code></em> is set to CURRENT, all
+contact related parameters (such as normal stiffness and tangential
+stiffness) will remain unchanged throughout the linear perturbation
+analysis. However when <em class="replaceable"><code>ContKey</code></em> is set to
+STICKING or BONDED, the program will re-evaluate the contact normal
+and tangential stiffness in order to perform the linear perturbation
+analysis based on the actual sticking behavior regardless of the friction
+coefficient value.</p><p>Note that the <a class="link" href="Hlp_C_CNKMOD.html" title="CNKMOD"><span class="command"><strong>CNKMOD</strong></span></a> command allows you to
+take points in the base analysis that are near contact (within the
+pinball region) and modify them to be treated as "in contact" in the
+linear perturbation analysis; see the "1 - near-field" row in the
+above table with KEYOPT(12) values set to 4 or 5. <a class="link" href="Hlp_C_CNKMOD.html" title="CNKMOD"><span class="command"><strong>CNKMOD</strong></span></a> also allows you to take points that are sliding in the base analysis
+and treat them as sticking in the linear perturbation analysis, irrespective
+of the MU value; see the "2 - sliding" row in the above table with
+KEYOPT(12) values set to 1,5, or 6. </p><p>If an open gap exists at the restart point of the base static/transient
+solution and the contact status is adjusted as sliding or sticking
+due to a &#8220;bonded&#8221; or &#8220;no separation&#8221; contact
+behavior definition, then the program will treat it as near-field
+contact when executing the <a class="link" href="Hlp_C_CNKMOD.html" title="CNKMOD"><span class="command"><strong>CNKMOD</strong></span></a> command in a
+downstream linear perturbation analysis.</p></div></div><div class="refsect1" title="Menu Paths"><a name="PERTURB.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Analysis Type&gt;Restart</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Analysis Type&gt;Restart</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

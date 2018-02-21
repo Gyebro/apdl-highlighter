@@ -1,0 +1,235 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:42-04:00"><title>SURF153</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_SURF152.html" title="SURF152"><link rel="next" href="Hlp_E_SURF154.html" title="SURF154"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SURF153"><a name="SURF153"></a><div class="titlepage"></div><a class="indexterm" name="d0e69007"></a><span class="refentrytitle">
+<span class="structname">SURF153</span>   </span><div class="refnamediv"><p><br><b class="refpurpose">2-D Structural
+Surface Effect</b><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  DesSpc | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+<div class=""><div class="application"><span class="application">
+<a class="link" href="Hlp_E_SURF153.html#ap2Oxq354mcm" title="SURF153 Product Restrictions">Product Restrictions</a>
+</span></div></div>
+</div></p></div><div class="refsect1" title="SURF153 Element Description"><a name="ELEMsurf153descfdb"></a><h2>SURF153 Element Description</h2><p>
+<span class="structname">SURF153</span> may be used for various load
+and surface effect applications. It may be overlaid onto a face of
+any 2-D structural solid element (except axisymmetric harmonic elements <a class="link" href="Hlp_E_PLANE25.html" title="PLANE25"><span class="structname">PLANE25</span></a> and <a class="link" href="Hlp_E_PLANE83.html" title="PLANE83"><span class="structname">PLANE83</span></a>). The element
+is applicable to structural analyses, but for 3-D structural analyses,
+it must be laid on any global Cartesian Z = constant plane. See <a href="../ans_thry/thy_el153.html" class="olink">SURF153</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for
+more details about this element.</p><div class="figure"><a name="ap2Oxq48mcm"></a><p class="title"><b>Figure&nbsp;153.1:&nbsp;&nbsp;SURF153 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM153-1.svg" alt="SURF153 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="SURF153 Input Data"><a name="ap2Oxqb6mcm"></a><h2>SURF153 Input Data</h2><p>The geometry, node locations, and the coordinate system for
+this element are shown in <a class="xref" href="Hlp_E_SURF153.html#ap2Oxq48mcm" title="Figure&nbsp;153.1:&nbsp;&nbsp;SURF153 Geometry">Figure&nbsp;153.1:&nbsp;SURF153 Geometry</a>. The element
+is defined by two or three node points and the material properties.
+The nodes for this element must share the nodes of the underlying
+solid element. The element x-axis is along to the I-J line of the
+element.</p><p>The mass and volume calculations use the in-plane element thicknesses
+at nodes I and J (real constants TKI and TKJ, respectively). Thickness
+TKI defaults to 0.0, and thickness TKJ defaults to TKI. If KEYOPT(3)
+= 3, the out-of-plane thickness is input as the real constant TKPS
+(defaults to 1.0). The mass calculation uses the density (material
+property DENS, mass per unit volume) and the real constant ADMSUA,
+the added mass per unit area.  </p><p>The stress stiffness matrix and load vector calculations use
+the in-plane force-per-unit length (input as real constant SURT).
+The elastic foundation stiffness (input as real constant EFS) uses
+pressure-per-length (or force-per-length-cubed) units. The foundation
+stiffness can be damped, either by using the material property BETD
+as a multiplier on the stiffness or by directly using the material
+property VISC.</p><p>See <a class="xref" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">Nodal Loading</a> for a description of element
+loads. Pressures may be input as surface loads as force-per-length-squared
+on the element faces as shown by the circled numbers on <a class="xref" href="Hlp_E_SURF153.html#surf153_pressures" title="Figure&nbsp;153.2:&nbsp;&nbsp;Pressures">Figure&nbsp;153.2:&nbsp;Pressures</a>.  <span class="structname">SURF153</span> allows
+complex pressure loads.</p><div class="figure"><a name="surf153_pressures"></a><p class="title"><b>Figure&nbsp;153.2:&nbsp;&nbsp;Pressures</b></p><div class="figure-contents"><div><img src="graphics/gELEM153-2.png" alt="Pressures"></div></div></div><br class="figure-break"><p title="Faces 1 and 2 [KEYOPT(2) = 0]"><b>Faces 1 and 2 [KEYOPT(2) = 0]&nbsp;</b>Positive values
+of pressure on the first two faces act in the positive element coordinate
+directions (except for the normal pressure which acts in the negative
+y direction). For face 1, positive or negative values may be removed
+as requested with KEYOPT(6) to simulate the discontinuity at the free
+surface of a contained fluid.</p><p title="Faces 1 and 2 [KEYOPT(2) = 1]"><b>Faces 1 and 2 [KEYOPT(2) = 1]&nbsp;</b>Pressure loads are
+applied to the element faces according to the local coordinate system
+as follows: face 1 in the local x direction and face 2 in the local
+y direction. A local coordinate system must be defined, and the element
+must be set to that coordinate system via the <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a> command; however, the loads specified in that local coordinate system
+do not follow the large displacements and/or rotations of the element.
+KEYOPT(6) does not apply.</p><p title="Face 3"><b>Face 3&nbsp;</b>The magnitude of the pressure at each integration
+point is P<sub>I</sub> + XP<sub>J</sub> +
+YP<sub>K</sub>, where P<sub>I</sub> through
+P<sub>K</sub> are input as <em class="replaceable"><code>VAL1</code></em> through <em class="replaceable"><code>VAL3</code></em> on the <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> command, and X and Y are the global Cartesian coordinates at the
+current location of the point. No input values can be blank. The <a href="../ans_cmd/Hlp_C_SFFUN.html" class="olink"><span class="command"><strong>SFFUN</strong></span></a> and <a href="../ans_cmd/Hlp_C_SFGRAD.html" class="olink"><span class="command"><strong>SFGRAD</strong></span></a> commands do not work
+with face 3. </p><p title="Face 4"><b>Face 4&nbsp;</b>The magnitude of the pressure is P<sub>I</sub>, and the direction is <span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq81492f41-d598-4197-b5ef-de5944ae5474.svg"></span>where i and j are unit vectors in the global Cartesian directions.
+ The load magnitude can be adjusted with KEYOPTs(11) and (12). No
+input values can be blank. When using the <a href="../ans_cmd/Hlp_C_SFFUN.html" class="olink"><span class="command"><strong>SFFUN</strong></span></a> or <a href="../ans_cmd/Hlp_C_SFGRAD.html" class="olink"><span class="command"><strong>SFGRAD</strong></span></a> commands, the load direction is not
+altered, but the load magnitude is the average of the computed corner
+node magnitudes. <a href="../ans_cmd/Hlp_C_SFCUM.html" class="olink"><span class="command"><strong>SFCUM</strong></span></a>,ADD should be used with
+caution, as this command also causes the load direction components
+to be added.</p><p>The effects of pressure load stiffness are automatically included
+for this element for real pressure on face 1 if KEYOPT(2) = 0 or on
+face 3. If an unsymmetric matrix is needed for pressure load stiffness
+effects, use <a href="../ans_cmd/Hlp_C_NROPT.html" class="olink"><span class="command"><strong>NROPT</strong></span></a>,UNSYM.</p><p>Temperatures may be input as element body loads at the nodes.
+ Element body load temperatures are not applied to other elements
+connected at the same nodes. The node I temperature T(I) defaults
+to TUNIF.  The node J temperature defaults to T(I).  Temperatures
+are used for material property evaluation only.</p><p>When KEYOPT(4) = 0, a removed midside node implies that the
+displacement varies linearly, rather than parabolically.  See <a href="../ans_mod/Hlp_G_MOD2_4.html#aQXQxq1ecmcm" class="olink">Quadratic Elements (Midside
+Nodes)</a> in the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a> for more information about the use
+of midside nodes.</p><p>If a single PLANE element lies beneath <span class="structname">SURF153</span>, you can automatically set the element behavior (plane stress, axisymmetric,
+or plane stress with thickness [including TKPS if applicable]) to
+that of the underlying solid element using KEYOPT(3) =10. This option
+is valid only when a single PLANE element lies beneath the SURF element.
+ For example, if you apply a <span class="structname">SURF153</span> element
+over a <a class="link" href="Hlp_E_PLANE77.html" title="PLANE77"><span class="structname">PLANE77</span></a> (thermal) element whose nodes
+are also used in the definition of a <a class="link" href="Hlp_E_PLANE183.html" title="PLANE183"><span class="structname">PLANE183</span></a> (structural) element, a warning appears and the load is not applied
+to the element.</p><p>KEYOPT(7) = 1 is useful when the element is used to represent
+a force. When KEYOPT(7) = 0, the force is input as a pressure times
+an area; however, if the area changes due to large deflections, the
+force also changes. When KEYOPT(7) = 1, the force remains unchanged
+even if the area changes.</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_SURF153.html#ap2Oxq126mcm" title="SURF153 Input Summary">"SURF153 Input Summary"</a>.  A general description of element input
+is given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>. For axisymmetric applications
+see <a class="xref" href="Hlp_E_continuumelems.html#axele520jjw" title="5.1.5.2.&nbsp;Harmonic Axisymmetric Elements">Harmonic Axisymmetric Elements</a>.</p><div class="refsect2" title="SURF153 Input Summary"><a name="ap2Oxq126mcm"></a><h3>SURF153 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>I, J if KEYOPT (4) = 1,</td></tr><tr><td>I, J, K if KEYOPT(4) = 0</td></tr></table></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>UX, UY</p></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>(Blank), (Blank), (Blank), EFS, SURT, ADMSUA,</td></tr><tr><td>TKI, TKJ, (Blank), (Blank), (Blank), TKPS</td></tr><tr><td>See <a class="xref" href="Hlp_E_SURF153.html#surf153realconstants" title="Table&nbsp;153.1:&nbsp;&nbsp;SURF153 Real Constants">Table&nbsp;153.1:&nbsp;SURF153 Real Constants</a> for a description
+of the real constants</td></tr></table></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p>
+<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: DENS, VISC, ALPD, BETD, <span>DMPR</span>
+</p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Pressures&nbsp;--&nbsp;</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>face 1 (I-J) (in -y normal direction if KEYOPT(2) = 0; in
+local coordinate x direction if KEYOPT(2) = 1)</td></tr><tr><td>face 2 (I-J) (in +x tangential direction if KEYOPT(2) = 0;
+in local coordinate y direction if KEYOPT(2) = 1)</td></tr><tr><td>face 3 (I-J) (in -y normal direction, global taper)</td></tr><tr><td>face 4 (I-J) (oriented by input vector)</td></tr></table></dd></dl></div></div></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Temperatures&nbsp;--&nbsp;</b></span></dt><dd><p>T(I), T(J);
+also T(K) if KEYOPT(4) = 0</p></dd></dl></div></div></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+        <a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth and death</a>
+       </td></tr><tr><td>
+        <a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink">Large deflection</a>
+       </td></tr><tr><td>
+        <a href="../ans_str/strlinperturb.html" class="olink">Linear perturbation</a>
+       </td></tr><tr><td><a href="../ans_adv/adv_meshnonlinadapt.html" class="olink">Nonlinear adaptivity</a></td></tr><tr><td>
+        <a href="../ans_adv/Hlp_G_ADVREZ.html" class="olink">Rezoning</a></td></tr><tr><td>
+        <a href="../ans_str/Hlp_G_STR8_2.html#strstrstiftlm61199434" class="olink">Stress stiffening</a>
+       </td></tr></table></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Pressure applied to faces 1 and 2 according to coordinate
+system:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Apply face loads in the
+element coordinate system</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Apply face loads in the
+local coordinate system</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(3)</b></span></dt><dd><p>Element behavior:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Plane stress</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Axisymmetric</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Plane strain</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Plane stress with thickness
+input (TKPS)</p></dd><dt><span><b class="term">5 -- </b></span></dt><dd><p>Generalized plane strain</p></dd><dt><span><b class="term">10&nbsp;--&nbsp;</b></span></dt><dd><p>Use the element behavior--plane
+stress, axisymmetric, plain strain, plane stress with thickness input
+(including TKPS if applicable), or generalized plane strain--of the
+underlying solid element.</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(4)</b></span></dt><dd><p>Midside nodes:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Has midside node</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>No midside node</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(6)</b></span></dt><dd><p>Applicable only to normal direction pressure (faces
+1 and 3):</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Use pressures as calculated
+(positive and negative)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Use positive pressures
+only (negative set to zero)</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Use negative pressures
+only (positive set to zero)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(7)</b></span></dt><dd><p>Loaded area during large-deflection analyses:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Use new area</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Use original area</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(11)</b></span></dt><dd><p>Pressure applied by vector orientation (face 4):</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>On projected area and
+includes tangential component</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>On projected area and
+does not include tangential component</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>On full area and includes
+the tangential component</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(12)</b></span></dt><dd><p>Effect of the direction of the element normal (element
+y-axis) on vector-oriented (face 4) pressure:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Pressure load is applied
+regardless of the element normal orientation</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Pressure load is not used
+if the element normal is oriented in the same general direction as
+the pressure vector</p></dd></dl></div></div></dd></dl></div></div><div class="table"><a name="surf153realconstants"></a><p class="title"><b>Table&nbsp;153.1:&nbsp;&nbsp;SURF153 Real Constants</b></p><div class="table-contents"><table summary="SURF153 Real Constants" border="1" width="95%"><colgroup><col width="72" class="col1"><col width="96" class="col2"><col width="432" class="col3"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center" valign="top">
+
+No.</th><th bgcolor="#E3E3E3" align="center" valign="top">
+
+Name</th><th bgcolor="#E3E3E3" align="center" valign="top">
+
+Description</th></tr></thead><tbody><tr><td align="center">1 ... 3</td><td>(Blank)</td><td>--</td></tr><tr><td align="center">4</td><td>EFS</td><td>Foundation stiffness</td></tr><tr><td align="center">5</td><td>SURT</td><td>Surface tension</td></tr><tr><td align="center">6</td><td>ADMSUA</td><td>Added mass/unit area</td></tr><tr><td align="center">7</td><td>TKI</td><td>In-plane thickness at node I</td></tr><tr><td align="center">8</td><td>TKJ</td><td>In-plane thickness
+at node J (defaults to TKI)</td></tr><tr><td align="center">9 ... 11</td><td>(Blank)</td><td>--</td></tr><tr><td align="center">12</td><td>TKPS</td><td>Out-of-plane thickness if KEYOPT(3) = 3 (defaults to
+1.0)</td></tr></tbody></table></div></div><br class="table-break"></div></div><div class="refsect1" title="SURF153 Output Data"><a name="ap2Oxq193mcm"></a><h2>SURF153 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal degree of freedom results included in the overall
+nodal solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_SURF153.html#ap2Oxq200mcm" title="Table&nbsp;153.2:&nbsp;&nbsp;SURF153 Element Output Definitions">Table&nbsp;153.2:&nbsp;SURF153 Element Output Definitions</a>
+</p></li></ul></div><p>
+</p><p>A general description of solution output is given in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a>.  See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways to view results.</p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="ap2Oxq200mcm"></a><p class="title"><b>Table&nbsp;153.2:&nbsp;&nbsp;SURF153 Element Output Definitions</b></p><div class="table-contents"><table summary="SURF153 Element Output Definitions" border="1" width="95%"><colgroup><col width="168" class="col1"><col width="360" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center">
+
+Name</th><th bgcolor="#E3E3E3" align="center">
+
+Definition</th><th bgcolor="#E3E3E3" align="center">
+
+O</th><th bgcolor="#E3E3E3" align="center">
+
+R</th></tr></thead><tbody><tr><td>EL</td><td>Element Number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>SURFACE NODES</td><td>Nodes - I, J</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>EXTRA NODE</td><td>Extra node (if present)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>MAT</td><td>Material number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>AREA</td><td>Surface
+area</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>VOLU:</td><td>Volume</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>XC, YC</td><td>Location
+where results are reported</td><td align="center">Y</td><td align="center">
+<a class="xref" href="Hlp_E_SURF153.html#surf153.tab.2.ft.6">6</a>
+</td></tr><tr><td>VN(X, Y)</td><td>Components of unit vector normal to
+center of element</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>PRESSURES(F/L2)</td><td>Pressures  P1, P2, P3, P4 at nodes I, J (Face indicated by PRES LOAD
+KEY)</td><td align="center">
+<a class="xref" href="Hlp_E_SURF153.html#surf153.tab.2.ft.1">1</a>
+</td><td align="center">-</td></tr><tr><td>PY, PX</td><td>Pressures
+at nodes in element coordinate system (P4 uses an average element
+coordinate system)</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SURF153.html#surf153.tab.2.ft.1">1</a>
+</td></tr><tr><td>AVG. FACE
+PRESSURE</td><td>Average normal pressure (P1AVG), Average tangential
+pressure (P2AVG), Average tapered normal pressure (P3AVG),  Effective
+value of vector oriented pressure (P4EFF)</td><td align="center">
+<a class="xref" href="Hlp_E_SURF153.html#surf153.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SURF153.html#surf153.tab.2.ft.1">1</a>
+</td></tr><tr><td>DVX, DVY</td><td>Direction vector of pressure P4</td><td align="center">
+<a class="xref" href="Hlp_E_SURF153.html#surf153.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SURF153.html#surf153.tab.2.ft.1">1</a>
+</td></tr><tr><td>TEMP</td><td>Surface temperatures T(I), T(J), T(K)</td><td align="center">
+<a class="xref" href="Hlp_E_SURF153.html#surf153.tab.2.ft.2">2</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SURF153.html#surf153.tab.2.ft.2">2</a>
+</td></tr><tr><td>DENSITY</td><td>Density (input as DENS)</td><td align="center">
+<a class="xref" href="Hlp_E_SURF153.html#surf153.tab.2.ft.3">3</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SURF153.html#surf153.tab.2.ft.3">3</a>
+</td></tr><tr><td>MASS</td><td>Mass of Element</td><td align="center">
+<a class="xref" href="Hlp_E_SURF153.html#surf153.tab.2.ft.3">3</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SURF153.html#surf153.tab.2.ft.3">3</a>
+</td></tr><tr><td>FOUNDATION STIFFNESS</td><td>Foundation Stiffness (input
+as EFS)</td><td align="center">
+<a class="xref" href="Hlp_E_SURF153.html#surf153.tab.2.ft.4">4</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SURF153.html#surf153.tab.2.ft.4">4</a>
+</td></tr><tr><td>FOUNDATION PRESSURE</td><td>Foundation Pressure</td><td align="center">
+<a class="xref" href="Hlp_E_SURF153.html#surf153.tab.2.ft.4">4</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SURF153.html#surf153.tab.2.ft.4">4</a>
+</td></tr><tr><td>SURFACE TENSION</td><td>Surface Tension (input as SURT)</td><td align="center">
+<a class="xref" href="Hlp_E_SURF153.html#surf153.tab.2.ft.5">5</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SURF153.html#surf153.tab.2.ft.5">5</a>
+</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="surf153.tab.2.ft.1"></a>If pressure load</p></li><li class="listitem"><p><a name="surf153.tab.2.ft.2"></a>If temperature load</p></li><li class="listitem"><p><a name="surf153.tab.2.ft.3"></a>If DENS &gt; 0</p></li><li class="listitem"><p><a name="surf153.tab.2.ft.4"></a>If EFS &gt; 0</p></li><li class="listitem"><p><a name="surf153.tab.2.ft.5"></a>If SURT &gt; 0</p></li><li class="listitem"><p><a name="surf153.tab.2.ft.6"></a>Available only at centroid
+as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item.</p></li></ol></div><p>
+<a class="xref" href="Hlp_E_SURF153.html#ap2Oxq273mcm" title="Table&nbsp;153.3:&nbsp;&nbsp;SURF153 Item and Sequence Numbers">Table&nbsp;153.3:&nbsp;SURF153 Item and Sequence Numbers</a> lists output available through
+the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method.
+ See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General Postprocessor
+(POST1)</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in
+this reference for more information.  The following notation is used
+in <a class="xref" href="Hlp_E_SURF153.html#ap2Oxq273mcm" title="Table&nbsp;153.3:&nbsp;&nbsp;SURF153 Item and Sequence Numbers">Table&nbsp;153.3:&nbsp;SURF153 Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="Hlp_E_SURF153.html#ap2Oxq200mcm" title="Table&nbsp;153.2:&nbsp;&nbsp;SURF153 Element Output Definitions">Table&nbsp;153.2:&nbsp;SURF153 Element Output Definitions</a>
+</p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element
+data</p></dd><dt><span><b class="term">I,J</b></span></dt><dd><p>sequence number for data at nodes I and J</p></dd></dl></div></div><p>
+</p><div class="table"><a name="ap2Oxq273mcm"></a><p class="title"><b>Table&nbsp;153.3:&nbsp;&nbsp;SURF153 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="SURF153 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="120" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"><col width="48" align="center" class="col5"></colgroup><thead><tr><th bgcolor="#C0C0C0" rowspan="2" align="center" valign="middle">
+
+Output
+Quantity Name</th><th bgcolor="#C0C0C0" colspan="4" align="center">
+
+
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th bgcolor="#E3E3E3" align="center">
+
+Item</th><th bgcolor="#E3E3E3" align="center">
+
+E</th><th bgcolor="#E3E3E3" align="center">
+
+I</th><th bgcolor="#E3E3E3" align="center">
+
+J</th></tr></thead><tbody><tr><td align="center">PY (real)</td><td align="center">SMISC</td><td align="center">-</td><td align="center">1</td><td align="center">2</td></tr><tr><td align="center">PX (real)</td><td align="center">SMISC</td><td align="center">-</td><td align="center">3</td><td align="center">4</td></tr><tr><td align="center">PY (imaginary)</td><td align="center">SMISC</td><td align="center">&nbsp;</td><td align="center">27</td><td align="center">28</td></tr><tr><td align="center">PX (imaginary)</td><td align="center">SMISC</td><td align="center">&nbsp;</td><td align="center">29</td><td align="center">30</td></tr><tr><td align="center">P1AVG (real)</td><td align="center">SMISC</td><td align="center">13</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">P2AVG (real)</td><td align="center">SMISC</td><td align="center">14</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">P3AVG (real)</td><td align="center">SMISC</td><td align="center">15</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">P4EFF (real)</td><td align="center">SMISC</td><td align="center">16</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">P1AVG (imaginary)</td><td align="center">SMISC</td><td align="center">39</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">P2AVG (imaginary)</td><td align="center">SMISC</td><td align="center">40</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">P3AVG (imaginary)</td><td align="center">SMISC</td><td align="center">41</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">P4EFF (imaginary)</td><td align="center">SMISC</td><td align="center">42</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">FOUNDATION PRESSURE</td><td align="center">SMISC</td><td align="center">21</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">AREA</td><td align="center">NMISC</td><td align="center">1</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">VNX</td><td align="center">NMISC</td><td align="center">2</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">VNY</td><td align="center">NMISC</td><td align="center">3</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">EFS</td><td align="center">NMISC</td><td align="center">5</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">SURT</td><td align="center">NMISC</td><td align="center">6</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">DENS</td><td align="center">NMISC</td><td align="center">7</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">MASS</td><td align="center">NMISC</td><td align="center">8</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">DVX</td><td align="center">NMISC</td><td align="center">9</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">DVY</td><td align="center">NMISC</td><td align="center">10</td><td align="center">-</td><td align="center">-</td></tr></tbody></table></div></div><br class="table-break"></div><div class="refsect1" title="SURF153 Assumptions and Restrictions"><a name="ap2Oxq2dfmcm"></a><h2>SURF153 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The element must not have a zero length.</p></li><li class="listitem"><p>The surface tension load vector acts along the line
+connecting nodes I and J as a force applied to the nodes seeking to
+minimize the length of the line. If the nodes of the element are not
+coplanar when using surface tension, equilibrium may be lost. </p></li><li class="listitem"><p>For structural large deflection analyses, the loads
+are applied to the current size of the element, not the initial size.
+ </p></li><li class="listitem"><p>Surface printout and foundation stiffness are not
+valid for elements deactivated [<a href="../ans_cmd/Hlp_C_EKILL.html" class="olink"><span class="command"><strong>EKILL</strong></span></a>] and then
+reactivated [<a href="../ans_cmd/Hlp_C_EALIVE.html" class="olink"><span class="command"><strong>EALIVE</strong></span></a>].  Surface printout does not
+include large strain effects.</p></li><li class="listitem"><p>For <a href="../ans_adv/Hlp_G_ADVREZ.html" class="olink">rezoning</a>, only normal and tangential pressures applied on <span class="structname">SURF153</span> are supported. (That is, rezoning support is
+available only for pressure on faces 1 and 2.) </p></li></ul></div></div><div class="refsect1" title="SURF153 Product Restrictions"><a name="ap2Oxq354mcm"></a><h2>SURF153 Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific
+restrictions apply to this element in addition to the general assumptions
+and restrictions given in the previous section.</p><p title="ANSYS Mechanical Pro"><b>ANSYS Mechanical Pro&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li><li class="listitem"><p>Linear perturbation is not available.</p></li><li class="listitem"><p>Rezoning is not available.</p></li></ul></div><p title="ANSYS Mechanical Pro">
+   </p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li><li class="listitem"><p>Rezoning is not available.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+   </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

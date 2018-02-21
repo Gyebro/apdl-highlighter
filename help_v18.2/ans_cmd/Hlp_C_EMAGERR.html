@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:50-04:00"><title>EMAGERR</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_ELSEIF.html" title="*ELSEIF"><link rel="next" href="Hlp_C_EMATWRITE.html" title="EMATWRITE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="EMAGERR"><a name="EMAGERR"></a><div class="titlepage"></div><a class="indexterm" name="d0e93308"></a><span class="refentrytitle"><span class="command"><strong>EMAGERR</strong></span></span><div class="refnamediv"><p><span class="command"><strong>EMAGERR</strong></span><br><b class="refpurpose">Calculates the relative error in an electrostatic or electromagnetic
+field analysis.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1magcalcjla070199" title="Table&nbsp;2.89:&nbsp;&nbsp;Magnetics Calculations"><span class="type">Magnetics Calculations</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsect1" title="Notes"><a name="EMAGERR.notes"></a><h2>Notes</h2><p>The relative error is an approximation of the mesh discretization error
+associated with a solution. It is based on the discrepancy between the unaveraged,
+element-nodal field values and the averaged, nodal field values. The calculation
+is valid within a material boundary and does not consider the error in continuity
+of fields across dissimilar materials.</p><p>For electrostatics, the field values evaluated are the electric field
+strength (EFSUM) and the electric flux density (DSUM). A relative error norm
+of each is calculated on a per-element basis and stored in the element table
+[<a class="link" href="Hlp_C_ETABLE.html" title="ETABLE"><span class="command"><strong>ETABLE</strong></span></a>] with the labels EF_ERR and D_ERR. Normalized error
+values EFN_ERR and DN_ERR are also calculated and stored in the element table.
+Corresponding quantities for electromagnetics are H_ERR, B_ERR, HN_ERR, and
+BN_ERR, which are calculated from the magnetic field intensity (HSUM) and
+the magnetic flux density (BSUM).  The normalized error value is the relative
+error norm value divided by the peak element-nodal field value for the currently
+selected elements.</p><p>Use the <a class="link" href="Hlp_C_PLETAB.html" title="PLETAB"><span class="command"><strong>PLETAB</strong></span></a> and <a class="link" href="Hlp_C_PRETAB.html" title="PRETAB"><span class="command"><strong>PRETAB</strong></span></a> commands
+to plot and list the error norms and normalized error values.</p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p></div><div class="refsect1" title="Menu Paths"><a name="EMAGERR.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Elec&amp;Mag Calc&gt;Element Based&gt;Error Eval</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

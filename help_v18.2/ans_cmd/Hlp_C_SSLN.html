@@ -1,0 +1,22 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:17-04:00"><title>SSLN</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_S_TOC.html" title="S Commands"><link rel="prev" href="Hlp_C_SSCALE.html" title="/SSCALE"><link rel="next" href="Hlp_C_SSMT.html" title="SSMT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SSLN"><a name="SSLN"></a><div class="titlepage"></div><a class="indexterm" name="d0e259770"></a><span class="refentrytitle"><span class="command"><strong>SSLN</strong></span></span><div class="refnamediv"><p><span class="command"><strong>SSLN</strong></span>, <em class="replaceable"><code>FACT</code></em>, <em class="replaceable"><code>SIZE</code></em><br><b class="refpurpose">Selects and displays small lines in the model.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7linesldm061600" title="Table&nbsp;2.32:&nbsp;&nbsp;Lines"><span class="type">Lines</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="SSLN.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>FACT</code></em></b></span></dt><dd><p>Factor used to determine small lines.  <em class="replaceable"><code>FACT</code></em> times
+the average line length in the model is used as the line length limit below
+which lines will be selected.</p></dd><dt><span><b class="term"><em class="replaceable"><code>SIZE</code></em></b></span></dt><dd><p>Line length limit for line selection.  Lines that have a length
+less than or equal to <em class="replaceable"><code>SIZE</code></em> will be selected.  Used
+only if <em class="replaceable"><code>FACT</code></em> is blank.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="SSLN.notes"></a><h2>Notes</h2><p><span class="command"><strong>SSLN</strong></span> invokes a predefined ANSYS macro for selecting
+small lines in a model.  Lines that are smaller than or equal to the specified
+limit (<em class="replaceable"><code>FACT</code></em> or <em class="replaceable"><code>SIZE</code></em>)
+are selected and line numbers are displayed.  This command macro is useful
+for detecting very small lines in a model that may cause problems (i.e., poorly
+shaped elements or a meshing failure) during meshing.  All lines that are
+not "small" will be unselected and can be reselected with the <a class="link" href="Hlp_C_LSEL.html" title="LSEL"><span class="command"><strong>LSEL</strong></span></a> command.</p></div><div class="refsect1" title="Menu Paths"><a name="SSLN.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Check Geom&gt;Sel Small Lines</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

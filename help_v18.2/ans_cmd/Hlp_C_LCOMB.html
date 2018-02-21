@@ -1,0 +1,26 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:34-04:00"><title>LCOMB</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_L_TOC.html" title="L Commands"><link rel="prev" href="Hlp_C_LCLEAR.html" title="LCLEAR"><link rel="next" href="Hlp_C_LCOPER.html" title="LCOPER"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="LCOMB"><a name="LCOMB"></a><div class="titlepage"></div><a class="indexterm" name="d0e148728"></a><span class="refentrytitle"><span class="command"><strong>LCOMB</strong></span></span><div class="refnamediv"><p><span class="command"><strong>LCOMB</strong></span>, <em class="replaceable"><code>NL1</code></em>, <em class="replaceable"><code>NL2</code></em>, <em class="replaceable"><code>KEEP</code></em><br><b class="refpurpose">Combines adjacent lines into one line.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7linesldm061600" title="Table&nbsp;2.32:&nbsp;&nbsp;Lines"><span class="type">Lines</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="LCOMB.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NL1</code></em></b></span></dt><dd><p>Number of the first line to be combined.  If <em class="replaceable"><code>NL1</code></em> =
+ALL, <em class="replaceable"><code>NL2</code></em> is ignored and all selected lines [<a class="link" href="Hlp_C_LSEL.html" title="LSEL"><span class="command"><strong>LSEL</strong></span></a>]
+are combined.  If <em class="replaceable"><code>NL1</code></em> = P, graphical picking is
+enabled and all remaining command fields are ignored (valid only in the GUI).
+ A component name may also be substituted for <em class="replaceable"><code>NL1</code></em> (<em class="replaceable"><code>NL2</code></em> is
+ignored).</p></dd><dt><span><b class="term"><em class="replaceable"><code>NL2</code></em></b></span></dt><dd><p>Number of the second line to be combined.</p></dd><dt><span><b class="term"><em class="replaceable"><code>KEEP</code></em></b></span></dt><dd><p>Specifies whether to keep the input entities:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Delete lines <em class="replaceable"><code>NL1</code></em> and <em class="replaceable"><code>NL2</code></em> and
+their common keypoint.  Keypoints will not be deleted if they are meshed or
+if they are attached to other lines.  Lines will not be deleted if they are
+attached to different areas.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Keep <em class="replaceable"><code>NL1</code></em>, <em class="replaceable"><code>NL2</code></em>,
+and their common keypoint.  (The common keypoint will <span class="italic"><em>not </em></span>be
+attached to the output line.)</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="LCOMB.notes"></a><h2>Notes</h2><p>Combines adjacent lines into one line (the output line).  This operation
+will effectively "undo" the <a class="link" href="Hlp_C_LDIV.html" title="LDIV"><span class="command"><strong>LDIV</strong></span></a> operation.  Line divisions
+are set to zero (use <a class="link" href="Hlp_C_LESIZE.html" title="LESIZE"><span class="command"><strong>LESIZE</strong></span></a>, etc. to modify).  Lines attached
+to the same area(s) can also be combined.  See also the <a class="link" href="Hlp_C_LCCAT.html" title="LCCAT"><span class="command"><strong>LCCAT</strong></span></a> command
+for line concatenation capability.</p></div><div class="refsect1" title="Menu Paths"><a name="LCOMB.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Operate&gt;Booleans&gt;Add&gt;Lines</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

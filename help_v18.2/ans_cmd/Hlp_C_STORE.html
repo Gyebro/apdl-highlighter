@@ -1,0 +1,46 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:21-04:00"><title>STORE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_S_TOC.html" title="S Commands"><link rel="prev" href="Hlp_C_STITLE.html" title="/STITLE"><link rel="next" href="Hlp_C_SUBOPT.html" title="SUBOPT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="STORE"><a name="STORE"></a><div class="titlepage"></div><a class="indexterm" name="d0e263077"></a><span class="refentrytitle"><span class="command"><strong>STORE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>STORE</strong></span>, <em class="replaceable"><code>Lab</code></em>,
+    <em class="replaceable"><code>NPTS</code></em>, --, <em class="replaceable"><code>FREQ</code></em>,
+    <em class="replaceable"><code>Toler</code></em><br><b class="refpurpose">Stores data in the database for the defined variables.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_8.html" title="2.8.&nbsp;POST26 Commands"><code class="classname">POST26</code></a>: <a class="link" href="Hlp_C_CH2_8.html#cmdpost26setupjla070199" title="Table&nbsp;2.94:&nbsp;&nbsp;Setup"><span class="type">Set Up</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="STORE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><p>Valid labels:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MERGE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Merge data from results file for the time
+points in memory with the existing data using current specifications (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NEW</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Store a new set of data, replacing any previously
+stored data with current result file specifications and deleting any previously-calculated
+(OPER) variables. Variables defined using the <a class="link" href="Hlp_C_ANSOL.html" title="ANSOL"><span class="command"><strong>ANSOL</strong></span></a> command
+are also deleted.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">APPEN</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Append data from results file to the existing
+data.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ALLOC</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Allocate (and zero) space for <em class="replaceable"><code>NPTS</code></em> data
+points.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">PSD</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Create a new set of frequency points for PSD
+calculations (replacing any previously stored data and erasing any previously
+calculated data).</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>NPTS</code></em></b></span></dt><dd><p>The number of time points (or frequency points) for storage
+(used only with <em class="replaceable"><code>Lab</code></em> = ALLOC or PSD).  The value
+may be input when using POST26 with data supplied from other than a results
+file.  This value is automatically determined from the results file data with
+the NEW, APPEN, and MERGE options.  For the PSD option, <em class="replaceable"><code>NPTS</code></em> determines
+the resolution of the frequency vector (valid numbers are between 1 and 10,
+defaults to 5).</p></dd><dt><span><b class="term"><em class="replaceable"><code>FREQ</code></em></b></span></dt><dd><p>A frequency value, or an array containing frequency values (Hz), which is merged with the
+      frequencies specified on <a class="link" href="Hlp_C_SPOPT.html" title="SPOPT"><span class="command"><strong>SPOPT</strong></span></a>. Use <a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a> to define the
+      array and enclose the array name in percent signs (for example,
+       <span class="command"><strong>STORE</strong></span>,,,,%<em class="replaceable"><code>arrayname</code></em>%). A default value of 1% of
+      damping is considered for clustering around the user-input frequency values. Supported for
+       <em class="replaceable"><code>Lab</code></em> = PSD only.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Toler</code></em></b></span></dt><dd><p>Tolerance to determine if a user-input frequency value (<em class="replaceable"><code>FREQ</code></em>)
+      is a duplicate and can be ignored. Two frequency values are considered duplicates if their
+      difference is smaller than the frequency range multiplied by the tolerance. The default value
+      is 10<sup>-5</sup>. Supported for <em class="replaceable"><code>Lab</code></em> = PSD
+      only.</p></dd></dl></div></div></div><div class="refsect1" title="Command Default"><a name="STORE.default"></a><h2>Command Default</h2><p>Merge newly-defined variables with previously stored variables for the
+time points stored in memory using the current specifications.  If <span class="command"><strong>STORE</strong></span> is
+preceded by <a class="link" href="Hlp_C_TIMERANGE.html" title="TIMERANGE"><span class="command"><strong>TIMERANGE</strong></span></a> or <a class="link" href="Hlp_C_NSTORE.html" title="NSTORE"><span class="command"><strong>NSTORE</strong></span></a>, the
+default is <span class="command"><strong>STORE</strong></span>,NEW.</p></div><div class="refsect1" title="Notes"><a name="STORE.notes"></a><h2>Notes</h2><p>This command stores data from the results file
+in the database for the defined variables [<a class="link" href="Hlp_C_NSOL.html" title="NSOL"><span class="command"><strong>NSOL</strong></span></a>, <a class="link" href="Hlp_C_ESOL.html" title="ESOL"><span class="command"><strong>ESOL</strong></span></a>, <a class="link" href="Hlp_C_SOLU.html" title="SOLU"><span class="command"><strong>SOLU</strong></span></a>, <a class="link" href="Hlp_C_JSOL.html" title="JSOL"><span class="command"><strong>JSOL</strong></span></a>]
+per specification [<a class="link" href="Hlp_C_FORCE.html" title="FORCE"><span class="command"><strong>FORCE</strong></span></a>, <a class="link" href="Hlp_C_LAYERP26.html" title="LAYERP26"><span class="command"><strong>LAYERP26</strong></span></a>, <a class="link" href="Hlp_C_SHELL.html" title="SHELL"><span class="command"><strong>SHELL</strong></span></a>].
+ See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for more information.</p><p>The <span class="command"><strong>STORE</strong></span>,PSD command will create a new frequency
+vector (variable 1) for response PSD calculations [<a class="link" href="Hlp_C_RPSD.html" title="RPSD"><span class="command"><strong>RPSD</strong></span></a>].
+ This command should first be issued before defining variables [<a class="link" href="Hlp_C_NSOL.html" title="NSOL"><span class="command"><strong>NSOL</strong></span></a>, <a class="link" href="Hlp_C_ESOL.html" title="ESOL"><span class="command"><strong>ESOL</strong></span></a>, <a class="link" href="Hlp_C_RFORCE.html" title="RFORCE"><span class="command"><strong>RFORCE</strong></span></a>]
+for which response PSD's are to be calculated.</p></div><div class="refsect1" title="Menu Paths"><a name="STORE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;TimeHist Postpro&gt;Store Data</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

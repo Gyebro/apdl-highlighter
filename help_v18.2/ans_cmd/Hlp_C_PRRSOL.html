@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:35-04:00"><title>PRRSOL</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_P_TOC.html" title="P Commands"><link rel="prev" href="Hlp_C_PRRFOR.html" title="PRRFOR"><link rel="next" href="Hlp_C_PRSCONTROL.html" title="PRSCONTROL"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="PRRSOL"><a name="PRRSOL"></a><div class="titlepage"></div><a class="indexterm" name="d0e215444"></a><span class="refentrytitle"><span class="command"><strong>PRRSOL</strong></span></span><div class="refnamediv"><p><span class="command"><strong>PRRSOL</strong></span>, <em class="replaceable"><code>Lab</code></em><br><b class="refpurpose">Prints the constrained node reaction solution.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1resultjla070199" title="Table&nbsp;2.82:&nbsp;&nbsp;Results"><span class="type">Results</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="PRRSOL.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><p>Nodal reaction load type. 
+If blank, use the first ten of all available labels. Valid labels
+are:</p><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="bold"><strong>Structural force labels</strong></span>:
+ FX, FY or FZ (forces); F (FX, FY and FZ); MX, MY or MZ (moments);
+M (MX, MY and MZ); BMOM (bimoments).</td></tr><tr><td><span class="bold"><strong>Thermal force labels</strong></span>:  HEAT,
+HBOT, HE2, HE3, . . ., HTOP (heat flow).</td></tr><tr><td><span class="bold"><strong>Fluid force labels</strong></span>:  FLOW
+(fluid flow);  VFX, VFY and VFZ (fluid forces); VF (VFX, VFY and VFZ).</td></tr><tr><td><span class="bold"><strong>Electric force labels</strong></span>:  AMPS
+(current flow); CHRG (charge); CURT (current);  VLTG (voltage drop).</td></tr><tr><td><span class="bold"><strong>Magnetic force labels</strong></span>:  FLUX
+(magnetic flux);  CSGX, CSGY, CSGZ (magnetic current segments);  CSG
+(CSGX, CSGY and CSGZ);  CURT (current), VLTG (voltage drop).</td></tr><tr><td><span class="bold"><strong>Diffusion labels</strong></span>: RATE (diffusion
+flow rate).</td></tr></table></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="PRRSOL.notes"></a><h2>Notes</h2><p>Prints the constrained node reaction solution for the selected
+nodes in the sorted sequence.  For coupled nodes and nodes in constraint
+equations, the sum of all reactions in the coupled or constraint equation
+set  appears at the primary node of the set.  Results are in the global
+Cartesian coordinate directions unless transformed (<a class="link" href="Hlp_C_RSYS.html" title="RSYS"><span class="command"><strong>RSYS</strong></span></a>).</p><p><span class="command"><strong>PRRSOL</strong></span> is not valid if any load is applied
+to a constrained node in the direction of the constraint and any of
+the following is true:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p><a class="link" href="Hlp_C_LCOPER.html" title="LCOPER"><span class="command"><strong>LCOPER</strong></span></a> has been used.</p></li><li class="listitem"><p><a class="link" href="Hlp_C_LCASE.html" title="LCASE"><span class="command"><strong>LCASE</strong></span></a> has been used to read from
+a load case file.</p></li><li class="listitem"><p>The applied loads and constraints in the database
+are not the ones used to create the results data being processed.</p></li></ul></div><p><span class="command"><strong>PRRSOL</strong></span> provides the
+total reaction solution (static, plus damping, plus inertial, as appropriate
+based on the analysis type); however, modal reactions include only
+the static contribution. </p><p>Use <a class="link" href="Hlp_C_PRRFOR.html" title="PRRFOR"><span class="command"><strong>PRRFOR</strong></span></a> instead of <span class="command"><strong>PRRSOL</strong></span> with the <a class="link" href="Hlp_C_FORCE.html" title="FORCE"><span class="command"><strong>FORCE</strong></span></a> command to obtain only the static,
+damping, or inertial components.</p></div><div class="refsect1" title="Menu Paths"><a name="PRRSOL.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;List Results&gt;Reaction Solu</strong></span></td></tr><tr><td><span class="guimenu"><strong>Utility Menu&gt;List&gt;Results&gt;Reaction Solution</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

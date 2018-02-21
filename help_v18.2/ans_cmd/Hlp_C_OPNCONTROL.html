@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:05-04:00"><title>OPNCONTROL</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_O_TOC.html" title="O Commands"><link rel="prev" href="Hlp_C_OPERATE.html" title="OPERATE"><link rel="next" href="OUTAERO.html" title="OUTAERO"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="OPNCONTROL"><a name="OPNCONTROL"></a><div class="titlepage"></div><a class="indexterm" name="d0e191323"></a><span class="refentrytitle"><span class="command"><strong>OPNCONTROL</strong></span></span><div class="refnamediv"><p><span class="command"><strong>OPNCONTROL</strong></span>, <em class="replaceable"><code>Lab</code></em>, <em class="replaceable"><code>VALUE</code></em>, <em class="replaceable"><code>NUMSTEP</code></em><br><b class="refpurpose">Sets decision parameter for automatically increasing the
+time step interval.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="OPNCONTROL.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DOF </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Degree-of-freedom label used to base
+a decision for increasing the time step (substep) interval in a nonlinear
+or transient analysis.  The only DOF label currently supported is
+TEMP.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OPENUPFACTOR </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Factor for increasing the time step interval. Specify when <a class="link" href="Hlp_C_AUTOTS.html" title="AUTOTS"><span class="command"><strong>AUTOTS</strong></span></a>,ON is
+         issued and specify a <em class="replaceable"><code>VALUE</code></em> &gt; 1.0 (up to 10.0). The default
+          <em class="replaceable"><code>VALUE</code></em> = 1.5 (except for thermal analysis, where it is 3.0).
+         Generally, <em class="replaceable"><code>VALUE</code></em> &gt; 3.0 is not recommended.  <span>Note that in some rare cases this specification can be overwritten by
+          internal heuristics in determining the new time step interval.</span></p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>VALUE</code></em>, <em class="replaceable"><code>NUMSTEP</code></em></b></span></dt><dd><p>Two values used in the algorithm for determining if
+the time step interval can be increased. Valid only when <em class="replaceable"><code>Lab</code></em> = DOF. </p><p>The time step interval is increased
+if the maximum absolute value of the incremental solution at the specified
+DOF label is less than <em class="replaceable"><code>VALUE</code></em> for the number
+of contiguous time steps specified by <em class="replaceable"><code>NUMSTEP</code></em>. The default <em class="replaceable"><code>VALUE</code></em> = 0.1 and the default <em class="replaceable"><code>NUMSTEP</code></em> = 3.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="OPNCONTROL.notes"></a><h2>Notes</h2><p>This command is available only for nonlinear static or full transient analysis.  <span>For linear full transient analysis, where the time step interval can be
+    predominantly determined by the estimated modal frequency (number of solution points in a cycle
+    in the dynamic system), the <em class="replaceable"><code>OPENUPFACTOR</code></em> specified may show no
+    effect.</span></p></div><div class="refsect1" title="Menu Paths"><a name="OPNCONTROL.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Load Step Opts&gt;Nonlinear&gt;Open Control</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Load Step Opts&gt;Nonlinear&gt;Open Control</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

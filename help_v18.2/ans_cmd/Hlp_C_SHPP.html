@@ -1,0 +1,147 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:09-04:00"><title>SHPP</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_S_TOC.html" title="S Commands"><link rel="prev" href="Hlp_C_SHOWDISP.html" title="/SHOWDISP"><link rel="next" href="Hlp_C_SHSD.html" title="SHSD"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SHPP"><a name="SHPP"></a><div class="titlepage"></div><a class="indexterm" name="d0e251953"></a><span class="refentrytitle"><span class="command"><strong>SHPP</strong></span></span><div class="refnamediv"><p><span class="command"><strong>SHPP</strong></span>, <em class="replaceable"><code>Lab</code></em>, <em class="replaceable"><code>VALUE1</code></em>, <em class="replaceable"><code>VALUE2</code></em><br><b class="refpurpose">Controls element shape checking.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7meshingldm061600" title="Table&nbsp;2.36:&nbsp;&nbsp;Meshing"><span class="type">Meshing</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="SHPP.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><p>Shape checking option.  (When <em class="replaceable"><code>Lab</code></em> = WARN, STATUS, SUMMARY, or DEFAULT, the remaining arguments are
+ignored.)</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ON</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Activates element shape checking. 
+New elements, regardless of how they are created, are tested against
+existing warning and error limits.  (The existing limits may be the
+default limits, or previously modified limits.)  Elements that violate
+error limits produce <span class="italic"><em>error</em></span> messages
+and either (a) cause a meshing failure, or (b) for element creation
+or storage other than <a class="link" href="Hlp_C_AMESH.html" title="AMESH"><span class="command"><strong>AMESH</strong></span></a> or <a class="link" href="Hlp_C_VMESH.html" title="VMESH"><span class="command"><strong>VMESH</strong></span></a>, <span class="italic"><em>are not stored. </em></span> Elements that
+violate warning limits produce <span class="italic"><em>warning</em></span> messages.  If shape checking was previously turned off [<span class="command"><strong>SHPP</strong></span>,OFF] and you turn it on, existing elements are marked
+as untested; use the <a class="link" href="Hlp_C_CHECK.html" title="CHECK"><span class="command"><strong>CHECK</strong></span></a> command to retest them.
+ With this option, you may also specify a value for <em class="replaceable"><code>VALUE1</code></em> to turn individual shape tests on.  If you do not specify a value
+for <em class="replaceable"><code>VALUE1</code></em>, all shape tests are turned
+on.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">WARN</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Activates element shape checking;
+however, in contrast to <span class="command"><strong>SHPP</strong></span>,ON, elements that
+violate error limits do not cause either a meshing or element storage
+failure.  Instead, they produce <span class="italic"><em>warning</em></span> messages to notify you that error limits have been violated.  This
+option does not alter current shape parameter limits.  Since the default
+shape parameter error limits are set to allow almost any usable element,
+the elements this option allows, which would otherwise be forbidden,
+are likely to be <span class="italic"><em>very poorly shaped.</em></span></p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Deactivates element shape checking.
+ This setting does not alter current shape parameter limits.  Use
+of this option is risky, since poorly shaped elements can lead to
+analysis results that are less accurate than would otherwise be expected
+for a given mesh density.  With this option, you may also specify
+a value for <em class="replaceable"><code>VALUE1</code></em> to turn individual shape
+tests off.  If you do not specify a value for <em class="replaceable"><code>VALUE1</code></em>, all element shape tests are turned off.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SILENT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Determines whether element shape
+checking runs in silent mode.  In silent mode, ANSYS checks elements
+without issuing warnings, <span class="italic"><em>with the exception
+of </em></span>the generic warnings that it issues at solution.  With
+this option, you must also specify a value for <em class="replaceable"><code>VALUE1</code></em>  (During the execution of certain commands, ANSYS automatically
+runs element shape checking in silent mode, then internally summarizes
+the shape test results for all of the new or modified elements.  ANSYS
+does this when it executes any of the following commands:  <a class="link" href="Hlp_C_AGEN.html" title="AGEN"><span class="command"><strong>AGEN</strong></span></a>, <a class="link" href="Hlp_C_AMESH.html" title="AMESH"><span class="command"><strong>AMESH</strong></span></a>, <a class="link" href="Hlp_C_AREFINE.html" title="AREFINE"><span class="command"><strong>AREFINE</strong></span></a>, <a class="link" href="Hlp_C_ARSYM.html" title="ARSYM"><span class="command"><strong>ARSYM</strong></span></a>, <a class="link" href="Hlp_C_ATRAN.html" title="ATRAN"><span class="command"><strong>ATRAN</strong></span></a>, <a class="link" href="Hlp_C_CDREAD.html" title="CDREAD"><span class="command"><strong>CDREAD</strong></span></a>, <a class="link" href="Hlp_C_EGEN.html" title="EGEN"><span class="command"><strong>EGEN</strong></span></a>, <a class="link" href="Hlp_C_ENGEN.html" title="ENGEN"><span class="command"><strong>ENGEN</strong></span></a>, <a class="link" href="Hlp_C_ENSYM.html" title="ENSYM"><span class="command"><strong>ENSYM</strong></span></a>, <a class="link" href="Hlp_C_EREAD.html" title="EREAD"><span class="command"><strong>EREAD</strong></span></a>, <a class="link" href="Hlp_C_EREFINE.html" title="EREFINE"><span class="command"><strong>EREFINE</strong></span></a>, <a class="link" href="Hlp_C_ESYM.html" title="ESYM"><span class="command"><strong>ESYM</strong></span></a>, <a class="link" href="Hlp_C_ET.html" title="ET"><span class="command"><strong>ET</strong></span></a>, <a class="link" href="Hlp_C_FVMESH.html" title="FVMESH"><span class="command"><strong>FVMESH</strong></span></a>, <a class="link" href="Hlp_C_KREFINE.html" title="KREFINE"><span class="command"><strong>KREFINE</strong></span></a>, <a class="link" href="Hlp_C_LREFINE.html" title="LREFINE"><span class="command"><strong>LREFINE</strong></span></a>, <a class="link" href="Hlp_C_NREFINE.html" title="NREFINE"><span class="command"><strong>NREFINE</strong></span></a>, <a class="link" href="Hlp_C_TIMP.html" title="TIMP"><span class="command"><strong>TIMP</strong></span></a>, <a class="link" href="Hlp_C_VEXT.html" title="VEXT"><span class="command"><strong>VEXT</strong></span></a>, <a class="link" href="Hlp_C_VGEN.html" title="VGEN"><span class="command"><strong>VGEN</strong></span></a>, <a class="link" href="Hlp_C_VIMP.html" title="VIMP"><span class="command"><strong>VIMP</strong></span></a>, <a class="link" href="Hlp_C_VMESH.html" title="VMESH"><span class="command"><strong>VMESH</strong></span></a>, <a class="link" href="Hlp_C_VOFFST.html" title="VOFFST"><span class="command"><strong>VOFFST</strong></span></a>, <a class="link" href="Hlp_C_VROTAT.html" title="VROTAT"><span class="command"><strong>VROTAT</strong></span></a>, <a class="link" href="Hlp_C_VSWEEP.html" title="VSWEEP"><span class="command"><strong>VSWEEP</strong></span></a>, <a class="link" href="Hlp_C_VSYMM.html" title="VSYMM"><span class="command"><strong>VSYMM</strong></span></a>, and <a class="link" href="Hlp_C_VTRAN.html" title="VTRAN"><span class="command"><strong>VTRAN</strong></span></a>.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">STATUS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Lists the shape parameter limits
+currently in effect, along with status information about element shape
+checking (for example, whether any individual shape tests are off,
+whether any of the shape parameter limits have been modified, and
+so on).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SUMMARY</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Lists a summary of element shape
+test results for all selected elements.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DEFAULT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Resets element shape parameter
+limits to their default values.  Also, if any individual tests were
+turned off, turns them back on.  (The <span class="command"><strong>SHPP</strong></span>,DEFAULT
+command may be useful if any parameter limits were previously altered
+by using the MODIFY option.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OBJECT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Determines whether element shape
+test results data is <span class="italic"><em>stored in memory</em></span>.  When this option is turned on, an "object" is created for storing
+test results in memory.  When this option is turned off, no object
+is created and no data is stored; thus, any operation that requires
+shape parameters for an existing element (such as use of the <a class="link" href="Hlp_C_CHECK.html" title="CHECK"><span class="command"><strong>CHECK</strong></span></a> command) causes the shape parameters to be recomputed.
+ (Note the distinction between storing the data in memory and storing
+it in the database; regardless of whether this option is turned on
+or off, no element shape test results data will be stored in the database.
+ The element shape parameter object is deleted automatically before
+any solution.)  This setting is independent of shape checking status,
+with one exception--if shape checking is turned off [<span class="command"><strong>SHPP</strong></span>,OFF], the object is not created.  Keep in mind that recomputing
+shape parameters is more computationally expensive than retrieving
+them from the object.  With this option, you must also specify a value
+for the <em class="replaceable"><code>VALUE1</code></em> argument; the <em class="replaceable"><code>VALUE2</code></em> argument is ignored.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LSTET</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Determines, for Jacobian ratio tests,
+whether sampling is done at integration points (DesignSpace product method),
+or at corner nodes. When this option is turned on, sampling is done
+at integration points, and the default limits for h-element Jacobian
+ratios are a warning tolerance of 10 and an error tolerance of 40.
+When this option is turned off, sampling is done at corner nodes,
+and the corresponding default limits are a warning tolerance of 30
+and an error tolerance of 1000. Sampling at the integration points
+(option on) results in a lower Jacobian ratio, but that ratio is also
+subjected to a more restrictive error limit. Some elements that have
+passed the integration point sampling criterion, have failed the corner
+mode sampling criterion. Because of this, use integration point sampling
+only for simple linear analyses. For other types of analyses (e.g.,
+nonlinear, electromagnetic), use sampling at corner nodes, which is
+the more conservative approach. With this option, you must also specify
+a value for the <em class="replaceable"><code>VALUE1</code></em> argument; the <em class="replaceable"><code>VALUE2</code></em> argument is ignored.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MODIFY</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Indicates that you want to respecify
+a shape parameter limit.  With this option, you must also specify
+values for the <em class="replaceable"><code>VALUE1</code></em> and <em class="replaceable"><code>VALUE2</code></em> arguments.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">FLAT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Determines the warning and error
+limits used to test elements that may exhibit nonzero/nonconstant
+Z coordinates. With this option, you must also specify values for
+the <em class="replaceable"><code>VALUE1</code></em> and/or <em class="replaceable"><code>VALUE2</code></em> arguments.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>VALUE1</code></em></b></span></dt><dd><p>Valid for the ON, OFF, SILENT, OBJECT, LSTET, MODIFY, and FLAT options only. When
+       <em class="replaceable"><code>Lab</code></em> = ON or OFF, use <em class="replaceable"><code>VALUE1</code></em> to
+      individually control (that is, turn off or turn on) specific element shape tests. Thus,
+       <em class="replaceable"><code>VALUE1</code></em> can be ASPECT (aspect ratio tests), PARAL (deviation from
+      parallelism of opposite edges tests), MAXANG (maximum corner angle tests), JACRAT (Jacobian
+      ratio tests), WARP (warping factor tests), or ALL (all tests). When
+       <em class="replaceable"><code>Lab</code></em> = SILENT, <em class="replaceable"><code>VALUE1</code></em> can be ON (to turn
+      silent mode on) or OFF (to turn silent mode off). When <em class="replaceable"><code>Lab</code></em> =
+      OBJECT, <em class="replaceable"><code>VALUE1</code></em> can be either 1, YES, or ON to turn on storage of
+      element shape test data (the default); or it can be 0, NO, or OFF to turn off storage of
+      element shape test data (delete the data and recompute as necessary). When
+       <em class="replaceable"><code>Lab</code></em> = LSTET, <em class="replaceable"><code>VALUE1</code></em> can be either 1,
+      YES, or ON to choose Jacobian sampling at integration points; or it can be 0, NO, or OFF to
+      choose Jacobian sampling at nodes (the default). When <em class="replaceable"><code>Lab</code></em> = MODIFY,
+       <em class="replaceable"><code>VALUE1</code></em> is the numeric location (within the shape parameter limit
+      array) of the shape parameter limit to be modified. Locations are identified in the element
+      shape checking status listing [<span class="command"><strong>SHPP</strong></span>,STATUS]. For more information, see the
+      examples in the <span class="bold"><strong>Notes</strong></span> section. When
+       <em class="replaceable"><code>Lab</code></em> = FLAT, <em class="replaceable"><code>VALUE1</code></em> is the warning limit
+      for XY element constant Z sets performed at <a class="link" href="Hlp_C_CHECK.html" title="CHECK"><span class="command"><strong>CHECK</strong></span></a> or
+       <a class="link" href="Hlp_C_SOLVE.html" title="SOLVE"><span class="command"><strong>SOLVE</strong></span></a>. The default is 1.0e-8.</p></dd><dt><span><b class="term"><em class="replaceable"><code>VALUE2</code></em></b></span></dt><dd><p>Valid for the MODIFY and FLAT options only.  When <em class="replaceable"><code>Lab</code></em> = MODIFY, specifies the new limit for the shape
+parameter that is in the location indicated by the <em class="replaceable"><code>VALUE1</code></em> argument.  See the examples in the <span class="bold"><strong>Notes</strong></span> section. When <em class="replaceable"><code>Lab</code></em> = FLAT, <em class="replaceable"><code>VALUE2</code></em> is the error limit. The default is 1.0e-2.</p></dd></dl></div></div></div><div class="refsect1" title="Command Default"><a name="SHPP.default"></a><h2>Command Default</h2><p>All shape checking tests are on [<span class="command"><strong>SHPP</strong></span>,ON,ALL]
+with default shape parameter limits.  Silent mode is off.  Memory
+object storage of element shape parameters is on.</p></div><div class="refsect1" title="Notes"><a name="SHPP.notes"></a><h2>Notes</h2><p>The following examples illustrate how to use the <span class="command"><strong>SHPP</strong></span>,MODIFY,<em class="replaceable"><code>VALUE1</code></em>,<em class="replaceable"><code>VALUE2</code></em> command to respecify shape parameter limits.  Assume that you issued
+the <span class="command"><strong>SHPP</strong></span>,STATUS command, and you received the output
+below:  </p><pre class="programlisting">
+ ASPECT RATIO (EXCEPT EMAG)
+
+    QUAD OR TRIANGLE ELEMENT OR FACE
+         WARNING TOLERANCE ( 1) =   20.00000
+         ERROR TOLERANCE   ( 2) =  1000000.
+                    .
+                    .
+                    .
+ MAXIMUM CORNER ANGLE IN DEGREES (EXCEPT OR EMAG)
+    TRIANGLE ELEMENT OR FACE
+         WARNING TOLERANCE (15) =   165.0000
+         ERROR TOLERANCE   (16) =   179.9000
+</pre><p>Notice that in the sample output, the <span class="italic"><em>warning</em></span> tolerance for aspect ratios is set to 20.  Now
+assume that you want to "loosen" this shape parameter limit so that
+it is less restrictive.  To allow elements with aspect ratios of up
+to 500 without causing warning messages, you would issue this command:</p><pre class="programlisting"><span class="command"><strong>SHPP</strong></span>,MODIFY,1,500</pre><p>Also notice that each shape parameter's numeric location within
+the shape parameter limit array appears in the sample output within
+parentheses.  For example, the numeric location of the aspect ratio
+shape parameter (for warning tolerance) is 1, which is why "1" is
+specified for the <em class="replaceable"><code>VALUE1</code></em> argument in the
+example command above.</p><p>Now notice that the sample output indicates that any triangle
+element with an internal angle that is greater than 179.9 degrees
+will produce an <span class="italic"><em>error</em></span> message.
+ Suppose that you want to "tighten" this shape parameter limit, so
+that it is more restrictive.  To cause any triangle or tetrahedron
+with an internal angle greater than 170 degrees to produce an error
+message, you would issue this command: </p><pre class="programlisting"><span class="command"><strong>SHPP</strong></span>,MODIFY,16,170</pre><p>The existence of badly shaped elements in a model may lead to
+certain computational errors that can cause your system to abort during
+ANSYS solution. Therefore, you run the risk of a system abort during
+solution any time that you turn element shape checking off entirely,
+run shape checking in warning-only mode, turn off individual shape
+checks, or loosen shape parameter limits.</p><p>Changing any shape parameter limit marks all existing elements
+as untested; use the <a class="link" href="Hlp_C_CHECK.html" title="CHECK"><span class="command"><strong>CHECK</strong></span></a> command to retest them.</p><p>Since the shape parameter limit array was completely reorganized
+at ANSYS 5.4, you should revise any input files created prior to 5.4
+that contain limit changes so that they reflect the reorganized data
+structure.</p><p>For more information about element shape checking, see <a href="../ans_mod/Hlp_G_MOD7.html" class="olink">Meshing Your Solid Model</a> in the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a>.</p><p>This command is also valid for <a href="../ans_adv/Hlp_G_ADVREZ.html" class="olink">rezoning</a>.</p></div><div class="refsect1" title="Menu Paths"><a name="SHPP.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Checking Ctrls&gt;Shape Checking</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Checking Ctrls&gt;Toggle Checks</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Manual Rezoning&gt;Create Remesh Zone(s)&gt;Mesh Controls&gt;Element Shape Checking&gt;Shape Checking</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Manual Rezoning&gt;Create Remesh Zone(s)&gt;Mesh Controls&gt;Element Shape Checking&gt;Toggle Checks</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

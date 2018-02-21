@@ -1,0 +1,51 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:51-04:00"><title>*MWRITE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_M_TOC.html" title="M Commands"><link rel="prev" href="Hlp_C_MULT.html" title="*MULT"><link rel="next" href="Hlp_C_MXPAND.html" title="MXPAND"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="*MWRITE"><a name="a-MWRITE"></a><div class="titlepage"></div><a class="indexterm" name="d0e175389"></a><span class="refentrytitle"><a href="Hlp_C_MWRITE_st.html" class="olink"><span class="command"><strong>*MWRITE</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>*MWRITE</strong></span>, <em class="replaceable"><code>ParR</code></em>, <em class="replaceable"><code>Fname</code></em>, <em class="replaceable"><code>Ext</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>Label</code></em>, <em class="replaceable"><code>n1</code></em>, <em class="replaceable"><code>n2</code></em>, <em class="replaceable"><code>n3</code></em> <br><b class="refpurpose">Writes a matrix to a file in a formatted sequence. </b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_4.html" title="2.4.&nbsp;APDL Commands"><code class="classname">APDL</code></a>: <a class="link" href="Hlp_C_CH2_4.html#cmdapdlarrayparajla070199" title="Table&nbsp;2.21:&nbsp;&nbsp;Array Parameters"><span class="type">Array Parameters</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsect1" title="Argument Descriptions"><a name="a-MWRITE.argdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>ParR</code></em></b></span></dt><dd><p>The name of the array parameter. See <a href="Hlp_C_SET_st.html" class="olink"><span class="command"><strong>*SET</strong></span></a> for
+name restrictions.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Fname</code></em></b></span></dt><dd><p>File name and directory path (248 characters maximum, including the characters needed for the directory path).  An unspecified directory path defaults to the working directory; in this case, you can use all 248 characters for the file name. </p><p>If the file name fields are left blank, the default
+file is the current output file.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Ext</code></em></b></span></dt><dd><p>Filename extension (eight-character maximum).</p></dd><dt><span><b class="term"><em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused field.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Label</code></em></b></span></dt><dd><p>Can use a value of IJK, IKJ, JIK, JKI, KIJ, KJI, or blank
+(JIK).</p></dd><dt><span><b class="term"><em class="replaceable"><code>n1</code></em>, <em class="replaceable"><code>n2</code></em>, <em class="replaceable"><code>n3</code></em></b></span></dt><dd><p>Write as (((<em class="replaceable"><code>ParR</code></em>(i,j,k), k = 1,n1),
+i = 1, n2), j = 1, n3) for <em class="replaceable"><code>Label</code></em> = KIJ. <em class="replaceable"><code>n1,</code></em><em class="replaceable"><code> n2,</code></em> and <em class="replaceable"><code>n3</code></em> default to the corresponding dimensions of the array parameter
+ParR.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="a-MWRITE.notes"></a><h2>Notes</h2><p>Writes a matrix or vector to a specified file in a formatted sequence.
+You can also use the <a href="Hlp_C_VWRITE.html" class="olink"><span class="command"><strong>*VWRITE</strong></span></a> command to write data to a
+specified file. Both commands contain format descriptors on the line immediately
+following the command. The format descriptors can be in either Fortran or
+C format. </p><p>Fortran format descriptors are enclosed in parentheses. They must immediately
+follow the <a href="Hlp_C_MWRITE_st.html" class="olink"><span class="command"><strong>*MWRITE</strong></span></a> command on a separate line of the same
+input file. The word FORMAT should not be included. The format must specify
+the number of fields to be written per line, the field width, the placement
+of the decimal point, etc. There should be one field descriptor for each data
+item written. The write operation uses the available system FORTRAN FORMAT
+conventions (see your system FORTRAN manual). Any standard FORTRAN <span class="italic"><em>real</em></span> format (such as (4F6.0), (E10.3,2X,D8.2), etc.)
+and character format (A) may be used.  Integer (I) and list-directed (*) descriptors
+may <span class="italic"><em>not</em></span> be used. Text may be included in
+the format as a quoted string. <span class="italic"><em>The FORTRAN descriptor
+must be enclosed in parentheses</em></span> and the format must not exceed
+80 characters (including parentheses).</p><p>The &#8220;C&#8221; format descriptors are used if the first character
+of the format descriptor line is not a left parenthesis. &#8220;C&#8221; format
+descriptors may be up to 80 characters long, consisting of text strings and
+predefined "data descriptors" between the strings where numeric or alphanumeric
+character data are to be inserted. The normal descriptors are %I for integer
+data, %G for double precision data, %C for alphanumeric character data, and
+%/ for a line break. There must
+be one data descriptor for each specified value in the order of the specified
+values. The enhanced formats described in <a href="Hlp_C_MSG.html" class="olink"><span class="command"><strong>*MSG</strong></span></a> may also
+be used. </p><p>The starting array element number must be defined.
+Looping continues in the directions indicated by the Label argument. The number
+of loops and loop skipping may also be controlled with the <a href="Hlp_C_VLEN.html" class="olink"><span class="command"><strong>*VLEN</strong></span></a> and <a href="Hlp_C_VMASK.html" class="olink"><span class="command"><strong>*VMASK</strong></span></a> commands,
+which work in the <em class="replaceable"><code>n2</code></em> direction (by row on the output
+file), and by  the <a href="Hlp_C_VCOL.html" class="olink"><span class="command"><strong>*VCOL</strong></span></a> command, which works in the <em class="replaceable"><code>n1</code></em> direction
+(by column in the output file).  The vector specifications <a href="Hlp_C_VABS.html" class="olink"><span class="command"><strong>*VABS</strong></span></a> and <a href="Hlp_C_VFACT.html" class="olink"><span class="command"><strong>*VFACT</strong></span></a> apply
+to this command, while <a href="Hlp_C_VCUM.html" class="olink"><span class="command"><strong>*VCUM</strong></span></a> does not apply to this command.
+See the <a href="Hlp_C_VOPER.html" class="olink"><span class="command"><strong>*VOPER</strong></span></a> command for details. If you are in the GUI,
+the <a href="Hlp_C_MWRITE_st.html" class="olink"><span class="command"><strong>*MWRITE</strong></span></a> command must be contained in an externally
+prepared file and read into ANSYS (i.e., <a href="Hlp_C_USE.html" class="olink"><span class="command"><strong>*USE</strong></span></a>, <a href="Hlp_C_INPUT.html" class="olink"><span class="command"><strong>/INPUT</strong></span></a>,
+etc.).</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e175593"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;Parameters&gt;Array Parameters&gt;Write to File</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

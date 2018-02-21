@@ -1,0 +1,123 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:39-04:00"><title>*DIM</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_D_TOC.html" title="D Commands"><link rel="prev" href="Hlp_C_DIGIT.html" title="DIGIT"><link rel="next" href="Hlp_C_DIRECTORY.html" title="/DIRECTORY"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="*DIM"><a name="a-DIM"></a><div class="titlepage"></div><a class="indexterm" name="d0e69290"></a><span class="refentrytitle">
+<a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>*DIM</strong></span>, <em class="replaceable"><code>Par</code></em>, <em class="replaceable"><code>Type</code></em>, <em class="replaceable"><code>IMAX</code></em>, <em class="replaceable"><code>JMAX</code></em>, <em class="replaceable"><code>KMAX</code></em>, <em class="replaceable"><code>Var1</code></em>, <em class="replaceable"><code>Var2</code></em>, <em class="replaceable"><code>Var3</code></em>, <em class="replaceable"><code>CSYSID</code></em>
+<br><b class="refpurpose">Defines an array parameter and its dimensions.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_4.html" title="2.4.&nbsp;APDL Commands"><code class="classname">APDL</code></a>: <a class="link" href="Hlp_C_CH2_4.html#cmdapdlparadefjla070199" title="Table&nbsp;2.18:&nbsp;&nbsp;Parameter Definition"><span class="type">Parameters</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div>
+</div></p></div><div class="refsect1" title="Argument Descriptions"><a name="a-DIM.argdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Par</code></em>
+</b></span></dt><dd><p>Name of parameter to be dimensioned.  See <a href="Hlp_C_SET_st.html" class="olink"><span class="command"><strong>*SET</strong></span></a> for name restrictions.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Type</code></em>
+</b></span></dt><dd><p>Array type:        </p><div><div class="variablelist"><dl><dt><span><b class="term">ARRAY&nbsp;--&nbsp;</b></span></dt><dd><p>Arrays are similar
+to standard FORTRAN arrays (indices are integers) (default).  Index
+numbers for the rows, columns, and planes are sequential values beginning
+with one. Used for 1-, 2-, or 3-D arrays.</p></dd><dt><span><b class="term">ARR4 &nbsp;--&nbsp;</b></span></dt><dd><p>Same as ARRAY, but
+used to specify 4-D arrays.</p></dd><dt><span><b class="term">ARR5 &nbsp;--&nbsp;</b></span></dt><dd><p>Same as ARRAY, but
+used to specify 5-D arrays.</p></dd><dt><span><b class="term">CHAR&nbsp;--&nbsp;</b></span></dt><dd><p>Array entries are character
+strings (up to 8 characters each).  Index numbers for rows, columns,
+and planes are sequential values beginning with one.</p></dd><dt><span><b class="term">TABLE&nbsp;--&nbsp;</b></span></dt><dd><p>Array indices are
+real (non-integer) numbers which must be defined when filling the
+table.  Index numbers for the rows and columns are stored in the zero
+column and row "array elements" and are initially assigned a near-zero
+value.  Index numbers must be in ascending order and are used only
+for retrieving an array element.  When retrieving an array element
+with a real index that does not match a specified index, linear interpolation
+is done among the nearest indices and the corresponding array element
+values [<a href="Hlp_C_SET_st.html" class="olink"><span class="command"><strong>*SET</strong></span></a>]. Used for 1-, 2-, or 3-D tables.</p></dd><dt><span><b class="term">TAB4 &nbsp;--&nbsp;</b></span></dt><dd><p>Same as TABLE, but
+used to specify 4-D tables.</p></dd><dt><span><b class="term">TAB5 &nbsp;--&nbsp;</b></span></dt><dd><p>Same as TABLE, but
+used to specify 5-D tables.</p></dd><dt><span><b class="term">STRING --</b></span></dt><dd><p>Array entries are character
+strings (up to IMAX each). Index numbers for columns and planes are
+sequential values beginning with 1. Row index is character position
+in string.</p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>IMAX</code></em>
+</b></span></dt><dd><p>Extent of first dimension (row). (For <em class="replaceable"><code>Type</code></em> = STRING,
+       <em class="replaceable"><code>IMAX</code></em> is rounded up to the next multiple of eight and has a limit
+      of 248). Default = 1.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>JMAX</code></em>
+</b></span></dt><dd><p>Extent of second dimension (column). Default = 1.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>KMAX</code></em>
+</b></span></dt><dd><p>Extent of third dimension (plane). Default = 1.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Var1</code></em>
+</b></span></dt><dd><p>Variable name corresponding to the first dimension (row) for
+       <em class="replaceable"><code>Type</code></em> = TABLE, TAB4, or TAB5. Default = Row.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Var2</code></em>
+</b></span></dt><dd><p>Variable name corresponding to the second dimension (column) for
+       <em class="replaceable"><code>Type</code></em> = TABLE, TAB4, or TAB5. Default = Column.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Var3</code></em>
+</b></span></dt><dd><p>Variable name corresponding to the third dimension (plane) for
+       <em class="replaceable"><code>Type</code></em> = TABLE, TAB4, TAB5. Default = Plane.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>CSYSID</code></em>
+</b></span></dt><dd><p>An integer corresponding to the coordinate system ID number. Default = 0 (global
+      Cartesian).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="a-DIM.notes"></a><h2>Notes</h2><p>Up to three dimensions (row, column, and plane) may be defined
+using ARRAY and TABLE.  Use ARR4, ARR5, TAB4, and TAB5 to define up
+to five dimensions (row, column, plane, book, and shelf). An index
+number is associated with each row, column, and plane.  For array
+and table type parameters, element values are initialized to zero.
+ For character and string parameters, element values are initialized
+to (blank).  A defined parameter must be deleted [<a href="Hlp_C_SET_st.html" class="olink"><span class="command"><strong>*SET</strong></span></a>] before its dimensions can be changed.  Scalar (single valued) parameters
+should not be dimensioned.  <a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a>,A,,3 defines a
+vector array with elements A(1), A(2), and A(3).  <a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a>,B,,2,3 defines a 2x3 array with elements B(1,1), B(2,1), B(1,2),
+B(2,2), B(1,3), and B(2,3).  Use <a href="Hlp_C_STATUS_st.html" class="olink"><span class="command"><strong>*STATUS</strong></span></a>,<em class="replaceable"><code>Par</code></em> to display elements of array <em class="replaceable"><code>Par</code></em>. You can write formatted data files (tabular formatting) from data
+held in arrays through the <a href="Hlp_C_VWRITE.html" class="olink"><span class="command"><strong>*VWRITE</strong></span></a> command.</p><p>If you use table parameters to define boundary conditions, then <em class="replaceable"><code>Var1</code></em>, <em class="replaceable"><code>Var2</code></em>, and/or <em class="replaceable"><code>Var3</code></em> can either specify a primary variable (listed
+in <a class="xref" href="Hlp_C_DIM.html#a-DIM.tab.1" title="Table&nbsp;120:&nbsp;&nbsp;*DIM - Primary Variables">Table&nbsp;120:&nbsp;*DIM - Primary Variables</a>) or can be an independent parameter.
+ If specifying an independent parameter, then you must define an additional
+table for the independent parameter.  The additional table must have
+the same name as the independent parameter and may be a function of
+one or more primary variables or another independent parameter.  All
+independent parameters must relate to a primary variable.</p><p>Tabular load arrays can be defined in both global Cartesian (default),
+            cylindrical, spherical, or local (see below) coordinate systems by specifying
+                <em class="replaceable"><code>CSYSID</code></em>, as defined in <a class="link" href="Hlp_C_LOCAL.html" title="LOCAL"><span class="command"><strong>LOCAL</strong></span></a>.
+            Coordinate system <em class="replaceable"><code>CSYSID</code></em> must exist prior to issuing the
+                <a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a> command. </p><p>
+<span class="bold"><strong>The following constraints apply when specifying
+a local coordinate system for your tabular loads:</strong></span>
+</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Only Cartesian, cylindrical and spherical coordinate
+systems are supported </p></li><li class="listitem"><p>Angle values for Y in cylindrical or spherical coordinate
+systems must be input in degrees and must be positive values between
+0 and 360 degrees (0 <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqe3a21746-afa3-4a43-ba62-cea868d86a3b.svg"></span> Y <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq61103dea-e012-45e1-a45c-32b3dd68ed7e.svg"></span> 360)</p></li><li class="listitem"><p>Angle values for Z in spherical coordinate system
+must be input in degrees and must be positive values between -90 and
++90 ( -90 <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqdc278e57-3c19-4d0a-9b46-7cdd4b002bbd.svg"></span> Z <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqadd585d9-4ce9-4c11-b533-ed7814058d75.svg"></span> 90)</p></li></ul></div><p>If specifying a 4- or 5-D array or table, four additional fields
+(<em class="replaceable"><code>LMAX</code></em>, <em class="replaceable"><code>MMAX</code></em>, <em class="replaceable"><code>Var4</code></em>, and <em class="replaceable"><code>Var5</code></em>) are available.
+Thus, for a 4-D table, the command syntax would be:</p><pre class="programlisting">*DIM,Par,Type,IMAX,JMAX,KMAX,LMAX,Var1,Var2,Var3,Var4,CSYSID</pre><p>For a 5-D table, the command syntax is:</p><pre class="programlisting">*DIM,Par,Type,IMAX,JMAX,KMAX,LMAX,MMAX,Var1,Var2,Var3,Var4,Var5,CSYSID</pre><p>
+</p><p>You cannot create or edit 4- or 5-D arrays or tables via the
+GUI.</p><p>For more information, see <a href="../ans_apdl/Hlp_P_APDL3_11.html" class="olink">Array Parameters</a>.</p><div class="table"><a name="a-DIM.tab.1"></a><p class="title"><b>Table&nbsp;120:&nbsp;&nbsp;*DIM - Primary Variables</b></p><div class="table-contents"><table summary="*DIM - Primary Variables" border="1" width="95%"><colgroup><col width="192" class="col1"><col width="192" class="col2"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center">
+                            
+                            
+                            Primary Variable</th><th bgcolor="#E3E3E3" align="center">
+                            
+                            
+                            Label for <em class="replaceable"><code>Var1, Var2, Var3, Var4,
+                                Var5</code></em>
+                        </th></tr></thead><tbody><tr><td>Time</td><td>TIME</td></tr><tr><td>Frequency</td><td>FREQ</td></tr><tr><td>X-coordinate location</td><td>X</td></tr><tr><td>Y-coordinate location</td><td>Y</td></tr><tr><td>Z-coordinate location</td><td>Z</td></tr><tr><td>Temperature</td><td>TEMP</td></tr><tr><td>Velocity</td><td>VELOCITY</td></tr><tr><td>Pressure</td><td>PRESSURE [<a class="xref" href="Hlp_C_DIM.html#cmddimvarnote1">1</a>]</td></tr><tr><td>Geometric gap/penetration</td><td>GAP</td></tr><tr><td>Cyclic sector number</td><td>SECTOR</td></tr><tr><td>Amplitude of the rotational velocity
+                            vector</td><td>OMEGS</td></tr><tr><td>Eccentricity</td><td>ECCENT</td></tr><tr><td>Phase shift</td><td>THETA</td></tr><tr><td>Element number</td><td>ELEM</td></tr><tr><td>Node number</td><td>NODE</td></tr><tr><td>Concentration</td><td>CONC</td></tr></tbody></table></div></div><br class="table-break"><div class="blockquote"><blockquote class="blockquote"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="cmddimvarnote1"></a>Specify PRESSURE as the independent
+variable (not PRES).</p></li></ol></div></blockquote></div><p>The X, Y, and Z coordinate locations listed above are valid
+in global Cartesian, or local (Cartesian, cylindrical and spherical)
+coordinate systems. The VELOCITY label is applicable only to the calculated
+fluid velocity in element <a href="../ans_elem/Hlp_E_FLUID116.html" class="olink"><span class="structname">FLUID116</span></a>.</p><p>When using PRESSURE as a primary variable, the underlying element
+must have the pressure DOF associated with it, or it must be a supported
+contact element.</p><p>The gap/penetration label (GAP) is only used for defining certain
+contact element real constants.</p><p>The frequency label (FREQ) is valid for harmonic analyses only. </p><p>The node and element labels (NODE and ELEM) allow you to use node
+            and element numbers as primary variables, and their axis values should be
+            integers.</p><p>The OMEGS, ECCENT, and THETA primary variables only apply to
+the <a href="../ans_elem/Hlp_E_COMBI214.html" class="olink"><span class="structname">COMBI214</span></a> element. The amplitude of the
+rotational velocity (OMEGS) is an absolute value, so only positive
+values of OMEGS are valid. The eccentricity (ECCENT) and phase shift
+(THETA) labels are only valid for nonlinear analyses.</p><p>If you use table parameters to define boundary conditions, the
+table names (<em class="replaceable"><code>Par</code></em>) must not exceed 32 characters.</p><p>In thermal analyses, if you apply tabular loads as a function
+of temperature but the rest of the model is linear (e.g., includes
+no temperature-dependent material properties or radiation ), you should
+turn on Newton-Raphson iterations (<a class="link" href="Hlp_C_NROPT.html" title="NROPT"><span class="command"><strong>NROPT</strong></span></a>,FULL)
+to evaluate the temperature-dependent tabular boundary conditions
+correctly.</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e69772"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;Parameters&gt;Array Parameters&gt;Define/Edit</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>
