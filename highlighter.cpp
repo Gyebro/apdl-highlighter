@@ -110,11 +110,14 @@ string highlighter::convert_line(string line, bool& in_paragraph) {
                 vector<string> parts = split(command, ',');
 
 //                indent the line
-                if(parts[0] == "*ENDDO")
+                if (parts[0] == "*ENDDO")
                     indentationLevel--;
-                for(size_t iii = 1; iii <= indentationLevel; iii++)
-                    converted += "&nbsp;&nbsp;";
-                if(parts[0] == "*DO")
+                for (size_t iii = 1; iii <= indentationLevel; iii++) {
+                    for (size_t jjj=0; jjj<ucfg.get_indent_size(); jjj++) {
+                        converted += "&nbsp;";
+                    }
+                }
+                if (parts[0] == "*DO")
                     indentationLevel++;
 
                 string url;
@@ -153,7 +156,7 @@ string highlighter::get_tooltip(string keyword, string& url) {
             tt += "<b>" + t.usage + "</b>" + tooltip_newline;
             tt += t.description;
             tt += "</span>";
-            url = t.url;
+            url = ucfg.get_help_root() + t.url;
             return tt;
         }
     }
