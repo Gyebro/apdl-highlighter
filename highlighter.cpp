@@ -29,6 +29,9 @@ void highlighter::highlight(string input_file) {
     output << "</head>\n<body>\n";
     string line;
     bool in_paragraph = false;
+    // Reset line number and indent level
+    indentationLevel = 0;
+    lineNumber = 0;
     while(getline(input, line, '\n')) {
         ++lineNumber;
         output << convert_line(line, in_paragraph);
