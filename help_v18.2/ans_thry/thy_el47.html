@@ -1,0 +1,139 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:25-04:00"><title>13.47.&nbsp;INFIN47 - 3-D Infinite Boundary</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el46.html" title="13.46.&nbsp;Reserved for Future Use"><link rel="next" href="thy_el48.html" title="13.48.&nbsp;Not Documented"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.47.&nbsp;INFIN47 - 3-D Infinite Boundary"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thyinfin47"></a>13.47.&nbsp;INFIN47 - 3-D Infinite Boundary</h2></div></div></div><div><img src="graphics/gthy14-47-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="168" class="COLSPEC7"><col width="264" class="COLSPEC9"><col width="192" class="COLSPEC10"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Matrix or Vector</th><th align="center" valign="middle">Shape Functions</th><th align="center" valign="middle">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration
+Points</a>
+</th></tr></thead><tbody><tr valign="middle"><td valign="middle">
+      <p>Magnetic Potential Coefficient Matrix or Thermal Conductivity Matrix</p>
+     </td><td valign="middle">
+      <p>
+
+</p><div class="informalequation"><a name="eqb1bb0043-2613-46f2-b094-0524bef4df71"></a><div><img src="graphics/eqb1bb0043-2613-46f2-b094-0524bef4df71.svg"></div></div><p>
+</p>
+</td><td valign="middle">
+      <p>None on the boundary element IJK itself, however, 16-point 1-D Gaussian quadrature is
+       applied for some of the integration on each of the edges IJ, JK, and KI of the infinite
+       elements IJML, JKNM, and KILN (see <a class="xref" href="thy_el47.html#infin47fig1" title="Figure&nbsp;13.11:&nbsp;&nbsp;A Semi-infinite Boundary Element Zone and the Corresponding Boundary Element IJK">Figure&nbsp;13.11:&nbsp;A Semi-infinite Boundary Element Zone and the Corresponding Boundary
+Element IJK</a>)</p>
+     </td></tr></tbody></table></div><p>Reference: Kaljevic', et al.(<a class="xref" href="thy_biblio.html#Tagf69mlg" title="&#34;An Infinite Boundary Element Formulation for Three-Dimensional Potential Problems&#34;">[130]</a>) </p><div class="sect2" title="13.47.1.&nbsp;Introduction"><div class="titlepage"><div><div><h3 class="title"><a name="infin47intro"></a>13.47.1.&nbsp;Introduction</h3></div></div></div><p>This boundary element (BE) models the exterior infinite domain of the
+far-field magnetic and thermal problems.  This element is to be used in combination
+with 3-D scalar potential solid elements, and can have magnetic scalar potential
+(MAG), or temperature (TEMP) as the DOF. </p></div><div class="sect2" title="13.47.2.&nbsp;Theory"><div class="titlepage"><div><div><h3 class="title"><a name="infin47theory"></a>13.47.2.&nbsp;Theory</h3></div></div></div><a class="indexterm" name="d0e44417"></a><a class="indexterm" name="d0e44420"></a><p>The formulation of this element is based on a first order triangular
+infinite boundary element (IBE), but the element can be used as a 4-node quadrilateral
+as well.  For unbounded field problems, the model domain is set up to consist
+of an interior volumetric finite element domain, &#937;<sub>F</sub>,
+and a series of exterior volumetric BE subdomains, &#937;<sub>B</sub>,
+as shown in <a class="xref" href="thy_el47.html#infin47fig1" title="Figure&nbsp;13.11:&nbsp;&nbsp;A Semi-infinite Boundary Element Zone and the Corresponding Boundary Element IJK">Figure&nbsp;13.11:&nbsp;A Semi-infinite Boundary Element Zone and the Corresponding Boundary
+Element IJK</a>.  Each subdomain, &#937;<sub>B</sub>,
+is treated as an ordinary BE domain consisting of five segments:  the boundary
+element IJK, infinite elements IJML, JKNM and KILN, and element LMN; element
+LMN is assumed to be located at infinity.</p><div class="figure"><a name="infin47fig1"></a><p class="title"><b>Figure&nbsp;13.11:&nbsp;&nbsp;A Semi-infinite Boundary Element Zone and the Corresponding Boundary
+Element IJK</b></p><div class="figure-contents"><div><img src="graphics/gthy14-47-2.svg" alt="A Semi-infinite Boundary Element Zone and the Corresponding Boundary Element IJK"></div></div></div><br class="figure-break"><p>The approach used here is to write BE equations for &#937;<sub>B</sub>,
+and then convert them into equivalent load vectors for the nodes I, J and
+K.  The procedure consists of four steps that are summarized below (see (Kaljevic',
+et al.<a class="xref" href="thy_biblio.html#Tagf69mlg" title="&#34;An Infinite Boundary Element Formulation for Three-Dimensional Potential Problems&#34;">[130]</a>) for details).  </p><p>First, a set of boundary integral equations is written for &#937;<sub>B</sub>.
+ To achieve this, the potential (or temperature) and its normal derivatives
+(fluxes) are interpolated on the triangle IJK (<a class="xref" href="thy_el47.html#infin47fig1" title="Figure&nbsp;13.11:&nbsp;&nbsp;A Semi-infinite Boundary Element Zone and the Corresponding Boundary Element IJK">Figure&nbsp;13.11:&nbsp;A Semi-infinite Boundary Element Zone and the Corresponding Boundary
+Element IJK</a>)
+by linear shape functions:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1infin47nov2701"></a><div><img src="graphics/thyeq1infin47nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;85)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2infin47nov2701"></a><div><img src="graphics/thyeq2infin47nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;86)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#966; = potential (or temperature) </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eq19a13878-db70-4956-873b-3a6371d1ee84.svg"></span> </td></tr><tr><td>N<sub>I</sub>, N<sub>J</sub>, N<sub>K</sub>
+= linear shape functions defined earlier </td></tr><tr><td>&#966;<sub>I</sub>, &#966;<sub>J</sub>, &#966;<sub>K</sub>
+= nodal potentials (or temperatures) </td></tr><tr><td>q<sub>nI</sub>, q<sub>nJ</sub>, q<sub>nK</sub>
+= nodal normal derivatives (or fluxes) </td></tr><tr><td>n = normal to the surface IJK </td></tr></table><p>
+</p><div class="figure"><a name="infin47fig2"></a><p class="title"><b>Figure&nbsp;13.12:&nbsp;&nbsp;Infinite Element IJML and the Local Coordinate System</b></p><div class="figure-contents"><div><img src="graphics/gthy14-47-6.svg" alt="Infinite Element IJML and the Local Coordinate System"></div></div></div><br class="figure-break"><p>Over an infinite element, such as IJML (<a class="xref" href="thy_el47.html#infin47fig2" title="Figure&nbsp;13.12:&nbsp;&nbsp;Infinite Element IJML and the Local Coordinate System">Figure&nbsp;13.12:&nbsp;Infinite Element IJML and the Local Coordinate System</a>),
+the dependent variables, i.e., potentials (or temperatures) and their normal
+derivatives (fluxes) are respectively assumed to be (<a class="xref" href="thy_el47.html#infin47fig2" title="Figure&nbsp;13.12:&nbsp;&nbsp;Infinite Element IJML and the Local Coordinate System">Figure&nbsp;13.12:&nbsp;Infinite Element IJML and the Local Coordinate System</a>): </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3infin47nov2701"></a><div><img src="graphics/thyeq3infin47nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;87)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq4infin47nov2701"></a><div><img src="graphics/thyeq4infin47nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;88)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eq24cf89ce-b35a-4f0d-85b3-b973e895cc83.svg"></span>
+</td></tr><tr><td>q&#964;<sub>I</sub>, q&#964;<sub>J</sub> = nodal
+(nodes I and J) normal derivatives for infinite element IJML  </td></tr><tr><td>s = a variable length from node I towards node J </td></tr><tr><td>L<sub>IJ</sub> = length of edge IJ </td></tr><tr><td>&#961; = radial distance from the origin of the local coordinate system
+O to the edge IJ </td></tr><tr><td>r = radial distance from the edge IJ towards infinity </td></tr><tr><td>&#946; = variable angle from x-axis for local polar coordinate system </td></tr><tr><td>&#964; = normal to infinite elements IJML </td></tr></table><p>
+</p><p>The boundary integral equations for &#937;<sub>B</sub> are
+now written as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq5infin47nov2701"></a><div><img src="graphics/thyeq5infin47nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;89)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>c(&#958;) = jump term in boundary element method </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqde598b2e-0b08-41c3-ba4d-b2d852051de9.svg"></span> </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq97dfe959-c0ea-4275-ba09-823bf1b1f45c.svg"></span>
+</td></tr><tr><td>(x,&#958;) = field and source points, respectively </td></tr><tr><td>r = distance between field and source points</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-55.000000px"><img src="graphics/eqe48e8e24-a99e-4e7b-bdcf-73c9447943c8.svg"></span> </td></tr></table><p>
+</p><p>The integrations in <a class="xref" href="thy_el47.html#thyeq5infin47nov2701" title="(13&#8211;89)">Equation&nbsp;13&#8211;89</a> are performed
+in closed form on the boundary element IJK.  The integrations on the infinite
+elements IJML, JKNM and KILN in the 'r' direction (<a class="xref" href="thy_el47.html#infin47fig2" title="Figure&nbsp;13.12:&nbsp;&nbsp;Infinite Element IJML and the Local Coordinate System">Figure&nbsp;13.12:&nbsp;Infinite Element IJML and the Local Coordinate System</a>)
+are also performed in closed form.  However, a 16-point Gaussian quadrature
+rule is used for the integrations on each of the edges IJ, JK and KI on the
+infinite elements. </p><p>Second, in the absence of a source or sink in &#937;<sub>B</sub>,
+the flux q(r) is integrated over the boundary &#915;<sub>B</sub>
+of &#937;<sub>B</sub> and set to zero:  </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq6infin47nov2701"></a><div><img src="graphics/thyeq6infin47nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;90)</b></p></td></tr></table><p>Third, geometric constraint conditions that exist between the potential &#966;
+(or temperature) and its derivatives 
+<span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eq2f3ab0ce-78dd-438d-9be8-03d8ab161d97.svg"></span>
+ and 
+<span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eq82cc9942-fcd1-4518-9962-55b1497330e8.svg"></span> at the nodes I, J and K are
+written.  These conditions would express the fact that the normal derivative
+q<sub>n</sub> at the node I, say, can be decomposed into components
+along the normals to the two infinite elements IJML and KILN meeting at I
+and along OI. </p><p>Fourth, the energy flow quantity from &#937;<sub>B</sub>
+is written as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq7infin47nov2701"></a><div><img src="graphics/thyeq7infin47nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;91)</b></p></td></tr></table><p>This energy flow is equated to that due to an equivalent nodal force
+vector {F} defined below. </p><p>The four steps mentioned above are combined together to yield, after
+eliminating q<sub>n</sub> and q&#964;,  </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq8infin47nov2701"></a><div><img src="graphics/thyeq8infin47nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;92)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>[K] = 3 x 3 equivalent unsymmetric element coefficient matrix </td></tr><tr><td>{&#966;} = 3 x 1 nodal degrees of freedom, MAG or TEMP </td></tr><tr><td>{F}<sub>eqv</sub> = 3 x 1 equivalent nodal force vector </td></tr></table><p>
+</p><p>The coefficient matrix [K] multiplied by the nodal DOF's {&#966;} represents
+the equivalent nodal load vector which brings the effects of the semi-infinite
+domain &#937;<sub>B</sub> onto nodes I, J and K. </p><p>As mentioned in the beginning, the INFIN47 can be used with magnetic
+scalar potential elements to solve 3-D magnetic scalar potential problems
+(MAG degree of freedom).  Magnetic scalar potential elements incorporate three
+different scalar potential formulations (see <a class="xref" href="thy_emg1.html" title="5.1.&nbsp;Electromagnetic Field Fundamentals">Electromagnetic Field Fundamentals</a>)
+selected with the <a href="../ans_cmd/Hlp_C_MAGOPT.html" class="olink"><span class="command"><strong>MAGOPT</strong></span></a> command: </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Reduced Scalar Potential (accessed with <a href="../ans_cmd/Hlp_C_MAGOPT.html" class="olink"><span class="command"><strong>MAGOPT</strong></span></a>,0) </p></li><li class="listitem"><p>Difference Scalar Potential (accessed with <a href="../ans_cmd/Hlp_C_MAGOPT.html" class="olink"><span class="command"><strong>MAGOPT</strong></span></a>,2
+and MAGOPT,3) </p></li><li class="listitem"><p>Generalized Scalar Potential (accessed with <a href="../ans_cmd/Hlp_C_MAGOPT.html" class="olink"><span class="command"><strong>MAGOPT</strong></span></a>,1, <a href="../ans_cmd/Hlp_C_MAGOPT.html" class="olink"><span class="command"><strong>MAGOPT</strong></span></a>,2,
+and then <a href="../ans_cmd/Hlp_C_MAGOPT.html" class="olink"><span class="command"><strong>MAGOPT</strong></span></a>,3) </p></li></ol></div></div><div class="sect2" title="13.47.3.&nbsp;Reduced Scalar Potential"><div class="titlepage"><div><div><h3 class="title"><a name="infin47reduced"></a>13.47.3.&nbsp;Reduced Scalar Potential</h3></div></div></div><p>If there is no &#8220;iron&#8221; in the problem domain, the reduced
+scalar potential formulation can be used both in the FE and the BE regimes.
+ In this case, the potential is continuous across FE-BE interface.  If there
+is &#8220;iron&#8221; in the FE domain, the reduced potential formulation
+is likely to produce &#8220;cancellation errors&#8221;. </p></div><div class="sect2" title="13.47.4.&nbsp;Difference Scalar Potential"><div class="titlepage"><div><div><h3 class="title"><a name="infin47diff"></a>13.47.4.&nbsp;Difference Scalar Potential</h3></div></div></div><p>If there is &#8220;iron&#8221; and current in the FE region and the
+problem domain is singly-connected, we can use the difference potential formulation
+in order to avoid cancellation error.  The formulation consists of two-step
+solution procedures: </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Preliminary solution in the air domain (<a href="../ans_cmd/Hlp_C_MAGOPT.html" class="olink"><span class="command"><strong>MAGOPT</strong></span></a>,
+2)    </p><p>Here the first step consists of computing a magnetic field {H<sub>o</sub>}
+under the assumption that the magnetic permeability of iron is infinity, thereby
+neglecting any saturation.  The reduced scalar potential &#966; is used in
+FE region and the total scalar potential &#968; is used in BE region.  In this
+case, the potential will be discontinuous across the FE-BE interface.  The
+continuity condition of the magnetic field at the interface can
+be written as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq9infin47nov2701"></a><div><img src="graphics/thyeq9infin47nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;93)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>{&#964;} = tangent vector at the interface along element edge </td></tr><tr><td>{H<sub>s</sub>} = magnetic field due to current sources </td></tr></table><p>
+</p><p>Integrating the above equation along the interface, we obtain </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq10infin47nov2701"></a><div><img src="graphics/thyeq10infin47nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;94)</b></p></td></tr></table><p>If we take &#968; = &#966; at a convenient point p<sub>o</sub>
+on the interface, then the above equation defines the potential jump at any
+point p on the interface.  Now, the total potential &#968; can be eliminated
+from the problem using this equation, leading to the computation of the additional
+load vector, </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq11infin47nov2701"></a><div><img src="graphics/thyeq11infin47nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;95)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-22.000000px"><img src="graphics/eqc86fd1e7-7e96-433e-846d-37be67a37ced.svg"></span> </td></tr><tr><td>[K] = coefficient matrix defined with <a class="xref" href="thy_el47.html#thyeq8infin47nov2701" title="(13&#8211;92)">Equation&nbsp;13&#8211;92</a> </td></tr></table><p>
+</p></li><li class="listitem"><p>Total solution (air and iron) (<a href="../ans_cmd/Hlp_C_MAGOPT.html" class="olink"><span class="command"><strong>MAGOPT</strong></span></a>,
+3)</p><p>In this step the total field, {H} = {H<sub>o</sub>} - 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqcb44ac14-e16d-4fcb-ba01-d18aecd5d034.svg"></span>&#968;, is computed where {H} is the actual field and
+{H<sub>o</sub>} is the field computed in step 1 above.  Note that
+the same relation given in <a class="xref" href="thy_emg1.html#thyeq39electronov2701" title="(5&#8211;39)">Equation&nbsp;5&#8211;39</a> uses &#966;<sub>g</sub>
+in place of &#968;.  The total potential &#968; is used in both FE and BE regimes.
+ As a result, no potential discontinuity exists at the interface, but an additional
+load vector due to the field {H<sub>o</sub>} must be computed.
+ Since the magnetic flux continuity condition at the interface of air and
+iron is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq12infin47nov2701"></a><div><img src="graphics/thyeq12infin47nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;96)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#956;<sub>o</sub> = magnetic permeability of free space
+(air) </td></tr><tr><td>&#956;<sub>I</sub> = magnetic permeability of iron </td></tr></table><p>
+</p><p>The additional load vector may be computed as  </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq13infin47nov2701"></a><div><img src="graphics/thyeq13infin47nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;97)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>{N} = weighting functions </td></tr></table><p>
+</p></li></ol></div></div><div class="sect2" title="13.47.5.&nbsp;Generalized Scalar Potential"><div class="titlepage"><div><div><h3 class="title"><a name="infin47general"></a>13.47.5.&nbsp;Generalized Scalar Potential</h3></div></div></div><p>If there is iron and current in the FE domain and the domain is multiply-connected,
+the generalized potential formulation can be used.  It consists of three different
+steps. </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Preliminary solution in the iron domain (<a href="../ans_cmd/Hlp_C_MAGOPT.html" class="olink"><span class="command"><strong>MAGOPT</strong></span></a>,
+1).  This step computes a preliminary solution in the iron only.  The boundary
+elements are not used for this step. </p></li><li class="listitem"><p>Preliminary solution in the air domain (<a href="../ans_cmd/Hlp_C_MAGOPT.html" class="olink"><span class="command"><strong>MAGOPT</strong></span></a>,
+2).  This step is exactly the same as the step 1 of the difference potential
+formulation. </p></li><li class="listitem"><p>Total solution (air and iron) (<a href="../ans_cmd/Hlp_C_MAGOPT.html" class="olink"><span class="command"><strong>MAGOPT</strong></span></a>,
+3) .  This step is exactly the same as the step 2 of the difference potential
+formulation. </p></li></ol></div></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

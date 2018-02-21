@@ -1,0 +1,50 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:11-04:00"><title>10.8.&nbsp;Review of Coupled Electromechanical Methods</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_coup.html" title="Chapter&nbsp;10:&nbsp;Coupling"><link rel="prev" href="thy_coup5.html" title="10.7.&nbsp;Thermoelectrics"><link rel="next" href="thypormediaflow.html" title="10.9.&nbsp;Porous Media Flow"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="10.8.&nbsp;Review of Coupled Electromechanical Methods"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="cemm11702"></a>10.8.&nbsp;Review of Coupled Electromechanical Methods</h2></div></div></div><p>The sequential coupling between electrical and mechanical finite
+element physics domains for coupled Electromechanical analysis can
+be performed by the ANSYS Multi-field solver. The ANSYS Multi-field solver allows the most general
+treatment of individual physics domains. However, it cannot be applied
+to small signal modal and harmonic analyses because a total system
+eigen frequency analysis requires matrix coupling. Moreover, sequential
+coupling generally converges slower.</p><p>Strong Electromechanical coupling can be performed by the transducer
+element <a href="../ans_elem/Hlp_E_TRANS126.html" class="olink"><span class="structname">TRANS126</span></a>, Gyimesi and Ostergaard(<a class="xref" href="thy_biblio.html#vmYu3c9jjw" title="&#34;Electro-Mechanical Capacitor Element for MEMS Analysis in ANSYS&#34;">[249]</a>), Gyimesi and Ostergaard(<a class="xref" href="thy_biblio.html#gmaod" title="&#34;A Transducer Finite Element for Dynamic Coupled Electrostatic-Structural Coupling Simulation of MEMS Devices&#34;">[331]</a>), <a class="xref" href="thy_el126.html" title="13.126.&nbsp;TRANS126 - Electromechanical Transducer">TRANS126 - Electromechanical Transducer</a>.</p><p>
+<a href="../ans_elem/Hlp_E_TRANS126.html" class="olink"><span class="structname">TRANS126</span></a> completely models the fully
+coupled system, converting electrostatic energy into mechanical energy
+and vise versa as well as storing electrostatic energy. Coupling between
+electrostatic forces and mechanical forces is obtained from virtual
+work principles (Gyimesi and Ostergaard(<a class="xref" href="thy_biblio.html#vmYu3c9jjw" title="&#34;Electro-Mechanical Capacitor Element for MEMS Analysis in ANSYS&#34;">[249]</a>)).</p><p>
+<a href="../ans_elem/Hlp_E_TRANS126.html" class="olink"><span class="structname">TRANS126</span></a> takes on the form of a 2-node
+line element with electrical voltage and mechanical displacement DOFs
+as across variables and electric current and mechanical force as through
+variables. Input for the element consists of a capacitance-stroke
+relationship that can be derived from electrostatic field solutions
+and using the <a href="../ans_cmd/Hlp_C_CMATRIX.html" class="olink"><span class="command"><strong>CMATRIX</strong></span></a> command macro (Gyimesi et
+al.(<a class="xref" href="thy_biblio.html#XqUsv9cjjw" title="&#34;Capacitance Computation by Hybrid P-Element and Trefftz Method&#34;">[289]</a>), Gyimesi and Ostergaard(<a class="xref" href="thy_biblio.html#lgUsv1e4jjw" title="&#34;Capacitance Computation by Hybrid P-Element and Trefftz Method&#34;">[290]</a>)).</p><p>The element can characterize up to three independent translation
+degrees of freedom at any point to simulate 3-D coupling. Thus, the
+electrostatic mesh is removed from the problem domain and replaced
+by a set of <a href="../ans_elem/Hlp_E_TRANS126.html" class="olink"><span class="structname">TRANS126</span></a> elements hooked to the
+mechanical and electrical model providing a reduced order modeling
+of a coupled electromechanical system (Gyimesi and Ostergaard (<a class="xref" href="thy_biblio.html#WgUsv29fjjw" title="&#34;Finite Element Based Reduced Order Modeling of Micro Electro Mechanical Sytems MEMS&#34;">[287]</a>), Gyimesi et al.(<a class="xref" href="thy_biblio.html#ogans" title="&#34;Efficient Reduced Order Modeling for System Simulation of Micro Electro Mechanical Systems MEMS from FEM Models&#34;">[288]</a>)).</p><p>
+<a href="../ans_elem/Hlp_E_TRANS126.html" class="olink"><span class="structname">TRANS126</span></a> allows treatment of all kinds
+of analysis types, including prestressed modal and harmonic analyses.
+However, <a href="../ans_elem/Hlp_E_TRANS126.html" class="olink"><span class="structname">TRANS126</span></a> is limited geometrically
+to problems when the capacitance can be accurately described as a
+function of a single degree of freedom, usually the stroke of a comb
+drive. In a bending electrode problem, like an optical switch, obviously,
+a single <a href="../ans_elem/Hlp_E_TRANS126.html" class="olink"><span class="structname">TRANS126</span></a> element can not be applied.
+When the gap is small and fringing is not significant, the capacitance
+between deforming electrodes can be practically modeled reasonably
+well by several capacitors connected parallel. The <a href="../ans_cmd/Hlp_C_EMTGEN.html" class="olink"><span class="command"><strong>EMTGEN</strong></span></a> (electromechanical transducer generator) command macro can be applied
+to this case. </p><p>Convergence issues may be experienced with <a href="../ans_elem/Hlp_E_TRANS126.html" class="olink"><span class="structname">TRANS126</span></a>  when applied to the difficult hysteretic pull-in and release analysis
+(Avdeev et al.(<a class="xref" href="thy_biblio.html#aglo" title="&#34;Beam Modeling for Simulation of Electro Mechanical Transducers Using Strong Coupling Approach&#34;">[332]</a>)) because of the negative total
+system stiffness matrix. The issue is resolved when the augmented
+stiffness method is applied.</p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

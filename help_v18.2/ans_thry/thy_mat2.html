@@ -1,0 +1,376 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:54-04:00"><title>4.3.&nbsp;Rate-Dependent Plasticity (Including Creep and Viscoplasticity)</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thymatlnonlin.html" title="Chapter&nbsp;4:&nbsp;Structures with Material Nonlinearities"><link rel="prev" href="thy_mat1.html" title="4.2.&nbsp;Rate-Independent Plasticity"><link rel="next" href="thy_gasket.html" title="4.4.&nbsp;Gasket Material"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="4.3.&nbsp;Rate-Dependent Plasticity (Including Creep and Viscoplasticity)"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sGhif1c1mlg"></a>4.3.&nbsp;Rate-Dependent Plasticity (Including Creep and Viscoplasticity)</h2></div></div></div><p>Rate-dependent plasticity describes the flow rule of materials,
+which depends on time. The deformation of materials is now assumed
+to develop as a function of the strain rate (or time). An important
+class of applications of this theory is high temperature creep. Several
+options are provided in ANSYS to characterize the different types
+of rate-dependent material behaviors. The creep option is used for
+describing material creep over a relative long period or at low strain.
+The rate-dependent plasticity option adopts a unified creep approach
+to describe material behavior that is strain rate dependent. Anand's
+viscoplasticity option is another rate-dependent plasticity model
+for simulations such as metal forming. Other than other these built-in
+options, a rate-dependent plasticity model may be incorporated as
+user material option through the user programmable feature.</p><div class="sect2" title="4.3.1.&nbsp;Creep"><div class="titlepage"><div><div><h3 class="title"><a name="matcreepopt"></a>4.3.1.&nbsp;Creep</h3></div></div></div><a class="indexterm" name="d0e9320"></a><a class="indexterm" name="d0e9323"></a><div class="highlights"><p>The following topics related to creep are available:</p><ul><li><a href="thy_mat2.html#matdeflimit" title="4.3.1.1.&nbsp;Definition and Limitations">Definition and Limitations</a></li><li><a href="thy_mat2.html#matcalccreep" title="4.3.1.2.&nbsp;Calculation of Creep">Calculation of Creep</a></li><li><a href="thy_mat2.html#mattimesteps" title="4.3.1.3.&nbsp;Time Step Size">Time Step Size</a></li></ul></div><p>See also <a class="xref" href="thy_mat2.html#mat_extendeddp" title="4.3.3.&nbsp;Extended Drucker-Prager (EDP) Creep Model">Extended Drucker-Prager (EDP) Creep Model</a> and <a class="xref" href="thy_mat2.html#capcreepmodel" title="4.3.4.&nbsp;Cap Creep Model">Cap Creep Model</a>.</p><div class="sect3" title="4.3.1.1.&nbsp;Definition and Limitations"><div class="titlepage"><div><div><h4 class="title"><a name="matdeflimit"></a>4.3.1.1.&nbsp;Definition and Limitations</h4></div></div></div><a class="indexterm" name="d0e9340"></a><a class="indexterm" name="d0e9343"></a><a class="indexterm" name="d0e9346"></a><a class="indexterm" name="d0e9349"></a><a class="indexterm" name="d0e9354"></a><a class="indexterm" name="d0e9357"></a><a class="indexterm" name="d0e9362"></a><a class="indexterm" name="d0e9365"></a><p>Creep is defined as material deforming under load over time
+in such a way as to tend to relieve the stress. Creep may also be
+a function of temperature and neutron flux level. The term <span class="italic"><em>relaxation</em></span> has also been used interchangeably
+with creep. </p><p>The von Mises or Hill stress potentials can be used for creep
+analysis. For the von Mises potential, the material is assumed to
+be isotropic and the basic solution technique used is the initial-stiffness
+Newton-Raphson method. </p><p>The options available for creep are described in <a href="../ans_mat/rate.html" class="olink">Rate-Dependent Viscoplastic Materials</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>. </p><p>Four different types of creep are available and the effects
+of the first three may be added together except as noted:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+<span class="italic"><em>Primary creep</em></span> is
+accessed with C<sub>6</sub> (C<sub>i</sub> values refer to the <em class="replaceable"><code>i</code></em>
+<sup>th</sup> value given in the <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command with <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CREEP). The creep calculations are bypassed if C<sub>1</sub> = 0.</p></li><li class="listitem"><p>
+<span class="italic"><em>Secondary creep</em></span> is accessed with C<sub>12</sub>. These creep calculations
+are bypassed if C<sub>7</sub> = 0. They are also bypassed
+if a primary creep strain was computed using the option C<sub>6</sub> = 9, 10, 11, 13, 14, or 15, since they include secondary
+creep in their formulations.</p></li><li class="listitem"><p>
+<span class="italic"><em>Irradiation-induced creep</em></span> is accessed with C<sub>66</sub>. </p></li><li class="listitem"><p>
+<span class="italic"><em>User-specified creep</em></span> may be accessed with C<sub>6</sub> = 100. See <a href="../ans_adv/Hlp_G_ADV7.html" class="olink">User Routines and Non-Standard
+Uses</a> of the <a href="../ans_adv/Hlp_G_AdvTOC.html" class="olink"><em class="citetitle">Advanced Analysis Guide</em></a> for more details.</p></li></ul></div><p>The creep calculations are also bypassed if: </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>(change of time) 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq4a25d03e-2211-4b25-83ca-2576f7669629.svg"></span>10-6</p></li><li class="listitem"><p>(input temperature + T<sub>off</sub>)
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq5df4258c-4890-47a1-a892-c0dded568591.svg"></span> 0 where T<sub>off</sub> = offset
+temperature (input on <a href="../ans_cmd/Hlp_C_TOFFST.html" class="olink"><span class="command"><strong>TOFFST</strong></span></a> command). </p></li><li class="listitem"><p>For C<sub>6</sub> = 0 case: A special
+effective strain based on &#949;<sup>e</sup> and &#949;<sup>cr</sup> is computed. A bypass occurs if it is equal to zero.</p></li></ol></div></div><div class="sect3" title="4.3.1.2.&nbsp;Calculation of Creep"><div class="titlepage"><div><div><h4 class="title"><a name="matcalccreep"></a>4.3.1.2.&nbsp;Calculation of Creep</h4></div></div></div><p>The creep equations are integrated with an explicit Euler forward
+algorithm, which is efficient for problems having small amounts of
+contained creep strains. A modified total strain is computed:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq2ce5b6d9-2086-49d7-be5e-c1e269bac373"></a><div><img src="graphics/eq2ce5b6d9-2086-49d7-be5e-c1e269bac373.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;113)</b></p></td></tr></table><p>This equation is analogous to <a class="xref" href="thy_mat1.html#thyeq6implementnov1901" title="(4&#8211;18)">Equation&nbsp;4&#8211;18</a> for plasticity. The superscripts
+are described with <a class="xref" href="thy_intro2.html" title="1.2.&nbsp;Understanding Theory Reference Notation">Understanding Theory Reference Notation</a> and subscripts
+refer to the time point n. An equivalent modified total strain is
+defined as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq63a3993e-394e-498a-bde7-92dd205fd0d0"></a><div><img src="graphics/eq63a3993e-394e-498a-bde7-92dd205fd0d0.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;114)</b></p></td></tr></table><p>Also an equivalent stress is defined by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq06cffcd5-51b4-4bdd-95b3-dc43036c2523"></a><div><img src="graphics/eq06cffcd5-51b4-4bdd-95b3-dc43036c2523.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;115)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>E = Young's modulus (input as EX on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command)</td></tr><tr><td>&#957; = Poisson's ratio (input as PRXY or NUXY on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command)</td></tr></table><p>
+</p><p>The equivalent creep strain increment (&#916;&#949;<sup>cr</sup>) is computed as a scalar quantity from the relations
+given in <a href="../ans_mat/rate.html" class="olink">Rate-Dependent
+Viscoplastic Materials</a> and is normally positive. If C<sub>11</sub> = 1, a decaying creep rate is used rather than a rate
+that is constant over the time interval. This option is normally not
+recommended, as it can seriously underestimate the total creep strain
+where primary stresses dominate. The modified equivalent creep strain
+increment 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq80ce542c-f63c-4a95-91cc-f5f8e0d866c1.svg"></span>, which would be used in place of the equivalent
+creep strain increment (&#916;&#949;<sup>cr</sup>) if C<sub>11</sub> = 1, is computed as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq67e1ace2-9858-4dfd-87e2-80022a52df97"></a><div><img src="graphics/eq67e1ace2-9858-4dfd-87e2-80022a52df97.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;116)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>e = 2.718281828 (base of natural logarithms)</td></tr><tr><td>A = &#916;&#949;<sup>cr</sup>/&#949;<sub>et</sub>
+</td></tr></table><p>
+</p><p>Next, the creep ratio (a measure of the increment of creep strain)
+for this integration point (C<sub>s</sub>) is computed
+as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq917bdfe7-c354-470d-bdab-faa745160347"></a><div><img src="graphics/eq917bdfe7-c354-470d-bdab-faa745160347.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;117)</b></p></td></tr></table><p>The largest value of C<sub>s</sub> for all elements
+at all integration points for this iteration is called C<sub>max</sub> and is output with the label &#8220;CREEP RATIO&#8221;. </p><p>The creep strain increment is then converted to a full strain
+tensor. N<sub>c</sub> is the number of strain components
+for a particular type of element. If N<sub>c</sub> = 1,</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq15f0f10f-547c-4365-86d2-8b06bf5ae089"></a><div><img src="graphics/eq15f0f10f-547c-4365-86d2-8b06bf5ae089.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;118)</b></p></td></tr></table><p>Note that the term in brackets is either +1 or -1. If N<sub>c</sub> = 4,</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqeef29c63-b0d7-4041-a009-b2cac033d308"></a><div><img src="graphics/eqeef29c63-b0d7-4041-a009-b2cac033d308.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;119)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq07a94163-5e82-42fc-bf91-657ac20d854b"></a><div><img src="graphics/eq07a94163-5e82-42fc-bf91-657ac20d854b.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;120)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqe736f27a-a875-4933-9f73-6fec2a2dae33"></a><div><img src="graphics/eqe736f27a-a875-4933-9f73-6fec2a2dae33.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;121)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqeed9e498-3da3-40c6-aa8d-dcceaf6b5254"></a><div><img src="graphics/eqeed9e498-3da3-40c6-aa8d-dcceaf6b5254.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;122)</b></p></td></tr></table><p>The first three components are the three normal strain components,
+and the fourth component is the shear component. If N<sub>c</sub> = 6, components 1 through 4 are the same as above, and the two additional
+shear components are:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqa94d0cd8-7a7a-4c92-bae4-ee5c9f3907e0"></a><div><img src="graphics/eqa94d0cd8-7a7a-4c92-bae4-ee5c9f3907e0.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;123)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqa98cd991-4555-4fa7-b150-d967d01920ed"></a><div><img src="graphics/eqa98cd991-4555-4fa7-b150-d967d01920ed.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;124)</b></p></td></tr></table><p>Next, the elastic strains and the total creep strains are calculated
+as follows, using the example of the x-component:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqbb9acd0a-c9ad-48a7-8220-f153f5cf0986"></a><div><img src="graphics/eqbb9acd0a-c9ad-48a7-8220-f153f5cf0986.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;125)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqfec9f60d-e651-47a0-9ebb-5d5fc33166c7"></a><div><img src="graphics/eqfec9f60d-e651-47a0-9ebb-5d5fc33166c7.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;126)</b></p></td></tr></table><p>Stresses are based on 
+<span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eqeb251784-fc90-4831-bcc4-22385fa79ce2.svg"></span>. This gives the correct stresses for imposed
+force problems and the maximum stresses during the time step for imposed
+displacement problems.</p></div><div class="sect3" title="4.3.1.3.&nbsp;Time Step Size"><div class="titlepage"><div><div><h4 class="title"><a name="mattimesteps"></a>4.3.1.3.&nbsp;Time Step Size</h4></div></div></div><p>A stability limit is placed on the time step size (Zienkiewicz
+and Cormeau(<a class="xref" href="thy_biblio.html#Trbpf1e8mlg" title="&#34;Visco-plasticity - Plasticity and Creep in Elastic Solids - A Unified Numerical Solution Approach&#34;">[154]</a>)). This is because an explicit
+integration procedure is used in which the stresses and strains are
+referred to time t<sub>n-1</sub> (however, the temperature
+is at time t<sub>n</sub>). The creep strain rate is calculated
+using time t<sub>n</sub>. You should use a time step such
+that the creep ratio C<sub>max</sub> is less than 0.10.
+If the creep ratio exceeds 0.25, the run terminates with the message: &#8220;CREEP
+RATIO OF . . . EXCEEDS STABILITY LIMIT OF .25.&#8221; <a class="xref" href="thy_tool6.html" title="14.5.&nbsp;Automatic Time Stepping">Automatic Time Stepping</a> discusses the automatic time stepping algorithm
+which may be used with creep in order to increase or decrease the
+time step as needed for an accurate yet efficient solution.</p></div></div><div class="sect2" title="4.3.2.&nbsp;Rate-Dependent Plasticity"><div class="titlepage"><div><div><h3 class="title"><a name="thy_matratedepend"></a>4.3.2.&nbsp;Rate-Dependent Plasticity </h3></div></div></div><a class="indexterm" name="d0e9662"></a><a class="indexterm" name="d0e9665"></a><p>The rate-dependent plasticity model includes four options: Perzyna(<a class="xref" href="thy_biblio.html#sB1Aw2eajjw" title="Fundamental problems in viscoplasticity">[297]</a>), Peirce et al.(<a class="xref" href="thy_biblio.html#dC1Aw1d1jjw" title="&#8220;A tangent modulus method for rate dependent solids&#8221;">[298]</a>), EVH(<a class="xref" href="thy_biblio.html#ixVu360jjw" title="&#34;Constitutive Equations for Cyclic Plasticity and Cyclic Viscoplasticity&#34;">[245]</a>), and Anand(<a class="xref" href="thy_biblio.html#rAZqf10dmlg" title="&#34;Constitutive Equations for Hot-Working of Metals&#34;">[159]</a>). The options are defined via the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,RATE command&#8217;s <em class="replaceable"><code>TBOPT</code></em> field (where <em class="replaceable"><code>TBOPT</code></em> = PERZYNA, PEIRCE,
+EVH, and ANAND, respectively), and are available with most <a href="../ans_elem/Hlp_E_CH2_OLDNEW.html#EL2oldnewtable" class="olink">current-technology
+elements.</a>
+</p><p>The material hardening behavior is assumed to be isotropic.
+The integration of the material constitutive equations are based a
+return mapping procedure (Simo and Hughes(<a class="xref" href="thy_biblio.html#XVud8jjw" title="Computational Inelasticity">[253]</a>)) to enforce both stress and material tangential stiffness matrix
+are consistent at the end of time step. A typical application of this
+material model is the simulation of material deformation at high strain
+rate, such as impact.</p><div class="highlights"><p>The following topics describe each rate-dependent plasticity
+option:</p><ul><li><a href="thy_mat2.html#matperzynaopt" title="4.3.2.1.&nbsp;Perzyna Option">Perzyna Option</a></li><li><a href="thy_mat2.html#matpierceopt" title="4.3.2.2.&nbsp;Peirce Option">Peirce Option</a></li><li><a href="thy_mat2.html#d0e9788" title="4.3.2.3.&nbsp;Exponential Visco-Hardening (EVH) Option">Exponential Visco-Hardening (EVH) Option</a></li><li><a href="thy_mat2.html#matanandvisco" title="4.3.2.4.&nbsp;Anand Viscoplasticity Option">Anand Viscoplasticity Option</a></li></ul></div><div class="sect3" title="4.3.2.1.&nbsp;Perzyna Option"><div class="titlepage"><div><div><h4 class="title"><a name="matperzynaopt"></a>4.3.2.1.&nbsp;Perzyna Option</h4></div></div></div><a class="indexterm" name="d0e9703"></a><p>The Perzyna option has the following form:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq27022803-c6b1-42fd-a66c-fa4993908f80"></a><div><img src="graphics/eq27022803-c6b1-42fd-a66c-fa4993908f80.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;127)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq5b5d6a5c-7de4-420f-a06e-e6266e0af1ee.svg"></span> = equivalent plastic strain rate</td></tr><tr><td>m = strain rate hardening parameter (input as C1 via <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command)</td></tr><tr><td>&#947; = material viscosity parameter (input as C2 via <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command)</td></tr><tr><td>&#963; = equivalent stress</td></tr><tr><td>&#963;<sub>o</sub> = static yield stress of material
+(defined via                 <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,BISO, or <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,NLISO commands)</td></tr></table><p>
+</p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;&#963;<sub>o</sub> is a function of some hardening
+parameters in general.</p><hr></div><p>As &#947; tends to 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq73e53fa5-39ab-4c66-a2a8-a1530715c3bf.svg"></span>, or m tends to zero
+or 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqba031468-c0fe-44ce-89f5-07341efbdb05.svg"></span> tends to zero, the solution converges to the static (rate-independent)
+solution. However, for this material option when m is very small (&lt;
+0.1), the solution shows difficulties in convergence (Peric and Owen(<a class="xref" href="thy_biblio.html#aE1Aw173jjw">[299]</a>)).</p></div><div class="sect3" title="4.3.2.2.&nbsp;Peirce Option"><div class="titlepage"><div><div><h4 class="title"><a name="matpierceopt"></a>4.3.2.2.&nbsp;Peirce Option</h4></div></div></div><a class="indexterm" name="d0e9768"></a><p>The Peirce option has the following form:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqdfa2e739-a4cf-4b79-905b-ecf085272698"></a><div><img src="graphics/eqdfa2e739-a4cf-4b79-905b-ecf085272698.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;128)</b></p></td></tr></table><p>Similar to the Perzyna model, the solution converges to the
+static (rate-independent)                               solution,
+as &#947; tends to 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq5a9e3b98-5de2-4709-9c07-4c2cd918326a.svg"></span>, or m tends to zero, or 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqa7512d73-5a64-4e11-bcb3-8cd50461d749.svg"></span> tends to zero. For small value of m, this option               
+               shows much better convergency than PERZYNA option (Peric
+and                                     Owen(<a class="xref" href="thy_biblio.html#aE1Aw173jjw">[299]</a>)).</p></div><div class="sect3" title="4.3.2.3.&nbsp;Exponential Visco-Hardening (EVH) Option"><div class="titlepage"><div><div><h4 class="title"><a name="d0e9788"></a>4.3.2.3.&nbsp;Exponential Visco-Hardening (EVH) Option</h4></div></div></div><a class="indexterm" name="d0e9791"></a><p>For information about this option, see <a href="../ans_mat/rate.html#matevhoption" class="olink">Exponential Visco-Hardening (EVH) Option</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p></div><div class="sect3" title="4.3.2.4.&nbsp;Anand Viscoplasticity Option"><div class="titlepage"><div><div><h4 class="title"><a name="matanandvisco"></a>4.3.2.4.&nbsp;Anand Viscoplasticity Option</h4></div></div></div><a class="indexterm" name="d0e9807"></a><p>Metal under elevated temperature, such as the hot-metal-working
+problems, the material physical behaviors become very sensitive to
+strain rate, temperature, history of strain rate and temperature,
+and strain hardening and softening. The systematical effect of all
+these complex factors can be taken into account and modeled via Anand
+viscoplasticity(<a class="xref" href="thy_biblio.html#rAZqf10dmlg" title="&#34;Constitutive Equations for Hot-Working of Metals&#34;">[159]</a>, <a class="xref" href="thy_biblio.html#LXzlf111mlg" title="&#34;An Internal Variable Constitutive Model for Hot Working of Metals&#34;">[147]</a>). The Anand option is categorized into the
+group of the unified plasticity models where the inelastic deformation
+refers to all irreversible deformation that can not be simply or specifically
+decomposed into the plastic deformation derived from the rate-independent
+plasticity theories and the part resulted from the creep effect. Compare
+to the traditional creep approach, the Anand option introduces a single
+scalar internal variable <span class="quote">"<span class="quote">s</span>"</span>, called the <span class="italic"><em>deformation resistance</em></span>, which is used to
+represent the isotropic resistance to inelastic flow of the material.</p><p>Although the Anand option was originally developed for the metal
+forming application (<a class="xref" href="thy_biblio.html#rAZqf10dmlg" title="&#34;Constitutive Equations for Hot-Working of Metals&#34;">[159]</a>, <a class="xref" href="thy_biblio.html#LXzlf111mlg" title="&#34;An Internal Variable Constitutive Model for Hot Working of Metals&#34;">[147]</a>), it is however applicable for general applications
+involving strain and temperature effect, including but not limited
+to such as solder join analysis, high temperature creep etc.</p><p>The inelastic strain rate is described by the flow equation
+as follows:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="rev12_anand1"></a><div><img src="graphics/rev12_anand1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;129)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqf2a7298b-8746-441f-9491-45edab555470.svg"></span> = inelastic strain rate tensor</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq58bfcb2d-a106-444b-a9aa-4128b66344ea.svg"></span> = rate of accumulated equivalent plastic strain</td></tr></table><p>
+</p><p>
+<span class="bold"><strong>S</strong></span>, the deviator of the Cauchy
+stress tensor, is:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="rev12_anand3"></a><div><img src="graphics/rev12_anand3.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;130)</b></p></td></tr></table><p>and q, equivalent stress, is:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="rev12_anand4"></a><div><img src="graphics/rev12_anand4.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;131)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>p = one-third of the trace of the Cauchy stress tensor</td></tr><tr><td>
+<span class="bold"><strong>&#963;</strong></span> = Cauchy stress tensor</td></tr><tr><td>
+<span class="bold"><strong>I</strong></span> = second order identity
+tensor</td></tr><tr><td>
+<span class="quote">"<span class="quote">:</span>"</span> = inner product of two second-order tensors</td></tr></table><p>
+</p><p>The rate of accumulated equivalent plastic strain, 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqd252da32-ab1a-4405-9a0d-7559db4da828.svg"></span>, is defined as follows:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="rev12_anand5"></a><div><img src="graphics/rev12_anand5.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;132)</b></p></td></tr></table><p>The equivalent plastic strain rate is associated with equivalent
+stress, q, and deformation resistance, s, by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="rev12_anand6"></a><div><img src="graphics/rev12_anand6.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;133)</b></p></td></tr></table><p>
+</p><table border="0" summary="Simple list" class="simplelist"><tr><td>A = constant with the same unit as the strain rate</td></tr><tr><td>Q = activation energy with unit of energy/volume</td></tr><tr><td>R = universal gas constant with unit of energy/volume/temperature</td></tr><tr><td>
+<span class="symbol">&#952;</span> = absolute temperature</td></tr><tr><td>
+<span class="symbol">&#958;</span> = dimensionless scalar constant</td></tr><tr><td>s = internal state variable</td></tr><tr><td>m = dimensionless constant</td></tr></table><p>
+</p><p>
+<a class="xref" href="thy_mat2.html#rev12_anand6" title="(4&#8211;133)">Equation&nbsp;4&#8211;133</a> implies that the inelastic strain
+occurs at any level of stress (more precisely, deviation stress).
+This theory is different from other plastic theories with yielding
+functions where the plastic strain develops only at a certain stress
+level above yielding stress.</p><p>The evolution of the deformation resistance is dependent of
+the rate of the equivalent plastic strain and the current deformation
+resistance. It is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="rev12_anand7"></a><div><img src="graphics/rev12_anand7.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;134)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>a = dimensionless constant</td></tr><tr><td>h<sub>0</sub> = constant with stress unit</td></tr><tr><td>s* = deformation resistance saturation with stress unit</td></tr></table><p>
+</p><p>The sign, 
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eq18f0c22d-2fde-4ff9-8ba2-9ca1a87021ce.svg"></span>, is determined by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="rev12_anand8"></a><div><img src="graphics/rev12_anand8.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;135)</b></p></td></tr></table><p>The deformation resistance saturation s* is controlled by the
+equivalent plastic strain rate as follows:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="rev12_anand9"></a><div><img src="graphics/rev12_anand9.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;136)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq8ce8c050-fc82-430a-a64a-4ec289c9f691.svg"></span> = constant with stress unit</td></tr><tr><td>n = dimensionless constant</td></tr></table><p>
+</p><p>Because of the 
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eqcda7f695-5216-425d-af48-8f57a05fd97b.svg"></span>, <a class="xref" href="thy_mat2.html#rev12_anand7" title="(4&#8211;134)">Equation&nbsp;4&#8211;134</a> is able to account for both strain hardening
+and strain softening. The strain softening refers to the reduction
+on the deformation resistance. The strain softening process occurs
+when the strain rate decreases or the temperature increases. Such
+changes cause a great reduction on the saturation s* so that the current
+value of the deformation resistance s may exceed the saturation.</p><p>The material constants and their units specified for the Anand
+option are listed in <a class="xref" href="thy_mat2.html#nyHpf88mlg" title="Table&nbsp;4.3:&nbsp;&nbsp;Material Parameter Units for the Anand Option">Table&nbsp;4.3:&nbsp;Material Parameter Units for the Anand Option</a>. All constants must
+be positive, except constant <span class="quote">"<span class="quote">a</span>"</span>, which must be 1.0 or
+greater. The inelastic strain rate in Anand's definition of material
+is temperature and stress dependent as well as dependent on the rate
+of loading. Determination of the material parameters is performed
+by curve-fitting a series of the stress-strain data at various temperatures
+and strain rates as in Anand(<a class="xref" href="thy_biblio.html#rAZqf10dmlg" title="&#34;Constitutive Equations for Hot-Working of Metals&#34;">[159]</a>) or Brown
+et al.(<a class="xref" href="thy_biblio.html#LXzlf111mlg" title="&#34;An Internal Variable Constitutive Model for Hot Working of Metals&#34;">[147]</a>).</p><div class="table"><a name="nyHpf88mlg"></a><p class="title"><b>Table&nbsp;4.3:&nbsp;&nbsp;Material Parameter Units for the Anand Option</b></p><div class="table-contents"><table summary="Material Parameter Units for the Anand Option" border="1" width="95%"><colgroup><col width="96" align="center" class="col1"><col width="96" align="center" class="col2"><col width="240" class="col3"><col width="192" class="col4"></colgroup><thead><tr valign="middle"><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+TBDATA
+Constant</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+Parameter</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+Meaning</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+Units</th></tr></thead><tbody><tr><td align="center">1</td><td align="center">s<sub>o</sub>
+</td><td>Initial value of deformation
+resistance</td><td>stress, e.g. psi, MPa</td></tr><tr><td rowspan="2" align="center">2</td><td rowspan="2" align="center">Q/R</td><td>Q = activation
+energy</td><td>energy / volume, e.g. kJ / mole</td></tr><tr><td>R = universal gas constant</td><td>energy / (volume temperature), e.g. kJ / (mole
+- K</td></tr><tr><td align="center">3</td><td align="center">A</td><td>pre-exponential factor</td><td>1 / time e.g. 1 / second</td></tr><tr><td align="center">4</td><td align="center">&#958;</td><td>multiplier of stress</td><td>dimensionless</td></tr><tr><td align="center">5</td><td align="center">m</td><td>strain rate sensitivity of stress</td><td>dimensionless</td></tr><tr><td align="center">6</td><td align="center">h<sub>o</sub>
+</td><td>hardening/softening constant</td><td>stress e.g. psi, MPa</td></tr><tr><td align="center">7</td><td align="center">
+
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqeef64194-4237-4d4c-94f7-8f04ba12eb52.svg"></span>
+</td><td>coefficient
+for deformation resistance saturation value</td><td>stress e.g. psi, MPa</td></tr><tr><td align="center">8</td><td align="center">n</td><td>strain rate sensitivity
+of saturation (deformation resistance) value</td><td>dimensionless</td></tr><tr><td align="center">9</td><td align="center">a</td><td>strain
+rate sensitivity of hardening or softening</td><td>dimensionless</td></tr></tbody></table></div></div><br class="table-break"><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>kJ = kilojoules</td></tr><tr><td>K = kelvin</td></tr></table><p>
+</p><p>If h<sub>0</sub> is set to zero, the deformation
+resistance goes away and the Anand option reduces to the traditional
+creep model.</p></div></div><div class="sect2" title="4.3.3.&nbsp;Extended Drucker-Prager (EDP) Creep Model"><div class="titlepage"><div><div><h3 class="title"><a name="mat_extendeddp"></a>4.3.3.&nbsp;Extended Drucker-Prager (EDP) Creep Model</h3></div></div></div><a class="indexterm" name="d0e10131"></a><a class="indexterm" name="d0e10134"></a><p>Long term loadings such as gravity and other dead loadings greatly
+contribute inelastic responses of geomaterials. In such cases the
+inelastic deformation is resulted not only from material yielding
+but also from material creep. The part of plastic deformation is rate-independent
+and the creep part is time or rate-dependent. </p><p>In the cases of loading at a low level (not large enough to
+cause the material to yield), the inelastic deformation may still
+occur because of the creep effect. To account for the creep effect,
+the material model extended Drucker-Prager (EDP model) combines rate-independent
+EDP (except for the cap model) with implicit creep functions. The
+combination has been done in such a way that yield functions and flow
+rules defined for rate-independent plasticity are fully exploited
+for creep deformation, advantageous for complex models as the required
+data input is minimal.</p><div class="sect3" title="4.3.3.1.&nbsp;EDP Inelastic Strain Rate Decomposition"><div class="titlepage"><div><div><h4 class="title"><a name="mat_ineldecomp"></a>4.3.3.1.&nbsp;EDP Inelastic Strain Rate Decomposition</h4></div></div></div><p>We first assume that the material point yields so that both
+plastic deformation and creep deformation occur. <a class="xref" href="thy_mat2.html#matptelast" title="Figure&nbsp;4.17:&nbsp;&nbsp;Material Point in Yielding Condition Elastically Predicted">Figure&nbsp;4.17:&nbsp;Material Point in Yielding Condition Elastically Predicted</a> illustrates such a stress state. We next decompose
+the inelastic strain rate as follows:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="exdpcreepeq1"></a><div><img src="graphics/exdpcreepeq1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;137)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq271a31b8-30d1-4c09-bdc2-c7a6f9b2def9.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqc4469f25-f5dc-4a4a-a8a7-a55a829198df.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq61f86e33-607e-4ad4-9edc-e39fe394430b.svg"></span>
+</td></tr></table><p>
+</p><p>The plastic strain rate is further defined as follows:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="exdpcreepeq2"></a><div><img src="graphics/exdpcreepeq2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;138)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqd99056c2-7508-4602-9991-b8bc69a5971d.svg"></span> = plastic multiplier</td></tr><tr><td>Q = flow function that has been previously defined in <a class="xref" href="thy_mat1.html#exdpmodeq4" title="(4&#8211;82)">Equation&nbsp;4&#8211;82</a>, <a class="xref" href="thy_mat1.html#exdpmodeq5" title="(4&#8211;83)">Equation&nbsp;4&#8211;83</a>, and <a class="xref" href="thy_mat1.html#exdpmodeq6" title="(4&#8211;84)">Equation&nbsp;4&#8211;84</a> in <a class="xref" href="thy_mat1.html#xdpmodel" title="4.2.14.2.&nbsp;Extended Drucker-Prager Model">Extended Drucker-Prager Model</a>
+</td></tr></table><p>
+</p><p>Here we also apply these plastic flow functions to the creep
+strain rate as follows:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="exdpcreepeq3"></a><div><img src="graphics/exdpcreepeq3.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;139)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq062c93f4-3c15-40ed-9d52-d3e06482861a.svg"></span> = creep multiplier</td></tr></table><p>
+</p><div class="figure"><a name="matptelast"></a><p class="title"><b>Figure&nbsp;4.17:&nbsp;&nbsp;Material Point in Yielding Condition Elastically Predicted</b></p><div class="figure-contents"><div><img src="graphics/gthy4-642.svg" alt="Material Point in Yielding Condition Elastically Predicted"></div></div></div><br class="figure-break"></div><div class="sect3" title="4.3.3.2.&nbsp;EDP Yielding and Hardening Conditions"><div class="titlepage"><div><div><h4 class="title"><a name="mat_yieldcond"></a>4.3.3.2.&nbsp;EDP Yielding and Hardening Conditions</h4></div></div></div><p>As material yields, the real stress should always be on the
+yielding surface. This implies:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="exdpcreepeq4"></a><div><img src="graphics/exdpcreepeq4.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;140)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>F = yielding function defined in <a class="xref" href="thy_mat1.html#exdpmodeq4" title="(4&#8211;82)">Equation&nbsp;4&#8211;82</a>, <a class="xref" href="thy_mat1.html#exdpmodeq5" title="(4&#8211;83)">Equation&nbsp;4&#8211;83</a>, and <a class="xref" href="thy_mat1.html#exdpmodeq6" title="(4&#8211;84)">Equation&nbsp;4&#8211;84</a> in <a class="xref" href="thy_mat1.html#xdpmodel" title="4.2.14.2.&nbsp;Extended Drucker-Prager Model">Extended Drucker-Prager Model</a>
+</td></tr><tr><td>
+<span class="symbol">&#963;</span>
+<sub>Y</sub> = yielding
+stress</td></tr></table><p>
+</p><p>Here we strictly assume that the material hardening is only
+related to material yielding and not related to material creep. This
+implies that material yielding stress <span class="symbol">&#963;</span>
+<sub>Y</sub> is only the function of the equivalent plastic strain
+(
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq603ebefa-ef64-41eb-a75e-bc5eaad1c082.svg"></span>) as previously defined in the rate-independent extended Drucker-Prager
+model. We still write it out below for completeness:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="exdpcreepeq5"></a><div><img src="graphics/exdpcreepeq5.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;141)</b></p></td></tr></table></div><div class="sect3" title="4.3.3.3.&nbsp;EDP Creep Measurements"><div class="titlepage"><div><div><h4 class="title"><a name="mat_creepmeasure"></a>4.3.3.3.&nbsp;EDP Creep Measurements</h4></div></div></div><p>The creep behaviors could be measured through a few simple tests
+such as the uniaxial compression, uniaxial tension, and shear tests.
+We here assume that the creep is measured through the uniaxial compression
+test described in <a class="xref" href="thy_mat2.html#unicomptest" title="Figure&nbsp;4.18:&nbsp;&nbsp;Uniaxial Compression Test">Figure&nbsp;4.18:&nbsp;Uniaxial Compression Test</a>.</p><div class="figure"><a name="unicomptest"></a><p class="title"><b>Figure&nbsp;4.18:&nbsp;&nbsp;Uniaxial Compression Test</b></p><div class="figure-contents"><div><img src="graphics/gthy4-643.svg" alt="Uniaxial Compression Test"></div></div></div><br class="figure-break"><p>The measurements in the test are the vertical stress 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq0a8e2c5a-e9b0-4557-9057-658ab04185ff.svg"></span> and vertical creep strain 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq64c7f987-0f89-4f4b-ada0-de8c98a8c7ae.svg"></span> at temperature T. The creep test
+is targeted to be able to describe material creep behaviors in a general
+implicit rate format as follows:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="exdpcreepeq6"></a><div><img src="graphics/exdpcreepeq6.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;142)</b></p></td></tr></table><p>We define the equivalent creep strain and the equivalent creep
+stress through the equal creep work as follows:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="exdpcreepeq7"></a><div><img src="graphics/exdpcreepeq7.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;143)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq94cb18a3-964b-4631-a2bc-6fd3e347f88e.svg"></span> and 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq78cf19cc-670d-4f81-bc4d-6172ed8dc590.svg"></span> = equivalent creep strain and equivalent creep stress to be defined.</td></tr></table><p>
+</p><p>For this particular uniaxial compression test, the stress and
+creep strain are:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="exdpcreepeq8"></a><div><img src="graphics/exdpcreepeq8.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;144)</b></p></td></tr></table><p>Inserting (<a class="xref" href="thy_mat2.html#exdpcreepeq8" title="(4&#8211;144)">Equation&nbsp;4&#8211;144</a>) into (<a class="xref" href="thy_mat2.html#exdpcreepeq7" title="(4&#8211;143)">Equation&nbsp;4&#8211;143</a>) , we conclude that for this special test
+case the equivalent creep strain and the equivalent creep stress just
+recover the corresponding test measurements. Therefore, we are able
+to simply replace the two test measurements in (<a class="xref" href="thy_mat2.html#exdpcreepeq6" title="(4&#8211;142)">Equation&nbsp;4&#8211;142</a>) with two variables of the equivalent creep
+strain and the equivalent creep stress as follows:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="exdpcreepeq9"></a><div><img src="graphics/exdpcreepeq9.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;145)</b></p></td></tr></table><p>Once the equivalent creep stress for any arbitrary stress state
+is obtained, we can insert it into (<a class="xref" href="thy_mat2.html#exdpcreepeq9" title="(4&#8211;145)">Equation&nbsp;4&#8211;145</a>)
+to compute the material creep rate at this stress state. We next focus
+on the derivation of the equivalent creep stress for any arbitrary
+stress state.</p></div><div class="sect3" title="4.3.3.4.&nbsp;EDP Equivalent Creep Stress"><div class="titlepage"><div><div><h4 class="title"><a name="mat_eqcreepstress"></a>4.3.3.4.&nbsp;EDP Equivalent Creep Stress</h4></div></div></div><p>We first introduce the creep isosurface concept. <a class="xref" href="thy_mat2.html#creepisosurface" title="Figure&nbsp;4.19:&nbsp;&nbsp;Creep Isosurface">Figure&nbsp;4.19:&nbsp;Creep Isosurface</a> shows any two material points A and B
+at yielding but they are on the same yielding surface. We say that
+the creep behaviors of point A and point B can be measured by the
+same equivalent creep stress if any and the yielding surface is called
+the creep isosurface. We now set point B to a specific point, the
+intersection between the yielding curve and the straight line indicating
+the uniaxial compression test. From previous creep measurement discussion,
+we know that point B has 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq9800b871-142f-417b-8fcf-20d186078208.svg"></span> for the
+coordinate p and 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqd38c1a45-6709-4d10-91c9-ac261bb4454d.svg"></span> for the coordinate q. Point B is now also on the
+yielding surface, which immediately implies:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="exdpcreepeq10"></a><div><img src="graphics/exdpcreepeq10.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;146)</b></p></td></tr></table><p>It is interpreted from (<a class="xref" href="thy_mat2.html#exdpcreepeq10" title="(4&#8211;146)">Equation&nbsp;4&#8211;146</a>) that
+the yielding stress <span class="symbol">&#963;</span>
+<sub>Y</sub> is the function of the equivalent creep stress 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq35082976-7c76-4bd2-8450-0843bf6c7e23.svg"></span>. Therefore, we have:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="exdpcreepeq11"></a><div><img src="graphics/exdpcreepeq11.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;147)</b></p></td></tr></table><p>We now insert (<a class="xref" href="thy_mat2.html#exdpcreepeq11" title="(4&#8211;147)">Equation&nbsp;4&#8211;147</a>) into the yielding
+condition (<a class="xref" href="thy_mat2.html#exdpcreepeq4" title="(4&#8211;140)">Equation&nbsp;4&#8211;140</a>) again:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="exdpcreepeq12"></a><div><img src="graphics/exdpcreepeq12.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;148)</b></p></td></tr></table><p>We then solve (<a class="xref" href="thy_mat2.html#exdpcreepeq12" title="(4&#8211;148)">Equation&nbsp;4&#8211;148</a>) for the equivalent
+creep stress 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq0555b81d-f0de-4949-ab3c-c2ff11038b62.svg"></span> for material point A on the isosurface but with any arbitrary coordinates
+(p,q). (<a class="xref" href="thy_mat2.html#exdpcreepeq12" title="(4&#8211;148)">Equation&nbsp;4&#8211;148</a>) is, in general, a nonlinear
+equation and the iteration procedure must be followed for searching
+its root. In the local material iterations, for a material stress
+point not on the yielding surface but out of the yielding surface
+like the one shown in <a class="xref" href="thy_mat2.html#matptelast" title="Figure&nbsp;4.17:&nbsp;&nbsp;Material Point in Yielding Condition Elastically Predicted">Figure&nbsp;4.17:&nbsp;Material Point in Yielding Condition Elastically Predicted</a>, (<a class="xref" href="thy_mat2.html#exdpcreepeq12" title="(4&#8211;148)">Equation&nbsp;4&#8211;148</a>) is also valid and the equivalent creep
+stress solved is always positive.</p><div class="figure"><a name="creepisosurface"></a><p class="title"><b>Figure&nbsp;4.19:&nbsp;&nbsp;Creep Isosurface</b></p><div class="figure-contents"><div><img src="graphics/gthy4-644.svg" alt="Creep Isosurface"></div></div></div><br class="figure-break"></div><div class="sect3" title="4.3.3.5.&nbsp;EDP Elastic Creep and Stress Projection"><div class="titlepage"><div><div><h4 class="title"><a name="mat_elcreepproj"></a>4.3.3.5.&nbsp;EDP Elastic Creep and Stress Projection</h4></div></div></div><p>When the loading is at a low level or the unloading occurs,
+the material doesn&#8217;t yield and is at an elastic state from the
+point view of plasticity. However, the inelastic deformation may still
+exist fully due to material creep. In this situation, the equivalent
+creep stress obtained from (<a class="xref" href="thy_mat2.html#exdpcreepeq12" title="(4&#8211;148)">Equation&nbsp;4&#8211;148</a>) may be
+negative in some area. If this is the case, (<a class="xref" href="thy_mat2.html#exdpcreepeq12" title="(4&#8211;148)">Equation&nbsp;4&#8211;148</a>) is not valid any more. To solve this difficulty,
+the stress-projection method shown in <a class="xref" href="thy_mat2.html#stressproj" title="Figure&nbsp;4.20:&nbsp;&nbsp;Stress Projection">Figure&nbsp;4.20:&nbsp;Stress Projection</a> is
+used, where the real stress <span class="symbol">&#963;</span> is multiplied
+by an unknown scalar <span class="symbol">&#946;</span> so that the projected
+stress <span class="symbol">&#963;</span>* = <span class="symbol">&#946;&#963;</span> is
+on the yielding surface. The parameter <span class="symbol">&#946;</span> can
+be obtained by solving the following equation:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="exdpcreepeq13"></a><div><img src="graphics/exdpcreepeq13.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;149)</b></p></td></tr></table><p>Again, <a class="xref" href="thy_mat2.html#exdpcreepeq13" title="(4&#8211;149)">Equation&nbsp;4&#8211;149</a> is a nonlinear equation
+except in the linear Drucker-Prager model. Because the projected stress <span class="symbol">&#963;</span>* is on the yielding surface, the equivalent creep
+stress denoted as 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqe14d0697-0785-4626-a707-873007a29b47.svg"></span> and calculated by inserting <span class="symbol">&#963;</span>* into (<a class="xref" href="thy_mat2.html#exdpcreepeq12" title="(4&#8211;148)">Equation&nbsp;4&#8211;148</a>), as follows:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="exdpcreepeq14"></a><div><img src="graphics/exdpcreepeq14.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;150)</b></p></td></tr></table><p>is always positive. The real equivalent creep stress 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqb01a68f2-715c-42b2-a7c0-ce8abb179d9c.svg"></span> is obtained by simply rescaling 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqc9a312ca-df06-4b41-89fa-49c9066b9f39.svg"></span> as follows:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="exdpcreepeq15"></a><div><img src="graphics/exdpcreepeq15.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;151)</b></p></td></tr></table><p>For creep flow in this situation, (<a class="xref" href="thy_mat2.html#exdpcreepeq3" title="(4&#8211;139)">Equation&nbsp;4&#8211;139</a>) can be simply modified as follows:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="exdpcreepeq16"></a><div><img src="graphics/exdpcreepeq16.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;152)</b></p></td></tr></table><p>For stress in a particular continuous domain indicated by the
+shaded area in <a class="xref" href="thy_mat2.html#stressproj" title="Figure&nbsp;4.20:&nbsp;&nbsp;Stress Projection">Figure&nbsp;4.20:&nbsp;Stress Projection</a>, the stresses are not
+able to be projected on the yielding surface (that is, <a class="xref" href="thy_mat2.html#exdpcreepeq13" title="(4&#8211;149)">Equation&nbsp;4&#8211;149</a>) has no positive value of solution for <span class="symbol">&#946;</span>). For stresses in this area, no creep is assumed.
+This assumption makes some sense partially because this area is pressure-dominated
+and the EDP models are shear-dominated. </p><p>Having <a class="xref" href="thy_mat2.html#exdpcreepeq1" title="(4&#8211;137)">Equation&nbsp;4&#8211;137</a>,<a class="xref" href="thy_mat2.html#exdpcreepeq2" title="(4&#8211;138)">Equation&nbsp;4&#8211;138</a>, <a class="xref" href="thy_mat2.html#exdpcreepeq3" title="(4&#8211;139)">Equation&nbsp;4&#8211;139</a>, or <a class="xref" href="thy_mat2.html#exdpcreepeq16" title="(4&#8211;152)">Equation&nbsp;4&#8211;152</a>, <a class="xref" href="thy_mat2.html#exdpcreepeq4" title="(4&#8211;140)">Equation&nbsp;4&#8211;140</a>, <a class="xref" href="thy_mat2.html#exdpcreepeq5" title="(4&#8211;141)">Equation&nbsp;4&#8211;141</a>, <a class="xref" href="thy_mat2.html#exdpcreepeq7" title="(4&#8211;143)">Equation&nbsp;4&#8211;143</a>, and <a class="xref" href="thy_mat2.html#exdpcreepeq9" title="(4&#8211;145)">Equation&nbsp;4&#8211;145</a>, the
+EDP creep model is a mathematically well-posed problem.</p><div class="figure"><a name="stressproj"></a><p class="title"><b>Figure&nbsp;4.20:&nbsp;&nbsp;Stress Projection</b></p><div class="figure-contents"><div><img src="graphics/gthy4-645.svg" alt="Stress Projection"></div></div></div><br class="figure-break"></div></div><div class="sect2" title="4.3.4.&nbsp;Cap Creep Model"><div class="titlepage"><div><div><h3 class="title"><a name="capcreepmodel"></a>4.3.4.&nbsp;Cap Creep Model</h3></div></div></div><a class="indexterm" name="d0e10474"></a><a class="indexterm" name="d0e10477"></a><p>The cap creep model is an extension of the <a class="link" href="thy_mat1.html#capmodel" title="4.2.15.&nbsp;Extended Drucker-Prager Cap Model">cap (rate-independent plasticity) model</a>.
+The extension is based on creep theory similar to that of the <a class="link" href="thy_mat2.html#mat_extendeddp" title="4.3.3.&nbsp;Extended Drucker-Prager (EDP) Creep Model">Extended Drucker-Prager (EDP) creep model</a>. </p><p>Several concepts related to material creep theory (such as the
+equivalent creep stress, equivalent creep strain, and isosurfaces)
+are used in the cap creep model and are described in the EDP creep
+theory. </p><p>Unlike EDP which requires only one creep test measurement, a
+cap creep model requires <span class="italic"><em>two</em></span> independent
+creep test measurements (as described in <a class="xref" href="thy_mat2.html#thycapcreepcommands" title="4.3.4.6.&nbsp;Commands Used for Cap Creep">Commands Used for Cap Creep </a>) to account for both shear-dominated
+creep and compaction-dominated creep behaviors. </p><div class="highlights"><p>The following topics describing the cap creep model are available:</p><ul><li><a href="thy_mat2.html#thycapcreepassump" title="4.3.4.1.&nbsp;Assumptions and Restrictions">Assumptions and Restrictions</a></li><li><a href="thy_mat2.html#d0e10536" title="4.3.4.2.&nbsp;Functions and Potentials">Functions and Potentials</a></li><li><a href="thy_mat2.html#d0e10574" title="4.3.4.3.&nbsp;Cap Zones">Cap Zones</a></li><li><a href="thy_mat2.html#d0e10620" title="4.3.4.4.&nbsp;Equivalent Creep Stress">Equivalent Creep Stress</a></li><li><a href="thy_mat2.html#d0e10720" title="4.3.4.5.&nbsp;Elastic Creep and Stress Projection">Elastic Creep and Stress Projection</a></li><li><a href="thy_mat2.html#thycapcreepcommands" title="4.3.4.6.&nbsp;Commands Used for Cap Creep ">Commands Used for Cap Creep </a></li></ul></div><p>For related information, see <a class="xref" href="thy_mat1.html#capmodel" title="4.2.15.&nbsp;Extended Drucker-Prager Cap Model">Extended Drucker-Prager Cap Model</a> and <a class="xref" href="thy_mat2.html#mat_extendeddp" title="4.3.3.&nbsp;Extended Drucker-Prager (EDP) Creep Model">Extended Drucker-Prager (EDP) Creep Model</a> in this reference.</p><div class="sect3" title="4.3.4.1.&nbsp;Assumptions and Restrictions"><div class="titlepage"><div><div><h4 class="title"><a name="thycapcreepassump"></a>4.3.4.1.&nbsp;Assumptions and Restrictions</h4></div></div></div><p>The following assumptions and restrictions apply to the cap
+creep model: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Creep in both the shear and creep-expansion zones
+is measured via uniaxial testing.</p></li><li class="listitem"><p>The compaction creep zone is measured via hydrostatic
+testing.</p></li><li class="listitem"><p>Shear creep and compaction creep are independent of
+each other.</p></li><li class="listitem"><p>Shear creep exists in all zones insofar as possible.</p></li><li class="listitem"><p>The <a class="link" href="thy_mat1.html#capmodel_laf" title="4.2.15.4.&nbsp;Lode Angle Function">Lode angle effect</a> is ignored.</p></li><li class="listitem"><p>Material hardening is dependent on plastic strain
+only.</p></li></ul></div><p>
+</p></div><div class="sect3" title="4.3.4.2.&nbsp;Functions and Potentials"><div class="titlepage"><div><div><h4 class="title"><a name="d0e10536"></a>4.3.4.2.&nbsp;Functions and Potentials</h4></div></div></div><p>The following yielding equation applies of the cap portion of
+the cap creep model: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqthy_capcreep3"></a><div><img src="graphics/eqthy_capcreep3.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;153)</b></p></td></tr></table><p>This equation represents the flow function of the cap creep
+model:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqthy_capcreep4"></a><div><img src="graphics/eqthy_capcreep4.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;154)</b></p></td></tr></table><p>The equations are similar to those used for <a class="link" href="thy_mat1.html#capmodeleq11" title="(4&#8211;96)">yielding</a> and <a class="link" href="thy_mat1.html#capmodeleq11" title="(4&#8211;96)">flow function</a> (respectively) in the <a class="link" href="thy_mat1.html#capmodel_hf" title="4.2.15.5.&nbsp;Hardening Functions">cap (rate-independent plasticity) model</a>. </p><p>The tension cap portion for the cap creep model is nearly identical
+to the <a class="link" href="thy_mat1.html#capmodel" title="4.2.15.&nbsp;Extended Drucker-Prager Cap Model">cap (rate-independent plasticity)</a> yielding function except that the J<sub>3</sub> (Lode
+angle) effect is ignored. The notations and conventions remain the
+same.</p><p>
+<a class="xref" href="thy_mat2.html#eqthy_capcreep3" title="(4&#8211;153)">Equation&nbsp;4&#8211;153</a> is also used to calculate
+the equivalent creep stresses, and <a class="xref" href="thy_mat2.html#eqthy_capcreep4" title="(4&#8211;154)">Equation&nbsp;4&#8211;154</a> is used to calculate the creep strain.</p></div><div class="sect3" title="4.3.4.3.&nbsp;Cap Zones"><div class="titlepage"><div><div><h4 class="title"><a name="d0e10574"></a>4.3.4.3.&nbsp;Cap Zones</h4></div></div></div><p>For the sake of convenience, the cap domain shown in the following
+figure is divided into six zones (labeled 1, 2, 3, 10, 20, and 30):</p><div class="figure"><a name="d0e10579"></a><p class="title"><b>Figure&nbsp;4.21:&nbsp;&nbsp;Cap Zoning</b></p><div class="figure-contents"><div><img src="graphics/gthy_capcreepmod_capzone.png" alt="Cap Zoning"></div></div></div><br class="figure-break"><p>Following is a brief description of each zone:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+<span class="bold"><strong>Zone 1</strong></span> shows the
+compaction zone where the material yields and creeps. <span class="bold"><strong>Zone 10</strong></span> represents a compaction-dominated zone;
+its inelastic behavior is still subject to a certain degree of creep
+due to compaction stress.</p></li><li class="listitem"><p>
+<span class="bold"><strong>Zone 2</strong></span> shows the
+shear zone where the material yields and creeps due to the shear effect. <span class="bold"><strong>Zone 20</strong></span> represents an elastic shear creep zone.</p></li><li class="listitem"><p>
+<span class="bold"><strong>Zone 3</strong></span> shows the
+expansion zone with both yield and creep. <span class="bold"><strong>Zone
+30</strong></span> represents an elastic creep zone. </p></li></ul></div><p>Creep in zones 2, 20, 3, and 30 is measured via uniaxial compression
+testing. Those zones do not experience compaction creep contributed
+from the compaction cap. </p><p>Zones 1 and 10 may also experience shear creep because a certain
+amount of shear creep exists in <span class="italic"><em>all</em></span> zones. It is assumed that stress points below line CD are not subject
+to shear creep.</p></div><div class="sect3" title="4.3.4.4.&nbsp;Equivalent Creep Stress"><div class="titlepage"><div><div><h4 class="title"><a name="d0e10620"></a>4.3.4.4.&nbsp;Equivalent Creep Stress</h4></div></div></div><p>The shear and expansion zones <a class="link" href="thy_mat2.html#thycapcreepassump" title="4.3.4.1.&nbsp;Assumptions and Restrictions">share the same uniaxial       compression</a> for creep measurement.
+The derivation for the equivalent creep stress for      the two zones
+is similar to that used for <a class="link" href="thy_mat2.html#mat_eqcreepstress" title="4.3.3.4.&nbsp;EDP Equivalent Creep Stress">extended
+      Drucker-Prager creep stress</a>.</p><p>In coordinate system 
+<span class="inlineequation" style="&#xA;          vertical-align:-10.000000px"><img src="graphics/eq86b13663-1e08-4d6b-b5a3-29f53d791e28.svg"></span> shown in the following figure, the coordinates
+of the stress points from the      uniaxial compression test are 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq4dd3244c-5642-4b55-ad30-760818578959.svg"></span>, where 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq4689fed9-b176-49ce-ba6a-d99585340ded.svg"></span> is the measured stress or the equivalent creep stress. </p><div class="figure"><a name="d0e10642"></a><p class="title"><b>Figure&nbsp;4.22:&nbsp;&nbsp;Uniaxial Compression Test and Creep Isosurface for Shear and
+Expansion Zones</b></p><div class="figure-contents"><div><img src="graphics/gthy_capcreepmod_capzone2.png" alt="Uniaxial Compression Test and Creep Isosurface for Shear and Expansion Zones"></div></div></div><br class="figure-break"><p>The point also on the shear yielding surface should satisfy
+the corresponding yielding      function, as follows:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqthy_capcreep8"></a><div><img src="graphics/eqthy_capcreep8.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;155)</b></p></td></tr></table><p>or</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqthy_capcreep9"></a><div><img src="graphics/eqthy_capcreep9.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;156)</b></p></td></tr></table><p>
+<a class="xref" href="thy_mat2.html#eqthy_capcreep9" title="(4&#8211;156)">Equation&nbsp;4&#8211;156</a> implies 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq1e0a0cbd-5139-4a52-90d9-632aa14ed671.svg"></span>, which is used in the yielding condition</p><div class="informalequation"><a name="eqa47dba86-93af-4223-9217-f3ed05dc2557"></a><div><img src="graphics/eqa47dba86-93af-4223-9217-f3ed05dc2557.svg"></div></div><p>resulting in:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqthy_capcreep12"></a><div><img src="graphics/eqthy_capcreep12.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;157)</b></p></td></tr></table><p>
+<a class="xref" href="thy_mat2.html#eqthy_capcreep12" title="(4&#8211;157)">Equation&nbsp;4&#8211;157</a> is then solved for the equivalent
+creep stress       
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqdc44e305-33f2-48f7-b93d-6254327df5b6.svg"></span> for stresses at either the shear zone or the expansion zone. As
+shown in the       <a class="link" href="thy_mat2.html#mat_extendeddp" title="4.3.3.&nbsp;Extended Drucker-Prager (EDP) Creep Model">EDP creep model</a>, the measured creep strain component in      the axial direction
+is the equivalent creep strain; therefore, the creep rate function
+for both      shear and expansion zones is:</p><div class="informalequation"><a name="eq88200c5f-2306-483e-927a-29287dc41f5f"></a><div><img src="graphics/eq88200c5f-2306-483e-927a-29287dc41f5f.svg"></div></div><p>where 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqadbaa3ad-6910-463b-88b9-9edd6b1afa3a.svg"></span>is the equivalent creep strain
+for the shear or                               expansion zone and
+T is the temperature.</p><div class="sect4" title="4.3.4.4.1.&nbsp;Equivalent Creep Stress in the Compaction Zone"><div class="titlepage"><div><div><h5 class="title"><a name="d0e10687"></a>4.3.4.4.1.&nbsp;Equivalent Creep Stress in the Compaction Zone</h5></div></div></div><p>The equivalent creep stress for compaction cap is assumed to
+be independent of        J<sub>2</sub> and only related
+to the first invariant of stress:</p><div class="informalequation"><a name="eq3d485f3f-cd2b-4c93-b4ac-dee2b534c9fb"></a><div><img src="graphics/eq3d485f3f-cd2b-4c93-b4ac-dee2b534c9fb.svg"></div></div><p>The creep test measurement for the compaction cap is regulated
+via hydrostatic       compression testing. The measurement and record
+are </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqbd53e56f-3d7c-4851-95af-efb667e6c592.svg"></span> where p is the hydrostatic
+pressure, and</p></li><li class="listitem"><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq2daf4f0f-69f3-4958-9d02-8604a0ef3f74.svg"></span> where 
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq67a04dfe-09ed-4416-8556-08065e222d49.svg"></span> is the volume
+creep strain.</p></li></ul></div><p>Thus, the creep rate function for the compaction cap is:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqthy_capcreep19"></a><div><img src="graphics/eqthy_capcreep19.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;158)</b></p></td></tr></table></div></div><div class="sect3" title="4.3.4.5.&nbsp;Elastic Creep and Stress Projection"><div class="titlepage"><div><div><h4 class="title"><a name="d0e10720"></a>4.3.4.5.&nbsp;Elastic Creep and Stress Projection</h4></div></div></div><p>In zones 30, 20, 10, and 1 (where the material does not yield
+at the shear envelope criterion), loading is light; it also possible
+that unloading occurs. Inelastic deformation may still exist, however,
+due exclusively to material shear creep. In such a case, the equivalent
+creep stress obtained from the previous derivation may be negative.
+To avoid a negative equivalent creep stress, the stress-projection
+method proposed in <a class="xref" href="thy_mat2.html#mat_elcreepproj" title="4.3.3.5.&nbsp;EDP Elastic Creep and Stress Projection">EDP Elastic Creep and Stress Projection</a> is used.</p></div><div class="sect3" title="4.3.4.6.&nbsp;Commands Used for Cap Creep"><div class="titlepage"><div><div><h4 class="title"><a name="thycapcreepcommands"></a>4.3.4.6.&nbsp;Commands Used for Cap Creep </h4></div></div></div><p>To model cap creep, use the input from the <a class="link" href="thy_mat1.html#capmodel" title="4.2.15.&nbsp;Extended Drucker-Prager Cap Model">cap (rate-independent plasticity) model</a>.
+The cap creep model ignores any tension-to-compression-strength ratio
+values and sets them to 1. </p><p>Creep data is input via the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,<a href="../ans_cmd/Hlp_C_TB.html#TBDTSpCREEjwf070600" class="olink">CREEP</a> command.
+Because the cap creep model requires <span class="italic"><em>two</em></span> independent creep function inputs, an additional material table
+data command, <a href="../ans_cmd/Hlp_C_TBEO.html" class="olink"><span class="command"><strong>TBEO</strong></span></a>, allows shear and compaction
+creep data to be defined separately. </p></div></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

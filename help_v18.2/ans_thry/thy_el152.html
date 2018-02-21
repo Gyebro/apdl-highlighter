@@ -1,0 +1,117 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:35-04:00"><title>13.152.&nbsp;SURF152 - 3-D Thermal Surface Effect</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el151.html" title="13.151.&nbsp;SURF151 - 2-D Thermal Surface Effect"><link rel="next" href="thy_el153.html" title="13.153.&nbsp;SURF153 - 2-D Structural Surface Effect"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.152.&nbsp;SURF152 - 3-D Thermal Surface Effect"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thysurf152"></a>13.152.&nbsp;SURF152 - 3-D Thermal Surface Effect</h2></div></div></div><div><img src="graphics/gthy14-152-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="144" class="col1"><col width="206" class="COLSPEC5"><col width="129" class="col2"><col width="144" class="col3"></colgroup><thead><tr valign="middle"><th bgcolor="#E3E3E3" align="center" valign="middle">
+Matrix or Vector</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+Geometry / Midside Nodes [<a class="xref" href="thy_el152.html#thyelem152_fn1">1</a>]</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+Shape Functions</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration Points</a>
+</th></tr></thead><tbody><tr valign="middle"><td rowspan="4" valign="middle">Convection
+Surface Matrix and Load Vector; and Heat Generation Load Vector </td><td valign="middle">Quad with midside nodes</td><td valign="middle">
+<a class="xref" href="thy_shp5.html#thyeq4quadshellnov2601" title="(11&#8211;91)">Equation&nbsp;11&#8211;91</a>
+</td><td align="center" valign="middle">3 x 3</td></tr><tr valign="middle"><td valign="middle">Quad without midside nodes</td><td valign="middle">
+<a class="xref" href="thy_shp5.html#thyeq7q4nov2601" title="(11&#8211;79)">Equation&nbsp;11&#8211;79</a>
+</td><td align="center" valign="middle">2 x 2</td></tr><tr valign="middle"><td valign="middle">Triangle with midside nodes</td><td valign="middle">
+<a class="xref" href="thy_shp5.html#thyeq4trishellnov2601" title="(11&#8211;63)">Equation&nbsp;11&#8211;63</a>
+</td><td align="center" valign="middle">6</td></tr><tr valign="middle"><td valign="middle">Triangle without midside nodes</td><td valign="middle">
+<a class="xref" href="thy_shp6.html#thyeq7cstnov2601" title="(11&#8211;106)">Equation&nbsp;11&#8211;106</a>
+</td><td align="center" valign="middle">3</td></tr></tbody></table></div><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="thyelem152_fn1"></a>Midside node setting is controlled
+by KEYOPT(4).</p></li></ol></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="col1"><col width="432" class="col2"></colgroup><thead><tr valign="middle"><th bgcolor="#E3E3E3" align="center" valign="middle">
+Load Type</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+Distribution</th></tr></thead><tbody><tr valign="middle"><td valign="middle">All Loads</td><td valign="middle">Same as shape functions</td></tr></tbody></table></div><div class="sect2" title="13.152.1.&nbsp;Matrices and Load Vectors"><div class="titlepage"><div><div><h3 class="title"><a name="surf152matrices"></a>13.152.1.&nbsp;Matrices and Load Vectors</h3></div></div></div><p>When the extra node is not present, the logic is the same as
+given and as described in <a class="xref" href="thy_heat2.html" title="6.2.&nbsp;Derivation of Heat Flow Matrices">Derivation of Heat Flow Matrices</a>.  The discussion
+below relates to theory that uses the extra node.</p><p>The conductivity matrix is based on one-dimensional flow to
+and away from the surface.  The form is conceptually the same as for <a href="../ans_elem/Hlp_E_LINK33.html" class="olink"><span class="structname">LINK33</span></a>  (<a class="xref" href="thy_el33.html#thyeq1link33nov2701" title="(13&#8211;27)">Equation&nbsp;13&#8211;27</a>) except
+that the surface has four or eight nodes instead of only one node.
+ Using the example of convection and no midside nodes are requested
+(KEYOPT(4) = 1) (resulting in a 5 x 5 matrix), the first four terms
+of the main diagonal are: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1surf152nov2701"></a><div><img src="graphics/thyeq1surf152nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;240)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-50.000000px"><img src="graphics/eq910243f1-0f73-4862-b184-ed08c5dae165.svg"></span> </td></tr><tr><td>h<sub>u</sub> = output argument for film coefficient
+of USRSURF116 </td></tr><tr><td>{N} = vector of shape functions </td></tr></table><p>
+</p><p>which represents the main diagonal of the upper-left corner
+of the conductivity matrix.  The remaining terms of this corner are
+all zero.  The last main diagonal term is simply the sum of all four
+terms of <a class="xref" href="thy_el152.html#thyeq1surf152nov2701" title="(13&#8211;240)">Equation&nbsp;13&#8211;240</a> and the off-diagonal
+terms in the fifth column and row are the negative of the main diagonal
+of each row and column, respectively.  </p><p>If midside nodes are present (KEYOPT(4) = 0) (resulting in a
+9 x 9 matrix) <a class="xref" href="thy_el152.html#thyeq1surf152nov2701" title="(13&#8211;240)">Equation&nbsp;13&#8211;240</a> is replaced by: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2surf152nov2701"></a><div><img src="graphics/thyeq2surf152nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;241)</b></p></td></tr></table><p>which represents the upper-left corner of the conductivity matrix.
+ The last main diagonal is simply the sum of all 64 terms of <a class="xref" href="thy_el152.html#thyeq2surf152nov2701" title="(13&#8211;241)">Equation&nbsp;13&#8211;241</a> and the off-diagonal terms in the
+ninth column and row are the negative of the sum of each row and column
+respectively. </p><p>Radiation is handled similarly, except that the approach discussed
+for <a href="../ans_elem/Hlp_E_LINK31.html" class="olink"><span class="structname">LINK31</span></a> in <a class="xref" href="thy_el31.html" title="13.31.&nbsp;LINK31 - Radiation Link">LINK31 - Radiation Link</a> is
+used.  A load vector is also generated.  The area used is the area
+of the element.  The form factor is discussed in a subsequent section. </p><p>An additional load vector is formed when using the extra node
+by: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3surf152nov2701"></a><div><img src="graphics/thyeq3surf152nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;242)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>{Q<sup>c</sup>} = load vector to be formed </td></tr><tr><td>[K<sup>tc</sup>] = element conductivity matrix
+due to convection </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eqa6ff29f6-7e05-41d3-aa95-bbe52947e475.svg"></span> </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-79.000000px"><img src="graphics/eqb1e1450f-5199-4a75-8aac-17048605bc68.svg"></span>
+</td></tr></table><p>
+</p><p>TEMVEL from USRSURF116 is the difference between the bulk temperature
+and the temperature of the extra node. </p></div><div class="sect2" title="13.152.2.&nbsp;Adiabatic Wall Temperature as Bulk Temperature"><div class="titlepage"><div><div><h3 class="title"><a name="surf152adiabatic"></a>13.152.2.&nbsp;Adiabatic Wall Temperature as Bulk Temperature</h3></div></div></div><a class="indexterm" name="d0e51044"></a><a class="indexterm" name="d0e51047"></a><p>There is special logic that accesses <a href="../ans_elem/Hlp_E_FLUID116.html" class="olink"><span class="structname">FLUID116</span></a>  information where <a href="../ans_elem/Hlp_E_FLUID116.html" class="olink"><span class="structname">FLUID116</span></a> has had KEYOPT(2)
+set equal to 1.  This logic uses <a href="../ans_elem/Hlp_E_SURF151.html" class="olink"><span class="structname">SURF151</span></a> or
+SURF152 with the extra node present (KEYOPT(5) = 1) and computes an
+adiabatic wall temperature (KEYOPT(6) = 1).  For this case, T<sub>v</sub>, as used above, is defined as:   </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqecccebfe-eada-4d0b-83b5-62e2cc07b832"></a><div><img src="graphics/eqecccebfe-eada-4d0b-83b5-62e2cc07b832.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;243)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>F<sub>R</sub> = recovery factor (see <a class="xref" href="thy_el152.html#recovery" title="(13&#8211;244)">Equation&nbsp;13&#8211;244</a>)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-18.000000px"><img src="graphics/eqde3b6a23-a9c7-41fd-8ba8-6760778cb4f6.svg"></span>
+</td></tr><tr><td>V<sub>abs</sub> = absolute value of fluid velocity
+(input as VABS on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command)</td></tr><tr><td>&#937; = angular velocity of moving wall (input as OMEGA
+on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-17.000000px"><img src="graphics/eq8e4f5f08-5a77-4868-aa55-a0410bbe954f.svg"></span>
+</td></tr><tr><td>&#937;<sub>ref</sub> = reference angular velocity
+(input as (A<sub>n</sub>)<sub>I</sub> and
+(A<sub>n</sub>)<sub>J</sub> on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command of FLUID116)</td></tr><tr><td>F<sub>s</sub> = slip factor (input as SLIPFAI,
+SLIPFAJ on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command of FLUID116)</td></tr><tr><td>V<sub>116</sub> = velocity of fluid at extra node
+from FLUID116</td></tr><tr><td>g<sub>c</sub> = gravitational constant used for
+units consistency (input as GC on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command)</td></tr><tr><td>J<sub>c</sub> = Joule constant used to convert
+work units to heat units (input as JC on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq982b3575-fbce-49b3-a337-921562dded9b.svg"></span>
+</td></tr></table><p>
+</p><p>The recovery factor is computed as follows:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="recovery"></a><div><img src="graphics/recovery.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;244)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>C<sub>n</sub> = constant used for recovery factor
+calculation (input as NRF on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eqa4f37e32-a2c5-4bb1-8f2b-603b8b8d5c74.svg"></span> </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eqcf1b0804-597d-47c2-b38c-8216b63bd51f.svg"></span> </td></tr><tr><td>&#956;<sup>f</sup> = viscosity of fluid (from <a href="../ans_elem/Hlp_E_FLUID116.html" class="olink"><span class="structname">FLUID116</span></a>) </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqf71310ef-6e80-4b0e-ae46-c6db21ff26b1.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-10.000000px"><img src="graphics/eqd3d67112-bb8b-4993-b2f5-662105b40706.svg"></span> </td></tr><tr><td>&#961;<sup>f</sup> = density of fluid (from <a href="../ans_elem/Hlp_E_FLUID116.html" class="olink"><span class="structname">FLUID116</span></a>) </td></tr><tr><td>D = diameter of fluid pipe (from <a href="../ans_elem/Hlp_E_FLUID116.html" class="olink"><span class="structname">FLUID116</span></a>) </td></tr></table><p>
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq616d0058-1f49-4e4a-9990-45e28f1be8d2"></a><div><img src="graphics/eq616d0058-1f49-4e4a-9990-45e28f1be8d2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;245)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>V = velocity used to compute Reynold's number</td></tr></table><p>
+</p><p>The adiabatic wall temperature is reported as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqd59bc367-7abe-4d3f-9c89-6916a2fda542"></a><div><img src="graphics/eqd59bc367-7abe-4d3f-9c89-6916a2fda542.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;246)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>T<sub>aw</sub> = adiabatic wall temperature</td></tr><tr><td>T<sub>ex</sub> = temperature of extra node</td></tr></table><p>
+</p><p>KEYOPT(1) = 0 or 1 is ordinarily used for turbomachinry analysis,
+whereas KEYOPT(1) = 2 is ordinarily used for flow past stationary
+objects. For turbomachinery analyses T<sub>ex</sub> is
+assumed to be the total temperature, but for flow past stationary
+objects T<sub>ex</sub> is assumed to be the static temperature.</p></div><div class="sect2" title="13.152.3.&nbsp;Film Coefficient Adjustment"><div class="titlepage"><div><div><h3 class="title"><a name="surf152film"></a>13.152.3.&nbsp;Film Coefficient Adjustment</h3></div></div></div><a class="indexterm" name="d0e51267"></a><p>After the first coefficient has been determined, it is adjusted
+if KEYOPT(7) = 1: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq7surf152nov2701"></a><div><img src="graphics/thyeq7surf152nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;247)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq7d56ebb7-8526-49e6-a46e-0515a3251968.svg"></span>
+</td></tr><tr><td>h<sub>f</sub> = unadjusted film coefficient </td></tr><tr><td>T<sub>S</sub> = surface temperature </td></tr><tr><td>T<sub>B</sub> = bulk temperature (T<sub>aw</sub>, if defined) </td></tr><tr><td>n = real constant (input as ENN on <a href="../ans_cmd/Hlp_C_RMORE.html" class="olink"><span class="command"><strong>RMORE</strong></span></a> command) </td></tr></table><p>
+</p></div><div class="sect2" title="13.152.4.&nbsp;Radiation Form Factor Calculation"><div class="titlepage"><div><div><h3 class="title"><a name="surf152radiation"></a>13.152.4.&nbsp;Radiation Form Factor Calculation</h3></div></div></div><a class="indexterm" name="d0e51311"></a><a class="indexterm" name="d0e51314"></a><p>The form factor is computed as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq8surf152nov2701"></a><div><img src="graphics/thyeq8surf152nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;248)</b></p></td></tr></table><p>also, </p><table border="0" summary="Simple list" class="simplelist"><tr><td>F = form factor (output as FORM FACTOR) </td></tr></table><p>
+</p><p>Developing B further </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-31.000000px"><img src="graphics/eqdbfc597f-50d7-4174-b706-a870ea92bcb3.svg"></span> </td></tr><tr><td>
+<font face="Arial Unicode Ms"><span class="markup">&#945;</span></font> = angle between element z axis at integration point
+being processed and the line connecting the integration point and
+the extra node (see <a class="xref" href="thy_el152.html#surf152fig1" title="Figure&nbsp;13.23:&nbsp;&nbsp;Form Factor Calculation">Figure&nbsp;13.23:&nbsp;Form Factor Calculation</a>) </td></tr></table><p>
+</p><div class="figure"><a name="surf152fig1"></a><p class="title"><b>Figure&nbsp;13.23:&nbsp;&nbsp;Form Factor Calculation</b></p><div class="figure-contents"><div><img src="graphics/gthy14-152-26.svg" alt="Form Factor Calculation"></div></div></div><br class="figure-break"><p>F is then used in the two-surface radiation equation: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq9surf152nov2701"></a><div><img src="graphics/thyeq9surf152nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;249)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#963; = Stefan-Boltzmann constant (input as SBCONST on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a>  command) </td></tr><tr><td>&#949; = emissivity (input as EMIS on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command) </td></tr><tr><td>A = element area </td></tr></table><p>
+</p><p>Note that this &#8220;form factor&#8221; does not have any distance
+affects.  Thus, if distances are to be included, they must all be
+similar in size, as in an object on or near the earth being warmed
+by the sun.  For this case, distance affects can be included by an
+adjusted value of &#963;. </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

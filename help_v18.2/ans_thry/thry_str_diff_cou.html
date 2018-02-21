@@ -1,0 +1,71 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:12-04:00"><title>10.10.&nbsp;Structural-Diffusion Coupling</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_coup.html" title="Chapter&nbsp;10:&nbsp;Coupling"><link rel="prev" href="thypormediaflow.html" title="10.9.&nbsp;Porous Media Flow"><link rel="next" href="thry_therm_diff_couple.html" title="10.11.&nbsp;Thermal-Diffusion Coupling"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="10.10.&nbsp;Structural-Diffusion Coupling"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thry_str_diff_cou"></a>10.10.&nbsp;Structural-Diffusion Coupling</h2></div></div></div><p>The capability to perform a coupled structural-diffusion analysis
+            exists in the following elements:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_elem/Hlp_E_PLANE223.html" class="olink"><span class="structname">PLANE223</span></a> - 2-D 8-Node Coupled-Field
+Solid</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_SOLID226.html" class="olink"><span class="structname">SOLID226</span></a> - 3-D 20-Node Coupled-Field
+Solid</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_SOLID227.html" class="olink"><span class="structname">SOLID227</span></a> - 3-D 10-Node Coupled-Field
+                Solid</td></tr></table><p>These elements support the effects of diffusion strain and
+            hydrostatic stress migration (transport of particles due to a hydrostatic stress
+            gradient) when used in coupled-field analyses having structural and diffusion
+            DOFs.</p><p>
+<span class="bold"><strong>Constitutive Equations</strong></span>
+</p><p>In a coupled structural-diffusion analysis, the total strain
+is composed of elastic {&#949;<sup>el</sup>} and
+diffusion {&#949;<sup>d</sup>} parts, respectively: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thry11_eq_CE1"></a><div><img src="graphics/thry11_eq_CE1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;74)</b></p></td></tr></table><p>where:</p><p>{&#949;} = total strain vector = [&#949;<sub>x</sub>
+                &#949;<sub>y</sub> &#949;<sub>z</sub>
+                &#949;<sub>xy</sub> &#949;<sub>yz</sub>
+                &#949;<sub>xz</sub>]<sup>T</sup>=
+                {&#949;<sup>el</sup>} + {&#949;<sup>di</sup>} </p><p>{&#949;<sup>el</sup>}  = elastic strain vector
+(output as EPEL)</p><p>{&#949;<sup>di</sup>}= diffusion strain vector
+(output as EPDI)</p><p>{&#963;} = stress vector = [&#963;<sub>x</sub> &#963;<sub>y</sub> &#963;<sub>z</sub> &#963;<sub>xy</sub> &#963;<sub>yz</sub> &#963;<sub>xz</sub>]<sup>T</sup>  (output as SIG)</p><p>&#916;C = concentration change = C - C<sub>ref</sub>
+</p><p>C = concentration (input/output as CONC); <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq9e359c79-7760-4cc4-9794-23fb31e959fd.svg"></span>
+</p><p>
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq5f9b5864-5d76-45c9-b9be-ac51660929f4.svg"></span> = normalized concentration (input/output as CONC)</p><p>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq79017090-f57e-4a13-84ff-9f6fbfe634c6.svg"></span> = saturated concentration (input as CSAT on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>
+            command)</p><p>C<sub>ref</sub> = reference concentration (input
+as CREF on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command)</p><p>[E] = elastic stiffness matrix (inverse defined in <a class="xref" href="thy_str1.html#thyeq4ssrelnov1501" title="(2&#8211;4)">Equation&nbsp;2&#8211;4</a> as
+                [D]<sup>-1</sup> or input using <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,ANEL
+            command)</p><p>{&#946;}= vector of coefficients of diffusion expansion = [&#946;<sub>x</sub> &#946;<sub>y</sub> &#946;<sub>z</sub> 0 0 0]<sup>T</sup> (input using BETX, BETY, BETZ
+on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command)</p><p>In addition to the diffusion strain coupling, the structural and
+            diffusion DOFs are coupled by the hydrostatic stress migration effect:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thry_coup_hydro_eq1"></a><div><img src="graphics/thry_coup_hydro_eq1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;75)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>{J} = diffusion flux density (input/output as DF)</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-29.000000px"><img src="graphics/eq95900f19-9b22-42fe-93d4-739da2888ead.svg"></span>= diffusivity matrix</td></tr><tr><td>D<sub>xx</sub>, D<sub>yy</sub>, and
+                        D<sub>zz</sub> = diffusivity coefficients in the element's X, Y,
+                    and Z directions, respectively (input as DXX, DYY, DZZ on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>
+                    command)</td></tr><tr><td>T = absolute temperature = T<sub>c</sub> +
+                        T<sub>off</sub>
+</td></tr><tr><td>T<sub>c</sub> = current temperature (input/output as TEMP on
+                        <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a> or <a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a> commands)</td></tr><tr><td>T<sub>off</sub> = offset temperature from absolute zero to zero
+                    (input on <a href="../ans_cmd/Hlp_C_TOFFST.html" class="olink"><span class="command"><strong>TOFFST</strong></span></a> command)</td></tr><tr><td>&#937;/k = atomic volume constant (input as C2 on <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a>
+                    command with <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,MIGR)</td></tr><tr><td>&#937; = atomic volume</td></tr><tr><td>k = Boltzmann constant</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq8ab0e571-cee7-4da4-ba1b-bdc900e1b1a5.svg"></span> = hydrostatic stress</td></tr></table><p>
+</p><p>Substituting <a class="xref" href="thry_str_diff_cou.html#thry11_eq_CE1" title="(10&#8211;74)">Equation&nbsp;10&#8211;74</a> into <a class="xref" href="thry_str_diff_cou.html#thry_coup_hydro_eq1" title="(10&#8211;75)">Equation&nbsp;10&#8211;75</a>, we obtain the following expression for the
+            diffusion flux density {J}:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thry_coup_hydro_eq2"></a><div><img src="graphics/thry_coup_hydro_eq2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;76)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>tr = trace operator</td></tr></table><p>
+</p><p>For more information on <a class="xref" href="thry_str_diff_cou.html#thry_coup_hydro_eq1" title="(10&#8211;75)">Equation&nbsp;10&#8211;75</a> and
+            the related material constant input, see <a href="../ans_mat/migr.html" class="olink">Migration Model</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>. </p><p>For more information on diffusion analysis, see <a href="thy_diff.html" class="olink">Diffusion</a>.</p><p>
+<span class="bold"><strong>Derivation of Structural-Diffusion Matrices</strong></span>
+</p><p>Applying the variational principle to the structural equation
+            (discussed in <a class="xref" href="thy_str2.html" title="2.2.&nbsp;Derivation of Structural Matrices">Derivation of Structural Matrices</a>) and the diffusion equation (<a class="xref" href="thrynormconcapp.html#gthy_diff_eq5" title="(9&#8211;6)">Equation&nbsp;9&#8211;6</a>) coupled by the constitutive equations (<a class="xref" href="thry_str_diff_cou.html#thry11_eq_CE1" title="(10&#8211;74)">Equation&nbsp;10&#8211;74</a> and <a class="xref" href="thry_str_diff_cou.html#thry_coup_hydro_eq2" title="(10&#8211;76)">Equation&nbsp;10&#8211;76</a>), produces the
+            following finite element matrix equation for the structural-diffusion analysis:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqa80b65d6-4c21-4c88-b489-b8de42ca7eb5"></a><div><img src="graphics/eqa80b65d6-4c21-4c88-b489-b8de42ca7eb5.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;77)</b></p></td></tr></table><p>where:</p><p>[M<sup>u</sup>] = element mass matrix (defined by <a class="xref" href="thy_str2.html#thyeq17dervnov1501" title="(2&#8211;58)">Equation&nbsp;2&#8211;58</a>) </p><p>[C<sup>u</sup>] = element structural damping matrix
+            (discussed in <a class="xref" href="thy_tool3.html" title="14.3.&nbsp;Damping Matrices">Damping Matrices</a>) </p><p>[K<sup>u</sup>] = element stiffness matrix (defined by
+                <a class="xref" href="thy_str2.html#thyeq17dervnov1501" title="(2&#8211;58)">Equation&nbsp;2&#8211;58</a>) </p><p>{u} = nodal displacement vector </p><p>{F} = sum of the element nodal force (defined by <a class="xref" href="thy_str2.html#thyeq15dervnov1501" title="(2&#8211;56)">Equation&nbsp;2&#8211;56</a>) and element pressure (defined by <a class="xref" href="thy_str2.html#thyeq17dervnov1501" title="(2&#8211;58)">Equation&nbsp;2&#8211;58</a>) vectors </p><p>[C<sup>d</sup>] = element diffusion damping
+matrix (defined by <a class="xref" href="thry_deriv_dif_mat.html#gthy_diff_eq9b" title="(9&#8211;9)">Equation&nbsp;9&#8211;9</a>) </p><p>[K<sup>d</sup>] = element diffusion conductivity
+matrix (defined by <a class="xref" href="thry_deriv_dif_mat.html#gthy_diff_eq9b" title="(9&#8211;9)">Equation&nbsp;9&#8211;9</a>) </p><p>{C} = nodal concentration vector</p><p>{R} = nodal diffusion flow rate vector (defined by <a class="xref" href="thry_deriv_dif_mat.html#gthy_diff_eq9b" title="(9&#8211;9)">Equation&nbsp;9&#8211;9</a>)</p><p>
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eqffaa74b0-2377-4a8b-ad17-6f88d6448968.svg"></span> = element diffusion strain stiffness matrix </p><p>
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eqa78bc4cf-87e3-4d88-8c6e-447561944cd7.svg"></span> = element transport conductivity matrix</p><p>
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eq0b04f24b-6cf7-48fc-a6d1-0f4113c41420.svg"></span> = nonlinear part of the element diffusion conductivity matrix </p><p>
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eq62b8b336-ee15-4ee9-a363-7dae5d42e6b0.svg"></span> = element conductivity matrix associated with diffusion strain</p><p>
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eq5a168fe9-7d9c-44b3-9a2d-cbb8845ce7ff.svg"></span> = nonlinear part of the element conductivity matrix associated with
+            diffusion strain</p><p>[B] = strain-displacement matrix (see <a class="xref" href="thy_str2.html#thyeq4dervnov1501" title="(2&#8211;44)">Equation&nbsp;2&#8211;44</a>) </p><p>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq00699203-a90a-4e59-a5d5-803bca2f9dad.svg"></span> = concentration gradient (output as CG)</p><p>{N} = element shape functions </p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

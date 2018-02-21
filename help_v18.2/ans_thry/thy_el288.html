@@ -1,0 +1,151 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:54-04:00"><title>13.288.&nbsp;PIPE288 - 3-D 2-Node Pipe</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el287.html" title="13.287.&nbsp;Reserved for Future Use"><link rel="next" href="thy_el289.html" title="13.289.&nbsp;PIPE289 - 3-D 3-Node Pipe"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.288.&nbsp;PIPE288 - 3-D 2-Node Pipe"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thypipe288"></a>13.288.&nbsp;PIPE288 - 3-D 2-Node Pipe</h2></div></div></div><div><img src="graphics/gthy14-188-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="154" class="COLSPEC1"><col width="141" class="COLSPEC11"><col width="173" class="COLSPEC12"><col width="168" class="COLSPEC13"></colgroup><thead><tr valign="middle"><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+Matrix
+or Vector  </th><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+Option</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+Shape
+Functions  </th><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration Points</a> </th></tr></thead><tbody><tr valign="middle"><td rowspan="3" valign="top">Stiffness
+and Stress Stiffness Matrices; and Thermal and Newton-Raphson Load
+Vectors  </td><td valign="top">Linear (KEYOPT(3)=0)</td><td valign="top">
+<a class="xref" href="thy_shp2.html#thyeq1wordof3dnov2101" title="(11&#8211;6)">Equation&nbsp;11&#8211;6</a>, <a class="xref" href="thy_shp2.html#thyeq2wordof3dnov2101" title="(11&#8211;7)">Equation&nbsp;11&#8211;7</a>, <a class="xref" href="thy_shp2.html#thyeq3wordof3dnov2101" title="(11&#8211;8)">Equation&nbsp;11&#8211;8</a>, <a class="xref" href="thy_shp2.html#thyeq4wordof3dnov2101" title="(11&#8211;9)">Equation&nbsp;11&#8211;9</a>, <a class="xref" href="thy_shp2.html#thyeq5wordof3dnov2101" title="(11&#8211;10)">Equation&nbsp;11&#8211;10</a>, and <a class="xref" href="thy_shp2.html#thyeq6wordof3dnov2101" title="(11&#8211;11)">Equation&nbsp;11&#8211;11</a>
+</td><td valign="top">
+<p>Along the length:  1</p>
+<p>Across the section: see text below</p>
+</td></tr><tr><td>Quadratic (KEYOPT(3)=2)</td><td>
+<a class="xref" href="thy_shp2.html#thyeq1nodelinesnov2701" title="(11&#8211;19)">Equation&nbsp;11&#8211;19</a>, <a class="xref" href="thy_shp2.html#thyeq2nodelinesnov2701" title="(11&#8211;20)">Equation&nbsp;11&#8211;20</a>, <a class="xref" href="thy_shp2.html#thyeq3nodelinesnov2701" title="(11&#8211;21)">Equation&nbsp;11&#8211;21</a>, <a class="xref" href="thy_shp2.html#thyeq4nodelinesnov2701" title="(11&#8211;22)">Equation&nbsp;11&#8211;22</a>, <a class="xref" href="thy_shp2.html#thyeq5nodelinesnov2701" title="(11&#8211;23)">Equation&nbsp;11&#8211;23</a>, and <a class="xref" href="thy_shp2.html#thyeq6nodelinesnov2701" title="(11&#8211;24)">Equation&nbsp;11&#8211;24</a>
+</td><td>
+<p>Along the length:
+ 2</p>
+<p>Across the section: see text below</p>
+</td></tr><tr valign="middle"><td valign="top">Cubic (KEYOPT(3)=3)</td><td valign="top">
+<a class="xref" href="thy_shp2.html#thyeq4nodelines1" title="(11&#8211;26)">Equation&nbsp;11&#8211;26</a>, <a class="xref" href="thy_shp2.html#thyeq4nodelines2" title="(11&#8211;27)">Equation&nbsp;11&#8211;27</a>,  <a class="xref" href="thy_shp2.html#thyeq4nodelines3" title="(11&#8211;28)">Equation&nbsp;11&#8211;28</a>, <a class="xref" href="thy_shp2.html#thyeq4nodelines4" title="(11&#8211;29)">Equation&nbsp;11&#8211;29</a>, <a class="xref" href="thy_shp2.html#thyeq4nodelines5" title="(11&#8211;30)">Equation&nbsp;11&#8211;30</a>,
+and <a class="xref" href="thy_shp2.html#thyeq4nodelines6" title="(11&#8211;31)">Equation&nbsp;11&#8211;31</a>
+</td><td valign="top">
+<p>Along the length:  3</p>
+<p>Across the section: see text
+below</p>
+</td></tr><tr><td rowspan="3">Consistent Mass
+Matrix and Pressure, Hydrostatic, and Hydrodynamic Load Vectors  </td><td>Linear (KEYOPT(3)=0)</td><td>
+<a class="xref" href="thy_shp2.html#thyeq1wordof3dnov2101" title="(11&#8211;6)">Equation&nbsp;11&#8211;6</a>, <a class="xref" href="thy_shp2.html#thyeq2wordof3dnov2101" title="(11&#8211;7)">Equation&nbsp;11&#8211;7</a>, <a class="xref" href="thy_shp2.html#thyeq3wordof3dnov2101" title="(11&#8211;8)">Equation&nbsp;11&#8211;8</a>, <a class="xref" href="thy_shp2.html#thyeq4wordof3dnov2101" title="(11&#8211;9)">Equation&nbsp;11&#8211;9</a>, <a class="xref" href="thy_shp2.html#thyeq5wordof3dnov2101" title="(11&#8211;10)">Equation&nbsp;11&#8211;10</a>, and <a class="xref" href="thy_shp2.html#thyeq6wordof3dnov2101" title="(11&#8211;11)">Equation&nbsp;11&#8211;11</a>
+</td><td>
+<p>Along the length:  2</p>
+<p>Across the section:  1</p>
+</td></tr><tr><td>Quadratic (KEYOPT(3)=2)</td><td>
+<a class="xref" href="thy_shp2.html#thyeq1nodelinesnov2701" title="(11&#8211;19)">Equation&nbsp;11&#8211;19</a>, <a class="xref" href="thy_shp2.html#thyeq2nodelinesnov2701" title="(11&#8211;20)">Equation&nbsp;11&#8211;20</a>, <a class="xref" href="thy_shp2.html#thyeq3nodelinesnov2701" title="(11&#8211;21)">Equation&nbsp;11&#8211;21</a>, <a class="xref" href="thy_shp2.html#thyeq4nodelinesnov2701" title="(11&#8211;22)">Equation&nbsp;11&#8211;22</a>, <a class="xref" href="thy_shp2.html#thyeq5nodelinesnov2701" title="(11&#8211;23)">Equation&nbsp;11&#8211;23</a>, and <a class="xref" href="thy_shp2.html#thyeq6nodelinesnov2701" title="(11&#8211;24)">Equation&nbsp;11&#8211;24</a>
+</td><td>
+<p>Along the length
+: 3</p>
+<p>Across the section:  1</p>
+</td></tr><tr><td>Cubic (KEYOPT(3)=3)</td><td>
+<a class="xref" href="thy_shp2.html#thyeq4nodelines1" title="(11&#8211;26)">Equation&nbsp;11&#8211;26</a>, <a class="xref" href="thy_shp2.html#thyeq4nodelines2" title="(11&#8211;27)">Equation&nbsp;11&#8211;27</a>,  <a class="xref" href="thy_shp2.html#thyeq4nodelines3" title="(11&#8211;28)">Equation&nbsp;11&#8211;28</a>, <a class="xref" href="thy_shp2.html#thyeq4nodelines4" title="(11&#8211;29)">Equation&nbsp;11&#8211;29</a>, <a class="xref" href="thy_shp2.html#thyeq4nodelines5" title="(11&#8211;30)">Equation&nbsp;11&#8211;30</a>, and <a class="xref" href="thy_shp2.html#thyeq4nodelines6" title="(11&#8211;31)">Equation&nbsp;11&#8211;31</a>
+</td><td>
+<p>Along the length:  4</p>
+<p>Across the
+section:  1</p>
+</td></tr><tr><td rowspan="3">Lumped Mass Matrix</td><td>Linear (KEYOPT(3) = 0)</td><td>
+<a class="xref" href="thy_shp2.html#thyeq1wordof3dnov2101" title="(11&#8211;6)">Equation&nbsp;11&#8211;6</a>, <a class="xref" href="thy_shp2.html#thyeq2wordof3dnov2101" title="(11&#8211;7)">Equation&nbsp;11&#8211;7</a>, and <a class="xref" href="thy_shp2.html#thyeq3wordof3dnov2101" title="(11&#8211;8)">Equation&nbsp;11&#8211;8</a>
+</td><td>
+<p>Along the length:
+ 2 [<a class="xref" href="thy_el288.html#thyel288vectftnt">1</a>
+</p>
+<p>Across the section:
+ 1</p>
+</td></tr><tr><td>Quadratic (KEYOPT(3) = 2)</td><td>
+<a class="xref" href="thy_shp2.html#thyeq1nodelinesnov2701" title="(11&#8211;19)">Equation&nbsp;11&#8211;19</a>, <a class="xref" href="thy_shp2.html#thyeq2nodelinesnov2701" title="(11&#8211;20)">Equation&nbsp;11&#8211;20</a>, and <a class="xref" href="thy_shp2.html#thyeq3nodelinesnov2701" title="(11&#8211;21)">Equation&nbsp;11&#8211;21</a>
+</td><td>
+<p>Along the length
+: 3 [<a class="xref" href="thy_el288.html#thyel288vectftnt">1</a>]</p>
+<p>Across the section:
+ 1</p>
+</td></tr><tr><td>Cubic (KEYOPT(3) = 3)</td><td>
+<a class="xref" href="thy_shp2.html#thyeq4nodelines1" title="(11&#8211;26)">Equation&nbsp;11&#8211;26</a>, <a class="xref" href="thy_shp2.html#thyeq4nodelines2" title="(11&#8211;27)">Equation&nbsp;11&#8211;27</a>,  and <a class="xref" href="thy_shp2.html#thyeq4nodelines3" title="(11&#8211;28)">Equation&nbsp;11&#8211;28</a>`</td><td>
+<p>Along
+the length:  4 [<a class="xref" href="thy_el288.html#thyel288vectftnt">1</a>]</p>
+<p>Across
+the section:  1</p>
+</td></tr></tbody></table></div><div class="blockquote"><blockquote class="blockquote"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="thyel288vectftnt"></a>For partially submerged elements,
+the hydrostatic/hydrodynamic load vector integration point(s) is/are
+centered on the wetted portion.</p></li></ol></div></blockquote></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="COLSPEC14"><col width="432" class="COLSPEC15"></colgroup><thead><tr valign="middle"><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+ 
+Load Type  </th><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+ 
+Distribution  </th></tr></thead><tbody><tr valign="middle"><td valign="middle">Element Temperature  </td><td valign="middle">
+<p>KEYOPT(1) = 0 Linear through wall and linear along length 
+KEYOPT(1) = 1 Bilinear across cross-section and linear along length </p>
+</td></tr><tr valign="middle"><td valign="middle">Nodal Temperature  </td><td valign="middle">Constant across cross-section, linear along length  </td></tr><tr valign="middle"><td valign="middle">Internal and External Pressures
+ </td><td valign="middle">Constant, except as adjusted by the affect of internal
+and external fluids.</td></tr></tbody></table></div><p>References: Simo and Vu-Quoc(<a class="xref" href="thy_biblio.html#NtHr27jjw" title="&#34;A Three Dimensional Finite Strain Rod Model. Part II: Computational Aspects&#34;">[238]</a>), Ibrahimbegovic(<a class="xref" href="thy_biblio.html#qtHr2d1jjw" title="&#34;On Finite Element Implementation of Geometrically Nonlinear Reissner's Beam Theory: Three-dimensional Curved Beam Elements&#34;">[239]</a>). </p><div class="sect2" title="13.288.1.&nbsp;Assumptions and Restrictions"><div class="titlepage"><div><div><h3 class="title"><a name="beam288assump"></a>13.288.1.&nbsp;Assumptions and Restrictions</h3></div></div></div><p>The element is based on Timoshenko beam theory; therefore, shear
+deformation effects are included. It uses six components of strain,
+three direct strains and three shear strains. The element is well-suited
+for linear, large rotation, and/or large strain nonlinear applications. </p><p>The element includes stress stiffness terms, by default, in
+any analysis using large deformation (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON).
+The stress stiffness terms provided enable the elements to analyze
+flexural, lateral and torsional stability problems (using eigenvalue
+buckling or collapse studies with arc length methods).</p><p>Transverse shear strain is constant through cross-section (that
+is, cross sections remain plane and undistorted after deformation).
+The element can be used for slender or stout beams. Due to the limitations
+of first-order shear deformation theory, slender to moderately thick
+beams can be analyzed. Slenderness ratio of a beam structure may be
+used in judging the applicability of the element. It is important
+to note that this ratio should be calculated using some global distance
+measures, and not based on individual element dimensions. A slenderness
+ratio greater than 30 is recommended.</p><p>The elements are provided with section relevant quantities (area
+of integration, position, Poisson function, function derivatives,
+etc.) automatically at a number of section points by the use of section
+commands. Each section is assumed to be an assembly of number of nine-node
+cells. The number of cells in both the circumferential and thickness
+directions is controlled by the <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> command.
+Each cell has six integration points, as shown in the following figure: </p><div class="figure"><a name="thypipe288_fig1"></a><p class="title"><b>Figure&nbsp;13.42:&nbsp;&nbsp;Section Cell Model</b></p><div class="figure-contents"><div><img src="graphics/gthy14-289-3.png" alt="Section Cell Model"></div></div></div><br class="figure-break"><p>The section includes internal fluid which contributes only mass
+and applied pressure, and insulation which contributes only mass,
+and adds to the effective (hydraulic) diameter.</p></div><div class="sect2" title="13.288.2.&nbsp;Ocean Effects"><div class="titlepage"><div><div><h3 class="title"><a name="pipe288_oceaneff"></a>13.288.2.&nbsp;Ocean Effects</h3></div></div></div><div class="highlights"><p>The following ocean effects apply to this element:</p><ul><li><a href="thy_el288.html#pipe288_locofel" title="13.288.2.1.&nbsp;Location of the Element">Location of the Element</a></li><li><a href="thy_el288.html#d0e64393" title="13.288.2.2.&nbsp;Mass Matrix">Mass Matrix</a></li><li><a href="thy_el288.html#pipe288_loadvec" title="13.288.2.3.&nbsp;Load Vector">Load Vector</a></li><li><a href="thy_el288.html#d0e64559" title="13.288.2.4.&nbsp;Hydrostatic Effects">Hydrostatic Effects</a></li><li><a href="thy_el288.html#pipe288_hydrodynamic" title="13.288.2.5.&nbsp;Hydrodynamic Effects">Hydrodynamic Effects</a></li></ul></div><div class="sect3" title="13.288.2.1.&nbsp;Location of the Element"><div class="titlepage"><div><div><h4 class="title"><a name="pipe288_locofel"></a>13.288.2.1.&nbsp;Location of the Element</h4></div></div></div><p>The origin for any problem containing <a href="../ans_elem/Hlp_E_PIPE288.html" class="olink"><span class="structname">PIPE288</span></a> using ocean effects must be at the free surface (mean sea level),
+although the origin can be offset via the <a href="../ans_cmd/Hlp_C_OCDATA.html" class="olink"><span class="command"><strong>OCDATA</strong></span></a> command&#8217;s <em class="replaceable"><code>Zmsl</code></em> value. Further,
+the Z axis is always the vertical axis, pointing away from the center
+of the earth.</p><p>If the element is intended to lie on the ocean floor, gap elements
+must be provided.</p></div><div class="sect3" title="13.288.2.2.&nbsp;Mass Matrix"><div class="titlepage"><div><div><h4 class="title"><a name="d0e64393"></a>13.288.2.2.&nbsp;Mass Matrix</h4></div></div></div><a class="indexterm" name="d0e64396"></a><p>The element mass matrix has several components, each organized
+on a mass-per-unit-length basis:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq60a5c702-e64d-441f-8237-e872634803ae"></a><div><img src="graphics/eq60a5c702-e64d-441f-8237-e872634803ae.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;422)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#961; = density of the pipe wall (input as DENS on the <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command)</td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqaab706e7-d4ba-48d8-a286-1e60b676067a"></a><div><img src="graphics/eqaab706e7-d4ba-48d8-a286-1e60b676067a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;423)</b></p></td></tr></table><p>where:</p><p>&#961;<sub>int</sub> = density of the internal fluid
+(input as DENS on the <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command, with the material
+number specified via <em class="replaceable"><code>M</code></em>
+<sub>
+<em class="replaceable"><code>int</code></em>
+</sub> on the <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> command)</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqc34a1b2d-6d50-4431-b693-f7a24583a905"></a><div><img src="graphics/eqc34a1b2d-6d50-4431-b693-f7a24583a905.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;424)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#961;<sub>i</sub> = density of external insulation
+(input as DENS on the <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command, with the material
+number specified via <em class="replaceable"><code>M</code></em>
+<sub>
+<em class="replaceable"><code>ins</code></em>
+</sub> on the <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> command)</td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq71807e6b-c73a-435a-be48-285dd1b51658"></a><div><img src="graphics/eq71807e6b-c73a-435a-be48-285dd1b51658.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;425)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>m<sub>ah</sub> is input as <em class="replaceable"><code>ADDMAS</code></em> on the <a href="../ans_cmd/Hlp_C_SECCONTROL.html" class="olink"><span class="command"><strong>SECCONTROL</strong></span></a> command</td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqe92430f5-d0c6-44bb-9bee-480628d2bec7"></a><div><img src="graphics/eqe92430f5-d0c6-44bb-9bee-480628d2bec7.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;426)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>C<sub>a</sub> = coefficient of added mass of the
+external fluid (input as <em class="replaceable"><code>Ca</code></em> on the <a href="../ans_cmd/Hlp_C_OCDATA.html" class="olink"><span class="command"><strong>OCDATA</strong></span></a> command)</td></tr><tr><td>&#961;<sub>w</sub> = fluid density (input as DENS
+on the <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command, with the material number specified
+via <em class="replaceable"><code>MATOC</code></em> on the <a href="../ans_cmd/Hlp_C_OCDATA.html" class="olink"><span class="command"><strong>OCDATA</strong></span></a> command) </td></tr></table><p>m<sub>add</sub> only resists submerged lateral acceleration.
+If the element is above the instantaneous free surface, m<sub>add</sub> = 0.0 . For modal (<a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,MODAL)
+and harmonic (<a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,HARMIC) analyses, the surface
+location does not account for ocean waves.</p></div><div class="sect3" title="13.288.2.3.&nbsp;Load Vector"><div class="titlepage"><div><div><h4 class="title"><a name="pipe288_loadvec"></a>13.288.2.3.&nbsp;Load Vector</h4></div></div></div><p>The element load vector consists of two parts:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Distributed force per unit length to account for hydrostatic
+(buoyancy) effects ({F/L}<sub>b</sub>) as well as axial
+nodal forces due to internal pressure and temperature effects {F<sub>x</sub>}.</p></li><li class="listitem"><p>Distributed force per unit length to account for hydrodynamic
+effects (current and waves) ({F/L}<sub>d</sub>).</p></li></ul></div><p>The hydrostatic and hydrodynamic effects work with the original
+diameter and length, i.e., initial strain and large deflection effects
+are not considered.</p></div><div class="sect3" title="13.288.2.4.&nbsp;Hydrostatic Effects"><div class="titlepage"><div><div><h4 class="title"><a name="d0e64559"></a>13.288.2.4.&nbsp;Hydrostatic Effects</h4></div></div></div><p>See <a class="xref" href="pipe288_hydrostatic.html" title="12.7.&nbsp;Hydrostatic Loads">Hydrostatic Loads</a> in the Element Tools
+section of this document.</p></div><div class="sect3" title="13.288.2.5.&nbsp;Hydrodynamic Effects"><div class="titlepage"><div><div><h4 class="title"><a name="pipe288_hydrodynamic"></a>13.288.2.5.&nbsp;Hydrodynamic Effects</h4></div></div></div><p>See <a class="xref" href="thy_et8.html" title="12.8.&nbsp;Hydrodynamic Loads">Hydrodynamic Loads</a> in the Element Tools section
+of this document.</p></div></div><div class="sect2" title="13.288.3.&nbsp;Stress Evaluation"><div class="titlepage"><div><div><h3 class="title"><a name="pipe288_stress"></a>13.288.3.&nbsp;Stress Evaluation</h3></div></div></div><p>Several stress evaluation options exist. The section strains
+and generalized stresses are evaluated at element integration points
+and then linearly extrapolated to the nodes of the element.</p><p>If the material is elastic, stresses and strains are available
+after extrapolation in cross-section at the nodes of section mesh.
+If the material is plastic, stresses and strains are moved without
+extrapolation to the section nodes (from section integration points).</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

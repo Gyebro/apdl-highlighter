@@ -1,0 +1,178 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:50-04:00"><title>2.4.&nbsp;Combined Stresses and Strains</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_str.html" title="Chapter&nbsp;2:&nbsp;Structures"><link rel="prev" href="thy_str3.html" title="2.3.&nbsp;Structural Strain and Stress Evaluations"><link rel="next" href="thy_strpmlel.html" title="2.5.&nbsp;Perfectly Matched Layers (PML) in Elastic Media"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="2.4.&nbsp;Combined Stresses and Strains"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="aUy2i33fmlg2"></a>2.4.&nbsp;Combined Stresses and Strains</h2></div></div></div><a class="indexterm" name="d0e2041"></a><a class="indexterm" name="d0e2044"></a><a class="indexterm" name="d0e2049"></a><a class="indexterm" name="d0e2052"></a><a class="indexterm" name="d0e2057"></a><a class="indexterm" name="d0e2060"></a><p>When a model has only one functional direction of strains and
+stress, comparison with an allowable value is straightforward.  But
+when there is more than one component, the components are normally
+combined into one number to allow a comparison with an allowable.
+ This section discusses different ways of doing that combination,
+representing different materials and/or technologies. </p><div class="sect2" title="2.4.1.&nbsp;Combined Strains"><div class="titlepage"><div><div><h3 class="title"><a name="struccombstrain"></a>2.4.1.&nbsp;Combined Strains</h3></div></div></div><p>The principal strains are calculated from the strain components
+by the cubic equation:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq356d2e21-2b91-413a-8311-95af7089e7c0"></a><div><img src="graphics/eq356d2e21-2b91-413a-8311-95af7089e7c0.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(2&#8211;83)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#949;<sub>o</sub> = principal strain (3 values)</td></tr></table><p>
+</p><p>The three principal strains are labeled &#949;<sub>1</sub>, &#949;<sub>2</sub>, and &#949;<sub>3</sub> (output as 1, 2, and 3 with strain items such as EPEL).
+ The principal strains are ordered so that &#949;<sub>1</sub> is the most positive and &#949;<sub>3</sub> is the
+most negative.</p><p>The strain intensity &#949;<sub>I</sub> (output
+as INT with strain items such as EPEL) is the largest of the absolute
+values of &#949;<sub>1</sub> - &#949;<sub>2</sub>, &#949;<sub>2</sub> - &#949;<sub>3</sub>, or &#949;<sub>3</sub> - &#949;<sub>1</sub>.  That is:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="newnow3403"></a><div><img src="graphics/newnow3403.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(2&#8211;84)</b></p></td></tr></table><p>The von Mises or equivalent strain &#949;<sub>e</sub> (output as EQV with strain items such as EPEL) is computed as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq1421f312-2cfd-420f-8d22-9bf5155a6c08"></a><div><img src="graphics/eq1421f312-2cfd-420f-8d22-9bf5155a6c08.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(2&#8211;85)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<img src="graphics/gthy2-118.jpg">&nbsp;
+</td></tr></table><p>
+</p></div><div class="sect2" title="2.4.2.&nbsp;Combined Stresses"><div class="titlepage"><div><div><h3 class="title"><a name="struccombstress"></a>2.4.2.&nbsp;Combined Stresses</h3></div></div></div><a class="indexterm" name="d0e2146"></a><a class="indexterm" name="d0e2149"></a><a class="indexterm" name="d0e2152"></a><a class="indexterm" name="d0e2155"></a><a class="indexterm" name="d0e2158"></a><a class="indexterm" name="d0e2163"></a><a class="indexterm" name="d0e2168"></a><a class="indexterm" name="d0e2173"></a><a class="indexterm" name="d0e2178"></a><p>The principal stresses (&#963;<sub>1</sub>, &#963;<sub>2</sub>, &#963;<sub>3</sub>) are calculated from
+the stress components by the cubic equation:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1combstressnov1501"></a><div><img src="graphics/thyeq1combstressnov1501.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(2&#8211;86)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#963;<sub>o</sub> = principal stress (3 values)</td></tr></table><p>
+</p><p>The three principal stresses are labeled &#963;<sub>1</sub>, &#963;<sub>2</sub>, and &#963;<sub>3</sub> (output quantities S1, S2, and S3).  The principal stresses are
+ordered so that &#963;<sub>1</sub> is the most positive
+(tensile) and &#963;<sub>3</sub> is the most negative (compressive).</p><p>The stress intensity &#963;<sub>I</sub> (output as
+SINT) is the largest of the absolute values of &#963;<sub>1</sub> - &#963;<sub>2</sub>, &#963;<sub>2</sub> - &#963;<sub>3</sub>, or &#963;<sub>3</sub> - &#963;<sub>1</sub>.  That is:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="trythisone05"></a><div><img src="graphics/trythisone05.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(2&#8211;87)</b></p></td></tr></table><p>The von Mises or equivalent stress &#963;<sub>e</sub> (output as SEQV) is computed as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2combstressnov1501"></a><div><img src="graphics/thyeq2combstressnov1501.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(2&#8211;88)</b></p></td></tr></table><p>or</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq08fedc2c-35f4-4f5b-8369-37416e34d0fa"></a><div><img src="graphics/eq08fedc2c-35f4-4f5b-8369-37416e34d0fa.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(2&#8211;89)</b></p></td></tr></table><p>When &#957;' = &#957; (input as PRXY or NUXY on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command), the equivalent stress is related to the equivalent strain
+through</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq6e9f418a-a62d-479f-ac64-edf201daf9d3"></a><div><img src="graphics/eq6e9f418a-a62d-479f-ac64-edf201daf9d3.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(2&#8211;90)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>E = Young's modulus (input as EX on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command)</td></tr></table><p>
+</p></div><div class="sect2" title="2.4.3.&nbsp;Failure Criteria"><div class="titlepage"><div><div><h3 class="title"><a name="strucfailure"></a>2.4.3.&nbsp;Failure Criteria</h3></div></div></div><a class="indexterm" name="d0e2282"></a><p>Use failure criteria to assess the possibility of failure of
+a material.  Doing so allows the consideration of orthotropic materials,
+which might be much weaker in one direction than another.  Failure
+criteria are available in POST1 for all plane, shell, and solid structural
+elements (using the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> or <a href="../ans_cmd/Hlp_C_FC.html" class="olink"><span class="command"><strong>FC</strong></span></a> family of commands). </p><p>Possible failure of a material can be evaluated by up to 20 different criteria, of which 11
+    are predefined. They are evaluated at the top and bottom (or middle) of each layer at each of
+    the in-plane integration points.</p><p>A failure criterion value &#8805; 1 indicates failure.</p><div class="highlights"><p>The following topics related to the predefined failure criteria
+are available:</p><ul><li><a href="thy_str4.html#strucmaxstrain" title="2.4.3.1.&nbsp;Maximum Strain Failure Criteria">Maximum Strain Failure Criteria</a></li><li><a href="thy_str4.html#strucmaxstress" title="2.4.3.2.&nbsp;Maximum Stress Failure Criteria">Maximum Stress Failure Criteria</a></li><li><a href="thy_str4.html#structsaiwu" title="2.4.3.3.&nbsp;Tsai-Wu Failure Criteria">Tsai-Wu Failure Criteria</a></li><li><a href="thy_str4.html#thy_structPFC" title="2.4.3.4.&nbsp;Physical Failure Criteria">Physical Failure Criteria</a></li></ul></div><div class="sect3" title="2.4.3.1.&nbsp;Maximum Strain Failure Criteria"><div class="titlepage"><div><div><h4 class="title"><a name="strucmaxstrain"></a>2.4.3.1.&nbsp;Maximum Strain Failure Criteria</h4></div></div></div><a class="indexterm" name="d0e2305"></a><a class="indexterm" name="d0e2308"></a><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqf6ab6049-325f-4f07-8877-b2338ac77e2b"></a><div><img src="graphics/eqf6ab6049-325f-4f07-8877-b2338ac77e2b.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(2&#8211;91)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+       <span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq74d1daaf-a77c-4577-9a41-1fd8941663f3.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eq5906de1e-b1d9-492e-829d-3a1ec28b30fe.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqea617458-ed4b-437f-ba18-6b1d3c1ae7fe.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eqc1af47d4-de21-4f1f-b969-cfdd4b9778f8.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq2987730f-2eef-4224-805a-c7f9ab303e93.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq6484e464-23c3-49b2-a6d7-db4c0b0e890d.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eq72b12e22-2547-4d32-a92b-a9462e84fa85.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqffef9f5c-9196-4bdc-b62d-5a11bd70ee22.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eq41ac9d5e-b4e8-4d5e-ae9b-56e9ecf73d58.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eq8178af09-1a45-4eea-a8c7-d1bff32cb8e3.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq6f951417-bfea-479b-9652-4d79cff6e352.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eq115cb0e4-775f-41af-95f0-8b430e8eacd4.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqc4ad64db-0b88-406a-90a5-4625e6b794e4.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eq19fcd28f-f844-443c-9acb-a8d08fba7433.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqf0ab7a2a-e549-4ff6-a157-b5b064c5f1b9.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq83f6d1fc-ad95-4278-b9f4-4c39a32591ab.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq9b9e2ba8-b18c-4a8c-892c-f0f346009907.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqfc148c72-5e38-45f9-a4bf-0384cb27b44a.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq246d50ff-33ba-42eb-abf3-726958fb66fa.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq694a5019-a592-4bbe-b3b4-04498bfd66bb.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq0f8d71e2-854f-46bb-abf3-8ce387764736.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq3ae4cf51-8939-4f52-8654-ec5a5a55f311.svg"></span>
+      </td></tr></table><p>
+</p></div><div class="sect3" title="2.4.3.2.&nbsp;Maximum Stress Failure Criteria"><div class="titlepage"><div><div><h4 class="title"><a name="strucmaxstress"></a>2.4.3.2.&nbsp;Maximum Stress Failure Criteria</h4></div></div></div><a class="indexterm" name="d0e2433"></a><a class="indexterm" name="d0e2436"></a><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqe49ef1ad-3782-4955-a534-a572956b51e5"></a><div><img src="graphics/eqe49ef1ad-3782-4955-a534-a572956b51e5.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(2&#8211;92)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq5b1613af-a34f-4380-b50d-571208761c46.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-11.000000px"><img src="graphics/eq26466a57-9fcf-4f99-a238-8803079fb5be.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqfe1df01d-e9b2-481e-9b65-02bb904d5234.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-11.000000px"><img src="graphics/eq40bfb319-1ccc-4a77-a0cc-5c9ddaa45225.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqba2e8e69-7978-43f3-8232-c489d64854ec.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq794482c7-9e07-4d2f-8ccd-c918814fe44d.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eq05a9cd31-fa2c-4255-93c7-325d26b5927a.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqdb0ed0ca-6008-4fc0-bb74-0c8b50dbcc4f.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eqc9f5d10f-3fe9-411e-b756-33127afce1ae.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq45cdcd12-cecd-4046-8adc-1c11f30fcd17.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq42b85273-ba31-470f-8bc3-9651ee78615c.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-11.000000px"><img src="graphics/eqe5bacb66-0c31-4c79-9c4d-3c1250b0ac72.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq22654a1d-fe31-4e2b-9222-5a8189a99d47.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-11.000000px"><img src="graphics/eq462199a3-b9a6-4653-bf31-9eae14366125.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq252c0d8d-70bd-4bfd-864c-a39d321778c9.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq97398111-ad9b-45ed-bae2-374e9ba111ed.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqb8d28cd3-e8eb-49a2-a636-f55030ed1a5b.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqdd5d23e3-ae10-40b4-b91a-86e7b4a87d61.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq78dbbd36-97d5-497a-8cb4-7f27cdd2c971.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqa4062a75-b4e5-4e15-bb6b-e2360db24f1e.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq750c6819-1a69-481c-aa7a-3022af2ee222.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq2c6eba6d-9eaf-4fda-b354-6e3009aa4e41.svg"></span>
+      </td></tr></table><p>
+</p></div><div class="sect3" title="2.4.3.3.&nbsp;Tsai-Wu Failure Criteria"><div class="titlepage"><div><div><h4 class="title"><a name="structsaiwu"></a>2.4.3.3.&nbsp;Tsai-Wu Failure Criteria</h4></div></div></div><a class="indexterm" name="d0e2561"></a><a class="indexterm" name="d0e2564"></a><p>If the criterion used is the "strength index" (TWSI &#8211; see
+      <a href="../ans_cmd/Hlp_C_PRESOL.html" class="olink"><span class="command"><strong>PRESOL</strong></span></a>,FAIL):</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="twfailjjw"></a><div><img src="graphics/twfailjjw.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(2&#8211;93)</b></p></td></tr></table><p>and if the criterion used is the inverse of the "strength ratio" (TWSR
+     &#8211; see <a href="../ans_cmd/Hlp_C_PRESOL.html" class="olink"><span class="command"><strong>PRESOL</strong></span></a>,FAIL):</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq6283505a-a3b6-416b-b61c-f86763d064ac"></a><div><img src="graphics/eq6283505a-a3b6-416b-b61c-f86763d064ac.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(2&#8211;94)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#958;<sub>3</sub> = value of Tsai-Wu failure criterion</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-40.000000px"><img src="graphics/eq757d23b4-6989-4eb7-99a0-718fabebb19a.svg"></span>
+      </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-15.000000px"><img src="graphics/eqff82de02-ccd2-4068-8d5a-56e2e9c519fc.svg"></span>
+      </td></tr><tr><td>C<sub>xy</sub>, C<sub>yz</sub>, C<sub>xz</sub> = x-y, y-z, x-z, respectively, coupling coefficient
+for Tsai-Wu theory</td></tr></table><p>
+</p><p>For consistency, the program uses the inverse of "strength ratio" as
+     the TWSR failure criterion. Similar to other failure criteria, a TWSR criterion indicates
+     failure if its value is &#8805; 1.</p><p>The Tsai-Wu failure criteria used here are 3-D versions of the failure criterion reported in
+     Tsai and Hahn(<a class="xref" href="thy_biblio.html#DQNZl3afjjw" title="Introduction to Composite Materials">[191]</a>) for the "strength index" and in Tsai(<a class="xref" href="thy_biblio.html#PnZofc7mlg" title="Composites Design">[93]</a>) for the "strength ratio". Apparent differences are:</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>The program input uses negative values for compression
+limits, whereas Tsai uses positive values for all limits.</p></li><li class="listitem"><p>The program uses C<sub>xy</sub> instead of the <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq4f7de217-33d8-432f-ab0c-3e28fc1c6c9a.svg"></span> used by Tsai and Hahn with C<sub>xy</sub> being twice the value
+       of <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq0fe9ae86-6c3f-40b3-a470-704cbcc9152d.svg"></span>.</p></li></ol></div></div><div class="sect3" title="2.4.3.4.&nbsp;Physical Failure Criteria"><div class="titlepage"><div><div><h4 class="title"><a name="thy_structPFC"></a>2.4.3.4.&nbsp;Physical Failure Criteria</h4></div></div></div><p>The physical failure criteria are specially formulated to account
+for different damage mechanisms (fiber and matrix failure) in fiber-reinforced
+composite materials. </p><p>Predefined physical failure criteria include the following:</p><div class="sect4" title="2.4.3.4.1.&nbsp;Hashin Fiber Failure Criterion"><div class="titlepage"><div><div><h5 class="title"><a name="thryhashinfailure"></a>2.4.3.4.1.&nbsp;Hashin Fiber Failure Criterion</h5></div></div></div><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqHFFC"></a><div><img src="graphics/thyeqHFFC.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(2&#8211;95)</b></p></td></tr></table></div><div class="sect4" title="2.4.3.4.2.&nbsp;Hashin Matrix Failure Criterion"><div class="titlepage"><div><div><h5 class="title"><a name="d0e2657"></a>2.4.3.4.2.&nbsp;Hashin Matrix Failure Criterion</h5></div></div></div><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqHMFC"></a><div><img src="graphics/thyeqHMFC.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(2&#8211;96)</b></p></td></tr></table></div><div class="sect4" title="2.4.3.4.3.&nbsp;Puck Fiber Failure Criterion ([402])"><div class="titlepage"><div><div><h5 class="title"><a name="d0e2663"></a>2.4.3.4.3.&nbsp;Puck Fiber Failure Criterion (<a class="xref" href="thy_biblio.html#bibpuckkopp" title="&#8220;Guidelines for the Determination of the Parameters in Puck&#8217;s Action Plane Strength Criterion&#34;">[402]</a>)</h5></div></div></div><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqPFFC"></a><div><img src="graphics/thyeqPFFC.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(2&#8211;97)</b></p></td></tr></table></div><div class="sect4" title="2.4.3.4.4.&nbsp;Puck Matrix Failure Criterion ([402])"><div class="titlepage"><div><div><h5 class="title"><a name="d0e2671"></a>2.4.3.4.4.&nbsp;Puck Matrix Failure Criterion (<a class="xref" href="thy_biblio.html#bibpuckkopp" title="&#8220;Guidelines for the Determination of the Parameters in Puck&#8217;s Action Plane Strength Criterion&#34;">[402]</a>)</h5></div></div></div><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqPMFC"></a><div><img src="graphics/thyeqPMFC.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(2&#8211;98)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq1837ca95-9bfe-4f1e-88ad-93e9dfa895d7.svg"></span> = stresses on an action plane parallel to the fibers</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-31.000000px"><img src="graphics/eq51e8067e-c3f5-47b5-b05e-34bdf57856d8.svg"></span>
+       </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-31.000000px"><img src="graphics/eq22f20b40-43f9-43ad-8147-26cec7e3a959.svg"></span>
+       </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-31.000000px"><img src="graphics/eq0c49cd5f-2574-42ab-85cb-f79d9c3ee9c8.svg"></span>
+       </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqc8d26f06-5abc-4fb5-9b31-84942a71f98d.svg"></span> = four inclination parameters</td></tr></table><p>
+</p></div><div class="sect4" title="2.4.3.4.5.&nbsp;LaRc03 Fiber Failure Criterion ([403])"><div class="titlepage"><div><div><h5 class="title"><a name="d0e2708"></a>2.4.3.4.5.&nbsp;LaRc03 Fiber Failure Criterion (<a class="xref" href="thy_biblio.html#bibdavilajaunky" title="&#8220;Failure Criteria for FRP Laminates in Plane Stress&#34;">[403]</a>)</h5></div></div></div><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqLR3FFC"></a><div><img src="graphics/thyeqLR3FFC.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(2&#8211;99)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq47295e7d-04d5-4e02-bd73-5e779841dc5c.svg"></span> = fracture toughness ratio between mode I and mode II</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq75c87adf-1701-4809-878e-fd402643c168.svg"></span> = 2-D stresses on the fiber misalignment (kinking) plane</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq79b01f24-a030-450d-a8d4-1c83a9730f63.svg"></span> = longitudinal friction coefficient</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq45715faf-0544-4656-8357-3cbead11e2f6.svg"></span> = in-plane shear strength</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq16db0bad-c7a4-403e-8454-a1c06f765cfb.svg"></span> = tensile transverse strength</td></tr></table><p>
+</p></div><div class="sect4" title="2.4.3.4.6.&nbsp;LaRc03 Matrix Failure Criterion ([403])"><div class="titlepage"><div><div><h5 class="title"><a name="d0e2745"></a>2.4.3.4.6.&nbsp;LaRc03 Matrix Failure Criterion (<a class="xref" href="thy_biblio.html#bibdavilajaunky" title="&#8220;Failure Criteria for FRP Laminates in Plane Stress&#34;">[403]</a>)</h5></div></div></div><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqLR3MFC"></a><div><img src="graphics/thyeqLR3MFC.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(2&#8211;100)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqfdfb2b62-d35a-4675-8084-0f82202129bd.svg"></span> = fracture toughness ratio between mode I and mode II</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-3.000000px"><img src="graphics/eqa2a9a03f-0ec9-4f2e-9bc7-cf70bb51763a.svg"></span> = effective transverse and longitudinal stresses on an action plane
+        parallel to fibers</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eq04583cb2-2f95-431b-9263-2f3af48df969.svg"></span> = effective stresses on an action plane parallel to the misaligned
+        fibers</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq87a8b407-fea9-4793-9464-51ecfe1dc53b.svg"></span> = transverse shear strength</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq469c7d32-dd52-4809-a420-1d28104fe0f6.svg"></span> = initial fracture angle under pure transverse compression</td></tr></table><p>
+</p></div><div class="sect4" title="2.4.3.4.7.&nbsp;LaRc04 Fiber Failure Criterion ([404])"><div class="titlepage"><div><div><h5 class="title"><a name="d0e2782"></a>2.4.3.4.7.&nbsp;LaRc04 Fiber Failure Criterion (<a class="xref" href="thy_biblio.html#bibpinhodavila" title="&#8220;Failure Models and Criteria for FRP Under In-Plane or Three-Dimensional Stress States Including Shear Non-linearity&#34;">[404]</a>)</h5></div></div></div><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqLR4FFC"></a><div><img src="graphics/thyeqLR4FFC.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(2&#8211;101)</b></p></td></tr></table><p>
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq1debcf03-afdf-4a9b-839f-e40772b37dda.svg"></span> = 3-D stresses on
+the fiber misalignment (kinking) plane</p><p>
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eqbd9a746f-ea9c-4d48-ac06-0c915c14edc5.svg"></span> = derived
+from orthotropic material constants</p></div><div class="sect4" title="2.4.3.4.8.&nbsp;LaRc04 Matrix Failure Criterion ([404])"><div class="titlepage"><div><div><h5 class="title"><a name="d0e2801"></a>2.4.3.4.8.&nbsp;LaRc04 Matrix Failure Criterion  (<a class="xref" href="thy_biblio.html#bibpinhodavila" title="&#8220;Failure Models and Criteria for FRP Under In-Plane or Three-Dimensional Stress States Including Shear Non-linearity&#34;">[404]</a>)</h5></div></div></div><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqLR4MFC"></a><div><img src="graphics/thyeqLR4MFC.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(2&#8211;102)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq8d56d71c-bdfc-4222-ab84-ff5891234bcd.svg"></span> = transverse friction coefficient</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-3.000000px"><img src="graphics/eqc9c3cc44-e6c8-4d94-b2b1-fa4820fdc0ec.svg"></span> = effective normal, transverse, and longitudinal stresses on an action
+        plane parallel to the fibers</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eqe932ebbf-1c57-45a1-b8bf-1752fa524d04.svg"></span> = effective stresses on the action plane parallel to the misaligned
+        fibers</td></tr></table><p>
+</p></div></div></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

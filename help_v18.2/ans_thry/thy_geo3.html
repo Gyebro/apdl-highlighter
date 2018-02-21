@@ -1,0 +1,147 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:51-04:00"><title>3.4.&nbsp;Stress Stiffening</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_geo.html" title="Chapter&nbsp;3:&nbsp;Structures with Geometric Nonlinearities"><link rel="prev" href="thy_geo2.html" title="3.3.&nbsp;Large Rotation"><link rel="next" href="thy_geo4.html" title="3.5.&nbsp;Spin Softening"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="3.4.&nbsp;Stress Stiffening"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="ateFf3b1lmm"></a>3.4.&nbsp;Stress Stiffening</h2></div></div></div><a class="indexterm" name="d0e4021"></a><a class="indexterm" name="d0e4024"></a><div class="sect2" title="3.4.1.&nbsp;Overview and Usage"><div class="titlepage"><div><div><h3 class="title"><a name="geousage"></a>3.4.1.&nbsp;Overview and Usage</h3></div></div></div><a class="indexterm" name="d0e4032"></a><a class="indexterm" name="d0e4035"></a><a class="indexterm" name="d0e4040"></a><a class="indexterm" name="d0e4043"></a><a class="indexterm" name="d0e4048"></a><a class="indexterm" name="d0e4051"></a><a class="indexterm" name="d0e4056"></a><a class="indexterm" name="d0e4059"></a><p>Stress stiffening (also called geometric stiffening, incremental
+stiffening, initial stress stiffening, or differential stiffening
+by other authors) is the stiffening (or weakening) of a structure
+due to its stress state.  This stiffening effect normally needs to
+be considered for thin structures with bending stiffness very small
+compared to axial stiffness, such as cables, thin beams, and shells
+and couples the in-plane and transverse displacements.  This effect
+also augments the regular nonlinear stiffness matrix produced by large-strain
+or large-deflection effects (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON).  The effect
+of stress stiffening is accounted for by generating and then using
+an additional stiffness matrix, hereinafter called the &#8220;stress
+stiffness matrix&#8221;.  The stress stiffness matrix is added to
+the regular stiffness matrix in order to give the total stiffness.
+Stress stiffening may be used for static (<a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,STATIC) or transient (<a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,TRANS) analyses.
+ Working with the stress stiffness matrix is the pressure load stiffness,
+discussed in <a class="xref" href="thy_geo3.html#geopressure2" title="3.4.4.&nbsp;Pressure Load Stiffness">Pressure Load Stiffness</a>.   </p><p>The stress stiffness matrix is computed based on the stress
+state of the previous equilibrium iteration.  Thus, to generate a
+valid stress-stiffened problem, at least two iterations are normally
+required, with the first iteration being used to determine the stress
+state that will be used to generate the stress stiffness matrix of
+the second iteration.  If this additional stiffness affects the stresses,
+more iterations need to be done to obtain a converged solution.  </p><p>In some linear analyses, the static (or initial) stress state
+may be large enough that the additional stiffness effects must be
+included for accuracy. Modal (<a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,MODAL) and
+substructure (<a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,SUBSTR) analyses are linear
+analyses for which the prestressing effects can be requested to be
+included  (<a href="../ans_cmd/Hlp_C_PSTRES.html" class="olink"><span class="command"><strong>PSTRES</strong></span></a>,ON command). Note that in these
+cases the stress stiffness matrix is constant, so that the stresses
+computed in the analysis are assumed small compared to the prestress
+stress. </p><p>If membrane stresses should become compressive rather than tensile,
+then terms in the stress stiffness matrix may &#8220;cancel&#8221;
+the positive terms in the regular stiffness matrix and therefore yield
+a nonpositive-definite total stiffness matrix, which indicates the
+onset of buckling.  If this happens, it is indicated with the message:
+ <span class="italic"><em>&#8220;Large negative pivot value ___, at
+node ___ may be because buckling load has been exceeded&#8221;</em></span>.  It must be noted that a stress stiffened model with insufficient
+boundary conditions to prevent rigid body motion may yield the same
+message. </p><p> The linear buckling load can be calculated directly by adding
+an unknown multiplier of the stress stiffness matrix to the regular
+stiffness matrix and performing an eigenvalue buckling problem (<a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,BUCKLE) to calculate the value of the unknown multiplier.
+ This is discussed in more detail in <a class="xref" href="thy_anproc5.html" title="15.5.&nbsp;Buckling Analysis">Buckling Analysis</a>. </p></div><div class="sect2" title="3.4.2.&nbsp;Theory"><div class="titlepage"><div><div><h3 class="title"><a name="geotheory3"></a>3.4.2.&nbsp;Theory</h3></div></div></div><p> The strain-displacement equations for the general motion of
+a differential length fiber are derived below.  Two different results
+have been obtained and these are both discussed below.  Consider the
+motion of a differential fiber, originally at dS, and then at ds after
+deformation. </p><div class="figure"><a name="eVanfeemlg"></a><p class="title"><b>Figure&nbsp;3.5:&nbsp;&nbsp;General Motion of a Fiber</b></p><div class="figure-contents"><div><img src="graphics/gthy3-83.svg" alt="General Motion of a Fiber"></div></div></div><br class="figure-break"><p>One end moves <span class="italic"><em>{u}</em></span>, and the
+other end moves <span class="italic"><em>{u + du}</em></span>, as shown
+in <a class="xref" href="thy_geo3.html#eVanfeemlg" title="Figure&nbsp;3.5:&nbsp;&nbsp;General Motion of a Fiber">Figure&nbsp;3.5:&nbsp;General Motion of a Fiber</a>.  The motion of one end with the rigid
+body translation removed is <span class="italic"><em>{u + du} - {u}
+= {du}</em></span>.  <span class="italic"><em>{du}</em></span> may be
+expanded as </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq001ea815-0f85-4bb0-89d3-1fef31250ed7"></a><div><img src="graphics/eq001ea815-0f85-4bb0-89d3-1fef31250ed7.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;48)</b></p></td></tr></table><p>where u is the displacement parallel to the original orientation
+of the fiber.  This is shown in <a class="xref" href="thy_geo3.html#lcBre10leaf" title="Figure&nbsp;3.6:&nbsp;&nbsp;Motion of a Fiber with Rigid Body Motion Removed">Figure&nbsp;3.6:&nbsp;Motion of a Fiber with Rigid Body Motion Removed</a>.  Note
+that X, Y, and Z represent global Cartesian axes, and x, y, and z
+represent axes based on the original orientation of the fiber.  By
+the Pythagorean theorem, </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq5159d103-546d-4397-8d4a-8bf7ade77ffa"></a><div><img src="graphics/eq5159d103-546d-4397-8d4a-8bf7ade77ffa.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;49)</b></p></td></tr></table><p>The stretch, &#923;, is given by dividing ds by the original
+length dS: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqde0781d4-49bf-4d97-8b08-f0b404fa594c"></a><div><img src="graphics/eqde0781d4-49bf-4d97-8b08-f0b404fa594c.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;50)</b></p></td></tr></table><div class="figure"><a name="lcBre10leaf"></a><p class="title"><b>Figure&nbsp;3.6:&nbsp;&nbsp;Motion of a Fiber with Rigid Body Motion Removed</b></p><div class="figure-contents"><div><img src="graphics/gthy3-88.svg" alt="Motion of a Fiber with Rigid Body Motion Removed"></div></div></div><br class="figure-break"><p>As dS is along the local x axis, </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1sstheorynov1601"></a><div><img src="graphics/thyeq1sstheorynov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;51)</b></p></td></tr></table><p>Next, &#923; is expanded and converted to partial notation: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2sstheorynov1601"></a><div><img src="graphics/thyeq2sstheorynov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;52)</b></p></td></tr></table><p>The binominal theorem states that: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3sstheorynov1601"></a><div><img src="graphics/thyeq3sstheorynov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;53)</b></p></td></tr></table><p>when A<sup>2</sup> &lt; 1.  One should be aware
+that using a limited number of terms of this series may restrict its
+applicability to small rotations and small strains.  If the first <span class="italic"><em>two</em></span> terms of the series in <a class="xref" href="thy_geo3.html#thyeq3sstheorynov1601" title="(3&#8211;53)">Equation&nbsp;3&#8211;53</a> are used to expand <a class="xref" href="thy_geo3.html#thyeq2sstheorynov1601" title="(3&#8211;52)">Equation&nbsp;3&#8211;52</a>, </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq4sstheorynov1601"></a><div><img src="graphics/thyeq4sstheorynov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;54)</b></p></td></tr></table><p>The resultant strain (same as extension since strains are assumed
+to be small) is then </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq5sstheorynov1601"></a><div><img src="graphics/thyeq5sstheorynov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;55)</b></p></td></tr></table><p>If, more accurately, the first <span class="italic"><em>three</em></span> terms of <a class="xref" href="thy_geo3.html#thyeq3sstheorynov1601" title="(3&#8211;53)">Equation&nbsp;3&#8211;53</a> are used and displacement
+derivatives of the third order and above are dropped, <a class="xref" href="thy_geo3.html#thyeq3sstheorynov1601" title="(3&#8211;53)">Equation&nbsp;3&#8211;53</a> reduces to: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq6sstheorynov1601"></a><div><img src="graphics/thyeq6sstheorynov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;56)</b></p></td></tr></table><p>The resultant strain is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq7sstheorynov1601"></a><div><img src="graphics/thyeq7sstheorynov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;57)</b></p></td></tr></table><p>For most 2-D and 3-D elements, <a class="xref" href="thy_geo3.html#thyeq5sstheorynov1601" title="(3&#8211;55)">Equation&nbsp;3&#8211;55</a> is more convenient to use as no
+account of the loaded direction has to be considered.  The error associated
+with this is small as the strains were assumed to be small.  For 1-D
+structures, and some 2-D elements, <a class="xref" href="thy_geo3.html#thyeq7sstheorynov1601" title="(3&#8211;57)">Equation&nbsp;3&#8211;57</a> is used for its greater accuracy and causes no difficulty in its
+implementation. </p></div><div class="sect2" title="3.4.3.&nbsp;Implementation"><div class="titlepage"><div><div><h3 class="title"><a name="geoimplement3"></a>3.4.3.&nbsp;Implementation</h3></div></div></div><p>The stress-stiffness matrices are derived based on <a class="xref" href="thy_geo1.html#thyeq1elformnov1501" title="(3&#8211;34)">Equation&nbsp;3&#8211;34</a>, but using the nonlinear strain-displacement
+relationships given in <a class="xref" href="thy_geo3.html#thyeq5sstheorynov1601" title="(3&#8211;55)">Equation&nbsp;3&#8211;55</a> or <a class="xref" href="thy_geo3.html#thyeq7sstheorynov1601" title="(3&#8211;57)">Equation&nbsp;3&#8211;57</a> (Cook(<a class="xref" href="thy_biblio.html#eBygf35bmlg" title="Concepts and Applications of Finite Element Analysis, Second Edition">[5]</a>)). </p><p>For a spar, the stress-stiffness matrix is given as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq8sstheorynov1601"></a><div><img src="graphics/thyeq8sstheorynov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;58)</b></p></td></tr></table><p>The stress stiffness matrix for a 2-D beam is given in <a class="xref" href="thy_geo3.html#thyeq9sstheorynov1601" title="(3&#8211;59)">Equation&nbsp;3&#8211;59</a>, which is the same as reported by
+Przemieniecki(<a class="xref" href="thy_biblio.html#grukf14fmlg" title="Theory of Matrix Structural Analysis">[28]</a>).  All beam and straight
+pipe  elements use the same type of matrix. Forces used by straight
+pipe elements are based on not only the effect of axial stress with
+pipe wall, but also internal and external pressures on the <span class="quote">"<span class="quote">end-caps</span>"</span> of each element.  This force is sometimes referred
+to as effective tension. </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq9sstheorynov1601"></a><div><img src="graphics/thyeq9sstheorynov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;59)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>F = force in member </td></tr><tr><td>L = length of member </td></tr></table><p>
+</p><p>The stress stiffness matrix for 2-D and 3-D solid elements is generated
+    by the use of numerical integration. A 3-D solid element is used here as an example:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq10sstheorynov1601"></a><div><img src="graphics/thyeq10sstheorynov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;60)</b></p></td></tr></table><p>where the matrices shown in <a class="xref" href="thy_geo3.html#thyeq10sstheorynov1601" title="(3&#8211;60)">Equation&nbsp;3&#8211;60</a> have been reordered so
+    that first all x-direction degrees of freedom are given, then y, and then z.
+     [S<sub>o</sub>] is an 8 by 8 matrix given by: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq11sstheorynov1601"></a><div><img src="graphics/thyeq11sstheorynov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;61)</b></p></td></tr></table><p>The matrices used by this equation are:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq12sstheorynov1601"></a><div><img src="graphics/thyeq12sstheorynov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;62)</b></p></td></tr></table><p>where &#963;<sub>x</sub>, &#963;<sub>xy</sub> etc. are stress based on the displacements of the previous iteration,
+and, </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq13sstheorynov1601"></a><div><img src="graphics/thyeq13sstheorynov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;63)</b></p></td></tr></table><p>where N<sub>i</sub> represents the ith shape function.
+ This is the stress stiffness matrix for small strain analyses.  For
+large-strain elements in a large-strain analysis (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON), the stress stiffening contribution is computed using the actual
+strain-displacement relationship (<a class="xref" href="thy_geo1.html#thyeq6lstheorynov1501" title="(3&#8211;6)">Equation&nbsp;3&#8211;6</a>). </p><p>One further case requires some explanation:  axisymmetric structures
+with nonaxisymmetric deformations.  As any stiffening effects may
+only be axisymmetric, only axisymmetric cases are used for the prestress
+case.  Axisymmetric cases are defined as 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqb6e74c3a-c3d9-45ac-ab59-edf198659bab.svg"></span> (input as MODE on <a href="../ans_cmd/Hlp_C_MODE.html" class="olink"><span class="command"><strong>MODE</strong></span></a> command) = 0. Then, any subsequent load steps with any value of 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq3df832f8-8a4b-4f38-8721-997acad2a532.svg"></span> (including 0 itself) uses that same stress
+state, until another, more recent, 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq6f686199-c7d9-4c68-b920-2d1b9241a94b.svg"></span> = 0 case is available.  Also, torsional
+stresses are not incorporated into any stress stiffening effects.
+             </p><p>Specializing this to <a href="../ans_elem/Hlp_E_SHELL61.html" class="olink"><span class="structname">SHELL61</span></a> (Axisymmetric-Harmonic
+Structural Shell), only two stresses are used for prestressing: &#963;<sub>s</sub>, &#963;<sub>&#952;</sub>, the meridional
+and hoop stresses, respectively.  The element stress stiffness matrix
+is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq14sstheorynov1601"></a><div><img src="graphics/thyeq14sstheorynov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;64)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq15sstheorynov1601"></a><div><img src="graphics/thyeq15sstheorynov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;65)</b></p></td></tr></table><p>where [A<sub>s</sub>] is defined below and [N] is
+defined by the element shape functions.  [A<sub>s</sub>] is an operator matrix and its terms are: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq16sstheorynov1601"></a><div><img src="graphics/thyeq16sstheorynov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;66)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-13.000000px"><img src="graphics/eq6f5a395d-ae11-470a-9fb5-6fb38152b097.svg"></span> </td></tr></table><p>
+</p><p>The three columns of the [A<sub>s</sub>] matrix
+refer to u, v, and w motions, respectively.  As suggested by the definition
+for [S<sub>m</sub>], the first two rows of [A<sub>s</sub>] relate to &#963;<sub>s</sub> and the second
+two rows relate to &#963;<sub>&#952;</sub>.  The first
+row of [A<sub>s</sub>] is for motion normal to the shell
+varying in the s direction and the second row is for hoop motions
+varying in the s direction.  Similarly, the third row is for normal
+motions varying in the hoop direction.  Thus <a class="xref" href="thy_geo3.html#thyeq7sstheorynov1601" title="(3&#8211;57)">Equation&nbsp;3&#8211;57</a>, rather than <a class="xref" href="thy_geo3.html#thyeq5sstheorynov1601" title="(3&#8211;55)">Equation&nbsp;3&#8211;55</a>, is the type of nonlinear strain-displacement
+expression that has been used to develop <a class="xref" href="thy_geo3.html#thyeq16sstheorynov1601" title="(3&#8211;66)">Equation&nbsp;3&#8211;66</a>. </p></div><div class="sect2" title="3.4.4.&nbsp;Pressure Load Stiffness"><div class="titlepage"><div><div><h3 class="title"><a name="geopressure2"></a>3.4.4.&nbsp;Pressure Load Stiffness</h3></div></div></div><p>Quite often concentrated forces are treated numerically by equivalent
+pressure over a known area. This is especially common in the context
+of a linear static analysis. However, it is possible that different
+buckling loads may be predicted from seemingly equivalent pressure
+and force loads in an eigenvalue buckling analysis. The difference
+can be attributed to the fact that pressure is considered as a &#8220;follower&#8221;
+load. The force on the surface depends on the prescribed pressure
+magnitude and also on the surface orientation. Concentrated loads
+are not considered as follower loads. The follower effects is a preload
+stiffness and plays a significant role in nonlinear and eigenvalue
+buckling analysis. The follower effects manifest in the form of a &#8220;load
+stiffness matrix&#8221; in addition to the normal stress stiffening
+effects. As with any numerical analysis, you should use the type of
+loading that best models the in-service component.</p><p>The effect of change of direction and/or area of an applied
+pressure is responsible for the pressure load stiffness matrix ([S<sup>pr</sup>]) (see section 6.5.2 of Bonet and Wood(<a class="xref" href="thy_biblio.html#yQqFrb9jjw" title="Nonlinear Continuum Mechanics for Finite Element Analysis">[237]</a>)).  It is used either for a large-deflection
+analysis (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON), for an eigenvalue buckling
+analysis, or for a modal, linear transient, or harmonic analysis that
+has prestressing flagged (<a href="../ans_cmd/Hlp_C_PSTRES.html" class="olink"><span class="command"><strong>PSTRES</strong></span></a>,ON command). </p><p>The need of [S<sup>pr</sup>] is most dramatically
+seen when modelling the collapse of a ring due to external pressure
+using eigenvalue buckling.  The expected answer is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1pressstiffnov1601"></a><div><img src="graphics/thyeq1pressstiffnov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;67)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>P<sub>cr</sub> = critical buckling load </td></tr><tr><td>E = Young's modulus </td></tr><tr><td>I = moment of inertia </td></tr><tr><td>R = radius of the ring </td></tr><tr><td>C = 3.0 </td></tr></table><p>
+</p><p>This value of C = 3.0 is achieved when using [S<sup>pr</sup>], but when it is missing, C = 4.0, a 33% error. </p><p>For eigenvalue buckling analyses, all
+elements use pressure load stiffness automatically.</p><p>[S<sup>pr</sup>] is derived as an unsymmetric
+matrix.  Symmetricizing is done, unless the command <a href="../ans_cmd/Hlp_C_NROPT.html" class="olink"><span class="command"><strong>NROPT</strong></span></a>,UNSYM is used.  Processing unsymmetric matrices takes more running
+time and storage, but may be more convergent. </p></div><div class="sect2" title="3.4.5.&nbsp;Applicable Input"><div class="titlepage"><div><div><h3 class="title"><a name="geoappinput4"></a>3.4.5.&nbsp;Applicable Input</h3></div></div></div><p>In a nonlinear analysis (<a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,STATIC or <a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,TRANS), the stress stiffness contribution is activated
+and then added to the stiffness matrix.  When not using large deformations
+(<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,OFF), the rotations are presumed to be
+small and the additional stiffness induced by the stress state is
+included.  When using large deformations (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON), the stress stiffness augments the tangent matrix, affecting
+the rate of convergence but not the final converged solution. </p><p>The stress stiffness contribution in the prestressed analysis
+is activated by the prestress flag (<a href="../ans_cmd/Hlp_C_PSTRES.html" class="olink"><span class="command"><strong>PSTRES</strong></span></a>,ON)
+and directs the preceding analysis to save the stress state. </p></div><div class="sect2" title="3.4.6.&nbsp;Applicable Output"><div class="titlepage"><div><div><h3 class="title"><a name="geoappoutput4"></a>3.4.6.&nbsp;Applicable Output</h3></div></div></div><p>In a small deflection/small strain analysis (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,OFF), the 2-D and 3-D elements compute their strains using <a class="xref" href="thy_geo3.html#thyeq5sstheorynov1601" title="(3&#8211;55)">Equation&nbsp;3&#8211;55</a>.  The strains (output as EPEL, EPPL,
+etc.) therefore include the higher-order terms (e.g. 
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqee4dc8d6-750b-41f7-8c42-b1fdde476970.svg"></span> in the strain computation.  Also, nodal
+and reaction loads (output quantities F and M) will reflect the stress
+stiffness contribution, so that moment and force equilibrium include
+the higher order (small rotation) effects. </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:36-04:00"><title>13.154.&nbsp;SURF154 - 3-D Structural Surface Effect</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el153.html" title="13.153.&nbsp;SURF153 - 2-D Structural Surface Effect"><link rel="next" href="thy_el155.html" title="13.155.&nbsp;SURF155 - 3-D Thermal Surface Line Load"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.154.&nbsp;SURF154 - 3-D Structural Surface Effect"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thysurf154"></a>13.154.&nbsp;SURF154 - 3-D Structural Surface Effect</h2></div></div></div><a class="indexterm" name="d0e51563"></a><a class="indexterm" name="d0e51566"></a><a class="indexterm" name="d0e51569"></a><div><img src="graphics/gthy14-154-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="144" class="col1"><col width="206" class="COLSPEC8"><col width="129" class="col2"><col width="144" class="col3"></colgroup><thead><tr valign="middle"><th bgcolor="#E3E3E3" align="center" valign="middle">
+Matrix or Vector</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+Geometry / Midside Nodes [<a class="xref" href="thy_el154.html#thyelem154_fn1">1</a>]</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+Shape Functions</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration Points</a>
+</th></tr></thead><tbody><tr valign="middle"><td rowspan="4" valign="middle">Stiffness
+and Damping Matrices, and Pressure Load Vector</td><td valign="middle">Quad with midside nodes</td><td valign="middle">
+<a class="xref" href="thy_shp5.html#thyeq3quadshellnov2601" title="(11&#8211;86)">Equation&nbsp;11&#8211;86</a>
+</td><td align="center" valign="middle">3 x 3</td></tr><tr valign="middle"><td valign="middle">Quad without midside nodes</td><td valign="middle">
+<a class="xref" href="thy_shp5.html#thyeq3q4nov2601" title="(11&#8211;71)">Equation&nbsp;11&#8211;71</a>
+</td><td align="center" valign="middle">2 x 2 </td></tr><tr valign="middle"><td valign="middle">Triangle with midside nodes</td><td valign="middle">
+<a class="xref" href="thy_shp6.html#thyeq3lstnov2101" title="(11&#8211;114)">Equation&nbsp;11&#8211;114</a>
+</td><td align="center" valign="middle">6 </td></tr><tr valign="middle"><td valign="middle">Triangle without midside nodes</td><td valign="middle">
+<a class="xref" href="thy_shp5.html#thyeq3triwrdofnov2601" title="(11&#8211;68)">Equation&nbsp;11&#8211;68</a>
+</td><td align="center" valign="middle">3</td></tr><tr valign="middle"><td rowspan="4" valign="middle">Mass and Stress Stiffness  Matrices</td><td valign="middle">Quad with midside nodes</td><td valign="middle">
+<a class="xref" href="thy_shp5.html#thyeq1quadshellnov2601" title="(11&#8211;84)">Equation&nbsp;11&#8211;84</a>, <a class="xref" href="thy_shp5.html#thyeq2quadshellnov2601" title="(11&#8211;85)">Equation&nbsp;11&#8211;85</a> and <a class="xref" href="thy_shp5.html#thyeq3quadshellnov2601" title="(11&#8211;86)">Equation&nbsp;11&#8211;86</a>
+</td><td align="center" valign="middle">3 x 3</td></tr><tr valign="middle"><td valign="middle">Quad without midside nodes</td><td valign="middle">
+<a class="xref" href="thy_shp5.html#thyeq1q4nov2601" title="(11&#8211;69)">Equation&nbsp;11&#8211;69</a>, <a class="xref" href="thy_shp5.html#thyeq2q4nov2601" title="(11&#8211;70)">Equation&nbsp;11&#8211;70</a> and <a class="xref" href="thy_shp5.html#thyeq3q4nov2601" title="(11&#8211;71)">Equation&nbsp;11&#8211;71</a>
+</td><td align="center" valign="middle">2 x 2</td></tr><tr valign="middle"><td valign="middle">Triangle with midside nodes</td><td valign="middle">
+<a class="xref" href="thy_shp6.html#thyeq3lstnov2101" title="(11&#8211;114)">Equation&nbsp;11&#8211;114</a>
+</td><td align="center" valign="middle">6</td></tr><tr valign="middle"><td valign="middle">Triangle without midside nodes</td><td valign="middle">
+<a class="xref" href="thy_shp5.html#thyeq1triwrdofnov2601" title="(11&#8211;66)">Equation&nbsp;11&#8211;66</a>, <a class="xref" href="thy_shp5.html#thyeq2triwrdofnov2601" title="(11&#8211;67)">Equation&nbsp;11&#8211;67</a> and <a class="xref" href="thy_shp5.html#thyeq3triwrdofnov2601" title="(11&#8211;68)">Equation&nbsp;11&#8211;68</a>
+</td><td align="center" valign="middle">3</td></tr><tr valign="middle"><td rowspan="4" valign="middle">Surface Tension Load Vector </td><td valign="middle">Quad with midside nodes</td><td valign="middle">
+<a class="xref" href="thy_shp5.html#thyeq1quadshellnov2601" title="(11&#8211;84)">Equation&nbsp;11&#8211;84</a> and <a class="xref" href="thy_shp5.html#thyeq2quadshellnov2601" title="(11&#8211;85)">Equation&nbsp;11&#8211;85</a>
+</td><td align="center" valign="middle">3 x 3</td></tr><tr valign="middle"><td valign="middle">Quad without midside nodes</td><td valign="middle">
+<a class="xref" href="thy_shp5.html#thyeq1q4nov2601" title="(11&#8211;69)">Equation&nbsp;11&#8211;69</a> and <a class="xref" href="thy_shp5.html#thyeq2q4nov2601" title="(11&#8211;70)">Equation&nbsp;11&#8211;70</a>
+</td><td align="center" valign="middle">2 x 2</td></tr><tr valign="middle"><td valign="middle">Triangle with midside nodes</td><td valign="middle">
+<a class="xref" href="thy_shp6.html#thyeq1lstnov2101" title="(11&#8211;112)">Equation&nbsp;11&#8211;112</a> and <a class="xref" href="thy_shp6.html#thyeq2lstnov2101" title="(11&#8211;113)">Equation&nbsp;11&#8211;113</a>
+</td><td align="center" valign="middle">6</td></tr><tr valign="middle"><td valign="middle">Triangle without midside
+nodes</td><td valign="middle">
+<a class="xref" href="thy_shp5.html#thyeq1triwrdofnov2601" title="(11&#8211;66)">Equation&nbsp;11&#8211;66</a> and <a class="xref" href="thy_shp5.html#thyeq2triwrdofnov2601" title="(11&#8211;67)">Equation&nbsp;11&#8211;67</a>
+</td><td align="center" valign="middle">3</td></tr></tbody></table></div><div class="blockquote"><blockquote class="blockquote"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="thyelem154_fn1"></a>Midside node setting is controlled
+by KEYOPT(4).</p></li></ol></div></blockquote></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="col1"><col width="432" class="col2"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center" valign="top">
+Load Type</th><th bgcolor="#E3E3E3" align="center" valign="top">
+Distribution</th></tr></thead><tbody><tr><td>All Loads</td><td>Same as shape functions</td></tr></tbody></table></div><p>The stiffness matrix is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq006391f9-921a-4491-99ad-17bf7c9dd963"></a><div><img src="graphics/eq006391f9-921a-4491-99ad-17bf7c9dd963.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;254)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>k<sup>f</sup> = foundation stiffness (input
+as EFS on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>A = area of element </td></tr><tr><td>{N<sub>z</sub>} = vector of shape functions representing
+motions normal to the surface </td></tr></table><p>
+</p><p>The mass matrix is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq2b408c9c-902a-4510-9c09-57a758846c5b"></a><div><img src="graphics/eq2b408c9c-902a-4510-9c09-57a758846c5b.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;255)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>t<sub>h</sub> = thickness (input as TKI, TKJ,
+TKK, TKL on <a href="../ans_cmd/Hlp_C_RMORE.html" class="olink"><span class="command"><strong>RMORE</strong></span></a> command) </td></tr><tr><td>&#961; = density (input as DENS on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command) </td></tr><tr><td>{N} = vector of shape functions </td></tr><tr><td>A<sub>d</sub> = added mass per unit area (input
+as ADMSUA on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr></table><p>
+</p><p>If the command <a href="../ans_cmd/Hlp_C_LUMPM.html" class="olink"><span class="command"><strong>LUMPM</strong></span></a>,ON is used, [M<sub>e</sub>] is diagonalized as described in <a class="xref" href="thy_et2.html" title="12.5.&nbsp;Lumped Matrices">Lumped Matrices</a>. </p><p>The element damping matrix is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqd8c86c32-6a2f-42e1-aa22-22c6e9c4c355"></a><div><img src="graphics/eqd8c86c32-6a2f-42e1-aa22-22c6e9c4c355.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;256)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#956; = dissipation (input as VISC on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command) </td></tr></table><p>
+</p><p>The element stress stiffness matrix is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq4a140bd9-d018-410b-af52-b907c9592901"></a><div><img src="graphics/eq4a140bd9-d018-410b-af52-b907c9592901.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;257)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>[S<sub>g</sub>] = derivatives of shape functions
+of normal motions </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-24.000000px"><img src="graphics/eqc4e2bdeb-8b13-4a54-b9ff-f52b6e4d36ba.svg"></span> </td></tr><tr><td>s = in-plane force per unit length (input as SURT on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr></table><p>
+</p><p>If pressure is applied to face 1, the pressure load stiffness
+matrix is computed as described in <a class="xref" href="thy_geo3.html#geopressure2" title="3.4.4.&nbsp;Pressure Load Stiffness">Pressure Load Stiffness</a>. </p><p>The element load vector is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq5d8c76e3-9df1-4983-a243-9c00eae31d49"></a><div><img src="graphics/eq5d8c76e3-9df1-4983-a243-9c00eae31d49.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;258)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-19.000000px"><img src="graphics/eq4efe3d88-7eb2-4090-92e7-3406ef07cafd.svg"></span> </td></tr><tr><td>{N<sub>p</sub>} = vector of shape functions representing
+in-plane motions normal to the edge </td></tr><tr><td>E = edge of element </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-31.000000px"><img src="graphics/eq76df638d-77ac-40bd-a504-41b7b889a7be.svg"></span> </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-18.000000px"><img src="graphics/eq1f3b7de9-0a72-4271-8d54-b59212c630ea.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-18.000000px"><img src="graphics/eqad664cf1-cf62-4e64-8361-0a2d56f19d9d.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-18.000000px"><img src="graphics/eqe093a702-2aee-49eb-9895-d9e03fe5a829.svg"></span>
+</td></tr><tr><td>{N<sub>x</sub>} = vector of shape functions representing
+motion in element x direction </td></tr><tr><td>{N<sub>y</sub>} = vector of shape functions representing
+motion in element y direction </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq96a7c5a3-352e-4ee5-a201-7c7d3fe6fe8c.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq293ed9ab-f32e-4aeb-833d-20edc4e6d842.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq0d7a7409-e575-4f87-bd00-9fa7c532aa5e.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-45.000000px"><img src="graphics/eqff337654-1d72-40f9-af54-57a2fe6d9da5.svg"></span>
+</td></tr><tr><td>P<sub>v</sub> = uniform pressure magnitude </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-17.000000px"><img src="graphics/eqba5ad6f5-e6a9-4d10-ae9d-3410513081b8.svg"></span>
+</td></tr><tr><td>P<sub>1</sub> = input (VAL1 with LKEY = 5 on <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> command) </td></tr><tr><td>&#952; = angle between element normal and applied load direction </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-17.000000px"><img src="graphics/eq0c762d89-5113-4ed4-8ab0-4875663e5ba0.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-22.000000px"><img src="graphics/eq7179cad7-d8a3-4f03-96a3-77d4fe04f6cb.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-22.000000px"><img src="graphics/eq07f77e5c-494a-4376-8cfb-16b240ef9138.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqf933c7a1-7c9c-4378-9802-bd9893421d17.svg"></span> </td></tr><tr><td>D<sub>x</sub>, D<sub>y</sub>, D<sub>z</sub> = vector directions (input as VAL2 thru VAL4 with LKEY
+= 5 on <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> command) </td></tr><tr><td>{N<sub>X</sub>}, {N<sub>Y</sub>},
+{N<sub>Z</sub>} = vectors of shape functions in global
+Cartesian coordinates </td></tr></table><p>
+</p><p>The integration used to arrive at 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq221e0ec2-43cd-4093-aead-007658e93887.svg"></span> is the usual numerical integration, even
+if KEYOPT(6) &#8800; 0.  The output quantities &#8220;average face pressures&#8221;
+are the average of the pressure values at the integration points. </p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

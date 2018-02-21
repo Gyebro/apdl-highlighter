@@ -1,0 +1,28 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:18-04:00"><title>12.4.&nbsp;Positive Definite Matrices</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_et.html" title="Chapter&nbsp;12:&nbsp;Element Tools"><link rel="prev" href="thy_et4.html" title="12.3.&nbsp;Temperature-Dependent Material Properties"><link rel="next" href="thy_et2.html" title="12.5.&nbsp;Lumped Matrices"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="12.4.&nbsp;Positive Definite Matrices"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="xHt9h3b1abc"></a>12.4.&nbsp;Positive Definite Matrices</h2></div></div></div><a class="indexterm" name="d0e38310"></a><a class="indexterm" name="d0e38313"></a><p>By definition, a matrix [D] (as well as its inverse [D]<sup>-1</sup>) is positive definite if the determinants of all
+submatrices of the series: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqd54b01f2-47b6-4237-9af4-9c5112894804"></a><div><img src="graphics/eqd54b01f2-47b6-4237-9af4-9c5112894804.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(12&#8211;6)</b></p></td></tr></table><p>including the determinant of the full matrix [D], are positive.
+ The series could have started out at any other diagonal term and
+then had row and column sets added in any order.  Thus, two necessary
+(but not sufficient) conditions for a symmetric matrix to be positive
+definite are given here for convenience:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqbf175bf5-bf9d-413b-b41f-a6727b7b79fb"></a><div><img src="graphics/eqbf175bf5-bf9d-413b-b41f-a6727b7b79fb.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(12&#8211;7)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqfc34fb28-3162-4635-a4dd-c8b5b50b3b9e"></a><div><img src="graphics/eqfc34fb28-3162-4635-a4dd-c8b5b50b3b9e.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(12&#8211;8)</b></p></td></tr></table><p>If any of the above determinants are zero (and the rest positive),
+the matrix is said to be positive semidefinite.  If all of the above
+determinants are negative, the matrix is said to be negative definite.</p><div class="sect2" title="12.4.1.&nbsp;Matrices Representing the Complete Structure"><div class="titlepage"><div><div><h3 class="title"><a name="eltmatricesstruct"></a>12.4.1.&nbsp;Matrices Representing the Complete Structure</h3></div></div></div><p>In virtually all circumstances, matrices representing the complete
+structure with the appropriate boundary conditions must be positive
+definite.  If they are not, the message &#8220;NEGATIVE PIVOT .  .
+ .&#8221;  appears.  This usually means that insufficient boundary
+conditions were specified.  An exception is a piezoelectric analysis,
+which works with negative definite matrices, but does not generate
+any error messages.</p></div><div class="sect2" title="12.4.2.&nbsp;Element Matrices"><div class="titlepage"><div><div><h3 class="title"><a name="eltemementmat"></a>12.4.2.&nbsp;Element Matrices</h3></div></div></div><p>Element matrices are often positive semidefinite, but sometimes
+they are either negative or positive definite.  For most cases where
+a negative definite matrix could inappropriately be created, the program
+will abort with a descriptive message.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:28-04:00"><title>17.6.&nbsp;POST1 - Error Approximation Technique</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_post.html" title="Chapter&nbsp;17:&nbsp;Postprocessing"><link rel="prev" href="thy_post6.html" title="17.5.&nbsp;POST1 - Electromagnetic Macros"><link rel="next" href="thy_post8.html" title="17.7.&nbsp;POST1 - Crack Analysis"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="17.6.&nbsp;POST1 - Error Approximation Technique"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="CoyAf2bflmm"></a>17.6.&nbsp;POST1 - Error Approximation Technique</h2></div></div></div><a class="indexterm" name="d0e86609"></a><div class="sect2" title="17.6.1.&nbsp;Error Approximation Technique for Displacement-Based Problems"><div class="titlepage"><div><div><h3 class="title"><a name="postechniqprob"></a>17.6.1.&nbsp;Error Approximation Technique for Displacement-Based Problems</h3></div></div></div><a class="indexterm" name="d0e86615"></a><a class="indexterm" name="d0e86618"></a><a class="indexterm" name="d0e86621"></a><a class="indexterm" name="d0e86626"></a><a class="indexterm" name="d0e86629"></a><a class="indexterm" name="d0e86632"></a><a class="indexterm" name="d0e86635"></a><a class="indexterm" name="d0e86638"></a><a class="indexterm" name="d0e86641"></a><a class="indexterm" name="d0e86644"></a><p>The error approximation technique used by POST1 (<a href="../ans_cmd/Hlp_C_PRERR.html" class="olink"><span class="command"><strong>PRERR</strong></span></a> command) for displacement-based problems is similar to that given
+by Zienkiewicz and Zhu(<a class="xref" href="thy_biblio.html#lsVpf3c0mlg" title="&#34;A Simple Error Estimator and Adaptive Procedure for Practical Engineering Analysis&#34;">[102]</a>).  The essentials
+of the method are summarized below.</p><p>The usual continuity assumption used in many displacement based
+finite element formulations results in a continuous displacement field
+from element to element, but a discontinuous stress field.  To obtain
+more acceptable stresses, averaging of the element nodal stresses
+is done.  Then, returning to the element level, the stresses at each
+node of the element are processed to yield:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqad1a0891-c3d8-4547-a2f1-c32c4384f08e"></a><div><img src="graphics/eqad1a0891-c3d8-4547-a2f1-c32c4384f08e.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;80)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqd1b591e9-e771-4ae3-9a58-76d30cfdfa8e.svg"></span> = stress
+error vector at node n of element i</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-10.000000px"><img src="graphics/eqd7a4f45a-ec1a-4d0f-83fb-eaef963af869.svg"></span> </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eqe0dbb3be-c922-49da-a159-f7f472291a5d.svg"></span> = number of elements connecting
+to node n</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq91c077f0-463f-460c-bc61-84cc53dec70a.svg"></span> = stress vector of node n of element
+i</td></tr></table><p>
+</p><p>Then, for each element</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq90542c19-94a7-497f-9bcd-f68c77921457"></a><div><img src="graphics/eq90542c19-94a7-497f-9bcd-f68c77921457.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;81)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>e<sub>i</sub> =   energy error for element i (accessed
+with <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> (SERR item) command)</td></tr><tr><td>vol = volume of the element (accessed with <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> (VOLU item) command) </td></tr><tr><td>[D] = stress-strain matrix evaluated at reference temperature</td></tr><tr><td>{&#916;&#963;} = stress error vector at points as needed (evaluated
+from all {&#916;&#963;<sub>n</sub>} of this element)</td></tr></table><p>
+</p><p>The energy error over the model is:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq290d171c-ecff-4752-9896-cff7b7128700"></a><div><img src="graphics/eq290d171c-ecff-4752-9896-cff7b7128700.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;82)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>e = energy error over the entire (or part of the) model (accessed
+with <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> (SERSM item) command)</td></tr><tr><td>N<sub>r</sub> = number of elements in model or
+part of model</td></tr></table><p>
+</p><p>The energy error can be normalized against the strain energy.</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq9538d861-d090-44e6-9f68-cd363b06f02b"></a><div><img src="graphics/eq9538d861-d090-44e6-9f68-cd363b06f02b.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;83)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>E = percentage error in energy norm (accessed with <a href="../ans_cmd/Hlp_C_PRERR.html" class="olink"><span class="command"><strong>PRERR</strong></span></a>, <a href="../ans_cmd/Hlp_C_PLDISP.html" class="olink"><span class="command"><strong>PLDISP</strong></span></a>, <a href="../ans_cmd/Hlp_C_PLNSOL.html" class="olink"><span class="command"><strong>PLNSOL</strong></span></a> (U item), <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> (SEPC item) commands)</td></tr><tr><td>U = strain energy over the entire (or part of the) model (accessed
+with <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> (SENSM item) command)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-19.000000px"><img src="graphics/eq7a4fa954-7817-44d2-80b3-06f1adf0904e.svg"></span> </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqd176d8ca-6cb4-4542-8055-534ad81d91e3.svg"></span> = strain energy of element i (accessed
+with <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> (SENE item) command) (see <a class="link" href="thy_tool16.html" title="14.16.&nbsp;Energies">Energies</a>)</td></tr></table><p>
+</p><p>The e<sub>i</sub> values can be used for adaptive
+mesh refinement.  It has been shown by Babuska and Rheinboldt(<a class="xref" href="thy_biblio.html#AuVpf3b1mlg" title="&#34;Analysis of Optimal Finite Element Meshes in R&#34;">[103]</a>) that if e<sub>i</sub> is equal
+for all elements, then the model using the given number of elements
+is the most efficient one.  This concept is also referred to as &#8220;error
+equilibration&#8221;.</p><p>At the bottom of all printed nodal stresses (the <a href="../ans_cmd/Hlp_C_PRNSOL.html" class="olink"><span class="command"><strong>PRNSOL</strong></span></a> or <a href="../ans_cmd/Hlp_C_PRESOL.html" class="olink"><span class="command"><strong>PRESOL</strong></span></a> command), which may consist of the
+6 component stresses, the 5 combined stresses, or both, a summary
+printout labeled:  ESTIMATED BOUNDS CONSIDERING THE EFFECT OF DISCRETIZATION
+ERROR gives minimum nodal values and maximum nodal values.  These
+are:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqbd1f0488-1062-4330-a730-6f1540a57e80"></a><div><img src="graphics/eqbd1f0488-1062-4330-a730-6f1540a57e80.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;84)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq73a3a3b0-7717-40c8-bff7-006a39c83f48"></a><div><img src="graphics/eq73a3a3b0-7717-40c8-bff7-006a39c83f48.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;85)</b></p></td></tr></table><p>where min and max are over the selected nodes, and</p><p>where:  </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq02020e21-2613-4fc9-9b54-6c378690cec4.svg"></span> = nodal minimum of stress quantity (output as VALUE
+(printout) or SMNB (plot))</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eqab8bcc82-b1c8-4f93-aa1c-7c54c4e7bf4f.svg"></span> = nodal maximum of stress quantity (output as VALUE
+(printout) or SMXB (plot) )</td></tr><tr><td>j = subscript to refer to either a particular stress component
+or a particular combined stress</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-21.000000px"><img src="graphics/eq25f367c5-7482-4272-80b4-abc89bec8d29.svg"></span> </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq72c7d9aa-b6c7-4315-950d-1e8abdfbddfb.svg"></span> = average
+of stress quantity j at node n of element attached to node n</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eqd76468a8-16ea-434a-b146-002f41b4587e.svg"></span> = maximum of stress quantity j
+at node n of element attached to node n</td></tr><tr><td>&#916;&#963;<sub>n</sub> = root mean square of
+all &#916;&#963;<sub>i</sub> from elements connecting
+to node n</td></tr><tr><td>&#916;&#963;<sub>i</sub> = maximum absolute value
+of any component of 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqfa52079b-53b3-4d38-b43a-6af45a1aee4d.svg"></span> for all
+nodes connecting to element (accessed with <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> (SDSG item) command)</td></tr></table><p>
+</p></div><div class="sect2" title="17.6.2.&nbsp;Error Approximation Technique for Temperature-Based Problems"><div class="titlepage"><div><div><h3 class="title"><a name="posapproxprob"></a>17.6.2.&nbsp;Error Approximation Technique for Temperature-Based Problems</h3></div></div></div><a class="indexterm" name="d0e86867"></a><a class="indexterm" name="d0e86870"></a><a class="indexterm" name="d0e86875"></a><a class="indexterm" name="d0e86878"></a><p>The error approximation technique used by POST1 (<a href="../ans_cmd/Hlp_C_PRERR.html" class="olink"><span class="command"><strong>PRERR</strong></span></a> command) for temperature based problems is similar to that given
+by Huang and Lewis(<a class="xref" href="thy_biblio.html#kLPh115mlg" title="&#34;Adaptive Analysis for Heat Flow Problems Using Error Estimation Techniques&#34;">[126]</a>).  The essentials
+of the method are summarized below.</p><p>The usual continuity assumption results in a continuous temperature
+field from element to element, but a discontinuous thermal flux field.
+ To obtain more acceptable fluxes, averaging of the element nodal
+thermal fluxes is done.  Then, returning to the element level, the
+thermal fluxes at each node of the element are processed to yield:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq9e586271-afd1-47ae-8fdb-866da8a1ba8a"></a><div><img src="graphics/eq9e586271-afd1-47ae-8fdb-866da8a1ba8a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;86)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eqfb273b19-818c-48e8-a887-22c35d99f5b1.svg"></span> = thermal flux error
+vector at node n of element i</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-10.000000px"><img src="graphics/eq28e2e8a4-76db-4449-a7b9-ba83008b5307.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eqd6743f7e-f1a2-43f0-af27-91a2359ffb53.svg"></span> = number of elements connecting
+to node n</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eq2017c29f-0c42-4419-baf9-d5cd2d617357.svg"></span> = thermal flux vector of node n of element</td></tr></table><p>
+</p><p>Then, for each element</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqb18ae48f-e8b7-4f7c-94f8-d76a5160296d"></a><div><img src="graphics/eqb18ae48f-e8b7-4f7c-94f8-d76a5160296d.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;87)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>e<sub>i</sub> =  energy error for element i (accessed
+with <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> (TERR item) command)</td></tr><tr><td>vol = volume of the element (accessed with <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> (VOLU item) command) </td></tr><tr><td>[D] = conductivity matrix evaluated at reference temperature </td></tr><tr><td>{&#916;q} = thermal flux error vector at points as needed
+(evaluated from all {&#916;q<sub>n</sub>} of this element)</td></tr></table><p>
+</p><p>The energy error over the model is:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqb35f90fb-da93-48eb-8b1a-33423181fa01"></a><div><img src="graphics/eqb35f90fb-da93-48eb-8b1a-33423181fa01.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;88)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>e = energy error over the entire (or part of the) model (accessed
+with <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> (TERSM item) command)</td></tr><tr><td>N<sub>r</sub> = number of elements in model or
+part of model </td></tr></table><p>
+</p><p>The energy error can be normalized against the thermal dissipation
+energy.</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq12155f65-05d2-4ddb-bcbd-1a9402d94500"></a><div><img src="graphics/eq12155f65-05d2-4ddb-bcbd-1a9402d94500.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;89)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>E = percentage error in energy norm (accessed with <a href="../ans_cmd/Hlp_C_PRERR.html" class="olink"><span class="command"><strong>PRERR</strong></span></a>, <a href="../ans_cmd/Hlp_C_PLNSOL.html" class="olink"><span class="command"><strong>PLNSOL</strong></span></a>, (TEMP item) or <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> (TEPC item) commands)</td></tr><tr><td>U = thermal dissipation energy over the entire (or part of
+the) model (accessed with <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> (TENSM item) command)</td></tr><tr><td> 
+<span class="inlineequation" style="&#xA;          vertical-align:-19.000000px"><img src="graphics/eqa695d1cb-12a2-4b74-bc85-2d273180525e.svg"></span> </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqb9b97a87-a4c9-4771-bca0-d68904da5ecf.svg"></span> = thermal dissipation energy of element
+i (accessed with <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> (TENE item) command) (see <a class="link" href="thy_tool16.html" title="14.16.&nbsp;Energies">Energies</a>)</td></tr></table><p>
+</p><p>The e<sub>i</sub> values can be used for adaptive
+mesh refinement.  It has been shown by Babuska and Rheinboldt(<a class="xref" href="thy_biblio.html#AuVpf3b1mlg" title="&#34;Analysis of Optimal Finite Element Meshes in R&#34;">[103]</a>) that if e<sub>i</sub> is equal
+for all elements, then the model using the given number of elements
+is the most efficient one.  This concept is also referred to as &#8220;error
+equilibration&#8221;.</p><p>At the bottom of all printed fluxes (with the <a href="../ans_cmd/Hlp_C_PRNSOL.html" class="olink"><span class="command"><strong>PRNSOL</strong></span></a> command), which consists of the 3 thermal fluxes, a summary printout
+labeled:  ESTIMATED BOUNDS CONSIDERING THE EFFECT OF DISCRETIZATION
+ERROR gives minimum nodal values and maximum nodal values.  These
+are:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq63952cd5-a62b-46b5-a46c-e83181600a06"></a><div><img src="graphics/eq63952cd5-a62b-46b5-a46c-e83181600a06.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;90)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq82b0421e-83cf-4778-9276-63ec0004e3d1"></a><div><img src="graphics/eq82b0421e-83cf-4778-9276-63ec0004e3d1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;91)</b></p></td></tr></table><p>where min and max are over the selected nodes, and</p><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-11.000000px"><img src="graphics/eqcc1a59a3-a7cd-4aa7-b080-61f00657397e.svg"></span> = nodal minimum of thermal flux quantity (output
+as VALUE (printout) or SMNB (plot))</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-11.000000px"><img src="graphics/eqfec55663-6d71-4186-a02a-b55a76f0af6c.svg"></span> = nodal maximum of thermal flux quantity (output
+as VALUE (printout) or SMXB (plot))</td></tr><tr><td>j = subscript to refer to either a particular thermal flux
+component or a particular combined thermal flux</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-23.000000px"><img src="graphics/eqc486505b-c458-43d4-9d4a-0fcc298b9375.svg"></span>
+     </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-11.000000px"><img src="graphics/eqddd41106-2600-4a8d-b94b-f2d6ea1e7ca2.svg"></span> = average
+of thermal flux quantity j at node n of element attached to node n</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-11.000000px"><img src="graphics/eqb8e2f18c-0261-4f0e-bbd1-dc9ed24e9016.svg"></span> = maximum of thermal flux quantity j at
+node n of element attached to node n</td></tr><tr><td>&#916;q<sub>n</sub> = maximum of all &#916;q<sub>i</sub> from elements connecting to node n</td></tr><tr><td>&#916;q<sub>i</sub> = maximum absolute value
+of any component of 
+<span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eq11b99c15-a5b1-4c08-8817-912480a524aa.svg"></span> for all
+nodes connecting to element (accessed with <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> (TDSG item) command)</td></tr></table><p>
+</p></div><div class="sect2" title="17.6.3.&nbsp;Error Approximation Technique for Magnetics-Based Problems"><div class="titlepage"><div><div><h3 class="title"><a name="errormagbased"></a>17.6.3.&nbsp;Error Approximation Technique for Magnetics-Based Problems</h3></div></div></div><p>The error approximation technique used by POST1 (<a href="../ans_cmd/Hlp_C_PRERR.html" class="olink"><span class="command"><strong>PRERR</strong></span></a> command) for magnetics- based problems is similar to that given
+by  Zienkiewicz and Zhu (<a class="xref" href="thy_biblio.html#lsVpf3c0mlg" title="&#34;A Simple Error Estimator and Adaptive Procedure for Practical Engineering Analysis&#34;">[102]</a>) and Huang
+and Lewis (<a class="xref" href="thy_biblio.html#kLPh115mlg" title="&#34;Adaptive Analysis for Heat Flow Problems Using Error Estimation Techniques&#34;">[126]</a>).  The essentials of the method
+are summarized below.</p><p>The usual continuity assumption results in a continuous temperature
+field from element to element, but a discontinuous magnetic flux field.
+ To obtain more acceptable fluxes, averaging of the element nodal
+magnetic fluxes is done.  Then, returning to the element level, the
+magnetic fluxes at each node of the element are processed to yield:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq17c87f59-0c25-4c6d-9e0f-6527d4c3ca24"></a><div><img src="graphics/eq17c87f59-0c25-4c6d-9e0f-6527d4c3ca24.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;92)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqecbdbd29-2340-437a-b67e-ecc91775e3a3.svg"></span> = magnetic flux error
+vector at node n of element i</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-10.000000px"><img src="graphics/eqe33a98fc-1a1d-438b-90f5-122310908461.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eq3985f673-b2e6-4541-b04c-b9549c82b917.svg"></span> = number of elements connecting
+to node n</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqb4d06397-10cd-4fc7-9695-b809457feff0.svg"></span> = magnetic flux vector of node n of element</td></tr></table><p>
+</p><p>Then, for each element</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq55a27083-a15b-4700-83fb-461410f1d7a6"></a><div><img src="graphics/eq55a27083-a15b-4700-83fb-461410f1d7a6.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;93)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>e<sub>i</sub> =  energy error for element i (accessed
+with <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> (BERR item) command)</td></tr><tr><td>vol = volume of the element (accessed with <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> (VOLU item) command) </td></tr><tr><td>[D] = magnetic conductivity matrix evaluated at reference
+temperature </td></tr><tr><td>{&#916;B} = magnetic flux error vector at points as needed
+(evaluated from all {&#916;B<sub>n</sub>} of this element)</td></tr></table><p>
+</p><p>The energy error over the model is:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq0c35598c-0688-4e1b-8452-07b601b0d447"></a><div><img src="graphics/eq0c35598c-0688-4e1b-8452-07b601b0d447.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;94)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>e = energy error over the entire (or part of the) model (accessed
+with <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> (BERSM item) command)</td></tr><tr><td>N<sub>r</sub> = number of elements in model or
+part of model </td></tr></table><p>
+</p><p>The energy error can be normalized against the magnetic energy.</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq6c5c72a7-1a31-4c30-b806-a4882c6682b7"></a><div><img src="graphics/eq6c5c72a7-1a31-4c30-b806-a4882c6682b7.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;95)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>E = percentage error in energy norm (accessed with <a href="../ans_cmd/Hlp_C_PRERR.html" class="olink"><span class="command"><strong>PRERR</strong></span></a>, <a href="../ans_cmd/Hlp_C_PLNSOL.html" class="olink"><span class="command"><strong>PLNSOL</strong></span></a>, (TEMP item) or <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> (BEPC item) commands)</td></tr><tr><td>U = magnetic energy over the entire (or part of the) model
+(accessed with <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> (BENSM item) command)</td></tr><tr><td> 
+<span class="inlineequation" style="&#xA;          vertical-align:-19.000000px"><img src="graphics/eqaed64d23-29df-42e2-a535-923cb448006d.svg"></span> </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqe7f03fbe-9da9-4256-ba41-0476d40995d5.svg"></span> = magnetic energy of element i (accessed
+with <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> (SENE item) command) (see <a class="link" href="thy_tool16.html" title="14.16.&nbsp;Energies">Energies</a>)</td></tr></table><p>
+</p><p>The e<sub>i</sub> values can be used for adaptive
+mesh refinement.  It has been shown by Babuska and Rheinboldt(<a class="xref" href="thy_biblio.html#AuVpf3b1mlg" title="&#34;Analysis of Optimal Finite Element Meshes in R&#34;">[103]</a>) that if e<sub>i</sub> is equal
+for all elements, then the model using the given number of elements
+is the most efficient one.  This concept is also referred to as &#8220;error
+equilibration&#8221;.</p><p>At the bottom of all printed fluxes (with the <a href="../ans_cmd/Hlp_C_PRNSOL.html" class="olink"><span class="command"><strong>PRNSOL</strong></span></a> command), which consists of the 3 magnetic fluxes, a summary printout
+labeled:  ESTIMATED BOUNDS CONSIDERING THE EFFECT OF DISCRETIZATION
+ERROR gives minimum nodal values and maximum nodal values.  These
+are:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq2372aa84-031c-415f-af21-4553d9fd5135"></a><div><img src="graphics/eq2372aa84-031c-415f-af21-4553d9fd5135.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;96)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq6f4fe680-c868-490c-9f4d-ddee9ac379c9"></a><div><img src="graphics/eq6f4fe680-c868-490c-9f4d-ddee9ac379c9.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;97)</b></p></td></tr></table><p>where min and max are over the selected nodes, and</p><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq5e0c6c46-68c9-466c-aaf6-bc57ebab5816.svg"></span> = nodal minimum of magnetic flux quantity (output
+as VALUE (printout))</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq43c4e909-b0eb-4124-8364-256007062065.svg"></span> = nodal maximum of magnetic flux quantity (output
+as VALUE (printout))</td></tr><tr><td>j = subscript to refer to either a particular magnetic flux
+component or a particular combined magnetic flux</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-22.000000px"><img src="graphics/eqa81ad77a-950f-4b83-8aec-2e6fb091de63.svg"></span>
+     </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqff7efa87-a77b-41b7-868e-cfa82707d4cc.svg"></span> = average
+of magnetic flux quantity j at node n of element attached to node
+n</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq6850f49e-bdf2-44fb-bb4d-f036daea4966.svg"></span> = maximum of magnetic flux quantity j at
+node n of element attached to node n</td></tr><tr><td>&#916;B<sub>n</sub> = maximum of all &#916;B<sub>i</sub> from elements connecting to node n</td></tr><tr><td>&#916;B<sub>i</sub> = maximum absolute value
+of any component of 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq819600cf-cd1a-4a51-94c3-5c9af1094a5a.svg"></span> for all
+nodes connecting to element (accessed with <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> (BDSG item) command)</td></tr></table><p>
+</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

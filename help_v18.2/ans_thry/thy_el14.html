@@ -1,0 +1,80 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:22-04:00"><title>13.14.&nbsp;COMBIN14 - Spring-Damper</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el13.html" title="13.13.&nbsp;PLANE13 - 2-D Coupled-Field Solid"><link rel="next" href="thy_el15.html" title="13.15.&nbsp;Reserved for Future Use"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.14.&nbsp;COMBIN14 - Spring-Damper"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thycombin14"></a>13.14.&nbsp;COMBIN14 - Spring-Damper</h2></div></div></div><div><img src="graphics/gthy14-14-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="168" class="col1"><col width="96" class="COLSPEC1"><col width="216" class="col2"><col width="144" class="col3"></colgroup><thead><tr><th align="center" valign="top">Matrix or Vector</th><th align="center" valign="middle">Option</th><th align="center" valign="top">Shape Functions[<a class="xref" href="thy_el14.html#combin14springnote1">1</a>]</th><th align="center" valign="top">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration Points</a>
+</th></tr></thead><tbody><tr><td rowspan="2" valign="middle">Stiffness
+and Damping Matrices</td><td valign="middle">Longitudinal</td><td>
+<a class="xref" href="thy_shp2.html#thyeq1wordof3dnov2101" title="(11&#8211;6)">Equation&nbsp;11&#8211;6</a>
+</td><td align="center">None</td></tr><tr><td valign="middle">Torsional</td><td>
+<a class="xref" href="thy_shp2.html#thyeq4rdofbeam4nov2101" title="(11&#8211;18)">Equation&nbsp;11&#8211;18</a>
+</td><td align="center">None</td></tr><tr><td>Stress
+Stiffening Matrix</td><td valign="middle">Longitudinal</td><td>
+<a class="xref" href="thy_shp2.html#thyeq2wordof3dnov2101" title="(11&#8211;7)">Equation&nbsp;11&#8211;7</a>, and <a class="xref" href="thy_shp2.html#thyeq3wordof3dnov2101" title="(11&#8211;8)">Equation&nbsp;11&#8211;8</a>
+</td><td align="center">None</td></tr></tbody></table></div><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="combin14springnote1"></a>There are no shape functions
+used if the element is input on a one DOF per node basis (KEYOPT(2) &gt;
+0) as the nodes may be coincident.</p></li></ol></div><div class="sect2" title="13.14.1.&nbsp;Types of Input"><div class="titlepage"><div><div><h3 class="title"><a name="combin14types"></a>13.14.1.&nbsp;Types of Input</h3></div></div></div><p>COMBIN14 essentially offers two types of elements, selected
+with KEYOPT(2). </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Single DOF per node (KEYOPT(2) &gt; 0).  The orientation
+is defined by the value of KEYOPT(2) and the two nodes are usually
+coincident. </p></li><li class="listitem"><p>Multiple DOFs per node (KEYOPT(2) = 0).  The orientation
+is defined by the location of the two nodes; therefore, the two nodes
+must not be coincident. </p></li></ol></div></div><div class="sect2" title="13.14.2.&nbsp;Stiffness Pass"><div class="titlepage"><div><div><h3 class="title"><a name="combin14stiffness"></a>13.14.2.&nbsp;Stiffness Pass</h3></div></div></div><p>Consider the case of a single DOF per node first.  The orientation
+is selected with KEYOPT(2).  If KEYOPT(2) = 7 (pressure) or = 8 (temperature),
+the concept of orientation does not apply.  The form of the element
+stiffness and damping matrices are: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1combin14nov2801"></a><div><img src="graphics/thyeq1combin14nov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;9)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2combin14nov2801"></a><div><img src="graphics/thyeq2combin14nov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;10)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqef440d00-a8d4-4c1d-bf86-c6aef1a8eaa9.svg"></span> = stiffness (input as K on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq22e342e8-9027-4d4d-b68b-266302c49806.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqb22f4417-affe-4a35-9b22-810a59bb11d1.svg"></span> = constant damping coefficient (input as CV1 on
+      <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq50350a46-623f-4c60-b2e0-f60b6db43767.svg"></span> = linear damping coefficient (input as CV2 on
+      <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq58d6cfff-12d3-4fdc-bd52-b4cf7bb71c28.svg"></span> = relative velocity between nodes computed from the nodal
+     Newmark velocities </td></tr></table><p>
+</p><p>In full harmonic, full transient, and static analyses, when the
+   stiffness and damping real constants are input as table parameters, the stiffness (<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqcaa314c4-5412-4310-ada7-3641e2e312cf.svg"></span>) and damping (<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq8f7fef57-3a25-4544-be4d-79c3e7a8ecf6.svg"></span>) coefficients are interpolated at each frequency or time step.</p><p>Next, consider the case of multiple DOFs per node.  Only the
+case with three DOFs per node will be discussed, as the case with
+two DOFs per node is simply a subset.  The stiffness, damping, and
+stress stiffness matrices in element coordinates are developed as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3combin14nov2801"></a><div><img src="graphics/thyeq3combin14nov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;11)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq4combin14nov2801"></a><div><img src="graphics/thyeq4combin14nov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;12)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq5combin14nov2801"></a><div><img src="graphics/thyeq5combin14nov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;13)</b></p></td></tr></table><p>where subscript 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq167980b2-bca5-4b60-8780-de598a4b2c36.svg"></span> refers to
+element coordinates.</p><p>and where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqc18a4e47-a04a-42df-b775-229c97938dfd.svg"></span> = force in element from previous iteration </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqafa2cf3c-170f-4097-b37f-98252dfc6ceb.svg"></span> = distance between the two nodes </td></tr></table><p>
+</p><p>There are some special notes that apply to the torsion case
+(KEYOPT(3) = 1): </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Rotations are simply treated as a vector quantity.
+ No other effects (including displacements) are implied. </p></li><li class="listitem"><p>In a large rotation problem (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON), the coordinates do not get updated, as the nodes only rotate.
+ (They may translate on other elements, but this does not affect COMBIN14
+with KEYOPT(3) = 1).  Therefore, there are no large rotation effects. </p></li><li class="listitem"><p>Similarly, as there is no axial force computed, no
+stress stiffness matrix is computed. </p></li></ol></div></div><div class="sect2" title="13.14.3.&nbsp;Output Quantities"><div class="titlepage"><div><div><h3 class="title"><a name="combin14output"></a>13.14.3.&nbsp;Output Quantities</h3></div></div></div><p>The stretch is computed as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq6combin14nov2801"></a><div><img src="graphics/thyeq6combin14nov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;14)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq0bb7f709-a6ff-41ca-a623-c2c521a65b06.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-3.000000px"><img src="graphics/eqa1b9a8d4-7311-4b3a-9f18-0cfda042a41f.svg"></span> = coordinates in global Cartesian coordinates </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-3.000000px"><img src="graphics/eq64d3fa82-5ff5-4ee9-8ffe-164db22ce49d.svg"></span> = displacements in global Cartesian coordinates </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-3.000000px"><img src="graphics/eq62e41852-8596-45e7-98b1-289d56c0fbe1.svg"></span> = displacements in nodal Cartesian coordinates (UX, UY,
+     UZ) </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqd88a1c6d-c040-42e8-8d35-97775ecafd77.svg"></span> = rotations in nodal Cartesian coordinates (ROTX, ROTY,
+     ROTZ)</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqf4936ce1-27f7-4d44-9bc4-1c0cb6a4c302.svg"></span> = pressure (PRES) </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqc119a913-f848-45cc-9dac-845cb6de8d51.svg"></span> = temperature (TEMP) </td></tr></table><p>
+</p><p>If KEYOPT(3) = 1 (torsion), the expression for <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq941788fa-9460-44a6-a37f-072b2881afa4.svg"></span> has rotation instead of translations, and
+     <span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eqd31298ef-d0ca-4c10-a7ea-c9690eed4337.svg"></span> is output as TWIST. Next, the static force (or torque) is
+   computed: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq7combin14nov2801"></a><div><img src="graphics/thyeq7combin14nov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;15)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eqdea9f702-eb5a-44ab-a35e-aef44c220b89.svg"></span> = static force (or torque) (output as FORC (TORQ if
+    KEYOPT(3) = 1)) </td></tr></table><p>Finally, if a nonlinear transient dynamic (<a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,TRANS, with <a href="../ans_cmd/Hlp_C_TIMINT.html" class="olink"><span class="command"><strong>TIMINT</strong></span></a>,ON) analysis is performed,
+a damping force is computed: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq8combin14nov2801"></a><div><img src="graphics/thyeq8combin14nov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;16)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqbdefa0aa-6b2b-4706-b200-c3e0511ab00f.svg"></span> = damping force (or torque) (output as DAMPING FORCE
+     (DAMPING TORQUE if KEYOPT(3) = 1)) </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq74db619e-c7cc-4dba-b83a-21a12ee6d05d.svg"></span> = relative velocity </td></tr></table><p>
+</p><p> relative velocity is computed using <a class="xref" href="thy_el14.html#thyeq6combin14nov2801" title="(13&#8211;14)">Equation&nbsp;13&#8211;14</a>, where the nodal
+   displacements <span class="inlineequation" style="&#xA;          vertical-align:-3.000000px"><img src="graphics/eqbfc7ecde-aeb4-45eb-a108-6f9009ec8114.svg"></span>, etc. are replaced with the nodal Newmark velocities
+    
+<span class="inlineequation" style="&#xA;          vertical-align:-3.000000px"><img src="graphics/eq62dc2505-8c26-4fbb-9970-019a440faf9d.svg"></span>, etc. </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

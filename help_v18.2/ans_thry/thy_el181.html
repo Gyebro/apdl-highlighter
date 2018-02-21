@@ -1,0 +1,55 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:40-04:00"><title>13.181.&nbsp;SHELL181 - 4-Node Shell</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el180.html" title="13.180.&nbsp;LINK180 - 3-D Spar (or Truss)"><link rel="next" href="thy_el182.html" title="13.182.&nbsp;PLANE182 - 2-D 4-Node Structural Solid"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.181.&nbsp;SHELL181 - 4-Node Shell"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thyshell181"></a>13.181.&nbsp;SHELL181 - 4-Node Shell</h2></div></div></div><div><img src="graphics/gthy14-181-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="168" class="col1"><col width="264" class="col2"><col width="192" class="col3"></colgroup><thead><tr><th align="center" valign="top">Matrix or Vector</th><th align="center" valign="top">Shape Functions</th><th align="center" valign="top">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration Points</a>
+</th></tr></thead><tbody><tr><td valign="middle">Stiffness Matrix;
+and Thermal Load Vector</td><td valign="middle">
+<a class="xref" href="thy_shp5.html#thyeq1q4nov2601" title="(11&#8211;69)">Equation&nbsp;11&#8211;69</a>, <a class="xref" href="thy_shp5.html#thyeq2q4nov2601" title="(11&#8211;70)">Equation&nbsp;11&#8211;70</a>, <a class="xref" href="thy_shp5.html#thyeq3q4nov2601" title="(11&#8211;71)">Equation&nbsp;11&#8211;71</a>, <a class="xref" href="thy_shp5.html#thyeq1273a" title="(11&#8211;72)">Equation&nbsp;11&#8211;72</a>, <a class="xref" href="thy_shp5.html#thyeq1273b" title="(11&#8211;73)">Equation&nbsp;11&#8211;73</a>, and <a class="xref" href="thy_shp5.html#thyeq1273c" title="(11&#8211;74)">Equation&nbsp;11&#8211;74</a>
+</td><td>
+<div class="literallayout"><p>In-plane:&nbsp;&nbsp;<br>
+1&nbsp;x&nbsp;1&nbsp;(KEYOPT(3)&nbsp;=&nbsp;0)<br>
+2&nbsp;x&nbsp;2&nbsp;(KEYOPT(3)&nbsp;=&nbsp;2)</p></div>
+<div class="literallayout"><p><br>
+Thru-the-thickness:<br>
+1,&nbsp;3,&nbsp;5,&nbsp;7,&nbsp;or&nbsp;9&nbsp;per&nbsp;layer&nbsp;for<br>
+data&nbsp;input&nbsp;for&nbsp;section&nbsp;general<br>
+shell&nbsp;option&nbsp;(KEYOPT(1)&nbsp;=&nbsp;0)<br>
+<br>
+Thru-the-thickness:<br>
+1&nbsp;per&nbsp;layer&nbsp;for&nbsp;section&nbsp;data<br>
+input&nbsp;for&nbsp;membrane&nbsp;shell<br>
+option&nbsp;(KEYOPT(1)&nbsp;=&nbsp;1)</p></div>
+
+</td></tr><tr><td>Consistent Mass and Stress Stiffness Matrices</td><td>
+<a class="xref" href="thy_shp5.html#thyeq1q4nov2601" title="(11&#8211;69)">Equation&nbsp;11&#8211;69</a>, <a class="xref" href="thy_shp5.html#thyeq2q4nov2601" title="(11&#8211;70)">Equation&nbsp;11&#8211;70</a>, <a class="xref" href="thy_shp5.html#thyeq3q4nov2601" title="(11&#8211;71)">Equation&nbsp;11&#8211;71</a>, <a class="xref" href="thy_shp5.html#thyeq1273a" title="(11&#8211;72)">Equation&nbsp;11&#8211;72</a>, <a class="xref" href="thy_shp5.html#thyeq1273b" title="(11&#8211;73)">Equation&nbsp;11&#8211;73</a>, and <a class="xref" href="thy_shp5.html#thyeq1273c" title="(11&#8211;74)">Equation&nbsp;11&#8211;74</a>
+</td><td>Closed form integration</td></tr><tr><td>Lumped Mass Matrix</td><td>
+<a class="xref" href="thy_shp5.html#thyeq1q4nov2601" title="(11&#8211;69)">Equation&nbsp;11&#8211;69</a>, <a class="xref" href="thy_shp5.html#thyeq2q4nov2601" title="(11&#8211;70)">Equation&nbsp;11&#8211;70</a>, <a class="xref" href="thy_shp5.html#thyeq3q4nov2601" title="(11&#8211;71)">Equation&nbsp;11&#8211;71</a>
+</td><td>Closed form integration</td></tr><tr><td>Transverse Pressure Load Vector</td><td>
+<a class="xref" href="thy_shp5.html#thyeq3q4nov2601" title="(11&#8211;71)">Equation&nbsp;11&#8211;71</a>
+</td><td align="center">2 x 2</td></tr><tr><td>Edge Pressure Load Vector</td><td>
+<a class="xref" href="thy_shp5.html#thyeq1q4nov2601" title="(11&#8211;69)">Equation&nbsp;11&#8211;69</a> and <a class="xref" href="thy_shp5.html#thyeq2q4nov2601" title="(11&#8211;70)">Equation&nbsp;11&#8211;70</a> specialized to the edge </td><td align="center">2</td></tr></tbody></table></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="COLSPEC50"><col width="432" class="COLSPEC51"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Load Type</th><th align="center" valign="middle">Distribution</th></tr></thead><tbody><tr valign="middle"><td valign="middle">Element Temperature</td><td valign="middle">Bilinear in plane of element, linear thru each layer</td></tr><tr valign="middle"><td valign="middle">Nodal Temperature</td><td valign="middle">Bilinear in
+plane of element, constant thru thickness</td></tr><tr valign="middle"><td valign="middle">Pressure</td><td valign="middle">Bilinear in plane of
+element and linear along each edge</td></tr></tbody></table></div><p>References: Ahmad(<a class="xref" href="thy_biblio.html#aBygfdamlg" title="&#34;Analysis of Thick and Thin Shell Structures by Curved Finite Elements&#34;">[1]</a>), Cook(<a class="xref" href="thy_biblio.html#eBygf35bmlg" title="Concepts and Applications of Finite Element Analysis, Second Edition">[5]</a>), Dvorkin(<a class="xref" href="thy_biblio.html#kCygf3d4mlg" title="&#34;On Nonlinear Finite Element Analysis of Shell Structures&#34;">[96]</a>),
+Dvorkin(<a class="xref" href="thy_biblio.html#aDygf274mlg" title="&#34;A Continuum Mechanics Based Four-Node Shell Element for General Nonlinear Analysis&#34;">[97]</a>), Bathe and Dvorkin(<a class="xref" href="thy_biblio.html#JDygf1e8mlg" title="&#34;A Formulation of General Shell Elements - The Use of Mixed Interpolation of Tensorial Components&#34;">[98]</a>), Allman(<a class="xref" href="thy_biblio.html#dDygf3ccmlg" title="&#34;A Compatible Triangular Element Including Vertex Rotations for Plane Elasticity Analysis&#34;">[113]</a>), Cook(<a class="xref" href="thy_biblio.html#qDygfafmlg" title="&#34;On the Allman Triangle and a Related Quadrilateral Element&#34;">[114]</a>), MacNeal and Harder(<a class="xref" href="thy_biblio.html#aEygf347mlg" title="&#34;A Refined For-Noded Membrane Element with Rotational Degrees of Freedom&#34;">[115]</a>) </p><div class="sect2" title="13.181.1.&nbsp;Other Applicable Sections"><div class="titlepage"><div><div><h3 class="title"><a name="shell181other"></a>13.181.1.&nbsp;Other Applicable Sections</h3></div></div></div><p>
+<a class="xref" href="thy_str.html" title="Chapter&nbsp;2:&nbsp;Structures">Structures</a> describes the derivation of
+structural element matrices and load vectors as well as stress evaluations.</p></div><div class="sect2" title="13.181.2.&nbsp;Assumptions and Restrictions"><div class="titlepage"><div><div><h3 class="title"><a name="shell181assump"></a>13.181.2.&nbsp;Assumptions and Restrictions</h3></div></div></div><p>Normals to the centerplane are assumed to remain straight after
+deformation, but not necessarily normal to the centerplane. </p><p>Each set of integration points thru a layer (in the r direction)
+is assumed to have the same element (material) orientation.</p></div><div class="sect2" title="13.181.3.&nbsp;Assumed Displacement Shape Functions"><div class="titlepage"><div><div><h3 class="title"><a name="shell181assumed"></a>13.181.3.&nbsp;Assumed Displacement Shape Functions</h3></div></div></div><p>The assumed displacement and transverse shear strain shape functions
+are given in <a class="xref" href="thy_shp.html" title="Chapter&nbsp;11:&nbsp;Shape Functions">Shape Functions</a>.  The basic functions
+for the transverse shear strain have been changed to avoid shear locking
+(Dvorkin(<a class="xref" href="thy_biblio.html#kCygf3d4mlg" title="&#34;On Nonlinear Finite Element Analysis of Shell Structures&#34;">[96]</a>), Dvorkin(<a class="xref" href="thy_biblio.html#aDygf274mlg" title="&#34;A Continuum Mechanics Based Four-Node Shell Element for General Nonlinear Analysis&#34;">[97]</a>), Bathe and Dvorkin(<a class="xref" href="thy_biblio.html#JDygf1e8mlg" title="&#34;A Formulation of General Shell Elements - The Use of Mixed Interpolation of Tensorial Components&#34;">[98]</a>)). </p></div><div class="sect2" title="13.181.4.&nbsp;Membrane Option"><div class="titlepage"><div><div><h3 class="title"><a name="shell181memopt"></a>13.181.4.&nbsp;Membrane Option</h3></div></div></div><p>A membrane option is available for <a href="../ans_elem/Hlp_E_SHELL181.html" class="olink"><span class="structname">SHELL181</span></a> if KEYOPT(1) = 1. For this option, there is no bending stiffness
+or rotational degrees of freedom. There is only one integration point
+per layer, regardless of other input.</p></div><div class="sect2" title="13.181.5.&nbsp;Warping"><div class="titlepage"><div><div><h3 class="title"><a name="shell181warp"></a>13.181.5.&nbsp;Warping</h3></div></div></div><p>A warping factor is computed as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq0519735a-fb42-4377-9ce8-500228435283"></a><div><img src="graphics/eq0519735a-fb42-4377-9ce8-500228435283.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;346)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>D = component of the vector from the first node to the fourth
+node parallel to the element normal</td></tr><tr><td>t = average thickness of the element</td></tr></table><p>
+</p><p>If &#966; &gt; 1.0, a warning message is printed.</p></div><div class="sect2" title="13.181.6.&nbsp;Shear Correction"><div class="titlepage"><div><div><h3 class="title"><a name="shell181shear"></a>13.181.6.&nbsp;Shear Correction</h3></div></div></div><p>The element uses an equivalent energy method to compute shear-correction
+factors. These factors are predetermined based on the section lay-up
+at the start of solution.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

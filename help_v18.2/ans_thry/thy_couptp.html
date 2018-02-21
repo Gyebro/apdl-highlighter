@@ -1,0 +1,60 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:10-04:00"><title>10.3.&nbsp;Thermoplasticity</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_coup.html" title="Chapter&nbsp;10:&nbsp;Coupling"><link rel="prev" href="thy_coup6.html" title="10.2.&nbsp;Thermoelasticity"><link rel="next" href="thy_coup2.html" title="10.4.&nbsp;Piezoelectrics"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="10.3.&nbsp;Thermoplasticity"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="coupl_thermoplas"></a>10.3.&nbsp;Thermoplasticity</h2></div></div></div><p>The capability to do a thermoplastic analysis exists in the
+following elements:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_elem/Hlp_E_PLANE222.html" class="olink"><span class="structname">PLANE222</span></a> - 2-D 4-Node
+                Coupled-Field Solid</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_PLANE223.html" class="olink"><span class="structname">PLANE223</span></a> - 2-D 8-Node Coupled-Field
+Solid</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_SOLID226.html" class="olink"><span class="structname">SOLID226</span></a> - 3-D 20-Node Coupled-Field
+Solid</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_SOLID227.html" class="olink"><span class="structname">SOLID227</span></a> - 3-D 10-Node Coupled-Field
+Solid</td></tr></table><p>These elements support the thermoplastic effect which manifests
+itself as an increase in temperature during plastic deformation due
+to the conversion of some of the plastic work into heat. </p><p>In a thermoplastic analysis, the stress equation of motion (<a class="xref" href="thy_str2.html#thyeq10dervnov1501" title="(2&#8211;51)">Equation&nbsp;2&#8211;51</a>) and heat flow conservation equation
+(<a class="xref" href="thy_heat1.html#thyeq1conductnov1601" title="(6&#8211;1)">Equation&nbsp;6&#8211;1</a>) are coupled by the plastic
+heat density rate 
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eq9cae77a9-a424-43e1-917b-31e43e9e7b39.svg"></span> defined as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqfc9240f2-1b39-494e-abc3-b32f04462c29"></a><div><img src="graphics/eqfc9240f2-1b39-494e-abc3-b32f04462c29.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;40)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#946; = fraction of plastic work 
+
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq76a41448-4b2b-4a4b-bee1-d7f7bdb8764d.svg"></span>
+coefficient (input as QRATE on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command) </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq16a689bb-4733-43ea-9bed-45e4b76b9cf2.svg"></span> = plastic work rate = 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqa061aa9c-361c-4da7-9d0b-faec682bba5b.svg"></span>
+</td></tr></table><p>
+</p><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq9cd8a5f0-e2cd-4b33-b334-8699bb872e60.svg"></span> = stress
+vector = 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqd9288290-f24c-4e6f-8180-ab8a3fcd75b4.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqd61e501f-dc7a-4878-b0ca-0d0e75c9e6b2.svg"></span> = plastic strain vector = 
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqee10364f-a636-4818-93d6-8ec35a2157bf.svg"></span>
+</td></tr></table><p>
+</p><p>The coupled-field finite element matrix equation for the thermoplastic
+analysis is: 
+<span class="inlineequation" style="&#xA;          vertical-align:-21.000000px"><img src="graphics/eq4af243bd-10a2-493b-b9cc-1a43e3ffc3f1.svg"></span>
+</p><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>[M] = element mass matrix (defined by <a class="xref" href="thy_str2.html#thyeq17dervnov1501" title="(2&#8211;58)">Equation&nbsp;2&#8211;58</a>)</td></tr><tr><td>[C] = element structural damping matrix (discussed in <a class="xref" href="thy_tool3.html" title="14.3.&nbsp;Damping Matrices">Damping Matrices</a>)</td></tr><tr><td>[K] = element stiffness matrix (defined by <a class="xref" href="thy_str2.html#thyeq17dervnov1501" title="(2&#8211;58)">Equation&nbsp;2&#8211;58</a>)</td></tr><tr><td>{u} = displacement vector</td></tr><tr><td>{F} = sum of the element nodal force (defined by <a class="xref" href="thy_str2.html#thyeq15dervnov1501" title="(2&#8211;56)">Equation&nbsp;2&#8211;56</a>) and element pressure (defined by <a class="xref" href="thy_str2.html#thyeq17dervnov1501" title="(2&#8211;58)">Equation&nbsp;2&#8211;58</a>) vectors</td></tr><tr><td>[C<sup>t</sup>] = element specific heat matrix
+(defined by <a class="xref" href="thy_heat2.html#thyeq7derivnov2601" title="(6&#8211;22)">Equation&nbsp;6&#8211;22</a>)</td></tr><tr><td>[K<sup>t</sup>] = element diffusion conductivity
+matrix (defined by <a class="xref" href="thy_heat2.html#thyeq7derivnov2601" title="(6&#8211;22)">Equation&nbsp;6&#8211;22</a>)</td></tr><tr><td>{T} = temperature vector</td></tr><tr><td>{Q} = sum of the element heat generation rate load and element
+convection surface heat flow vectors (defined by <a class="xref" href="thy_heat2.html#thyeq7derivnov2601" title="(6&#8211;22)">Equation&nbsp;6&#8211;22</a>)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqc006c3b2-1fed-4081-8d9e-11d05fd2fae9.svg"></span> = element plastic heat generation
+rate load = 
+<span class="inlineequation" style="&#xA;          vertical-align:-18.000000px"><img src="graphics/eqfe4121c7-1ed6-46ad-b1b0-b9f28c509a51.svg"></span>
+</td></tr></table><p>
+</p><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eqef9ffa96-af2c-42a2-9b61-14fb994380bb.svg"></span> = element plastic heat density rate at substep n
+(output as NMISC,5)</td></tr><tr><td>{N} = element shape functions</td></tr></table><p>
+</p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

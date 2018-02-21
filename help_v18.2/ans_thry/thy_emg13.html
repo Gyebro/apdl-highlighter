@@ -1,0 +1,52 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:01-04:00"><title>5.8.&nbsp;Conductance Computation</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_emg.html" title="Chapter&nbsp;5:&nbsp;Electromagnetics"><link rel="prev" href="thy_emg10.html" title="5.7.&nbsp;Capacitance Computation"><link rel="next" href="thy_elec_hall.html" title="5.9.&nbsp;Hall Effect"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="5.8.&nbsp;Conductance Computation"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="dv1693mpg"></a>5.8.&nbsp;Conductance Computation</h2></div></div></div><a class="indexterm" name="d0e20656"></a><a class="indexterm" name="d0e20659"></a><p>Conductance computation is one of the primary goals of an electrostatic
+analysis.  For the definition of ground (partial) and lumped conductance
+matrices see Vago and Gyimesi(<a class="xref" href="thy_biblio.html#bQWu112jjw" title="Electromagnetic Fields">[240]</a>).  The
+knowledge of conductance is essential in the design of electrostatic
+devices, Micro Electro Mechanical Systems (MEMS), transmission lines,
+printed circuit boards (PCB), electromagnetic interference and compatibility
+(EMI/EMC) etc.  The computed capacitance can be the input of a subsequent
+MEMS analysis using the electrostructural transducer element TRANS126;
+for theory see <a class="xref" href="thy_el126.html" title="13.126.&nbsp;TRANS126 - Electromechanical Transducer">TRANS126 - Electromechanical Transducer</a>. </p><p>The conductance matrix of an electrostatic system can be computed
+(by the <a href="../ans_cmd/Hlp_C_GMATRIX.html" class="olink"><span class="command"><strong>GMATRIX</strong></span></a> command macro).  The conductance
+calculation is based on the energy principle.  For details see Gyimesi
+and Ostergaard(<a class="xref" href="thy_biblio.html#AZWu17bjjw" title="&#34;Capacitance Computation with Ammeter Element&#34;">[250]</a>), and for its successful application, see Hieke(<a class="xref" href="thy_biblio.html#VZWu1e6jjw" title="&#34;ANSYS APDL for Capacitance&#34;">[252]</a>).  The energy principle constitutes
+the basis for inductance matrix computation, as shown in <a class="xref" href="thy_emg6.html" title="5.5.&nbsp;Inductance, Flux and Energy Computation">Inductance, Flux and Energy Computation</a>. </p><p>The electrostatic energy of a linear three conductor (the third
+is ground) system is:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="conductcompeq1"></a><div><img src="graphics/conductcompeq1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;184)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>W = electrostatic energy </td></tr><tr><td>V<sub>1</sub> = potential of first conductor with
+respect to ground</td></tr><tr><td>V<sub>2</sub> = potential of second conductor
+with respect to ground</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq8c639631-68a2-4d43-9bac-5bd47e651a3c.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq65ad1c24-30ae-46c6-91bb-7d170af625f7.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq397fa3c9-8676-4d58-9aa0-cc544dfb9cde.svg"></span>
+</td></tr></table><p>
+</p><p>By applying appropriate voltages on conductors, the coefficients
+of the ground conductance matrix can be calculated from the stored
+static energy. </p><p>The currents in the conductors are:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="conductcompeq2"></a><div><img src="graphics/conductcompeq2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;185)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="conductcompeq3"></a><div><img src="graphics/conductcompeq3.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;186)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>I<sub>1</sub> = current in first conductor</td></tr><tr><td>I<sub>2</sub> = current in second conductor</td></tr></table><p>
+</p><p>The currents can be expressed by potential differences, too: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="conductcompeq4"></a><div><img src="graphics/conductcompeq4.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;187)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="conductcompeq5"></a><div><img src="graphics/conductcompeq5.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;188)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq29596d43-0b87-4801-bfc8-7f36d6582152.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq2611faa3-6737-4f70-9892-c6a5732160e6.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqc2365c3b-2446-4ddc-9a96-dc9eefe47429.svg"></span>
+</td></tr></table><p>
+</p><p>The lumped conductances can be obtained by lumped conductors
+as shown in <a class="xref" href="thy_emg13.html#dv-1693mpgfig1" title="Figure&nbsp;5.5:&nbsp;&nbsp;Lumped Conductor Model of Two Conductors and Ground">Figure&nbsp;5.5:&nbsp;Lumped Conductor Model of Two Conductors and Ground</a>.  Lumped conductances
+are suitable for use in circuit simulators.</p><div class="figure"><a name="dv-1693mpgfig1"></a><p class="title"><b>Figure&nbsp;5.5:&nbsp;&nbsp;Lumped Conductor Model of Two Conductors and Ground</b></p><div class="figure-contents"><div><img src="graphics/gthy5-494.svg" alt="Lumped Conductor Model of Two Conductors and Ground"></div></div></div><br class="figure-break"></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

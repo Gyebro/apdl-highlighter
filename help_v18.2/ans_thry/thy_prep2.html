@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:24-04:00"><title>16.2.&nbsp;Fourier Coefficient Evaluation</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_prep.html" title="Chapter&nbsp;16:&nbsp;Preprocessing and Postprocessing Tools"><link rel="prev" href="thy_prep1.html" title="16.1.&nbsp;Integration and Differentiation Procedures"><link rel="next" href="thy_prep3.html" title="16.3.&nbsp;Statistical Procedures"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="16.2.&nbsp;Fourier Coefficient Evaluation"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="bob130"></a>16.2.&nbsp;Fourier Coefficient Evaluation</h2></div></div></div><a class="indexterm" name="d0e83985"></a><a class="indexterm" name="d0e83988"></a><p>Fourier coefficients can be evaluated using the <a href="../ans_cmd/Hlp_C_MFOURI.html" class="olink"><span class="command"><strong>*MFOURI</strong></span></a>
+command.  Given two vectors defining data points to be fit (parameters <span class="italic"><em>CURVE</em></span> and <span class="italic"><em>THETA</em></span>)
+and two more vectors defining which terms of the trigonometric series are
+desired to be computed (parameters <span class="italic"><em>MODE</em></span>
+and <span class="italic"><em>ISYM</em></span>), the desired coefficients can
+be computed (parameter <span class="italic"><em>COEFF</em></span>). The curve
+fitting cannot be perfect, as there are more data than unknowns.  Thus, an
+error R<sub>i</sub> will exist at each data point: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1fcevalnov1501"></a><div><img src="graphics/thyeq1fcevalnov1501.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(16&#8211;10)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>R<sub>i</sub> = error term (residual) associated with
+data point i  </td></tr><tr><td>A = desired coefficients of Fourier series (parameter <span class="italic"><em>COEFF</em></span>) </td></tr><tr><td>&#952;<sub>i</sub> = angular location of data points
+i (parameter <span class="italic"><em>THETA</em></span>)  </td></tr><tr><td>L = number of terms in Fourier series </td></tr><tr><td>F = sine or cosine, depending on ISYM (parameter <span class="italic"><em>ISYM</em></span>)
+ </td></tr><tr><td>M = multiplier on &#952;<sub>i</sub> (parameter <span class="italic"><em>MODE</em></span>) </td></tr><tr><td>C<sub>i</sub> = value of data point i (parameter <span class="italic"><em>CURVE</em></span>) </td></tr><tr><td>m = number of data points (length of <span class="italic"><em>CURVE</em></span>
+parameter array) </td></tr></table><p>
+</p><p>
+<a class="xref" href="thy_prep2.html#thyeq1fcevalnov1501" title="(16&#8211;10)">Equation&nbsp;16&#8211;10</a> can be reduced to matrix form
+as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2fcevalnov1501"></a><div><img src="graphics/thyeq2fcevalnov1501.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(16&#8211;11)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>{R} = vector of error terms </td></tr><tr><td>{G} = matrix of sines and cosines, evaluated at the different data
+points  </td></tr><tr><td>{A} = vector of desired coefficients </td></tr><tr><td>{C} = vector of data points </td></tr></table><p>
+</p><p>Note that m &gt; L.  If m = L, the coefficients would be uniquely determined
+with {R} = {O} and <a class="xref" href="thy_prep2.html#thyeq2fcevalnov1501" title="(16&#8211;11)">Equation&nbsp;16&#8211;11</a> being solved for
+{A} by direct inversion. </p><p>The method of least squares is used to determine the coefficients {A}.
+ This means that 
+<span class="inlineequation" style="&#xA;          vertical-align:-19.000000px"><img src="graphics/eq748dbda6-4b24-4cbc-8976-4aa90d8f623d.svg"></span> is to be minimized.
+ The minimization is represented by </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq4fcevalnov1501"></a><div><img src="graphics/thyeq4fcevalnov1501.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(16&#8211;12)</b></p></td></tr></table><p>where A<sub>j</sub> is the jth component of {A}.  Note that </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3fcevalnov1501"></a><div><img src="graphics/thyeq3fcevalnov1501.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(16&#8211;13)</b></p></td></tr></table><p>The form on the left-hand side of <a class="xref" href="thy_prep2.html#thyeq3fcevalnov1501" title="(16&#8211;13)">Equation&nbsp;16&#8211;13</a>
+is the more convenient to use. Performing this operation on <a class="xref" href="thy_prep2.html#thyeq2fcevalnov1501" title="(16&#8211;11)">Equation&nbsp;16&#8211;11</a>, </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqefd519e0-8fdb-41ab-9074-99b12a6c140e"></a><div><img src="graphics/eqefd519e0-8fdb-41ab-9074-99b12a6c140e.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(16&#8211;14)</b></p></td></tr></table><p>Minimizing this with respect to {A}<sup>T</sup> (<a class="xref" href="thy_prep2.html#thyeq4fcevalnov1501" title="(16&#8211;12)">Equation&nbsp;16&#8211;12</a>), it may be shown that: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqc145d482-5658-4de9-9eee-dfb4dc59dce9"></a><div><img src="graphics/eqc145d482-5658-4de9-9eee-dfb4dc59dce9.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(16&#8211;15)</b></p></td></tr></table><p>or </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq5fcevalnov1501"></a><div><img src="graphics/thyeq5fcevalnov1501.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(16&#8211;16)</b></p></td></tr></table><p>
+<a class="xref" href="thy_prep2.html#thyeq5fcevalnov1501" title="(16&#8211;16)">Equation&nbsp;16&#8211;16</a> is known as the &#8220;normal
+equations&#8221; used in statistics.  Finally, </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqad50222f-7093-45c5-951b-0c2f7cf6be4a"></a><div><img src="graphics/eqad50222f-7093-45c5-951b-0c2f7cf6be4a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(16&#8211;17)</b></p></td></tr></table><p>[G<sup>T</sup>] could not have been &#8220;cancelled
+out&#8221; of <a class="xref" href="thy_prep2.html#thyeq5fcevalnov1501" title="(16&#8211;16)">Equation&nbsp;16&#8211;16</a> because it is not a square
+matrix.  However, [G]<sup>T</sup>[G] is square. </p><p>In spite of the orthogonal nature of a trigonometric series, the value
+of each computed coefficient is dependent on the number of terms requested
+because of the least squares fitting procedure which takes place at the input
+data points.  Terms of a true Fourier series are evaluated not by a least
+squares fitting procedure, but rather by the integration of a continuous function
+(e.g., Euler formulas, p. 469 of Kreyszig(<a class="xref" href="thy_biblio.html#Xjdjf1dcmlg" title="Advanced Engineering Mathematics">[23]</a>)). </p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

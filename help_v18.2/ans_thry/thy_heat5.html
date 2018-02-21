@@ -1,0 +1,84 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:02-04:00"><title>6.5.&nbsp;Radiosity Solution Method</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_heat.html" title="Chapter&nbsp;6:&nbsp;Heat Flow"><link rel="prev" href="thy_heat4.html" title="6.4.&nbsp;Radiation Matrix Method"><link rel="next" href="thy_flo.html" title="Chapter&nbsp;7:&nbsp;Thin Fluid Film Flow"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="6.5.&nbsp;Radiosity Solution Method"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="hXaYt1ejjw"></a>6.5.&nbsp;Radiosity Solution Method</h2></div></div></div><a class="indexterm" name="d0e22175"></a><p>In the radiosity solution method for the analysis of gray diffuse
+radiation between N surfaces, <a class="xref" href="thy_heat1.html#thyeq1radiationnov1601" title="(6&#8211;12)">Equation&nbsp;6&#8211;12</a> is solved in conjunction with the basic conduction problem.  </p><p>For the purpose of computation it is convenient to rearrange <a class="xref" href="thy_heat1.html#thyeq1radiationnov1601" title="(6&#8211;12)">Equation&nbsp;6&#8211;12</a> into the following series of equations </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1radiositynov1901"></a><div><img src="graphics/thyeq1radiositynov1901.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;40)</b></p></td></tr></table><p>and </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2radiositynov1901"></a><div><img src="graphics/thyeq2radiositynov1901.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;41)</b></p></td></tr></table><p>
+   <a class="xref" href="thy_heat5.html#thyeq1radiositynov1901" title="(6&#8211;40)">Equation&nbsp;6&#8211;40</a> and <a class="xref" href="thy_heat5.html#thyeq2radiositynov1901" title="(6&#8211;41)">Equation&nbsp;6&#8211;41</a> are
+   expressed in terms of the outgoing radiative fluxes (radiosity) for each surface, <span class="inlineequation" style="&#xA;          vertical-align:-11.000000px"><img src="graphics/eq679de14b-234b-4a72-803d-5e8a82f896fa.svg"></span>, and the net flux from each surface q<sub>i</sub>. For known
+   surface temperatures, T<sub>i</sub>, in the enclosure, <a class="xref" href="thy_heat5.html#thyeq2radiositynov1901" title="(6&#8211;41)">Equation&nbsp;6&#8211;41</a> forms a set of linear algebraic equations for the unknown,
+   outgoing radiative flux (radiosity) at each surface. <a class="xref" href="thy_heat5.html#thyeq2radiositynov1901" title="(6&#8211;41)">Equation&nbsp;6&#8211;41</a> can
+   be <span>rewritten</span> as </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3radiositynov1901"></a><div><img src="graphics/thyeq3radiositynov1901.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;42)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq551e09b4-c24d-4493-b2b0-22ebf2225f1b.svg"></span> </td></tr><tr><td>
+     <span class="inlineequation" style="&#xA;          vertical-align:-11.000000px"><img src="graphics/eqcaf19f4f-2801-4f21-aa41-9733f16183f6.svg"></span>
+    </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq4869ac14-1c6d-407e-b5bd-b8c50045dee9.svg"></span> </td></tr></table><p>
+</p><p>[A] is a full matrix due to the surface to surface coupling
+represented by the view factors and is a function of temperature due
+to the possible dependence of surface emissivities on temperature.
+ <a class="xref" href="thy_heat5.html#thyeq3radiositynov1901" title="(6&#8211;42)">Equation&nbsp;6&#8211;42</a> is solved using a Newton-Raphson
+procedure for the radiosity flux {q<sup>o</sup>}.
+ </p><p>When the q<sup>o</sup> values are available, <a class="xref" href="thy_heat5.html#thyeq2radiositynov1901" title="(6&#8211;41)">Equation&nbsp;6&#8211;41</a> then allows the net flux at each
+surface to be evaluated.  The net flux calculated during each iteration
+cycle is under-relaxed, before being updated using </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq036a6b9c-372c-415e-a680-729ccf251447"></a><div><img src="graphics/eq036a6b9c-372c-415e-a680-729ccf251447.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;43)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#966; = radiosity flux relaxation factor </td></tr><tr><td>k = iteration number </td></tr></table><p>
+</p><p>The net surface fluxes provide boundary conditions to the finite
+element model for the conduction process.  The radiosity <a class="xref" href="thy_heat5.html#thyeq3radiositynov1901" title="(6&#8211;42)">Equation&nbsp;6&#8211;42</a> is solved coupled with the conduction <a class="xref" href="thy_heat1.html#thyeq1radiationnov1601" title="(6&#8211;12)">Equation&nbsp;6&#8211;12</a> using a segregated solution procedure
+until convergence of the radiosity flux and temperature for each time
+step or load step.  </p><p>The surface temperatures used in the above computation must
+be uniform over each surface in order to satisfy conditions of the
+radiation model.  In the finite element model, each surface in the
+radiation problem corresponds to a face or edge of a finite element.
+The uniform surface temperatures needed for use in <a class="xref" href="thy_heat5.html#thyeq3radiositynov1901" title="(6&#8211;42)">Equation&nbsp;6&#8211;42</a> are obtained by averaging the nodal
+point temperatures on the appropriate element face. </p><p>For open enclosure problems using the radiosity method, an ambient
+temperature needs to be specified using a space temperature (<a href="../ans_cmd/Hlp_C_SPCTEMP.html" class="olink"><span class="command"><strong>SPCTEMP</strong></span></a> command) or a space node (<a href="../ans_cmd/Hlp_C_SPCNOD.html" class="olink"><span class="command"><strong>SPCNOD</strong></span></a> command), to account for energy balance between the radiating surfaces
+and the ambient. </p><div class="sect2" title="6.5.1.&nbsp;View Factor Calculation (3-D): Hemicube Method"><div class="titlepage"><div><div><h3 class="title"><a name="heaviewfact2"></a>6.5.1.&nbsp;View Factor Calculation (3-D): Hemicube Method</h3></div></div></div><a class="indexterm" name="d0e22286"></a><p>For solving radiation problems in 3-D,
+the radiosity solution method calculates the view factors using the
+hemicube method as compared to the traditional double area integration
+method for 3-D geometry.  Details related to using the hemicube method
+for view factor calculation are given in Glass (<a class="xref" href="thy_biblio.html#zkWu341jjw" title="&#34;Chaparral - A library package for solving large enclosure radiation heat transfer problems&#34;">[273]</a>) and Cohen and Greenberg (<a class="xref" href="thy_biblio.html#AlWu21cjjw" title="&#34;The Hemi-Cube: A Radiosity Solution for Complex Environments&#34;">[277]</a>). For 2-D and axisymmetric models, see <a class="xref" href="thy_heat4.html#thrycalcviewfacmeths" title="6.4.1.&nbsp;View Factor Calculation (2-D): Radiation Matrix Method">View Factor Calculation (2-D): Radiation Matrix Method</a> and <a class="xref" href="thy_heat4.html#heaviewfacaxis" title="6.4.2.&nbsp;View Factors of Axisymmetric Bodies">View Factors of Axisymmetric Bodies</a>.</p><p>The hemicube method is based upon Nusselt's hemisphere analogy.
+ Nusselt's analogy shows that any surface, which covers the same area
+on the hemisphere, has the same view factor.  From this it is evident
+that any intermediate surface geometry can be used without changing
+the value of the view factors.  In the hemicube method, instead of
+projecting onto a sphere, an imaginary cube is constructed around
+the center of the receiving patch.  A patch in a finite element model
+corresponds to an element face of a radiating surface in an enclosure.
+ The environment is transformed to set the center of the patch at
+the origin with the normal to the patch coinciding with the positive
+Z axis.  In this orientation, the imaginary cube is the upper half
+of the surface of a cube, the lower half being below the 'horizon'
+of the patch.  One full face is facing in the Z direction and four
+half faces are facing in the +X, -X, +Y, and -Y directions.  These
+faces are divided into square 'pixels' at a given resolution, and
+the environment is then projected onto the five planar surfaces. <a class="xref" href="thy_heat5.html#a5Sktf2jjw" title="Figure&nbsp;6.8:&nbsp;&nbsp;The Hemicube">Figure&nbsp;6.8:&nbsp;The Hemicube</a> shows the hemicube discretized over a receiving
+patch from the environment. </p><div class="figure"><a name="a5Sktf2jjw"></a><p class="title"><b>Figure&nbsp;6.8:&nbsp;&nbsp;The Hemicube</b></p><div class="figure-contents"><div><img src="graphics/gthy6-88.svg" alt="The Hemicube"></div></div></div><br class="figure-break"><div class="figure"><a name="VoRkt1fcjjw"></a><p class="title"><b>Figure&nbsp;6.9:&nbsp;&nbsp;Derivation of Delta-View Factors for Hemicube Method </b></p><div class="figure-contents"><div><img src="graphics/gthy6-89.svg" alt="Derivation of Delta-View Factors for Hemicube Method"></div></div></div><br class="figure-break"><p>The contribution of each pixel on the cube's surface to the
+form-factor value varies and is dependent on the pixel location and
+orientation as shown in <a class="xref" href="thy_heat5.html#VoRkt1fcjjw" title="Figure&nbsp;6.9:&nbsp;&nbsp;Derivation of Delta-View Factors for Hemicube Method">Figure&nbsp;6.9:&nbsp;Derivation of Delta-View Factors for Hemicube Method </a>.  A specific
+delta form-factor value for each pixel on the cube is found from modified
+form of <a class="xref" href="thy_heat1.html#thyeq1viewnov1901" title="(6&#8211;15)">Equation&nbsp;6&#8211;15</a> for the differential area
+to differential area form-factor.  If two patches project on the same
+pixel on the cube, a depth determination is made as to which patch
+is seen in that particular direction by comparing distances to each
+patch and selecting the nearer one.  After determining which patch
+(j) is visible at each pixel on the hemicube, a summation of the delta
+form-factors for each pixel occupied by patch (j) determines the form-factor
+from patch (i) at the center of the cube to patch (j).  This summation
+is performed for each patch (j) and a complete row of N form-factors
+is found. </p><p>At this point the hemicube is positioned around the center of
+another patch and the process is repeated for each patch in the environment.
+ The result is a complete set of form-factors for complex environments
+containing occluded surfaces.  The overall view factor for each surface
+on the hemicube is given by:  </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqf1cf45c4-5b4a-43c2-84b1-d03d71441618"></a><div><img src="graphics/eqf1cf45c4-5b4a-43c2-84b1-d03d71441618.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;44)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>N = number of pixels </td></tr><tr><td>&#916;F = delta-view factor for each pixel </td></tr></table><p>
+</p><p>The hemicube resolution (input on the <a href="../ans_cmd/Hlp_C_HEMIOPT.html" class="olink"><span class="command"><strong>HEMIOPT</strong></span></a> command) determines the accuracy of the view factor calculation
+and the speed at which they are calculated using the hemicube method.
+Default is set to 10.  Higher values increase accuracy of the view
+factor calculation. </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

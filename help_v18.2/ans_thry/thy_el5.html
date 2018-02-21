@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:21-04:00"><title>13.5.&nbsp;SOLID5 - 3-D Coupled-Field Solid</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el4.html" title="13.4.&nbsp;Reserved for Future Use"><link rel="next" href="thy_el6.html" title="13.6.&nbsp;Reserved for Future Use"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.5.&nbsp;SOLID5 - 3-D Coupled-Field Solid"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thysolid5"></a>13.5.&nbsp;SOLID5 - 3-D Coupled-Field Solid</h2></div></div></div><div><img src="graphics/gthy14-5-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="col1"><col width="288" class="col2"><col width="144" class="col3"></colgroup><thead><tr><th align="center" valign="top">Matrix or Vector</th><th align="center" valign="top">Shape Functions</th><th align="center" valign="top"><a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration
+Points</a> </th></tr></thead><tbody><tr><td>Magnetic Potential Coefficient Matrix </td><td><a class="xref" href="thy_shp8.html#thyeq1bricknov2101" title="(11&#8211;228)">Equation&nbsp;11&#8211;228</a></td><td align="center">2 x 2 x 2</td></tr><tr><td>Electrical
+Conductivity Matrix</td><td><a class="xref" href="thy_shp8.html#thyeq2bricknov2101" title="(11&#8211;227)">Equation&nbsp;11&#8211;227</a></td><td align="center">2 x 2 x 2</td></tr><tr><td>Thermal
+Conductivity Matrix  </td><td><a class="xref" href="thy_shp8.html#thyeq3bricknov2101" title="(11&#8211;226)">Equation&nbsp;11&#8211;226</a></td><td align="center">2 x 2 x 2</td></tr><tr><td>Stiffness
+Matrix and Thermal Expansion Load Vector</td><td><a class="xref" href="thy_shp8.html#thyeq4bricknov2101" title="(11&#8211;214)">Equation&nbsp;11&#8211;214</a>, <a class="xref" href="thy_shp8.html#thyeq5bricknov2101" title="(11&#8211;215)">Equation&nbsp;11&#8211;215</a>, and <a class="xref" href="thy_shp8.html#thyeq6bricknov2101" title="(11&#8211;216)">Equation&nbsp;11&#8211;216</a> or, if modified extra shapes are included (KEYOPT(3)
+= 0), <a class="xref" href="thy_shp8.html#thyeq1brickwesfnov2101" title="(11&#8211;229)">Equation&nbsp;11&#8211;229</a>, <a class="xref" href="thy_shp8.html#thyeq2brickwesfnov2101" title="(11&#8211;230)">Equation&nbsp;11&#8211;230</a>,
+and <a class="xref" href="thy_shp8.html#thyeq3brickwesfnov2101" title="(11&#8211;231)">Equation&nbsp;11&#8211;231</a></td><td align="center">2 x 2 x 2</td></tr><tr><td>Piezoelectric
+Coupling Matrix </td><td>Same as combination of stiffness
+matrix and conductivity matrix.  </td><td align="center">2 x 2 x 2</td></tr><tr><td>Specific
+Heat Matrix</td><td>Same as conductivity matrix.  Matrix
+is diagonalized as described in <a class="xref" href="thy_shp2.html" title="11.3.&nbsp;3-D Lines">3-D Lines</a></td><td align="center">2 x 2 x 2</td></tr><tr><td>Mass
+and Stress Stiffening Matrices </td><td><a class="xref" href="thy_shp8.html#thyeq4bricknov2101" title="(11&#8211;214)">Equation&nbsp;11&#8211;214</a>, <a class="xref" href="thy_shp8.html#thyeq5bricknov2101" title="(11&#8211;215)">Equation&nbsp;11&#8211;215</a>, and <a class="xref" href="thy_shp8.html#thyeq6bricknov2101" title="(11&#8211;216)">Equation&nbsp;11&#8211;216</a></td><td align="center">2 x 2 x 2</td></tr><tr><td>Load
+Vector due to Imposed Thermal and Electric Gradients, Heat Generation, Joule
+Heating, Magnetic Forces, Magnetism due to Source Currents and Permanent Magnets
+ </td><td>Same as coefficient or conductivity matrix
+ </td><td align="center">2 x 2 x 2</td></tr><tr><td>Load Vector due to Convection Surfaces and Pressures</td><td>Same as stiffness or conductivity matrix specialized
+to the surface.</td><td align="center">2 x 2 x 2</td></tr></tbody></table></div><p>References: Wilson(<a class="xref" href="thy_biblio.html#ewcgfdemlg" title="&#34;Incompatible Displacement Models&#34;">[38]</a>), Taylor(<a class="xref" href="thy_biblio.html#axcgf2f5mlg" title="&#34;A Non-Conforming Element for Stress Analysis&#34;">[49]</a>),
+Coulomb(<a class="xref" href="thy_biblio.html#Excgf157mlg" title="&#34;Finite Element Implementation of Virtual Work Principle for Magnetic for Electric Force and Torque Calculation&#8221;">[76]</a>), Mayergoyz(<a class="xref" href="thy_biblio.html#kxcgf105mlg" title="&#34;A New Scalar Potential Formulation for Three-Dimensional Magnetostatic Problems&#34;">[119]</a>),
+Gyimesi(<a class="xref" href="thy_biblio.html#xxcgf134mlg" title="&#34;Application of the General Potential Formulation in the ANSYS&reg;Program&#34;">[141]</a>,<a class="xref" href="thy_biblio.html#GVGnf9cmlg" title="&#34;Generalized Potential Formulation for 3-D Magnetostatic Problems&#34;">[149]</a>) </p><div class="sect2" title="13.5.1.&nbsp;Other Applicable Sections"><div class="titlepage"><div><div><h3 class="title"><a name="solid5other"></a>13.5.1.&nbsp;Other Applicable Sections</h3></div></div></div><p><a class="xref" href="thy_str.html" title="Chapter&nbsp;2:&nbsp;Structures">Structures</a> describes the derivation of structural
+element matrices and load vectors as well as stress evaluations.  <a class="xref" href="thy_heat.html" title="Chapter&nbsp;6:&nbsp;Heat Flow">Heat Flow</a>
+describes the derivation of thermal element matrices and load vectors as well
+as heat flux evaluations.  <a class="xref" href="thy_emg2.html" title="5.2.&nbsp;Derivation of Electromagnetic Matrices">Derivation of Electromagnetic Matrices</a> discusses the scalar
+potential method, which is used by this element.  <a class="xref" href="thy_coup2.html" title="10.4.&nbsp;Piezoelectrics">Piezoelectrics</a>
+discusses the piezoelectric capability used by the element.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

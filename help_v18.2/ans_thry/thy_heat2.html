@@ -1,0 +1,58 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:02-04:00"><title>6.2.&nbsp;Derivation of Heat Flow Matrices</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_heat.html" title="Chapter&nbsp;6:&nbsp;Heat Flow"><link rel="prev" href="thy_heat1.html" title="6.1.&nbsp;Heat Flow Fundamentals"><link rel="next" href="thy_heat3.html" title="6.3.&nbsp;Heat Flow Evaluations"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="6.2.&nbsp;Derivation of Heat Flow Matrices"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="jogAf2ealmm"></a>6.2.&nbsp;Derivation of Heat Flow Matrices</h2></div></div></div><a class="indexterm" name="d0e21567"></a><a class="indexterm" name="d0e21570"></a><a class="indexterm" name="d0e21575"></a><a class="indexterm" name="d0e21578"></a><a class="indexterm" name="d0e21583"></a><a class="indexterm" name="d0e21586"></a><a class="indexterm" name="d0e21591"></a><a class="indexterm" name="d0e21594"></a><a class="indexterm" name="d0e21597"></a><a class="indexterm" name="d0e21600"></a><p>As stated before, the variable T was allowed to vary in both
+space and time.  This dependency is separated as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1derivnov1601"></a><div><img src="graphics/thyeq1derivnov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;16)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>T = T(x,y,z,t) = temperature </td></tr><tr><td>{N} = {N(x,y,z)} = element shape functions </td></tr><tr><td>{T<sub>e</sub>} = {T<sub>e</sub>(t)}
+= nodal temperature vector of element </td></tr></table><p>
+</p><p>Thus, the time derivatives of <a class="xref" href="thy_heat2.html#thyeq1derivnov1601" title="(6&#8211;16)">Equation&nbsp;6&#8211;16</a> may be written as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2derivnov1601"></a><div><img src="graphics/thyeq2derivnov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;17)</b></p></td></tr></table><p>&#948;T has the same form as T: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3derivnov1601"></a><div><img src="graphics/thyeq3derivnov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;18)</b></p></td></tr></table><p>The combination {L}T is written as </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq4derivnov1601"></a><div><img src="graphics/thyeq4derivnov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;19)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>[B] = {L}{N}T </td></tr></table><p>
+</p><p>Now, the variational statement of <a class="xref" href="thy_heat1.html#thyeq10conductnov1601" title="(6&#8211;11)">Equation&nbsp;6&#8211;11</a> can be combined with <a class="xref" href="thy_heat2.html#thyeq1derivnov1601" title="(6&#8211;16)">Equation&nbsp;6&#8211;16</a> thru <a class="xref" href="thy_heat2.html#thyeq4derivnov1601" title="(6&#8211;19)">Equation&nbsp;6&#8211;19</a> to yield: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq5derivnov1601"></a><div><img src="graphics/thyeq5derivnov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;20)</b></p></td></tr></table><p>Terms are defined in <a class="xref" href="thy_heat1.html" title="6.1.&nbsp;Heat Flow Fundamentals">Heat Flow Fundamentals</a>. &#961; is assumed to remain constant
+   over the volume of the element. On the other hand, c and <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqdb7aebae-8fa7-495e-9c2b-6d8cc90942f2.svg"></span> may vary over the element. Finally, {T<sub>e</sub>},
+    <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqe9a83ca1-a76e-4630-9cb9-09f86229633f.svg"></span> , and {&#948;T<sub>e</sub>} are nodal quantities and do not vary
+   over the element, so that they also may be removed from the integral. Now, since all quantities
+   are seen to be premultiplied by the arbitrary vector {&#948;T<sub>e</sub>}, this term
+   may be dropped from the resulting equation. Thus, <a class="xref" href="thy_heat2.html#thyeq5derivnov1601" title="(6&#8211;20)">Equation&nbsp;6&#8211;20</a> may be
+   reduced to: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq6derivnov1601"></a><div><img src="graphics/thyeq6derivnov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;21)</b></p></td></tr></table><p>
+<a class="xref" href="thy_heat2.html#thyeq6derivnov1601" title="(6&#8211;21)">Equation&nbsp;6&#8211;21</a> may be rewritten as:  
+    </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq7derivnov2601"></a><div><img src="graphics/thyeq7derivnov2601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;22)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+     <span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eq35a77486-202f-4757-a0e1-c1495fcc9e3a.svg"></span> = element specific heat (thermal damping) matrix </td></tr><tr><td>
+     <span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eq8fe9d5b4-8fa0-4567-b5ab-4f1b2018f866.svg"></span> = element mass transport conductivity matrix </td></tr><tr><td>
+     <span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eq5c252031-c7af-4792-b3f8-346908f074fd.svg"></span> = element diffusion conductivity matrix</td></tr><tr><td>
+     <span class="inlineequation" style="&#xA;          vertical-align:-14.000000px"><img src="graphics/eq4820e4d9-99da-49ae-9f88-650683e94958.svg"></span> = element convection surface conductivity matrix</td></tr><tr><td>
+     <span class="inlineequation" style="&#xA;          vertical-align:-14.000000px"><img src="graphics/eqf39501eb-e437-4c4d-a7a5-16ad11583775.svg"></span> = element mass flux vector</td></tr><tr><td>
+     <span class="inlineequation" style="&#xA;          vertical-align:-14.000000px"><img src="graphics/eqcf117681-be1f-4ed8-935c-a39f71ae069d.svg"></span> = element convection surface heat flow vector</td></tr><tr><td>
+     <span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eq4bf85f09-38aa-4b30-9bb7-d86a6d0d90a1.svg"></span> = element heat generation load</td></tr></table><p>
+</p><p>Comments on and modifications of the above definitions: </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq7ae1eb20-bfe4-4886-b431-14f497fd32eb.svg"></span> is not symmetric. </p></li><li class="listitem"><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq8f6f5d0a-4b54-41ef-bf81-2ea2f22d5e04.svg"></span> is calculated
+as defined above, for <a href="../ans_elem/Hlp_E_SOLID90.html" class="olink"><span class="structname">SOLID90</span></a> only.  All
+other elements use a diagonal matrix, with the diagonal terms defined
+by the vector 
+<span class="inlineequation" style="&#xA;          vertical-align:-14.000000px"><img src="graphics/eqc6518347-5a8f-4cc0-9ccb-9d0864ffe56a.svg"></span>. </p></li><li class="listitem"><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq9c2ae36e-3b7d-486c-87e5-641ece89c238.svg"></span>  is frequently
+diagonalized, as described in <a class="xref" href="thy_et2.html" title="12.5.&nbsp;Lumped Matrices">Lumped Matrices</a>. </p></li><li class="listitem"><p>If 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq01423828-8c66-40fe-bf26-041514c5a309.svg"></span> exists and
+has been diagonalized and also the analysis is a transient (Key =
+ON on the <a href="../ans_cmd/Hlp_C_TIMINT.html" class="olink"><span class="command"><strong>TIMINT</strong></span></a> command), 
+<span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eq23b434c2-834f-4862-8fc3-597757af10b4.svg"></span> has its terms adjusted so that they are proportioned
+to the main diagonal terms of 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq38f29edb-26e7-4e37-8603-84d7638b5e5e.svg"></span>.  
+<span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eqe7e1c7d4-96cc-471e-814e-d0aa15a7f555.svg"></span>, the heat generation rate
+vector for Joule heating is treated similarly, if present.  This adjustment
+ensures that elements subjected to uniform heating will have a uniform
+temperature rise.  However, this adjustment also changes nonuniform
+input of heat generation to an average value over the element. </p></li><li class="listitem"><p>For phase change problems, 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq62c339c0-447e-41a5-86a9-e1fe8a32a0b7.svg"></span> is evaluated from the enthalpy curve (Tamma
+and Namnuru(<a class="xref" href="thy_biblio.html#m8Vuf29bmlg" title="&#34;Recent Advances, Trends and New Perspectives Via Enthalpy-Based Finite Element Formulations for Applications to Solidification Problems&#34;">[42]</a>)) if  enthalpy is input
+(input as ENTH on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command).  This option should
+be used for phase change problems. </p></li></ol></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

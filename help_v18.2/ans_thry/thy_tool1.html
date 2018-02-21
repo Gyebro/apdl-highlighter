@@ -1,0 +1,94 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:55-04:00"><title>14.1.&nbsp;Acceleration Effect</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_tool.html" title="Chapter&nbsp;14:&nbsp;Analysis Tools"><link rel="prev" href="thy_tool.html" title="Chapter&nbsp;14:&nbsp;Analysis Tools"><link rel="next" href="thy_tool2.html" title="14.2.&nbsp;Inertia Relief"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="14.1.&nbsp;Acceleration Effect"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="erykf15fmlg"></a>14.1.&nbsp;Acceleration Effect</h2></div></div></div><a class="indexterm" name="d0e64811"></a><a class="indexterm" name="d0e64814"></a><a class="indexterm" name="d0e64817"></a><a class="indexterm" name="d0e64820"></a><p>Accelerations are applicable only to elements with displacement
+degrees of freedom (DOFs). </p><p>The acceleration vector {a<sub>c</sub>} which causes
+applied loads consists of a vector with a term for every degree of
+freedom in the model. In the description below, a typical node having
+a specific location and accelerations associated with the three translations
+and three rotations will be considered: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq5be7b638-a915-4e5e-8b8a-6955dbd88170"></a><div><img src="graphics/eq5be7b638-a915-4e5e-8b8a-6955dbd88170.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;1)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqf57c5094-7d04-4778-a7a3-d9f4a230e16f.svg"></span> </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqf97db634-67d4-4d98-8c30-2d3cd74ab30d.svg"></span> </td></tr></table><p>
+</p><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqf3fde0a8-7b1a-46fc-97dc-1ac80cecdc9c.svg"></span>= accelerations in global Cartesian coordinates
+(input on <a href="../ans_cmd/Hlp_C_ACEL.html" class="olink"><span class="command"><strong>ACEL</strong></span></a> command or <a href="../ans_cmd/Hlp_C_CMACEL.html" class="olink"><span class="command"><strong>CMACEL</strong></span></a> command for component base acceleration)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq457c3e61-5c40-4cdb-8a55-95e5c80ff596.svg"></span> = translational acceleration vector due
+to inertia relief (see <a class="xref" href="thy_tool2.html" title="14.2.&nbsp;Inertia Relief">Inertia Relief</a>)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq573ef4e3-58af-4a19-88f1-c64e29c8e7c7.svg"></span> = rotational acceleration vector due to
+inertia relief (see <a class="xref" href="thy_tool2.html" title="14.2.&nbsp;Inertia Relief">Inertia Relief</a>)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqc68d0160-9851-454d-a378-d7acd082b99c.svg"></span> = translational acceleration vector due
+to rotations (defined below)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq75cd3fb8-08e7-4795-9fd4-109d12e1f842.svg"></span> = angular acceleration vector due to input
+rotational accelerations (defined below)</td></tr></table><p>
+</p><p>ANSYS defines three types of rotations:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="bold"><strong>Rotation 1</strong></span>: The whole structure
+rotates about each of the global Cartesian axes (input on <a href="../ans_cmd/Hlp_C_OMEGA.html" class="olink"><span class="command"><strong>OMEGA</strong></span></a> and <a href="../ans_cmd/Hlp_C_DOMEGA.html" class="olink"><span class="command"><strong>DOMEGA</strong></span></a> commands)</td></tr><tr><td>
+<span class="bold"><strong>Rotation 2</strong></span>: The element component
+rotates about an axis defined by user (input on <a href="../ans_cmd/Hlp_C_CMOMEGA.html" class="olink"><span class="command"><strong>CMOMEGA</strong></span></a> and <a href="../ans_cmd/Hlp_C_CMDOMEGA.html" class="olink"><span class="command"><strong>CMDOMEGA</strong></span></a> commands).</td></tr><tr><td>
+<span class="bold"><strong>Rotation 3</strong></span>: The global origin
+rotates about the axis by user if Rotation 1 appears or the rotational
+axis rotates about the axis defined by user if Rotation 2 appears
+(input on <a href="../ans_cmd/Hlp_C_CGOMGA.html" class="olink"><span class="command"><strong>CGOMGA</strong></span></a>, <a href="../ans_cmd/Hlp_C_DCGOMG.html" class="olink"><span class="command"><strong>DCGOMG</strong></span></a>, and <a href="../ans_cmd/Hlp_C_CGLOC.html" class="olink"><span class="command"><strong>CGLOC</strong></span></a> commands)</td></tr></table><p>
+</p><p>Up to two out of the three types of rotations may be applied on a structure at the same time.
+   <span>These rotations induce accelerations and thus inertia forces when
+   the equations are expressed in a rotating reference frame.</span>
+</p><div class="sect2" title="14.1.1.&nbsp;Acceleration Due to One Rotation"><div class="titlepage"><div><div><h3 class="title"><a name="d0e64940"></a>14.1.1.&nbsp;Acceleration Due to One Rotation</h3></div></div></div><p>When one rotation is defined (Rotation 1, 2, or 3), the angular acceleration vector
+   is:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqfb445be9-b997-42e3-b049-bf2b78cccfe8"></a><div><img src="graphics/eqfb445be9-b997-42e3-b049-bf2b78cccfe8.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;2)</b></p></td></tr></table><p>The translational acceleration vector used to calculate the inertia force in the rotating
+   reference frame is deduced from <a class="xref" href="thy_tool19.html#eq9coriolis" title="(14&#8211;39)">Equation&nbsp;14&#8211;39</a>:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq3a941af2-03f4-4ddd-ad12-b014dc165580"></a><div><img src="graphics/eq3a941af2-03f4-4ddd-ad12-b014dc165580.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;3)</b></p></td></tr></table><p>where</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqb5fa18f6-f51a-4aa5-83e9-3ce52240a82b.svg"></span> = vector cross product</td></tr></table><p>The translational acceleration vector is the difference between the translational
+   acceleration expressed in a stationary reference frame and the translational acceleration
+   expressed in the rotating reference frame, ignoring the Coriolis term.</p><p>The second term in <a class="xref" href="thy_tool1.html#eq3a941af2-03f4-4ddd-ad12-b014dc165580" title="(14&#8211;3)">Equation&nbsp;14&#8211;3</a> leads to the
+   Euler force and the last term to the centrifugal force.</p></div><div class="sect2" title="14.1.2.&nbsp;Acceleration Due to Two Rotations"><div class="titlepage"><div><div><h3 class="title"><a name="d0e64968"></a>14.1.2.&nbsp;Acceleration Due to Two Rotations</h3></div></div></div><p>The angular acceleration vector due to the rotations is:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq47693eec-40c6-433b-9030-f65e51235f3a"></a><div><img src="graphics/eqce0f860b-b87a-4792-aa85-f3c7bef21655.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;4)</b></p></td></tr></table><p>The translational acceleration vector used to calculate the inertia force in the rotating
+   reference frame (second rotation) is:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq756c968f-ad7a-4d20-a51e-3f9f3e7a3395"></a><div><img src="graphics/eq756c968f-ad7a-4d20-a51e-3f9f3e7a3395.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;5)</b></p></td></tr></table><p>All other quantities are defined below, depending on the types of rotations
+   considered.</p><div class="sect3" title="14.1.2.1.&nbsp;Rotation 1 and Rotation 3"><div class="titlepage"><div><div><h4 class="title"><a name="d0e64983"></a>14.1.2.1.&nbsp;Rotation 1 and Rotation 3</h4></div></div></div><p>
+    </p><table border="0" summary="Simple list" class="simplelist"><tr><td>{&#969;} = angular velocity vector defined about the global Cartesian origin (input on
+       <a href="../ans_cmd/Hlp_C_OMEGA.html" class="olink"><span class="command"><strong>OMEGA</strong></span></a> command)</td></tr><tr><td>{&#937;} = angular velocity vector of the overall structure about the point CG (input
+      on <a href="../ans_cmd/Hlp_C_CGOMGA.html" class="olink"><span class="command"><strong>CGOMGA</strong></span></a> command)</td></tr><tr><td>
+      
+      <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq719620cd-1056-4ae5-8e9d-4fc233812564.svg"></span> = angular acceleration vector defined about the global Cartesian origin
+      (input on <a href="../ans_cmd/Hlp_C_DOMEGA.html" class="olink"><span class="command"><strong>DOMEGA</strong></span></a> command) </td></tr><tr><td>
+      
+      <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq9005204b-1fe0-4a6f-a873-7bf0ea9d038f.svg"></span> = angular acceleration vector of the overall structure about the point CG
+      (input on <a href="../ans_cmd/Hlp_C_DCGOMG.html" class="olink"><span class="command"><strong>DCGOMG</strong></span></a> command) </td></tr><tr><td>{r} = position vector</td></tr><tr><td>{R} = vector from CG to the global Cartesian origin (computed from input on
+       <a href="../ans_cmd/Hlp_C_CGLOC.html" class="olink"><span class="command"><strong>CGLOC</strong></span></a> command, with direction opposite).</td></tr></table><p>
+   </p><div class="figure"><a name="d0e65028"></a><p class="title"><b>Figure&nbsp;14.1:&nbsp;&nbsp;Rotational Coordinate System (Rotations 1 and 3)</b></p><div class="figure-contents"><div><img src="graphics/gthy15-19.svg" alt="Rotational Coordinate System (Rotations 1 and 3)"></div></div></div><br class="figure-break"></div><div class="sect3" title="14.1.2.2.&nbsp;Rotation 1 and Rotation 2"><div class="titlepage"><div><div><h4 class="title"><a name="d0e65032"></a>14.1.2.2.&nbsp;Rotation 1 and Rotation 2</h4></div></div></div><p>
+    </p><table border="0" summary="Simple list" class="simplelist"><tr><td>{&#969;} = angular velocity vector defined about the rotational axis of the element
+      component (input on <a href="../ans_cmd/Hlp_C_CMOMEGA.html" class="olink"><span class="command"><strong>CMOMEGA</strong></span></a> command)</td></tr><tr><td>{&#937;} = angular velocity vector defined about the global Cartesian origin (input on
+       <a href="../ans_cmd/Hlp_C_OMEGA.html" class="olink"><span class="command"><strong>OMEGA</strong></span></a> command)</td></tr><tr><td>
+      
+      <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqdd0eb480-bcd5-4d2e-b57e-6a1b2c3d54aa.svg"></span> = angular acceleration vector defined about the rotational axis of the
+      element component (input on <a href="../ans_cmd/Hlp_C_CMDOMEGA.html" class="olink"><span class="command"><strong>CMDOMEGA</strong></span></a> command)</td></tr><tr><td>
+      
+      <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq0429936e-cd06-485a-95a1-f7804be25e1f.svg"></span> = angular acceleration vector defined about the global Cartesian origin
+      (input on <a href="../ans_cmd/Hlp_C_DOMEGA.html" class="olink"><span class="command"><strong>DOMEGA</strong></span></a> command)</td></tr><tr><td>{r} = position vector</td></tr><tr><td>{R} = vector from about the global Cartesian origin to the point on the rotational axis
+      of the component.</td></tr></table><p>
+   </p><div class="figure"><a name="d0e65073"></a><p class="title"><b>Figure&nbsp;14.2:&nbsp;&nbsp;Rotational Coordinate System (Rotations 1 and 2)</b></p><div class="figure-contents"><div><img src="graphics/gthy15-16.svg" alt="Rotational Coordinate System (Rotations 1 and 2)"></div></div></div><br class="figure-break"></div><div class="sect3" title="14.1.2.3.&nbsp;Rotation 2 and Rotation 3"><div class="titlepage"><div><div><h4 class="title"><a name="d0e65077"></a>14.1.2.3.&nbsp;Rotation 2 and Rotation 3</h4></div></div></div><p>
+    </p><table border="0" summary="Simple list" class="simplelist"><tr><td>{&#969;} = angular velocity vector defined about the rotational axis of the element
+      component (input on <a href="../ans_cmd/Hlp_C_CMOMEGA.html" class="olink"><span class="command"><strong>CMOMEGA</strong></span></a> command)</td></tr><tr><td>{&#937;} = angular velocity vector of the overall structure about the point CG (input
+      on <a href="../ans_cmd/Hlp_C_CGOMGA.html" class="olink"><span class="command"><strong>CGOMGA</strong></span></a> command)</td></tr><tr><td>
+      
+      <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq81b421d3-7352-4b4c-9aae-14d3dcefc43a.svg"></span> = angular acceleration vector defined about the rotational axis of the
+      element component (input on <a href="../ans_cmd/Hlp_C_CMDOMEGA.html" class="olink"><span class="command"><strong>CMDOMEGA</strong></span></a> command)</td></tr><tr><td>
+      
+      <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq0d49fb6e-3c62-4113-a547-f7fb70013a98.svg"></span> = angular acceleration vector of the overall structure about the point CG
+      (input on <a href="../ans_cmd/Hlp_C_DCGOMG.html" class="olink"><span class="command"><strong>DCGOMG</strong></span></a> command)</td></tr><tr><td>{r} = position vector</td></tr><tr><td>{R} = vector from CG to the point on the rotational axis of the component</td></tr></table><p>
+   </p><div class="figure"><a name="d0e65118"></a><p class="title"><b>Figure&nbsp;14.3:&nbsp;&nbsp;Rotational Coordinate System (Rotations 2 and 3)</b></p><div class="figure-contents"><div><img src="graphics/gthy15-17.svg" alt="Rotational Coordinate System (Rotations 2 and 3)"></div></div></div><br class="figure-break"></div><div class="sect3" title="14.1.2.4.&nbsp;Additional Term for Point Mass Element"><div class="titlepage"><div><div><h4 class="title"><a name="d0e65122"></a>14.1.2.4.&nbsp;Additional Term for Point Mass Element</h4></div></div></div><p>For <a href="../ans_elem/Hlp_E_MASS21.html" class="olink"><span class="structname">MASS21</span></a> with KEYOPT(3) = 0 and
+     <a href="../ans_elem/Hlp_E_MATRIX27.html" class="olink"><span class="structname">MATRIX27</span></a> with KEYOPT(3) = 2, additional Euler's equation terms are
+    considered:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq5d22dae7-e17a-4132-a969-66ece0851b5b"></a><div><img src="graphics/eqd9407d65-08e3-4a03-a75e-ac7bb3b6e193.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;6)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>{M} = additional moments generated by the angular velocity</td></tr><tr><td>[I] = matrix of input moments of inertia</td></tr><tr><td>{&#969;<sub>T</sub>} = total applied angular velocities: = {&#969;} +
+      {&#937;}</td></tr></table><p>
+   </p></div></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

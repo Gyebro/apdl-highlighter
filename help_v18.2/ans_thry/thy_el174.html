@@ -1,0 +1,704 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:39-04:00"><title>13.174.&nbsp;CONTA174 - 3-D 8-Node Surface-to-Surface Contact</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el173.html" title="13.173.&nbsp;CONTA173 - 3-D 4-Node Surface-to-Surface Contact"><link rel="next" href="thy_el175.html" title="13.175.&nbsp;CONTA175 - 2-D/3-D Node-to-Surface Contact"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.174.&nbsp;CONTA174 - 3-D 8-Node Surface-to-Surface Contact"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thyconta174"></a>13.174.&nbsp;CONTA174 - 3-D 8-Node Surface-to-Surface Contact</h2></div></div></div><div><img src="graphics/gthy14-174-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="144" class="col1"><col width="96" class="COLSPEC1"><col width="240" class="col2"><col width="144" class="col3"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Matrix or Vector</th><th align="center" valign="middle">Geometry</th><th align="center" valign="middle">Shape Functions</th><th align="center" valign="middle">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration
+Points</a>
+</th></tr></thead><tbody><tr valign="middle"><td rowspan="2" valign="middle">Stiffness
+and Stress Stiffness Matrices</td><td valign="middle">Quad</td><td valign="middle">If KEYOPT(4) = 0 (has midside nodes) <a class="xref" href="thy_shp5.html#thyeq1quadshellnov2601" title="(11&#8211;84)">Equation&nbsp;11&#8211;84</a>, <a class="xref" href="thy_shp5.html#thyeq2quadshellnov2601" title="(11&#8211;85)">Equation&nbsp;11&#8211;85</a>, and <a class="xref" href="thy_shp5.html#thyeq3quadshellnov2601" title="(11&#8211;86)">Equation&nbsp;11&#8211;86</a>
+</td><td align="center" valign="middle">2 x 2</td></tr><tr valign="middle"><td valign="middle">Triangle</td><td valign="middle">If KEYOPT(4)
+= 0 (has midside nodes) <a class="xref" href="thy_shp6.html#thyeq3lstnov2101" title="(11&#8211;114)">Equation&nbsp;11&#8211;114</a>
+</td><td align="center" valign="middle">3</td></tr></tbody></table></div><div class="highlights"><p>The following <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a> topics are available:</p><ul><li><a href="thy_el174.html#conta174intro" title="13.174.1.&nbsp;Introduction">Introduction</a></li><li><a href="thy_el174.html#conta174kine" title="13.174.2.&nbsp;Contact Kinematics">Contact Kinematics</a></li><li><a href="thy_el174.html#conta174frict" title="13.174.3.&nbsp;Frictional Model">Frictional Model</a></li><li><a href="thy_el174.html#conta174algo" title="13.174.4.&nbsp;Contact Algorithm">Contact Algorithm</a></li><li><a href="thy_el174.html#viscdamp174" title="13.174.5.&nbsp;Viscous Damping">Viscous Damping</a></li><li><a href="thy_el174.html#EnMomCon" title="13.174.6.&nbsp;Energy and Momentum Conserving Contact">Energy and Momentum Conserving Contact</a></li><li><a href="thy_el174.html#debond" title="13.174.7.&nbsp;Debonding">Debonding</a></li><li><a href="thy_el174.html#conta174surfacewear" title="13.174.8.&nbsp;Contact Surface Wear">Contact Surface Wear</a></li><li><a href="thy_el174.html#conta174therm" title="13.174.9.&nbsp;Thermal/Structural Contact">Thermal/Structural Contact</a></li><li><a href="thy_el174.html#conta174elect" title="13.174.10.&nbsp;Electric Contact">Electric Contact</a></li><li><a href="thy_el174.html#thy174magnet" title="13.174.11.&nbsp;Magnetic Contact">Magnetic Contact</a></li><li><a href="thy_el174.html#thy174pore" title="13.174.12.&nbsp;Pore Fluid Contact">Pore Fluid Contact</a></li><li><a href="thy_el174.html#thy174diff" title="13.174.13.&nbsp;Diffusive Contact">Diffusive Contact</a></li></ul></div><div class="sect2" title="13.174.1.&nbsp;Introduction"><div class="titlepage"><div><div><h3 class="title"><a name="conta174intro"></a>13.174.1.&nbsp;Introduction</h3></div></div></div><a class="indexterm" name="d0e52843"></a><a class="indexterm" name="d0e52846"></a><p>
+<a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a> is an 8-node element that
+is intended for general rigid-flexible and flexible-flexible contact
+analysis.  In a general contact analysis, the area of contact between
+two (or more) bodies is generally not known in advance.  <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a> is applicable to 3-D geometries. It may be
+applied for contact between solid bodies or shells. </p></div><div class="sect2" title="13.174.2.&nbsp;Contact Kinematics"><div class="titlepage"><div><div><h3 class="title"><a name="conta174kine"></a>13.174.2.&nbsp;Contact Kinematics</h3></div></div></div><p>
+<span class="bold"><strong>
+<span class="italic"><em>Contact Pair</em></span>
+</strong></span>
+</p><p>In studying the contact between two bodies, the surface of one
+body is conventionally taken as a contact surface and the surface
+of the other body as a target surface.  For rigid-flexible contact,
+the contact surface is associated with the deformable body; and the
+target surface must be the rigid surface.  For flexible-flexible contact,
+both contact and target surfaces are associated with deformable bodies.
+The contact and target surfaces constitute a <span class="quote">"<span class="quote">Contact Pair</span>"</span>. </p><p>The <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a> contact element is associated
+with the 3-D target segment elements (<a href="../ans_elem/Hlp_E_TARGE170.html" class="olink"><span class="structname">TARGE170</span></a>) using a shared real constant set number.  This element is located
+on the surface of 3-D solid, shell elements (called underlying element).
+ It has the same geometric characteristics as the underlying elements.
+The contact surface can be either side or both sides of the shell
+or beam elements. </p><p>
+<span class="bold"><strong>
+<span class="italic"><em>Location of Contact
+Detection</em></span>
+</strong></span>
+</p><div class="figure"><a name="conta174fig1"></a><p class="title"><b>Figure&nbsp;13.26:&nbsp;&nbsp;Contact Detection Point Location at Gauss Point</b></p><div class="figure-contents"><div><img src="graphics/gthy14-174-2.svg" alt="Contact Detection Point Location at Gauss Point"></div></div></div><br class="figure-break"><p>
+<a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a> is a surface-to-surface contact
+element.  The contact detection points are the integration points
+and are located either at nodal points or Gauss points.  The contact
+element is constrained against penetration into the target surface
+at its integration points. However, the target surface can, in principle,
+penetrate through into the contact surface. See <a class="xref" href="thy_el174.html#conta174fig1" title="Figure&nbsp;13.26:&nbsp;&nbsp;Contact Detection Point Location at Gauss Point">Figure&nbsp;13.26:&nbsp;Contact Detection Point Location at Gauss Point</a>. <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a> uses Gauss
+integration points by default (Cescotto and Charlier(<a class="xref" href="thy_biblio.html#BVLep19djjw" title="&#34;Frictional Contact Finite Elements Based on Mixed Variational Principles&#34;">[214]</a>), Cescotto and Zhu(<a class="xref" href="thy_biblio.html#OVLep6jjw" title="&#34;Large Strain Dynamic Analysis Using Solid and Contact Finite Elements Based on a Mixed Formulation - Application to Metalforming&#34;">[215]</a>)), which generally provides more accurate results than when using
+the nodes themselves as the integration points. A disadvantage of
+using nodal contact points is that, for a uniform pressure, the kinematically
+equivalent forces at the nodes are unrepresentative and indicate release
+at corners.  </p><p>The surface projection method (based on Puso and Laursen (<a class="xref" href="thy_biblio.html#pusolaursen1" title="&#8220;A Mortar Segment-to-Segment Contact Method for Large Deformation Solid Mechanics&#8221;">[383]</a> and <a class="xref" href="thy_biblio.html#pusolaursen2" title="&#8220;A Mortar Segment-to-Segment Frictional Contact Method for Large Deformations&#8221;">[384]</a>)) is available
+for the 3-D elements, <a href="../ans_elem/Hlp_E_CONTA173.html" class="olink"><span class="structname">CONTA173</span></a> and <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a>. This option enforces contact constraints on
+an overlapping region of contact and target surfaces (see <a class="xref" href="thy_el174.html#contfigsurfproj" title="Figure&nbsp;13.27:&nbsp;&nbsp;Surface-Projection-Based Contact">Figure&nbsp;13.27:&nbsp;Surface-Projection-Based Contact</a>) rather than on individual contact nodes
+or Gauss points. This method passes patch tests and generally offers
+smoother stress distributions (for both contact elements and underlying
+elements) than the other contact detection options. The contact forces
+vary smoothly during large sliding, and the forces do not jump when
+contact nodes slide off edges of target surfaces. The surface projection
+method also satisfies moment equilibrium for frictional or bonded
+contact. Other contact detection options may not satisfy moment equilibrium
+exactly when an offset exists along the contact normal direction under
+certain circumstances (for example, when using a penalty based formulation,
+when accounting for shell thickness effects, or when using a user-defined
+contact offset).</p><div class="figure"><a name="contfigsurfproj"></a><p class="title"><b>Figure&nbsp;13.27:&nbsp;&nbsp;Surface-Projection-Based Contact</b></p><div class="figure-contents"><div><img src="graphics/gctprojection.svg" alt="Surface-Projection-Based Contact"></div></div></div><br class="figure-break"><p>
+<span class="bold"><strong>
+<span class="emphasis"><em>Penetration Distance</em></span>
+</strong></span>
+</p><p>The penetration distance is measured along the normal direction
+of the contact surface (at integration points) to the target surface
+(Cescotto and Charlier(<a class="xref" href="thy_biblio.html#OVLep6jjw" title="&#34;Large Strain Dynamic Analysis Using Solid and Contact Finite Elements Based on a Mixed Formulation - Application to Metalforming&#34;">[215]</a>)). See <a class="xref" href="thy_el174.html#conta174fig2" title="Figure&nbsp;13.28:&nbsp;&nbsp;Penetration Distance">Figure&nbsp;13.28:&nbsp;Penetration Distance</a>.  It is uniquely defined even when the geometry
+of the target surface is not smooth.  Such discontinuities may be
+due to physical corners on the target surface, or may be introduced
+by a numerical discretization process (e.g. finite elements).  Based
+on the present way of calculating penetration distance, there is no
+restriction on the shape of the rigid target surface.  Smoothing is
+not always necessary for the concave corner.  For the convex corner,
+it is still recommended to smooth out the region of abrupt curvature
+changes (see <a class="xref" href="thy_el174.html#conta174fig3" title="Figure&nbsp;13.29:&nbsp;&nbsp;Smoothing Convex Corner">Figure&nbsp;13.29:&nbsp;Smoothing Convex Corner</a>). </p><div class="figure"><a name="conta174fig2"></a><p class="title"><b>Figure&nbsp;13.28:&nbsp;&nbsp;Penetration Distance</b></p><div class="figure-contents"><a class="indexterm" name="d0e52952"></a><div><img src="graphics/gthy14-174-3.svg" alt="Penetration Distance"></div></div></div><br class="figure-break"><div class="figure"><a name="conta174fig3"></a><p class="title"><b>Figure&nbsp;13.29:&nbsp;&nbsp;Smoothing Convex Corner</b></p><div class="figure-contents"><div><img src="graphics/gthy14-174-4.svg" alt="Smoothing Convex Corner"></div></div></div><br class="figure-break"><p>For the surface-projection-based contact method, the contact
+detection remains at contact nodal points and the contact normal is
+perpendicular to the contact surface. However, the contact  penetration
+distance is computed over the overlapping region (see <a class="xref" href="thy_el174.html#contfigsurfproj" title="Figure&nbsp;13.27:&nbsp;&nbsp;Surface-Projection-Based Contact">Figure&nbsp;13.27:&nbsp;Surface-Projection-Based Contact</a>) in an average sense.</p><p>
+<span class="bold"><strong>
+<span class="emphasis"><em>Pinball Algorithm</em></span>
+</strong></span>
+</p><a class="indexterm" name="d0e52972"></a><p>The position and the motion of a contact element relative to
+its associated target surface determine the contact element status.
+ The program monitors each contact element and assigns a status: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>STAT = 0 Open far-field contact</td></tr><tr><td>STAT = 1 Open near-field contact</td></tr><tr><td>STAT = 2 Sliding contact</td></tr><tr><td>STAT = 3 Sticking contact </td></tr></table><p>
+</p><p>A contact element is considered to be in near-field contact
+when the element enters a pinball region, which is centered on the
+integration point of the contact element.  The computational cost
+of searching for contact depends on the size of the pinball region.
+Far-field contact element calculations are simple and add few computational
+demands. The near-field calculations (for contact elements that are
+nearly or actually in contact) are slower and more complex. The most
+complex calculations occur the elements are in actual contact. </p><p>Setting a proper pinball region is useful to overcome spurious
+contact definitions if the target surface has several convex regions.
+ The current default setting should be appropriate for most contact
+problems. </p></div><div class="sect2" title="13.174.3.&nbsp;Frictional Model"><div class="titlepage"><div><div><h3 class="title"><a name="conta174frict"></a>13.174.3.&nbsp;Frictional Model</h3></div></div></div><a class="indexterm" name="d0e52994"></a><p>
+<span class="bold"><strong>
+<span class="italic"><em>Coulomb's Law</em></span>
+</strong></span>
+</p><p>In the basic Coulomb friction model, two contacting surfaces
+can carry shear stresses. When the equivalent shear stress is less
+than a limit frictional stress (&#964;<sub>lim</sub>),
+no motion occurs between the two surfaces. This state is known as
+sticking.  The Coulomb friction model is defined as:  </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="friction1"></a><div><img src="graphics/friction1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;259)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="friction2"></a><div><img src="graphics/friction2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;260)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#964;<sub>lim</sub> = limit frictional stress</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-22.000000px"><img src="graphics/eq0feeac58-fbc1-4a88-986e-bcd4a5ee70ed.svg"></span>
+</td></tr><tr><td>&#956; = coefficient of friction for isotropic friction (input
+as MU using either <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command with <span class="italic"><em>Lab</em></span> = FRIC or <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command;
+orthotropic friction defined below</td></tr><tr><td>P = contact normal pressure </td></tr><tr><td>b = contact cohesion (input as COHE on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr></table><p>
+</p><p>Once the equivalent frictional stress exceeds &#964;<sub>lim</sub>, the contact and target surfaces will slide relative
+to each other.  This state is known as sliding.  The sticking/sliding
+calculations determine when a point transitions from sticking to sliding
+or vice versa.  The contact cohesion provides sliding resistance even
+with zero normal pressure.</p><p>
+<a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a> provides an option for defining
+a maximum equivalent frictional stress &#964;<sub>max</sub> (input as TAUMAX on <a href="../ans_cmd/Hlp_C_RMORE.html" class="olink"><span class="command"><strong>RMORE</strong></span></a> command) so that, regardless
+of the magnitude of the contact pressure, sliding will occur if the
+magnitude of the equivalent frictional stress reaches this value.</p><div class="figure"><a name="conta174fig4"></a><p class="title"><b>Figure&nbsp;13.30:&nbsp;&nbsp;Friction Model</b></p><div class="figure-contents"><div><img src="graphics/gthy14-174-7.svg" alt="Friction Model"></div></div></div><br class="figure-break"><p>Contact elements offer two models for Coulomb friction: isotropic
+friction and orthotropic friction. </p><p>
+<span class="bold"><strong>
+<span class="italic"><em>Isotropic Friction</em></span>
+</strong></span>
+</p><p>The isotropic friction model uses a single coefficient of friction &#956;<sub>iso</sub> based on the assumption of uniform stick-slip behavior
+in all directions. It is available with all 2-D and 3-D contact elements
+(<a href="../ans_elem/Hlp_E_CONTA171.html" class="olink"><span class="structname">CONTA171</span></a>, <a href="../ans_elem/Hlp_E_CONTA172.html" class="olink"><span class="structname">CONTA172</span></a>, <a href="../ans_elem/Hlp_E_CONTA173.html" class="olink"><span class="structname">CONTA173</span></a>, <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a>, <a href="../ans_elem/Hlp_E_CONTA175.html" class="olink"><span class="structname">CONTA175</span></a>, <a href="../ans_elem/Hlp_E_CONTA176.html" class="olink"><span class="structname">CONTA176</span></a>, <a href="../ans_elem/Hlp_E_CONTA177.html" class="olink"><span class="structname">CONTA177</span></a>, and <a href="../ans_elem/Hlp_E_CONTA178.html" class="olink"><span class="structname">CONTA178</span></a>).</p><p>
+<span class="bold"><strong>
+<span class="italic"><em>Orthotropic
+   Friction</em></span>
+</strong></span>
+</p><p>The orthotropic friction model is based on two coefficients
+of friction, &#956;<sub>1</sub> and &#956;<sub>2</sub>, to model different stick-slip behavior in different directions.
+Use orthotropic friction model in 3-D contact only (<a href="../ans_elem/Hlp_E_CONTA173.html" class="olink"><span class="structname">CONTA173</span></a>, <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a>, <a href="../ans_elem/Hlp_E_CONTA175.html" class="olink"><span class="structname">CONTA175</span></a>, <a href="../ans_elem/Hlp_E_CONTA176.html" class="olink"><span class="structname">CONTA176</span></a>, and <a href="../ans_elem/Hlp_E_CONTA177.html" class="olink"><span class="structname">CONTA177</span></a>). The two coefficients are defined in two orthogonal sliding directions
+called the principal directions (see <a href="../ans_elem/Hlp_E_ElemTOC.html" class="olink"><em class="citetitle">Element Reference</em></a> for more details). The
+frictional stress in principal direction i=1,2 is given by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq189d162d-4273-44cb-a442-b3ae5270b35e"></a><div><img src="graphics/eq189d162d-4273-44cb-a442-b3ae5270b35e.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;261)</b></p></td></tr></table><p>By appropriately scaling the frictional stresses in principal
+directions the expressions for scaled limit frictional stress (
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq21a203d8-9b7a-44bb-8dd0-75c2d0160ac6.svg"></span>) and scaled
+equivalent frictional stress (
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqab4459b6-eb7b-41b5-bc35-856974ef7332.svg"></span>) for
+orthotropic friction can be written in a form similar to isotropic
+friction (Michalowski and Mroz(<a class="xref" href="thy_biblio.html#michalowskir" title="&#8220;Associated and non-associated sliding rules in contact friction problems&#8221;">[362]</a>)):</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="orthofric1"></a><div><img src="graphics/orthofric1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;262)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq2e2b3504-43ed-4c34-ad8e-5bf58eef582b"></a><div><img src="graphics/eq2e2b3504-43ed-4c34-ad8e-5bf58eef582b.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;263)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq2cf304f1-88ab-4328-b691-720fe0a394ed"></a><div><img src="graphics/eq2cf304f1-88ab-4328-b691-720fe0a394ed.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;264)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqcd9e57a7-26cb-497b-9447-78584321435a"></a><div><img src="graphics/eqcd9e57a7-26cb-497b-9447-78584321435a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;265)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqa843704a-6748-4ae3-979a-35fb18474cb9.svg"></span> = scaled frictional stress in direction i = 1,2</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq7ff6db7e-bb5a-4137-b546-1bc6f067677c.svg"></span> = scaled equivalent frictional stress</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqb6373986-757e-4a88-a880-ff1dd4166a91.svg"></span> = scaled limit frictional stress</td></tr><tr><td>&#956;<sub>eq</sub> = equivalent coefficient of
+friction for orthotropic friction</td></tr><tr><td>&#956;<sub>1</sub>, &#956;<sub>2</sub> = coefficients of friction in first and second principal directions
+(input as MU1 and MU2 using <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command with <em class="replaceable"><code>Lab</code></em> = FRIC)</td></tr></table><p>
+</p><p>While scaled frictional stresses are used for friction computations,
+actual frictional stresses are output after applying the inverse scaling
+in <a class="xref" href="thy_el174.html#orthofric1" title="(13&#8211;262)">Equation&nbsp;13&#8211;262</a>.</p><p>The coefficient of friction (&#956;<sub>1</sub> and &#956;<sub>2</sub>) can have dependence on time, temperature, normal pressure,
+sliding distance, or sliding relative velocity (defined as fields
+on the <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink"><span class="command"><strong>TBFIELD</strong></span></a> command). Suitable combinations
+of up to two fields can be used to define dependency, for example,
+temperature or temperature and sliding distance; see <a href="../ans_mat/contfriction.html" class="olink">Contact Friction</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a> for
+details.</p><p><a name="statdynfrict"></a>
+<span class="bold"><strong>
+<span class="italic"><em>Static and Dynamic Friction</em></span>
+</strong></span>
+</p><p>
+<a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a> provides the exponential friction
+model, which is used to smooth the transition between the static coefficient
+of friction and the dynamic coefficient of friction according to the
+formula (Benson and Hallquist(<a class="xref" href="thy_biblio.html#bensonhall" title="&#8220;A Single Surface Contact Algorithm for the Post-Buckling Analysis of Shell Structures&#8221;">[318]</a>)): </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq2df988a7-a512-437d-8e8c-b4b5624ad626"></a><div><img src="graphics/eq2df988a7-a512-437d-8e8c-b4b5624ad626.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;266)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>v = slip rate </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-49.000000px"><img src="graphics/eqaeb73257-0356-490f-8a82-2ae9cc48f49d.svg"></span>
+</td></tr><tr><td>&#956;<sub>s</sub>= R<sub>f</sub> &#956;<sub>d</sub> = static coefficient of friction </td></tr><tr><td>R<sub>f</sub> = ratio of static and dynamic friction
+(input as FACT on <a href="../ans_cmd/Hlp_C_RMORE.html" class="olink"><span class="command"><strong>RMORE</strong></span></a> command) </td></tr><tr><td>c = decay coefficient (input as DC on <a href="../ans_cmd/Hlp_C_RMORE.html" class="olink"><span class="command"><strong>RMORE</strong></span></a> command) </td></tr></table><p>
+</p><p>
+<span class="bold"><strong>
+<span class="italic"><em>Integration of
+Frictional Law</em></span>
+</strong></span>
+</p><p>The integration of the frictional mode is similar to that of
+nonassociated theory of plasticity (see <a class="xref" href="thy_mat1.html" title="4.2.&nbsp;Rate-Independent Plasticity">Rate-Independent Plasticity</a>). In each substep that sliding friction occurs, an elastic predictor
+is computed in contact traction space. The predictor is modified with
+a radial return mapping function, providing both a small elastic deformation
+along with a sliding response as developed by Giannakopoulos(<a class="xref" href="thy_biblio.html#t7flf328mlg" title="&#34;The Return Mapping Method for the Integration of Friction Constitutive Relations&#34;">[135]</a>). </p><p>The flow rule giving the slip increment for orthotropic friction
+can be written as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq16561759-06df-4f1c-9c47-6644814a9c1c"></a><div><img src="graphics/eq16561759-06df-4f1c-9c47-6644814a9c1c.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;267)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>du<sub>i</sub> = slip increment in principal direction
+i = 1, 2</td></tr><tr><td>&#955; = Lagrange multiplier for friction</td></tr></table><p>
+</p><p>By appropriately scaling the slip increment, it can be shown
+that the Lagrange multiplier is equal to the scaled equivalent slip
+increment:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq059463d0-a226-481b-b266-6a5b1f0bbcb7"></a><div><img src="graphics/eq059463d0-a226-481b-b266-6a5b1f0bbcb7.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;268)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq16b57a89-426f-4221-9ede-a2f9a1282fac"></a><div><img src="graphics/eq16b57a89-426f-4221-9ede-a2f9a1282fac.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;269)</b></p></td></tr></table><p>and the direction of scaled slip increment is same as that of
+scaled frictional stress.</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq6e07af38-1eaf-4981-9cb8-4962d6945bda"></a><div><img src="graphics/eq6e07af38-1eaf-4981-9cb8-4962d6945bda.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;270)</b></p></td></tr></table><p>Thus, computations for orthotropic friction use the same framework
+as isotropic friction except for scaled slip increments and scaled
+frictional stresses which are converted to actual values for output.</p><p>
+<span class="bold"><strong>
+<span class="emphasis"><em>User-defined Friction</em></span>
+</strong></span>
+</p><p>For friction models that do not follow Coulomb&#8217;s law, you can write a USERFRIC
+      subroutine. Refer to the <a href="../ans_prog/Hlp_P_UPFTOC.html" class="olink">Guide to User-Programmable Features in the <span class="olinkdocname">Mechanical APDL Programmer's Reference</span></a> for a
+      detailed description on writing a USERFRIC subroutine. You can use it with any 2-D or 3-D
+      contact element (<a href="../ans_elem/Hlp_E_CONTA171.html" class="olink"><span class="structname">CONTA171</span></a>, <a href="../ans_elem/Hlp_E_CONTA172.html" class="olink"><span class="structname">CONTA172</span></a>,
+        <a href="../ans_elem/Hlp_E_CONTA173.html" class="olink"><span class="structname">CONTA173</span></a>, <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a>,
+        <a href="../ans_elem/Hlp_E_CONTA175.html" class="olink"><span class="structname">CONTA175</span></a>, <a href="../ans_elem/Hlp_E_CONTA176.html" class="olink"><span class="structname">CONTA176</span></a>,
+        <a href="../ans_elem/Hlp_E_CONTA177.html" class="olink"><span class="structname">CONTA177</span></a>, and <a href="../ans_elem/Hlp_E_CONTA178.html" class="olink"><span class="structname">CONTA178</span></a>) with penalty
+      method for tangential contact (select KEYOPT(2) = 0, 1, or 3). Use the
+      <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,FRIC command with <em class="replaceable"><code>TBOPT</code></em> = USER to choose the
+      user define friction option, and specify the friction properties on the
+        <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command.</p><p>Friction models involve nonlinear material behavior, so only
+experienced users who have a good understanding of the theory and
+finite element programming should attempt to write a USERFRIC subroutine.</p><p>
+<span class="bold"><strong>
+<span class="emphasis"><em>Constitutive Relationship for
+Frictional Sliding</em></span>
+</strong></span>
+</p><p>Regarding frictional sliding, the linearized constitutive relationship
+between tangential stresses and sliding increments can be expressed:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqbc2ce8b6-aa4a-42d3-840b-413e860d3227"></a><div><img src="graphics/eqbc2ce8b6-aa4a-42d3-840b-413e860d3227.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;271)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqbab76490-8d54-462c-9638-56ba49a964ff.svg"></span> = equivalent slip predictor over the current
+substep (Laursen and Simo<a class="xref" href="thy_biblio.html#acLep1f2jjw" title="&#34;Algorithmic Symmetrization of Coulomb Frictional Problems Using Augmented Lagrangians&#34;">[217]</a>)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq9277c64f-7c5e-44ec-a7fd-4dada6287916.svg"></span> =  current equivalent slip rate</td></tr><tr><td>t<sub>i</sub> = the unit vector in the direction
+of slip (i = 1, 2)</td></tr></table><p>
+</p><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq453100a2-9d6c-4460-82a8-98a385971ae5.svg"></span> can be obtained from the tabular
+input (define the friction coefficient to be a function of pressure
+via the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,FRIC command).</p><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq85b70bd2-cadf-4b3b-bf3e-49123167b910.svg"></span> can be obtained from the tabular input (define friction
+coefficient to be a function of sliding velocity via <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,FRIC command) or from the definition of <a class="link" href="thy_el174.html#statdynfrict">
+<span class="italic"><em>Static and Dynamic Friction</em></span>
+</a> via real constants FACT and DC.</p><p>
+<span class="bold"><strong>
+<span class="emphasis"><em>Algorithmic Symmetrization</em></span>
+</strong></span>
+</p><p>Contact problems involving friction produce non-symmetric stiffness.
+ Using an unsymmetric solver (<a href="../ans_cmd/Hlp_C_NROPT.html" class="olink"><span class="command"><strong>NROPT</strong></span></a>,UNSYM) is more
+computationally expensive than a symmetric solver for each iteration.
+ For this reason, a symmetrization algorithm developed by Laursen
+and Simo(<a class="xref" href="thy_biblio.html#acLep1f2jjw" title="&#34;Algorithmic Symmetrization of Coulomb Frictional Problems Using Augmented Lagrangians&#34;">[217]</a>) is used by which most frictional
+contact problems can be solved using solvers for symmetric systems.
+ If frictional stresses have a substantial influence on the overall
+displacement field and the magnitude of the frictional stresses is
+highly solution dependent, any symmetric approximation to the stiffness
+matrix may provide a low rate of convergence.  In such cases, the
+use of an unsymmetric stiffness matrix is more computationally efficient. </p><p>
+<span class="bold"><strong>
+<span class="emphasis"><em>Forced Frictional Sliding Using
+Velocity Input</em></span>
+</strong></span>
+</p><p>In a static analysis, you can model steady-state frictional
+sliding between two flexible bodies or between a flexible and a rigid
+body with different velocities. In this case the sliding velocities
+no longer follow the nodal displacements, and they are predefined
+through the <a href="../ans_cmd/Hlp_C_CMROTATE.html" class="olink"><span class="command"><strong>CMROTATE</strong></span></a> command. This command sets
+the velocities on the nodes of the element component as an initial
+condition at the start of a load step. The program determines the
+sliding direction based on the direction of the sliding velocities.
+The frictional stresses then can be expressed by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq7fca60d2-ef27-4786-8ff4-677fe8f6d4fe"></a><div><img src="graphics/eq7fca60d2-ef27-4786-8ff4-677fe8f6d4fe.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;272)</b></p></td></tr></table><p>where 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq00858abe-0b2c-444d-b61e-1c25c3174015.svg"></span> is obtained from the <a href="../ans_cmd/Hlp_C_CMROTATE.html" class="olink"><span class="command"><strong>CMROTATE</strong></span></a> command. </p><p>The linearized frictional stress with respect to the sliding
+velocity can be expressed in the following form (Bajer, Belsky, and
+Kung<a class="xref" href="thy_biblio.html#bajerbelskykung" title="&#8220;The Influence of Friction-Induced Damping and Nonlinear Effects on Brake Squeal Analysis&#8221;">[398]</a>):</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqdfefde69-35e8-49ed-afb3-e3b3540399ad"></a><div><img src="graphics/eqdfefde69-35e8-49ed-afb3-e3b3540399ad.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;273)</b></p></td></tr></table><p>In the complex eigenvalue extraction analysis using the QRDAMP
+or DAMP method, the above terms will be included in the damping matrix.
+The first term is, in general, negative in the case of a negative
+friction-sliding velocity gradient, and it can destabilize the system.
+Therefore, it is referred to as destabilizing squeal damping. The
+destabilizing squeal damping is proportional to the contact pressure,
+but it follows the sliding direction. The second term is proportional
+to the equivalent friction stress but orthogonal to the sliding direction.
+It may be needed to avoid false unstable modes and is, therefore,
+referred to as stabilizing squeal damping (Bajer, Belsky, and Kung<a class="xref" href="thy_biblio.html#bajerbelskykung" title="&#8220;The Influence of Friction-Induced Damping and Nonlinear Effects on Brake Squeal Analysis&#8221;">[398]</a>). To study the effects of squeal damping
+on the complex eigenvalue extraction analysis, the above equation
+is rewritten:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq21020435-95f6-4d7c-8c02-b977e9c4b8a0"></a><div><img src="graphics/eq21020435-95f6-4d7c-8c02-b977e9c4b8a0.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;274)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>c<sub>d</sub> = a scaling factor for destabilizing
+squeal damping (real constant FDMD when KEYOPT(16) = 0)</td></tr><tr><td>c<sub>s</sub> = a scaling factor for stabilizing
+squeal damping (real constant FDMS when KEYOPT(16) = 0)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq877b5bb0-85ec-4f15-a87a-137a8a1f6491.svg"></span> = friction-sliding velocity gradient (real
+constant FDMD when KEYOPT(16) =      1)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq0b7eb76f-b20f-405a-a569-cc84714742c3.svg"></span> =
+destabilizing damping coefficient (real constant FDMD when KEYOPT(16)
+= 2)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq262cff87-d30d-414e-848d-d8ad4c85ef72.svg"></span> =
+stabilizing damping coefficient (real constant FDMS when KEYOPT(16)
+= 1 or 2)</td></tr></table><p>
+</p></div><div class="sect2" title="13.174.4.&nbsp;Contact Algorithm"><div class="titlepage"><div><div><h3 class="title"><a name="conta174algo"></a>13.174.4.&nbsp;Contact Algorithm</h3></div></div></div><p>Four different contact algorithms are implemented in this element
+(selected by KEYOPT(2)). </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Pure penalty method</p></li><li class="listitem"><p>Augmented Lagrangian method (Simo and Laursens(<a class="xref" href="thy_biblio.html#RdLep152jjw" title="&#34;An Augmented Lagrangian Treatment of Contact Problems Involving Friction&#34;">[216]</a>))</p></li><li class="listitem"><p>Pure Lagrange multiplier method (Bathe(<a class="xref" href="thy_biblio.html#aYwgf26dmlg" title="Finite Element Procedures">[2]</a>))</p></li><li class="listitem"><p>Lagrange multiplier on contact normal and penalty
+on frictional direction</p></li></ul></div><p>
+</p><p>
+<span class="bold"><strong>
+<span class="italic"><em>Pure Penalty Method</em></span>
+</strong></span>
+</p><p>This method requires both contact normal and tangential stiffness.
+The main drawback is that the amount penetration between the two surfaces
+depends on this stiffness. Higher stiffness values decrease the amount
+of penetration but can lead to ill-conditioning of the global stiffness
+matrix and to convergence difficulties. Ideally, you want a high enough
+stiffness that contact penetration is acceptably small, but a low
+enough stiffness that the problem will be well-behaved in terms of
+convergence or matrix ill-conditioning.</p><p>The contact traction vector is:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq9180d921-f3bf-44fd-9cdd-8ed8bd913f93"></a><div><img src="graphics/eq9180d921-f3bf-44fd-9cdd-8ed8bd913f93.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;275)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>P = normal contact pressure</td></tr><tr><td>&#964;<sub>1</sub> = frictional stress in direction
+1</td></tr><tr><td>&#964;<sub>2</sub> = frictional stress in direction
+2</td></tr></table><p>
+</p><p>The contact pressure is:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqa033ede2-fbeb-4278-8e35-d45db8b4063f"></a><div><img src="graphics/eqa033ede2-fbeb-4278-8e35-d45db8b4063f.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;276)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>K<sub>n</sub> = contact normal stiffness</td></tr><tr><td>u<sub>n</sub> = contact gap size</td></tr></table><p>
+</p><p>The frictional stress for isotropic friction is obtained by
+Coulomb's law:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="coulaw"></a><div><img src="graphics/coulaw.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;277)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>K<sub>s</sub> = tangential contact stiffness (input
+as FKT on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command)</td></tr><tr><td>&#916;u<sub>i</sub> = slip increment in direction
+i over the current substep; In the case of sticking, &#916;u<sub>i</sub> is the elastic slip increment, which represents the
+reversible tangential motion within the current substep.</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqb3c18c24-3990-4e26-8242-ef8d4204d592.svg"></span> = equivalent slip increment over the current substep</td></tr><tr><td>&#956;<sub>iso</sub> = coefficient of friction</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq40bf3a26-a37b-4529-98c9-d4324946be06.svg"></span> = frictional stress in direction
+i = 1,2 at the end of previous substep</td></tr></table><p>
+</p><p>For orthotropic friction, slip increment and frictional stress
+are scaled so that</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq74c39254-a480-4ffb-9487-810089f39084"></a><div><img src="graphics/eq74c39254-a480-4ffb-9487-810089f39084.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;278)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq47ac2362-f241-4120-b44a-053505419eee.svg"></span> = scaled tangential contact stiffness in principal
+direction i = 1, 2</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqba2ea0c3-8480-4bdb-b72c-e9b3fa9a89ab.svg"></span> = slip increment in principal direction i = 1, 2 over the current
+substep</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq83fc3f95-acc6-4582-ac1a-48f097f5bc99.svg"></span> = scaled
+equivalent slip increment over the current substep</td></tr><tr><td>&#956;<sub>eq</sub> = equivalent coefficient of
+friction</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq9bfb0c48-d630-4878-993f-50b283fc2ee8.svg"></span> =
+scaled frictional stress in principal direction i = 1, 2 at the end
+of previous substep</td></tr></table><p>
+</p><p>For consistency between scaled friction stress and scaled slip
+increment, the scaled tangential contact stiffness in principal direction
+i = 1, 2 must be defined as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq7259c8f3-a18d-4cc0-a194-ad81ca7acd8e"></a><div><img src="graphics/eq7259c8f3-a18d-4cc0-a194-ad81ca7acd8e.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;279)</b></p></td></tr></table><p>
+<span class="bold"><strong>
+<span class="italic"><em>Augmented Lagrangian
+Method</em></span>
+</strong></span>
+</p><p>The augmented Lagrangian method is an iterative series of penalty
+updates to find the Lagrange multipliers (i.e., contact tractions).
+Compared to the penalty method, the augmented Lagrangian method usually
+leads to better conditioning and is less sensitive to the magnitude
+of the contact stiffness coefficient. However, in some analyses, the
+augmented Lagrangian method may require additional iterations, especially
+if the deformed mesh becomes excessively distorted.</p><p>The contact pressure is defined by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="augmented"></a><div><img src="graphics/augmented.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;280)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-22.000000px"><img src="graphics/eqddc27aa9-4eb6-4848-86c6-3e398cd6bb6a.svg"></span>
+</td></tr><tr><td>&#949; = compatibility tolerance (input as FTOLN on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command)</td></tr><tr><td>&#955;<sub>i</sub> = Lagrange multiplier component
+at iteration i</td></tr></table><p>
+</p><p>The Lagrange multiplier component &#955;<sub>i</sub> is computed locally (for each element) and iteratively.</p><p>
+<span class="italic"><em>
+<span class="bold"><strong>Pure Lagrange
+Multiplier Method</strong></span>
+</em></span>
+</p><p>The pure Lagrange multiplier method does not require contact
+stiffness. Instead it requires chattering control parameters. Theoretically,
+the pure Lagrange multiplier method enforces zero penetration when
+contact is closed and <span class="quote">"<span class="quote">zero slip</span>"</span> when sticking contact
+occurs. However the pure Lagrange multiplier method adds additional
+degrees of freedom to the model and requires additional iterations
+to stabilize contact conditions. This will increase the computational
+cost. This algorithm has chattering problems due to contact status
+changes between open and closed or between sliding and sticking. The
+other main drawback of the Lagrange multiplier method is overconstraint
+in the model. The model is overconstrained when a contact constraint
+condition at a node conflicts with a prescribed boundary condition
+on that degree of freedom (e.g., <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a> command) at
+the same node. Overconstraints can lead to convergence difficulties
+and/or inaccurate results. The Lagrange multiplier method also introduces
+zero diagonal terms in the stiffness matrix, so that iterative solvers
+(e.g., PCG) can not be used.</p><p>The contact traction components (i.e., Lagrange multiplier parameters)
+become unknown DOFs for each element. The associated Newton-Raphson
+load vector is:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="contact"></a><div><img src="graphics/contact.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;281)</b></p></td></tr></table><p>
+<span class="bold"><strong>
+<span class="italic"><em>Lagrange Multiplier
+on Contact Normal and Penalty on Frictional Direction</em></span>
+</strong></span>
+</p><p>In this method only the contact normal pressure is treated as
+a Lagrange multiplier. The tangential contact stresses are calculated
+based on the penalty method (see <a class="xref" href="thy_el174.html#coulaw" title="(13&#8211;277)">Equation&nbsp;13&#8211;277</a>).</p><p>This method allows only a very small amount of slip for a sticking
+contact condition. It overcomes chattering problems due to contact
+status change between sliding and sticking which often occurs in the
+pure Lagrange Multiplier method. Therefore this algorithm treats frictional
+sliding contact problems much better than the pure Lagrange method.</p></div><div class="sect2" title="13.174.5.&nbsp;Viscous Damping"><div class="titlepage"><div><div><h3 class="title"><a name="viscdamp174"></a>13.174.5.&nbsp;Viscous Damping</h3></div></div></div><p>Viscous damping is primarily used to damp relative motions between
+the contact and target surfaces for open contact. It provides a certain
+resistance to reduce the risk of rigid body motion. The viscous damping
+traction is proportional but opposite to the relative velocities along
+contact normal or tangential directions:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq7a71197b-9eb4-47d5-ab5d-992e32ac0b77"></a><div><img src="graphics/eq7a71197b-9eb4-47d5-ab5d-992e32ac0b77.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;282)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq07f911f2-baa2-40cd-b87b-1fde4c4a4ff0"></a><div><img src="graphics/eq07f911f2-baa2-40cd-b87b-1fde4c4a4ff0.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;283)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq98596e9b-61b2-41ed-935c-bdd3c268e1cc"></a><div><img src="graphics/eq98596e9b-61b2-41ed-935c-bdd3c268e1cc.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;284)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>d<sub>n</sub> = damping coefficient in normal
+direction </td></tr><tr><td>d<sub>t</sub> = damping coefficient in tangential
+direction</td></tr></table><p>
+</p><p>The total damping force is calculated by the integration of
+damping traction over the contact elements.</p><p>The damping coefficient is specified as a function of the opening
+gap:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqd2f7104f-767e-4e64-b98d-cb8629013b12"></a><div><img src="graphics/eqd2f7104f-767e-4e64-b98d-cb8629013b12.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;285)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq246d662c-9226-4d23-ab00-8589e308d91b"></a><div><img src="graphics/eq246d662c-9226-4d23-ab00-8589e308d91b.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;286)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>u<sub>pinb</sub> = pinball radius (real constant
+PINB)</td></tr><tr><td>d<sub>n0</sub> = normal contact damping coefficient
+(real constant FDMN)</td></tr><tr><td>d<sub>t0</sub> = tangential contact damping coefficient
+(real constant FDMT)</td></tr></table><p>
+</p><p>The contact damping energy can be obtained by integrating damping
+      traction over the contacting area within the time increment:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqc5a472af-649d-45d2-91a9-c13cf0bc7e8e"></a><div><img src="graphics/eqc5a472af-649d-45d2-91a9-c13cf0bc7e8e.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;287)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>A<sub>c</sub> = area domain of the contact surface</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq60c265de-a10a-4f2b-9318-be2eeecbc73a.svg"></span> = time increment</td></tr></table><p>
+</p></div><div class="sect2" title="13.174.6.&nbsp;Energy and Momentum Conserving Contact"><div class="titlepage"><div><div><h3 class="title"><a name="EnMomCon"></a>13.174.6.&nbsp;Energy and Momentum Conserving Contact</h3></div></div></div><p>To correctly model the physical interaction between contact
+and target surfaces in a transient dynamic analysis, the contact forces
+must maintain force and energy balance, and ensure proper transfer
+of linear momentum. This requires imposing additional constraints
+on relative velocities between contact and target surfaces (see Laursen
+and Chawla (<a class="xref" href="thy_biblio.html#laursenchawla" title="&#8220;Design of Energy Conserving Algorithms for Frictionless Dynamic Contact Problems&#8221;">[377]</a>), and Armero and Pet&#337;cz
+(<a class="xref" href="thy_biblio.html#armeropetocz" title="&#8220;Formulation and Analysis of Conserving Algorithms for Dynamic Contact/Impact problems&#8221;">[378]</a>)).</p><p>
+<span class="bold"><strong>
+<span class="italic"><em>Impact Constraints
+and Contact Forces</em></span>
+</strong></span>
+</p><p>In ANSYS the penetration constraints and the relative velocity
+constraints between contact and target surfaces are collectively referred
+to as impact constraints. These constraints can be selected by setting
+KEYOPT(7) = 4 for any of the 2D or 3D contact elements and are valid
+for all types of contact interactions (flexible-to-flexible, flexible-to-rigid,
+and rigid-to-rigid) with and without friction. </p><p>An automatic time stepping scheme is used to predict the time of impact and adjust the size of
+      the time increment to minimize penetration. <span>The resulting
+        penetration may not be within the penetration tolerance specified using real constant FTOLN.
+        Rather, the allowable penetration is decided such that energy and momentum are
+        conserved.</span> When contact is detected, the relative velocity constraints are imposed
+      using one of the four contact algorithms: pure penalty method, augmented Lagrangian method,
+      pure Lagrange multiplier method, or Lagrange multiplier in contact normal and penalty in
+      frictional direction method. In the case of rough contact (KEYOPT(12) = 1) the relative
+      velocity constraint is imposed in the tangential direction also to prevent slip. In the case
+      of standard contact (KEYOPT(12) = 0) with friction, the slip increment and frictional stress
+      are computed by taking the relative velocity constraint into consideration. </p><p>For the pure penalty method, contact pressure <span class="italic"><em>P</em></span> and friction stresses &#964;<sub>i</sub> for isotropic friction are defined as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="isofric"></a><div><img src="graphics/isofric.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;288)</b></p></td></tr></table><p>where:</p><p>K<sub>n</sub> = contact normal stiffness</p><p>u<sub>n</sub> = contact gap size</p><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eqfabea73b-4e99-49a9-855c-6895d793e4fb.svg"></span> = algorithmic
+contact gap size (based on the relative velocity constraint)</p><p>P<sup>n-1</sup> = normal contact pressure at
+the end of previous substep</p><p>and:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="algocon"></a><div><img src="graphics/algocon.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;289)</b></p></td></tr></table><p>where:</p><p>K<sub>s</sub> = tangential contact stiffness (input
+as FKT on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command)</p><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq7fc3e16b-072f-427c-a97f-2229a492e626.svg"></span> = slip increment
+in direction i over the current substep</p><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq99ee8d82-e985-446f-8365-3c36a25b3fb5.svg"></span> = equivalent slip increment over the current substep</p><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq2045c99f-20eb-47ee-a31d-0bc7b18bdc57.svg"></span> = algorithmic slip increment in direction i over
+the current substep  </p><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq0b059350-2206-44b1-8746-0c3daeaa603a.svg"></span>= algorithmic equivalent
+slip increment over the current substep</p><p>&#956;<sub>iso</sub> = coefficient of friction</p><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eq986e6ece-34d2-42e7-bfab-49d922503aa2.svg"></span> = frictional
+stress in direction i = 1,2 at the end of previous substep</p><p>For other contact algorithms, the expressions for contact pressure
+and frictional stresses are defined in a similar manner as shown in <a class="xref" href="thy_el174.html#augmented" title="(13&#8211;280)">Equation&nbsp;13&#8211;280</a> and <a class="xref" href="thy_el174.html#contact" title="(13&#8211;281)">Equation&nbsp;13&#8211;281</a> but with additional
+variables as shown above in <a class="xref" href="thy_el174.html#isofric" title="(13&#8211;288)">Equation&nbsp;13&#8211;288</a> and <a class="xref" href="thy_el174.html#algocon" title="(13&#8211;289)">Equation&nbsp;13&#8211;289</a>.</p><p>
+<span class="bold"><strong>
+<span class="italic"><em>Energy and Momentum
+Balance</em></span>
+</strong></span>
+</p><p>Imposition of the impact constraints at Gauss points of contact
+elements ensures satisfaction of momentum and energy balance in a
+finite element sense. Since the impact constraints act only on the
+contact/target interface, energy balance is not enforced for the underlying
+finite elements used to model the interior of the contact and target
+bodies. Total energy at the contact/target interface is conserved
+for frictionless or rough contact when relative velocity constraints
+are satisfied exactly. If the relative velocity constraints are not
+satisfied to a tight tolerance there may be some loss of kinetic energy.</p><p>When friction is specified for contact elements, energy is conserved
+when the contact and target surfaces are not slipping (STICK) with
+respect to each other, and energy equal to the work done by frictional
+forces is dissipated when the contact and target surfaces are slipping
+(SLIP) with respect to each other. </p><p>Energy is also lost when numerical damping is used for the time
+integration scheme.</p><p>As per the classical theory of impact, exact conservation of
+energy during impact between rigid bodies is identified with <span class="italic"><em>elastic impact</em></span>. It corresponds to a <span class="italic"><em>coefficient of restitution</em></span> (COR) of 1. The
+impact constraints in ANSYS for impact between rigid bodies satisfy
+the conditions of elastic impact when the constraints are satisfied
+exactly and no numerical damping or friction is specified. Energy
+loss during impact between rigid bodies can be modeled by specifying
+a coefficient of restitution value (input as real constant COR) smaller
+than 1.</p><p>
+<span class="bold"><strong>
+<span class="italic"><em>Time Integration
+Scheme</em></span>
+</strong></span>
+</p><p>The impact constraints are formulated such that they can be
+used with both methods available for implicit transient dynamic analysis
+in ANSYS, the Newmark method and the HHT method. An important reason
+for using the impact constraints is that they make the time integration
+scheme numerically more stable without using large numerical damping.
+A small amount of numerical damping may still be needed to suppress
+high frequency noise.</p></div><div class="sect2" title="13.174.7.&nbsp;Debonding"><div class="titlepage"><div><div><h3 class="title"><a name="debond"></a>13.174.7.&nbsp;Debonding</h3></div></div></div><p>Debonding refers to separation of bonded contact (KEYOPT(12)
+= 2, 3, 4, 5 or 6). It is activated by associating a cohesive zone
+material model (input with <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM) with contact
+elements. Debonding is available only for pure penalty method and
+augmented Lagrangian method (KEYOPT(2) = 0,1) with contact elements <a href="../ans_elem/Hlp_E_CONTA171.html" class="olink"><span class="structname">CONTA171</span></a>, <a href="../ans_elem/Hlp_E_CONTA172.html" class="olink"><span class="structname">CONTA172</span></a>, <a href="../ans_elem/Hlp_E_CONTA173.html" class="olink"><span class="structname">CONTA173</span></a>, <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a>, <a href="../ans_elem/Hlp_E_CONTA175.html" class="olink"><span class="structname">CONTA175</span></a>, <a href="../ans_elem/Hlp_E_CONTA176.html" class="olink"><span class="structname">CONTA176</span></a>, and <a href="../ans_elem/Hlp_E_CONTA177.html" class="olink"><span class="structname">CONTA177</span></a>.</p><p>A cohesive zone material model is provided with bilinear behavior
+(Alfano and Crisfield(<a class="xref" href="thy_biblio.html#alfanocris" title="&#8220;Finite Element Interface Models for the Delamination Anaylsis of Laminated Composites: Mechanical and Computational Issues&#8221;">[366]</a>)) for debonding.
+The model defines contact stresses as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq1aa15760-4d2f-4cdc-920b-f67db52ef7c1"></a><div><img src="graphics/eq1aa15760-4d2f-4cdc-920b-f67db52ef7c1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;290)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq5605eddd-4b5a-49cd-9ef6-d0b02fd4dd37"></a><div><img src="graphics/eq5605eddd-4b5a-49cd-9ef6-d0b02fd4dd37.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;291)</b></p></td></tr></table><p>and</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq184eea1a-d5cd-4452-ab99-eedf09df63ae"></a><div><img src="graphics/eq184eea1a-d5cd-4452-ab99-eedf09df63ae.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;292)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>P = normal contact stress (tension)</td></tr><tr><td>&#964;<sub>1</sub> = tangential contact stress
+in direction 1</td></tr><tr><td>&#964;<sub>2</sub> = tangential contact stress
+in direction 2</td></tr><tr><td>K<sub>n</sub> = normal contact stiffness</td></tr><tr><td>K<sub>t</sub> = tangential contact stiffness</td></tr><tr><td>u<sub>n</sub> = contact gap</td></tr><tr><td>u<sub>1</sub> = contact slip distance in direction
+1</td></tr><tr><td>u<sub>2</sub> = contact slip distance in direction
+2</td></tr><tr><td>d = debonding parameter</td></tr><tr><td>direction 1 and direction 2 = principal directions in tangent
+plane</td></tr></table><p>
+</p><p>The debonding parameter is defined as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq1285846e-ed50-4eef-85bf-ae7350e63eb8"></a><div><img src="graphics/eq1285846e-ed50-4eef-85bf-ae7350e63eb8.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;293)</b></p></td></tr></table><p>with d = 0 for &#916; 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq4e74ce5e-6821-4a3f-ad37-978cec9b896f.svg"></span> 1 and 0 &lt; d 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqbf60e523-d277-4b22-8a45-969d2a673bd1.svg"></span> 1 for &#916; &gt; 1, and &#916; and &#967;
+are defined below.</p><p>Debonding allows three modes of separation: mode I, mode II
+and mixed mode.</p><p>Mode I debonding is defined by setting</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq6138a418-8ea4-4118-b570-baa099993686"></a><div><img src="graphics/eq6138a418-8ea4-4118-b570-baa099993686.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;294)</b></p></td></tr></table><p>and</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqb74eec50-3f4e-4f87-80b7-30f15df03efe"></a><div><img src="graphics/eqb74eec50-3f4e-4f87-80b7-30f15df03efe.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;295)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eq24d580d8-7651-4bed-855d-0d774f348353.svg"></span> = contact gap at the maximum normal
+contact traction (tension)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eq832709c2-9e3c-4dc6-969b-956138eb3ce7.svg"></span> = contact gap at the completion
+of debonding (input on <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command as <em class="replaceable"><code>C2</code></em> using <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM)</td></tr></table><p>
+</p><p>Mode II debonding is defined by setting</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqd31c4974-a836-440c-9018-b8e2e38af8bd"></a><div><img src="graphics/eqd31c4974-a836-440c-9018-b8e2e38af8bd.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;296)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqe3f5d15a-0bf9-4da8-8c99-db2a6cf579a4"></a><div><img src="graphics/eqe3f5d15a-0bf9-4da8-8c99-db2a6cf579a4.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;297)</b></p></td></tr></table><p>and</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq9a2d3b3a-1a5b-4c92-bcf3-a21f46954a4c"></a><div><img src="graphics/eq9a2d3b3a-1a5b-4c92-bcf3-a21f46954a4c.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;298)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq01b3471e-153e-4390-918b-748a3afcfb81.svg"></span> = equivalent tangential slip distance
+at the maximum equivalent tangential stress, 
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq8aceea57-8185-448d-b063-69d485f4c221.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq367bacbb-cd4d-440b-a2c1-5ba80fb99f1c.svg"></span> = equivalent tangential slip distance
+at the completion of debonding (input on <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command as <em class="replaceable"><code>C4</code></em> using <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM)</td></tr></table><p>
+</p><p>Mixed mode debonding is defined by setting</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq629fe29a-4fe3-4ac3-956d-3c26ab9ac171"></a><div><img src="graphics/eq629fe29a-4fe3-4ac3-956d-3c26ab9ac171.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;299)</b></p></td></tr></table><p>and</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq60d510df-af74-42b0-ac81-49a0b32adac6"></a><div><img src="graphics/eq60d510df-af74-42b0-ac81-49a0b32adac6.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;300)</b></p></td></tr></table><p>The constraint on &#967; that the ratio of the contact gap distances
+be same as the ratio of tangential slip distances is enforced automatically
+by appropriately scaling the contact stiffness values.</p><p>For mixed mode, debonding is complete when the energy criterion
+is satisfied:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq_debonding_mix"></a><div><img src="graphics/eq87bf435b-e157-478e-93dd-e95b615670a9.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;301)</b></p></td></tr></table><p>with</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq015a6e56-6eb2-45f8-a81a-34bf789d9515"></a><div><img src="graphics/eq015a6e56-6eb2-45f8-a81a-34bf789d9515.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;302)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq2d46d642-4d43-4b29-b143-3286ae28c92d"></a><div><img src="graphics/eq2d46d642-4d43-4b29-b143-3286ae28c92d.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;303)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq175cb0f1-ae95-4537-8d9a-43eac69f9a57"></a><div><img src="graphics/eq175cb0f1-ae95-4537-8d9a-43eac69f9a57.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;304)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq097848de-25a3-4bd7-a4e6-ff9003efbea8"></a><div><img src="graphics/eq097848de-25a3-4bd7-a4e6-ff9003efbea8.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;305)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#963;<sub>max</sub> = maximum normal contact
+stress (input on <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command as <em class="replaceable"><code>C1</code></em> using <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM)</td></tr><tr><td>&#964;<sub>max</sub> = maximum equivalent tangential
+contact stress (input on <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command as <em class="replaceable"><code>C3</code></em> using <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM)</td></tr></table><p>
+</p><p>Verification of satisfaction of energy criterion can be done
+during postprocessing of results.</p><p>The debonding modes are based on input data:</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Mode I for normal data (input on <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command as <em class="replaceable"><code>C1</code></em>, <em class="replaceable"><code>C2</code></em>, and <em class="replaceable"><code>C5</code></em>).</p></li><li class="listitem"><p>Mode II for tangential data (input on <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command as <em class="replaceable"><code>C3</code></em>, <em class="replaceable"><code>C4</code></em>, and <em class="replaceable"><code>C5</code></em>).</p></li><li class="listitem"><p>Mixed mode for normal and tangential data (input on <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command as <em class="replaceable"><code>C1</code></em>, <em class="replaceable"><code>C2</code></em>, <em class="replaceable"><code>C3</code></em>, <em class="replaceable"><code>C4</code></em>, <em class="replaceable"><code>C5</code></em> and <em class="replaceable"><code>C6</code></em>).</p></li></ol></div><p>
+</p><p>Artificial damping can be used to overcome convergence difficulties
+associated with debonding. It is activated by specifying the damping
+coefficient &#951; (input on <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command as <em class="replaceable"><code>C5</code></em> using <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM).</p><p>Tangential slip under compressive normal contact stress for
+mixed mode debonding is controlled by appropriately setting the flag &#946;
+(input on <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command as <em class="replaceable"><code>C6</code></em> using <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM). Settings on &#946; are:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#946; = 0 (default) indicates no tangential slip</td></tr><tr><td>&#946; = 1 indicates tangential slip is allowed</td></tr></table><p>
+</p><p>After debonding is completed the surface interaction is governed
+by standard contact constraints for normal and tangential directions.
+Frictional contact is used if friction is specified for contact elements.</p></div><div class="sect2" title="13.174.8.&nbsp;Contact Surface Wear"><div class="titlepage"><div><div><h3 class="title"><a name="conta174surfacewear"></a>13.174.8.&nbsp;Contact Surface Wear</h3></div></div></div><p>Progressive loss of material from the surface of a solid body
+when in contact with another body (in any phase) is called wear. At
+a micro-scale, the process of wear is quite complex with various mechanical
+and chemical processes resulting in material failure and loss. At
+a continuum scale, wear is approximated by phenomenological models
+that relate various quantities at the contact surface with material
+loss (see Meng and Ludema <a class="xref" href="thy_biblio.html#meng1995" title="&#8220;Wear models and predictive equations: their form and content&#8221;">[419]</a>). ANSYS models
+wear using such a phenomenological approach. Material loss due to
+wear is approximated by repositioning the contact nodes at the contact
+surface. The new coordinates of the nodes are determined by a wear
+model. Since the contact nodes are moved to new positions, the contact
+variables (for example, contact pressure) change. The underlying continuum
+elements also experience a loss in material (and volume), thus simulating
+wear. After the nodes are moved to a new position, equilibrium may
+be lost and the program continues to iterate until equilibrium is
+achieved.</p><p>The following options are available for defining a wear model:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Archard wear model (see Archard <a class="xref" href="thy_biblio.html#archard1953" title="&#8220;Contact and rubbing of flat surfaces&#8221;">[420]</a>)</p></li><li class="listitem"><p>User-defined wear model</p></li></ul></div><p>Wear is activated using the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command with <em class="replaceable"><code>Lab</code></em> = WEAR for the material assigned to contact elements.
+The following contact elements support modeling wear: <a href="../ans_elem/Hlp_E_CONTA171.html" class="olink"><span class="structname">CONTA171</span></a>, <a href="../ans_elem/Hlp_E_CONTA172.html" class="olink"><span class="structname">CONTA172</span></a>, <a href="../ans_elem/Hlp_E_CONTA173.html" class="olink"><span class="structname">CONTA173</span></a>, <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a>, and <a href="../ans_elem/Hlp_E_CONTA175.html" class="olink"><span class="structname">CONTA175</span></a>.</p><p>
+<span class="bold"><strong>
+<span class="italic"><em>Archard Wear Model</em></span>
+</strong></span>
+</p><p>The Archard wear model (see Archard <a class="xref" href="thy_biblio.html#archard1953" title="&#8220;Contact and rubbing of flat surfaces&#8221;">[420]</a>) is a popular sliding wear model with fairly good results for simulating
+wear. The original model proposed by Archard assumed that the rate
+of volume loss due to wear is linearly proportional to the contact
+pressure and sliding velocity at the contact surface. A generalized
+version of this model allowing proper law dependence on contact pressure
+and velocity is implemented in the program. The Archard model is defined
+using the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command with <em class="replaceable"><code>TBOPT</code></em> = ARCD and <em class="replaceable"><code>Lab</code></em> = WEAR.</p><p>Wear is assumed to occur in the inward normal direction of the
+surface, taken as the direction opposite the contact normal direction.
+The rate of wear at a contact node, 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqc2aaf5ba-527d-430c-b74a-4d91932b75a8.svg"></span>, is given by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqwearrate"></a><div><img src="graphics/thyeqwearrate.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;306)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>K = wear coefficient</td></tr><tr><td>H = material hardness</td></tr><tr><td>P = contact pressure</td></tr><tr><td>v<sub>rel</sub> = the relative sliding velocity</td></tr><tr><td>m = pressure exponent</td></tr><tr><td>n = velocity exponent</td></tr></table><p>
+</p><p> In the above equation, K, H, m, and n are user-specified values
+from the <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command. If a value of 1 is input
+for the fifth constant (C5) on the <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command,
+the calculation is based on the nodal stresses of the underlying solid
+element instead of the contact pressure. The stress evaluated at the
+gauss point of the solid element is first copied to its nearest node.
+The contact element overlaid on the solid element to which the gauss
+point belongs uses this stress, &#963;, and the contact normal, n,
+to calculate the component of the traction vector in the contact normal
+direction: <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq5b9431d4-635c-4e1d-89e4-8a0b2e5b6d72.svg"></span>. This normal component
+of the traction vector is used instead of contact pressure in the
+wear rate equation.</p><p>If C5 on the <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command is set to 10
+or 11, the wear increment is averaged over the contact area of the
+contact pair such that the total volume lost due to wear is the same
+as the total volume lost due to wear when each node wears with a different
+amount (C5 = 0 or 1). The average wear increment is calculated as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq99523ce3-18c0-4dec-b238-ae3d9eef32cc"></a><div><img src="graphics/eq99523ce3-18c0-4dec-b238-ae3d9eef32cc.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;307)</b></p></td></tr></table><p>where A represents the contact area at the point and the summation
+is over all points in contact in a contact pair.</p><p>
+<span class="bold"><strong>
+<span class="italic"><em>User-Defined Wear
+Model (USERWEAR)</em></span>
+</strong></span>
+</p><p>If the Archard wear model does not fit your needs, you can define
+your own wear model by programming the subroutine <code class="function">USERWEAR</code>. Most of the relevant contact results and properties are passed
+in the <code class="function">USERWEAR</code> subroutine. You can define the
+wear increment and direction of the wear increment. The user-defined
+wear model is defined using the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command with <em class="replaceable"><code>TBOPT</code></em> = USER and <em class="replaceable"><code>Lab</code></em> = WEAR.</p></div><div class="sect2" title="13.174.9.&nbsp;Thermal/Structural Contact"><div class="titlepage"><div><div><h3 class="title"><a name="conta174therm"></a>13.174.9.&nbsp;Thermal/Structural Contact</h3></div></div></div><p>Combined structural and thermal contact is specified if KEYOPT(1)
+= 1, which indicates that structural and thermal DOFs are active.
+ Pure thermal contact is specified if KEYOPT(1) = 2.  The thermal
+contact features (Zhu and Cescotto(<a class="xref" href="thy_biblio.html#BORav1e4jjw" title="&#34;Transient Thermal and Thermomechanical Analysis by Mixed FEM&#34;">[281]</a>))
+are: </p><p>
+<span class="bold"><strong>
+<span class="italic"><em>Thermal Contact
+Conduction</em></span>
+</strong></span>
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq2bc15955-0d06-4327-9f96-795a7d5f6eda"></a><div><img src="graphics/eq2bc15955-0d06-4327-9f96-795a7d5f6eda.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;308)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>q = heat flux (heat flow rate per area)</td></tr><tr><td>K<sub>c</sub> = thermal contact conductance coefficient
+(input as TCC on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>T<sub>T</sub> = temperature on target surface </td></tr><tr><td>T<sub>C</sub> = temperature on contact surface </td></tr></table><p>
+</p><p>
+<span class="bold"><strong>
+<span class="emphasis"><em>Heat Convection</em></span>
+</strong></span>
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq68e5b444-d774-4795-a813-ec2a3139fd98"></a><div><img src="graphics/eq68e5b444-d774-4795-a813-ec2a3139fd98.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;309)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>h<sub>f</sub> = convection coefficient (input
+on <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> command with <span class="italic"><em>Lab</em></span> = CONV and KVAL = 1) </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-34.000000px"><img src="graphics/eqc250d2c9-0f15-4e2d-a9c1-79c36107054e.svg"></span>
+</td></tr></table><p>
+</p><p>
+<span class="bold"><strong>
+<span class="emphasis"><em>Heat Radiation</em></span>
+</strong></span>
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq434d9157-d56d-4e9a-9084-43eb09ee17c0"></a><div><img src="graphics/eq434d9157-d56d-4e9a-9084-43eb09ee17c0.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;310)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#963; = Stefan-Boltzmann constant (input as SBCT on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>&#949; = emissivity (input using EMIS on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command) </td></tr><tr><td>F = radiation view factor (input as RDVF on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>T<sub>o</sub> = temperature offset (input as VALUE
+on <a href="../ans_cmd/Hlp_C_TOFFST.html" class="olink"><span class="command"><strong>TOFFST</strong></span></a> command) </td></tr></table><p>
+</p><p>
+<span class="bold"><strong>
+<span class="emphasis"><em>Heat Generation Due to Frictional
+Sliding</em></span>
+</strong></span>
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq8d5dde45-44be-4b65-be1f-823d37785437"></a><div><img src="graphics/eq8d5dde45-44be-4b65-be1f-823d37785437.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;311)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>q<sub>c</sub> = amount of frictional dissipation
+on contact surface </td></tr><tr><td>q<sub>T</sub> = amount of frictional dissipation
+on target surface </td></tr><tr><td>F<sub>w</sub> = weight factor for the distribution
+of heat between two contact and target surfaces (input as FWGT on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>F<sub>f</sub> = fractional dissipated energy converted
+into heat (input on FHTG on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>
+          <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq0819e2ce-989b-4b20-8599-c3ca53fa2f06.svg"></span> = equivalent frictional stress </td></tr><tr><td>v = sliding rate </td></tr></table><p>
+</p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;When KEYOPT(1) = 2, heat generation due to friction is
+ignored. </p><hr></div><p>The frictional dissipation energy can be obtained by integrating
+      dissipation density over the contacting area within the time increment</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqe3f569bf-450f-4e27-a4c3-d3105c0d88ac"></a><div><img src="graphics/eqe3f569bf-450f-4e27-a4c3-d3105c0d88ac.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;312)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>A<sub>c</sub> = area domain of the contact surface</td></tr><tr><td>
+          <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq60c265de-a10a-4f2b-9318-be2eeecbc73a.svg"></span> = time increment</td></tr></table><p>
+    </p></div><div class="sect2" title="13.174.10.&nbsp;Electric Contact"><div class="titlepage"><div><div><h3 class="title"><a name="conta174elect"></a>13.174.10.&nbsp;Electric Contact</h3></div></div></div><p>Combined structural, thermal, and electric contact is specified
+if KEYOPT(1) = 3. Combined thermal and electric contact is specified
+if KEYOPT(1) = 4. Combined structural and electric contact is specified
+if KEYOPT(1) = 5. Pure electric contact is specified if KEYOPT(1)
+= 6. The electric contact features are:</p><p>
+<span class="italic"><em>
+<span class="bold"><strong>Electric Current
+Conduction</strong></span>
+</em></span> (KEYOPT(1) = 3 or 4)</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq77b65c6d-d3ba-41b4-a96d-6ed99c8381f5"></a><div><img src="graphics/eq77b65c6d-d3ba-41b4-a96d-6ed99c8381f5.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;313)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>J = current density</td></tr><tr><td>&#963;/L = electric conductivity per unit length (input as
+ECC on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command)</td></tr><tr><td>V<sub>T</sub> = voltage on target surface</td></tr><tr><td>V<sub>C</sub> = voltage on contact surface</td></tr></table><p>
+</p><p>
+<span class="bold"><strong>
+<span class="italic"><em>Electrostatic</em></span>
+</strong></span> (KEYOPT(1) = 5 or 6)</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqa1007ef2-9e0b-4248-91ae-805e17fc4bb0"></a><div><img src="graphics/eqa1007ef2-9e0b-4248-91ae-805e17fc4bb0.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;314)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqf059a364-c943-427e-bbfe-6d244aa9c583.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqa79bdc71-96d7-4191-b0a0-865a91b14713.svg"></span>
+</td></tr></table><p>
+</p></div><div class="sect2" title="13.174.11.&nbsp;Magnetic Contact"><div class="titlepage"><div><div><h3 class="title"><a name="thy174magnet"></a>13.174.11.&nbsp;Magnetic Contact</h3></div></div></div><p>The magnetic contact is specified if KEYOPT(1) = 7. Using the magnetic scalar potential
+      approach, the 3-D magnetic flux across the contacting interface is defined by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq0e43d8c1-ee7a-4306-a733-60c5cbf1148a"></a><div><img src="graphics/eq0e43d8c1-ee7a-4306-a733-60c5cbf1148a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;315)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#968;<sup>n</sup> = magnetic flux</td></tr><tr><td>&#981;<sub>t</sub> = magnetic potential at target surface (MAG degree of
+          freedom)</td></tr><tr><td>&#981;<sub>c</sub> = magnetic potential at contact surface (MAG degree
+          of freedom)</td></tr><tr><td>C<sub>M</sub> = magnetic contact permeance coefficient</td></tr><tr><td>&#956;<sub>o</sub> = free space permeability</td></tr><tr><td>A = contact area</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqa28080b7-6850-4a3c-86cb-544352e435ec.svg"></span> = normal component of the <span class="quote">"<span class="quote">guess</span>"</span> magnetic field (See <a class="xref" href="thy_emg1.html#thyeq16electronov2801" title="(5&#8211;16)">Equation&nbsp;5&#8211;16</a>)</td></tr></table><p>
+</p><p>The gap permeance is defined as the ratio of the magnetic flux in the gap to the total
+      magnetic potential difference across the gap. The equation for gap permeance is:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq423c787d-48d0-4c1b-8bcf-6ae144dd7b74"></a><div><img src="graphics/eq423c787d-48d0-4c1b-8bcf-6ae144dd7b74.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;316)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>t = gap thickness</td></tr></table><p>
+</p><p>The magnetic contact permeance coefficient is defined as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq23c5885d-0ce9-4ada-8ae2-770859232e3c"></a><div><img src="graphics/eq23c5885d-0ce9-4ada-8ae2-770859232e3c.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;317)</b></p></td></tr></table><p>The above equations are only valid for 3-D analysis using the <a class="link" href="thy_emg2.html#elecmagspot" title="5.2.1.&nbsp;Magnetic Scalar Potential">Magnetic Scalar Potential</a> approach.</p></div><div class="sect2" title="13.174.12.&nbsp;Pore Fluid Contact"><div class="titlepage"><div><div><h3 class="title"><a name="thy174pore"></a>13.174.12.&nbsp;Pore Fluid Contact</h3></div></div></div><p>Combined structural and pore fluid contact is specified if KEYOPT(1) = 8. Combined
+      structural, pore fluid, and thermal contact is specified if KEYOPT(1) = 9. </p><p>
+<span class="bold"><strong>
+<span class="italic"><em>Pore Fluid Flow
+        Permeability</em></span>
+</strong></span> (for closed contact and near-field contact):</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq63f009da-1054-43d8-b71f-a659c1523140"></a><div><img src="graphics/eq63f009da-1054-43d8-b71f-a659c1523140.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;318)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqcf76b87c-e4e3-4cc8-8aa8-a116b7df16c1"></a><div><img src="graphics/eqcf76b87c-e4e3-4cc8-8aa8-a116b7df16c1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;319)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eq1dc723ac-f7db-47e5-8470-3eb9d7b068c1.svg"></span> = pore fluid flux density out of contact surface </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq6b65e82b-d39e-4781-ad6e-d28955062327.svg"></span> = pore fluid flux density out of target surface</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq7588031c-e17e-4be1-ab10-f2fc2229d9d5.svg"></span> = pore fluid contact permeability coefficient (input as PCC on
+            <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqc3f882ab-7dc8-4571-b895-e21143655375.svg"></span> = pore pressure on target surface </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eqd3389eb4-923e-4401-ab09-45ca1d904729.svg"></span> = pore pressure on contact surface </td></tr></table><p>
+</p><p>
+<span class="bold"><strong>
+<span class="italic"><em>Pore Fluid Flow Due to Gap Rate
+          Change</em></span>
+</strong></span> (for near-field contact):</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq5181275d-e4d7-473d-ba99-3489715b7a51"></a><div><img src="graphics/eq5181275d-e4d7-473d-ba99-3489715b7a51.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;320)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqed9633be-068d-4070-a3f1-995679b571c7"></a><div><img src="graphics/eqed9633be-068d-4070-a3f1-995679b571c7.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;321)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eqcd6a253e-82c7-4d4d-910a-5ac0bf82c775.svg"></span> = gap distance rate between the contact and target</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eq793fe3b4-3a82-4573-9cb0-5b170fef1a4d.svg"></span> = weight factor for the distribution of gap pore fluid flow between two
+          contact and target surfaces (input as FPWT on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq070ea458-c4eb-4bbd-98c4-b7a64aefe55b.svg"></span> = gap pore fluid flow participation factor (input as FPFT on
+            <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr></table><p>
+</p><p>This pore fluid flow is associated with removing or adding fluid for near field contact.
+      For steady-state analysis, the changing rate for gap distance is zero so that there is no
+      contribution from this gap-rate-dependent fluid flow. </p><p>
+<span class="bold"><strong>
+<span class="italic"><em>Pore Fluid Flow </em></span>
+</strong></span> (for
+      far-field contact):</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqc146206c-acbb-4842-a85f-d4abde888525"></a><div><img src="graphics/eqc146206c-acbb-4842-a85f-d4abde888525.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;322)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eqe6ffc53a-ecb0-45e3-980b-448161bc74f5.svg"></span> = the pore pressure seepage coefficient (input as PSEE on
+            <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command)</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eq6d517e33-89e4-425e-921e-827c03c97159.svg"></span> = the ambient pore pressure (input as ABPP on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a>
+          command) </td></tr></table><p>
+</p><p>
+<span class="bold"><strong>
+<span class="italic"><em>Drainage-Only Flow </em></span>
+</strong></span>
+      (for near-field contact):</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqf21aa09f-3d6a-474b-8c2d-8fa651684547"></a><div><img src="graphics/eqf21aa09f-3d6a-474b-8c2d-8fa651684547.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;323)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq5128a37f-26fe-40f2-9ae8-ac1f92d0cbcc"></a><div><img src="graphics/eq5128a37f-26fe-40f2-9ae8-ac1f92d0cbcc.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;324)</b></p></td></tr></table><p>Drainage-only flow indicates that normal pore fluid flow occurs only from the contact
+      surface to the environment when the contact surface pore pressures are positive. No fluid flow
+      can enter the contact surface when the contact surface pore pressures are negative.</p></div><div class="sect2" title="13.174.13.&nbsp;Diffusive Contact"><div class="titlepage"><div><div><h3 class="title"><a name="thy174diff"></a>13.174.13.&nbsp;Diffusive Contact</h3></div></div></div><p>Diffusive contact combined with other multiphysics fields is specified if KEYOPT(1) &gt;
+      10. </p><p>
+<span class="bold"><strong>
+<span class="italic"><em>Diffusion Flow for closed contact and
+          near-field contact</em></span>
+</strong></span>:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqdiffct-1"></a><div><img src="graphics/thyeqdiffct-1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;325)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqdiffct-2"></a><div><img src="graphics/thyeqdiffct-2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;326)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>q<sub>c</sub> = diffusion flux density out of contact surface </td></tr><tr><td>q<sub>t</sub>  = diffusion flux density out of target surface</td></tr><tr><td>K<sub>d</sub> = contact diffusivity coefficient (input as DCC on
+            <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command)</td></tr><tr><td>C<sub>c</sub> = concentration on contact surface</td></tr><tr><td>C<sub>t</sub> =  concentration on target surface</td></tr></table><p>
+    </p><p>
+<span class="bold"><strong>
+<span class="italic"><em>Diffusion Flow for far-field
+          contact</em></span>
+</strong></span>:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqduffct-3"></a><div><img src="graphics/thyeqduffct-3.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;327)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>K<sub>c</sub> = diffusive convection coefficient (input as DCON on
+            <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command)</td></tr><tr><td>C<sub>&#8734;</sub> = ambient concentration (input as ABDC on
+            <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command)</td></tr></table><p>
+    </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

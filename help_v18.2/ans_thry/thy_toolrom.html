@@ -1,0 +1,149 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:02-04:00"><title>14.10.&nbsp;Reduced Order Modeling of Coupled Domains</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_tool.html" title="Chapter&nbsp;14:&nbsp;Analysis Tools"><link rel="prev" href="thy_tool21.html" title="14.9.&nbsp;Extraction of Modal Damping Parameter for Squeeze Film Problems"><link rel="next" href="thy_tool10.html" title="14.11.&nbsp;Newton-Raphson Procedure"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="14.10.&nbsp;Reduced Order Modeling of Coupled Domains"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="romcdjjw"></a>14.10.&nbsp;Reduced Order Modeling of Coupled Domains</h2></div></div></div><p>A direct finite element solution of coupled-physics problems
+is computationally very expensive. The goal of the reduced-order modeling
+is to generate a fast and accurate description of the coupled-physics
+systems to characterize their static or dynamic responses. The method
+presented here is based on a modal representation of coupled domains
+and can be viewed as an extension of the <a class="xref" href="thy_tool9.html" title="14.8.&nbsp;Mode-Superposition Method">Mode-Superposition Method</a> to nonlinear structural and coupled-physics systems (Gabbay, et
+al.(<a class="xref" href="thy_biblio.html#gabbay3jjw" title="&#8220;Computer-Aided Generation of Nonlinear Reduced-Order Dynamic Macromodels - I: Non-Stress-Stiffened Case&#8221;">[231]</a>), Mehner, et al.(<a class="xref" href="thy_biblio.html#mehner3jjw" title="&#8220;Computer-Aided Generation of Nonlinear Reduced-Order Dynamic Macromodels - II: Stress-Stiffened Case&#8221;">[251]</a>), Mehner, et al.(<a class="xref" href="thy_biblio.html#mehner4jjw" title="&#8220;Computational Methods for Reduced Order Modeling of Coupled Domain Simulations&#8221;">[336]</a>), and Mehner, et al.(<a class="xref" href="thy_biblio.html#mehner5jjw" title="&#8220;A Modal Decomposition Technique for Fast Harmonic and Transient Simulations of MEMS&#8221;">[337]</a>)).</p><p>In the mode-superposition method, the deformation state u of
+the structural domain is described by a factored sum of mode shapes:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="romcdeq1"></a><div><img src="graphics/romcdeq1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;143)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>q<sub>i</sub> = modal amplitude of mode i</td></tr><tr><td>&#981;<sub>i</sub> = mode shape</td></tr><tr><td>u<sub>eq</sub> = deformation in equilibrium state
+in the initial prestress position</td></tr><tr><td>m = number of considered modes</td></tr></table><p>
+</p><p>By substituting <a class="xref" href="thy_toolrom.html#romcdeq1" title="(14&#8211;143)">Equation&nbsp;14&#8211;143</a> into the governing
+equations of motion, we obtain m constitutive equations that describe
+nonlinear structural systems in modal coordinates q<sub>i</sub>:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="romcdeq2"></a><div><img src="graphics/romcdeq2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;144)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>m<sub>i</sub> = modal mass</td></tr><tr><td>&#958;<sub>i</sub> = modal damping factor</td></tr><tr><td>&#969;<sub>i</sub> = angular frequency</td></tr><tr><td>W<sub>SENE</sub> = strain energy</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq8ad32794-7051-4ede-865c-49f162bc0e8c.svg"></span> = modal node force</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq0a53eb91-403b-436c-b590-3d1a9032e870.svg"></span> = modal element force</td></tr><tr><td>S<sub>l</sub> = element load scale factor (input
+on <a href="../ans_cmd/Hlp_C_RMLVSCALE.html" class="olink"><span class="command"><strong>RMLVSCALE</strong></span></a> command)</td></tr></table><p>
+</p><p>In a general case, <a class="xref" href="thy_toolrom.html#romcdeq2" title="(14&#8211;144)">Equation&nbsp;14&#8211;144</a> are coupled since
+the strain energy W<sub>SENE</sub> depends on the generalized
+coordinates q<sub>i</sub>. For linear structural systems, <a class="xref" href="thy_toolrom.html#romcdeq2" title="(14&#8211;144)">Equation&nbsp;14&#8211;144</a> reduces to <a class="xref" href="thy_tool9.html#thyeq21superpositionnov2101" title="(14&#8211;122)">Equation&nbsp;14&#8211;122</a>.</p><p>Reduced Order Modeling (ROM) substantially reduces running time
+since the dynamic behavior of most structures can be accurately represented
+by a few eigenmodes. The ROM method presented here is a three step
+procedure starting with a Generation Pass, followed by a Use Pass <a class="xref" href="thy_el144.html" title="13.144.&nbsp;ROM144 - Reduced Order Electrostatic-Structural">ROM144 - Reduced Order Electrostatic-Structural</a>, which can either be performed within ANSYS
+or externally in system simulator environment, and finally an optional
+Expansion Pass to extract the full DOF set solution according to <a class="xref" href="thy_toolrom.html#romcdeq1" title="(14&#8211;143)">Equation&nbsp;14&#8211;143</a>. </p><p>The entire algorithm can be outlined as follows:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Determine the linear elastic modes from the modal
+analysis (<a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,MODAL) of the structural problem. </p></li><li class="listitem"><p>Select the most important modes based on their contribution
+to the test load displacement (<a href="../ans_cmd/Hlp_C_RMMSELECT.html" class="olink"><span class="command"><strong>RMMSELECT</strong></span></a> command).</p></li><li class="listitem"><p>Displace the structure to various linear combinations
+of eigenmodes and compute energy functions for single physics domains
+at each deflection state (<a href="../ans_cmd/Hlp_C_RMSMPLE.html" class="olink"><span class="command"><strong>RMSMPLE</strong></span></a> command).</p></li><li class="listitem"><p>Fit strain energy function to polynomial functions
+(<a href="../ans_cmd/Hlp_C_RMRGENERATE.html" class="olink"><span class="command"><strong>RMRGENERATE</strong></span></a> command).</p></li><li class="listitem"><p>Derive the ROM finite element equations from the polynomial
+representations of the energy functions.</p></li></ul></div><p>
+</p><div class="sect2" title="14.10.1.&nbsp;Selection of Modal Basis Functions"><div class="titlepage"><div><div><h3 class="title"><a name="romcd.select"></a>14.10.1.&nbsp;Selection of Modal Basis Functions</h3></div></div></div><p>Modes used for ROM can either be determined from the results
+of the test load application or based on their modal stiffness at
+the initial position.</p><p>
+<span class="bold"><strong>
+<span class="italic"><em>Case 1: Test Load
+is Available</em></span>
+</strong></span> (TMOD option on <a href="../ans_cmd/Hlp_C_RMMSELECT.html" class="olink"><span class="command"><strong>RMMSELECT</strong></span></a> command)</p><p>The test load drives the structure to a typical deformation
+state, which is representative for most load situations in the Use
+Pass. The mode contribution factors a<sub>i</sub> are
+determined from </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="romcdeq3"></a><div><img src="graphics/romcdeq3.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;145)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#981;<sup>i</sup> = mode shapes at the neutral
+plane nodes obtained from the results of the modal analysis (<a href="../ans_cmd/Hlp_C_RMNEVEC.html" class="olink"><span class="command"><strong>RMNEVEC</strong></span></a> command)</td></tr><tr><td>u<sup>i</sup> = displacements at the neutral
+plane nodes obtained from the results of the test load (TLOAD option
+on <a href="../ans_cmd/Hlp_C_RMNDISP.html" class="olink"><span class="command"><strong>RMNDISP</strong></span></a> command).</td></tr></table><p>
+</p><p>Mode contribution factors a<sub>i</sub> are necessary
+to determine what modes are used and their amplitude range. Note that
+only those modes are considered in <a class="xref" href="thy_toolrom.html#romcdeq3" title="(14&#8211;145)">Equation&nbsp;14&#8211;145</a>, which
+actually act in the operating direction (specified on the <a href="../ans_cmd/Hlp_C_RMANL.html" class="olink"><span class="command"><strong>RMANL</strong></span></a> command). Criterion is that the maximum of the modal
+displacement in operating direction is at least 50% of the maximum
+displacement amplitude. The solution vector a<sub>i</sub> indicates how much each mode contributes to the deflection state.
+A specified number of modes (<em class="replaceable"><code>Nmode</code></em> of the <a href="../ans_cmd/Hlp_C_RMMSELECT.html" class="olink"><span class="command"><strong>RMMSELECT</strong></span></a> command) are considered unless the mode contribution
+factors are less than 0.1%. </p><p>
+<a class="xref" href="thy_toolrom.html#romcdeq3" title="(14&#8211;145)">Equation&nbsp;14&#8211;145</a> solved by the least squares method
+and the results are scaled in such a way that the sum of all m mode
+contribution factors a<sub>i</sub> is equal to one. Modes
+with highest a<sub>i</sub> are suggested as basis functions. </p><p>Usually the first two modes are declared as dominant. The second
+mode is not dominant if either its eigenfrequency is higher than five
+times the frequency of the first mode, or its mode contribution factor
+is smaller than 10%.</p><p>The operating range of each mode is proportional to their mode
+contribution factors taking into account the total deflection range
+(<em class="replaceable"><code>Dmax</code></em> and <em class="replaceable"><code>Dmin</code></em> input on the <a href="../ans_cmd/Hlp_C_RMMSELECT.html" class="olink"><span class="command"><strong>RMMSELECT</strong></span></a> command). Modal amplitudes
+smaller than 2.5% of <em class="replaceable"><code>Dmax</code></em> are increased
+automatically in order to prevent numerical round-off errors.</p><p>
+<span class="bold"><strong>
+<span class="italic"><em>Case 2: Test Load
+is not Available</em></span>
+</strong></span> (NMOD option on <a href="../ans_cmd/Hlp_C_RMMSELECT.html" class="olink"><span class="command"><strong>RMMSELECT</strong></span></a> command)</p><p>The first <em class="replaceable"><code>Nmode</code></em> eigenmodes in the
+operating direction are chosen as basis functions. Likewise, a considered
+mode must have a modal displacement maximum in operating direction
+of 50% with respect to the modal amplitude. </p><p>The minimum and maximum operating range of each mode is determined
+by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="romcdeq4"></a><div><img src="graphics/romcdeq4.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;146)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>D<sub>Max/Min</sub> = total deflection range of
+the structure (input on <a href="../ans_cmd/Hlp_C_RMMSELECT.html" class="olink"><span class="command"><strong>RMMSELECT</strong></span></a> command) </td></tr></table><p>
+</p></div><div class="sect2" title="14.10.2.&nbsp;Element Loads"><div class="titlepage"><div><div><h3 class="title"><a name="romcd.loads"></a>14.10.2.&nbsp;Element Loads</h3></div></div></div><p>Up to 5 element loads such as acting gravity, external acceleration
+or a pressure difference     may be specified in the Generation Pass
+and then scaled and superimposed in the Use Pass. In the     same
+way as mode contribution factors a<sub>i</sub> are determined
+for the test     load, the mode contribution factors 
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqd0910026-442f-4831-aeee-5a1d07c5cfa6.svg"></span> for
+each element load case are determined by a least squares fit: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="romcdeq5"></a><div><img src="graphics/romcdeq5.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;147)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqde5e1b83-74ee-4f0e-bf40-997e5981b35e.svg"></span> = displacements at the neutral plane nodes obtained
+from the results of the       element load j (ELOAD option on <a href="../ans_cmd/Hlp_C_RMNDISP.html" class="olink"><span class="command"><strong>RMNDISP</strong></span></a> command).</td></tr></table><p>
+</p><p>Here index k represents the number of modes, which have been
+selected for the ROM. The     coefficients 
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqef765c29-e564-46d7-8802-823746f806ca.svg"></span> are
+used to calculate modal element forces (see <a class="xref" href="thy_el144.html#rom144elmat" title="13.144.1.&nbsp;Element Matrices and Load Vectors">Element Matrices and Load Vectors</a>).</p></div><div class="sect2" title="14.10.3.&nbsp;Mode Combinations for Finite Element Data Acquisition and Energy Computation"><div class="titlepage"><div><div><h3 class="title"><a name="romcdmodecombo"></a>14.10.3.&nbsp;Mode Combinations for Finite Element Data Acquisition and Energy
+Computation</h3></div></div></div><p>In a general case, the energy functions depend on all basis
+functions. In the case of m modes and k data points in each mode direction
+one would need k<sup>m</sup> sample points.</p><p>A large number of examples have shown that lower eigenmodes
+affect all modes strongly whereby interactions among higher eigenmodes
+are negligible. An explanation for this statement is that lower modes
+are characterized by large amplitudes, which substantially change
+the operating point of the system. On the other hand, the amplitudes
+of higher modes are reasonably small, and they do not influence the
+operating point.</p><p>Taking advantage of those properties is a core step in reducing
+the computational effort. After the mode selection procedure, the
+lowest modes are classified into dominant and relevant. For the dominant
+modes, the number of data points in the mode direction defaults to
+11 and 5 respectively for the first and second dominant modes respectively.
+The default number of steps for relevant modes is 3. Larger (than
+the default above) number of steps can be specified on the <a href="../ans_cmd/Hlp_C_RMMRANGE.html" class="olink"><span class="command"><strong>RMMRANGE</strong></span></a> command.</p><p>A very important advantage of the ROM approach is that all finite
+element data can be extracted from a series of single domain runs.
+First, the structure is displaced to the linear combinations of eigenmodes
+by imposing displacement constrains to the neutral plane nodes. Then
+a static analysis is performed at each data point to determine the
+strain energy. </p><p>Both the sample point generation and the energy computation
+are controlled by the command <a href="../ans_cmd/Hlp_C_RMSMPLE.html" class="olink"><span class="command"><strong>RMSMPLE</strong></span></a>.</p></div><div class="sect2" title="14.10.4.&nbsp;Function Fit Methods for Strain Energy"><div class="titlepage"><div><div><h3 class="title"><a name="romcdfunction"></a>14.10.4.&nbsp;Function Fit Methods for Strain Energy</h3></div></div></div><p>The objective of function fit is to represent the acquired FE
+data in a closed form so that the ROM FE element matrices (<a class="xref" href="thy_el144.html" title="13.144.&nbsp;ROM144 - Reduced Order Electrostatic-Structural">ROM144 - Reduced Order Electrostatic-Structural</a>) are easily derived from the analytical representations
+of energy functions.</p><p>The ROM tool uses polynomials to fit the energy functions. Polynomials
+are very convenient since they can capture smooth functions with high
+accuracy, can be described by a few parameters and allow a simple
+computation of their local derivatives. Moreover, strain energy functions
+are inherent polynomials. In the case of linear systems, the strain
+energy can be exactly described by a polynomial of order two since
+the stiffness is constant. Stress-stiffened problems are captured
+by polynomials of order four.</p><p>The energy function fit procedure (<a href="../ans_cmd/Hlp_C_RMRGENERATE.html" class="olink"><span class="command"><strong>RMRGENERATE</strong></span></a> command) calculates n<sub>c</sub> coefficients that
+fit a polynomial to the n values of strain energy:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="romcdeq6"></a><div><img src="graphics/romcdeq6.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;148)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>[A] = n x n<sub>c</sub> matrix of polynomial terms</td></tr><tr><td>{K<sub>POLY</sub>} = vector of desired coefficients</td></tr></table><p>
+</p><p>Note that the number of FE data (W<sub>SENE</sub>) points n for a mode must be larger than the polynomial order P
+for the corresponding mode (input on <a href="../ans_cmd/Hlp_C_RMPORDER.html" class="olink"><span class="command"><strong>RMPORDER</strong></span></a> command). <a class="xref" href="thy_toolrom.html#romcdeq6" title="(14&#8211;148)">Equation&nbsp;14&#8211;148</a> is solved by means of a least squares method
+since the number of FE data points n is usually much larger than the
+number polynomial coefficients n<sub>c</sub>. </p><p>The ROM tool uses four polynomial types (input on <a href="../ans_cmd/Hlp_C_RMROPTIONS.html" class="olink"><span class="command"><strong>RMROPTIONS</strong></span></a> command): <a name="romtoollist"></a></p><table border="0" summary="Simple list" class="simplelist"><tr><td>Lagrange</td></tr><tr><td>Pascal</td></tr><tr><td>Reduced Lagrange</td></tr><tr><td>Reduced Pascal</td></tr></table><p>
+</p><p>Lagrange and Pascal coefficient terms that form matrix [A] in <a class="xref" href="thy_toolrom.html#romcdeq6" title="(14&#8211;148)">Equation&nbsp;14&#8211;148</a> are shown in <a class="xref" href="thy_toolrom.html#romcd.fig1" title="Figure&nbsp;14.8:&nbsp;&nbsp;Set for Lagrange and Pascal Polynomials">Figure&nbsp;14.8:&nbsp;Set for Lagrange and Pascal Polynomials</a>.</p><div class="figure"><a name="romcd.fig1"></a><p class="title"><b>Figure&nbsp;14.8:&nbsp;&nbsp;Set for Lagrange and Pascal Polynomials</b></p><div class="figure-contents"><div><img src="graphics/gthy15-coeffpoly.gif" alt="Set for Lagrange and Pascal Polynomials"></div><div class="blockquote"><blockquote class="blockquote"><p>Polynomials for Order 3 for Three Modes (1-x, 2-y, 3-z)</p></blockquote></div></div></div><br class="figure-break"><p>Reduced Lagrange and Reduced Pascal polynomial types allow a
+further reduction of K<sub>POLY</sub> by considering only
+coefficients located on the surface of the brick and pyramid respectively.</p></div><div class="sect2" title="14.10.5.&nbsp;Coupled Electrostatic-Structural Systems"><div class="titlepage"><div><div><h3 class="title"><a name="romcdcoupled"></a>14.10.5.&nbsp;Coupled Electrostatic-Structural Systems</h3></div></div></div><p>The ROM method is applicable to electrostatic-structural systems.</p><p>The constitutive equations for a coupled electrostatic-structural
+system in modal coordinates are:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="romcdeq7"></a><div><img src="graphics/romcdeq7.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;149)</b></p></td></tr></table><p>for the modal amplitudes and </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="romcdeq8"></a><div><img src="graphics/romcdeq8.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;150)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>I<sub>i</sub> = current in conductor i</td></tr><tr><td>Q<sub>i</sub> = charge on the ith conductor</td></tr><tr><td>V<sub>i</sub> = ith conductor voltage</td></tr></table><p>
+</p><p>The electrostatic co-energy is given by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="romcdeq9"></a><div><img src="graphics/romcdeq9.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;151)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>C<sub>ij</sub> = lumped capacitance between conductors
+i and j (input on <a href="../ans_cmd/Hlp_C_RMCAP.html" class="olink"><span class="command"><strong>RMCAP</strong></span></a> command)</td></tr><tr><td>r = index of considered capacitance</td></tr></table><p>
+</p></div><div class="sect2" title="14.10.6.&nbsp;Computation of Capacitance Data and Function Fit"><div class="titlepage"><div><div><h3 class="title"><a name="romcdfuncfit"></a>14.10.6.&nbsp;Computation of Capacitance Data and Function Fit</h3></div></div></div><p>The capacitances C<sub>ij</sub>, and the electrostatic
+co-energy respectively, are functions of the modal coordinates q<sub>i</sub>. As the strain energy W<sub>SENE</sub> for
+the structural domain, the lumped capacitances are calculated for
+each k data points in each mode direction, and then fitted to polynomials.
+Following each structural analysis to determine the strain energy
+W<sub>SENE</sub>, (n-1) linear simulations are performed
+in the deformed electrostatic domain, where n is the number of conductors,
+to calculate the lumped capacitances. The capacitance data fit is
+similar to the strain energy fit described above (<a class="xref" href="thy_toolrom.html#romcdfunction" title="14.10.4.&nbsp;Function Fit Methods for Strain Energy">Function Fit Methods for Strain Energy</a>). It is sometimes necessary to fit the inverted
+capacitance function (using the <em class="replaceable"><code>Invert</code></em> option
+on the <a href="../ans_cmd/Hlp_C_RMROPTIONS.html" class="olink"><span class="command"><strong>RMROPTIONS</strong></span></a> command).</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

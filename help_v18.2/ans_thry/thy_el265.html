@@ -1,0 +1,60 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:51-04:00"><title>13.265.&nbsp;REINF265 - 3-D Smeared Reinforcing</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el264.html" title="13.264.&nbsp;REINF264 - 3-D Discrete Reinforcing"><link rel="next" href="thy_el266.html" title="13.266.&nbsp;Reserved for Future Use"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.265.&nbsp;REINF265 - 3-D Smeared Reinforcing"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thyreinf265"></a>13.265.&nbsp;REINF265 - 3-D Smeared Reinforcing</h2></div></div></div><div class="blockquote"><blockquote class="blockquote"><div class="informaltable"><table border="0" width="95%"><colgroup><col width="288" class="col2"><col width="288" class="col3"></colgroup><tbody><tr><td>
+<img src="graphics/gelem265-1a.svg">&nbsp;
+</td><td>
+<img src="graphics/gelem265-1b.svg">&nbsp;
+</td></tr><tr><td>
+<img src="graphics/gelem265-1c.svg">&nbsp;
+</td><td>
+<img src="graphics/gelem265-1d.svg">&nbsp;
+</td></tr><tr><td colspan="2">
+<img src="graphics/gelem265-1f.svg">&nbsp; 
+     <img src="graphics/gelem265-1e.svg">&nbsp;
+</td></tr></tbody></table></div></blockquote></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="168" class="col1"><col width="96" class="COLSPEC7"><col width="216" class="col2"><col width="144" class="col3"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Matrix or Vector</th><th align="center" valign="middle">Base Element</th><th align="center" valign="middle"> Shape Functions (for each layer)</th><th align="center" valign="middle">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration
+Points</a>
+</th></tr></thead><tbody><tr valign="middle"><td rowspan="2" valign="middle">Stiffness and
+Stress Stiffness Matrices and Thermal Load Vector</td><td valign="middle">Linear
+3-D solid or shell</td><td valign="middle">
+<a class="xref" href="thy_shp5.html#thyeq1q4nov2601" title="(11&#8211;69)">Equation&nbsp;11&#8211;69</a>, <a class="xref" href="thy_shp5.html#thyeq2q4nov2601" title="(11&#8211;70)">Equation&nbsp;11&#8211;70</a>, and <a class="xref" href="thy_shp5.html#thyeq3q4nov2601" title="(11&#8211;71)">Equation&nbsp;11&#8211;71</a>
+</td><td valign="middle">
+<div class="literallayout"><p>In-plane:&nbsp;&nbsp;1&nbsp;x&nbsp;1<br>
+Thru-the-thickness:&nbsp;1</p></div>
+</td></tr><tr valign="middle"><td valign="middle">Quadratic 3-D solid or shell</td><td valign="middle">
+<a class="xref" href="thy_shp5.html#thyeq1quadshellnov2601" title="(11&#8211;84)">Equation&nbsp;11&#8211;84</a>, <a class="xref" href="thy_shp5.html#thyeq2quadshellnov2601" title="(11&#8211;85)">Equation&nbsp;11&#8211;85</a>,
+and <a class="xref" href="thy_shp5.html#thyeq3quadshellnov2601" title="(11&#8211;86)">Equation&nbsp;11&#8211;86</a>
+</td><td valign="middle">
+<div class="literallayout"><p>In-plane:&nbsp;&nbsp;2&nbsp;x&nbsp;2<br>
+Thru-the-thickness:&nbsp;1</p></div>
+</td></tr><tr><td valign="middle">Mass Matrix</td><td colspan="2" valign="middle">Same as stiffness matrix</td><td valign="middle">Same
+as stiffness matrix</td></tr><tr><td valign="middle">Pressure Load
+Vector</td><td colspan="2" valign="middle">N/A</td><td valign="middle">N/A</td></tr></tbody></table></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="col1"><col width="432" class="col2"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Load Type</th><th align="center" valign="middle">Distribution</th></tr></thead><tbody><tr valign="middle"><td valign="middle">Element Temperature</td><td valign="middle">Bilinear in plane of each reinforcing layer, constant
+thru-the-thickness of each layer.</td></tr><tr valign="middle"><td valign="middle">Nodal Temperature</td><td valign="middle">N/A</td></tr><tr valign="middle"><td valign="middle">Pressure</td><td valign="middle">N/A</td></tr></tbody></table></div><div class="sect2" title="13.265.1.&nbsp;Other Applicable Sections"><div class="titlepage"><div><div><h3 class="title"><a name="reinf265other"></a>13.265.1.&nbsp;Other Applicable Sections</h3></div></div></div><p>
+<a class="xref" href="thy_str.html" title="Chapter&nbsp;2:&nbsp;Structures">Structures</a> describes the derivation of structural
+element matrices and load vectors as well as stress evaluations. <a class="xref" href="thy_geo5.html" title="3.6.&nbsp;General Element Formulations">General Element Formulations</a> gives
+the general element formulations used by this element.</p></div><div class="sect2" title="13.265.2.&nbsp;Stiffness and Mass Matrices of a Reinforcing Layer"><div class="titlepage"><div><div><h3 class="title"><a name="reinf265smmat"></a>13.265.2.&nbsp;Stiffness and Mass Matrices of a Reinforcing Layer</h3></div></div></div><p>Each layer of reinforcing fibers is simplified as a membrane with unidirectional
+stiffness. The equivalent membrane thickness h is given by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqc508ba42-b858-422e-855f-d8ee0d26b35b"></a><div><img src="graphics/eqc508ba42-b858-422e-855f-d8ee0d26b35b.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;420)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>A = cross-section area of each fiber (input on <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> command)</td></tr><tr><td>S = distance between two adjacent fibers (input on <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> command)</td></tr></table><p>
+</p><p>We assume that the reinforcing fibers are firmly attached to the base
+element (that is, no relative movement between the base element and the fibers
+is allowed). Therefore, the degrees of freedom (DOF) of internal layer nodes
+(II, JJ, KK, LL, etc.) can be expressed in terms of DOFs of the external element
+nodes (I, J, K, L, etc.). Taking a linear 3-D solid base element as the example,
+the DOFs of an internal layer node II can be shown as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thy_elem265eq2"></a><div><img src="graphics/thy_elem265eq2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;421)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>{u<sub>II</sub>, v<sub>II</sub>, w<sub>II</sub>}
+= displacements of internal layer node II</td></tr><tr><td>{u<sub>i</sub>, v<sub>i</sub>, w<sub>i</sub>}
+= displacements of base element node i</td></tr><tr><td>N<sub>i</sub> (&#958;<sub>II</sub>, &#951;<sub>II</sub>, &#950;<sub>II</sub>)
+= value of trilinear shape function of node i at the location of internal
+node II</td></tr></table><p>
+</p><p>Similar relationships can be established for other type of base elements.
+The stiffness and mass matrices of each reinforcing layer are first evaluated
+with respect to internal layer DOFs. The equivalent stiffness and mass contributions
+of this layer to the element is then determined through relationship (<a class="xref" href="thy_el265.html#thy_elem265eq2" title="(13&#8211;421)">Equation&nbsp;13&#8211;421</a>).</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

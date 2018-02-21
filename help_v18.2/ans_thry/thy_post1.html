@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:25-04:00"><title>17.1.&nbsp;POST1 - Derived Nodal Data Processing</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_post.html" title="Chapter&nbsp;17:&nbsp;Postprocessing"><link rel="prev" href="thy_post.html" title="Chapter&nbsp;17:&nbsp;Postprocessing"><link rel="next" href="thy_post2.html" title="17.2.&nbsp;POST1 - Vector and Surface Operations"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="17.1.&nbsp;POST1 - Derived Nodal Data Processing"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="pMzdf65mlg"></a>17.1.&nbsp;POST1 - Derived Nodal Data Processing</h2></div></div></div><a class="indexterm" name="d0e84655"></a><a class="indexterm" name="d0e84658"></a><div class="sect2" title="17.1.1.&nbsp;Derived Nodal Data Computation"><div class="titlepage"><div><div><h3 class="title"><a name="posderived"></a>17.1.1.&nbsp;Derived Nodal Data Computation</h3></div></div></div><a class="indexterm" name="d0e84666"></a><p>The computation of derived data (data derived from nodal unknowns)
+ is discussed in <a class="xref" href="thy_geo.html" title="Chapter&nbsp;3:&nbsp;Structures with Geometric Nonlinearities">Structures with Geometric Nonlinearities</a> through <a class="xref" href="thy_acou.html" title="Chapter&nbsp;8:&nbsp;Acoustics">Acoustics</a>.  Derived nodal data is available for solid
+and shell elements (except <a href="../ans_elem/Hlp_E_SHELL61.html" class="olink"><span class="structname">SHELL61</span></a>).  Available
+data include stresses, strains, thermal gradients, thermal fluxes,
+pressure gradients, electric fields, electric flux densities, magnetic
+field intensities, magnetic flux densities, and magnetic forces. 
+Structural nonlinear data is processed in a similar fashion and includes
+equivalent stress, stress state ratio, hydrostatic pressure, accumulated
+equivalent plastic strain, plastic state variable, and plastic work. </p><p>POST1 averages the component tensor or vector data at corner
+nodes used by more than one element.</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thy_eqderivednodal"></a><div><img src="graphics/thy_eqderivednodal.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;1)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#963;<sub>ik</sub> = average derived data component
+i at node k </td></tr><tr><td>&#963;<sub>ijk</sub> = derived data component i
+of element j at node k</td></tr><tr><td>N<sub>k</sub> = number of elements connecting
+to node k</td></tr></table><p>
+</p><p>For higher-order elements, component tensor or vector data at
+midside nodes are calculated by directly averaging the averaged corner
+node values, so <a class="xref" href="thy_post1.html#thy_eqderivednodal" title="(17&#8211;1)">Equation&nbsp;17&#8211;1</a> is not used for
+midside nodes. Midside node values are printed or plotted only via
+PowerGraphics (/GRAPHICS,POWER) and /EFACET,2. </p><p>Combining principal tensor data (principal stress, principal
+strain) or vector magnitudes at the nodes may either be computed using
+the averaged component data (<span class="italic"><em>KEY</em></span> = 0, <a href="../ans_cmd/Hlp_C_AVPRIN.html" class="olink"><span class="command"><strong>AVPRIN</strong></span></a> command):</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq91cbbb72-c8f1-4972-8618-12eb9cccc1bc"></a><div><img src="graphics/eq91cbbb72-c8f1-4972-8618-12eb9cccc1bc.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;2)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>f(&#963;<sub>ik</sub>) = function to compute principal
+data from component data as given in <a class="xref" href="thy_geo.html" title="Chapter&nbsp;3:&nbsp;Structures with Geometric Nonlinearities">Structures with Geometric Nonlinearities</a> through <a class="xref" href="thy_acou.html" title="Chapter&nbsp;8:&nbsp;Acoustics">Acoustics</a>.</td></tr></table><p>
+</p><p>or be directly averaged (<span class="italic"><em>KEY</em></span> = 1, <a href="../ans_cmd/Hlp_C_AVPRIN.html" class="olink"><span class="command"><strong>AVPRIN</strong></span></a> command):</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq713f2984-a9a5-4269-b7b5-72f5c3c78669"></a><div><img src="graphics/eq713f2984-a9a5-4269-b7b5-72f5c3c78669.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;3)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#963;<sub>ck</sub> = averaged combined principal
+data at node k </td></tr><tr><td>&#963;<sub>cjk</sub> = combined principal data
+of element j at node k</td></tr></table><p>
+</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:01-04:00"><title>5.4.&nbsp;Stranded Coil Analyses</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_emg.html" title="Chapter&nbsp;5:&nbsp;Electromagnetics"><link rel="prev" href="thy_emg3.html" title="5.3.&nbsp;Electromagnetic Field Evaluations"><link rel="next" href="thy_emg6.html" title="5.5.&nbsp;Inductance, Flux and Energy Computation"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="5.4.&nbsp;Stranded Coil Analyses"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="qnJZl266jjw"></a>5.4.&nbsp;Stranded Coil Analyses</h2></div></div></div><a class="indexterm" name="d0e19822"></a><p>In the magnetic vector potential formulations discussed in previous
+sections, the source current density {Js} is either known and input
+as <a href="../ans_cmd/Hlp_C_BFE.html" class="olink"><span class="command"><strong>BFE</strong></span></a>,,JS (stranded conductor analysis) or determined
+from a fully-coupled electromagnetic solution as a sum of eddy J<sub>e</sub> (<a class="xref" href="thy_emg3.html#thyeq7electrofieldnov2801" title="(5&#8211;124)">Equation&nbsp;5&#8211;124</a>) and DC
+conduction J<sub>s</sub> (<a class="xref" href="thy_emg3.html#thyeq8electrofieldnov2801" title="(5&#8211;125)">Equation&nbsp;5&#8211;125</a>) current densities (massive
+conductor analysis).</p><p>A stranded coil refers to a coil consisting of many fine turns
+of conducting wires. Because in the low-frequency approximation the
+cross-section of the wires is small compared to the skin depth, the
+eddy currents in the wire can be neglected and the magnitude of the
+current density within the wires can be considered constant. The coil
+can be energized by an applied voltage or current, or by a controlling
+electric circuit. The stranded coil analysis can be viewed as a special
+case of electromagnetic field analysis where the current flow direction
+in wires is known and determined by the winding, while the magnitude
+of the current in the coil or voltage drop across the coil can either
+be imposed or determined from the solution.</p><p>The following sections describe the magnetic and electric equations
+that govern the stranded coil and the different finite element formulations
+used by the current-technology and legacy electromagnetic elements.
+The formulations apply to static, transient and harmonic analysis
+types.</p><div class="sect2" title="5.4.1.&nbsp;Governing Equations"><div class="titlepage"><div><div><h3 class="title"><a name="elecgovequ"></a>5.4.1.&nbsp;Governing Equations</h3></div></div></div><p>In a stranded coil analysis, the magnetic field equation</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqcoilmagfield"></a><div><img src="graphics/thyeqcoilmagfield.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;157)</b></p></td></tr></table><p>is coupled to the electric circuit equation</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqcoileleccir"></a><div><img src="graphics/thyeqcoileleccir.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;158)</b></p></td></tr></table><p>by the following expressions for the electric current density
+{J} and the magnetic flux &#934; in the coil:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqcoilelecurden"></a><div><img src="graphics/thyeqcoilelecurden.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;159)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqcoilmagflux"></a><div><img src="graphics/thyeqcoilmagflux.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;160)</b></p></td></tr></table><p>where:</p><p>{A} = magnetic vector potential,</p><p>&#957; = magnetic reluctivity,</p><p>&#916;V = voltage drop across the coil,</p><p>I = total electric current,</p><p>R = total DC resistance of the coil winding,</p><p>S<sub>c </sub> = coil cross-sectional area,</p><p>N<sub>c</sub> = number of coil turns,</p><p>V<sub>c </sub> = coil volume,</p><p>{t} = winding direction vector (direction of {J}).</p><p>The coupled set of electromagnetic equations governing the stranded coil is obtained by
+    eliminating the current density {J} and magnetic flux &#934; from <a class="xref" href="thy_emg4.html#thyeqcoilmagfield" title="(5&#8211;157)">Equation&nbsp;5&#8211;157</a> and <a class="xref" href="thy_emg4.html#thyeqcoileleccir" title="(5&#8211;158)">Equation&nbsp;5&#8211;158</a> using <a class="xref" href="thy_emg4.html#thyeqcoilelecurden" title="(5&#8211;159)">Equation&nbsp;5&#8211;159</a> and <a class="xref" href="thy_emg4.html#thyeqcoilmagflux" title="(5&#8211;160)">Equation&nbsp;5&#8211;160</a>, respectively. If the
+    voltage drop across the coil &#916;V is considered to be an independent electric variable in
+    the stranded coil analysis, the A-VOLT-EMF formulation results.</p></div><div class="sect2" title="5.4.2.&nbsp;A-VOLT-EMF Formulation"><div class="titlepage"><div><div><h3 class="title"><a name="elecavoltemf"></a>5.4.2.&nbsp;A-VOLT-EMF Formulation</h3></div></div></div><p>This formulation is available with the stranded coil analysis
+option (KEYOPT(1) = 2) of the current-technology electromagnetic elements <a href="../ans_elem/Hlp_E_PLANE233.html" class="olink"><span class="structname">PLANE233</span></a>, <a href="../ans_elem/Hlp_E_SOLID236.html" class="olink"><span class="structname">SOLID236</span></a> and <a href="../ans_elem/Hlp_E_SOLID237.html" class="olink"><span class="structname">SOLID237</span></a>.</p><p>In addition to the magnetic vector potential ({A}) and the voltage
+drop across the coil (&#916;V) unknowns, the coil electromotive force
+(E) is introduced as a degree of freedom to prevent the distribution
+of eddy currents in the wire:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqcoilemf"></a><div><img src="graphics/thyeqcoilemf.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;161)</b></p></td></tr></table><p>The corresponding finite element matrix equation can be written
+as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thycoilavoltemfmat"></a><div><img src="graphics/thycoilavoltemfmat.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;162)</b></p></td></tr></table><p>where:</p><p>[K<sup>AA</sup>] = element magnetic reluctivity
+matrix defined in <a class="xref" href="thy_emg2.html#EBMVP5" title="(5&#8211;112)">Equation&nbsp;5&#8211;112</a>,</p><div class="informalequation"><a name="eq34a1bf86-d56f-4604-b0cb-b5d79685eb58"></a><div><img src="graphics/eq34a1bf86-d56f-4604-b0cb-b5d79685eb58.svg"></div></div><div class="informalequation"><a name="eqe832e4d9-220f-493b-83a2-19f43d7345bf"></a><div><img src="graphics/eqe832e4d9-220f-493b-83a2-19f43d7345bf.svg"></div></div><p>S<sub>c</sub> = coil cross-sectional area (input
+as R2 (2-D) or R1 (3-D) on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command),</p><p>N<sub>c</sub> = number of coil turns (input as R3
+(2-D) or R2 (3-D) on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command),</p><p>V<sub>c</sub> = coil volume (calculated (2-D) or
+input as R3 (3-D) on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command),</p><p>{t} = current direction vector (input as R5 (2-D) or R4-R6 (3-D)
+on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command),</p><p>R = total DC resistance of the coil (input as R6 (2-D) or R7
+(3-D) on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command),</p><p> s = symmetry factor of the coil (input as R7 (2-D) or R8 (3-D)
+on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command),</p><p>{N} = vector of element scalar (node-based) shape functions,</p><p>[W]  = {N} (2-D) or matrix of vector (edge-based) shape functions
+(3-D), </p><p>vol = element volume,</p><p>{I<sub>e</sub>} = nodal current vector (input/output
+as AMPS),</p><p>{A<sub>e</sub>} = nodal magnetic vector potential
+- Z-component of magnetic vector potential at element nodes (2-D)
+or edge-flux at element midside nodes (3-D) (input/output as AZ),</p><p>{&#916;V<sub>e</sub>} = nodal voltage drop across
+the coil (input/output as VOLT),</p><p>{E<sub>e</sub>} = nodal electromotive force in the
+coil (input/output as EMF). </p><p>Note that the VOLT and EMF degrees of freedom should be coupled
+for each coil using the <a href="../ans_cmd/Hlp_C_CP.html" class="olink"><span class="command"><strong>CP</strong></span></a>,,VOLT and <a href="../ans_cmd/Hlp_C_CP.html" class="olink"><span class="command"><strong>CP</strong></span></a>,,EMF commands.</p><p>
+<a class="xref" href="thy_emg4.html#thycoilavoltemfmat" title="(5&#8211;162)">Equation&nbsp;5&#8211;162</a> that strongly couples magnetic
+and electric degrees of freedom in a stranded coil is nonsymmetric.
+It can be made symmetric by either using the weak coupling option
+(KEYOPT(2) = 1) in static or transient analyses or, provided the symmetry
+factor s = 1, by using the time-integrated voltage drop and emf formulation
+(KEYOPT(2) = 2) in transient or harmonic analyses. In the latter case,
+the VOLT and EMF degrees of freedom have the meaning of the time-integrated
+voltage drop across the coil 
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqf8b0cfa3-5adc-4b68-95e4-b6ef75669d69.svg"></span> and time-integrated
+electromotive force 
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq6520967d-1ab7-43a0-b43e-8f2b4f09bcee.svg"></span> , and <a class="xref" href="thy_emg4.html#thycoilavoltemfmat" title="(5&#8211;162)">Equation&nbsp;5&#8211;162</a> becomes:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thycoilavoltemfme"></a><div><img src="graphics/thycoilavoltemfme.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;163)</b></p></td></tr></table><p>With the A-VOLT-EMF formulation where VOLT and EMF are 'true'
+(not time-integrated) voltage drop and emf respectively, the stranded
+coil can be node-coupled coupled to the current-based circuit elements
+(<a href="../ans_elem/Hlp_E_CIRCU124.html" class="olink"><span class="structname">CIRCU124</span></a>) as they share the same VOLT degree
+of freedom.</p><p>The stranded coil analysis results include:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal magnetic flux density calculated as in <a class="xref" href="thy_emg3.html#thyeq4electrofieldnov2801" title="(5&#8211;121)">Equation&nbsp;5&#8211;121</a> (output as B)</p></li><li class="listitem"><p>Nodal magnetic field intensity calculated as in <a class="xref" href="thy_emg3.html#thyeq5electrofieldnov2801" title="(5&#8211;122)">Equation&nbsp;5&#8211;122</a> (output as H)</p></li><li class="listitem"><p>Element electric current density calculated as in <a class="xref" href="thy_emg4.html#thyeqcoilelecurden" title="(5&#8211;159)">Equation&nbsp;5&#8211;159</a> (output as JT or JS)</p></li><li class="listitem"><p>Nodal magnetic forces calculated as in <a class="xref" href="thy_emg3.html#thymaxforvolint" title="(5&#8211;140)">Equation&nbsp;5&#8211;140</a> (output as FMAG)</p></li><li class="listitem"><p>Element Joule heat generation rate calculated as in <a class="xref" href="thy_emg3.html#thyeq22electrofieldnov2801" title="(5&#8211;146)">Equation&nbsp;5&#8211;146</a> (output as JHEAT)</p></li></ul></div><p>Note that the calculated current density JT (or JS) and the
+Joule heat generation rate JHEAT are effective in the sense that they
+are calculated based on the coil cross-sectional area (SC) and coil
+volume (VC), respectively, and those real constants include the wire
+and the non-conducting material filling the space between the winding.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

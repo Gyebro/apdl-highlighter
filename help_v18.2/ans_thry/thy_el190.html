@@ -1,0 +1,37 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:43-04:00"><title>13.190.&nbsp;SOLSH190 - 3-D 8-Node Layered Solid Shell</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el189.html" title="13.189.&nbsp;BEAM189 - 3-D 3-Node Beam"><link rel="next" href="thy_el191.html" title="13.191.&nbsp;Reserved for Future Use"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.190.&nbsp;SOLSH190 - 3-D 8-Node Layered Solid Shell"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thysolsh190"></a>13.190.&nbsp;SOLSH190 - 3-D 8-Node Layered Solid Shell</h2></div></div></div><div><img src="graphics/gthy14-190-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="168" class="col1"><col width="96" class="col2"><col width="216" class="col3"><col width="144" class="col4"></colgroup><thead><tr><th align="center" valign="middle">Matrix or Vector</th><th colspan="2" align="center" valign="middle">Shape Functions</th><th align="center" valign="middle"><a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration Points</a></th></tr></thead><tbody><tr><td>Stiffness and Stress Stiffness Matrices;
+and Thermal Load Vector</td><td colspan="2" valign="middle"><a class="xref" href="thy_shp8.html#thyeq4bricknov2101" title="(11&#8211;214)">Equation&nbsp;11&#8211;214</a>, <a class="xref" href="thy_shp8.html#thyeq5bricknov2101" title="(11&#8211;215)">Equation&nbsp;11&#8211;215</a>, and <a class="xref" href="thy_shp8.html#thyeq6bricknov2101" title="(11&#8211;216)">Equation&nbsp;11&#8211;216</a></td><td valign="middle"><div class="literallayout"><p>In-plane:<br>
+2&nbsp;x&nbsp;2<br>
+<br>
+Thru-the-thickness:<br>
+2&nbsp;if&nbsp;no&nbsp;shell&nbsp;section&nbsp;<br>
+defined<br>
+1,&nbsp;3,&nbsp;5,&nbsp;7,&nbsp;or&nbsp;9&nbsp;per&nbsp;layer<br>
+if&nbsp;a&nbsp;shell&nbsp;section&nbsp;is&nbsp;<br>
+defined</p></div></td></tr><tr><td>Mass
+Matrix</td><td colspan="2">Same as stiffness
+matrix</td><td align="center">Same as stiffness
+matrix</td></tr><tr><td rowspan="2" valign="middle">Pressure Load Vector </td><td valign="middle">Quad</td><td><a class="xref" href="thy_shp5.html#thyeq1q4nov2601" title="(11&#8211;69)">Equation&nbsp;11&#8211;69</a> and <a class="xref" href="thy_shp5.html#thyeq2q4nov2601" title="(11&#8211;70)">Equation&nbsp;11&#8211;70</a></td><td align="center" valign="middle">2 x 2</td></tr><tr><td valign="middle">Triangle</td><td><a class="xref" href="thy_shp5.html#thyeq1cstnov2601" title="(11&#8211;49)">Equation&nbsp;11&#8211;49</a> and <a class="xref" href="thy_shp5.html#thyeq2cstnov2601" title="(11&#8211;50)">Equation&nbsp;11&#8211;50</a></td><td align="center" valign="middle">3</td></tr></tbody></table></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="COLSPEC33"><col width="432" class="COLSPEC34"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Load Type</th><th align="center" valign="middle">Distribution</th></tr></thead><tbody><tr valign="middle"><td valign="middle">Element Temperature</td><td valign="middle">Bilinear in-plane of element, linear thru each layer</td></tr><tr valign="middle"><td valign="middle">Nodal Temperature</td><td valign="middle">Trilinear thru
+element</td></tr><tr valign="middle"><td valign="middle">Pressure</td><td valign="middle">Bilinear across each face</td></tr></tbody></table></div><div class="sect2" title="13.190.1.&nbsp;Other Applicable Sections"><div class="titlepage"><div><div><h3 class="title"><a name="solsh190other"></a>13.190.1.&nbsp;Other Applicable Sections</h3></div></div></div><p><a class="xref" href="thy_str.html" title="Chapter&nbsp;2:&nbsp;Structures">Structures</a> describes the derivation of
+structural element matrices and load vectors as well as stress evaluations.
+ <a class="xref" href="thy_geo5.html" title="3.6.&nbsp;General Element Formulations">General Element Formulations</a> gives the general element formulations
+used by this element.</p></div><div class="sect2" title="13.190.2.&nbsp;Theory"><div class="titlepage"><div><div><h3 class="title"><a name="solsh190theory"></a>13.190.2.&nbsp;Theory</h3></div></div></div><p><a href="../ans_elem/Hlp_E_SOLSH190.html" class="olink"><span class="structname">SOLSH190</span></a> is a 3-D solid element free
+of locking in bending-dominant situations. Unlike shell elements, <a href="../ans_elem/Hlp_E_SOLSH190.html" class="olink"><span class="structname">SOLSH190</span></a> is compatible with general 3-D constitutive
+relations and can be connected directly with other continuum elements.</p><p><a href="../ans_elem/Hlp_E_SOLSH190.html" class="olink"><span class="structname">SOLSH190</span></a> utilizes a suite of special
+kinematic formulations, including assumed strain method (Bathe and
+Dvorkin(<a class="xref" href="thy_biblio.html#JDygf1e8mlg" title="&#34;A Formulation of General Shell Elements - The Use of Mixed Interpolation of Tensorial Components&#34;">[98]</a>)) to overcome locking when the
+shell thickness becomes extremely small.</p><p><a href="../ans_elem/Hlp_E_SOLSH190.html" class="olink"><span class="structname">SOLSH190</span></a> employs enhanced strain formulations
+(Simo and Rifai(<a class="xref" href="thy_biblio.html#simorifai" title="&#8220;A Class of Mixed Assumed Strain Methods and the Method of Incompatible Modes&#8221;">[319]</a>), Simo et al.(<a class="xref" href="thy_biblio.html#simoetal" title="&#8220;Improved Versions of Assumed Enhanced Strain Tri-Linear Elements for 3D Finite Deformation Problems&#8221;">[321]</a>)) to improve the accuracy in in-plane bending
+situations. The satisfaction of the in-plane patch test is ensured.
+Incompatible shape functions are used to overcome the thickness locking.</p></div><div class="sect2" title="13.190.3.&nbsp;Shear Correction"><div class="titlepage"><div><div><h3 class="title"><a name="solsh190shear"></a>13.190.3.&nbsp;Shear Correction</h3></div></div></div><p>The element allows for parabolic enhanced transverse shear strains.
+Stresses are then calculated from enhanced shear strains.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

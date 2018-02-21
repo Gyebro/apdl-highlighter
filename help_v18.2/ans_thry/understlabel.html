@@ -1,0 +1,46 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:13-04:00"><title>11.1.&nbsp;Understanding Shape Function Labels</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_shp.html" title="Chapter&nbsp;11:&nbsp;Shape Functions"><link rel="prev" href="thy_shp.html" title="Chapter&nbsp;11:&nbsp;Shape Functions"><link rel="next" href="thy_shp1.html" title="11.2.&nbsp;2-D Lines"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="11.1.&nbsp;Understanding Shape Function Labels"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="understlabel"></a>11.1.&nbsp;Understanding Shape Function Labels</h2></div></div></div><p>The given functions are related to the nodal quantities by: </p><div class="table"><a name="d0e34138"></a><p class="title"><b>Table&nbsp;11.1:&nbsp;&nbsp;Shape Function Labels</b></p><div class="table-contents"><table summary="Shape Function Labels" border="1" width="95%"><colgroup><col width="76" class="col1"><col width="76" class="col2"><col width="288" class="col3"></colgroup><thead><tr valign="middle"><th valign="middle">Variable</th><th align="center" valign="middle">Input/Output Label</th><th align="center" valign="middle">Meaning</th></tr></thead><tbody><tr><td>u</td><td>UX</td><td>Translation in the x (or s) direction</td></tr><tr><td>v</td><td>UY</td><td>Translation in the y (or t) direction</td></tr><tr><td>w</td><td>UZ</td><td>Translation in the x (or r) direction</td></tr><tr><td>&#952;<sub>x</sub>
+</td><td>ROTX</td><td>Rotation about
+the x direction</td></tr><tr><td>&#952;<sub>y</sub>
+</td><td>ROTY</td><td>Rotation about the y direction</td></tr><tr><td>&#952;<sub>z</sub>
+</td><td>ROTZ</td><td>Rotation about the
+z direction</td></tr><tr><td>A<sub>x</sub>
+</td><td>AX</td><td>X-component
+of vector magnetic potential</td></tr><tr><td>A<sub>y</sub>
+</td><td>AY</td><td>Y-component of vector magnetic potential</td></tr><tr><td>A<sub>z</sub>
+</td><td>AZ</td><td>Z-component
+of vector magnetic potential</td></tr><tr><td>C</td><td>CONC</td><td>Concentration</td></tr><tr><td>P</td><td>PRES</td><td>Pressure</td></tr><tr><td>T</td><td>TEMP, TBOT,
+TE2, ... TTOP</td><td>Temperature</td></tr><tr><td>V</td><td>VOLT</td><td>Electric potential or source current</td></tr><tr><td>&#966;</td><td>MAG</td><td>Scalar magnetic potential</td></tr></tbody></table></div></div><br class="table-break"><p>The vector correspondences are not exact, since, for example,
+u, v, and w are in the element coordinate system, whereas UX, UY,
+UZ represent motions in the nodal coordinate system.  Generally, the
+element coordinate system is the same as the global Cartesian system,
+except for: </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Line elements (<a class="xref" href="thy_shp1.html" title="11.2.&nbsp;2-D Lines">2-D Lines</a> to <a class="xref" href="thy_shp4.html" title="11.5.&nbsp;Axisymmetric Harmonic Shells and General Axisymmetric Surfaces">Axisymmetric Harmonic Shells and General Axisymmetric Surfaces</a>), where u motions are axial motions, and v
+and w are transverse motions. </p></li><li class="listitem"><p>Shell elements (<a class="xref" href="thy_shp5.html" title="11.6.&nbsp;3-D Shells">3-D Shells</a>), where
+u and v are in-plane motions and w is the out-of-plane motion. </p></li></ol></div><p>Subscripted variables such as u<sub>J</sub> refer
+to the u motion at node J.  When these same variables have numbers
+for subscripts (e.g. u<sub>1</sub>), nodeless variables
+for extra shape functions are being referred to.  Coordinates s, t,
+and r are normalized, going from -1.0 on one side of the element to
++1.0 on the other, and are not necessarily orthogonal to one another.
+ L<sub>1</sub>, L<sub>2</sub>, L<sub>3</sub>, and L<sub>4</sub> are also normalized
+coordinates, going from 0.0 at a vertex to 1.0 at the opposite side
+or face. </p><p>Elements with midside nodes allow those midside nodes to be
+dropped in most cases.  A dropped midside node implies that the edge
+is and remains straight, and that any other effects vary linearly
+along that edge. </p><p>Gaps are left in the equation numbering to allow for additions.
+ Labels given in subsection titles within parentheses are used to
+relate the given shape functions to their popular names, where applicable. </p><p>Some elements in <a class="xref" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library">Element Library</a> (notably the 8-node
+solids) imply that reduced element geometries (e.g., wedge) are not
+available.  However, the tables in <a class="xref" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library">Element Library</a> refer
+only to the available shape functions.  In other words, the shape
+functions used for the 8-node brick is the same as the 6-node wedge. </p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

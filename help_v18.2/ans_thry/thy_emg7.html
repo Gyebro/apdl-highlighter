@@ -1,0 +1,39 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:01-04:00"><title>5.6.&nbsp;Electromagnetic Particle Tracing</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_emg.html" title="Chapter&nbsp;5:&nbsp;Electromagnetics"><link rel="prev" href="thy_emg6.html" title="5.5.&nbsp;Inductance, Flux and Energy Computation"><link rel="next" href="thy_emg10.html" title="5.7.&nbsp;Capacitance Computation"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="5.6.&nbsp;Electromagnetic Particle Tracing"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="putanidhere"></a>5.6.&nbsp;Electromagnetic Particle Tracing</h2></div></div></div><a class="indexterm" name="d0e20441"></a><p>Once the electromagnetic field is computed, particle trajectories
+can be evaluated by solving the equations of motion: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1electroparticlenov2801"></a><div><img src="graphics/thyeq1electroparticlenov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;178)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>m = mass of particle</td></tr><tr><td>q = charge of particle</td></tr><tr><td>{E} = electric field vector </td></tr><tr><td>{B} = magnetic field vector </td></tr><tr><td>{F} = Lorentz force vector </td></tr><tr><td>{a} = acceleration vector </td></tr><tr><td>{v} = velocity vector </td></tr></table><p>
+</p><p>The tracing follows from element to element: the exit point
+of an old element becomes the entry point of a new element.  Given
+the entry location and velocity for an element, the exit location
+and velocity can be obtained by integrating the equations of motion. </p><p>The particle tracing algorithm is based on Gyimesi et al.(<a class="xref" href="thy_biblio.html#dww8r33jjw" title="&#34;Particle Trajectory Tracing in ANSYS&#34;">[229]</a>) with these assumptions:</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>No relativistic effects (the velocity is much smaller
+than speed of light).  </p></li><li class="listitem"><p>Pure electric tracing ({B} = {0}), pure magnetic tracing
+({E} = {0}), or combined {E-B} tracing.</p></li><li class="listitem"><p>Electrostatic and/or magnetostatic analysis </p></li><li class="listitem"><p>Constant {E} and/or {B} within an element. </p></li><li class="listitem"><p>Quadrangle, triangle, hexahedron, tetrahedron, wedge
+or pyramid  element shapes bounded by planar surfaces.   </p></li></ol></div><p>These simplifications significantly reduce the computation time
+of the tracing algorithm because the trajectory can be given in an
+analytic form:  </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>parabola in the case of electric tracing   </p></li><li class="listitem"><p>helix in the case of magnetic tracing. </p></li><li class="listitem"><p>generalized helix in the case of coupled E-B tracing.</p></li></ol></div><p>The exit point from an element is the point where the particle
+trajectory meets the plane of bounding surface of the element.  It
+ can be easily computed when the trajectory is a parabola.  However,
+to compute the exit point when the trajectory is a helix, a transcendental
+equation must be solved.  A Newton-Raphson algorithm is used
+to obtain the solution.  The starting point is carefully selected
+to ensure convergence to the correct solution.  This can be quite involved, as about 70 sub-cases are considered by the algorithm.  This tool
+allows particle tracing within an element with accuracy limited only by machine precision.
+ This does not mean that the tracing is exact, since the element field
+solution may be inexact.  However, with mesh refinement, this error
+can be controlled.   </p><p>Once a trajectory is computed, any available physical items
+can be printed or plotted along the path (using the <a href="../ans_cmd/Hlp_C_PLTRAC.html" class="olink"><span class="command"><strong>PLTRAC</strong></span></a> command).  For example, elapsed time, traveled distance, particle
+velocity components, temperature, field components, potential values,
+fluid velocity, acoustic pressure, mechanical strain, etc.  Animation
+is also available.   </p><p>The plotted particle traces consist of two branches: the first
+is a trajectory for a given starting point at a given velocity (forward
+ballistic); the second is a trajectory for a particle to hit a given
+target location at a given velocity (backward ballistics).  </p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

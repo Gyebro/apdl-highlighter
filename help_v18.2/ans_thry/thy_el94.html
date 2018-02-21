@@ -1,0 +1,89 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:29-04:00"><title>13.94.&nbsp;CIRCU94 - Piezoelectric Circuit</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el93.html" title="13.93.&nbsp;Reserved for Future Use"><link rel="next" href="thy_el95.html" title="13.95.&nbsp;Reserved for Future Use"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.94.&nbsp;CIRCU94 - Piezoelectric Circuit"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thycircu94"></a>13.94.&nbsp;CIRCU94 - Piezoelectric Circuit</h2></div></div></div><a class="indexterm" name="d0e47103"></a><a class="indexterm" name="d0e47106"></a><div><img src="graphics/gthy14-94circu.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="168" class="col1"><col width="312" class="col2"><col width="144" class="col3"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Matrix or Vector</th><th align="center" valign="middle">Shape Functions</th><th align="center" valign="middle">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration
+Points</a>
+</th></tr></thead><tbody><tr valign="middle"><td valign="middle">Stiffness Matrix</td><td valign="middle">None (lumped) </td><td align="center" valign="middle">None</td></tr><tr valign="middle"><td valign="middle">Damping Matrix</td><td valign="middle">None (lumped, harmonic analysis only) </td><td align="center" valign="middle">None</td></tr><tr valign="middle"><td valign="middle">Load
+Vector</td><td valign="middle">None (lumped)</td><td align="center" valign="middle">None</td></tr></tbody></table></div><p>The piezoelectric circuit element, CIRCU94, simulates basic linear electric
+circuit components that can be directly connected to the piezoelectric FEA
+domain. For details about the underlying theory, see Wang and Ostergaard(<a class="xref" href="thy_biblio.html#wangosterg" title="&#8220;Finite Element-Electric Circuit Coupled Simulation Method for Piezoelectric Transducer&#8221;">[324]</a>). It is suitable for the simulation of circuit-fed
+piezoelectric transducers, piezoelectric dampers for vibration control, crystal
+filters and oscillators etc.</p><div class="sect2" title="13.94.1.&nbsp;Electric Circuit Elements"><div class="titlepage"><div><div><h3 class="title"><a name="d0e47152"></a>13.94.1.&nbsp;Electric Circuit Elements</h3></div></div></div><a class="indexterm" name="d0e47155"></a><a class="indexterm" name="d0e47158"></a><a class="indexterm" name="d0e47161"></a><a class="indexterm" name="d0e47164"></a><a class="indexterm" name="d0e47167"></a><a class="indexterm" name="d0e47170"></a><p>CIRCU94 contains 5 linear electric circuit element options:  </p><div class="informaltable"><table border="0" width="95%"><colgroup><col width="144" class="col1"><col width="144" class="col2"></colgroup><tbody><tr><td>a. Resistor  </td><td>(KEYOPT(1) = 0)</td></tr><tr><td>b. Inductor </td><td>(KEYOPT(1) = 1)</td></tr><tr><td>c. Capacitor</td><td>(KEYOPT(1) = 2)</td></tr><tr><td>d. Current Source</td><td>(KEYOPT(1) = 3)</td></tr><tr><td>e. Voltage Source</td><td>(KEYOPT(1)
+= 4) </td></tr></tbody></table></div><p>           </p><p>Options a, b, c, d are defined by two nodes I and J (see figure above),
+each node having a VOLT DOF. The voltage source is also characterized by a
+third node K with CURR DOF to represent an auxiliary charge variable.</p></div><div class="sect2" title="13.94.2.&nbsp;Piezoelectric Circuit Element Matrices and Load Vectors"><div class="titlepage"><div><div><h3 class="title"><a name="d0e47208"></a>13.94.2.&nbsp;Piezoelectric Circuit Element Matrices and Load Vectors</h3></div></div></div><p>The finite element equations for the resistor, inductor, capacitor and
+current source of CIRCU94 are derived using the nodal analysis method (McCalla(<a class="xref" href="thy_biblio.html#XVkWl1aajjw" title="Fundamentals of Computer-Aided Circuit Simulation">[189]</a>)) that enforces Kirchhoff's Current Law (KCL) at each
+circuit node. To be compatible with the system of piezoelectric finite element
+equations (see <a class="xref" href="thy_coup2.html" title="10.4.&nbsp;Piezoelectrics">Piezoelectrics</a>), the nodal analysis method has
+been adapted to maintain the charge balance at each node:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1circu94jjw"></a><div><img src="graphics/thyeq1circu94jjw.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;145)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>[K] = stiffness (capacitance) matrix</td></tr><tr><td>{V} = vector of nodal voltages (to be determined)</td></tr><tr><td>{Q} = load vector of nodal charges</td></tr></table><p>
+</p><p>The voltage source is modeled using the modified nodal analysis method
+(McCalla(<a class="xref" href="thy_biblio.html#XVkWl1aajjw" title="Fundamentals of Computer-Aided Circuit Simulation">[189]</a>)) in which the set of unknowns is extended
+to include electric charge at the auxiliary node K, while the corresponding
+entry of the load vector is augmented by the voltage source amplitude. In
+a transient analysis, different integration schemes are employed to determine
+the vector of nodal voltages.</p><p>For a resistor, the generalized trapezoidal rule is used to approximate
+the charge at time step n+1 thus yielding:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2circu94jjw"></a><div><img src="graphics/thyeq2circu94jjw.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;146)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2circu94jjwfeb02"></a><div><img src="graphics/thyeq2circu94jjwfeb02.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;147)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqcircu94feb02"></a><div><img src="graphics/thyeqcircu94feb02.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;148)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#952; = first order time integration parameter (input on <a href="../ans_cmd/Hlp_C_TINTP.html" class="olink"><span class="command"><strong>TINTP</strong></span></a>
+command)</td></tr><tr><td>&#916;t = time increment (input on <a href="../ans_cmd/Hlp_C_DELTIM.html" class="olink"><span class="command"><strong>DELTIM</strong></span></a> command)</td></tr><tr><td>R = resistance</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eqa2558620-e0a7-4959-bf92-17e50797163c.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq4d987ece-66b9-49e5-a947-5c0182b981b5.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq8a9ed2d7-24ee-4458-aaac-0225e1142944.svg"></span>
+</td></tr></table><p>
+</p><p>The constitutive equation for an inductor is of second order with respect
+to the charge time-derivative, and therefore the Newmark integration scheme
+is used to derive its finite element equation:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3circu94jjw"></a><div><img src="graphics/thyeq3circu94jjw.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;149)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq51ace56b-7844-4a32-963f-e64e6dd25d79"></a><div><img src="graphics/eq51ace56b-7844-4a32-963f-e64e6dd25d79.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;150)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>L = inductance</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eqc41100eb-1405-4d85-968b-458258cbfe1d.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq063c344d-ae12-4aed-9a79-3c17295ce6e9.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqb4cf9532-4ac2-480f-878e-4e227f5e31db.svg"></span>
+</td></tr><tr><td>
+<font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>, &#948; = Newmark integration parameters (input on <a href="../ans_cmd/Hlp_C_TINTP.html" class="olink"><span class="command"><strong>TINTP</strong></span></a>
+command</td></tr></table><p>
+</p><p>A capacitor with nodes I and J is represented by</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq4circu94jjw"></a><div><img src="graphics/thyeq4circu94jjw.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;151)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq88335677-b72a-435d-aecf-a023f1f4a08f"></a><div><img src="graphics/eq88335677-b72a-435d-aecf-a023f1f4a08f.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;152)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>C = capacitance</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq03e9acd9-a69c-466d-8380-74f6cab295ee.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eqd76653ea-4b56-424d-a11d-bc24a6628993.svg"></span>
+</td></tr></table><p>
+</p><p>For a current source, the [K] matrix is a null matrix, while the charge
+vector is updated at each time step as</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq5circu94jjw"></a><div><img src="graphics/thyeq5circu94jjw.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;153)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq0932e0bd-0a86-42a3-bc0e-39e924bcddf3.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq32e3687a-d425-4550-ba77-5f34a021f65a.svg"></span>
+</td></tr></table><p>
+</p><p>Note that for the first substep of the first load step in a transient
+analysis, as well as on the transient analysis restart, all the integration
+parameters (&#952;, <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>, &#948;) are set to 1. For every subsequent substep/load
+step, ANSYS uses either the default integration parameters or their values
+input using the <a href="../ans_cmd/Hlp_C_TINTP.html" class="olink"><span class="command"><strong>TINTP</strong></span></a> command.</p><p>In a harmonic analysis, the time-derivative is replaced by j&#969;,
+which produces</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq6circu94jjw"></a><div><img src="graphics/thyeq6circu94jjw.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;154)</b></p></td></tr></table><p>for a resistor,</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq7circu94jjw"></a><div><img src="graphics/thyeq7circu94jjw.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;155)</b></p></td></tr></table><p>for an inductor, and</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq8circu94jjw"></a><div><img src="graphics/thyeq8circu94jjw.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;156)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>j = imaginary unit</td></tr><tr><td>&#969; = angular frequency (input on <a href="../ans_cmd/Hlp_C_HARFRQ.html" class="olink"><span class="command"><strong>HARFRQ</strong></span></a> command)</td></tr></table><p>
+</p><p>The element charge vector {Q} is a null vector for all of the above
+components.</p><p>For a current source, the [K] matrix is a null matrix and the charge
+vector is calculated as</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq9circu94jjw"></a><div><img src="graphics/thyeq9circu94jjw.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;157)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq9c5f3198-813c-4c12-89f3-25bbf3796c3b.svg"></span>
+</td></tr><tr><td>I<sub>S</sub> = source current amplitude</td></tr><tr><td>&#966; = source current phase angle (in radians)</td></tr></table><p>
+</p><p>Note that all of the above matrices and load vectors are premultiplied
+by -1 before being assembled with the piezoelectric finite element equations
+that use negative electric charge as a through variable (reaction <span class="quote">"<span class="quote">force</span>"</span>)
+for the VOLT degree of freedom.  </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

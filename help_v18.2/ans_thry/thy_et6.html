@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:20-04:00"><title>12.9.&nbsp;Nodal and Centroidal Data Evaluation</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_et.html" title="Chapter&nbsp;12:&nbsp;Element Tools"><link rel="prev" href="thy_et8.html" title="12.8.&nbsp;Hydrodynamic Loads"><link rel="next" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="12.9.&nbsp;Nodal and Centroidal Data Evaluation"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="LbKjf138mlg"></a>12.9.&nbsp;Nodal and Centroidal Data Evaluation</h2></div></div></div><a class="indexterm" name="d0e41029"></a><a class="indexterm" name="d0e41032"></a><a class="indexterm" name="d0e41035"></a><a class="indexterm" name="d0e41040"></a><a class="indexterm" name="d0e41045"></a><p>Area and volume elements normally compute results most accurately
+at the integration points.  The location of these data, which includes
+structural stresses, elastic and thermal strains, field gradients,
+and fluxes, can then be moved to nodal or centroidal locations for
+further study.  This is done with extrapolation or interpolation,
+based on the element shape functions or simplified shape functions
+given in <a class="xref" href="thy_et6.html#akKjf28cmlg" title="Table&nbsp;12.12:&nbsp;&nbsp;Assumed Data Variation of Stresses">Table&nbsp;12.12:&nbsp;Assumed Data Variation of Stresses</a>. </p><div class="table"><a name="akKjf28cmlg"></a><p class="title"><b>Table&nbsp;12.12:&nbsp;&nbsp;Assumed Data Variation of Stresses</b></p><div class="table-contents"><table summary="Assumed Data Variation of Stresses" border="1" width="95%"><colgroup><col width="124" class="col1"><col width="144" class="col2"><col width="307" class="col3"></colgroup><thead><tr valign="middle"><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+Geometry</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+No.
+Integration Points</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+Assumed
+Data Variation</th></tr></thead><tbody><tr><td>Triangles</td><td align="center">3</td><td>a + bs + ct</td></tr><tr><td>Quadrilaterals</td><td align="center">4</td><td>a + bs + ct + dst</td></tr><tr><td>Tetrahedra</td><td align="center">4</td><td>a + bs + ct + dr</td></tr><tr><td>Hexahedra</td><td align="center">8</td><td>a + bs + ct + dr + est
++ ftr + gsr + hstr</td></tr></tbody></table></div></div><br class="table-break"><p>where: </p><div class="blockquote"><blockquote class="blockquote"><table border="0" summary="Simple list" class="simplelist"><tr><td>a, b, c, d, e, f, g, h = coefficients </td></tr><tr><td>s, t, r = element natural coordinates </td></tr></table></blockquote></div><p>
+</p><p>The extrapolation is done or the integration point results are simply moved to the nodes,
+   based on the user's request (input on the <a href="../ans_cmd/Hlp_C_ERESX.html" class="olink"><span class="command"><strong>ERESX</strong></span></a> command). If material
+   nonlinearities exist in an element, the least squares fit can cause inaccuracies in the
+   extrapolated nodal data or interpolated centroidal data. These inaccuracies are normally minor
+   for plasticity, creep, or swelling, but are more pronounced in elements where an integration
+   point may change status. </p><p>Adjustments and special cases exist, as follows: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+<a href="../ans_elem/Hlp_E_SOLID90.html" class="olink"><span class="structname">SOLID90</span></a> uses only the eight
+corner integration points.</p></li><li class="listitem"><p>Uniform stress cases, like a constant stress triangle,
+do not require the above processing.</p></li></ul></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

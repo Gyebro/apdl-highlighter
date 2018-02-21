@@ -1,0 +1,62 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:22-04:00"><title>13.25.&nbsp;PLANE25 - Axisymmetric-Harmonic 4-Node Structural Solid</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el24.html" title="13.24.&nbsp;Reserved for Future Use"><link rel="next" href="thy_el26.html" title="13.26.&nbsp;Not Documented"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.25.&nbsp;PLANE25 - Axisymmetric-Harmonic 4-Node Structural Solid"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thyplane25"></a>13.25.&nbsp;PLANE25 - Axisymmetric-Harmonic 4-Node Structural Solid</h2></div></div></div><div><img src="graphics/gthy14-25-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="168" class="col1"><col width="96" class="COLSPEC0"><col width="216" class="col2"><col width="144" class="col3"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Matrix or Vector</th><th align="center" valign="middle">Geometry</th><th align="center" valign="middle">Shape Functions</th><th align="center" valign="middle">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration
+Points</a>
+</th></tr></thead><tbody><tr valign="middle"><td rowspan="2" valign="middle">Stiffness Matrix
+and Thermal Load Vector</td><td valign="middle">Quad</td><td valign="middle">Equations <a class="xref" href="thy_shp7.html#thyeq1harm4nodenov2601" title="(11&#8211;161)">Equation&nbsp;11&#8211;161</a>, <a class="xref" href="thy_shp7.html#thyeq2harm4nodenov2601" title="(11&#8211;162)">Equation&nbsp;11&#8211;162</a> ,
+and <a class="xref" href="thy_shp7.html#thyeq3harm4nodenov2601" title="(11&#8211;163)">Equation&nbsp;11&#8211;163</a> or if modified extra shape functions
+are included (KEYOPT(2) = 0) and element has 4 unique nodes: <a class="xref" href="thy_shp7.html#thyeq1harmonicnov2701" title="(11&#8211;165)">Equation&nbsp;11&#8211;165</a>, <a class="xref" href="thy_shp7.html#thyeq2harmonicdec1901" title="(11&#8211;166)">Equation&nbsp;11&#8211;166</a> , and <a class="xref" href="thy_shp7.html#thyeq3harmonicdec1901" title="(11&#8211;167)">Equation&nbsp;11&#8211;167</a>
+</td><td align="center" valign="middle">2 x 2</td></tr><tr valign="middle"><td valign="middle">Triangle</td><td valign="middle">
+<a class="xref" href="thy_shp7.html#thyeq1harm3nodenov2601" title="(11&#8211;153)">Equation&nbsp;11&#8211;153</a>, <a class="xref" href="thy_shp7.html#thyeq2harm3nodenov2601" title="(11&#8211;154)">Equation&nbsp;11&#8211;154</a> , and <a class="xref" href="thy_shp7.html#thyeq3harm3nodenov2601" title="(11&#8211;155)">Equation&nbsp;11&#8211;155</a>
+</td><td align="center" valign="middle">3</td></tr><tr valign="middle"><td rowspan="2" valign="middle">Mass and Stress Stiffness Matrices  </td><td valign="middle">Quad</td><td valign="middle">
+<a class="xref" href="thy_shp6.html#thyeq1quad43dnov1501" title="(11&#8211;120)">Equation&nbsp;11&#8211;120</a>, <a class="xref" href="thy_shp6.html#thyeq2quad43dnov1501" title="(11&#8211;121)">Equation&nbsp;11&#8211;121</a> , and <a class="xref" href="thy_shp6.html#thyeq3quad43dnov1501" title="(11&#8211;122)">Equation&nbsp;11&#8211;122</a>
+</td><td align="center" valign="middle">2 x 2</td></tr><tr valign="middle"><td valign="middle">Triangle</td><td valign="middle">
+<a class="xref" href="thy_shp6.html#thyeq1cstnov2101" title="(11&#8211;100)">Equation&nbsp;11&#8211;100</a>, <a class="xref" href="thy_shp6.html#thyeq99cstnov2601" title="(11&#8211;101)">Equation&nbsp;11&#8211;101</a> , and <a class="xref" href="thy_shp6.html#thyeq3cstnov2101" title="(11&#8211;102)">Equation&nbsp;11&#8211;102</a>
+</td><td align="center" valign="middle">3</td></tr><tr valign="middle"><td valign="middle">Pressure Load Vector</td><td colspan="2" valign="middle">Same
+as stress stiffness matrix, specialized to the surface</td><td align="center" valign="middle">2</td></tr></tbody></table></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="col1"><col width="432" class="col2"></colgroup><thead><tr><th align="center" valign="top">Load Type</th><th align="center" valign="top">Distribution</th></tr></thead><tbody><tr><td>Element Temperature </td><td>Bilinear
+across element, harmonic around circumference </td></tr><tr><td>Nodal
+Temperature</td><td>Bilinear across element, harmonic
+around circumference </td></tr><tr><td>Pressure</td><td>Linear along each face, harmonic around circumference</td></tr></tbody></table></div><p>Reference: Wilson(<a class="xref" href="thy_biblio.html#ewcgfdemlg" title="&#34;Incompatible Displacement Models&#34;">[38]</a>), Zienkiewicz(<a class="xref" href="thy_biblio.html#aXcgff6mlg" title="The Finite Element Method">[39]</a>),
+Taylor(<a class="xref" href="thy_biblio.html#axcgf2f5mlg" title="&#34;A Non-Conforming Element for Stress Analysis&#34;">[49]</a>) </p><div class="sect2" title="13.25.1.&nbsp;Other Applicable Sections"><div class="titlepage"><div><div><h3 class="title"><a name="plane25other"></a>13.25.1.&nbsp;Other Applicable Sections</h3></div></div></div><p>
+<a class="xref" href="thy_str.html" title="Chapter&nbsp;2:&nbsp;Structures">Structures</a> describes the derivation of structural
+element matrices and load vectors as well as stress evaluations.</p></div><div class="sect2" title="13.25.2.&nbsp;Assumptions and Restrictions"><div class="titlepage"><div><div><h3 class="title"><a name="plane25assump"></a>13.25.2.&nbsp;Assumptions and Restrictions</h3></div></div></div><p>The material properties are assumed to be constant around the entire
+circumference, regardless of temperature dependent material properties or
+loading.  For 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqba9f01ac-d4ae-41ad-aa2a-5ccabb3a0401.svg"></span> (input as MODE on <a href="../ans_cmd/Hlp_C_MODE.html" class="olink"><span class="command"><strong>MODE</strong></span></a> command)
+&gt; 0, the extreme values for combined stresses are obtained by computing these
+stresses at every 10/
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq6b7aadce-bd6c-4076-883a-d00a013681e7.svg"></span> degrees and selecting
+the extreme values.</p></div><div class="sect2" title="13.25.3.&nbsp;Use of Temperature"><div class="titlepage"><div><div><h3 class="title"><a name="plane25useoftemp"></a>13.25.3.&nbsp;Use of Temperature</h3></div></div></div><p>In general, temperatures have two effects on a stress analysis:</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Temperature dependent material properties.</p></li><li class="listitem"><p>Thermal expansion</p></li></ol></div><p>In the case of 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqfd7f4275-d2f1-4324-ad8a-460330de03f2.svg"></span> = 0, there is no conflict
+between these two effects.  However, if 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq60ee4c05-2f75-48d5-b0ae-f5eb5441d83a.svg"></span> &gt;
+0, questions arise.  As stated in the assumptions, the material properties
+may not vary around the circumference, regardless of the temperature.  That
+is, one side cannot be soft and the other side hard.  The input temperature
+for 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq8eab882e-b4c6-4a99-8f13-3d48f1d2464b.svg"></span> &gt; 0 varies sinusoidally around the
+circumference.  As no other temperatures are available to the element, the
+material properties are evaluated at T<sub>ref</sub> (input on <a href="../ans_cmd/Hlp_C_TREF.html" class="olink"><span class="command"><strong>TREF</strong></span></a> command).
+ The input temperature can therefore be used to model thermal bending.  An
+approximate application of this would be a chimney subjected to solar heating
+on one side only.  A variant on this basic procedure is provided by the temperature
+KEYOPT (KEYOPT(3) for <a href="../ans_elem/Hlp_E_PLANE25.html" class="olink"><span class="structname">PLANE25</span></a>).  This variant provides
+that the input temperatures be used only for material property evaluation
+rather than for thermal bending.  This second case requires that <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>x</sub>, <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>y</sub>,
+and <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>z</sub> (input on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> commands)
+all be input as zero.  An application of the latter case is a chimney, which
+is very hot at the bottom and relatively cool at the top, subjected to a wind
+load. </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

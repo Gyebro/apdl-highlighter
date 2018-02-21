@@ -1,0 +1,38 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:39-04:00"><title>13.175.&nbsp;CONTA175 - 2-D/3-D Node-to-Surface Contact</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el174.html" title="13.174.&nbsp;CONTA174 - 3-D 8-Node Surface-to-Surface Contact"><link rel="next" href="thy_el176.html" title="13.176.&nbsp;CONTA176 - 3-D Line-to-Line Contact"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.175.&nbsp;CONTA175 - 2-D/3-D Node-to-Surface Contact"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thyconta175"></a>13.175.&nbsp;CONTA175 - 2-D/3-D Node-to-Surface Contact</h2></div></div></div><div><img src="graphics/gelem175-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="168" class="col1"><col width="168" class="COLSPEC1"><col width="144" class="col2"><col width="144" class="col3"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Matrix or Vector</th><th align="center" valign="middle">Geometry</th><th align="center" valign="middle">Shape Functions</th><th align="center" valign="middle">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration
+Points</a>
+</th></tr></thead><tbody><tr valign="middle"><td rowspan="2" valign="middle">Stiffness Matrix</td><td align="center" valign="middle">Normal Direction</td><td align="center" valign="middle">None</td><td align="center" valign="middle">None</td></tr><tr valign="middle"><td align="center" valign="middle">Sliding
+Direction</td><td align="center" valign="middle">None</td><td align="center" valign="middle">None</td></tr></tbody></table></div><div class="sect2" title="13.175.1.&nbsp;Other Applicable Sections"><div class="titlepage"><div><div><h3 class="title"><a name="conta175.other"></a>13.175.1.&nbsp;Other Applicable Sections</h3></div></div></div><p>The CONTA175 description is the same as for <a class="xref" href="thy_el174.html" title="13.174.&nbsp;CONTA174 - 3-D 8-Node Surface-to-Surface Contact">CONTA174 - 3-D 8-Node Surface-to-Surface Contact</a>
+except that it is a one node contact element.</p></div><div class="sect2" title="13.175.2.&nbsp;Contact Models"><div class="titlepage"><div><div><h3 class="title"><a name="conta175.models"></a>13.175.2.&nbsp;Contact Models</h3></div></div></div><p>The contact model can be either contact force based (KEYOPT(3) = 0,
+default) or contact traction based (KEYOPT(3) = 1). For a contact traction
+based model, ANSYS can determine the area associated with the contact node.
+For the single point contact case, a unit area will be used which is equivalent
+to the contact force based model.</p></div><div class="sect2" title="13.175.3.&nbsp;Contact Forces"><div class="titlepage"><div><div><h3 class="title"><a name="conta175.forces"></a>13.175.3.&nbsp;Contact Forces</h3></div></div></div><p>In order to satisfy contact compatibility, forces are developed in a
+direction normal (n-direction) to the target that will tend to reduce the
+penetration to an acceptable numerical level. In addition to normal contact
+forces, friction forces are developed in directions that are tangent to the
+target plane.</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="conta175eq1"></a><div><img src="graphics/conta175eq1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;328)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>F<sub>n</sub> = normal contact force</td></tr><tr><td>K<sub>n</sub> = contact normal stiffness (input as FKN
+on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command)</td></tr><tr><td>u<sub>n</sub> = contact gap size</td></tr></table><p>
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="conta175eq2"></a><div><img src="graphics/conta175eq2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;329)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>F<sub>T</sub> = tangential contact force</td></tr><tr><td>K<sub>T</sub> = tangential contact stiffness (input as
+FKT on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command)</td></tr><tr><td>u<sub>T</sub> = contact slip distance</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-49.000000px"><img src="graphics/eq0878ec46-d09c-4944-98ec-3d95dd3878cd.svg"></span>
+</td></tr></table><p>
+</p><p>For orthotropic friction, &#956;<sub>eq</sub>
+is computed using the expression:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq5ab85be2-3991-4127-97c1-c5417cc3fae1"></a><div><img src="graphics/eq5ab85be2-3991-4127-97c1-c5417cc3fae1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;330)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#956;<sub>eq</sub> = equivalent coefficient of friction
+for orthotropic friction</td></tr><tr><td>&#956;<sub>1</sub>, &#956;<sub>2</sub> = coefficients
+of friction in first and second principal directions (input as MU1 and MU2
+using <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command with <em class="replaceable"><code>Lab</code></em> =
+FRIC)</td></tr></table><p>
+</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

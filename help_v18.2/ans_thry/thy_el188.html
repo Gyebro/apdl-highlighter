@@ -1,0 +1,147 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:42-04:00"><title>13.188.&nbsp;BEAM188 - 3-D 2-Node Beam</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el187.html" title="13.187.&nbsp;SOLID187 - 3-D 10-Node Tetrahedral Structural Solid"><link rel="next" href="thy_el189.html" title="13.189.&nbsp;BEAM189 - 3-D 3-Node Beam"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.188.&nbsp;BEAM188 - 3-D 2-Node Beam"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thybeam188"></a>13.188.&nbsp;BEAM188 - 3-D 2-Node Beam</h2></div></div></div><div><img src="graphics/gthy14-188-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="118" class="COLSPEC1"><col width="145" class="COLSPEC11"><col width="144" class="COLSPEC12"><col width="168" class="COLSPEC13"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Matrix or Vector  </th><th align="center" valign="middle">Option</th><th align="center" valign="middle">Shape Functions  </th><th align="center" valign="middle">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration Points</a> </th></tr></thead><tbody><tr valign="middle"><td rowspan="3" valign="top">Stiffness
+and Stress Stiffness Matrices, and Thermal and Newton-Raphson Load
+Vectors  </td><td valign="top">Linear (KEYOPT(3) = 0)</td><td valign="top">
+<a class="xref" href="thy_shp2.html#thyeq1wordof3dnov2101" title="(11&#8211;6)">Equation&nbsp;11&#8211;6</a>, <a class="xref" href="thy_shp2.html#thyeq2wordof3dnov2101" title="(11&#8211;7)">Equation&nbsp;11&#8211;7</a>, <a class="xref" href="thy_shp2.html#thyeq3wordof3dnov2101" title="(11&#8211;8)">Equation&nbsp;11&#8211;8</a>, <a class="xref" href="thy_shp2.html#thyeq4wordof3dnov2101" title="(11&#8211;9)">Equation&nbsp;11&#8211;9</a>, <a class="xref" href="thy_shp2.html#thyeq5wordof3dnov2101" title="(11&#8211;10)">Equation&nbsp;11&#8211;10</a>, and <a class="xref" href="thy_shp2.html#thyeq6wordof3dnov2101" title="(11&#8211;11)">Equation&nbsp;11&#8211;11</a>
+</td><td valign="top">
+<p>Along the length: 1</p>
+<p>Across the section: see text below</p>
+</td></tr><tr><td>Quadratic (KEYOPT(3) = 2)</td><td>
+<a class="xref" href="thy_shp2.html#thyeq1nodelinesnov2701" title="(11&#8211;19)">Equation&nbsp;11&#8211;19</a>, <a class="xref" href="thy_shp2.html#thyeq2nodelinesnov2701" title="(11&#8211;20)">Equation&nbsp;11&#8211;20</a>, <a class="xref" href="thy_shp2.html#thyeq3nodelinesnov2701" title="(11&#8211;21)">Equation&nbsp;11&#8211;21</a>, <a class="xref" href="thy_shp2.html#thyeq4nodelinesnov2701" title="(11&#8211;22)">Equation&nbsp;11&#8211;22</a>, <a class="xref" href="thy_shp2.html#thyeq5nodelinesnov2701" title="(11&#8211;23)">Equation&nbsp;11&#8211;23</a>, and <a class="xref" href="thy_shp2.html#thyeq6nodelinesnov2701" title="(11&#8211;24)">Equation&nbsp;11&#8211;24</a>
+</td><td>
+<p>Along the length:
+2</p>
+<p>Across the section: see text below.</p>
+</td></tr><tr valign="middle"><td valign="top">Cubic (KEYOPT(3) = 3)</td><td valign="top">
+<a class="xref" href="thy_shp2.html#thyeq4nodelines1" title="(11&#8211;26)">Equation&nbsp;11&#8211;26</a>, <a class="xref" href="thy_shp2.html#thyeq4nodelines2" title="(11&#8211;27)">Equation&nbsp;11&#8211;27</a>,  <a class="xref" href="thy_shp2.html#thyeq4nodelines3" title="(11&#8211;28)">Equation&nbsp;11&#8211;28</a>, <a class="xref" href="thy_shp2.html#thyeq4nodelines4" title="(11&#8211;29)">Equation&nbsp;11&#8211;29</a>, <a class="xref" href="thy_shp2.html#thyeq4nodelines5" title="(11&#8211;30)">Equation&nbsp;11&#8211;30</a>,
+and <a class="xref" href="thy_shp2.html#thyeq4nodelines6" title="(11&#8211;31)">Equation&nbsp;11&#8211;31</a>
+</td><td valign="top">
+<p>Along the length:  3</p>
+<p>Across the section: see text
+below.</p>
+</td></tr><tr><td rowspan="3">Consistent Mass Matrix and Pressure, Hydrostatic,
+and Hydrodynamic Load Vectors </td><td>Linear (KEYOPT(3) = 0)</td><td>
+<a class="xref" href="thy_shp2.html#thyeq1wordof3dnov2101" title="(11&#8211;6)">Equation&nbsp;11&#8211;6</a>, <a class="xref" href="thy_shp2.html#thyeq2wordof3dnov2101" title="(11&#8211;7)">Equation&nbsp;11&#8211;7</a>, <a class="xref" href="thy_shp2.html#thyeq3wordof3dnov2101" title="(11&#8211;8)">Equation&nbsp;11&#8211;8</a>, <a class="xref" href="thy_shp2.html#thyeq4wordof3dnov2101" title="(11&#8211;9)">Equation&nbsp;11&#8211;9</a>, <a class="xref" href="thy_shp2.html#thyeq5wordof3dnov2101" title="(11&#8211;10)">Equation&nbsp;11&#8211;10</a>, and <a class="xref" href="thy_shp2.html#thyeq6wordof3dnov2101" title="(11&#8211;11)">Equation&nbsp;11&#8211;11</a>
+</td><td>
+<p>Along the length:
+ 2 [<a class="xref" href="thy_el188.html#thyel188vectftnt">1</a>]</p>
+<p>Across the section:
+1</p>
+</td></tr><tr><td>Quadratic (KEYOPT(3) = 2)</td><td>
+<a class="xref" href="thy_shp2.html#thyeq1nodelinesnov2701" title="(11&#8211;19)">Equation&nbsp;11&#8211;19</a>, <a class="xref" href="thy_shp2.html#thyeq2nodelinesnov2701" title="(11&#8211;20)">Equation&nbsp;11&#8211;20</a>, <a class="xref" href="thy_shp2.html#thyeq3nodelinesnov2701" title="(11&#8211;21)">Equation&nbsp;11&#8211;21</a>, <a class="xref" href="thy_shp2.html#thyeq4nodelinesnov2701" title="(11&#8211;22)">Equation&nbsp;11&#8211;22</a>, <a class="xref" href="thy_shp2.html#thyeq5nodelinesnov2701" title="(11&#8211;23)">Equation&nbsp;11&#8211;23</a>, and <a class="xref" href="thy_shp2.html#thyeq6nodelinesnov2701" title="(11&#8211;24)">Equation&nbsp;11&#8211;24</a>
+</td><td>
+<p>Along the length:
+ 3 [<a class="xref" href="thy_el188.html#thyel188vectftnt">1</a>]</p>
+<p>Across the section:
+1</p>
+</td></tr><tr><td>Cubic (KEYOPT(3)
+= 3)</td><td>
+<a class="xref" href="thy_shp2.html#thyeq4nodelines1" title="(11&#8211;26)">Equation&nbsp;11&#8211;26</a>, <a class="xref" href="thy_shp2.html#thyeq4nodelines2" title="(11&#8211;27)">Equation&nbsp;11&#8211;27</a>,  <a class="xref" href="thy_shp2.html#thyeq4nodelines3" title="(11&#8211;28)">Equation&nbsp;11&#8211;28</a>, <a class="xref" href="thy_shp2.html#thyeq4nodelines4" title="(11&#8211;29)">Equation&nbsp;11&#8211;29</a>, <a class="xref" href="thy_shp2.html#thyeq4nodelines5" title="(11&#8211;30)">Equation&nbsp;11&#8211;30</a>,
+and <a class="xref" href="thy_shp2.html#thyeq4nodelines6" title="(11&#8211;31)">Equation&nbsp;11&#8211;31</a>
+</td><td>
+<p>Along the
+length: 4 [<a class="xref" href="thy_el188.html#thyel188vectftnt">1</a>]</p>
+<p>Across
+the section: 1</p>
+</td></tr><tr><td rowspan="3">Lumped Mass Matrix</td><td>Linear (KEYOPT(3) = 0)</td><td>
+<a class="xref" href="thy_shp2.html#thyeq1wordof3dnov2101" title="(11&#8211;6)">Equation&nbsp;11&#8211;6</a>, <a class="xref" href="thy_shp2.html#thyeq2wordof3dnov2101" title="(11&#8211;7)">Equation&nbsp;11&#8211;7</a>, and <a class="xref" href="thy_shp2.html#thyeq3wordof3dnov2101" title="(11&#8211;8)">Equation&nbsp;11&#8211;8</a>
+</td><td>
+<p>Along the length:
+2</p>
+<p>Across the section: 1</p>
+</td></tr><tr><td>Quadratic (KEYOPT(3) = 2)</td><td>
+<a class="xref" href="thy_shp2.html#thyeq1nodelinesnov2701" title="(11&#8211;19)">Equation&nbsp;11&#8211;19</a>, <a class="xref" href="thy_shp2.html#thyeq2nodelinesnov2701" title="(11&#8211;20)">Equation&nbsp;11&#8211;20</a>, and <a class="xref" href="thy_shp2.html#thyeq3nodelinesnov2701" title="(11&#8211;21)">Equation&nbsp;11&#8211;21</a>
+</td><td>
+<p>Along the length:
+3</p>
+<p>Across the section: 1</p>
+</td></tr><tr><td>Cubic (KEYOPT(3) = 3)</td><td>
+<a class="xref" href="thy_shp2.html#thyeq4nodelines1" title="(11&#8211;26)">Equation&nbsp;11&#8211;26</a>, <a class="xref" href="thy_shp2.html#thyeq4nodelines2" title="(11&#8211;27)">Equation&nbsp;11&#8211;27</a>,
+ and <a class="xref" href="thy_shp2.html#thyeq4nodelines3" title="(11&#8211;28)">Equation&nbsp;11&#8211;28</a>
+</td><td>
+<p>Along
+the length: 4</p>
+<p>Across the section: 1</p>
+</td></tr></tbody></table></div><div class="blockquote"><blockquote class="blockquote"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="thyel188vectftnt"></a>For partially submerged elements,
+the hydrostatic/hydrodynamic load vector integration point(s) is/are
+centered on the wetted portion.</p></li></ol></div></blockquote></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="COLSPEC14"><col width="432" class="COLSPEC15"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">  Load Type  </th><th align="center" valign="middle">  Distribution  </th></tr></thead><tbody><tr valign="middle"><td valign="middle">Element Temperature  </td><td valign="middle">Bilinear across cross-section and linear along length</td></tr><tr valign="middle"><td valign="middle">Nodal Temperature  </td><td valign="middle">Constant
+across cross-section, linear along length  </td></tr><tr valign="middle"><td valign="middle">Pressure  </td><td valign="middle">Linear along length.
+ The pressure is assumed to act along the element x-axis.  </td></tr></tbody></table></div><p>References: Simo and Vu-Quoc(<a class="xref" href="thy_biblio.html#NtHr27jjw" title="&#34;A Three Dimensional Finite Strain Rod Model. Part II: Computational Aspects&#34;">[238]</a>), Ibrahimbegovic(<a class="xref" href="thy_biblio.html#qtHr2d1jjw" title="&#34;On Finite Element Implementation of Geometrically Nonlinear Reissner's Beam Theory: Three-dimensional Curved Beam Elements&#34;">[239]</a>). </p><div class="sect2" title="13.188.1.&nbsp;Assumptions and Restrictions"><div class="titlepage"><div><div><h3 class="title"><a name="beam188assump"></a>13.188.1.&nbsp;Assumptions and Restrictions</h3></div></div></div><p>The element is based on Timoshenko beam
+theory; therefore, shear deformation effects are included. It uses
+three components of strain, one (axial) direct strain and two (transverse)
+shear strains. The element is well-suited for linear, large rotation,
+and/or large strain nonlinear applications. If KEYOPT(2) = 0, the
+cross-sectional dimensions are scaled uniformly as a function of axial
+strain in nonlinear analysis such that the volume of the element is
+preserved. </p><p>The element includes stress stiffness terms, by default, in
+any analysis using large deformation (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON).
+ The stress stiffness terms provided enable the elements to analyze
+flexural, lateral and torsional stability problems (using eigenvalue
+buckling or collapse studies with arc length methods).  Pressure load
+stiffness (<a class="xref" href="thy_geo3.html#geopressure2" title="3.4.4.&nbsp;Pressure Load Stiffness">Pressure Load Stiffness</a>) is included. </p><p>Transverse-shear strain is constant through cross-section; that
+is, cross sections remain plane and undistorted after deformation.
+Higher-order theories are not used to account for variation in distribution
+of shear stresses. A shear-correction factor is calculated in accordance
+with in the following references:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Schramm, U., L. Kitis, W. Kang, and W.D. Pilkey. &#8220;On
+the Shear Deformation Coefficient in Beam Theory.&#8221; [<span class="citation">Finite Elements in Analysis and Design, The International Journal
+of Applied Finite Elements and Computer Aided Engineering</span>]. 16 (1994): 141-162.</p></li><li class="listitem"><p>Pilkey, Walter D. [<span class="citation">Formulas for Stress, Strain,
+and Structural Matrices</span>]. New Jersey: Wiley, 1994.</p></li></ul></div><p>The element can be used for slender or stout beams. Due to the
+limitations of first order shear deformation theory, only moderately &#8220;thick&#8221;
+beams may be analyzed. Slenderness ratio of a beam structure may be
+used in judging the applicability of the element. It is important
+to note that this ratio should be calculated using some global distance
+measures, and not based on individual element dimensions.  A slenderness
+ratio greater than 30 is recommended. </p><p>These elements support only elastic relationships between transverse-shear
+forces and transverse-shear strains. Orthotropic elastic material
+properties with bilinear and multilinear isotropic hardening plasticity
+options (BISO, MISO) may be used. Transverse-shear stiffnesses can
+be specified using real constants. </p><p>The St. Venant warping functions for torsional behavior is determined
+in the undeformed state, and is used to define shear strain even after
+yielding. The element does not provide options to recalculate the
+torsional shear distribution on cross sections during the analysis
+and possible partial plastic yielding of cross section. As such, large
+inelastic deformation due to torsional loading should be treated with
+caution and carefully verified.   </p><p>The elements are provided with section relevant quantities (area
+of integration, position, Poisson function, function derivatives,
+etc.) automatically at a number of section points by the use of section
+commands. Each section is assumed to be an assembly of predetermined
+number of nine-node cells which illustrates a section model of a rectangular
+section. Each cell has four integration points.</p><div class="figure"><a name="DJpJrb4jjw"></a><p class="title"><b>Figure&nbsp;13.39:&nbsp;&nbsp;Section Model</b></p><div class="figure-contents"><div><img src="graphics/gthy14-189-2.svg" alt="Section Model"></div></div></div><br class="figure-break"><p>When the material has inelastic behavior or the temperature
+varies across the section, constitutive calculations are performed
+at each of the section integration points.  For all other cases, the
+element uses the precalculated properties of the section at each element
+integration point along the length. The restrained warping formulation
+used may be found in Timoshenko and Gere(<a class="xref" href="thy_biblio.html#kOjku3c3jjw" title="Theory of Elastic Stability">[247]</a>) and Schulz and Fillippou(<a class="xref" href="thy_biblio.html#aPjku2eajjw" title="&#34;Generalized Warping Torsion Formulation&#34;">[248]</a>). </p></div><div class="sect2" title="13.188.2.&nbsp;Ocean Effects"><div class="titlepage"><div><div><h3 class="title"><a name="d0e57664"></a>13.188.2.&nbsp;Ocean Effects</h3></div></div></div><p>The element has the same ocean effects as described in section <a href="thy_el288.html#pipe288_oceaneff" class="olink">Ocean Effects</a>, specialized
+to other cross sections, but with the following limitations:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Sections with internal voids (such as circular tubes
+[<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,,BEAM,CTUBE]) cannot have a separate input
+for internal pressure; rather, the external pressure is used (similar
+to setting <em class="replaceable"><code>KFLOOD</code></em> = 1 on the <a href="../ans_cmd/Hlp_C_OCDATA.html" class="olink"><span class="command"><strong>OCDATA</strong></span></a> command). </p></li><li class="listitem"><p>Hydrostatic crushing of the cross-section cannot be
+considered directly as no strains exists in the element y and z directions.
+To ensure that the linear elastic materials are handled correctly,
+axial loads are adjusted by:</p><p>
+</p><div class="informalequation"><a name="eq75329ad3-8ebb-4c3b-9181-90a1e1318d04"></a><div><img src="graphics/eq75329ad3-8ebb-4c3b-9181-90a1e1318d04.svg"></div></div><p>
+</p><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eq842a6371-74e8-4a48-bf66-8e8abaeccc31.svg"></span> = adjustment to the axial term of the element
+load vector</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eqadfc264e-7eda-41c5-bda6-c2e7b5f7529f.svg"></span> = external pressure </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq44bfa410-dc2e-4f15-886c-22be8fcd7668.svg"></span> = Poisson&#8217;s ratio (input
+via PRXY on the <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command)</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqc6053266-1422-4519-a292-bf4e65255978.svg"></span> = cross-section area</td></tr></table><p>Compared to the working stress in the material, <span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eqce728095-41cc-422d-af1e-78a85a92d4c8.svg"></span> is normally
+very small. In deep-water applications, however, the approximation
+is more significant.</p></li></ul></div></div><div class="sect2" title="13.188.3.&nbsp;Stress Evaluation"><div class="titlepage"><div><div><h3 class="title"><a name="beam188stress"></a>13.188.3.&nbsp;Stress Evaluation</h3></div></div></div><p>Several stress-evaluation options exist. The section strains
+and generalized stresses are evaluated at element integration points
+and then linearly extrapolated to the nodes of the element. </p><p>If the material is elastic, stresses and strains are available
+after extrapolation in cross-section at the nodes of section mesh.
+If the material is plastic, stresses and strains are moved without
+extrapolation to the section nodes (from section integration points). </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

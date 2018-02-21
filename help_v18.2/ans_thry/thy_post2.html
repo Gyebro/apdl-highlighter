@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:25-04:00"><title>17.2.&nbsp;POST1 - Vector and Surface Operations</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_post.html" title="Chapter&nbsp;17:&nbsp;Postprocessing"><link rel="prev" href="thy_post1.html" title="17.1.&nbsp;POST1 - Derived Nodal Data Processing"><link rel="next" href="thy_post3.html" title="17.3.&nbsp;POST1 - Path Operations"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="17.2.&nbsp;POST1 - Vector and Surface Operations"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="ZdyAf36lmm"></a>17.2.&nbsp;POST1 - Vector and Surface Operations</h2></div></div></div><div class="sect2" title="17.2.1.&nbsp;Vector Operations"><div class="titlepage"><div><div><h3 class="title"><a name="posvector"></a>17.2.1.&nbsp;Vector Operations</h3></div></div></div><a class="indexterm" name="d0e84765"></a><a class="indexterm" name="d0e84768"></a><a class="indexterm" name="d0e84771"></a><p>The dot product of two vectors 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq6bf96303-30a7-45ea-b12d-eeb5cbc252af.svg"></span> and 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqb115ec8f-3176-423c-895a-be620ec611dd.svg"></span>  is provided (with the <a href="../ans_cmd/Hlp_C_VDOT.html" class="olink"><span class="command"><strong>VDOT</strong></span></a> command) as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq1d6f397d-c5ea-4899-b2d7-b629c8144cba"></a><div><img src="graphics/eq1d6f397d-c5ea-4899-b2d7-b629c8144cba.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;4)</b></p></td></tr></table><p>The cross product of two vectors {A} and {B} is also provided
+(with the <a href="../ans_cmd/Hlp_C_VCROSS.html" class="olink"><span class="command"><strong>VCROSS</strong></span></a> command) as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq3ad1eecc-e169-490f-b6fb-8f769292da5e"></a><div><img src="graphics/eq3ad1eecc-e169-490f-b6fb-8f769292da5e.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;5)</b></p></td></tr></table><p>In both operations, the components of vectors {A} and {B} are
+transformed to global Cartesian coordinates before the calculations.
+ The results of the cross product are also in global Cartesian coordinates.</p></div><div class="sect2" title="17.2.2.&nbsp;Surface Operations"><div class="titlepage"><div><div><h3 class="title"><a name="possurfaceop"></a>17.2.2.&nbsp;Surface Operations</h3></div></div></div><a class="indexterm" name="d0e84803"></a><a class="indexterm" name="d0e84806"></a><div class="blockquote"><blockquote class="blockquote"><p>
+<span class="bold"><strong>(Integration of Values Across a Free Surface)</strong></span>
+</p></blockquote></div><p>Nodal values across a free surface can be integrated (using
+the <a href="../ans_cmd/Hlp_C_INTSRF.html" class="olink"><span class="command"><strong>INTSRF</strong></span></a> command).  The free surface is determined
+by a selected set of nodes which must lie on an external surface of
+the selected set of elements.</p><p>Only pressure values can be integrated (for purposes of lift
+and drag calculations in fluid flow analyses).  As a result of the
+integration, force and moment components in the global Cartesian coordinate
+system are:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqcc9bd20b-cd24-434e-b774-0a78c3fbefe2"></a><div><img src="graphics/eqcc9bd20b-cd24-434e-b774-0a78c3fbefe2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;6)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq0122e911-e681-4500-aa19-c3ddb46cba56"></a><div><img src="graphics/eq0122e911-e681-4500-aa19-c3ddb46cba56.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;7)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>{F<sub>t</sub>} = force components </td></tr><tr><td>{F<sub>r</sub>} = moment components</td></tr><tr><td>{r} = position vector = 
+<span class="inlineequation" style="&#xA;          vertical-align:-3.000000px"><img src="graphics/eqb0bcbd46-55fe-4e88-b02d-ee361149b061.svg"></span>
+</td></tr><tr><td>{p} = distributed pressure vector</td></tr><tr><td>area = surface area</td></tr></table><p>
+</p><p>In the finite element implementation, the position vector {r}
+is taken with respect to the origin.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

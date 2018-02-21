@@ -1,0 +1,114 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:11-04:00"><title>10.9.&nbsp;Porous Media Flow</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_coup.html" title="Chapter&nbsp;10:&nbsp;Coupling"><link rel="prev" href="thy_coup4.html" title="10.8.&nbsp;Review of Coupled Electromechanical Methods"><link rel="next" href="thry_str_diff_cou.html" title="10.10.&nbsp;Structural-Diffusion Coupling"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="10.9.&nbsp;Porous Media Flow"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thypormediaflow"></a>10.9.&nbsp;Porous Media Flow</h2></div></div></div><p>The coupled pore-pressure thermal elements used in analyses
+involving porous media are listed in <a href="../ans_cou/Hlp_G_COU_porefluiddiffstruct.html#couCPTelems" class="olink">Coupled Pore-Pressure-Thermal Element Support</a>.</p><p>The program models porous media containing fluid by treating the porous
+            media as a multiphase material and applying an extended version of Biot's consolidation
+            theory. The flow is considered to be a single-phase fluid. The porous media can be fully
+            or partially saturated [<a class="xref" href="thy_biblio.html#zienshiomi" title="&#8220;Dynamic Behaviour of Saturated Porous Media; The Generalized Biot Formulation and its Numerical Solution&#8221;">[431]</a>] [<a class="xref" href="thy_biblio.html#zienkiewicz1990" title="Static and Dynamic Behaviour of Soils: A Rational Approach to Quantitative Solutions. II. Semi-Saturated Problems">[437]</a>]. Optionally, heat transfer in the porous media can also be considered.</p><p>Following are the governing equations for Biot consolidation problems
+            with heat transfer:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thy_biotgoveq"></a><div><img src="graphics/thy_biotgoveq.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;71)</b></p></td></tr></table><p>where:</p><div class="informaltable"><table border="0" width="95%"><colgroup><col width="38" align="center" class="col1"><col width="19" class="COLSPEC0"><col width="480" class="col2"></colgroup><tbody><tr><td align="center">&#963;</td><td>=</td><td>Total Cauchy stress</td></tr><tr><td align="center">
+                            <p>
+                                <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq83caa334-63d8-4433-9fb1-4535cd450723.svg"></span>
+</p>
+                        </td><td>=</td><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-45.000000px"><img src="graphics/eqd3a4c22b-4c17-48cd-8998-d0299d9df1ab.svg"></span> = matrix differentiation operator (3-D form
+                            shown)</td></tr><tr><td align="center">
+<span class="inlineequation" style="&#xA;          vertical-align:-10.000000px"><img src="graphics/eq5c773f7f-75dc-4e6e-b6f1-62e5ed77645f.svg"></span>
+</td><td>=</td><td>Bulk density of porous media</td></tr><tr><td align="center">
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqa2173139-a393-4d0f-8f89-9e241fc941b6.svg"></span>
+</td><td>=</td><td>Displacement</td></tr><tr><td align="center">
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq9c380b86-6038-49e1-9a20-13359ac29d3f.svg"></span>
+</td><td>=</td><td>Bulk specific weight of porous media</td></tr><tr><td align="center">
+<span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eq7e391441-0c84-4533-b9b0-047768d7d241.svg"></span>
+</td><td>=</td><td>Gravity load direction (not to be confused with
+                            gravity magnitude)</td></tr><tr><td align="center">
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqa5491459-4a16-4778-b93b-8de539e86f39.svg"></span>
+</td><td>=</td><td>Applied force</td></tr><tr><td align="center">
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq11c87880-9210-42d1-95fc-ffbf789773c6.svg"></span>
+</td><td>=</td><td>Flow flux vector</td></tr><tr><td align="center">
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq8bcfa35b-b332-4579-afa1-96232049d6ee.svg"></span>
+</td><td>=</td><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq53262e25-993d-4020-97f0-3f2069d22299.svg"></span> = Gradient operator (3-D form shown)</td></tr><tr><td align="center">
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq0bb99995-5eba-4521-afa5-6a07dd804022.svg"></span>
+</td><td>=</td><td>Biot coefficient</td></tr><tr><td align="center">
+                            <p>
+                                </p><div class="informalequation"><a name="eq96eed3c0-fc53-4a26-b290-c80832df952d"></a><div><img src="graphics/eq96eed3c0-fc53-4a26-b290-c80832df952d.svg"></div></div><p>
+                            </p>
+                        </td><td>=</td><td>Volumetric strain of the solid skeleton</td></tr><tr><td align="center">
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq54a0fbf1-557b-4726-8c74-d499da803026.svg"></span>
+</td><td>=</td><td>Pore pressure</td></tr><tr><td align="center">
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eq6746dee5-b1ea-461f-90c1-e992bcc5f3e1.svg"></span>
+</td><td>=</td><td>Compressibility parameter</td></tr><tr><td align="center">
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq3c8bfba0-a9bc-4c8a-b528-f4b5cff24858.svg"></span>
+</td><td>=</td><td>Thermal expansion coefficient</td></tr><tr><td align="center">
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqed3a813c-cf1e-4e8e-a383-7f8fca9463d2.svg"></span>
+</td><td>=</td><td>Temperature</td></tr><tr><td align="center">
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq48bceae3-d623-42ba-804b-d4a724c0364d.svg"></span>
+</td><td>=</td><td>Flow source</td></tr><tr><td align="center">
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq4a8c08c5-b996-4836-8df7-162e2f05e67d.svg"></span>
+</td><td>=</td><td>Specific heat capacity</td></tr><tr><td align="center">
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq530b2ac9-a9e6-49f5-8454-3adf59121ce9.svg"></span>
+</td><td>=</td><td>Thermal conductivity</td></tr><tr><td align="center">
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq39006968-5318-4d87-840a-2bb059bcf423.svg"></span>
+</td><td>=</td><td>Heat source</td></tr></tbody></table></div><p>The total stress relates to the effective stress <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq2c4a4a1c-a098-4540-9e93-5e7c1ccf5694.svg"></span>and pore pressure by:</p><div class="informalequation"><a name="eq4f0175eb-c4dd-4c40-bf91-be699e8cbeb9"></a><div><img src="graphics/eq4f0175eb-c4dd-4c40-bf91-be699e8cbeb9.svg"></div></div><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq373e7dfa-2e5c-4000-980a-3eb7a1ac02d9.svg"></span> = degree of saturation of fluid</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq5a772b68-7971-4e08-b791-836cc53d132d.svg"></span> = second-order identity tensor</td></tr></table><p>
+</p><p>The relationship between the effective stress and the elastic strain of
+            solid skeletons is given by:</p><div class="informalequation"><a name="eq7fe545d0-7941-4985-85bd-47ea0d3a7773"></a><div><img src="graphics/eq7fe545d0-7941-4985-85bd-47ea0d3a7773.svg"></div></div><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqa90cc37d-45e3-41f3-9fec-8da113929eee.svg"></span> = second-order elastic strain tensor</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq281f8a0b-2b70-4188-9abe-dab93244312a.svg"></span> = fourth-order elasticity tensor</td></tr></table><p>
+</p><p>The relationship between the fluid flow flux and the pore pressure
+is described by Darcy's Law:</p><div class="informalequation"><a name="eq71cde094-da1f-4322-8507-6fd04a97e74b"></a><div><img src="graphics/eq71cde094-da1f-4322-8507-6fd04a97e74b.svg"></div></div><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq0fcccee2-7148-4e9d-ad91-99a7b19b6c94.svg"></span> = second-order permeability tensor</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eq3c7a1a31-1db6-4b33-b8c9-0dc26d52be74.svg"></span> = relative permeability</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-11.000000px"><img src="graphics/eqd3dfdd96-b8d3-46c7-9fd0-fc2c758eac02.svg"></span> = specific weight of fluid</td></tr></table><p>
+</p><p>For displacement <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqd814686e-e96f-4fd1-85cc-cff4668663d4.svg"></span>, pressure <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq160a4691-d50d-495c-936c-9a1503d8296d.svg"></span>, and temperature <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqd78d4856-d64b-4e52-bd3d-b01bbd91d639.svg"></span> as the unknown degrees of freedom, linearizing the governing equations
+            gives:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqc02bbc04-0e26-427b-ba10-8ba73d4d6a4e"></a><div><img src="graphics/eqc02bbc04-0e26-427b-ba10-8ba73d4d6a4e.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;72)</b></p></td></tr></table><p>The matrices are:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+                <span class="inlineequation" style="&#xA;          vertical-align:-19.000000px"><img src="graphics/eqdcaa84c4-3598-492b-864a-06cac1376297.svg"></span>
+            </td></tr><tr><td>
+                <span class="inlineequation" style="&#xA;          vertical-align:-19.000000px"><img src="graphics/eq6947be51-17ac-4bd3-8ff9-5173910529ab.svg"></span>
+            </td></tr><tr><td>
+                <span class="inlineequation" style="&#xA;          vertical-align:-19.000000px"><img src="graphics/eq6ce5a9d7-a867-4787-b3a6-d2cd974c8457.svg"></span>
+            </td></tr><tr><td>
+                <span class="inlineequation" style="&#xA;          vertical-align:-19.000000px"><img src="graphics/eq66add415-972c-4ea9-8e42-3f03ad3adae6.svg"></span>
+            </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-19.000000px"><img src="graphics/eqdff3b4c7-30b8-40a9-8f89-9572a960b54f.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-19.000000px"><img src="graphics/eq2d392955-0596-4718-8f82-c12e90ffd24f.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-19.000000px"><img src="graphics/eq52e02d36-7911-428a-a00c-3c60b4dd4f81.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-19.000000px"><img src="graphics/eqfbd7f5d9-a40c-4fa4-82c2-673ec35b1e97.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-21.000000px"><img src="graphics/eq51611695-0d92-4fb9-a44d-e42f7efd492d.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-19.000000px"><img src="graphics/eq4b70422e-ff10-4d88-b5a5-7f946ed33efb.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-19.000000px"><img src="graphics/eq619cbcfa-db0a-478f-aaac-1c57a9b01d8a.svg"></span>
+</td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+                <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqbd9ac14e-4db8-4cc6-a211-b540ad9b08fa.svg"></span> = domain</td></tr><tr><td>
+                <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq71457c2c-35ed-4703-8cce-0bcd0ad0fb6d.svg"></span> = strain-displacement operator matrix</td></tr><tr><td>
+                <span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eqe544a930-d7f5-4494-a138-bd336ea22a32.svg"></span> = displacement interpolation</td></tr><tr><td>
+                <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqfc2d01d5-a433-4d62-bfe3-ca6e4087857b.svg"></span> = pressure interpolation</td></tr><tr><td>
+                <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqd1e49a18-ce89-4b97-a8a1-8f6208528d67.svg"></span> = temperature interpolation</td></tr><tr><td>
+                <span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqc332d327-2bed-42e1-959d-448041046337.svg"></span> = thermal load vector</td></tr></table><p>The load force vector <span class="inlineequation" style="&#xA;          vertical-align:-11.000000px"><img src="graphics/eq00625f2f-e0bd-4eeb-a9ab-dd819b338776.svg"></span> includes the body force <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqebdd0125-25c8-4d4b-952d-448dd6bc8863.svg"></span> and surface traction boundary conditions, and the vector
+                <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqc4763973-26b4-4702-acbf-9f2239f8ca9b.svg"></span> includes the flow source, and the vector <span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqdf127645-7b25-4f63-b859-3e32072db2a6.svg"></span> includes the heat source. (<a class="xref" href="thy_biblio.html#zienshiomi" title="&#8220;Dynamic Behaviour of Saturated Porous Media; The Generalized Biot Formulation and its Numerical Solution&#8221;">[431]</a>)</p><p>Combining the linearized equations for saturated porous media with the
+            equation of motion gives the matrix equation:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq34199cf7-e40d-4efc-9ccc-88308b3282f1"></a><div><img src="graphics/eq34199cf7-e40d-4efc-9ccc-88308b3282f1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;73)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+                    <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqf368dccd-e6d9-4ee1-af36-04edf2a7e0ed.svg"></span> structural damping matrix</td></tr></table><p>
+</p><p>The structural damping matrix can be input as Rayleigh damping
+                (<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,SDAMP,,,,ALPD and/or
+            <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,SDAMP,,,,BETD).</p><p>
+<span class="bold"><strong>Additional Information</strong></span>
+</p><p>For related information, see the following documentation:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+                <a href="../ans_cou/Hlp_G_COU_porefluiddiffstruct.html" class="olink">Structural-Pore-Fluid-Diffusion-Thermal Analysis in the <span class="olinkdocname">Mechanical APDL Coupled-Field Analysis Guide</span></a>
+</td></tr><tr><td>
+                <a href="../ans_mat/elemdatatblpor.html#elemdatatblpm" class="olink">Porous Media Material Properties in the <span class="olinkdocname">Mechanical APDL Material Reference</span></a>
+</td></tr></table></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

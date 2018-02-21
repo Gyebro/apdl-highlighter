@@ -1,0 +1,39 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:18-04:00"><title>12.6.&nbsp;Reuse of Matrices</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_et.html" title="Chapter&nbsp;12:&nbsp;Element Tools"><link rel="prev" href="thy_et2.html" title="12.5.&nbsp;Lumped Matrices"><link rel="next" href="pipe288_hydrostatic.html" title="12.7.&nbsp;Hydrostatic Loads"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="12.6.&nbsp;Reuse of Matrices"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="engAf38almm"></a>12.6.&nbsp;Reuse of Matrices</h2></div></div></div><a class="indexterm" name="d0e38540"></a><a class="indexterm" name="d0e38543"></a><p>Matrices are reused automatically as often as possible in order
+to decrease running time.  The information below is made available
+for use in running time estimates. </p><div class="sect2" title="12.6.1.&nbsp;Element Matrices"><div class="titlepage"><div><div><h3 class="title"><a name="eltelemmat"></a>12.6.1.&nbsp;Element Matrices</h3></div></div></div><p>For static (<a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,STATIC) or full transient
+dynamic (<a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,TRANS with <a href="../ans_cmd/Hlp_C_TRNOPT.html" class="olink"><span class="command"><strong>TRNOPT</strong></span></a>,FULL) analyses, element stiffness/conductivity, mass, and damping/specific
+heat, matrices ([K<sub>e</sub>], [M<sub>e</sub>], [C<sub>e</sub>]) are always reused from iteration
+to iteration, except when:  </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>The full Newton-Raphson option (<a href="../ans_cmd/Hlp_C_NROPT.html" class="olink"><span class="command"><strong>NROPT</strong></span></a>,FULL) is used, or for the first equilibrium iteration of a time
+step when the modified Newton-Raphson option (<a href="../ans_cmd/Hlp_C_NROPT.html" class="olink"><span class="command"><strong>NROPT</strong></span></a>,MODI) is used and the element has either nonlinear materials or
+large deformation (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON) is active. </p></li><li class="listitem"><p>The element is nonlinear (e.g. gap, radiation, or
+control element) and its status changes.  </p></li><li class="listitem"><p> MODE or ISYM (<a href="../ans_cmd/Hlp_C_MODE.html" class="olink"><span class="command"><strong>MODE</strong></span></a> command) have
+changed from the previous load step for elements <a href="../ans_elem/Hlp_E_PLANE25.html" class="olink"><span class="structname">PLANE25</span></a>, <a href="../ans_elem/Hlp_E_SHELL61.html" class="olink"><span class="structname">SHELL61</span></a>, <a href="../ans_elem/Hlp_E_PLANE75.html" class="olink"><span class="structname">PLANE75</span></a>, <a href="../ans_elem/Hlp_E_PLANE78.html" class="olink"><span class="structname">PLANE78</span></a>, or <a href="../ans_elem/Hlp_E_PLANE83.html" class="olink"><span class="structname">PLANE83</span></a>.   </p></li><li class="listitem"><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq6a18d1bd-e23c-4f41-8508-327afd04d7e7.svg"></span> will be reformulated if a convective
+film coefficient (input on the <a href="../ans_cmd/Hlp_C_SF.html" class="olink"><span class="command"><strong>SF</strong></span></a> or <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> commands) on an element face changes.  Such a change could occur
+as a ramp (<a href="../ans_cmd/Hlp_C_KBC.html" class="olink"><span class="command"><strong>KBC</strong></span></a>,0) within a load step. </p></li><li class="listitem"><p>The materials or real constants are changed by new
+input, or if the material properties have changed due to temperature
+changes for temperature-dependent input. </p></li></ol></div><p>Element stress stiffness matrices [S<sub>e</sub>] are never reused, as the stress normally varies from iteration
+to iteration. </p></div><div class="sect2" title="12.6.2.&nbsp;Structure Matrices"><div class="titlepage"><div><div><h3 class="title"><a name="eltstructmat"></a>12.6.2.&nbsp;Structure Matrices</h3></div></div></div><a class="indexterm" name="d0e38651"></a><p>The overall structure matrices are reused from iteration to
+iteration except when: </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>An included element matrix is reformed (see above).</p></li><li class="listitem"><p>The set of specified degrees of freedom (DOFs) is
+changed.</p></li><li class="listitem"><p>The integration time step size changes from that used
+in the previous substep for the transient (<a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,TRANS) analysis.</p></li><li class="listitem"><p>The first iteration of a restart is being performed.</p></li></ol></div></div><div class="sect2" title="12.6.3.&nbsp;Override Option"><div class="titlepage"><div><div><h3 class="title"><a name="eltoverride"></a>12.6.3.&nbsp;Override Option</h3></div></div></div><a class="indexterm" name="d0e38678"></a><p>The above tests are all performed automatically by the program.
+ The user can select to override the program's decision with respect
+to whether the matrices should be reformed or not.  For example, if
+the user has temperature-dependent input as the only cause which is
+forcing the reformulation of the matrices, and there is a load step
+where the temperature dependency is not significant, the user can
+select that the matrices will not be reformed at that load step (<a href="../ans_cmd/Hlp_C_KUSE.html" class="olink"><span class="command"><strong>KUSE</strong></span></a>,1).  (Normally, the user would want to return control
+back to the program for the following load step (<a href="../ans_cmd/Hlp_C_KUSE.html" class="olink"><span class="command"><strong>KUSE</strong></span></a>,0)). On the other hand, the user can select that all element matrices
+are to be reformed each iteration (<a href="../ans_cmd/Hlp_C_KUSE.html" class="olink"><span class="command"><strong>KUSE</strong></span></a>,-1). </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

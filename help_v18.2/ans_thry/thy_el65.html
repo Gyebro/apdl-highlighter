@@ -1,0 +1,167 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:27-04:00"><title>13.65.&nbsp;SOLID65 - 3-D Reinforced Concrete Solid</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el64.html" title="13.64.&nbsp;Not Documented"><link rel="next" href="thy_el66.html" title="13.66.&nbsp;Reserved for Future Use"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.65.&nbsp;SOLID65 - 3-D Reinforced Concrete Solid"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thysolid65"></a>13.65.&nbsp;SOLID65 - 3-D Reinforced Concrete Solid</h2></div></div></div><a class="indexterm" name="d0e45513"></a><a class="indexterm" name="d0e45516"></a><div><img src="graphics/gthy14-65-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="168" class="col1"><col width="96" class="COLSPEC9"><col width="216" class="col2"><col width="144" class="col3"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Matrix or Vector</th><th colspan="2" align="center" valign="middle">Shape Functions</th><th align="center" valign="middle">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration
+Points</a>
+</th></tr></thead><tbody><tr valign="middle"><td valign="middle">Stiffness Matrix
+and Thermal Load Vector</td><td colspan="2" valign="middle">
+<a class="xref" href="thy_shp8.html#thyeq4bricknov2101" title="(11&#8211;214)">Equation&nbsp;11&#8211;214</a>, <a class="xref" href="thy_shp8.html#thyeq5bricknov2101" title="(11&#8211;215)">Equation&nbsp;11&#8211;215</a>, and <a class="xref" href="thy_shp8.html#thyeq6bricknov2101" title="(11&#8211;216)">Equation&nbsp;11&#8211;216</a>, or if modified extra
+shape functions are included (KEYOPT(1) = 0) and element has 8 unique
+nodes <a class="xref" href="thy_shp8.html#thyeq1brickwesfnov2101" title="(11&#8211;229)">Equation&nbsp;11&#8211;229</a>, <a class="xref" href="thy_shp8.html#thyeq2brickwesfnov2101" title="(11&#8211;230)">Equation&nbsp;11&#8211;230</a>, and <a class="xref" href="thy_shp8.html#thyeq3brickwesfnov2101" title="(11&#8211;231)">Equation&nbsp;11&#8211;231</a>
+</td><td align="center" valign="middle">2 x 2 x 2</td></tr><tr valign="middle"><td valign="middle">Mass Matrix </td><td colspan="2" valign="middle">
+<a class="xref" href="thy_shp8.html#thyeq4bricknov2101" title="(11&#8211;214)">Equation&nbsp;11&#8211;214</a>, <a class="xref" href="thy_shp8.html#thyeq5bricknov2101" title="(11&#8211;215)">Equation&nbsp;11&#8211;215</a>, and <a class="xref" href="thy_shp8.html#thyeq6bricknov2101" title="(11&#8211;216)">Equation&nbsp;11&#8211;216</a>
+</td><td align="center" valign="middle">2 x 2 x 2</td></tr><tr valign="middle"><td rowspan="2" valign="middle">Pressure Load
+Vector</td><td valign="middle">Quad</td><td valign="middle">
+<a class="xref" href="thy_shp5.html#thyeq1q4nov2601" title="(11&#8211;69)">Equation&nbsp;11&#8211;69</a> and <a class="xref" href="thy_shp5.html#thyeq2q4nov2601" title="(11&#8211;70)">Equation&nbsp;11&#8211;70</a>
+</td><td align="center" valign="middle">2 x 2</td></tr><tr valign="middle"><td valign="middle">Triangle</td><td valign="middle">
+<a class="xref" href="thy_shp5.html#thyeq1cstnov2601" title="(11&#8211;49)">Equation&nbsp;11&#8211;49</a> and <a class="xref" href="thy_shp5.html#thyeq2cstnov2601" title="(11&#8211;50)">Equation&nbsp;11&#8211;50</a>
+</td><td align="center" valign="middle">3</td></tr></tbody></table></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="col1"><col width="432" class="col2"></colgroup><thead><tr><th align="center" valign="top">Load Type</th><th align="center" valign="top">Distribution</th></tr></thead><tbody><tr><td>Element Temperature</td><td>Trilinear thru element</td></tr><tr><td>Nodal Temperature</td><td>Trilinear
+thru element</td></tr><tr><td>Pressure </td><td>Bilinear across each face</td></tr></tbody></table></div><p>References: Willam and Warnke(<a class="xref" href="thy_biblio.html#W3bhf109mlg" title="&#34;Constitutive Model for the Triaxial Behavior of Concrete&#34;">[37]</a>),
+Wilson(<a class="xref" href="thy_biblio.html#ewcgfdemlg" title="&#34;Incompatible Displacement Models&#34;">[38]</a>), Taylor(<a class="xref" href="thy_biblio.html#axcgf2f5mlg" title="&#34;A Non-Conforming Element for Stress Analysis&#34;">[49]</a>) </p><div class="sect2" title="13.65.1.&nbsp;Assumptions and Restrictions"><div class="titlepage"><div><div><h3 class="title"><a name="solid65assump"></a>13.65.1.&nbsp;Assumptions and Restrictions</h3></div></div></div><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Cracking is permitted in three orthogonal directions
+at each integration point. </p></li><li class="listitem"><p>If cracking occurs at an integration point, the cracking
+is modeled through an adjustment of material properties which effectively
+treats the cracking as a &#8220;smeared band&#8221; of cracks, rather
+than discrete cracks. </p></li><li class="listitem"><p>The concrete material is assumed to be initially isotropic. </p></li><li class="listitem"><p>Whenever the reinforcement capability of the element
+is used, the reinforcement is assumed to be &#8220;smeared&#8221;
+throughout the element. </p></li><li class="listitem"><p>In addition to cracking and crushing, the concrete
+may also undergo plasticity, with the Drucker-Prager failure surface
+being most commonly used.  In this case, the plasticity is done before
+the cracking and crushing checks.  </p></li></ol></div></div><div class="sect2" title="13.65.2.&nbsp;Description"><div class="titlepage"><div><div><h3 class="title"><a name="solid65descr"></a>13.65.2.&nbsp;Description</h3></div></div></div><a class="indexterm" name="d0e45652"></a><a class="indexterm" name="d0e45655"></a><p>SOLID65 allows the presence of four different materials within
+each element; one matrix material (e.g. concrete) and a maximum of
+three independent reinforcing materials.  The concrete material is
+capable of directional integration point cracking and crushing besides
+incorporating plastic and creep behavior.  The reinforcement (which
+also incorporates creep and plasticity) has uniaxial stiffness only
+and is assumed to be smeared throughout the element.  Directional
+orientation is accomplished through user specified angles.  </p></div><div class="sect2" title="13.65.3.&nbsp;Linear Behavior - General"><div class="titlepage"><div><div><h3 class="title"><a name="solid65gen"></a>13.65.3.&nbsp;Linear Behavior - General</h3></div></div></div><p>The stress-strain matrix [D] used for this element is defined
+as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1solid65nov2701"></a><div><img src="graphics/thyeq1solid65nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;117)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>N<sub>r</sub> = number of reinforcing materials
+(maximum of three, all reinforcement is ignored if M<sub>1</sub> is zero.  Also, if M<sub>1</sub>, M<sub>2</sub>, or M<sub>3</sub> equals the concrete material number,
+the reinforcement with that material number is ignored) </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqd2f712a2-93d0-4d0c-94d7-ba61cf8f869a.svg"></span>
+</td></tr><tr><td>[D<sup>c</sup>] = stress-strain matrix for
+concrete, defined by <a class="xref" href="thy_el65.html#thyeq2solid65nov2701" title="(13&#8211;118)">Equation&nbsp;13&#8211;118</a> </td></tr><tr><td>[D<sup>r</sup>]<sub>i</sub> =
+stress-strain matrix for reinforcement i, defined by <a class="xref" href="thy_el65.html#thyeq3solid65nov2701" title="(13&#8211;119)">Equation&nbsp;13&#8211;119</a> </td></tr><tr><td>M<sub>1</sub>, M<sub>2</sub>, M<sub>3</sub> = material numbers associated of reinforcement (input
+as MAT1, MAT2, and MAT3 on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr></table><p>
+</p></div><div class="sect2" title="13.65.4.&nbsp;Linear Behavior - Concrete"><div class="titlepage"><div><div><h3 class="title"><a name="solid65linconc"></a>13.65.4.&nbsp;Linear Behavior - Concrete</h3></div></div></div><p>The matrix [D<sup>c</sup>] is derived by specializing
+and inverting the orthotropic stress-strain relations defined by <a class="xref" href="thy_str1.html#thyeq4ssrelnov1501" title="(2&#8211;4)">Equation&nbsp;2&#8211;4</a> to the case of an isotropic material
+or  </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2solid65nov2701"></a><div><img src="graphics/thyeq2solid65nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;118)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>E = Young's modulus for concrete (input as EX on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command) </td></tr><tr><td>&#957; = Poisson's ratio for concrete (input as PRXY or NUXY
+on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command) </td></tr></table><p>
+</p></div><div class="sect2" title="13.65.5.&nbsp;Linear Behavior - Reinforcement"><div class="titlepage"><div><div><h3 class="title"><a name="solid65linrein"></a>13.65.5.&nbsp;Linear Behavior - Reinforcement</h3></div></div></div><p>The orientation of the reinforcement i within an element is
+depicted in <a class="xref" href="thy_el65.html#solid65fig1" title="Figure&nbsp;13.15:&nbsp;&nbsp;Reinforcement Orientation">Figure&nbsp;13.15:&nbsp;Reinforcement Orientation</a>.  The element coordinate
+system is denoted by (X, Y, Z) and 
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq6eef1705-8d8a-449b-a0a9-7e50bfdcbefa.svg"></span> describes the coordinate system for reinforcement type i.  The
+stress-strain matrix with respect to each coordinate system 
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq992558fc-bed6-45b7-9fa0-f840ff0bf7cd.svg"></span> has the form </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3solid65nov2701"></a><div><img src="graphics/thyeq3solid65nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;119)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq5e1351d8-d43c-4d3a-b28c-6e3d92b5a5a0.svg"></span>
+</td></tr></table><p>
+</p><p>It may be seen that the only nonzero stress component is 
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eqf771c590-cf82-407a-943f-8e4b869f6c01.svg"></span>, the axial stress in the 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq65594f8c-0358-42e8-9ef6-9bd0a7d5d284.svg"></span> direction of reinforcement type i. The reinforcement direction 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqc0cc0a8e-84cc-4b44-96b7-8dadfb90c7e4.svg"></span> is related to element coordinates X, Y, Z through </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq4solid65nov2701"></a><div><img src="graphics/thyeq4solid65nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;120)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#952;<sub>i</sub> = angle between the projection of the 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqb96f5801-eda4-417b-8983-80e5e5c82b47.svg"></span>axis on XY plane and the X axis (input as THETA1, THETA2, and THETA3 on
+      <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>&#966;<sub>i</sub> = angle between the 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq6ea79395-0de9-4554-b6cb-8959b884cfee.svg"></span>axis and the XY plane (input as PHI1, PHI2, and PHI3 on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a>
+     command) </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq2efd59a2-1cb2-4783-965a-0899fc9bc757.svg"></span> = direction cosines between 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq80b3a49f-355f-42b0-86b3-df414bb6c702.svg"></span>axis and element X, Y, Z axes </td></tr></table><p>
+</p><div class="figure"><a name="solid65fig1"></a><p class="title"><b>Figure&nbsp;13.15:&nbsp;&nbsp;Reinforcement Orientation</b></p><div class="figure-contents"><div><img src="graphics/gthy14-65-12.svg" alt="Reinforcement Orientation"></div></div></div><br class="figure-break"><p>Since the reinforcement material matrix is defined in coordinates
+aligned in the direction of reinforcement orientation, it is necessary
+to construct a transformation of the form </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq5solid65nov2701"></a><div><img src="graphics/thyeq5solid65nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;121)</b></p></td></tr></table><p>in order to express the material behavior of the reinforcement
+in global coordinates.  The form of this transformation by Schnobrich(<a class="xref" href="thy_biblio.html#q9bhf294mlg" title="&#34;Finite Element Analysis of Reinforced Concrete&#34;">[29]</a>) is </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq6solid65nov2701"></a><div><img src="graphics/thyeq6solid65nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;122)</b></p></td></tr></table><p>where the coefficients a<sub>ij</sub> are defined
+as </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq7solid65nov2701"></a><div><img src="graphics/thyeq7solid65nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;123)</b></p></td></tr></table><p>The vector 
+<span class="inlineequation" style="&#xA;          vertical-align:-3.000000px"><img src="graphics/eq99b66ae6-2eea-46aa-85ce-12edb0cec19a.svg"></span> is defined
+by <a class="xref" href="thy_el65.html#thyeq4solid65nov2701" title="(13&#8211;120)">Equation&nbsp;13&#8211;120</a> while 
+<span class="inlineequation" style="&#xA;          vertical-align:-3.000000px"><img src="graphics/eq36f35fb3-bdff-4d57-b85b-57a889d0d946.svg"></span> and 
+<span class="inlineequation" style="&#xA;          vertical-align:-3.000000px"><img src="graphics/eq2da73c8c-7f82-4429-9827-02f276275d47.svg"></span> are unit vectors mutually orthogonal to 
+<span class="inlineequation" style="&#xA;          vertical-align:-3.000000px"><img src="graphics/eq057531ae-44f9-4e69-9d86-d4c2fb01dfd2.svg"></span> thus defining a Cartesian coordinate referring
+to reinforcement directions.  If the operations presented by <a class="xref" href="thy_el65.html#thyeq5solid65nov2701" title="(13&#8211;121)">Equation&nbsp;13&#8211;121</a> are performed substituting <a class="xref" href="thy_el65.html#thyeq3solid65nov2701" title="(13&#8211;119)">Equation&nbsp;13&#8211;119</a> and <a class="xref" href="thy_el65.html#thyeq6solid65nov2701" title="(13&#8211;122)">Equation&nbsp;13&#8211;122</a>, the resulting reinforcement material matrix in element coordinates
+takes the form </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq8solid65nov2701"></a><div><img src="graphics/thyeq8solid65nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;124)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqb70c0d01-53ca-4bc5-a3dd-6e39cf13de9c.svg"></span> </td></tr></table><p>
+</p><p>Therefore, the only direction cosines used in [D<sup>R</sup>]<sub>i</sub> involve the uniquely defined
+unit vector
+<span class="inlineequation" style="&#xA;          vertical-align:-3.000000px"><img src="graphics/eq3683c01d-4569-4f14-b182-222d831a8fdf.svg"></span>. </p></div><div class="sect2" title="13.65.6.&nbsp;Nonlinear Behavior - Concrete"><div class="titlepage"><div><div><h3 class="title"><a name="solid65nonlinconc"></a>13.65.6.&nbsp;Nonlinear Behavior - Concrete</h3></div></div></div><p>The matrix material (concrete) is capable of plasticity,
+creep, cracking and crushing.  The concrete material model with its
+cracking and crushing capabilities is discussed in <a class="xref" href="thy_mat7.html" title="4.10.&nbsp;Concrete">Concrete</a>.  This material model predicts either elastic
+behavior, cracking behavior or crushing behavior.  If elastic behavior
+is predicted, the concrete is treated as a linear elastic material
+(discussed above).  If cracking or crushing behavior is predicted,
+the elastic, stress-strain matrix is adjusted as discussed below for
+each failure mode. </p></div><div class="sect2" title="13.65.7.&nbsp;Modeling of a Crack"><div class="titlepage"><div><div><h3 class="title"><a name="solid65model"></a>13.65.7.&nbsp;Modeling of a Crack</h3></div></div></div><a class="indexterm" name="d0e45909"></a><p>The presence of a crack at an integration point is represented
+through modification of the stress-strain relations by introducing
+a plane of weakness in a direction normal to the crack face.  Also,
+a shear transfer coefficient &#946;<sub>t</sub> (constant
+C<sub>1</sub> with <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CONCR) is introduced
+which represents a shear strength reduction factor for those subsequent
+loads which induce sliding (shear) across the crack face.  The stress-strain
+relations for a material that has cracked in one direction only become: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq9solid65nov2701"></a><div><img src="graphics/thyeq9solid65nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;125)</b></p></td></tr></table><p>where the superscript ck signifies that the stress strain relations
+refer to a coordinate system parallel to principal stress directions
+with the x<sup>ck</sup> axis perpendicular to the
+crack face.  If KEYOPT(7) = 0, R<sup>t</sup> = 0.0.
+ If KEYOPT(7) = 1, R<sup>t</sup> is the slope (secant
+modulus) as defined in the figure below.  R<sup>t</sup> works with adaptive descent and diminishes to 0.0 as the solution
+converges.</p><div class="figure"><a name="solid65fig2"></a><p class="title"><b>Figure&nbsp;13.16:&nbsp;&nbsp;Strength of Cracked Condition</b></p><div class="figure-contents"><div><img src="graphics/gthy14-65-22.svg" alt="Strength of Cracked Condition"></div></div></div><br class="figure-break"><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>f<sub>t</sub> = uniaxial tensile cracking stress
+(input as C<sub>3</sub> with <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CONCR) </td></tr><tr><td>T<sub>c</sub> = multiplier for amount of tensile
+stress relaxation (input as C<sub>9</sub> with <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CONCR, defaults to 0.6) </td></tr></table><p>
+</p><p>If the crack closes, then all compressive stresses normal to
+the crack plane are transmitted across the crack and only a shear
+transfer coefficient &#946;<sub>c</sub> (constant C<sub>2</sub> with <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CONCR) for a closed crack
+is introduced.  Then 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqd29bdf6e-f7b4-4431-ad2a-a728c489a983.svg"></span> can
+be expressed as </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq10solid65nov2701"></a><div><img src="graphics/thyeq10solid65nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;126)</b></p></td></tr></table><p>The stress-strain relations for concrete that has cracked in
+two directions are: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq11solid65nov2701"></a><div><img src="graphics/thyeq11solid65nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;127)</b></p></td></tr></table><p>If both directions reclose, </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq12solid65nov2701"></a><div><img src="graphics/thyeq12solid65nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;128)</b></p></td></tr></table><p>The stress-strain relations for concrete that has cracked in
+all three directions are: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq13solid65nov2701"></a><div><img src="graphics/thyeq13solid65nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;129)</b></p></td></tr></table><p>If all three cracks reclose, <a class="xref" href="thy_el65.html#thyeq12solid65nov2701" title="(13&#8211;128)">Equation&nbsp;13&#8211;128</a> is followed.  In total there are 16 possible combinations of crack
+arrangement and appropriate changes in stress-strain relationships
+incorporated in <a href="../ans_elem/Hlp_E_SOLID65.html" class="olink"><span class="structname">SOLID65</span></a>.  A  note is output
+if 1 &gt;&#946;<sub>c</sub> &gt;&#946;<sub>t</sub> &gt;0 are not true. </p><p>The transformation of 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq31bac9ef-b23b-4b69-ac74-f98e8d923bec.svg"></span> to element coordinates has the form </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq14solid65nov2701"></a><div><img src="graphics/thyeq14solid65nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;130)</b></p></td></tr></table><p> where [T<sup>ck</sup>] has a form identical
+to <a class="xref" href="thy_el65.html#thyeq6solid65nov2701" title="(13&#8211;122)">Equation&nbsp;13&#8211;122</a> and the three columns of
+[A] in <a class="xref" href="thy_el65.html#thyeq7solid65nov2701" title="(13&#8211;123)">Equation&nbsp;13&#8211;123</a> are now the principal
+direction vectors. </p><p>The open or closed status of integration point cracking is based
+on a strain value 
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq27a5c352-92d8-4bef-95ff-9dd5dc373053.svg"></span> called
+the crack strain.  For the case of a possible crack in the x direction,
+this strain is evaluated as </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq15solid65nov2701"></a><div><img src="graphics/thyeq15solid65nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;131)</b></p></td></tr></table><p> where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq3cb5db09-3498-48dc-8864-477455ad013f.svg"></span>
+</td></tr></table><p>
+</p><p>The vector {&#949;<sup>ck</sup>} is computed
+by: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq16solid65nov2701"></a><div><img src="graphics/thyeq16solid65nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;132)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>{&#949;'} = modified total strain (in element coordinates) </td></tr></table><p>
+</p><p>{&#949;'}, in turn, is defined as:  </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq17solid65nov2701"></a><div><img src="graphics/thyeq17solid65nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;133)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>n = substep number </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq0b5169c5-0b8d-4107-925a-ea2598d6f6a9.svg"></span>
+</td></tr><tr><td>{&#916;&#949;<sub>n</sub>} = total strain
+increment (based on {&#916;u<sub>n</sub>}, the displacement
+increment over the substep) </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq8a88d5a1-55cb-4f70-839c-3210f82394c2.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqfb7fccc5-3567-42c6-96ed-8b2a9d0f5e88.svg"></span>
+</td></tr></table><p>
+</p><p>If 
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqc0bca95f-4d85-469b-a8bf-8d8da079d70d.svg"></span> is less than zero,
+the associated crack is assumed to be closed. </p><p>If 
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq92e3d16e-4778-470b-ab8e-69cd1fcb5f7e.svg"></span> is greater than
+or equal to zero, the associated crack is assumed to be open.  When
+cracking first occurs at an integration point, the crack is assumed
+to be open for the next iteration. </p></div><div class="sect2" title="13.65.8.&nbsp;Modeling of Crushing"><div class="titlepage"><div><div><h3 class="title"><a name="solid65modcrush"></a>13.65.8.&nbsp;Modeling of Crushing</h3></div></div></div><p>If the material at an integration point fails in uniaxial, biaxial,
+or triaxial compression, the material is assumed to crush at that
+point.  In <a href="../ans_elem/Hlp_E_SOLID65.html" class="olink"><span class="structname">SOLID65</span></a>, crushing is defined as
+the complete deterioration of the structural integrity of the material
+(e.g. material spalling).  Under conditions where crushing has occurred,
+material strength is assumed to have degraded to an extent such that
+the contribution to the stiffness of an element at the integration
+point in question can be ignored. </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

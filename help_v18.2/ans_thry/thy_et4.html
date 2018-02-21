@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:18-04:00"><title>12.3.&nbsp;Temperature-Dependent Material Properties</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_et.html" title="Chapter&nbsp;12:&nbsp;Element Tools"><link rel="prev" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations"><link rel="next" href="thy_et5.html" title="12.4.&nbsp;Positive Definite Matrices"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="12.3.&nbsp;Temperature-Dependent Material Properties"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="bob110"></a>12.3.&nbsp;Temperature-Dependent Material Properties</h2></div></div></div><a class="indexterm" name="d0e38149"></a><a class="indexterm" name="d0e38152"></a><a class="indexterm" name="d0e38157"></a><a class="indexterm" name="d0e38160"></a><p>Temperature-dependent material properties are evaluated at each integration point. Elements
+   for which this applies include <a href="../ans_elem/Hlp_E_SHELL181.html" class="olink"><span class="structname">SHELL181</span></a>,
+    <a href="../ans_elem/Hlp_E_PLANE182.html" class="olink"><span class="structname">PLANE182</span></a>, <a href="../ans_elem/Hlp_E_PLANE183.html" class="olink"><span class="structname">PLANE183</span></a> ,
+    <a href="../ans_elem/Hlp_E_SOLID185.html" class="olink"><span class="structname">SOLID185</span></a>, <a href="../ans_elem/Hlp_E_SOLID186.html" class="olink"><span class="structname">SOLID186</span></a> ,
+    <a href="../ans_elem/Hlp_E_SOLID187.html" class="olink"><span class="structname">SOLID187</span></a>, <a href="../ans_elem/Hlp_E_SOLID272.html" class="olink"><span class="structname">SOLID272</span></a>,
+    <a href="../ans_elem/Hlp_E_SOLID273.html" class="olink"><span class="structname">SOLID273</span></a>, <a href="../ans_elem/Hlp_E_SOLID285.html" class="olink"><span class="structname">SOLID285</span></a>,
+    <a href="../ans_elem/Hlp_E_SOLSH190.html" class="olink"><span class="structname">SOLSH190</span></a>, <a href="../ans_elem/Hlp_E_BEAM188.html" class="olink"><span class="structname">BEAM188</span></a>,
+    <a href="../ans_elem/Hlp_E_BEAM189.html" class="olink"><span class="structname">BEAM189</span></a>, <a href="../ans_elem/Hlp_E_SHELL208.html" class="olink"><span class="structname">SHELL208</span></a>,
+    <a href="../ans_elem/Hlp_E_SHELL209.html" class="olink"><span class="structname">SHELL209</span></a>, <a href="../ans_elem/Hlp_E_REINF264.html" class="olink"><span class="structname">REINF264</span></a>,
+    <a href="../ans_elem/Hlp_E_SHELL281.html" class="olink"><span class="structname">SHELL281</span></a>, <a href="../ans_elem/Hlp_E_PIPE288.html" class="olink"><span class="structname">PIPE288</span></a>,
+    <a href="../ans_elem/Hlp_E_PIPE289.html" class="olink"><span class="structname">PIPE289</span></a>, and <a href="../ans_elem/Hlp_E_ELBOW290.html" class="olink"><span class="structname">ELBOW290</span></a>. </p><p>The <a href="../ans_elem/Hlp_E_LINK180.html" class="olink"><span class="structname">LINK180</span></a> element uses a closed form solution (without
+   integration points) and has its material properties evaluated at the average temperature of the
+   element.</p><p>Other cases: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>For the structural elements <a href="../ans_elem/Hlp_E_PLANE13.html" class="olink"><span class="structname">PLANE13</span></a> and <a href="../ans_elem/Hlp_E_SOLID65.html" class="olink"><span class="structname">SOLID65</span></a>, the nonlinear material properties
+(<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> commands) are evaluated at the integration
+points, but the linear material properties (<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> commands)
+are evaluated at the average element temperature. </p></li><li class="listitem"><p>Numerically integrated structural elements <a href="../ans_elem/Hlp_E_PLANE25.html" class="olink"><span class="structname">PLANE25</span></a>,
+      <a href="../ans_elem/Hlp_E_SHELL61.html" class="olink"><span class="structname">SHELL61</span></a>, and <a href="../ans_elem/Hlp_E_PLANE83.html" class="olink"><span class="structname">PLANE83</span></a> have their linear
+     material properties evaluated at the average element temperature. </p></li><li class="listitem"><p>Non-structural elements have their material properties
+evaluated only at the average element temperature, except for the
+specific heat (C<sub>p</sub>) which is evaluated at each
+integration point. </p></li></ul></div><p>Whether shape functions are used or not, materials are evaluated
+at the temperature given, i.e. no account is made of the temperature
+offset   (<a href="../ans_cmd/Hlp_C_TOFFST.html" class="olink"><span class="command"><strong>TOFFST</strong></span></a> command). </p><p>For a stress analysis, the temperatures used are based directly
+on the input.  As temperature is the unknown in a heat transfer analysis,
+the material property evaluation cannot be handled in the same direct
+manner.  For the first iteration of a heat transfer analysis, the
+material properties are evaluated at the uniform temperature (input
+on the <a href="../ans_cmd/Hlp_C_BFUNIF.html" class="olink"><span class="command"><strong>BFUNIF</strong></span></a> command).  The properties of the
+second iteration are based on the temperatures of the first iteration.
+ The properties of the third iteration are based on the temperatures
+of the second iteration, etc. </p><p>See <a class="xref" href="thy_str1.html#structempdep" title="2.1.3.&nbsp;Temperature-Dependent Coefficient of Thermal Expansion">Temperature-Dependent Coefficient of Thermal Expansion</a> for a special discussion
+about the coefficient of thermal expansion. </p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:29-04:00"><title>17.9.&nbsp;POST26 - Data Operations</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_post.html" title="Chapter&nbsp;17:&nbsp;Postprocessing"><link rel="prev" href="thy_post9.html" title="17.8.&nbsp;POST1 - Harmonic Solid and Shell Element Postprocessing"><link rel="next" href="thy_post11.html" title="17.10.&nbsp;POST26 - Response Spectrum Generator (RESP)"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="17.9.&nbsp;POST26 - Data Operations"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="MBtqf249mlg"></a>17.9.&nbsp;POST26 - Data Operations</h2></div></div></div><a class="indexterm" name="d0e87779"></a><p>
+<a class="xref" href="thy_post10.html#V8ate15cleaf" title="Table&nbsp;17.1:&nbsp;&nbsp;POST26 Operations">Table&nbsp;17.1:&nbsp;POST26 Operations</a> shows the operations that can
+be performed on the time-history data stored by POST26.  (Input quantities <span class="italic"><em>FACTA</em></span>, <span class="italic"><em>FACTB</em></span>, <span class="italic"><em>FACTC</em></span>, and table <span class="italic"><em>IC</em></span> are omitted from <a class="xref" href="thy_post10.html#V8ate15cleaf" title="Table&nbsp;17.1:&nbsp;&nbsp;POST26 Operations">Table&nbsp;17.1:&nbsp;POST26 Operations</a> for clarity of the fundamental operations.)
+ All operations are performed in complex variables.  The operations
+create new tables which are also complex numbers.</p><div class="table"><a name="V8ate15cleaf"></a><p class="title"><b>Table&nbsp;17.1:&nbsp;&nbsp;POST26 Operations</b></p><div class="table-contents"><table summary="POST26 Operations" border="1" width="95%"><colgroup><col width="96" class="col1"><col width="86" class="col2"><col width="86" class="col3"><col width="124" class="col4"><col width="220" class="col5"></colgroup><thead><tr><th valign="top">Description</th><th valign="top">POST26 Command</th><th valign="top">Real Operation and Result</th><th valign="top">Complex Operation</th><th valign="top">Complex Result</th></tr></thead><tbody><tr><td>Addition</td><td>ADD</td><td>a + c</td><td>(a + ib) + (c + id)</td><td>(a + c) + i(b +
+d)</td></tr><tr><td>Multiplication</td><td>PROD</td><td>a x c</td><td>(a + ib) x (c + id)</td><td>(ac
+- bd) + i(ad + bc)</td></tr><tr><td>Division</td><td>QUOT</td><td>a/c</td><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq5d07713a-e19d-4f18-84c0-8920ae4b113a.svg"></span>
+</td><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eqaf19385d-546d-4761-aec2-ee2824a70cbf.svg"></span>
+</td></tr><tr><td>Absolute Value</td><td>ABS</td><td>|a|</td><td>|a + ib|</td><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqa785d840-6c6f-414a-8ea2-ecf2bfba2b8f.svg"></span>
+</td></tr><tr><td>Arc Tangent</td><td>ATAN</td><td>0</td><td>atan (a + ib)</td><td>atan (b / a)</td></tr><tr><td>Square Root</td><td>SQRT</td><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq1fef8547-5b51-459e-afb3-d688eadba2ff.svg"></span>
+</td><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqa636d666-3b8c-4b82-8397-4ee18784cd4f.svg"></span>
+</td><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq5ade7596-f63a-46a9-9676-9a9183b82cd3.svg"></span>
+</td></tr><tr><td>Largest Variable</td><td>LARGE</td><td colspan="3">Maximum of a and c</td></tr><tr><td>Smallest Variable</td><td>SMALL</td><td colspan="3">Minimum of a and
+c</td></tr><tr><td>Derivative</td><td>DERIV</td><td>da/dc</td><td>d(a + ib)/dc</td><td>da/dc + i
+db/dc</td></tr><tr><td>Integration</td><td>INT1</td><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq7d75ad87-310f-4c62-8fe0-fbc155b623a4.svg"></span>
+</td><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq0f8b46f8-9132-4cc0-9c99-82ee25e72fa2.svg"></span>
+</td><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq09d40edc-067a-48dc-a5c3-a363e21f9598.svg"></span>
+</td></tr><tr><td>Common Logarithm</td><td>CLOG</td><td>log<sub>10</sub>a</td><td>log<sub>10</sub>(a + ib)</td><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-10.000000px"><img src="graphics/eqd69a149c-b98a-4368-8b4a-d1ed656ad4ea.svg"></span>
+</td></tr><tr><td>Natural Logarithm</td><td>NLOG</td><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqf31ba5e7-7a2d-44a9-a91b-fa2f8bb57659.svg"></span>n a</td><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqf872c33d-3a31-467b-9b03-61f8cbf846f0.svg"></span>n (a + ib)</td><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq2e4cfef3-7e59-43ae-8c83-28c4df35b424.svg"></span>
+</td></tr><tr><td>Exponential</td><td>EXP</td><td>e<sup>a</sup>
+</td><td>e<sup>(a + ib)</sup>
+</td><td>e<sup>a</sup>(cosb + i sinb)</td></tr><tr><td>Complex Conjugate</td><td>CONJUG</td><td>a</td><td>conj (a + ib)</td><td>a - ib</td></tr><tr><td>Real Part</td><td>REALVAR</td><td>a</td><td>real (a + ib)</td><td>a</td></tr><tr><td>Imaginary Part</td><td>IMAGIN</td><td>0</td><td>imag (a + ib)</td><td>b</td></tr><tr><td>Read
+Data into Table</td><td>DATA</td><td>-</td><td>-</td><td>-</td></tr><tr><td>Fill Table
+with Data</td><td>FILL</td><td>-</td><td>-</td><td>-</td></tr><tr><td colspan="5">See Response Spectrum
+Generator Description (<a class="xref" href="thy_post11.html" title="17.10.&nbsp;POST26 - Response Spectrum Generator (RESP)">POST26 - Response Spectrum Generator (RESP)</a>)</td></tr><tr><td colspan="5">NOTES:<div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>a + ib (from Table <span class="italic"><em>IA or IX</em></span>) and c + id (from Table <span class="italic"><em>IB or IY</em></span>) are complex numbers, where <span class="italic"><em>IA</em></span> and <span class="italic"><em>IB</em></span> are input quantities on
+above commands.</p></li><li class="listitem"><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqbe42048a-448b-4de9-91a9-1c8007937622.svg"></span>
+</p></li><li class="listitem"><p>For derivative and integration, see <a class="xref" href="thy_prep1.html" title="16.1.&nbsp;Integration and Differentiation Procedures">Integration and Differentiation Procedures</a>
+</p></li></ol></div>
+</td></tr></tbody></table></div></div><br class="table-break"></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

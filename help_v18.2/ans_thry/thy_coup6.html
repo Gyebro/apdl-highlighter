@@ -1,0 +1,84 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:10-04:00"><title>10.2.&nbsp;Thermoelasticity</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_coup.html" title="Chapter&nbsp;10:&nbsp;Coupling"><link rel="prev" href="thy_coup1.html" title="10.1.&nbsp;Coupled Effects"><link rel="next" href="thy_couptp.html" title="10.3.&nbsp;Thermoplasticity"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="10.2.&nbsp;Thermoelasticity"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="coupl_thermoelastic"></a>10.2.&nbsp;Thermoelasticity</h2></div></div></div><p>The capability to do a thermoelastic analysis exists in the
+following elements:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_elem/Hlp_E_PLANE222.html" class="olink"><span class="structname">PLANE222</span></a> - 2-D 4-Node
+                Coupled-Field Solid</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_PLANE223.html" class="olink"><span class="structname">PLANE223</span></a> - 2-D 8-Node Coupled-Field
+Solid</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_SOLID226.html" class="olink"><span class="structname">SOLID226</span></a> - 3-D 20-Node Coupled-Field
+Solid</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_SOLID227.html" class="olink"><span class="structname">SOLID227</span></a> - 3-D 10-Node Coupled-Field
+Solid</td></tr></table><p>These elements support both the thermal expansion and piezocaloric
+effects, and use the strong (matrix) coupling method.</p><p>In addition to the above, the following elements support the
+thermal expansion effect only in the form of a thermal strain load
+vector, i.e. use weak coupling method:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_elem/Hlp_E_SOLID5.html" class="olink"><span class="structname">SOLID5</span></a> - 3-D 8-Node Coupled-Field
+Solid</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_PLANE13.html" class="olink"><span class="structname">PLANE13</span></a> - 2-D 4-Node Coupled-Field
+Solid</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_SOLID98.html" class="olink"><span class="structname">SOLID98</span></a> - 3-D 10-Node Coupled-Field
+Solid</td></tr></table><p>
+<span class="bold"><strong>Constitutive Equations of Thermoelasticity</strong></span>
+</p><p>The coupled thermoelastic constitutive equations (Nye(<a class="xref" href="thy_biblio.html#nyejf" title="Physical Properties of Crystals: Their Representation by Tensors and Matrices">[360]</a>)) are:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thermoelast_eq1"></a><div><img src="graphics/thermoelast_eq1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;30)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thermoelast_eq2"></a><div><img src="graphics/thermoelast_eq2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;31)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>{&#949;} = total strain vector = [&#949;<sub>x</sub> &#949;<sub>y</sub> &#949;<sub>z</sub> &#949;<sub>xy</sub> &#949;<sub>yz</sub> &#949;<sub>xz</sub>]<sup>T</sup>
+</td></tr><tr><td>S = entropy density</td></tr><tr><td>{&#963;} = stress vector = [&#963;<sub>x</sub> &#963;<sub>y</sub> &#963;<sub>z</sub> &#963;<sub>xy</sub> &#963;<sub>yz</sub> &#963;<sub>xz</sub>]<sup>T</sup>
+</td></tr><tr><td>&#916;T = temperature change = T - T<sub>ref</sub>
+</td></tr><tr><td>T = current temperature</td></tr><tr><td>T<sub>0</sub> = absolute reference temperature
+= T<sub>ref</sub> + T<sub>off</sub>
+</td></tr><tr><td>T<sub>ref</sub> = reference temperature (input
+on <a href="../ans_cmd/Hlp_C_TREF.html" class="olink"><span class="command"><strong>TREF</strong></span></a> command or as REFT on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command)</td></tr><tr><td>T<sub>off</sub> = offset temperature from absolute
+zero to zero (input on <a href="../ans_cmd/Hlp_C_TOFFST.html" class="olink"><span class="command"><strong>TOFFST</strong></span></a> command)</td></tr><tr><td>[D] = elastic stiffness matrix (inverse defined in <a class="xref" href="thy_str1.html#thyeq4ssrelnov1501" title="(2&#8211;4)">Equation&nbsp;2&#8211;4</a> or input using <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,ANEL command)</td></tr><tr><td>{<font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>} = vector
+of coefficients of thermal expansion = [<font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>x</sub> <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>y</sub> <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>z</sub> 0
+0 0]<sup>T</sup> (input using, for example, ALPX,
+ALPY, ALPZ on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command)</td></tr><tr><td>&#961; = density (input as DENS on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command)</td></tr><tr><td>C<sub>p</sub> = specific heat at constant stress
+or pressure (input as C on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command)</td></tr></table><p>
+</p><p>Using {&#949;} and &#916;T as independent variables, and
+replacing the entropy density S in <a class="xref" href="thy_coup6.html#thermoelast_eq2" title="(10&#8211;31)">Equation&nbsp;10&#8211;31</a> by heat density Q using the second law of thermodynamics for a
+reversible change</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thermoelast_eq3"></a><div><img src="graphics/thermoelast_eq3.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;32)</b></p></td></tr></table><p>we obtain</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thermoelast_eq4"></a><div><img src="graphics/thermoelast_eq4.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;33)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thermoelast_eq5"></a><div><img src="graphics/thermoelast_eq5.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;34)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>{&#946;} = vector of thermoelastic coefficients = [D] {<font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>}</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqc698576e-28ff-49eb-adf8-bdd1f2d44d3e.svg"></span>
+</td></tr></table><p>
+</p><p>Substituting Q from <a class="xref" href="thy_coup6.html#thermoelast_eq5" title="(10&#8211;34)">Equation&nbsp;10&#8211;34</a> into the
+heat flow equation <a class="xref" href="thy_heat1.html#thyeq1conductnov1601" title="(6&#8211;1)">Equation&nbsp;6&#8211;1</a> produces:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thermoelast_eq6"></a><div><img src="graphics/thermoelast_eq6.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;35)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-29.000000px"><img src="graphics/eq658ee093-623a-48d6-815f-9c6ade448f07.svg"></span>
+</td></tr><tr><td>K<sub>xx</sub>, K<sub>yy</sub>, K<sub>zz</sub> = thermal conductivities (input as KXX, KYY, KZZ on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command)</td></tr></table><p>
+</p><p>
+<span class="bold"><strong>Derivation of Thermoelastic Matrices</strong></span>
+</p><p>Applying the variational principle to stress equation of motion
+and the heat flow conservation equation coupled by the thermoelastic
+constitutive equations, produces the following finite element matrix
+equation:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thermoelast_eq7"></a><div><img src="graphics/thermoelast_eq7.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;36)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>[M] = element mass matrix (defined by <a class="xref" href="thy_str2.html#thyeq17dervnov1501" title="(2&#8211;58)">Equation&nbsp;2&#8211;58</a>)</td></tr><tr><td>[C] = element structural damping matrix (discussed in <a class="xref" href="thy_tool3.html" title="14.3.&nbsp;Damping Matrices">Damping Matrices</a>)</td></tr><tr><td>[K] = element stiffness matrix (defined by <a class="xref" href="thy_str2.html#thyeq17dervnov1501" title="(2&#8211;58)">Equation&nbsp;2&#8211;58</a>)</td></tr><tr><td>{u} = displacement vector</td></tr><tr><td>{F} = sum of the element nodal force (defined by <a class="xref" href="thy_str2.html#thyeq15dervnov1501" title="(2&#8211;56)">Equation&nbsp;2&#8211;56</a>) and element pressure (defined by <a class="xref" href="thy_str2.html#thyeq17dervnov1501" title="(2&#8211;58)">Equation&nbsp;2&#8211;58</a>) vectors</td></tr><tr><td>[C<sup>t</sup>] = element specific heat matrix
+(defined by <a class="xref" href="thy_heat2.html#thyeq7derivnov2601" title="(6&#8211;22)">Equation&nbsp;6&#8211;22</a>)</td></tr><tr><td>[K<sup>t</sup>] = element thermal conductivity
+matrix (defined by <a class="xref" href="thy_heat2.html#thyeq7derivnov2601" title="(6&#8211;22)">Equation&nbsp;6&#8211;22</a>)</td></tr><tr><td>{T} = temperature vector</td></tr><tr><td>{Q} = sum of the element heat generation load and element
+convection surface heat flow vectors (defined by <a class="xref" href="thy_heat2.html#thyeq7derivnov2601" title="(6&#8211;22)">Equation&nbsp;6&#8211;22</a>)</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eq5dc2c18b-5cbe-49b4-96fd-8a08b3ace93e.svg"></span>
+</td></tr><tr><td>[B] = strain-displacement matrix (see <a class="xref" href="thy_str2.html#thyeq4dervnov1501" title="(2&#8211;44)">Equation&nbsp;2&#8211;44</a>)</td></tr><tr><td>{N} = element shape functions</td></tr><tr><td>[C<sup>tu</sup>] = element thermoelastic damping
+matrix = -T<sub>0</sub>[K<sup>ut</sup>]<sup>T</sup>
+</td></tr></table><p>
+</p><p>
+<span class="bold"><strong>Energy Calculation</strong></span>
+</p><p>In static and transient thermoelastic analyses, the element
+instantaneous total strain energy is calculated as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thermoelast_eq8"></a><div><img src="graphics/thermoelast_eq8.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;37)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>U<sub>t</sub> = total strain energy (output as
+an NMISC element item UT). </td></tr></table><p>
+</p><p>Note that <a class="xref" href="thy_coup6.html#thermoelast_eq8" title="(10&#8211;37)">Equation&nbsp;10&#8211;37</a> uses the total strain,
+whereas the standard strain energy (output as SENE) uses the elastic
+strain.</p><p>In a harmonic thermoelastic analysis, the time-averaged element
+total strain energy is given by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thermoelast_eq9"></a><div><img src="graphics/thermoelast_eq9.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;38)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>{&#949;}* = complex conjugate of the total strain</td></tr></table><p>
+</p><p>The real part of <a class="xref" href="thy_coup6.html#thermoelast_eq9" title="(10&#8211;38)">Equation&nbsp;10&#8211;38</a> represents
+the average stored strain energy, while its imaginary part - the average
+energy loss due to thermoelastic damping.</p><p>The thermoelastic damping can be quantified by the quality factor
+Q derived from the total strain energy <a class="xref" href="thy_coup6.html#thermoelast_eq9" title="(10&#8211;38)">Equation&nbsp;10&#8211;38</a> using the real and imaginary solution sets:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thermoelast_eq10"></a><div><img src="graphics/thermoelast_eq10.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;39)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>N<sub>e</sub> = number of thermoelastic elements</td></tr></table><p>
+</p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

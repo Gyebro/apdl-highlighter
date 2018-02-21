@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:07-04:00"><title>9.3.&nbsp;Derivation of Diffusion Matrices</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_diff.html" title="Chapter&nbsp;9:&nbsp;Diffusion"><link rel="prev" href="thrynormconcapp.html" title="9.2.&nbsp;Normalized Concentration Approach"><link rel="next" href="thydiffnares.html" title="9.4.&nbsp;Diffusion Analysis Results"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="9.3.&nbsp;Derivation of Diffusion Matrices"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thry_deriv_dif_mat"></a>9.3.&nbsp;Derivation of Diffusion Matrices</h2></div></div></div><p>The concentration is approximated over the finite element as
+follows:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="gthy_diff_eq6"></a><div><img src="graphics/gthy_diff_eq6.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(9&#8211;8)</b></p></td></tr></table><p>where:</p><p>{N} = element shape functions</p><p>{C<sub>e</sub>} = nodal concentration vector (input/output
+as CONC)</p><p>The application of the variational principle and finite element
+approximation <a class="xref" href="thry_deriv_dif_mat.html#gthy_diff_eq6" title="(9&#8211;8)">Equation&nbsp;9&#8211;8</a> to <a class="xref" href="thrynormconcapp.html#gthy_diff_eq5" title="(9&#8211;6)">Equation&nbsp;9&#8211;6</a> produces the matrix equation as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="gthy_diff_eq9b"></a><div><img src="graphics/gthy_diff_eq9b.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(9&#8211;9)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eq02bd0c78-02cf-4938-97ae-242124bb845c.svg"></span> = element diffusion damping matrix</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eqe7304934-633d-46ad-8ebd-613bf1d648ed.svg"></span> = element diffusion conductivity matrix</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eqaa3ed637-6182-482e-abfc-baf97a64f90f.svg"></span> = element transport conductivity matrix</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-19.000000px"><img src="graphics/eq1387b04c-132d-46d3-8451-842f5b730b78.svg"></span> = element diffusion flux load vector</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eqc41b7eac-0555-4bda-a64e-bea32c6d5730.svg"></span> = element diffusing substance generation load vector</td></tr><tr><td>vol = element volume</td></tr><tr><td>S = element surface</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqb6626182-19da-45d1-b62d-99f11f12a96e.svg"></span> = nodal diffusion flow rate vector applied to the element (input/output
+          as RATE on <a href="../ans_cmd/Hlp_C_F.html" class="olink"><span class="command"><strong>F</strong></span></a> command)</td></tr></table><p>
+</p><p>The finite element <a class="xref" href="thry_deriv_dif_mat.html#gthy_diff_eq9b" title="(9&#8211;9)">Equation&nbsp;9&#8211;9</a> is unsymmetric.
+      To keep the equation symmetric, the transport effects can be applied as a load vector <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq6dfabcf6-2e1d-4fca-bb6e-83a1c1d45410.svg"></span> by setting KEYOPT(2) = 1 for the diffusion elements
+        (<a href="../ans_elem/Hlp_E_PLANE238.html" class="olink"><span class="structname">PLANE238</span></a>, <a href="../ans_elem/Hlp_E_SOLID239.html" class="olink"><span class="structname">SOLID239</span></a>,
+        <a href="../ans_elem/Hlp_E_SOLID240.html" class="olink"><span class="structname">SOLID240</span></a>). Using this option activates a nonlinear solution, and at
+      least two iterations are required to achieve a response to the transport effects.</p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

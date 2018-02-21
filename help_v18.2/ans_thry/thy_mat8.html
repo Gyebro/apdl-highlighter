@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:57-04:00"><title>4.11.&nbsp;Swelling</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thymatlnonlin.html" title="Chapter&nbsp;4:&nbsp;Structures with Material Nonlinearities"><link rel="prev" href="thy_mat7.html" title="4.10.&nbsp;Concrete"><link rel="next" href="thy_mat11.html" title="4.12.&nbsp;Cohesive Zone Material (CZM) Model"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="4.11.&nbsp;Swelling"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="needanid"></a>4.11.&nbsp;Swelling</h2></div></div></div><a class="indexterm" name="d0e14825"></a><a class="indexterm" name="d0e14828"></a><a class="indexterm" name="d0e14831"></a><a class="indexterm" name="d0e14836"></a><a class="indexterm" name="d0e14839"></a><a class="indexterm" name="d0e14842"></a><p>The ANSYS program provides a capability of irradiation induced
+swelling (accessed with <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,SWELL). Swelling is
+defined as a material enlarging volumetrically in the presence of
+neutron flux. The amount of swelling may also be a function of temperature.
+The material is assumed to be isotropic and the basic solution technique
+used is the initial stress method. Swelling calculations are available
+only through the user swelling subroutine. See <a href="../ans_adv/Hlp_G_ADV7.html" class="olink">User Routines and Non-Standard
+Uses</a> of the <a href="../ans_adv/Hlp_G_AdvTOC.html" class="olink"><em class="citetitle">Advanced Analysis Guide</em></a> and the <span class="italic"><em>Guide
+to ANSYS User Programmable Features</em></span> for more details. Input
+must have C<sub>72</sub> set to 10. Constants C<sub>67</sub> through C<sub>71</sub> are used together
+with fluence and temperature, as well as possibly strain, stress and
+time, to develop an expression for swelling rate.</p><p>Any of the following three conditions cause the swelling calculations
+to be bypassed:</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>If C<sub>67</sub> 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq9055d662-0b8e-41b7-b0a0-0bfe8430bc9f.svg"></span> 0. and C<sub>68</sub> 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq3c773e80-34a5-4f22-8777-a467587a6563.svg"></span> 0.</p></li><li class="listitem"><p>If (input temperature + T<sub>off</sub>) U 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq79b579b8-fada-458a-9abe-97575341465a.svg"></span> 0, where T<sub>off</sub> = offset temperature (input on <a href="../ans_cmd/Hlp_C_TOFFST.html" class="olink"><span class="command"><strong>TOFFST</strong></span></a> command).</p></li><li class="listitem"><p>If Fluence<sub>n</sub> 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqd9f99210-6b49-4bae-9a58-961c8300cbee.svg"></span> Fluence<sub>n-1</sub> (n refers
+to current time step). </p></li></ol></div><p>The total swelling strain is computed in subroutine USERSW as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1swellnov2001"></a><div><img src="graphics/thyeq1swellnov2001.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;335)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eqbd1039e4-df12-4d7b-9be8-3e5f1018f1f0.svg"></span> = swelling strain at end of substep n</td></tr><tr><td>&#916;&#949;<sup>sw</sup> = r&#916;f
+= swelling strain increment</td></tr><tr><td>r = swelling rate</td></tr><tr><td>&#916;f = f<sub>n</sub> - f<sub>n-1</sub> = change of fluence</td></tr><tr><td>f<sub>n</sub> = fluence at end of substep n (input
+as VAL1, etc. on the <a href="../ans_cmd/Hlp_C_BFE.html" class="olink"><span class="command"><strong>BFE</strong></span></a>,,FLUE command)</td></tr></table><p>
+</p><p>For a solid element, the swelling strain vector is simply:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2swellnov2001"></a><div><img src="graphics/thyeq2swellnov2001.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;336)</b></p></td></tr></table><p>It is seen that the swelling strains are handled in a manner
+totally analogous to temperature strains in an isotropic medium and
+that shearing strains are not used.</p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

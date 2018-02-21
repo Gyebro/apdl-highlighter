@@ -1,0 +1,280 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:17-04:00"><title>12.1.&nbsp;Element Shape Testing</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_et.html" title="Chapter&nbsp;12:&nbsp;Element Tools"><link rel="prev" href="thy_et.html" title="Chapter&nbsp;12:&nbsp;Element Tools"><link rel="next" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="12.1.&nbsp;Element Shape Testing"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="bob111"></a>12.1.&nbsp;Element Shape Testing</h2></div></div></div><a class="indexterm" name="d0e36253"></a><a class="indexterm" name="d0e36256"></a><div class="sect2" title="12.1.1.&nbsp;Overview"><div class="titlepage"><div><div><h3 class="title"><a name="eltoverview"></a>12.1.1.&nbsp;Overview</h3></div></div></div><p>All continuum elements (2-D and 3-D solids, 3-D shells) are tested for acceptable shape as
+    they are defined by the <a href="../ans_cmd/Hlp_C_E.html" class="olink"><span class="command"><strong>E</strong></span></a>, <a href="../ans_cmd/Hlp_C_EGEN.html" class="olink"><span class="command"><strong>EGEN</strong></span></a>, <a href="../ans_cmd/Hlp_C_AMESH.html" class="olink"><span class="command"><strong>AMESH</strong></span></a>,
+     <a href="../ans_cmd/Hlp_C_VMESH.html" class="olink"><span class="command"><strong>VMESH</strong></span></a>, or similar commands. This testing, described in the following
+    sections, is performed by computing shape parameters (such as Jacobian ratio) which are
+    functions of geometry, then comparing them to element shape limits whose default values are
+    functions of element type and settings (but can be modified by the user on the
+     <a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a> command with <span class="italic"><em>Lab</em></span> = MODIFY as
+    described below). When defined, an element may generate no warnings, one or more warnings, or
+    the element may be rejected with an error. </p></div><div class="sect2" title="12.1.2.&nbsp;3-D Solid Element Faces and Cross-Sections"><div class="titlepage"><div><div><h3 class="title"><a name="elt3dsolid"></a>12.1.2.&nbsp;3-D Solid Element Faces and Cross-Sections</h3></div></div></div><p>Some shape testing of 3-D solid elements (bricks [hexahedra], wedges, pyramids, and
+    tetrahedra) is performed indirectly. Aspect ratio, parallel deviation, and maximum corner angle
+    are computed for 3-D solid elements using the following steps: </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Each of these 3 quantities is computed, as applicable, for each face of the element as
+      though it were a quadrilateral or triangle in 3-D space, by the methods described in sections
+       <a class="xref" href="thy_et7.html#eltaspect" title="12.1.3.&nbsp;Aspect Ratio">Aspect Ratio</a>, <a class="xref" href="thy_et7.html#eltparalleldev" title="12.1.6.&nbsp;Parallel Deviation">Parallel Deviation</a>, and <a class="xref" href="thy_et7.html#eltmaxicorner" title="12.1.8.&nbsp;Maximum Corner Angle">Maximum Corner Angle</a>. </p></li><li class="listitem"><p>Because some types of 3-D solid element distortion are not revealed by examination of the
+      faces, cross-sections through the solid are constructed. Then, each of the 3 quantities is
+      computed, as applicable, for each cross-section as though it were a quadrilateral or triangle
+      in 3-D space. </p></li><li class="listitem"><p>The metric for the element is assigned as the worst value computed for any face or
+      cross-section. </p></li></ol></div><p>A brick element has 6 quadrilateral faces and 3 quadrilateral cross-sections (<a class="xref" href="thy_et7.html#an6rd1jjw" title="Figure&nbsp;12.1:&nbsp;&nbsp;Brick Element">Figure&nbsp;12.1:&nbsp;Brick Element</a>). The cross-sections are connected to midside nodes, or to edge midpoints
+    where midside nodes are not defined. </p><div class="figure"><a name="an6rd1jjw"></a><p class="title"><b>Figure&nbsp;12.1:&nbsp;&nbsp;Brick Element</b></p><div class="figure-contents"><div><img src="graphics/gthy13-27.png" alt="Brick Element"></div></div></div><br class="figure-break"><p>A pyramid element has 1 quadrilateral face and 4 triangle faces, as shown on the left side
+    of <a class="xref" href="thy_et7.html#an6r10jjw" title="Figure&nbsp;12.2:&nbsp;&nbsp;Pyramid Element">Figure&nbsp;12.2:&nbsp;Pyramid Element</a>. The pyramid element has 8 triangle cross-sections, constructed
+    in 4 pairs. One of the 4 pairs is shown on the right side of <a class="xref" href="thy_et7.html#an6r10jjw" title="Figure&nbsp;12.2:&nbsp;&nbsp;Pyramid Element">Figure&nbsp;12.2:&nbsp;Pyramid Element</a>.</p><p>For each pair, the closest points (A and B in the figure) between the lines containing a
+    quadrilateral face edge and the right-ward opposite leg are found. The paired cross-sections are
+    the triangle containing the quadrilateral face edge and point B and the triangle containing the
+    right-ward opposite leg and point A. The remaining 6 cross-sections are found in a similar
+    manner using the other 3 quadrilateral face edges and their corresponding right-ward
+    legs.</p><div class="figure"><a name="an6r10jjw"></a><p class="title"><b>Figure&nbsp;12.2:&nbsp;&nbsp;Pyramid Element</b></p><div class="figure-contents"><div><img src="graphics/gthy13-28.png" alt="Pyramid Element"></div></div></div><br class="figure-break"><p>A wedge element has 3 quadrilateral and 2 triangle faces, and has 3 quadrilateral and 1
+    triangle cross-sections. As shown in <a class="xref" href="thy_et7.html#Bw6r379jjw" title="Figure&nbsp;12.3:&nbsp;&nbsp;Wedge Element">Figure&nbsp;12.3:&nbsp;Wedge Element</a>, the cross-sections are
+    connected to midside nodes, or to edge midpoints where midside nodes are not defined. </p><div class="figure"><a name="Bw6r379jjw"></a><p class="title"><b>Figure&nbsp;12.3:&nbsp;&nbsp;Wedge Element</b></p><div class="figure-contents"><div><img src="graphics/gthy13-30.png" alt="Wedge Element"></div></div></div><br class="figure-break"><p>A tetrahedron element has 4 triangle faces and 6 triangle cross-sections (<a class="xref" href="thy_et7.html#aE16r378jjw" title="Figure&nbsp;12.4:&nbsp;&nbsp;Tetrahedron Element">Figure&nbsp;12.4:&nbsp;Tetrahedron Element</a>). Each cross-section is the triangle containing one edge and the
+    closest point on the line containing the opposite edge. Two of these cross-sections are shown on
+    the right side of <a class="xref" href="thy_et7.html#aE16r378jjw" title="Figure&nbsp;12.4:&nbsp;&nbsp;Tetrahedron Element">Figure&nbsp;12.4:&nbsp;Tetrahedron Element</a>.</p><div class="figure"><a name="aE16r378jjw"></a><p class="title"><b>Figure&nbsp;12.4:&nbsp;&nbsp;Tetrahedron Element</b></p><div class="figure-contents"><div><img src="graphics/gthy13-31.png" alt="Tetrahedron Element"></div></div></div><br class="figure-break"></div><div class="sect2" title="12.1.3.&nbsp;Aspect Ratio"><div class="titlepage"><div><div><h3 class="title"><a name="eltaspect"></a>12.1.3.&nbsp;Aspect Ratio</h3></div></div></div><a class="indexterm" name="d0e36349"></a><p>An aspect ratio is computed and tested for all elements except Emag elements (see <a class="xref" href="thy_et7.html#i5tCr214jjw" title="Table&nbsp;12.1:&nbsp;&nbsp;Aspect Ratio Limits">Table&nbsp;12.1:&nbsp;Aspect Ratio Limits</a>). Aspect ratio as a shape measure has been reported in finite element
+    literature for decades (Robinson <a class="xref" href="thy_biblio.html#XcuAr20jjw" title="Basic and Shape Sensivity Tests for Membrane and Plate Bending Finite Elements">[121]</a>) and is one of the easiest ones to
+    understand. For triangles, equilateral triangles have an aspect ratio of 1 and the aspect ratio
+    increases the more the triangle is stretched from an equilateral shape. For quadrilaterals,
+    squares have an aspect ratio of 1 and the aspect ratio increases the more the square is
+    stretched to an oblong shape. Some analysts want to be warned about high aspect ratio so they
+    can verify that the creation of any stretched elements was intentional. Many other analysts
+    routinely ignore it. </p><p>Unless elements are so stretched that numeric round off could become a factor (aspect ratio
+    &gt; 1000), aspect ratio alone has little correlation with analysis accuracy. Finite element
+    meshes should be tailored to the physics of the given problem; i.e., fine in the direction of
+    rapidly changing field gradients, relatively coarse in directions with less rapidly changing
+    fields. Sometimes this calls for elements having aspect ratios of 10, 100, or in extreme cases
+    1000. (Examples include shell or thin coating analyses using solid elements, thermal shock
+    &#8220;skin&#8221; stress analyses, and fluid boundary layer analyses.) Attempts to artificially
+    restrict aspect ratio could compromise analysis quality in some cases. </p></div><div class="sect2" title="12.1.4.&nbsp;Aspect Ratio Calculation for Triangles"><div class="titlepage"><div><div><h3 class="title"><a name="eltaspecttri"></a>12.1.4.&nbsp;Aspect Ratio Calculation for Triangles</h3></div></div></div><p>For the benefit of computational efficiency, the aspect ratio of a triangle is computed
+    based on the angle measures at the corner nodes rather than the height and width of the
+    triangle. For the calculation, midside nodes are ignored and the triangle is treated as
+    connecting nodes I, J, and K with straight lines:</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>For the angle &#952;, at node I, a quantity AM<sub>I</sub> is calculated as
+      follows:</p><div class="informalequation"><a name="eq6ab71060-fd08-459b-83b6-8329b16d003e"></a><div><img src="graphics/eq6ab71060-fd08-459b-83b6-8329b16d003e.svg"></div></div><div class="informalequation"><a name="eqd7765d34-fc29-4c8a-8449-45f0487b4148"></a><div><img src="graphics/eqd7765d34-fc29-4c8a-8449-45f0487b4148.svg"></div></div><p>The quantity AM<sub>I</sub> is 1 when &#952; = 60&deg;. As &#952; deviates
+      from 60&deg; in either direction, AM<sub>I</sub> increases (to a maximum of
+      &#8734; as &#952; nears 0&deg; or 180&deg;).</p></li><li class="listitem"><p>The quantity AM is calculated for each of the remaining nodes J and K.</p></li><li class="listitem"><p>A preliminary aspect ratio, ASPRAT, is calculated by averaging the three values of AM,
+      then taking the square root: </p><div class="informalequation"><a name="eqe7fb71b2-52e5-4743-affc-0b7935f3f9d2"></a><div><img src="graphics/eqe7fb71b2-52e5-4743-affc-0b7935f3f9d2.svg"></div></div></li><li class="listitem"><p>Finally, the aspect ratio is modified to produce a distribution of values similar to
+      those that would be produced if the aspect ratio were calculated directly from the height and
+      width:</p><div class="informalequation"><a name="eq7bf3673e-b044-4263-8ff6-f3594b828ae5"></a><div><img src="graphics/eq7bf3673e-b044-4263-8ff6-f3594b828ae5.svg"></div></div></li></ol></div><p>The best possible triangle aspect ratio, for an equilateral triangle, is 1. Larger aspect
+    ratios are calculated as the triangle is stretched. Triangles having aspect ratios of 1 and 20
+    are shown in <a class="xref" href="thy_et7.html#b16r108jjw" title="Figure&nbsp;12.5:&nbsp;&nbsp;Aspect Ratios for Triangles">Figure&nbsp;12.5:&nbsp;Aspect Ratios for Triangles</a>. </p><div class="figure"><a name="b16r108jjw"></a><p class="title"><b>Figure&nbsp;12.5:&nbsp;&nbsp;Aspect Ratios for Triangles</b></p><div class="figure-contents"><div><img src="graphics/gthy13-34.svg" alt="Aspect Ratios for Triangles"></div></div></div><br class="figure-break"></div><div class="sect2" title="12.1.5.&nbsp;Aspect Ratio Calculation for Quadrilaterals"><div class="titlepage"><div><div><h3 class="title"><a name="eltaspectquad"></a>12.1.5.&nbsp;Aspect Ratio Calculation for Quadrilaterals</h3></div></div></div><div class="figure"><a name="dd16r47jjw"></a><p class="title"><b>Figure&nbsp;12.6:&nbsp;&nbsp;Quadrilateral Aspect Ratio Calculation</b></p><div class="figure-contents"><div><img src="graphics/gthy13-35.svg" alt="Quadrilateral Aspect Ratio Calculation"></div></div></div><br class="figure-break"><p>The aspect ratio for a quadrilateral is computed by the following steps, using only the
+    corner nodes of the element (<a class="xref" href="thy_et7.html#dd16r47jjw" title="Figure&nbsp;12.6:&nbsp;&nbsp;Quadrilateral Aspect Ratio Calculation">Figure&nbsp;12.6:&nbsp;Quadrilateral Aspect Ratio Calculation</a>): </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>If the element is not flat, the nodes are projected onto a plane passing through the
+      average of the corner locations and perpendicular to the average of the corner normals. The
+      remaining steps are performed on these projected locations.</p></li><li class="listitem"><p>Two lines are constructed that bisect the opposing pairs of element edges and which meet
+      at the element center. In general, these lines are not perpendicular to each other or to any
+      of the element edges.</p></li><li class="listitem"><p>Rectangles are constructed centered about each of the 2 lines, with edges passing through
+      the element edge midpoints. The aspect ratio of the quadrilateral is the ratio of a longer
+      side to a shorter side of whichever rectangle is most stretched.</p></li><li class="listitem"><p>The best possible quadrilateral aspect ratio, for a square, is one. A quadrilateral
+      having an aspect ratio of 20 is shown in <a class="xref" href="thy_et7.html#Ef16r3e2jjw" title="Figure&nbsp;12.7:&nbsp;&nbsp;Aspect Ratios for Quadrilaterals">Figure&nbsp;12.7:&nbsp;Aspect Ratios for Quadrilaterals</a>.</p></li></ol></div><div class="figure"><a name="Ef16r3e2jjw"></a><p class="title"><b>Figure&nbsp;12.7:&nbsp;&nbsp;Aspect Ratios for Quadrilaterals</b></p><div class="figure-contents"><div><img src="graphics/gthy13-37.svg" alt="Aspect Ratios for Quadrilaterals"></div></div></div><br class="figure-break"><div class="table"><a name="i5tCr214jjw"></a><p class="title"><b>Table&nbsp;12.1:&nbsp;&nbsp;Aspect Ratio Limits</b></p><div class="table-contents"><table summary="Aspect Ratio Limits" border="1" width="95%"><colgroup><col width="144" class="col1"><col width="96" class="col2"><col width="72" class="col3"><col width="144" class="col4"><col width="144" class="col5"></colgroup><thead><tr valign="middle"><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+Command to modify</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+Type of Limit</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+Default</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+Why default is this tight</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+Why default is this loose</th></tr></thead><tbody><tr><td>
+<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,MODIFY,1</td><td>warning</td><td>20</td><td>Elements this stretched look to many users like they deserve
+        warnings.</td><td>
+        <p>Disturbance of analysis results has not been proven</p>
+        <p>It is difficult to avoid warnings even with a limit of 20.</p>
+       </td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,MODIFY,2</td><td>error</td><td>10<sup>6</sup>
+</td><td>Informal testing has demonstrated solution error attributable to
+        computer round off at aspect ratios of 1,000 to 100,000.</td><td>
+        <p>Threshold of round off problems depends on what computer is being used.</p>
+        <p>Valid analyses should not be blocked.</p>
+       </td></tr></tbody></table></div></div><br class="table-break"></div><div class="sect2" title="12.1.6.&nbsp;Parallel Deviation"><div class="titlepage"><div><div><h3 class="title"><a name="eltparalleldev"></a>12.1.6.&nbsp;Parallel Deviation</h3></div></div></div><a class="indexterm" name="d0e36525"></a><p>Parallel deviation is computed and tested for all quadrilaterals or 3-D solid elements
+    having quadrilateral faces or cross-sections, except Emag elements (see <a class="xref" href="thy_et7.html#GtCr2aejjw" title="Table&nbsp;12.2:&nbsp;&nbsp;Parallel Deviation Limits">Table&nbsp;12.2:&nbsp;Parallel Deviation Limits</a>). Formal testing has demonstrated degradation of stress convergence in
+    linear displacement quadrilaterals as opposite edges become less parallel to each other. </p></div><div class="sect2" title="12.1.7.&nbsp;Parallel Deviation Calculation"><div class="titlepage"><div><div><h3 class="title"><a name="eltparallcalc"></a>12.1.7.&nbsp;Parallel Deviation Calculation</h3></div></div></div><p>Parallel deviation is computed using the following steps: </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Ignoring midside nodes, unit vectors are constructed in 3-D space along each element
+      edge, adjusted for consistent direction, as demonstrated in <a class="xref" href="thy_et7.html#XRG8r9fjjw" title="Figure&nbsp;12.8:&nbsp;&nbsp;Parallel Deviation Unit Vectors">Figure&nbsp;12.8:&nbsp;Parallel Deviation Unit Vectors</a>.</p><div class="figure"><a name="XRG8r9fjjw"></a><p class="title"><b>Figure&nbsp;12.8:&nbsp;&nbsp;Parallel Deviation Unit Vectors</b></p><div class="figure-contents"><div><img src="graphics/gthy13-39.svg" alt="Parallel Deviation Unit Vectors"></div></div></div><br class="figure-break"></li><li class="listitem"><p>For each pair of opposite edges, the dot product of the unit vectors is computed, then
+      the angle (in degrees) whose cosine is that dot product. The parallel deviation is the larger
+      of these 2 angles. (In the illustration above, the dot product of the 2 horizontal unit
+      vectors is 1, and acos (1) = 0&deg;. The dot product of the 2 vertical vectors is 0.342, and
+      acos (0.342) = 70&deg;. Therefore, this element's parallel deviation is 70&deg;.) </p></li><li class="listitem"><p>The best possible deviation, for a flat rectangle, is 0&deg;. <a class="xref" href="thy_et7.html#zaG8r97jjw" title="Figure&nbsp;12.9:&nbsp;&nbsp;Parallel Deviations for Quadrilaterals">Figure&nbsp;12.9:&nbsp;Parallel Deviations for Quadrilaterals</a> shows quadrilaterals having deviations of 0&deg;, 70&deg;, 100&deg;, 150&deg;, and
+      170&deg;. </p></li></ol></div><div class="figure"><a name="zaG8r97jjw"></a><p class="title"><b>Figure&nbsp;12.9:&nbsp;&nbsp;Parallel Deviations for Quadrilaterals</b></p><div class="figure-contents"><div><img src="graphics/gthy13-40.svg" alt="Parallel Deviations for Quadrilaterals"></div></div></div><br class="figure-break"><div class="table"><a name="GtCr2aejjw"></a><p class="title"><b>Table&nbsp;12.2:&nbsp;&nbsp;Parallel Deviation Limits</b></p><div class="table-contents"><table summary="Parallel Deviation Limits" border="1" width="95%"><colgroup><col width="144" class="col1"><col width="96" class="col2"><col width="72" class="col3"><col width="144" class="col4"><col width="144" class="col5"></colgroup><thead><tr valign="middle"><th bgcolor="#E3E3E3" valign="middle">
+
+Command to
+        Modify</th><th bgcolor="#E3E3E3" valign="middle">
+
+Type of
+        Limit</th><th bgcolor="#E3E3E3" valign="middle">
+
+Default</th><th bgcolor="#E3E3E3" valign="middle">
+
+Why default is
+        this tight</th><th bgcolor="#E3E3E3" valign="middle">
+
+Why default is
+        this loose</th></tr></thead><tbody><tr><td>
+<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,MODIFY,11</td><td>warning for elements without midside nodes</td><td>70&deg;</td><td>Testing has shown results are degraded by this much distortion</td><td>It is difficult to avoid warnings even with a limit of 70&deg;</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,MODIFY,12</td><td>error for elements without midside nodes</td><td>150&deg;</td><td>Pushing the limit further does not seem prudent</td><td>Valid analyses should not be blocked.</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,MODIFY,13</td><td>warning for elements with midside nodes</td><td>100&deg;</td><td>Elements having deviations &gt; 100&deg; look like they deserve
+        warnings.</td><td>Disturbance of analysis results for quadratic elements has not been
+        proven.</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,MODIFY,14</td><td>error for elements with midside nodes</td><td>170&deg;</td><td>Pushing the limit further does not seem prudent</td><td>Valid analyses should not be blocked.</td></tr></tbody></table></div></div><br class="table-break"></div><div class="sect2" title="12.1.8.&nbsp;Maximum Corner Angle"><div class="titlepage"><div><div><h3 class="title"><a name="eltmaxicorner"></a>12.1.8.&nbsp;Maximum Corner Angle</h3></div></div></div><a class="indexterm" name="d0e36664"></a><p>Maximum corner angle is computed and tested for all except Emag elements (see <a class="xref" href="thy_et7.html#MNtCrd0jjw" title="Table&nbsp;12.3:&nbsp;&nbsp;Maximum Corner Angle Limits">Table&nbsp;12.3:&nbsp;Maximum Corner Angle Limits</a>). Some in the finite element community have reported that large angles
+    (approaching 180&deg;) degrade element performance, while small angles don't. </p></div><div class="sect2" title="12.1.9.&nbsp;Maximum Corner Angle Calculation"><div class="titlepage"><div><div><h3 class="title"><a name="eltmaxicorncalc"></a>12.1.9.&nbsp;Maximum Corner Angle Calculation</h3></div></div></div><p>The maximum angle between adjacent edges is computed using corner node positions in 3-D
+    space. (Midside nodes, if any, are ignored.) The best possible triangle maximum angle, for an
+    equilateral triangle, is 60&deg;. <a class="xref" href="thy_et7.html#rfG8r29ejjw" title="Figure&nbsp;12.10:&nbsp;&nbsp;Maximum Corner Angles for Triangles">Figure&nbsp;12.10:&nbsp;Maximum Corner Angles for Triangles</a> shows a triangle having a
+    maximum corner angle of 165&deg;. The best possible quadrilateral maximum angle, for a flat
+    rectangle, is 90&deg;. <a class="xref" href="thy_et7.html#hG8r251jjw" title="Figure&nbsp;12.11:&nbsp;&nbsp;Maximum Corner Angles for Quadrilaterals">Figure&nbsp;12.11:&nbsp;Maximum Corner Angles for Quadrilaterals</a> shows quadrilaterals having maximum corner
+    angles of 90&deg;, 140&deg; and 180&deg;. </p><div class="figure"><a name="rfG8r29ejjw"></a><p class="title"><b>Figure&nbsp;12.10:&nbsp;&nbsp;Maximum Corner Angles for Triangles</b></p><div class="figure-contents"><div><img src="graphics/gthy13-41.svg" alt="Maximum Corner Angles for Triangles"></div></div></div><br class="figure-break"><div class="figure"><a name="hG8r251jjw"></a><p class="title"><b>Figure&nbsp;12.11:&nbsp;&nbsp;Maximum Corner Angles for Quadrilaterals</b></p><div class="figure-contents"><div><img src="graphics/gthy13-42.svg" alt="Maximum Corner Angles for Quadrilaterals"></div></div></div><br class="figure-break"><div class="table"><a name="MNtCrd0jjw"></a><p class="title"><b>Table&nbsp;12.3:&nbsp;&nbsp;Maximum Corner Angle Limits</b></p><div class="table-contents"><table summary="Maximum Corner Angle Limits" border="1" width="95%"><colgroup><col width="144" class="col1"><col width="96" class="col2"><col width="72" class="col3"><col width="144" class="col4"><col width="144" class="col5"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Command to Modify</th><th align="center" valign="middle">Type of Limit</th><th align="center" valign="middle">Default</th><th align="center" valign="middle">Why default is this tight</th><th align="center" valign="middle">Why default is this loose</th></tr></thead><tbody><tr><td>
+<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,MODIFY,15</td><td>warnings for triangles</td><td>165&deg;</td><td>Any element this distorted looks like it deserves a warning.</td><td>
+        <p>Disturbance of analysis results has not been proven.</p>
+        <p>It is difficult to avoid warnings even with a limit of 165&deg;.</p>
+       </td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,MODIFY,16</td><td>error for triangles</td><td>179.9&deg;</td><td>We can not allow 180&deg;</td><td>Valid analyses should not be blocked.</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,MODIFY,17</td><td>warning for quadrilaterals without midside nodes</td><td>155&deg;</td><td>Any element this distorted looks like it deserves a warning.</td><td>
+        <p>Disturbance of analysis results has not been proven.</p>
+        <p>It is difficult to avoid warnings even with a limit of 155&deg;.</p>
+       </td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,MODIFY,18</td><td>error for quadrilaterals without midside nodes</td><td>179.9&deg;</td><td>We can not allow 180&deg;</td><td>Valid analyses should not be blocked.</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,MODIFY,19</td><td>warning for quadrilaterals with midside nodes</td><td>165&deg;</td><td>Any element this distorted looks like it deserves a warning.</td><td>
+        <p>Disturbance of analysis results has not been proven.</p>
+        <p>It is difficult to avoid warnings even with a limit of 165&deg;.</p>
+       </td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,MODIFY,20</td><td>error for quadrilaterals with midside nodes</td><td>179.9&deg;</td><td>We can not allow 180&deg;</td><td>Valid analyses should not be blocked.</td></tr></tbody></table></div></div><br class="table-break"></div><div class="sect2" title="12.1.10.&nbsp;Jacobian Ratio"><div class="titlepage"><div><div><h3 class="title"><a name="eltjacobian"></a>12.1.10.&nbsp;Jacobian Ratio</h3></div></div></div><a class="indexterm" name="d0e36822"></a><p>Jacobian ratio is computed and tested for all elements except triangles and tetrahedra that
+    (a) are linear (have no midside nodes) or (b) have perfectly centered midside nodes (see <a class="xref" href="thy_et7.html#aLAFr4bjjw" title="Table&nbsp;12.4:&nbsp;&nbsp;Jacobian Ratio Limits">Table&nbsp;12.4:&nbsp;Jacobian Ratio Limits</a>). A high ratio indicates that the mapping between element space and real
+    space is becoming computationally unreliable. </p><div class="sect3" title="12.1.10.1.&nbsp;Jacobian Ratio Calculation"><div class="titlepage"><div><div><h4 class="title"><a name="eltjacobcalc"></a>12.1.10.1.&nbsp;Jacobian Ratio Calculation</h4></div></div></div><p>An element's Jacobian ratio is computed by the following steps, using the full set of
+     nodes for the element: </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>At each sampling location listed in the table below, the determinant of the Jacobian
+       matrix is computed and called R<sub>J</sub>. R<sub>J</sub> at a given
+       point represents the magnitude of the mapping function between element natural coordinates
+       and real space. In an ideally-shaped element, R<sub>J</sub> is relatively
+       constant over the element, and does not change sign. </p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="240" class="col1"><col width="336" class="col2"></colgroup><thead><tr valign="middle"><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+Element Shape</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+R<sub>J</sub>
+           Sampling Locations</th></tr></thead><tbody><tr><td>10-node tetrahedra - <a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,LSTET,OFF</td><td>corner nodes</td></tr><tr><td>10-node tetrahedra - <a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,LSTET,ON</td><td>integration points</td></tr><tr><td>5-node or 13-node pyramids</td><td>base corner nodes and near apex node (apex R<sub>J</sub>
+           factored so that a pyramid having all edges the same length will produce a Jacobian ratio
+           of 1)</td></tr><tr><td>8-node quadrilaterals</td><td>corner nodes and centroid</td></tr><tr><td>20-node bricks</td><td>all nodes and centroid</td></tr><tr><td>all other elements</td><td>corner nodes</td></tr></tbody></table></div></li><li class="listitem"><p>The Jacobian ratio of the element is the ratio of the maximum to the minimum sampled
+       value of R<sub>J</sub>. If the maximum and minimum have opposite signs, the
+       Jacobian ratio is arbitrarily assigned to be -100 (and the element is clearly unacceptable).
+      </p></li><li class="listitem"><p>If the element is a midside-node tetrahedron, an additional R<sub>J</sub> is
+       computed for a fictitious straight-sided tetrahedron connected to the 4 corner nodes. If that
+        R<sub>J</sub> differs in sign from any nodal R<sub>J</sub> (an
+       extremely rare occurrence), the Jacobian ratio is arbitrarily assigned to be -100. </p></li><li class="listitem"><p>The sampling locations for midside-node tetrahedra depend upon the setting of the linear
+       stress tetrahedra key on the <a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a> command. The default behavior
+        (<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,LSTET,OFF) is to sample at the corner nodes, while the optional
+       behavior (<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,LSTET.ON) is to sample at the integration points (similar
+       to what was done for the DesignSpace product). Sampling at the integration points will result in
+       a lower Jacobian ratio than sampling at the nodes, but that ratio is compared to more
+       restrictive default limits (see <a class="xref" href="thy_et7.html#aLAFr4bjjw" title="Table&nbsp;12.4:&nbsp;&nbsp;Jacobian Ratio Limits">Table&nbsp;12.4:&nbsp;Jacobian Ratio Limits</a> below). Nevertheless, some
+       elements which pass the LSTET,ON test fail the LSTET,OFF test - especially those having zero
+        R<sub>J</sub> at a corner node. Testing has shown that such elements have no
+       negative effect on linear elastic stress accuracy. Their effect on other types of solutions
+       has not been studied, which is why the more conservative test is recommended for general
+       usage. Brick elements (such as <a href="../ans_elem/Hlp_E_SOLID186.html" class="olink"><span class="structname">SOLID186</span></a>) degenerated into tetrahedra
+       are tested in the same manner as are 'native' tetrahedra (<a href="../ans_elem/Hlp_E_SOLID187.html" class="olink"><span class="structname">SOLID187</span></a>).
+       In most cases, this produces conservative results. However, for
+        <a href="../ans_elem/Hlp_E_SOLID185.html" class="olink"><span class="structname">SOLID185</span></a> and <a href="../ans_elem/Hlp_E_SOLID186.html" class="olink"><span class="structname">SOLID186</span></a> when using the
+       non-recommended tetrahedron shape, it is possible that such a degenerate element may produce
+       an error during solution, even though it produced no warnings during shape testing. </p></li><li class="listitem"><p>If the element is a line element having a midside node, the Jacobian matrix is not
+       square (because the mapping is from one natural coordinate to 2-D or 3-D space) and has no
+       determinant. For this case, a vector calculation is used to compute a number which behaves
+       like a Jacobian ratio. This calculation has the effect of limiting the arc spanned by a
+       single element to about 106&deg; </p></li></ol></div><p>A triangle or tetrahedron has a Jacobian ratio of 1 if each midside node, if any, is
+     positioned at the average of the corresponding corner node locations. This is true no matter
+     how otherwise distorted the element may be. Hence, this calculation is skipped entirely for
+     such elements. Moving a midside node away from the edge midpoint position will increase the
+     Jacobian ratio. Eventually, even very slight further movement will break the element (<a class="xref" href="thy_et7.html#hjG8rd2jjw" title="Figure&nbsp;12.12:&nbsp;&nbsp;Jacobian Ratios for Triangles">Figure&nbsp;12.12:&nbsp;Jacobian Ratios for Triangles</a>). We describe this as &#8220;breaking&#8221; the element because it
+     suddenly changes from acceptable to unacceptable- &#8220;broken&#8221;. </p><div class="figure"><a name="hjG8rd2jjw"></a><p class="title"><b>Figure&nbsp;12.12:&nbsp;&nbsp;Jacobian Ratios for Triangles</b></p><div class="figure-contents"><div><img src="graphics/gthy13-43.svg" alt="Jacobian Ratios for Triangles"></div></div></div><br class="figure-break"><p>Any rectangle or rectangular parallelepiped having no midside nodes, or having midside
+     nodes at the midpoints of its edges, has a Jacobian ratio of 1. Moving midside nodes toward or
+     away from each other can increase the Jacobian ratio. Eventually, even very slight further
+     movement will break the element (<a class="xref" href="thy_et7.html#qqG8r241jjw" title="Figure&nbsp;12.13:&nbsp;&nbsp;Jacobian Ratios for Quadrilaterals">Figure&nbsp;12.13:&nbsp;Jacobian Ratios for Quadrilaterals</a>). </p><div class="figure"><a name="qqG8r241jjw"></a><p class="title"><b>Figure&nbsp;12.13:&nbsp;&nbsp;Jacobian Ratios for Quadrilaterals</b></p><div class="figure-contents"><div><img src="graphics/gthy13-44.svg" alt="Jacobian Ratios for Quadrilaterals"></div></div></div><br class="figure-break"><p>A quadrilateral or brick has a Jacobian ratio of 1 if (a) its opposing faces are all
+     parallel to each other, and (b) each midside node, if any, is positioned at the average of the
+     corresponding corner node locations. As a corner node moves near the center, the Jacobian ratio
+     climbs. Eventually, any further movement will break the element (<a class="xref" href="thy_et7.html#XsG8r338jjw" title="Figure&nbsp;12.14:&nbsp;&nbsp;Jacobian Ratios for Quadrilaterals">Figure&nbsp;12.14:&nbsp;Jacobian Ratios for Quadrilaterals</a>). </p><div class="figure"><a name="XsG8r338jjw"></a><p class="title"><b>Figure&nbsp;12.14:&nbsp;&nbsp;Jacobian Ratios for Quadrilaterals</b></p><div class="figure-contents"><div><img src="graphics/gthy13-45.svg" alt="Jacobian Ratios for Quadrilaterals"></div></div></div><br class="figure-break"><div class="table"><a name="aLAFr4bjjw"></a><p class="title"><b>Table&nbsp;12.4:&nbsp;&nbsp;Jacobian Ratio Limits</b></p><div class="table-contents"><table summary="Jacobian Ratio Limits" border="1" width="95%"><colgroup><col width="144" class="col1"><col width="96" class="col2"><col width="96" class="col3"><col width="144" class="col4"><col width="144" class="col5"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center" valign="top">
+
+Command to modify</th><th bgcolor="#E3E3E3" align="center" valign="top">
+
+Type of limit</th><th bgcolor="#E3E3E3" align="center" valign="top">
+
+Default</th><th bgcolor="#E3E3E3" align="center" valign="top">
+
+Why default is this tight</th><th bgcolor="#E3E3E3" align="center" valign="top">
+
+Why default is this loose</th></tr></thead><tbody><tr><td rowspan="2">
+<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,MODIFY,31</td><td rowspan="2">warning for h-elements</td><td>30 if <a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>, LSTET,OFF</td><td rowspan="2">A ratio this high indicates that the mapping between
+         element and real space is becoming computationally unreliable.</td><td rowspan="2">Disturbance of analysis results has not been proven. It
+         is difficult to avoid warnings even with a limit of 30.</td></tr><tr><td>10 if <a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>, LSTET,ON</td></tr><tr><td rowspan="2">
+<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,MODIFY,32</td><td rowspan="2">error for h-elements</td><td>1,000 if <a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>, LSTET,OFF</td><td rowspan="2">Pushing the limit further does not seem prudent.</td><td rowspan="2">Valid analyses should not be blocked.</td></tr><tr><td>40 if <a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>, LSTET,ON</td></tr></tbody></table></div></div><br class="table-break"></div></div><div class="sect2" title="12.1.11.&nbsp;Warping Factor"><div class="titlepage"><div><div><h3 class="title"><a name="eltwarping"></a>12.1.11.&nbsp;Warping Factor</h3></div></div></div><a class="indexterm" name="d0e37089"></a><p>Warping factor is computed and tested for some quadrilateral shell elements, and the
+    quadrilateral faces of bricks, wedges, and pyramids. (See <a class="xref" href="thy_et7.html#eltwarping" title="12.1.11.&nbsp;Warping Factor">Warping Factor</a>.) A high
+    factor may indicate a condition the underlying element formulation cannot handle well, or may
+    simply hint at a mesh generation flaw. </p><div class="highlights"><p>The following warping factor topics are available:</p><ul><li><a href="thy_et7.html#eltwarpcalc" title="12.1.11.1.&nbsp;Warping Factor Calculation for Quadrilateral Shell Elements">Warping Factor Calculation for Quadrilateral Shell Elements</a></li><li><a href="thy_et7.html#eltwarp3dsolid" title="12.1.11.2.&nbsp;Warping Factor Calculation for 3-D Solid Elements">Warping Factor Calculation for 3-D Solid Elements</a></li></ul></div><p>Also see <a class="xref" href="thy_et7.html#Xgl8r21bjjw" title="Table&nbsp;12.5:&nbsp;&nbsp;Warping Factor Limits">Table&nbsp;12.5:&nbsp;Warping Factor Limits</a>.</p><div class="sect3" title="12.1.11.1.&nbsp;Warping Factor Calculation for Quadrilateral Shell Elements"><div class="titlepage"><div><div><h4 class="title"><a name="eltwarpcalc"></a>12.1.11.1.&nbsp;Warping Factor Calculation for Quadrilateral Shell Elements</h4></div></div></div><p>A quadrilateral element's warping factor is computed from its corner node positions and
+     other available data by the following steps: </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>An average element normal is computed as the vector (cross) product of the 2 diagonals
+        (<a class="xref" href="thy_et7.html#JzG8re1jjw" title="Figure&nbsp;12.15:&nbsp;&nbsp;Shell Average Normal Calculation">Figure&nbsp;12.15:&nbsp;Shell Average Normal Calculation</a>). </p><div class="figure"><a name="JzG8re1jjw"></a><p class="title"><b>Figure&nbsp;12.15:&nbsp;&nbsp;Shell Average Normal Calculation</b></p><div class="figure-contents"><div><img src="graphics/gthy13-46.svg" alt="Shell Average Normal Calculation"></div></div></div><br class="figure-break"></li><li class="listitem"><p>The projected area of the element is computed on a plane through the average normal (the
+       dotted outline on <a class="xref" href="thy_et7.html#BG8rf2jjw" title="Figure&nbsp;12.16:&nbsp;&nbsp;Shell Element Projected onto a Plane">Figure&nbsp;12.16:&nbsp;Shell Element Projected onto a Plane</a>). </p></li><li class="listitem"><p>The difference in height of the ends of an element edge is computed, parallel to the
+       average normal. In <a class="xref" href="thy_et7.html#BG8rf2jjw" title="Figure&nbsp;12.16:&nbsp;&nbsp;Shell Element Projected onto a Plane">Figure&nbsp;12.16:&nbsp;Shell Element Projected onto a Plane</a>, this distance is 2h. Because of the way the
+       average normal is constructed, h is the same at all four corners. For a flat quadrilateral,
+       the distance is zero. </p><div class="figure"><a name="BG8rf2jjw"></a><p class="title"><b>Figure&nbsp;12.16:&nbsp;&nbsp;Shell Element Projected onto a Plane</b></p><div class="figure-contents"><div><img src="graphics/gthy13-47.svg" alt="Shell Element Projected onto a Plane"></div></div></div><br class="figure-break"></li><li class="listitem"><p>The &#8220;area warping factor&#8221; (
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eq9029edda-726f-4d1d-8088-df6a12b5fe28.svg"></span>) for the element is computed as the edge height difference divided by the
+       square root of the projected area. </p></li><li class="listitem"><p>For all shells except those in the &#8220;membrane stiffness only&#8221; group, if the
+       thickness is available, the &#8220;thickness warping factor&#8221; is computed as the edge
+       height difference divided by the average element thickness. This could be substantially
+       higher than the area warping factor computed in 4 (above). </p></li><li class="listitem"><p>The warping factor tested against warning and error limits (and reported in warning and
+       error messages) is the larger of the area factor and, if available, the thickness factor.
+      </p></li><li class="listitem"><p>The best possible quadrilateral warping factor, for a flat quadrilateral, is zero.
+      </p></li></ol></div><p>
+<a class="xref" href="thy_et7.html#adH8r3cajjw" title="Figure&nbsp;12.17:&nbsp;&nbsp;Quadrilateral Shell Having Warping Factor">Figure&nbsp;12.17:&nbsp;Quadrilateral Shell Having Warping Factor</a> shows a &#8220;warped&#8221; element plotted on top of a
+     flat one. Only the right-hand node of the upper element is moved. The element is a unit square,
+     with a real constant thickness of 0.1. </p><p>When the upper element is warped by a factor of 0.01, it cannot be visibly distinguished
+     from the underlying flat one. </p><p>When the upper element is warped by a factor of 0.04, it just begins to visibly separate
+     from the flat one. </p><div class="figure"><a name="adH8r3cajjw"></a><p class="title"><b>Figure&nbsp;12.17:&nbsp;&nbsp;Quadrilateral Shell Having Warping Factor</b></p><div class="figure-contents"><div><img src="graphics/gthy13-49.svg" alt="Quadrilateral Shell Having Warping Factor"></div></div></div><br class="figure-break"><p>Warping of 0.1 is visible given the flat reference, but seems trivial; however, it is well
+     beyond the error limit for a membrane shell. Warping of 1.0 is visually unappealing. This is
+     the error limit for most shells. </p><p>Warping beyond 1.0 would appear to be obviously unacceptable; however,
+      <a href="../ans_elem/Hlp_E_SHELL181.html" class="olink"><span class="structname">SHELL181</span></a> permits even this much distortion. Furthermore, the warping
+     factor calculation seems to peak at about 7.0. Moving the node further off the original plane,
+     even by much larger distances than shown here, does not further increase the warping factor for
+     this geometry. Users are cautioned that manually increasing the error limit beyond its default
+     of 5.0 for these elements could mean no real limit on element distortion. </p></div><div class="sect3" title="12.1.11.2.&nbsp;Warping Factor Calculation for 3-D Solid Elements"><div class="titlepage"><div><div><h4 class="title"><a name="eltwarp3dsolid"></a>12.1.11.2.&nbsp;Warping Factor Calculation for 3-D Solid Elements</h4></div></div></div><p>The warping factor for a 3-D solid element face is computed as though the 4 nodes make up
+     a quadrilateral shell element with no real constant thickness available, using the square root
+     of the projected area of the face as described in 4 (above). </p><p>The warping factor for the element is the largest of the warping factors computed for the
+     6 quadrilateral faces of a brick, 3 quadrilateral faces of a wedge, or 1 quadrilateral face of
+     a pyramid. </p><p>Any brick element having all flat faces has a warping factor of zero (<a class="xref" href="thy_et7.html#ArH8r378jjw" title="Figure&nbsp;12.18:&nbsp;&nbsp;Warping Factor for Bricks">Figure&nbsp;12.18:&nbsp;Warping Factor for Bricks</a>). </p><div class="figure"><a name="ArH8r378jjw"></a><p class="title"><b>Figure&nbsp;12.18:&nbsp;&nbsp;Warping Factor for Bricks</b></p><div class="figure-contents"><div><img src="graphics/gthy13-50.svg" alt="Warping Factor for Bricks"></div></div></div><br class="figure-break"><p>Twisting the top face of a unit cube by 22.5&deg; and 45&deg; relative to the base
+     produces warping factors of about 0.2 and 0.4, respectively. </p><div class="table"><a name="Xgl8r21bjjw"></a><p class="title"><b>Table&nbsp;12.5:&nbsp;&nbsp;Warping Factor Limits</b></p><div class="table-contents"><table summary="Warping Factor Limits" border="1" width="95%"><colgroup><col width="168" class="col1"><col width="96" class="COLSPEC0"><col width="72" class="col2"><col width="144" class="col3"><col width="144" class="col4"></colgroup><thead><tr><th bgcolor="#E3E3E3" valign="top">
+
+Command to modify</th><th bgcolor="#E3E3E3" valign="top">
+
+Type of limit</th><th bgcolor="#E3E3E3" valign="top">
+
+Default</th><th bgcolor="#E3E3E3" valign="top">
+
+Why
+         default is this tight</th><th bgcolor="#E3E3E3" valign="top">
+
+Why
+         default is this loose</th></tr></thead><tbody><tr><td>
+<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,MODIFY,51</td><td>warning for &#8220;bending with high warping limit&#8221; shells
+         (e.g., <a href="thy_el181.html" class="olink">SHELL181</a>)</td><td>1</td><td>Elements having warping factors &gt; 1 look like they deserve
+         warnings</td><td>
+         <p>Element formulation derived from 8-node solid isn't disturbed by warping.</p>
+         <p>Disturbance of analysis results has not been proven</p>
+        </td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,MODIFY,52</td><td>same as above, error limit</td><td>5</td><td>Pushing this limit further does not seem prudent</td><td>Valid analyses should not be blocked.</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,MODIFY,53</td><td>warning for &#8220;non-stress&#8221; shells or &#8220;bending
+         stiffness included&#8221; shells without geometric nonlinearities (e.g., <a href="thy_el131.html" class="olink">SHELL131</a>)</td><td>0.1</td><td>
+         <p>The element formulation is based on flat shell theory, with rigid beam offsets for
+          moment compatibility.</p>
+         <p>Informal testing has shown that result error became significant for warping factor
+          &gt; 0.1.</p>
+        </td><td>It is difficult to avoid these warnings even with a limit of
+         0.1.</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,MODIFY,54</td><td>same as above, error limit</td><td>1</td><td>Pushing this limit further does not seem prudent.</td><td>Valid analyses should not be blocked.</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,MODIFY,55</td><td>warning for &#8220;membrane stiffness only&#8221; shells</td><td>0.02</td><td>The element formulation is based on flat shell theory, without any
+         correction for moment compatibility. The element cannot handle forces not in the plane of
+         the element.</td><td>Informal testing has shown that the effect of warping &lt; 0.02 is
+         negligible.</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,MODIFY,56</td><td>same as above, error limit</td><td>0.2</td><td>Pushing this limit further does not seem prudent</td><td>Valid analyses should not be blocked.</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,MODIFY,67</td><td>warning for 3-D solid element quadrilateral face</td><td>0.2</td><td>A warping factor of 0.2 corresponds to about a 22.5&deg; rotation of
+         the top face of a unit cube. Brick elements distorted this much look like they deserve
+         warnings.</td><td>Disturbance of analysis results has not been proven.</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_SHPP.html" class="olink"><span class="command"><strong>SHPP</strong></span></a>,MODIFY,68</td><td>same as above, error limit</td><td>0.4</td><td>A warping factor of 0.4 corresponds to about a 45&deg; rotation of the
+         top face of a unit cube. Pushing this limit further does not seem prudent.</td><td>Valid analyses should not be blocked.</td></tr></tbody></table></div></div><br class="table-break"></div></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:30-04:00"><title>17.11.&nbsp;POST1 and POST26 - Interpretation of Equivalent Strains</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_post.html" title="Chapter&nbsp;17:&nbsp;Postprocessing"><link rel="prev" href="thy_post11.html" title="17.10.&nbsp;POST26 - Response Spectrum Generator (RESP)"><link rel="next" href="thy_post13.html" title="17.12.&nbsp;POST26 - Response Power Spectral Density"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="17.11.&nbsp;POST1 and POST26 - Interpretation of Equivalent Strains"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="bob145"></a>17.11.&nbsp;POST1 and POST26 - Interpretation of Equivalent Strains</h2></div></div></div><a class="indexterm" name="d0e88340"></a><a class="indexterm" name="d0e88343"></a><a class="indexterm" name="d0e88346"></a><a class="indexterm" name="d0e88349"></a><p>The equivalent strains for the elastic, plastic, creep and thermal
+strains are computed in postprocessing using the von Mises equation:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq7fb94879-851f-494b-84c0-d5f4fb98255d"></a><div><img src="graphics/eq7fb94879-851f-494b-84c0-d5f4fb98255d.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;144)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#949;<sub>x</sub>, &#949;<sub>y</sub>, etc. = appropriate component strain values  </td></tr><tr><td>&#957;' = effective Poisson's ratio </td></tr></table><p>
+</p><p>The default effective Poisson's ratio for both POST1 and POST26
+are:</p><p>
+</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-29.000000px"><img src="graphics/eqfd01d863-ae8f-49d0-97a9-19ab1b6bb47d.svg"></span>
+</td></tr></table><p>
+</p><p>The <a href="../ans_cmd/Hlp_C_AVPRIN.html" class="olink"><span class="command"><strong>AVPRIN</strong></span></a>,,EFFNU command may be issued to
+override the above defaults (but it is intended to be used only for
+line elements, etc.).</p><p>The equivalent strain is output with the EQV or PRIN component
+label in POST1 (using the <a href="../ans_cmd/Hlp_C_PRNSOL.html" class="olink"><span class="command"><strong>PRNSOL</strong></span></a>, <a href="../ans_cmd/Hlp_C_PLNSOL.html" class="olink"><span class="command"><strong>PLNSOL</strong></span></a>, <a href="../ans_cmd/Hlp_C_PDEF.html" class="olink"><span class="command"><strong>PDEF</strong></span></a>, or <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> commands)
+and in POST26 (using the <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> command).</p><div class="sect2" title="17.11.1.&nbsp;Physical Interpretation of Equivalent Strain"><div class="titlepage"><div><div><h3 class="title"><a name="posphysical"></a>17.11.1.&nbsp;Physical Interpretation of Equivalent Strain</h3></div></div></div><p>The von Mises equation is a measure of the &#8220;shear&#8221;
+strain in the material and does not account for the hydrostatic straining
+component.  For example, strain values of &#949;<sub>x</sub> = &#949;<sub>y</sub> = &#949;<sub>z</sub> = 0.001 yield an equivalent strain &#949;<sub>eq</sub> = 0.0.</p></div><div class="sect2" title="17.11.2.&nbsp;Elastic Strain"><div class="titlepage"><div><div><h3 class="title"><a name="poselasticst"></a>17.11.2.&nbsp;Elastic Strain</h3></div></div></div><p>The equivalent elastic strain is related to the equivalent stress
+when &#957;' = &#957; (input as PRXY or NUXY on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command) by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq667cb272-28a5-417e-89c9-b56417279718"></a><div><img src="graphics/eq667cb272-28a5-417e-89c9-b56417279718.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;145)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#963;<sub>eq</sub> = equivalent stress (output
+using SEQV)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq21081073-3de9-49fa-818a-4b662fbc605b.svg"></span> = equivalent elastic strain (output
+using EPEL, EQV)</td></tr><tr><td>E = Young's modulus</td></tr></table><p>
+</p><p>Note that when &#957;' = 0 then the equivalent elastic strain
+is related via</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqff77e454-bbc9-4c38-9aa7-a08954e04bd1"></a><div><img src="graphics/eqff77e454-bbc9-4c38-9aa7-a08954e04bd1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;146)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>G = shear modulus</td></tr></table><p>
+</p></div><div class="sect2" title="17.11.3.&nbsp;Plastic Strain"><div class="titlepage"><div><div><h3 class="title"><a name="posplaststr"></a>17.11.3.&nbsp;Plastic Strain</h3></div></div></div><p>For plasticity, the accumulated effective plastic strain is
+defined by (see <a class="xref" href="thy_mat1.html#thyeq1sratnov2001" title="(4&#8211;25)">Equation&nbsp;4&#8211;25</a> and <a class="xref" href="thy_mat1.html#thyeq3bkhnov1901" title="(4&#8211;42)">Equation&nbsp;4&#8211;42</a>):</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq46c9c3f8-5f41-418f-8931-09409b3489d4"></a><div><img src="graphics/eq46c9c3f8-5f41-418f-8931-09409b3489d4.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;147)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq56071501-e84e-4582-84e7-b30a5aabcc8b.svg"></span> = accumulated effective
+plastic strain (output using NL, EPEQ)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-39.000000px"><img src="graphics/eq378571a7-c5ab-4119-955e-ba56c37eeb56.svg"></span>
+</td></tr></table><p>
+</p><p>This can be related to 
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqb26ddc29-b7a4-4bbd-b04c-d1f1070ec12a.svg"></span> (output using EPPL,
+EQV) only under proportional loading situations during the initial
+loading phase and only when &#957;' is set to 0.5.</p></div><div class="sect2" title="17.11.4.&nbsp;Creep Strain"><div class="titlepage"><div><div><h3 class="title"><a name="poscreeps"></a>17.11.4.&nbsp;Creep Strain</h3></div></div></div><p>As with the plastic strains, to calculate the equivalent creep strain <span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq8a3447c4-2c5b-4019-8cb5-fe4a9c11b30c.svg"></span> (EPCR, EQV), use &#957;' = 0.5. </p></div><div class="sect2" title="17.11.5.&nbsp;Total Strain"><div class="titlepage"><div><div><h3 class="title"><a name="postotalst"></a>17.11.5.&nbsp;Total Strain</h3></div></div></div><p>The equivalent total strains in an analysis with plasticity,
+creep and thermal strain are:  </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq5de92cbc-9553-49c3-bba1-eecfc4f93c9a"></a><div><img src="graphics/eq5de92cbc-9553-49c3-bba1-eecfc4f93c9a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;148)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq31ccf540-166b-4512-aefc-3aec8ad4818c"></a><div><img src="graphics/eq31ccf540-166b-4512-aefc-3aec8ad4818c.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;149)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+      <span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqbdf4c44a-aa82-458b-bedc-32cd76d51096.svg"></span> = equivalent total strain (output using EPTT, EQV)</td></tr><tr><td>
+      <span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq84102424-1662-4d8d-8173-8e2c581d88e2.svg"></span> = equivalent total mechanical strain (output using EPTO, EQV)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqc3a08358-a1ab-4f49-9582-be68b24e36f6.svg"></span> = equivalent thermal strain </td></tr></table><p>
+</p><p>For line elements, use an appropriate value of &#957;'.  If 
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq6c27c508-2c0a-42c2-b286-1a4ace4b8ffc.svg"></span> &gt; &gt; 
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqd809b0f0-b8df-428b-bd3c-b709f6b0f039.svg"></span>, use  &#957;' = 0.5.
+ For other values, use an effective Poisson's ratio between n and
+0.5.  One method of estimating this is through:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq58d1e621-c32d-4b74-a2ea-19796f462e87"></a><div><img src="graphics/eq58d1e621-c32d-4b74-a2ea-19796f462e87.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;150)</b></p></td></tr></table><p>This computation of equivalent total strain is only valid for
+proportional loading, and is approximately valid for monotonic loading.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

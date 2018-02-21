@@ -1,0 +1,44 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:50-04:00"><title>3.1.&nbsp;Understanding Geometric Nonlinearities</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_geo.html" title="Chapter&nbsp;3:&nbsp;Structures with Geometric Nonlinearities"><link rel="prev" href="thy_geo.html" title="Chapter&nbsp;3:&nbsp;Structures with Geometric Nonlinearities"><link rel="next" href="thy_geo1.html" title="3.2.&nbsp;Large Strain"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="3.1.&nbsp;Understanding Geometric Nonlinearities"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thyundgeonon"></a>3.1.&nbsp;Understanding Geometric Nonlinearities</h2></div></div></div><p>
+<span class="italic"><em>Geometric nonlinearities</em></span> refer
+to the nonlinearities in the structure or component due to the changing
+geometry as it deflects.  That is, the stiffness [K] is a function
+of the displacements {u}.  The stiffness changes because the shape
+changes and/or the material rotates.  The program can account for
+four types of geometric nonlinearities: </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
+<span class="italic"><em>
+<a class="link" href="thy_geo1.html" title="3.2.&nbsp;Large Strain">Large strain</a>
+</em></span> assumes that the strains are no longer
+infinitesimal (they are finite).  Shape changes (e.g. area, thickness,
+etc.) are also accounted for.  Deflections and rotations may be arbitrarily
+large. </p></li><li class="listitem"><p>
+<span class="italic"><em>
+<a class="link" href="thy_geo2.html" title="3.3.&nbsp;Large Rotation">Large rotation</a>
+</em></span> assumes that the rotations are large
+but the mechanical strains (those that cause stresses) are evaluated
+using linearized expressions.  The structure is assumed not to change
+shape except for rigid body motions.  The elements of this class refer
+to the original configuration. </p></li><li class="listitem"><p>
+<span class="italic"><em>
+<a class="link" href="thy_geo3.html" title="3.4.&nbsp;Stress Stiffening">Stress stiffening</a>
+</em></span> assumes that both strains and
+rotations are small.  A 1st order approximation to the rotations is
+used to capture some nonlinear rotation effects. </p></li><li class="listitem"><p>
+<span class="italic"><em>
+<a class="link" href="thy_geo4.html" title="3.5.&nbsp;Spin Softening">Spin softening</a>
+</em></span> also assumes that both strains and
+rotations are small.  This option accounts for the coupling between
+the transverse vibrational motion and the centrifugal force due to
+an angular velocity.</p></li></ol></div><p>All elements support the spin softening capability, while only
+some of the elements support the other options.  Please refer to the <a href="../ans_elem/Hlp_E_ElemTOC.html" class="olink"><em class="citetitle">Element Reference</em></a> for
+details. </p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

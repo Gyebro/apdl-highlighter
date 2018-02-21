@@ -1,0 +1,62 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:41-04:00"><title>13.185.&nbsp;SOLID185 - 3-D 8-Node Structural Solid</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el184.html" title="13.184.&nbsp;MPC184 - Multipoint Constraint"><link rel="next" href="thy_el186.html" title="13.186.&nbsp;SOLID186 - 3-D 20-Node homogeneous/Layered Structural Solid"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.185.&nbsp;SOLID185 - 3-D 8-Node Structural Solid"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thysolid185"></a>13.185.&nbsp;SOLID185 - 3-D 8-Node Structural Solid</h2></div></div></div><a class="indexterm" name="d0e56746"></a><p>SOLID185 is available in two forms:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Standard (nonlayered) structural solid (KEYOPT(3)
+= 0, the default) - see <a class="xref" href="thy_el185.html#solid185struc" title="13.185.1.&nbsp;SOLID185 - 3-D 8-Node Structural Solid">SOLID185 - 3-D 8-Node Structural Solid</a>.</p></li><li class="listitem"><p>Layered structural solid (KEYOPT(3) = 1) - see <a class="xref" href="thy_el185.html#solid185layer" title="13.185.2.&nbsp;SOLID185 - 3-D 8-Node Layered Solid">SOLID185 - 3-D 8-Node Layered Solid</a>.</p></li></ul></div><p>
+</p><div class="sect2" title="13.185.1.&nbsp;SOLID185 - 3-D 8-Node Structural Solid"><div class="titlepage"><div><div><h3 class="title"><a name="solid185struc"></a>13.185.1.&nbsp;SOLID185 - 3-D 8-Node Structural Solid</h3></div></div></div><div><img src="graphics/gthy14-185-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="168" class="col1"><col width="67" class="col2"><col width="168" class="col3"><col width="220" class="col4"></colgroup><thead><tr><th align="center" valign="middle">Matrix or Vector</th><th colspan="2" align="center" valign="middle">Shape Functions</th><th align="center" valign="middle">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration Points</a>
+</th></tr></thead><tbody><tr><td>Stiffness and Stress Stiffness Matrices;
+and Thermal Load Vector</td><td colspan="2" valign="middle">
+<a class="xref" href="thy_shp8.html#thyeq4bricknov2101" title="(11&#8211;214)">Equation&nbsp;11&#8211;214</a>, <a class="xref" href="thy_shp8.html#thyeq5bricknov2101" title="(11&#8211;215)">Equation&nbsp;11&#8211;215</a>, and <a class="xref" href="thy_shp8.html#thyeq6bricknov2101" title="(11&#8211;216)">Equation&nbsp;11&#8211;216</a>
+</td><td valign="middle">
+<div class="literallayout"><p>2&nbsp;x&nbsp;2&nbsp;x&nbsp;2&nbsp;if&nbsp;KEYOPT(2)&nbsp;=&nbsp;0,&nbsp;2,&nbsp;or&nbsp;3<br>
+1&nbsp;if&nbsp;KEYOPT(2)&nbsp;=&nbsp;1</p></div>
+</td></tr><tr><td>Mass Matrix</td><td colspan="2">Same as stiffness matrix</td><td align="center">2 x 2 x 2</td></tr><tr><td rowspan="2" valign="middle">Pressure Load Vector </td><td valign="middle">Quad</td><td>
+<a class="xref" href="thy_shp5.html#thyeq1q4nov2601" title="(11&#8211;69)">Equation&nbsp;11&#8211;69</a> and <a class="xref" href="thy_shp5.html#thyeq2q4nov2601" title="(11&#8211;70)">Equation&nbsp;11&#8211;70</a>
+</td><td align="center" valign="middle">2 x 2</td></tr><tr><td valign="middle">Triangle</td><td>
+<a class="xref" href="thy_shp5.html#thyeq1cstnov2601" title="(11&#8211;49)">Equation&nbsp;11&#8211;49</a> and <a class="xref" href="thy_shp5.html#thyeq2cstnov2601" title="(11&#8211;50)">Equation&nbsp;11&#8211;50</a>
+</td><td align="center" valign="middle">3</td></tr></tbody></table></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="COLSPEC33"><col width="432" class="COLSPEC34"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Load Type</th><th align="center" valign="middle">Distribution</th></tr></thead><tbody><tr valign="middle"><td valign="middle">Element Temperature</td><td valign="middle">Trilinear thru element</td></tr><tr valign="middle"><td valign="middle">Nodal
+Temperature</td><td valign="middle">Trilinear thru element</td></tr><tr valign="middle"><td valign="middle">Pressure</td><td valign="middle">Bilinear across each
+face</td></tr></tbody></table></div></div><div class="sect2" title="13.185.2.&nbsp;SOLID185 - 3-D 8-Node Layered Solid"><div class="titlepage"><div><div><h3 class="title"><a name="solid185layer"></a>13.185.2.&nbsp;SOLID185 - 3-D 8-Node Layered Solid</h3></div></div></div><div><img src="graphics/gthy14-46-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="168" class="col1"><col width="67" class="col2"><col width="168" class="col3"><col width="220" class="col4"></colgroup><thead><tr><th align="center" valign="middle">Matrix or Vector</th><th colspan="2" align="center" valign="middle">Shape Functions</th><th align="center" valign="middle">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration Points</a>
+</th></tr></thead><tbody><tr><td>Stiffness and Stress Stiffness Matrices;
+and Thermal Load Vector</td><td colspan="2" valign="middle">
+<a class="xref" href="thy_shp8.html#thyeq4bricknov2101" title="(11&#8211;214)">Equation&nbsp;11&#8211;214</a>, <a class="xref" href="thy_shp8.html#thyeq5bricknov2101" title="(11&#8211;215)">Equation&nbsp;11&#8211;215</a>, and <a class="xref" href="thy_shp8.html#thyeq6bricknov2101" title="(11&#8211;216)">Equation&nbsp;11&#8211;216</a>
+</td><td valign="middle">
+<div class="literallayout"><p>In-plane:<br>
+2&nbsp;x&nbsp;2<br>
+Thru-the-thickness:<br>
+2&nbsp;if&nbsp;no&nbsp;shell&nbsp;section&nbsp;defined.<br>
+1,&nbsp;3,&nbsp;5,&nbsp;7,&nbsp;or&nbsp;9&nbsp;per&nbsp;layer&nbsp;if&nbsp;a&nbsp;<br>
+shell&nbsp;section&nbsp;is&nbsp;defined</p></div>
+</td></tr><tr><td>Mass Matrix</td><td colspan="2">Same as stiffness matrix </td><td>Same as stiffness matrix </td></tr><tr><td rowspan="2" valign="middle">Pressure
+Load Vector </td><td valign="middle">Quad</td><td>
+<a class="xref" href="thy_shp5.html#thyeq1q4nov2601" title="(11&#8211;69)">Equation&nbsp;11&#8211;69</a> and <a class="xref" href="thy_shp5.html#thyeq2q4nov2601" title="(11&#8211;70)">Equation&nbsp;11&#8211;70</a>
+</td><td align="center" valign="middle">2 x 2</td></tr><tr><td valign="middle">Triangle</td><td>
+<a class="xref" href="thy_shp5.html#thyeq1cstnov2601" title="(11&#8211;49)">Equation&nbsp;11&#8211;49</a> and <a class="xref" href="thy_shp5.html#thyeq2cstnov2601" title="(11&#8211;50)">Equation&nbsp;11&#8211;50</a>
+</td><td align="center" valign="middle">3</td></tr></tbody></table></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="COLSPEC33"><col width="432" class="COLSPEC34"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Load Type</th><th align="center" valign="middle">Distribution</th></tr></thead><tbody><tr valign="middle"><td valign="middle">Element Temperature</td><td valign="middle">Bilinear in plane of element, linear thru each layer</td></tr><tr valign="middle"><td valign="middle">Nodal Temperature</td><td valign="middle">Trilinear thru
+element</td></tr><tr valign="middle"><td valign="middle">Pressure</td><td valign="middle">Bilinear across each face</td></tr></tbody></table></div></div><div class="sect2" title="13.185.3.&nbsp;Other Applicable Sections"><div class="titlepage"><div><div><h3 class="title"><a name="solid185other"></a>13.185.3.&nbsp;Other Applicable Sections</h3></div></div></div><p>
+<a class="xref" href="thy_str.html" title="Chapter&nbsp;2:&nbsp;Structures">Structures</a> describes the derivation of
+structural element matrices and load vectors as well as stress evaluations.
+ <a class="xref" href="thy_geo5.html" title="3.6.&nbsp;General Element Formulations">General Element Formulations</a> gives the general element formulations
+used by this element.</p></div><div class="sect2" title="13.185.4.&nbsp;Theory"><div class="titlepage"><div><div><h3 class="title"><a name="soliod185theory"></a>13.185.4.&nbsp;Theory</h3></div></div></div><p>If KEYOPT(2) = 0 (not applicable to layered SOLID185), this
+element uses 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqfa1f428e-3e44-4095-b26f-7c2d2cff9682.svg"></span> method (selective reduced
+integration technique for volumetric terms) (Hughes(<a class="xref" href="thy_biblio.html#ERurq178jjw" title="&#34;Generalization of Selective Integration Procedures to Anisotropic and Nonlinear Media&#34;">[220]</a>), Nagtegaal et al.(<a class="xref" href="thy_biblio.html#vTurq385jjw" title="&#34;On Numerically Accurate Finite Element Solutions in the Fully Plastic Range&#34;">[221]</a>)). </p><p>If KEYOPT(2) = 1 (not applicable to layered SOLID185), the uniform
+reduced integration technique (Flanagan and Belytschko(<a class="xref" href="thy_biblio.html#aEsCr5cjjw" title="&#34;A Uniform Strain Hexahedron and Quadrilateral with Orthogonal Hourglass Control&#34;">[233]</a>)) is used.</p><p>If KEYOPT(2) = 2 or 3, the enhanced strain formulations from
+the work of Simo and Rifai(<a class="xref" href="thy_biblio.html#simorifai" title="&#8220;A Class of Mixed Assumed Strain Methods and the Method of Incompatible Modes&#8221;">[319]</a>), Simo and
+Armero(<a class="xref" href="thy_biblio.html#simoarmero" title="&#8220;Gometrically Non-linear Enhanced Strain Mixed Methods and the Method of Incompatible Modes&#8221;">[320]</a>), Simo et al.(<a class="xref" href="thy_biblio.html#simoetal" title="&#8220;Improved Versions of Assumed Enhanced Strain Tri-Linear Elements for 3D Finite Deformation Problems&#8221;">[321]</a>), Andelfinger and Ramm(<a class="xref" href="thy_biblio.html#andelfingerramm" title="&#8220;EAS-Elements for Two-Dimensional, Three-Dimensional, Plate and Shell Structures and Their Equivalence to HR-Elements&#8221;">[322]</a>), and Nagtegaal and Fox(<a class="xref" href="thy_biblio.html#nagtegaalfox" title="&#8220;Using Assumed Enhanced Strain Elements for Large Compressive Deformation&#8221;">[323]</a>) are used. It introduces 13 internal degrees
+of freedom to prevent shear and volumetric locking for KEYOPT(2) =
+2, and 9 degrees of freedom to prevent shear locking only for KEYOPT(2)
+= 3. If mixed u-P formulation is employed with the enhanced strain
+formulations, only 9 degrees of freedom for overcoming shear locking
+are activated.</p></div><div class="sect2" title="13.185.5.&nbsp;Shear Correction"><div class="titlepage"><div><div><h3 class="title"><a name="solid185shear"></a>13.185.5.&nbsp;Shear Correction</h3></div></div></div><p>The element does not perform interlaminar shear correction.
+Stresses are calculated from strains as is. </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

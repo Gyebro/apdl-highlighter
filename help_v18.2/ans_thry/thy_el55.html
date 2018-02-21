@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:26-04:00"><title>13.55.&nbsp;PLANE55 - 2-D Thermal Solid</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el54.html" title="13.54.&nbsp;Reserved for Future Use"><link rel="next" href="thy_el56.html" title="13.56.&nbsp;Not Documented"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.55.&nbsp;PLANE55 - 2-D Thermal Solid"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thyplane55"></a>13.55.&nbsp;PLANE55 - 2-D Thermal Solid</h2></div></div></div><div><img src="graphics/gthy14-55-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="216" class="col1"><col width="72" class="COLSPEC3"><col width="168" class="col2"><col width="168" class="col3"></colgroup><thead><tr><th align="center" valign="top">Matrix or Vector</th><th align="center" valign="top">Geometry</th><th align="center" valign="top">Shape Functions</th><th align="center" valign="top">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration Points</a>
+</th></tr></thead><tbody><tr><td rowspan="2">Conductivity Matrix
+and Heat Generation Load Vector</td><td>Quad</td><td>
+<a class="xref" href="thy_shp6.html#thyeq9quad43dnov2601" title="(11&#8211;128)">Equation&nbsp;11&#8211;128</a>
+</td><td align="center">2 x 2</td></tr><tr><td>Triangle</td><td>
+<a class="xref" href="thy_shp6.html#thyeq9cstnov2601" title="(11&#8211;108)">Equation&nbsp;11&#8211;108</a>
+</td><td>
+<div class="literallayout"><p>1&nbsp;if&nbsp;planar<br>
+3&nbsp;if&nbsp;axisymmetric</p></div>
+</td></tr><tr><td>Specific Heat Matrix</td><td colspan="2">Same as conductivity matrix.  Matrix is diagonalized
+as described in <a class="xref" href="thy_et2.html" title="12.5.&nbsp;Lumped Matrices">Lumped Matrices</a>.</td><td>Same as conductivity matrix</td></tr><tr><td>Convection Surface Matrix and Load Vector</td><td colspan="2">Same as conductivity matrix evaluated
+at the face</td><td align="center">2</td></tr></tbody></table></div><div class="sect2" title="13.55.1.&nbsp;Other Applicable Sections"><div class="titlepage"><div><div><h3 class="title"><a name="plane55other"></a>13.55.1.&nbsp;Other Applicable Sections</h3></div></div></div><a class="indexterm" name="d0e45006"></a><p>
+<a class="xref" href="thy_heat.html" title="Chapter&nbsp;6:&nbsp;Heat Flow">Heat Flow</a> describes the derivation of the
+element matrices and load vectors as well as heat flux evaluations. <a class="xref" href="thy_el70.html" title="13.70.&nbsp;SOLID70 - 3-D Thermal Solid">SOLID70 - 3-D Thermal Solid</a> describes fluid flow in a porous medium, accessed
+in PLANE55 with KEYOPT(9) = 1.</p></div><div class="sect2" title="13.55.2.&nbsp;Mass Transport Option"><div class="titlepage"><div><div><h3 class="title"><a name="plane55mass"></a>13.55.2.&nbsp;Mass Transport Option</h3></div></div></div><a class="indexterm" name="d0e45018"></a><a class="indexterm" name="d0e45021"></a><p>If KEYOPT(8) &gt; 0, the mass transport option is included as
+described in <a class="xref" href="thy_heat1.html" title="6.1.&nbsp;Heat Flow Fundamentals">Heat Flow Fundamentals</a> with <a class="xref" href="thy_heat1.html#thyeq1conductnov1601" title="(6&#8211;1)">Equation&nbsp;6&#8211;1</a> and by 
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eqa83f5ec5-285f-4c23-b718-1162c2e37e70.svg"></span> of <a class="xref" href="thy_heat2.html#thyeq7derivnov2601" title="(6&#8211;22)">Equation&nbsp;6&#8211;22</a>.  The solution accuracy is dependent
+on the element size.  The accuracy is measured in terms of the non-dimensional
+criteria called the element Peclet number (Gresho(<a class="xref" href="thy_biblio.html#Lzgf278mlg" title="&#34;Don't Suppress the Wiggles - They're Telling You Something&#34;">[58]</a>)): </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq1570a7fa-2fff-42e0-87d2-3c8aa2cd0ace"></a><div><img src="graphics/eq1570a7fa-2fff-42e0-87d2-3c8aa2cd0ace.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;98)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>V = magnitude of the velocity vector </td></tr><tr><td>L = element length dimension along the velocity vector direction </td></tr><tr><td>&#961; = density of the fluid (input as DENS on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command) </td></tr><tr><td>C<sub>p</sub> = specific heat of the fluid (input
+as C on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command) </td></tr><tr><td>K = equivalent thermal conductivity along the velocity vector
+direction </td></tr></table><p>
+</p><p>The terms V, L, and K are explained more thoroughly below: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq5d57f561-6a96-421a-abad-373e85cc542a"></a><div><img src="graphics/eq5d57f561-6a96-421a-abad-373e85cc542a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;99)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>V<sub>x</sub> = fluid velocity (mass transport)
+in x direction (input as VX on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>V<sub>y</sub> = fluid velocity (mass transport)
+in y direction (input as VY on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr></table><p>
+</p><p>Length L is calculated by finding the intersection points of
+the velocity vector which passes through the element origin and intersects
+at the element boundaries. </p><p>For orthotropic materials, the equivalent thermal conductivity
+K is given by: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqfd3b21fc-9c8b-4886-82ac-2d4e617057b1"></a><div><img src="graphics/eqfd3b21fc-9c8b-4886-82ac-2d4e617057b1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;100)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>K<sub>x</sub>, K<sub>y</sub> = thermal
+conductivities in the x and y directions (input as KXX and KYY on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command) </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eq85f7f21c-9342-41f8-8843-38a76a36da7e.svg"></span>
+</td></tr></table><p>
+</p><p>For the solution to be physically valid, the following condition
+must be satisfied (Gresho(<a class="xref" href="thy_biblio.html#Lzgf278mlg" title="&#34;Don't Suppress the Wiggles - They're Telling You Something&#34;">[58]</a>)): </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyelem55xswe"></a><div><img src="graphics/thyelem55xswe.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;101)</b></p></td></tr></table><p>This check is carried out during the
+element formulation and an error message is printed out if <a class="xref" href="thy_el55.html#thyelem55xswe" title="(13&#8211;101)">Equation&nbsp;13&#8211;101</a> is not satisfied.  When this error occurs,
+the problem should be rerun after reducing the element size in the
+direction of the velocity vector. </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

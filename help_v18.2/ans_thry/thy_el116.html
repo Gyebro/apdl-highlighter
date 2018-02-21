@@ -1,0 +1,124 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:32-04:00"><title>13.116.&nbsp;FLUID116 - Coupled Thermal-Fluid Pipe</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el115.html" title="13.115.&nbsp;Reserved for Future Use"><link rel="next" href="thy_el117.html" title="13.117.&nbsp;Reserved for Future Use"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.116.&nbsp;FLUID116 - Coupled Thermal-Fluid Pipe"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thyfluid116"></a>13.116.&nbsp;FLUID116 - Coupled Thermal-Fluid Pipe</h2></div></div></div><div><img src="graphics/gthy14-116-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="168" class="col1"><col width="144" class="COLSPEC0"><col width="168" class="col2"><col width="144" class="col3"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Matrix or Vector</th><th align="center" valign="middle">Geometry</th><th align="center" valign="middle">Shape Functions</th><th align="center" valign="middle">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration
+Points</a>
+</th></tr></thead><tbody><tr valign="middle"><td rowspan="2" valign="middle">Thermal Conductivity
+Matrix</td><td valign="middle">Between nodes I and J</td><td valign="middle">
+<a class="xref" href="thy_shp2.html#thyeq8wordof3dnov2101" title="(11&#8211;13)">Equation&nbsp;11&#8211;13</a>
+</td><td align="center" valign="middle">None</td></tr><tr valign="middle"><td valign="middle">Convection
+between nodes I and K and between nodes J and L  (optional)</td><td valign="middle">None</td><td align="center" valign="middle">None</td></tr><tr valign="middle"><td valign="middle">Pressure Conductivity Matrix </td><td valign="middle">Between nodes I and J </td><td valign="middle">
+<a class="xref" href="thy_shp2.html#thyeq7wordof3dnov2101" title="(11&#8211;12)">Equation&nbsp;11&#8211;12</a>
+</td><td align="center" valign="middle">None</td></tr><tr valign="middle"><td valign="middle">Specific Heat  Matrix and
+Heat Generation Load Vector</td><td colspan="2" valign="middle">
+<a class="xref" href="thy_shp2.html#thyeq8wordof3dnov2101" title="(11&#8211;13)">Equation&nbsp;11&#8211;13</a>
+</td><td align="center" valign="middle">None</td></tr></tbody></table></div><div class="sect2" title="13.116.1.&nbsp;Assumptions and Restrictions"><div class="titlepage"><div><div><h3 class="title"><a name="fluid116assump"></a>13.116.1.&nbsp;Assumptions and Restrictions</h3></div></div></div><p>Transient pressure and compressibility effects are also not included. </p></div><div class="sect2" title="13.116.2.&nbsp;Combined Equations"><div class="titlepage"><div><div><h3 class="title"><a name="fluid116combined"></a>13.116.2.&nbsp;Combined Equations</h3></div></div></div><p>The thermal and pressure aspects of the problem have been combined into
+one element having two different types of working variables:  temperatures
+and pressures.  The equilibrium equations for one element have the form of: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1fluid116nov2701"></a><div><img src="graphics/thyeq1fluid116nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;167)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>[C<sup>t</sup>] = specific heat matrix for one channel </td></tr><tr><td>{T} = nodal temperature vector </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq6349249a-9c68-489e-aebf-0ee4db6f3240.svg"></span>
+</td></tr><tr><td>{P} = nodal pressure vector </td></tr><tr><td>[K<sup>t</sup>] = thermal conductivity matrix for
+one channel (includes effects of convection and mass transport) </td></tr><tr><td>[K<sup>p</sup>] = pressure conductivity matrix for
+one channel </td></tr><tr><td>{Q} = nodal heat flow vector (input as HEAT on <a href="../ans_cmd/Hlp_C_F.html" class="olink"><span class="command"><strong>F</strong></span></a>
+command) </td></tr><tr><td>{w} = nodal fluid flow vector (input as FLOW on <a href="../ans_cmd/Hlp_C_F.html" class="olink"><span class="command"><strong>F</strong></span></a>
+command) </td></tr><tr><td>{Q<sup>g</sup>} = internal heat generation vector
+for one channel </td></tr><tr><td>{H} = gravity and pumping effects vector for one channel </td></tr><tr><td>N<sub>c</sub> = number of parallel flow channels (input
+as N<sub>c</sub> on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr></table><p>
+</p></div><div class="sect2" title="13.116.3.&nbsp;Thermal Matrix Definitions"><div class="titlepage"><div><div><h3 class="title"><a name="fluid116thermal"></a>13.116.3.&nbsp;Thermal Matrix Definitions</h3></div></div></div><a class="indexterm" name="d0e48315"></a><a class="indexterm" name="d0e48318"></a><a class="indexterm" name="d0e48321"></a><a class="indexterm" name="d0e48324"></a><a class="indexterm" name="d0e48327"></a><a class="indexterm" name="d0e48330"></a><p>
+<span class="bold"><strong>
+<span class="emphasis"><em>Specific Heat Matrix</em></span>
+</strong></span>
+</p><p>The specific heat matrix is a diagonal matrix with each term being the
+sum of the corresponding row of a consistent specific heat matrix: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2fluid116nov2701"></a><div><img src="graphics/thyeq2fluid116nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;168)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqc8a135e0-7377-4457-aee9-ea1867b1ddef.svg"></span> </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-31.000000px"><img src="graphics/eqe8a85f60-26f8-4c44-9e04-e6bb59a48748.svg"></span> </td></tr><tr><td>&#961; = mass density (input as DENS on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command </td></tr><tr><td>P = pressure (average of first two nodes) </td></tr><tr><td>T<sub>abs</sub> = T + TOFFST = absolute temperature </td></tr><tr><td>T = temperature (average of first two nodes) </td></tr><tr><td>TOFFST = offset temperature (input on <a href="../ans_cmd/Hlp_C_TOFFST.html" class="olink"><span class="command"><strong>TOFFST</strong></span></a> command) </td></tr><tr><td>C<sub>p</sub> = specific heat (input as C on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>
+command) </td></tr><tr><td>A = flow cross-sectional area (input as A on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a>
+command) </td></tr><tr><td>L<sub>o</sub> = length of member (distance between nodes
+I and J) </td></tr><tr><td>R<sub>gas</sub> = gas constant (input as R<sub>gas</sub>
+on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr></table><p>
+</p><p>
+<span class="bold"><strong>
+<span class="emphasis"><em>Thermal Conductivity Matrix</em></span>
+</strong></span>
+</p><p>The thermal conductivity matrix is given by: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3fluid116nov2701"></a><div><img src="graphics/thyeq3fluid116nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;169)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq53922a98-0be6-4529-8719-dfa6f336af66.svg"></span> </td></tr><tr><td>K<sub>s</sub> = thermal conductivity (input as KXX on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>
+command) </td></tr><tr><td>B<sub>2</sub> = h A<sub>I</sub> </td></tr><tr><td>h = film coefficient (defined below) </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-22.000000px"><img src="graphics/eq1ae64a28-d55c-4ca8-b614-79fde24ce567.svg"></span>
+</td></tr><tr><td>B<sub>3</sub> = h A<sub>J</sub> </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-22.000000px"><img src="graphics/eq9ac9ccbe-84e4-4016-bbcb-ca2d962ae4c9.svg"></span>
+</td></tr><tr><td>D = hydraulic diameter (input as D on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-17.000000px"><img src="graphics/eq22d218f2-6f35-4ee9-bfec-575a4614df93.svg"></span>
+    </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-17.000000px"><img src="graphics/eq3f7aa4ba-e685-4bee-909b-a0d5864eb941.svg"></span>
+    </td></tr><tr><td>w = mass fluid flow rate in the element </td></tr></table><p>
+</p><p>w may be determined by the program or may be input by the user:   </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq4fluid116nov2701"></a><div><img src="graphics/thyeq4fluid116nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;170)</b></p></td></tr></table><p>The above definitions of B<sub>4</sub> and B<sub>5</sub>,
+as used by <a class="xref" href="thy_el116.html#thyeq3fluid116nov2701" title="(13&#8211;169)">Equation&nbsp;13&#8211;169</a>, cause the energy change
+due to mass transport to be lumped at the outlet node.   </p><p>The film coefficient h is defined as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq5fluid116nov2701"></a><div><img src="graphics/thyeq5fluid116nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;171)</b></p></td></tr></table><p>Nu, the Nusselt number, is defined for KEYOPT(4) = 1 as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq6fluid116nov2701"></a><div><img src="graphics/thyeq6fluid116nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;172)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>N1 to N4 = input constants (input on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> commands) </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eq6c75c726-79cc-4e07-b8dc-ef0893a1f534.svg"></span>  </td></tr><tr><td>&#956; = viscosity (input as VISC on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command) </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eqe47834ca-96d3-4201-81ba-4637275f39ce.svg"></span> </td></tr></table><p>
+</p><p>A common usage of <a class="xref" href="thy_el116.html#thyeq6fluid116nov2701" title="(13&#8211;172)">Equation&nbsp;13&#8211;172</a> is the Dittus-Boelter
+correlation for fully developed turbulent flow in smooth tubes (Holman(<a class="xref" href="thy_biblio.html#aNbhf353mlg" title="Heat Transfer">[55]</a>)): </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq7fluid116nov2701"></a><div><img src="graphics/thyeq7fluid116nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;173)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-17.000000px"><img src="graphics/eq1fc4d4d6-da0b-4660-a93b-432fccaa7bfc.svg"></span>
+    </td></tr></table><p>
+</p><p>
+<span class="bold"><strong>
+<span class="emphasis"><em>Heat Generation Load Vector</em></span>
+</strong></span>
+</p><p>The internal heat generation load vector is due to both average heating
+effects and viscous damping: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq8fluid116nov2701"></a><div><img src="graphics/thyeq8fluid116nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;174)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eq0e379ac6-f0d8-49f1-b3bc-acb46b669852.svg"></span> </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqf1b4b54b-83df-4e5e-bc29-45bb61be5f17.svg"></span>
+</td></tr><tr><td>V<sub>DF</sub> = viscous damping multiplier (input on <a href="../ans_cmd/Hlp_C_RMORE.html" class="olink"><span class="command"><strong>RMORE</strong></span></a>
+command) </td></tr><tr><td>C<sub>ver</sub> = units conversion factor (input on <a href="../ans_cmd/Hlp_C_RMORE.html" class="olink"><span class="command"><strong>RMORE</strong></span></a>
+command)  </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eq24933c33-bb63-4a31-9c84-d9632f864dc8.svg"></span> </td></tr><tr><td>v = average velocity </td></tr></table><p>
+</p><p>The expression for the viscous damping part of Q<sub>n</sub>
+is based on fully developed laminar flow. </p></div><div class="sect2" title="13.116.4.&nbsp;Fluid Equations"><div class="titlepage"><div><div><h3 class="title"><a name="fluid116fluid"></a>13.116.4.&nbsp;Fluid Equations</h3></div></div></div><a class="indexterm" name="d0e48619"></a><a class="indexterm" name="d0e48622"></a><p>Bernoulli's equation is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq9fluid116nov2701"></a><div><img src="graphics/thyeq9fluid116nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;175)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>Z = coordinate in the negative acceleration direction </td></tr><tr><td>P = pressure </td></tr><tr><td>&#947; = &#961;g</td></tr><tr><td>g = acceleration of gravity </td></tr><tr><td>v = velocity </td></tr><tr><td>P<sub>PMP</sub> = pump pressure (input as P<sub>p</sub>
+on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>C<sub>L</sub> = loss coefficient </td></tr></table><p>
+</p><p>The loss coefficient is defined as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq10fluid116nov2701"></a><div><img src="graphics/thyeq10fluid116nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;176)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-34.000000px"><img src="graphics/eq7d0b4e4e-42e8-47b3-ae72-1362642e4b21.svg"></span>
+   </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq9b46e2aa-7a22-42c9-8689-e017734d4a6f.svg"></span>
+<sub>a</sub> = additional
+length to account for extra flow losses (input as L<sub>a</sub>
+on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>k = loss coefficient for typical fittings (input as K on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a>
+command) </td></tr><tr><td>f =   Moody friction factor, defined below: </td></tr></table><p>For the first iteration of the first load step, </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq11fluid116nov2701"></a><div><img src="graphics/thyeq11fluid116nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;177)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>f<sub>m</sub> = input as MU on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command </td></tr></table><p>
+</p><p>For all subsequent iterations </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq12fluid116nov2701"></a><div><img src="graphics/thyeq12fluid116nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;178)</b></p></td></tr></table><p>The smooth pipe empirical correlation is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq13fluid116nov2701"></a><div><img src="graphics/thyeq13fluid116nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;179)</b></p></td></tr></table><p>Bernoulli's <a class="xref" href="thy_el116.html#thyeq9fluid116nov2701" title="(13&#8211;175)">Equation&nbsp;13&#8211;175</a> may be simplified
+for this element, since the cross-sectional area of the pipe does not change.
+ Therefore, continuity requires all velocities not to vary along the length.
+ Hence v<sub>1</sub> = v<sub>2</sub> = v<sub>a</sub>,
+so that Bernoulli's <a class="xref" href="thy_el116.html#thyeq9fluid116nov2701" title="(13&#8211;175)">Equation&nbsp;13&#8211;175</a> reduces to: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq14fluid116nov2701"></a><div><img src="graphics/thyeq14fluid116nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;180)</b></p></td></tr></table><p>Writing <a class="xref" href="thy_el116.html#thyeq14fluid116nov2701" title="(13&#8211;180)">Equation&nbsp;13&#8211;180</a> in terms of mass flow
+rate (w = &#961;Av), and rearranging terms to match the second half of <a class="xref" href="thy_el116.html#thyeq1fluid116nov2701" title="(13&#8211;167)">Equation&nbsp;13&#8211;167</a>, </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq15fluid116nov2701"></a><div><img src="graphics/thyeq15fluid116nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;181)</b></p></td></tr></table><p>Since the pressure drop (P<sub>I</sub> - P<sub>J</sub>)
+is not linearly related to the flow (w), a nonlinear solution will be required.
+ As the w term may not be squared in the solution, the square root of all
+terms is taken in a heuristic way:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq16fluid116nov2701"></a><div><img src="graphics/thyeq16fluid116nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;182)</b></p></td></tr></table><p>Defining:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq17fluid116nov2701"></a><div><img src="graphics/thyeq17fluid116nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;183)</b></p></td></tr></table><p>and</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq18fluid116nov2701"></a><div><img src="graphics/thyeq18fluid116nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;184)</b></p></td></tr></table><p>
+<a class="xref" href="thy_el116.html#thyeq16fluid116nov2701" title="(13&#8211;182)">Equation&nbsp;13&#8211;182</a> reduces to: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq19fluid116nov2701"></a><div><img src="graphics/thyeq19fluid116nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;185)</b></p></td></tr></table><p>Hence, the pressure conductivity matrix is based on the term 
+<span class="inlineequation" style="&#xA;          vertical-align:-17.000000px"><img src="graphics/eq77da8180-0a14-4c43-83db-2578803da9d3.svg"></span> and the pressure (gravity and pumping) load vector
+is based on the term B<sub>c</sub> P<sub>L</sub>. </p><p>Two further points: </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>B<sub>c</sub> is generalized as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq20fluid116nov2701"></a><div><img src="graphics/thyeq20fluid116nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;186)</b></p></td></tr></table></li></ol></div><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>(-Z<sub>I</sub> + Z<sub>J</sub>)g
+is generalized as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq21fluid116nov2701"></a><div><img src="graphics/thyeq21fluid116nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;187)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>{&#916;x} = vector from node I to node J </td></tr><tr><td>{a<sub>t</sub>} = translational acceleration vector which
+includes effects of angular velocities (see <a class="xref" href="thy_tool1.html" title="14.1.&nbsp;Acceleration Effect">Acceleration Effect</a>) </td></tr></table><p>
+</p></li></ol></div></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:56-04:00"><title>4.7.&nbsp;Bergstrom-Boyce</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thymatlnonlin.html" title="Chapter&nbsp;4:&nbsp;Structures with Material Nonlinearities"><link rel="prev" href="thy_mat5.html" title="4.6.&nbsp;Hyperelasticity"><link rel="next" href="thy_mullinseffect.html" title="4.8.&nbsp;Mullins Effect"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="4.7.&nbsp;Bergstrom-Boyce"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thy_bbmodel"></a>4.7.&nbsp;Bergstrom-Boyce</h2></div></div></div><a class="indexterm" name="d0e12777"></a><p>The Bergstrom-Boyce material model (<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,<a href="../ans_cmd/Hlp_C_TB.html#TBBBspecs" class="olink">BB</a>) is a phenomenological-based,
+highly nonlinear material model used to model typical elastomers and
+biological materials. The model allows for a nonlinear stress-strain
+relationship, creep, and rate-dependence. </p><p>The Bergstrom-Boyce model is based on a spring (A) in parallel
+with a spring and damper (B) in series, as shown in <a class="xref" href="thy_bb.html#fig_thy_bbmodel" title="Figure&nbsp;4.28:&nbsp;&nbsp;Bergstrom-Boyce Material Model Representation">Figure&nbsp;4.28:&nbsp;Bergstrom-Boyce Material Model Representation</a>. The material model is associated with
+time-dependent stress-strain relationships without complete stress
+relaxation. All components (springs and damper) are highly nonlinear. </p><div class="figure"><a name="fig_thy_bbmodel"></a><p class="title"><b>Figure&nbsp;4.28:&nbsp;&nbsp;Bergstrom-Boyce Material Model Representation</b></p><div class="figure-contents"><div><img src="graphics/gthy_bbmodel.gif" alt="Bergstrom-Boyce Material Model Representation"></div></div></div><br class="figure-break"><p>The stress state in A can be found in the tensor form of the
+deformation gradient tensor (F = dx<sub>i</sub> / dX<sub>j</sub>) and material parameters, as follows: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqthy_bbmodel1"></a><div><img src="graphics/eqthy_bbmodel1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;259)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq0293ff32-8008-43c6-8657-0a06623e50a8.svg"></span> =  stress state in A</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq14744269-592d-4af7-9273-8242d3e66d47.svg"></span> =  initial shear modulus of A</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq6a3c4b66-d912-40f1-a307-f2fb7772e3f0.svg"></span> =  limiting chain stretch of A</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq257e6e0c-6cd9-4178-a867-b2b2e73b688f.svg"></span> =  bulk modulus</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq9addc684-b8e1-480b-a84d-6e329c54efb8.svg"></span> =  det[F]</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq481965ed-b542-40f8-8dc4-afde8a596757.svg"></span>  =  <span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eqaa612345-e9bc-42a5-92aa-c4676ea101d6.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq8c97884c-9f2f-4bdf-ae82-185c7aebcbfb.svg"></span>  =  <span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq2c3dc7b5-45b2-414e-9dc2-c1ccb37a5d58.svg"></span>
+                                </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqf5dfb642-3cc5-49ec-9bb5-45313218d239.svg"></span> =  inverse Langevin function (where the
+                                        Langevin function is given by <a class="xref" href="thy_bb.html#eqthy_bbmodel4" title="(4&#8211;260)">Equation&nbsp;4&#8211;260</a>)</td></tr></table><p>
+</p><p>For numerical efficiency, the Pad&eacute; (<a class="xref" href="thy_biblio.html#bergboyce3" title="&#8220;Bergstrom-Boyce Model for Nonlinear Finite Rubber Viscoelasticity: Theoretical Aspects and Algorithmic Treatment for the FE Method&#8221;">[374]</a>) approximation shown below is used for the
+inverse Langevin function (). This approximation will differ from
+the polynomial approximation used for the Arruda-Boyce model.</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqthy_bbmodel4"></a><div><img src="graphics/eqthy_bbmodel4.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;260)</b></p></td></tr></table><p>The stress in the viscoelastic component of the material (B)
+is a function of the deformation and the rate of deformation. Of the
+total deformation in B, a portion takes place in the elastic component
+while the rest of the deformation takes place in the viscous component.
+Because the stress in the elastic portion is equal to the stress plastic
+portion, the total stress can be written merely as a function of the
+elastic deformation, as shown in <a class="xref" href="thy_bb.html#eqthy_bbmodel5" title="(4&#8211;261)">Equation&nbsp;4&#8211;261</a>: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqthy_bbmodel5"></a><div><img src="graphics/eqthy_bbmodel5.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;261)</b></p></td></tr></table><p>All variables in this equation are analogous to the variables
+in <a class="xref" href="thy_bb.html#eqthy_bbmodel1" title="(4&#8211;259)">Equation&nbsp;4&#8211;259</a>. The viscous deformation can be
+found from the total deformation and the elastic deformation: 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqcbf7e92d-3dbe-48e6-b112-c4a7734fd8bd.svg"></span>
+</p><p>Correct solutions for 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq4b9d3f09-33ce-441f-ac55-01f218c2b419.svg"></span> and 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq1985971f-2241-4bce-9479-99fafc8ddedb.svg"></span> will satisfy:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqthy_bbmodel7"></a><div><img src="graphics/eqthy_bbmodel7.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;262)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq79df9d17-5eb6-4af5-b66d-df20564d18d2.svg"></span>  =  direction of the stress
+                                        tensor</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-17.000000px"><img src="graphics/eqb030bf90-5516-4d40-ba44-a9ad59602f69.svg"></span> = effective creep rate</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq2634933d-2c08-4ba3-a152-6c6650a636bd.svg"></span> =  Frobenius norm of the stress
+                                        tensor</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqc8d715c5-7634-4dca-a0a2-09720d135923.svg"></span> =  inelastic network stretch</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-13.000000px"><img src="graphics/eqb7464624-7506-4397-991c-67e1873f3f0b.svg"></span>, &#949;, C, and m  =  material input
+                                        parameters</td></tr></table><p>
+</p><p>As <span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq6947e51c-d472-46f8-b02e-6131fffca16c.svg"></span> is a function of the deformation ( <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq1c29d230-6de0-485e-8a6b-8519340493e2.svg"></span>), and &#964; is based on the stress tensor, <a class="xref" href="thy_bb.html#eqthy_bbmodel7" title="(4&#8211;262)">Equation&nbsp;4&#8211;262</a> is expanded to: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqthy_bbmodel12"></a><div><img src="graphics/eqthy_bbmodel12.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;263)</b></p></td></tr></table><p>After <a class="xref" href="thy_bb.html#eqthy_bbmodel12" title="(4&#8211;263)">Equation&nbsp;4&#8211;263</a> is satisfied, the corresponding stress tensor from
+                        component B is added to the stress tensor from component A to find the total
+                        stress, as shown in <a class="xref" href="thy_bb.html#eqthy_bbmodel17" title="(4&#8211;264)">Equation&nbsp;4&#8211;264</a>: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqthy_bbmodel17"></a><div><img src="graphics/eqthy_bbmodel17.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;264)</b></p></td></tr></table><p>For more information about the constitutive model, see references <a class="xref" href="thy_biblio.html#bergboyce1" title="&#8220;Constitutive Modeling of the Large Strain Time-Dependent Behavior of Elastomers&#8221;">[372]</a> and <a class="xref" href="thy_biblio.html#bergboyce2" title="&#8220;Large Strain Time-Dependent Behavior of Filled Elastomers,&#8221;">[373]</a>. For more
+information about the implementation, see reference <a class="xref" href="thy_biblio.html#bergboyce3" title="&#8220;Bergstrom-Boyce Model for Nonlinear Finite Rubber Viscoelasticity: Theoretical Aspects and Algorithmic Treatment for the FE Method&#8221;">[374]</a>.</p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:28-04:00"><title>13.71.&nbsp;MASS71 - Thermal Mass</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el70.html" title="13.70.&nbsp;SOLID70 - 3-D Thermal Solid"><link rel="next" href="thy_el72.html" title="13.72.&nbsp;Reserved for Future Use"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.71.&nbsp;MASS71 - Thermal Mass"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thymass71"></a>13.71.&nbsp;MASS71 - Thermal Mass</h2></div></div></div><div><img src="graphics/gthy14-71-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="240" class="col1"><col width="240" class="col2"><col width="144" class="col3"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Matrix or Vector</th><th align="center" valign="middle">Shape Functions</th><th align="center" valign="middle">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration
+Points</a>
+</th></tr></thead><tbody><tr valign="middle"><td valign="middle">Specific Heat Matrix and
+Heat Generation Load Vector</td><td align="center" valign="middle">None</td><td align="center" valign="middle">None</td></tr></tbody></table></div><div class="sect2" title="13.71.1.&nbsp;Specific Heat Matrix"><div class="titlepage"><div><div><h3 class="title"><a name="mass71specific"></a>13.71.1.&nbsp;Specific Heat Matrix</h3></div></div></div><p>The specific heat matrix for this element is simply: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq65911cb4-05dd-4350-9b53-a5763131b1b4"></a><div><img src="graphics/eq65911cb4-05dd-4350-9b53-a5763131b1b4.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;142)</b></p></td></tr></table><p>C<sup>o</sup> is defined as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqe4d20518-a887-4edb-a11d-89752922431f"></a><div><img src="graphics/eqe4d20518-a887-4edb-a11d-89752922431f.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;143)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#961; = density (input as DENS on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command) </td></tr><tr><td>C<sub>p</sub> = specific heat (input as C on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>
+command) </td></tr><tr><td>vol = volume (input as CON1 on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>C<sub>a</sub> = capacitance (input as CON1 on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a>
+command) </td></tr></table><p>
+</p></div><div class="sect2" title="13.71.2.&nbsp;Heat Generation Load Vector"><div class="titlepage"><div><div><h3 class="title"><a name="mass71heatgen"></a>13.71.2.&nbsp;Heat Generation Load Vector</h3></div></div></div><a class="indexterm" name="d0e46474"></a><a class="indexterm" name="d0e46477"></a><p>The heat generation load vector is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqdffa983b-2425-4409-a1b9-5eebcd765b1f"></a><div><img src="graphics/eqdffa983b-2425-4409-a1b9-5eebcd765b1f.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;144)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-22.000000px"><img src="graphics/eqb122078a-3dfd-464e-aef6-8ea7fe5b3e05.svg"></span> </td></tr><tr><td>Q<sub>R</sub> = heat rate (input as QRATE on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>
+command) </td></tr><tr><td>A<sub>1</sub>, A<sub>2</sub>, etc. = constants
+(input as A1, A2, etc. on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqbbc6aeab-15cb-4cb0-bf61-697d82299de6.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-18.000000px"><img src="graphics/eqa85851c6-c949-4c8e-92eb-6fcf8fb86749.svg"></span>
+</td></tr><tr><td>T<sub>unif</sub> = uniform temperature (input on <a href="../ans_cmd/Hlp_C_BFUNIF.html" class="olink"><span class="command"><strong>BFUNIF</strong></span></a>
+command) </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqa21ed7b1-35f2-4824-a09f-078b8e5f1e02.svg"></span>= temperature from previous
+iteration </td></tr><tr><td>T<sub>o</sub> = offset temperature (input on <a href="../ans_cmd/Hlp_C_TOFFST.html" class="olink"><span class="command"><strong>TOFFST</strong></span></a>
+command) </td></tr></table><p>
+</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

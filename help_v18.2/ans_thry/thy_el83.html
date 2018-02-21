@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:28-04:00"><title>13.83.&nbsp;PLANE83 - Axisymmetric-Harmonic 8-Node Structural Solid</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el82.html" title="13.82.&nbsp;Reserved for Future Use"><link rel="next" href="thy_el84.html" title="13.84.&nbsp;Not Documented"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.83.&nbsp;PLANE83 - Axisymmetric-Harmonic 8-Node Structural Solid"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thyplane83"></a>13.83.&nbsp;PLANE83 - Axisymmetric-Harmonic 8-Node Structural Solid</h2></div></div></div><div><img src="graphics/gthy14-83-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="168" class="col1"><col width="96" class="COLSPEC2"><col width="216" class="col2"><col width="144" class="col3"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Matrix or Vector</th><th align="center" valign="middle">Geometry</th><th align="center" valign="middle">Shape Functions</th><th align="center" valign="middle">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration
+Points</a>
+</th></tr></thead><tbody><tr valign="middle"><td rowspan="2" valign="middle">Stiffness,
+Mass, and Stress Stiffness Matrices; and Thermal Load Vector</td><td valign="middle">Quad</td><td valign="middle">
+<a class="xref" href="thy_shp7.html#thyeq1harmquadnov2601" title="(11&#8211;168)">Equation&nbsp;11&#8211;168</a>, <a class="xref" href="thy_shp7.html#thyeq2harmquadnov2601" title="(11&#8211;169)">Equation&nbsp;11&#8211;169</a>, and <a class="xref" href="thy_shp7.html#thyeq3harmquadnov2601" title="(11&#8211;170)">Equation&nbsp;11&#8211;170</a>
+</td><td align="center" valign="middle">2 x 2</td></tr><tr valign="middle"><td valign="middle">Triangle</td><td valign="middle">
+<a class="xref" href="thy_shp7.html#thyeq1harmtrinov2601" title="(11&#8211;157)">Equation&nbsp;11&#8211;157</a>, <a class="xref" href="thy_shp7.html#thyeq2harmtrinov2601" title="(11&#8211;158)">Equation&nbsp;11&#8211;158</a>, and <a class="xref" href="thy_shp7.html#thyeq3harmtrinov2601" title="(11&#8211;159)">Equation&nbsp;11&#8211;159</a>
+</td><td align="center" valign="middle">3</td></tr><tr valign="middle"><td valign="middle">Pressure Load Vector </td><td colspan="2" valign="middle">Same as stiffness matrix, specialized to the face</td><td align="center" valign="middle">2</td></tr></tbody></table></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="col1"><col width="432" class="col2"></colgroup><thead><tr><th align="center" valign="top">Load Type</th><th align="center" valign="top">Distribution</th></tr></thead><tbody><tr><td>Element Temperature</td><td>Same
+as shape functions across element, harmonic around circumference</td></tr><tr><td>Nodal Temperature</td><td>Same
+as element temperature distribution</td></tr><tr><td>Pressure</td><td>Linear along each face, harmonic around circumference</td></tr></tbody></table></div><p>Reference: Zienkiewicz(<a class="xref" href="thy_biblio.html#aXcgff6mlg" title="The Finite Element Method">[39]</a>) </p><div class="sect2" title="13.83.1.&nbsp;Other Applicable Sections"><div class="titlepage"><div><div><h3 class="title"><a name="plane83other"></a>13.83.1.&nbsp;Other Applicable Sections</h3></div></div></div><p>
+<a class="xref" href="thy_str.html" title="Chapter&nbsp;2:&nbsp;Structures">Structures</a> describes the derivation of structural
+element matrices and load vectors as well as stress evaluations. <a class="xref" href="thy_el25.html" title="13.25.&nbsp;PLANE25 - Axisymmetric-Harmonic 4-Node Structural Solid">PLANE25 - Axisymmetric-Harmonic 4-Node Structural Solid</a>
+has a discussion of temperature applicable to this element.</p></div><div class="sect2" title="13.83.2.&nbsp;Assumptions and Restrictions"><div class="titlepage"><div><div><h3 class="title"><a name="plane83assump"></a>13.83.2.&nbsp;Assumptions and Restrictions</h3></div></div></div><p>A dropped midside node implies that the edge is and remains straight.</p><p>The material properties are assumed to be constant around the entire
+circumference, regardless of temperature-dependent material properties or
+loading.  For 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq98a54318-7e9b-48b2-9744-89617169607a.svg"></span> (input as MODE on <a href="../ans_cmd/Hlp_C_MODE.html" class="olink"><span class="command"><strong>MODE</strong></span></a>
+command) &gt; 0, extreme values for combined stresses are obtained by computing
+these stresses at every 10/
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq2c4a5488-f3e4-4ae0-a832-c93053f358b7.svg"></span> degrees and
+selecting the extreme values.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

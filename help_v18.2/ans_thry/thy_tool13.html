@@ -1,0 +1,302 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:06-04:00"><title>14.13.&nbsp;Eigenvalue and Eigenvector Extraction</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_tool.html" title="Chapter&nbsp;14:&nbsp;Analysis Tools"><link rel="prev" href="thy_tool11.html" title="14.12.&nbsp;Constraint Equations"><link rel="next" href="thy_tool14.html" title="14.14.&nbsp;Analysis of Cyclically Symmetric Structures"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="14.13.&nbsp;Eigenvalue and Eigenvector Extraction"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="VhAf3b9lmm"></a>14.13.&nbsp;Eigenvalue and Eigenvector Extraction</h2></div></div></div><a class="indexterm" name="d0e71701"></a><a class="indexterm" name="d0e71704"></a><a class="indexterm" name="d0e71709"></a><a class="indexterm" name="d0e71714"></a><div class="highlights"><p>The following extraction methods and related topics are available:</p><ul><li><a href="thy_tool13.html#thyeigsnode" title="14.13.1.&nbsp;Supernode Method">Supernode Method</a></li><li><a href="thy_tool13.html#eltblocklanc" title="14.13.2.&nbsp;Block Lanczos">Block Lanczos</a></li><li><a href="thy_tool13.html#eltpcglan" title="14.13.3.&nbsp;PCG Lanczos">PCG Lanczos</a></li><li><a href="thy_tool13.html#eltunsymm" title="14.13.4.&nbsp;Unsymmetric Method">Unsymmetric Method</a></li><li><a href="thy_tool13.html#thysubspace" title="14.13.5.&nbsp;Subspace Method">Subspace Method</a></li><li><a href="thy_tool13.html#eltdampmeth" title="14.13.6.&nbsp;Damped Method">Damped Method</a></li><li><a href="thy_tool13.html#eltqrdamp" title="14.13.7.&nbsp;QR Damped Method">QR Damped Method</a></li><li><a href="thy_tool13.html#eltshift" title="14.13.8.&nbsp;Shifting">Shifting</a></li><li><a href="thy_tool13.html#eltrepeateig" title="14.13.9.&nbsp;Repeated Eigenvalues">Repeated Eigenvalues</a></li><li><a href="thy_tool13.html#eltcomplexeigens" title="14.13.10.&nbsp;Complex Eigensolutions">Complex Eigensolutions</a></li></ul></div><p>The eigenvalue and eigenvector problem needs to be solved for
+mode-frequency and buckling analyses. It has the form of:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1extractnov2101"></a><div><img src="graphics/thyeq1extractnov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;198)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>[K] = structural stiffness matrix </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq2893c151-d9eb-483e-8654-7024edb2ef0d.svg"></span> = eigenvector </td></tr><tr><td>&#955;<sub>i</sub> = eigenvalue </td></tr><tr><td>[M] = structural mass matrix </td></tr></table><p>
+</p><p>For prestressed modal analyses, the [K] matrix includes the
+stress stiffness matrix [S]. For eigenvalue buckling analyses, the
+[M] matrix is replaced with the stress stiffness matrix [S]. The discussions
+given in the rest of this section assume a modal analysis (<a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,MODAL) except as noted, but also generally applies
+to eigenvalue buckling analyses.</p><p>The eigenvalue and eigenvector extraction procedures available
+include the Block Lanczos, PCG Lanczos, Supernode, Subspace, unsymmetric,
+damped, and QR damped methods (<a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a> and <a href="../ans_cmd/Hlp_C_BUCOPT.html" class="olink"><span class="command"><strong>BUCOPT</strong></span></a> commands) outlined in <a class="xref" href="thy_tool13.html#antools.EigenExtr.tab1" title="Table&nbsp;14.1:&nbsp;&nbsp;Procedures Used for Eigenvalue and Eigenvector Extraction">Table&nbsp;14.1:&nbsp;Procedures Used for Eigenvalue and Eigenvector Extraction</a>. Each method is discussed subsequently.
+Shifting, applicable to most methods, is discussed in a later section
+(see <a class="xref" href="thy_tool13.html#eltshift" title="14.13.8.&nbsp;Shifting">Shifting</a>).</p><div class="table"><a name="antools.EigenExtr.tab1"></a><p class="title"><b>Table&nbsp;14.1:&nbsp;&nbsp;Procedures Used for Eigenvalue and Eigenvector Extraction</b></p><div class="table-contents"><table summary="Procedures Used for Eigenvalue and Eigenvector Extraction" border="1" width="95%"><colgroup><col width="18%" class="col1"><col width="17%" class="col2"><col width="18%" class="col3"><col width="14%" class="col4"><col width="15%" class="col5"><col width="18%" class="col6"></colgroup><thead><tr><th align="center" valign="top">Procedure</th><th align="center" valign="top">Input</th><th align="center" valign="top">Usages</th><th align="center" valign="top">Applicable Matrices++</th><th align="center" valign="top">Reduction</th><th align="center" valign="top">Extraction Technique</th></tr></thead><tbody><tr><td>Supernode</td><td>
+<a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a>, SNODE</td><td>Symmetric (but not applicable to buckling)</td><td>[K], [M]</td><td>None</td><td>Internally uses node
+grouping, reduced, and Lanczos methods</td></tr><tr><td>Block
+Lanczos</td><td>
+<a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a>, LANB</td><td>Symmetric</td><td>[K], [M]</td><td>None</td><td>Lanczos which internally uses QL algorithm</td></tr><tr><td>PCG Lanczos</td><td>
+<a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a>, LANPCG</td><td>Symmetric (but not applicable for buckling)</td><td>[K],
+[M]</td><td>None</td><td>Lanczos which internally uses
+QL algorithm</td></tr><tr><td>Subspace</td><td>
+<a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a>, SUBSP</td><td>Symmetric</td><td>[K],
+[M]</td><td>None</td><td>Internally uses Subspace method
+with auto-shift</td></tr><tr><td>Unsymmetric</td><td>
+<a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a>, UNSYM</td><td>Unsymmetric matrices</td><td>[K*], [M*]</td><td>None</td><td>Lanczos which internally
+uses QR algorithm</td></tr><tr><td>Damped</td><td>
+<a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a>, DAMP</td><td>Symmetric or unsymmetric damped
+systems</td><td>[K*], [C*], [M*]</td><td>None</td><td>Lanczos which internally uses QR algorithm</td></tr><tr><td>QR Damped</td><td>
+<a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a>, QRDAMP</td><td>Symmetric or unsymmetric damped systems</td><td>[K*],
+[C*], [M]</td><td>Modal</td><td>QR algorithm for reduced
+modal damping matrix</td></tr><tr><td colspan="6">++ [K] = stiffness matrix, [C] = damping matrix, [M]
+= mass or stress stiffening matrix, * = can be unsymmetric</td></tr></tbody></table></div></div><br class="table-break"><p>The Block Lanczos and PCG Lanczos methods both use Lanczos iterations
+to extract the requested eigenvalues. However, the Block Lanczos method
+uses the sparse direct solver, while the PCG Lanczos method uses the
+PCG iterative solver internally to solve the necessary system of equations
+at each Lanczos iteration.</p><div class="sect2" title="14.13.1.&nbsp;Supernode Method"><div class="titlepage"><div><div><h3 class="title"><a name="thyeigsnode"></a>14.13.1.&nbsp;Supernode Method</h3></div></div></div><a class="indexterm" name="d0e71915"></a><a class="indexterm" name="d0e71918"></a><a class="indexterm" name="d0e71921"></a><p>The Supernode (SNODE) solver is used to solve large, symmetric
+eigenvalue problems for many modes (up to 10,000 and beyond) in one
+solution. A supernode is a group of nodes from a group of elements.
+The supernodes for the model are generated automatically by the solver.
+This method first calculates eigenmodes for each supernode in the
+range of 0.0 to FREQE*<span class="italic"><em>RangeFact</em></span> (where <span class="italic"><em>RangeFact</em></span> is specified
+by the <a href="../ans_cmd/Hlp_C_SNOPTION.html" class="olink"><span class="command"><strong>SNOPTION</strong></span></a> command and defaults to 2.0), and
+then uses the supernode eigenmodes to calculate the global eigenmodes
+of the model in the range of FREQB to FREQE (where <em class="replaceable"><code>FREQB</code></em> and <em class="replaceable"><code>FREQE</code></em> are specified by the <a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a> command). Typically, this method offers faster solution
+times than Block Lanczos or PCG Lanczos if the number of modes requested
+is more than 200.</p><p>The Supernode eigensolver uses an approximate method compared to the
+         Block Lanczos and PCG Lanczos solutions. The accuracy of the Supernode solution can be
+         controlled by the <a href="../ans_cmd/Hlp_C_SNOPTION.html" class="olink"><span class="command"><strong>SNOPTION</strong></span></a> command. By default, the eigenmode accuracy
+         is based on the frequency range used (assuming no rigid body modes are in the model), as
+         shown in the following table.</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="144" class="col1"><col width="192" class="col2"></colgroup><tbody><tr><td>
+<span class="bold"><strong>Frequency Range</strong></span>
+</td><td>
+<span class="bold"><strong>Accuracy of Supernode solution</strong></span>
+</td></tr><tr><td>0 - 100 Hz</td><td>0.01 percent error</td></tr><tr><td>100 - 200 Hz</td><td>0.05 percent error</td></tr><tr><td>200 - 400 Hz</td><td>0.20 percent error</td></tr><tr><td>400 - 1000 Hz</td><td>1.00 percent error</td></tr><tr><td>1000 Hz and higher</td><td>3.0 - 5.0 percent
+error</td></tr></tbody></table></div><p>Typically, the reason for seeking many modes is to perform a subsequent
+         mode-superposition or PSD analysis to solve for the response in a higher frequency range.
+         The error introduced by the Supernode eigensolver (shown in the table above, assuming no
+         rigid body modes are in the model) is small enough for most engineering purposes. You can
+         use the <a href="../ans_cmd/Hlp_C_SNOPTION.html" class="olink"><span class="command"><strong>SNOPTION</strong></span></a> command to increase the accuracy of the solution, but
+         at the cost of increased computing time. Increasing the value of
+            <em class="replaceable"><code>RangeFact</code></em> (on the <a href="../ans_cmd/Hlp_C_SNOPTION.html" class="olink"><span class="command"><strong>SNOPTION</strong></span></a> command)
+         results in a more accurate solution.</p><p>In each step of the Supernode eigenvalue calculation, a Sturm
+check is performed. The occurrence of missing modes in the Supernode
+calculation is rare.</p><p>The lumped mass matrix option (<a href="../ans_cmd/Hlp_C_LUMPM.html" class="olink"><span class="command"><strong>LUMPM</strong></span></a>,ON)
+is not allowed when using the Supernode mode extraction method. The
+consistent mass matrix option will be used regardless of the <a href="../ans_cmd/Hlp_C_LUMPM.html" class="olink"><span class="command"><strong>LUMPM</strong></span></a> setting.</p><p>The Supernode eigensolver has the following known limitations:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>If rigid body modes are present in the model and are part of the
+                  eigen-solution, the accuracy of the lower flexible modes is slightly deteriorated
+                  due to the rigid body modes present and the theoretical limitation of the
+                  Supernode eigensolver. In this case, you should increase the values of
+                     <em class="replaceable"><code>RangeFact</code></em> to be higher than 2.0 (default) and
+                  smaller than 10.0 to achieve better accuracy for the lower flexible modes.</p></li><li class="listitem"><p>Since the supernodes are formed arbitrarily and automatically, differences in
+                  domain decomposition (that is, using a different number of cores with
+                  distributed-memory parallel processing) slightly affects the solution accuracy.
+                  However, the resulting inaccuracy is normally less than 0.1 % in the eigenvalue
+                  solution.</p></li><li class="listitem"><p>The Supernode eigensolver does not use equation pivoting logic to process or
+                  factorize local equations. Therefore, any finite element formulation that requires
+                  pivoting to achieve an equation solution, such as an element formulation with
+                  Lagrangian multipliers (u-P formulation), is not supported. In this situation, the
+                  program automatically switches to the Block Lanczos modal solution.</p></li></ul></div></div><div class="sect2" title="14.13.2.&nbsp;Block Lanczos"><div class="titlepage"><div><div><h3 class="title"><a name="eltblocklanc"></a>14.13.2.&nbsp;Block Lanczos</h3></div></div></div><p>The Block Lanczos eigenvalue extraction method (accessed with <a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a>,LANB or <a href="../ans_cmd/Hlp_C_BUCOPT.html" class="olink"><span class="command"><strong>BUCOPT</strong></span></a>,LANB) is available
+for large symmetric eigenvalue problems.</p><p>The block shifted Lanczos algorithm is a variation of the classical
+Lanczos algorithm, where the Lanczos recursions are performed using
+a block of vectors, as opposed to a single vector. Additional theoretical
+details on the classical Lanczos method can be found in Rajakumar
+and Rogers(<a class="xref" href="thy_biblio.html#HzhLn159jjw" title="&#8220;The Lanczos Algorithm Applied to Unsymmetric Generalized Eigenvalue Problems&#8221;">[197]</a>). </p><p>A block shifted Lanczos algorithm, as found in Grimes et al.(<a class="xref" href="thy_biblio.html#GuhLnfdjjw" title="&#8220;A Shifted Block Lanczos Algorithm for Solving Sparse Symmetric Generalized Eigenproblems&#8221;">[196]</a>) is the theoretical basis of the eigensolver. The Block Lanczos method
+   employs an automated shift strategy to extract the number of eigenvalues requested. </p><p>At the end of the Block Lanczos calculation, the solver can perform a
+   Sturm sequence check if requested by the user. (The Sturm check is off by default and is not
+   needed for most applications.) This check computes the number of negative pivots encountered in
+   the range that the minimum and maximum eigenvalues encompass. This number will match the number
+   of converged eigenvalues unless some eigenvalues have been missed. Block Lanczos will report the
+   number of missing eigenvalues, if any.</p><p>Use of the Block Lanczos method for solving larger models (1,000,000 DOF, for example) with
+   many constraint equations (CE) and 3-D solid elements can require a significant amount of
+   computer memory. The alternative method of PCG Lanczos, which internally uses the PCG solver,
+   could result in savings of memory and computing time.</p></div><div class="sect2" title="14.13.3.&nbsp;PCG Lanczos"><div class="titlepage"><div><div><h3 class="title"><a name="eltpcglan"></a>14.13.3.&nbsp;PCG Lanczos</h3></div></div></div><p>The theoretical basis of this eigensolver is found in Grimes
+et al.(<a class="xref" href="thy_biblio.html#GuhLnfdjjw" title="&#8220;A Shifted Block Lanczos Algorithm for Solving Sparse Symmetric Generalized Eigenproblems&#8221;">[196]</a>), which is the same basis for
+the Block Lanczos eigenvalue extraction method. However, the implementaion
+differs somewhat from the Block Lanczos eigensolver, in that the PCG
+Lanczos eigensolver:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>does not employ an automated shift strategy during
+the eigenvalue analysis.</p></li><li class="listitem"><p>is only available for modal analyses and is not applicable
+to buckling analyses.</p></li></ul></div></div><div class="sect2" title="14.13.4.&nbsp;Unsymmetric Method"><div class="titlepage"><div><div><h3 class="title"><a name="eltunsymm"></a>14.13.4.&nbsp;Unsymmetric Method</h3></div></div></div><a class="indexterm" name="d0e72075"></a><a class="indexterm" name="d0e72078"></a><p>The unsymmetric eigensolver (accessed with <a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a>,UNSYM) is applicable whenever the system matrices are unsymmetric.
+For example, an acoustic fluid-structure interaction problem using <a href="../ans_elem/Hlp_E_FLUID30.html" class="olink"><span class="structname">FLUID30</span></a> elements results in unsymmetric matrices. Also,
+certain problems involving the input matrix element <a href="../ans_elem/Hlp_E_MATRIX27.html" class="olink"><span class="structname">MATRIX27</span></a> and/or <a href="../ans_elem/Hlp_E_COMBI214.html" class="olink"><span class="structname">COMBI214</span></a> element, such as in brake
+squeal problems, can give rise to unsymmetric system matrices. A generalized
+eigenvalue problem given by the following equation:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1unsymmnov2101"></a><div><img src="graphics/thyeq1unsymmnov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;199)</b></p></td></tr></table><p>can be setup and solved using the mode-frequency analysis (<a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,MODAL). The matrices [K] and [M] are the system
+stiffness and mass matrices, respectively. Either or both [K] and
+[M] can be unsymmetric. {&#981;<sub>i</sub>} is called
+the eigenvector. It represents the right eigenvector. The left eigenvector,
+which is extracted for mode-superposition harmonic analysis (<a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a> with <em class="replaceable"><code>ModType</code></em> = BOTH),
+satisfies the following equation:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2unsym"></a><div><img src="graphics/thyeq2unsym.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;200)</b></p></td></tr></table><p>where:</p><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq13f47de9-82d5-42cc-a5d0-b1c29fe0db81.svg"></span> = i<sup>th</sup> left eigenmode</p><p>The method employed to solve the unsymmetric eigenvalue problem
+is a subspace approach based on a method designated as Frequency Derivative
+Method. The FD method uses an orthogonal set of Krylov sequence of
+vectors:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="fdm1"></a><div><img src="graphics/fdm1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;201)</b></p></td></tr></table><p>To obtain the expression for the sequence of vectors, the generalized
+eigenvalue <a class="xref" href="thy_tool13.html#thyeq1unsymmnov2101" title="(14&#8211;199)">Equation&nbsp;14&#8211;199</a> is differentiated
+with respect to &#955;<sub>i</sub> to get:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="fdm2"></a><div><img src="graphics/fdm2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;202)</b></p></td></tr></table><p>Substituting <a class="xref" href="thy_tool13.html#fdm2" title="(14&#8211;202)">Equation&nbsp;14&#8211;202</a> into <a class="xref" href="thy_tool13.html#thyeq1unsymmnov2101" title="(14&#8211;199)">Equation&nbsp;14&#8211;199</a> and rearranging after applying a shift
+s, the starting expression for generating the sequence of vectors
+is given by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="fdm3"></a><div><img src="graphics/fdm3.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;203)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="fdm4"></a><div><img src="graphics/fdm4.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;204)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eqe6b8ba90-6bcb-4719-b806-7a89659a60cf.svg"></span>
+</td></tr><tr><td>s = an initial shift</td></tr></table><p>
+</p><p>The general expression used for generating the sequence of vectors
+is given by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="fdm5"></a><div><img src="graphics/fdm5.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;205)</b></p></td></tr></table><p>This matrix equation is solved by a sparse matrix solver (<a href="../ans_cmd/Hlp_C_EQSLV.html" class="olink"><span class="command"><strong>EQSLV</strong></span></a>, SPARSE). However, an explicit specification of the
+equation solver (<a href="../ans_cmd/Hlp_C_EQSLV.html" class="olink"><span class="command"><strong>EQSLV</strong></span></a> command) is not needed.</p><p>The subspace made of these derivatives allows the program to
+find the closest eigensolutions from this shift point. The shift value <span class="italic"><em>s</em></span> is initially determined using the <em class="replaceable"><code>FREQB</code></em> value on the <a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a> command.</p><p>For a large number of eigenvalues, the UNSYM extraction algorithm
+is able to move automatically to a new shift if the first solve only
+finds a subset of eigensolutions. This process will be repeated until
+all the required eigenvalues are found, unless the algorithm fails
+several times to find any accurate eigenvalues.</p><p>A subspace transformation of <a class="xref" href="thy_tool13.html#thyeq1unsymmnov2101" title="(14&#8211;199)">Equation&nbsp;14&#8211;199</a> is performed using the sequence of orthogonal vectors which leads
+to the reduced eigenproblem:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="fdm6"></a><div><img src="graphics/fdm6.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;206)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>[K*] = [Q]<sup>T</sup>[K] [Q]</td></tr><tr><td>[M*] = [Q]<sup>T</sup>[M] [Q]</td></tr></table><p>
+</p><p>The eigenvalues of the reduced eigenproblem (<a class="xref" href="thy_tool13.html#fdm6" title="(14&#8211;206)">Equation&nbsp;14&#8211;206</a>) are extracted using a direct eigenvalue solution procedure. The
+eigenvalues &#956;<sub>i</sub> are the approximate eigenvalues
+of the original eigenproblem and they converge to &#955;<sub>i</sub> with increasing subspace size m. The converged eigenvectors
+are then computed using the subspace transformation equation:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="fdm7"></a><div><img src="graphics/fdm7.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;207)</b></p></td></tr></table><p>This method does not perform a Sturm Sequence check for possible
+missing modes. At the lower end of the spectrum close to the shift
+(input as <span class="italic"><em>FREQB</em></span> on <a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a> command), the frequencies usually converge without missing modes. </p><p>If the eigensolutions are real, the frequency (Hz) is output
+as:</p><div class="informalequation"><a name="eq2059ecb5-a244-4e79-b131-53802f9c786e"></a><div><img src="graphics/eq2059ecb5-a244-4e79-b131-53802f9c786e.svg"></div></div><p>If the eigensolutions are complex, the complex frequency (Hz)
+is output as:</p><div class="informalequation"><a name="eq8ce9f83f-012c-4c0f-b347-e152551aeb82"></a><div><img src="graphics/eq8ce9f83f-012c-4c0f-b347-e152551aeb82.svg"></div></div><p>For more information, see <a class="xref" href="thy_tool13.html#eltcomplexeigens" title="14.13.10.&nbsp;Complex Eigensolutions">Complex Eigensolutions</a>.</p></div><div class="sect2" title="14.13.5.&nbsp;Subspace Method"><div class="titlepage"><div><div><h3 class="title"><a name="thysubspace"></a>14.13.5.&nbsp;Subspace Method</h3></div></div></div><a class="indexterm" name="d0e72259"></a><a class="indexterm" name="d0e72262"></a><p>The subspace eigensolver (accessed with <a href="../ans_cmd/Hlp_C_BUCOPT.html" class="olink"><span class="command"><strong>BUCOPT</strong></span></a>,SUBSP and <a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a>,SUBSP) is applicable for buckling
+and modal analyses in which the system matrices are symmetric. This
+eigensolver uses basically the same algorithm as the unsymmetric eigensolver
+(accessed with <a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a>,UNSYM) to solve the generalized
+eigenvalue problem given by the following equation.</p><p>For buckling analysis:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqff5f07e4-6d89-4117-9092-54c1ec55cf05"></a><div><img src="graphics/eqff5f07e4-6d89-4117-9092-54c1ec55cf05.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;208)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>[K] = structural stiffness matrix </td></tr><tr><td>[S] = stress stiffness matrix </td></tr><tr><td>&#955;<sub>i</sub> = i<sup>th</sup> eigenvalue (used to multiply the loads that generated [S])</td></tr><tr><td>{&#936;<sub>i</sub>} = i<sup>th</sup> eigenvector of displacements</td></tr></table><p>
+</p><p>For modal analysis:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq17ca993b-7439-4b91-8ee4-7903b301a254"></a><div><img src="graphics/eq17ca993b-7439-4b91-8ee4-7903b301a254.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;209)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>[K] = structural stiffness matrix </td></tr><tr><td>[M] = mass matrix </td></tr><tr><td>&#955;<sub>i</sub> = i<sup>th</sup> eigenvalue</td></tr><tr><td>{&#981;<sub>i</sub>} = i<sup>th</sup> eigenvector of displacements</td></tr></table><p>
+</p><p>The advantage of the SUBSP method over the Block Lanczos method
+is that both the [K] and [S] / [M] matrices can be indefinite at the
+same time.</p><p>
+<span class="bold"><strong>Buckling Analysis</strong></span>
+</p><p>Using the options of the <a href="../ans_cmd/Hlp_C_BUCOPT.html" class="olink"><span class="command"><strong>BUCOPT</strong></span></a> command,
+the program can find the eigenvalues in one of two ways:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>In a specified load multiplier range of interest (<em class="replaceable"><code>RangeKey</code></em> = RANGE), or </p></li><li class="listitem"><p>Around an initial shift (<em class="replaceable"><code>RangeKey</code></em> = CENTER).</p></li></ul></div><p>
+</p><p>Note that when using the CENTER option, the automatic (internal)
+shifting strategy of the algorithm is disabled. The eigenvalues found
+around the initial shift (CENTER value) are available; the solver
+may not find eigenvalues far away from the CENTER value.</p><p>
+<span class="bold"><strong>Modal Analysis</strong></span>
+</p><p>Some options of the subspace algorithm can be set using the <a href="../ans_cmd/Hlp_C_SUBOPT.html" class="olink"><span class="command"><strong>SUBOPT</strong></span></a> command. These include memory management and Sturm
+sequence check. By default, the Sturm check is turned off.</p></div><div class="sect2" title="14.13.6.&nbsp;Damped Method"><div class="titlepage"><div><div><h3 class="title"><a name="eltdampmeth"></a>14.13.6.&nbsp;Damped Method</h3></div></div></div><a class="indexterm" name="d0e72382"></a><a class="indexterm" name="d0e72385"></a><p>The damped eigensolver (accessed with <a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a>,DAMP) is applicable only when the system damping matrix needs to
+be included in <a class="xref" href="thy_tool13.html#thyeq1extractnov2101" title="(14&#8211;198)">Equation&nbsp;14&#8211;198</a>, where the eigenproblem
+becomes a quadratic eigenvalue problem given by: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="dampmeth1"></a><div><img src="graphics/dampmeth1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;210)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqa1ea00e7-3801-4057-ae67-fc2e1eede10a.svg"></span>
+</td></tr><tr><td>[C] = damping matrix </td></tr></table><p>
+</p><p>Matrices may be symmetric or unsymmetric.</p><p>The method employed to solve the damped eigenvalue problem is
+the same as for the UNSYM option. We first transform the initial quadratic
+equation (<a class="xref" href="thy_tool13.html#dampmeth1" title="(14&#8211;210)">Equation&nbsp;14&#8211;210</a>) in a linear form applying the
+variable substitutions:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-21.000000px"><img src="graphics/eqf2455df6-e062-458c-914c-f534b783c1ee.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-21.000000px"><img src="graphics/eq840ec3de-a750-415e-93a7-fac8935f0209.svg"></span>
+</td></tr></table><p>To form the equivalent UNSYM eigenvalue problem. </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="dampmeth2"></a><div><img src="graphics/dampmeth2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;211)</b></p></td></tr></table><p>Solutions of <a class="xref" href="thy_tool13.html#dampmeth1" title="(14&#8211;210)">Equation&nbsp;14&#8211;210</a> and <a class="xref" href="thy_tool13.html#dampmeth2" title="(14&#8211;211)">Equation&nbsp;14&#8211;211</a> are equivalent,
+         except that only the first-half part of the eigenvectors 
+         <span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eqe9208a30-02c4-4b94-bee2-f77752945b4d.svg"></span> is considered. </p><p>The UNSYM method uses <a class="xref" href="thy_tool13.html#dampmeth2" title="(14&#8211;211)">Equation&nbsp;14&#8211;211</a>. The default
+blocksize value to solve a Quadratic Damp Eigenproblem is set to four.
+This value can be controlled using the blocksize parameter of the <a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a> command. </p><p>This method does not perform a Sturm Sequence check for possible
+missing modes. At the lower end of the spectrum, close to the shift
+(input as <em class="replaceable"><code>FREQB</code></em> on the <a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a> command), the frequencies usually converge without missing modes.
+Furthermore, this method does not employ an automated shift strategy
+during the eigenvalue analysis.</p><p>The complex frequency (Hz) is output as:</p><div class="informalequation"><a name="eqd0ed739b-2fb8-422d-80de-88ba3b1bbfa5"></a><div><img src="graphics/eqd0ed739b-2fb8-422d-80de-88ba3b1bbfa5.svg"></div></div><p>For more information, see <a class="xref" href="thy_tool13.html#eltcomplexeigens" title="14.13.10.&nbsp;Complex Eigensolutions">Complex Eigensolutions</a>.</p></div><div class="sect2" title="14.13.7.&nbsp;QR Damped Method"><div class="titlepage"><div><div><h3 class="title"><a name="eltqrdamp"></a>14.13.7.&nbsp;QR Damped Method</h3></div></div></div><p>The QR damped method (accessed with <a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a>,QRDAMP) is a procedure for determining the complex eigenvalues and
+corresponding eigenvectors of damped linear systems. This eigensolver
+allows for nonsymmetric [K] and [C] matrices. The eigensolver is computationally
+efficient compared to the damped eigensolver (<a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a>,DAMP). This method employs the modal orthogonal coordinate transformation
+of system matrices to reduce the eigenvalue problem into the modal
+subspace. The QR algorithm is then used to calculate eigenvalues of
+the resulting quadratic eigenvalue problem in the modal subspace.</p><p>The equations that follow apply to Rayleigh and element-based
+damping in a QR Damped modal analysis. For the equations with constant
+structural damping (input with <a href="../ans_cmd/Hlp_C_DMPSTR.html" class="olink"><span class="command"><strong>DMPSTR</strong></span></a> or <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,DMPR), refer to <a class="xref" href="thy_tool13.html#eltqrdampCSD" title="14.13.7.1.&nbsp;QR Damped Method with Constant Structural Damping">QR Damped Method with Constant Structural Damping</a>.</p><p>The equations of elastic structural systems without external
+excitation can be written in the following form: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1qrnov2101"></a><div><img src="graphics/thyeq1qrnov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;212)</b></p></td></tr></table><p>(See <a class="xref" href="thy_anproc2.html#thyeq1systemsnov2001" title="(15&#8211;5)">Equation&nbsp;15&#8211;5</a> for definitions). </p><p>It has been recognized that performing computations in the modal
+subspace is more efficient than in the full eigenspace. The stiffness
+matrix [K] can be symmetrized by rearranging the unsymmetric contributions;
+that is, the original stiffness matrix [K] can be divided into symmetric
+and unsymmetric parts. By dropping the damping matrix [C] and the
+unsymmetric contributions of [K], the symmetric eigenvalue problem
+is first solved to find real eigenvalues and the corresponding eigenvectors.
+In the present implementation, the unsymmetric element stiffness matrix
+is zeroed out for the symmetric eigenvalue problem. Following is the
+coordinate transformation (see <a class="xref" href="thy_tool9.html#thyeq3superpositionnov2101" title="(14&#8211;104)">Equation&nbsp;14&#8211;104</a>) used to transform the full
+eigenvalue problem into modal subspace:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2qrnov2101"></a><div><img src="graphics/thyeq2qrnov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;213)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>[&#934;] = eigenvector matrix normalized with respect to the
+mass matrix [M] </td></tr><tr><td>{y} = vector of modal coordinates </td></tr></table><p>
+</p><p>By using <a class="xref" href="thy_tool13.html#thyeq2qrnov2101" title="(14&#8211;213)">Equation&nbsp;14&#8211;213</a> in <a class="xref" href="thy_tool13.html#thyeq1qrnov2101" title="(14&#8211;212)">Equation&nbsp;14&#8211;212</a>, we can write the differential equations
+of motion in the modal subspace as follows: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3qrnov2101"></a><div><img src="graphics/thyeq3qrnov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;214)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>[&#923;<sup>2</sup>] = a diagonal matrix
+containing the first n eigen frequencies &#969;<sub>i</sub> </td></tr></table><p>
+</p><p>For classically damped systems, the modal damping matrix [&#934;]<sup>T</sup>[C][&#934;] is a diagonal matrix with the diagonal
+terms being 2&#958;<sub>i</sub>&#969;<sub>i</sub>, where &#958;<sub>i</sub> is the damping ratio of the
+i-th mode. For non-classically damped systems, the modal damping matrix
+is either symmetric or unsymmetric. Unsymmetric stiffness contributions
+of the original stiffness are projected onto the modal subspace to
+compute the reduced unsymmetric modal stiffness matrix [&#934;]<sup>T</sup> [K<sub>unsym</sub>] [&#934;].</p><p>Introducing the 2n-dimensional state variable vector approach, <a class="xref" href="thy_tool13.html#thyeq3qrnov2101" title="(14&#8211;214)">Equation&nbsp;14&#8211;214</a> can be written in reduced form as follows:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq4qrnov2101"></a><div><img src="graphics/thyeq4qrnov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;215)</b></p></td></tr></table><p>where: 
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq4qrnov21013"></a><div><img src="graphics/thyeq4qrnov21013.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;216)</b></p></td></tr></table><p>
+
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq4qrnov21014"></a><div><img src="graphics/thyeq4qrnov21014.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;217)</b></p></td></tr></table><p>
+</p><p>The 2n eigenvalues of <a class="xref" href="thy_tool13.html#thyeq4qrnov2101" title="(14&#8211;215)">Equation&nbsp;14&#8211;215</a> are
+calculated using the QR algorithm (Press et al.(<a class="xref" href="thy_biblio.html#whpress93" title="Numerical Recipes in C: The Art of Scienfitic Computing">[255]</a>)). The inverse iteration method (Wilkinson and
+Reinsch(<a class="xref" href="thy_biblio.html#wilkinsonreinsch" title="&#8220;Linear Algebra&#8221;">[358]</a>)) is used to calculate
+the complex modal subspace eigenvectors. The full complex eigenvector,
+{&#968;}, of the original system is recovered using the following equation:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq4qrnov2101b"></a><div><img src="graphics/thyeq4qrnov2101b.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;218)</b></p></td></tr></table><p>Out of 2n solutions, only n <span>solutions</span> are output for
+         post-processing. When the complex eigenvalues are complex conjugate pairs, only the
+         positive imaginary solution (positive frequency) is retained. In the case of high damping,
+         all overdamped modes are also retained.</p><p>When system matrices are unsymmetric and structural damping is
+         present, the complex eigenvalues are not complex conjugate pairs, and the QR Damped Method
+         is not recommended.</p><p>The complex frequency (Hz) is output as:</p><div class="informalequation"><a name="eqea6c9e71-994a-41da-8a80-4d5e65dc132f"></a><div><img src="graphics/eqea6c9e71-994a-41da-8a80-4d5e65dc132f.svg"></div></div><p>For more information, see <a class="xref" href="thy_tool13.html#eltcomplexeigens" title="14.13.10.&nbsp;Complex Eigensolutions">Complex Eigensolutions</a>.</p><div class="sect3" title="14.13.7.1.&nbsp;QR Damped Method with Constant Structural Damping"><div class="titlepage"><div><div><h4 class="title"><a name="eltqrdampCSD"></a>14.13.7.1.&nbsp;QR Damped Method with Constant Structural Damping</h4></div></div></div><p>When a constant structural damping ratio is defined or an element
+generating a complex stiffness is present in a QR damped modal analysis
+with the complex mode shapes requested (<em class="replaceable"><code>Cpxmod</code></em> = YES on <a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a>), the state-space matrix <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq7c0fb27f-2056-4ddd-81c5-382c1207e484.svg"></span> from <a class="xref" href="thy_tool13.html#thyeq4qrnov21014" title="(14&#8211;217)">Equation&nbsp;14&#8211;217</a> becomes
+complex. This can be written as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqQRdmcst"></a><div><img src="graphics/eqQRdmcst.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;219)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-21.000000px"><img src="graphics/eq6d1ff4ce-a3c2-482b-874a-f820f7d98a85.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq3cba55d5-b8b3-432b-bfa7-7013b013b866.svg"></span>= constant structural damping coefficient
+(input with <a href="../ans_cmd/Hlp_C_DMPSTR.html" class="olink"><span class="command"><strong>DMPSTR</strong></span></a>)</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eqca654e86-a2a8-4c01-843f-ca45e051745f.svg"></span> = number of materials with <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,DMPR input</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqb8de8e2f-c1a7-4538-a645-735eac3aae65.svg"></span> = constant structural damping coefficient
+for material j (input with <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,DMPR)</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq4b35edd1-ed74-47b0-9c47-925a1db6bd04.svg"></span> = portion
+of structural stiffness matrix based on material j</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eq5e5bb4a9-351b-4b33-a9e9-4b19d00bfabe.svg"></span> =
+number of elements with specified imaginary stiffness matrix</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq43b5820e-3ae9-450c-870c-51a7960803e1.svg"></span> = imaginary element stiffness
+matrix</td></tr></table><p>
+</p></div></div><div class="sect2" title="14.13.8.&nbsp;Shifting"><div class="titlepage"><div><div><h3 class="title"><a name="eltshift"></a>14.13.8.&nbsp;Shifting</h3></div></div></div><a class="indexterm" name="d0e72677"></a><a class="indexterm" name="d0e72680"></a><a class="indexterm" name="d0e72683"></a><p>Various shifting strategies are used by most of the extraction
+methods in an effort to improve the accuracy, robustness, and efficiency
+of the algorithms. The logic on how those shift values are chosen
+is discussed in this section.</p><p>In some cases it is desirable to shift the values of eigenvalues
+either up or down. These fall in two categories: </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Shifting down, so that the solution of problems with
+rigid body modes does not require working with a singular matrix.</p></li><li class="listitem"><p>Shifting up, so that the bottom range of eigenvalues
+will not be computed, because they had effectively been converted
+to negative eigenvalues. This will, in general, result in better accuracy
+for the higher modes. The shift introduced is: </p></li></ol></div><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1shiftnov2101"></a><div><img src="graphics/thyeq1shiftnov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;220)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#955; = desired eigenvalue </td></tr><tr><td>&#955;<sub>0</sub> = eigenvalue shift </td></tr><tr><td>&#955;<sub>i</sub> = eigenvalue that is extracted </td></tr></table><p>
+</p><p>&#955;<sub>0</sub>, the eigenvalue shift is computed
+as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2shiftnov2101"></a><div><img src="graphics/thyeq2shiftnov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;221)</b></p></td></tr></table><p>When using the Block Lanczos or PCG Lanczos method, if no user
+input is given for <em class="replaceable"><code>SHIFT</code></em> (<a href="../ans_cmd/Hlp_C_BUCOPT.html" class="olink"><span class="command"><strong>BUCOPT</strong></span></a> command) or <em class="replaceable"><code>FREQB</code></em> (<a href="../ans_cmd/Hlp_C_MODOPT.html" class="olink"><span class="command"><strong>MODOPT</strong></span></a> command), the following logic is used:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2bshift"></a><div><img src="graphics/thyeq2bshift.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;222)</b></p></td></tr></table><p>where M<sub>ii</sub> and K<sub>ii</sub> are the diagonals of the [M] and [K] matrices, respectfully. The
+summation is taken over all terms where K<sub>ii</sub> &#8800; 0 and where <span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eq0429b991-b91f-49e8-90b0-d7071aed6a7a.svg"></span> &lt; 10e4. The number of such
+terms is <em class="replaceable"><code>n</code></em>.</p><p>When using the PCG Lanczos method, if a <em class="replaceable"><code>Lev_Diff</code></em> value of 1, 2, 3, or 4 is chosen (either automatically or by the
+user, see <a href="../ans_cmd/Hlp_C_PCGOPT.html" class="olink"><span class="command"><strong>PCGOPT</strong></span></a>), then -&#955;<sub>0</sub> from <a class="xref" href="thy_tool13.html#thyeq2bshift" title="(14&#8211;222)">Equation&nbsp;14&#8211;222</a> is used when rigid body modes
+are detected in order to avoid working with indefinite matrices with
+the PCG iterative solver. When using <em class="replaceable"><code>Lev_Diff</code></em> = 5, &#955;<sub>0</sub> is used as with the Block Lanczos
+method.</p><p>
+<a class="xref" href="thy_tool13.html#thyeq1shiftnov2101" title="(14&#8211;220)">Equation&nbsp;14&#8211;220</a> is combined with <a class="xref" href="thy_tool13.html#thyeq1extractnov2101" title="(14&#8211;198)">Equation&nbsp;14&#8211;198</a> to give: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqf1b560c2-ef42-4269-9389-3a83bcdb539e"></a><div><img src="graphics/eqf1b560c2-ef42-4269-9389-3a83bcdb539e.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;223)</b></p></td></tr></table><p>Rearranging, </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq5c137e7f-798c-44a3-9acc-73d369b7e820"></a><div><img src="graphics/eq5c137e7f-798c-44a3-9acc-73d369b7e820.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;224)</b></p></td></tr></table><p>or </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq826aed8a-fe4b-4bde-9fea-cb685ca87de6"></a><div><img src="graphics/eq826aed8a-fe4b-4bde-9fea-cb685ca87de6.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;225)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>[K]' = [K] - &#955;<sub>0</sub> [M]</td></tr></table><p>It may be seen that if [K] is singular, as in the case of rigid
+body motion, [K]' will not be singular if [M] is not totally zero
+(which is normally true) and if &#955;<sub>0</sub> is input
+as a non-zero number.</p><p>Once &#955;<sub>i</sub> is computed, &#955; is computed
+from <a class="xref" href="thy_tool13.html#thyeq1shiftnov2101" title="(14&#8211;220)">Equation&nbsp;14&#8211;220</a> and reported. </p></div><div class="sect2" title="14.13.9.&nbsp;Repeated Eigenvalues"><div class="titlepage"><div><div><h3 class="title"><a name="eltrepeateig"></a>14.13.9.&nbsp;Repeated Eigenvalues</h3></div></div></div><p>Repeated eigenvalues occur, for example, for a thin, axisymmetric
+pole. Two independent sets of orthogonal motions are possible corresponding
+to the same frequency.</p><p>In this case, the eigenvectors are not unique, as there is an
+infinite number of correct solutions. The repeated eigenvectors can
+be computed accurately when all are extracted. </p><p>In the special case of two or more identical but disconnected
+structures run as one analysis, eigenvectors may include components
+from more than one substructure. To reduce confusion in such cases,
+you should run a separate analysis for each structure. </p></div><div class="sect2" title="14.13.10.&nbsp;Complex Eigensolutions"><div class="titlepage"><div><div><h3 class="title"><a name="eltcomplexeigens"></a>14.13.10.&nbsp;Complex Eigensolutions</h3></div></div></div><p>For problems involving spinning structures with gyroscopic effects,
+and/or damped structural eigenfrequencies, the eigensolutions obtained
+with the <a class="xref" href="thy_tool13.html#eltdampmeth" title="14.13.6.&nbsp;Damped Method">Damped Method</a> and <a class="xref" href="thy_tool13.html#eltqrdamp" title="14.13.7.&nbsp;QR Damped Method">QR Damped Method</a> are complex. For problems involving frictional contact, such as
+brake squeal analyses, or problems involving structural damping, the
+eigensolutions obtained with the <a class="xref" href="thy_tool13.html#eltdampmeth" title="14.13.6.&nbsp;Damped Method">Damped Method</a>, <a class="xref" href="thy_tool13.html#eltqrdamp" title="14.13.7.&nbsp;QR Damped Method">QR Damped Method</a>, or <a class="xref" href="thy_tool13.html#eltunsymm" title="14.13.4.&nbsp;Unsymmetric Method">Unsymmetric Method</a> are also complex.
+The eigenvalues 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq0cf1f8df-e133-4b4b-984d-6e99e402b4bf.svg"></span> are given by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqb4ab9628-30a8-4d6e-ae63-05521880d934"></a><div><img src="graphics/eqb4ab9628-30a8-4d6e-ae63-05521880d934.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;226)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqb203fa02-1033-46dd-8450-55adb28f905a.svg"></span> = complex eigenvalue (rd/s)</td></tr><tr><td>&#963;<sub>i</sub> = real part of the eigenvalue
+(stability value)</td></tr><tr><td>&#969;<sub>i</sub> = imaginary part of the eigenvalue
+(damped frequency)</td></tr><tr><td>j = 
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqe10550d1-8227-44c4-9f98-de2be2785e83.svg"></span> </td></tr></table><p>
+</p><p>Complex eigenvalues generally come in complex conjugate pairs,
+         except when system matrices are unsymmetric and structural damping is present.</p><p>The dynamic response of the system is given by: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="compeigeneq2"></a><div><img src="graphics/compeigeneq2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;227)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>t = time</td></tr></table><p>
+</p><p>The ith eigenvalue is stable if &#963;<sub>i</sub> is negative and unstable if
+            &#963;<sub>i</sub> is positive.  <span>This does not
+            apply to the UNSYM eigensolver when the eigenvalue is purely real. In this case, the
+            sign of &#963;<sub>i</sub> is not significant.</span></p><h4><a name="d0e72900"></a>Complex Frequency</h4><p>The complex frequency (Hz) is expressed as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq29da63bc-c96e-4e6a-96a5-7ef70e620304"></a><div><img src="graphics/eq29da63bc-c96e-4e6a-96a5-7ef70e620304.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;228)</b></p></td></tr></table><h4><a name="d0e72907"></a>Modal damping ratio</h4><p>The modal damping ratio is given by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqmodampratio"></a><div><img src="graphics/thyeqmodampratio.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;229)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#945;<sub>i</sub> = modal damping ratio of the
+ith eigenvalue</td></tr></table><p>
+</p><p>It is the ratio of the actual damping to the critical damping.</p><h4><a name="d0e72925"></a>Logarithmic decrement</h4><p>The logarithmic decrement represents the logarithm of the ratio
+of two consecutive peaks in the dynamic response (<a class="xref" href="thy_tool13.html#compeigeneq2" title="(14&#8211;227)">Equation&nbsp;14&#8211;227</a>). It can be expressed as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thy_antools_eigen_logdec1"></a><div><img src="graphics/eq9d5abd4e-3343-4691-a101-09549e30890a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;230)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#948;<sub>i</sub> = logarithmic decrement of
+the ith eigenvalue</td></tr><tr><td>T<sub>i</sub> = damped period of the ith eigenvalue
+defined by:</td></tr></table><p>
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq1c0f3d38-81fe-4aa4-860a-7a20afad6c74"></a><div><img src="graphics/eq1c0f3d38-81fe-4aa4-860a-7a20afad6c74.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;231)</b></p></td></tr></table><p>The logarithmic decrement defined in <a class="xref" href="thy_tool13.html#thy_antools_eigen_logdec1" title="(14&#8211;230)">Equation&nbsp;14&#8211;230</a> is consistent with the API (American Petroleum
+         Institute) standards for rotating machinery. It is positive for stable motion and obtained
+         by setting <em class="replaceable"><code>STABVAL</code></em> = 3 on the <a href="../ans_cmd/Hlp_C_PLCAMP.html" class="olink"><span class="command"><strong>PLCAMP</strong></span></a> and
+            <a href="../ans_cmd/Hlp_C_PRCAMP.html" class="olink"><span class="command"><strong>PRCAMP</strong></span></a> commands.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

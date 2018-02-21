@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:43-04:00"><title>13.204.&nbsp;INTER204 - 3-D 16-Node Cohesive</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el203.html" title="13.203.&nbsp;INTER203 - 2-D 6-Node Cohesive"><link rel="next" href="thy_el205.html" title="13.205.&nbsp;INTER205 - 3-D 8-Node Cohesive"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.204.&nbsp;INTER204 - 3-D 16-Node Cohesive"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thyinter204"></a>13.204.&nbsp;INTER204 - 3-D 16-Node Cohesive</h2></div></div></div><div><img src="graphics/gELEM204-2.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="168" class="col1"><col width="312" class="col2"><col width="144" class="col3"></colgroup><thead><tr><th align="center" valign="top">Matrix or Vector</th><th align="center" valign="top">Shape Functions</th><th align="center" valign="top">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration Points</a>
+</th></tr></thead><tbody><tr><td>Stiffness Matrix</td><td>Linear in x, quadratic in y and z directions</td><td align="center">2 x 2</td></tr></tbody></table></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="col1"><col width="432" class="col2"></colgroup><thead><tr><th align="center" valign="top">Load Type</th><th align="center" valign="top">Distribution</th></tr></thead><tbody><tr><td>Element temperature</td><td>Based on element shape function, constant through the
+direction perpendicular to element plane</td></tr><tr><td>Nodal temperature</td><td>Same
+as element temperature distribution</td></tr></tbody></table></div><div class="sect2" title="13.204.1.&nbsp;Element Technology"><div class="titlepage"><div><div><h3 class="title"><a name="eltech204"></a>13.204.1.&nbsp;Element Technology</h3></div></div></div><p>The element is designed specially for simulation of interface
+delamination and fracture, where the interface surfaces are represented
+by a group of interface elements, in which an interfacial constitutive
+relationship characterizes the traction separation behavior of the
+interface. The element offers a direct means to quantify the interfacial
+separation behavior. See <a class="xref" href="thy_mat11.html" title="4.12.&nbsp;Cohesive Zone Material (CZM) Model">Cohesive Zone Material (CZM) Model</a> for detailed
+description of interface material options.</p><p>The virtual work of the element is written as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqb50bc6ae-f6c1-49ee-961e-1af75699eb4a"></a><div><img src="graphics/eqb50bc6ae-f6c1-49ee-961e-1af75699eb4a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;355)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>t = traction force across the element</td></tr><tr><td>d = separation across the element</td></tr><tr><td>S<sub>int</sub> = midplane of the interface surfaces</td></tr></table><p>
+</p><p>The integration is performed in the corotational
+equilibrium configuration and the Gauss integration procedure is used.</p><p>The separation, d, is defined as the relative deformation between
+top and bottom surfaces as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq345f10de-873e-4f4e-8c27-7892ad5d0cb4"></a><div><img src="graphics/eq345f10de-873e-4f4e-8c27-7892ad5d0cb4.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;356)</b></p></td></tr></table><p>where, u<sup>TOP</sup> and u<sup>BOTTOM</sup> are the displacement of top and bottom surfaces of interface elements
+in the local element coordinate system based on the midplane of element.</p><p>The thickness direction is defined as the normal direction of
+the midplane of the element at the integration point.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

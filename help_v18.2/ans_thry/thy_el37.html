@@ -1,0 +1,79 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:24-04:00"><title>13.37.&nbsp;COMBIN37 - Control</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el36.html" title="13.36.&nbsp;SOURC36 - Current Source"><link rel="next" href="thy_el38.html" title="13.38.&nbsp;FLUID38 - Dynamic Fluid Coupling"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.37.&nbsp;COMBIN37 - Control"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thycombin37"></a>13.37.&nbsp;COMBIN37 - Control</h2></div></div></div><a class="indexterm" name="d0e43164"></a><div><img src="graphics/gthy14-37-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="168" class="col1"><col width="312" class="col2"><col width="144" class="col3"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Matrix or Vector</th><th align="center" valign="middle">Shape Functions</th><th align="center" valign="middle">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration
+Points</a>
+</th></tr></thead><tbody><tr valign="middle"><td valign="middle">Stiffness Matrix</td><td valign="middle">None (nodes may be coincident) </td><td align="center" valign="middle">None</td></tr><tr valign="middle"><td valign="middle">Mass
+Matrix </td><td valign="middle">None (lumped mass formulation)</td><td align="center" valign="middle">None</td></tr><tr valign="middle"><td valign="middle">Damping Matrix</td><td valign="middle">None</td><td align="center" valign="middle">None</td></tr></tbody></table></div><div class="sect2" title="13.37.1.&nbsp;Element Characteristics"><div class="titlepage"><div><div><h3 class="title"><a name="combin37elchar"></a>13.37.1.&nbsp;Element Characteristics</h3></div></div></div><p>COMBIN37 is a nonlinear, 1-D element with two active nodes and one or
+two control nodes.  The element has spring-damper-sliding capability similar
+to COMBIN40.  The degree of freedom (DOF) for the active nodes is selected
+using KEYOPT(3) and the DOF for the control nodes is selected using KEYOPT(2). </p><p>The action of the element in the structure is based upon the value of
+the control parameter (P<sub>cn</sub>) (explained later), O<sub>n</sub>
+and O<sub>f</sub> (input as ONVAL and OFFVAL on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a>
+command), and the behavior switches KEYOPT(4) and (5). <a class="xref" href="thy_el37.html#combin37fig1" title="Figure&nbsp;13.1:&nbsp;&nbsp;Element Behavior">Figure&nbsp;13.1:&nbsp;Element Behavior</a>
+illustrates the behavior of one of the more common modes of operation of the
+element.  It is analogous to the normal home thermostat during the winter.
+   </p><p>The behavior of all possible combinations of KEYOPT(4) and (5) values
+is summarized in the following table. P<sub>cn</sub> represents
+the control parameter (output as CONTROL PARAM).  The element is active where
+the figure indicates on, and inactive where it indicates off.  For some options,
+the element may be either on or off for P<sub>cn</sub> between
+O<sub>n</sub> and O<sub>f</sub>, depending upon the
+last status change. </p><div class="figure"><a name="combin37fig1"></a><p class="title"><b>Figure&nbsp;13.1:&nbsp;&nbsp;Element Behavior</b></p><div class="figure-contents"><div><img src="graphics/gthy14-37-2.svg" alt="Element Behavior"></div><div class="blockquote"><blockquote class="blockquote"><p>KEYOPT(4) = 0, KEYOPT(5) = 1, and O<sub>f</sub> &gt; O<sub>n</sub>
+</p></blockquote></div></div></div><br class="figure-break"><div class="informaltable"><table border="1" width="95%"><colgroup><col width="288" class="col1"><col width="288" class="col2"></colgroup><tbody><tr><td>
+<p>KEYOPT(4) = 0, KEYOPT(5) = 0, O<sub>f</sub> 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqf8a69215-64f3-4b31-8809-b381b366c34f.svg"></span> O<sub>n</sub>: <img src="graphics/gthy14-37-3a.svg">&nbsp;
+</p>
+</td><td>
+<p>KEYOPT(4) = 0, KEYOPT(5)
+= 0, O<sub>f</sub> &gt; O<sub>n</sub>: <img src="graphics/gthy14-37-3b.svg">&nbsp;
+</p>
+</td></tr><tr><td>
+<p>KEYOPT(4)
+= 0, KEYOPT(5) = 1, O<sub>f</sub> 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqd8a2466c-52a9-439f-b20e-ddb7f3f3f6a6.svg"></span>
+O<sub>n</sub>: <img src="graphics/gthy14-37-3c.svg">&nbsp;
+</p>
+</td><td>
+<p>KEYOPT(4) = 0, KEYOPT(5) = 1, O<sub>f</sub>
+&gt; O<sub>n</sub>: [<a class="xref" href="thy_el37.html#combin37inftable">1</a>]<img src="graphics/gthy14-37-3d.svg">&nbsp;
+</p>
+</td></tr><tr><td>
+<p>KEYOPT(4)
+= 1, KEYOPT(5) = 0: <img src="graphics/gthy14-37-4a.svg">&nbsp;
+</p>
+</td><td>
+<p>KEYOPT(4) = 1, KEYOPT(5) = 1: <img src="graphics/gthy14-37-4b.svg">&nbsp;
+</p>
+</td></tr></tbody></table></div><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="combin37inftable"></a>Analogous to <a class="xref" href="thy_el37.html#combin37fig1" title="Figure&nbsp;13.1:&nbsp;&nbsp;Element Behavior">Figure&nbsp;13.1:&nbsp;Element Behavior</a>
+</p></li></ol></div></div><div class="sect2" title="13.37.2.&nbsp;Element Matrices"><div class="titlepage"><div><div><h3 class="title"><a name="combin37elmat"></a>13.37.2.&nbsp;Element Matrices</h3></div></div></div><p>When the element status is ON, the element matrices are: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq6dc208e2-59d5-433c-b24c-22b29d1aa0cb"></a><div><img src="graphics/eq6dc208e2-59d5-433c-b24c-22b29d1aa0cb.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;37)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq0309d525-0407-465c-9b77-d101cec4d5d5"></a><div><img src="graphics/eq0309d525-0407-465c-9b77-d101cec4d5d5.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;38)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqe538e6db-8065-44c0-b28c-552401cedd50"></a><div><img src="graphics/eqe538e6db-8065-44c0-b28c-552401cedd50.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;39)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>k<sub>o</sub> = stiffness (input as STIF on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a>
+command) </td></tr><tr><td>M<sub>I</sub> = mass at node I (input as MASI on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a>
+command) </td></tr><tr><td>M<sub>J</sub> = mass at node J (input as MASJ on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a>
+command) </td></tr><tr><td>C<sub>o</sub> = damping constant (input as DAMP on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a>
+command) </td></tr></table><p>
+</p><p>When the element status is OFF, all element matrices are set to zero. </p></div><div class="sect2" title="13.37.3.&nbsp;Adjustment of Real Constants"><div class="titlepage"><div><div><h3 class="title"><a name="combin37adjust"></a>13.37.3.&nbsp;Adjustment of Real Constants</h3></div></div></div><p>If KEYOPT(6) &gt; 0, a real constant is to be adjusted as a function of
+the control parameter as well as other real constants.  Specifically,   </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq2eadb89e-79b0-43a7-8758-6d79a1581188"></a><div><img src="graphics/eq2eadb89e-79b0-43a7-8758-6d79a1581188.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;40)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq64488b21-002d-4880-8251-a310d91f89b5"></a><div><img src="graphics/eq64488b21-002d-4880-8251-a310d91f89b5.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;41)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq867bff31-effa-4411-b71d-fd9f598f6ecf"></a><div><img src="graphics/eq867bff31-effa-4411-b71d-fd9f598f6ecf.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;42)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqd8f03bdb-452e-4831-a332-a38e0775986d"></a><div><img src="graphics/eqd8f03bdb-452e-4831-a332-a38e0775986d.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;43)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq3ac9f8bc-786a-4397-bf9e-44a1fd966e1a"></a><div><img src="graphics/eq3ac9f8bc-786a-4397-bf9e-44a1fd966e1a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;44)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq2ac4394d-5945-462f-aa45-b6019e39b774"></a><div><img src="graphics/eq2ac4394d-5945-462f-aa45-b6019e39b774.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;45)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq88fb586c-9ec5-4870-9a02-b72db0d09e54"></a><div><img src="graphics/eq88fb586c-9ec5-4870-9a02-b72db0d09e54.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;46)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq65f74207-b57e-4039-b2b3-323c53d77816"></a><div><img src="graphics/eq65f74207-b57e-4039-b2b3-323c53d77816.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;47)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-25.000000px"><img src="graphics/eqc09c6fe9-567b-4494-bb88-162d0890be6e.svg"></span> </td></tr><tr><td>F<sub>A</sub> = element load (input as AFORCE ON <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a>
+command) </td></tr><tr><td>F<sub>S</sub> = slider force (input as FSLIDE on <a href="../ans_cmd/Hlp_C_RMORE.html" class="olink"><span class="command"><strong>RMORE</strong></span></a>
+command) </td></tr><tr><td>C<sub>1</sub>, C<sub>2</sub>, C<sub>3</sub>,
+C<sub>4</sub> = input constants (input as C1, C2, C3, and C4 on <a href="../ans_cmd/Hlp_C_RMORE.html" class="olink"><span class="command"><strong>RMORE</strong></span></a>
+command) </td></tr><tr><td>P<sub>cn</sub> = control parameter (defined below) </td></tr><tr><td>f<sub>1</sub> = function defined by subroutine USERRC </td></tr></table><p>If 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqf59d9755-c890-49bb-98b3-01f17233e76a.svg"></span> (or F<sub>S</sub>,
+if KEYOPT(6) &#8800; 8) is less than zero, it is reset to zero. </p></div><div class="sect2" title="13.37.4.&nbsp;Evaluation of Control Parameter"><div class="titlepage"><div><div><h3 class="title"><a name="combin37eval"></a>13.37.4.&nbsp;Evaluation of Control Parameter</h3></div></div></div><p>The control parameter is defined as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq648474e3-2e41-4751-a5ee-b317ef45f3fc"></a><div><img src="graphics/eq648474e3-2e41-4751-a5ee-b317ef45f3fc.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;48)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-17.000000px"><img src="graphics/eq5c8bc107-4706-41a7-aa7b-caf7daab57eb.svg"></span> </td></tr><tr><td>t = time (input on <a href="../ans_cmd/Hlp_C_TIME.html" class="olink"><span class="command"><strong>TIME</strong></span></a> command) </td></tr><tr><td>u = degree of freedom as selected by KEYOPT(2) </td></tr></table><p>
+</p><p>The assumed value of the control parameter for the first iteration (
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eq055839fd-6c9c-464a-8fda-b1ea6e450631.svg"></span>) is defined as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqca89c550-ab93-4503-b50d-ad104a0c7437"></a><div><img src="graphics/eqca89c550-ab93-4503-b50d-ad104a0c7437.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;49)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>S<sup>t</sup> =  constant defining starting status
+where: 1 means ON, -1 means OFF (input as START on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>T<sub>UNIF</sub> = uniform temperature (input on <a href="../ans_cmd/Hlp_C_BFUNIF.html" class="olink"><span class="command"><strong>BFUNIF</strong></span></a>
+command) </td></tr></table><p>
+</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:35-04:00"><title>13.153.&nbsp;SURF153 - 2-D Structural Surface Effect</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el152.html" title="13.152.&nbsp;SURF152 - 3-D Thermal Surface Effect"><link rel="next" href="thy_el154.html" title="13.154.&nbsp;SURF154 - 3-D Structural Surface Effect"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.153.&nbsp;SURF153 - 2-D Structural Surface Effect"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thysurf153"></a>13.153.&nbsp;SURF153 - 2-D Structural Surface Effect</h2></div></div></div><div><img src="graphics/gELEM153-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="144" class="col1"><col width="181" class="COLSPEC6"><col width="148" class="col2"><col width="144" class="col3"></colgroup><thead><tr valign="middle"><th bgcolor="#E3E3E3" align="center" valign="middle">
+Matrix or Vector</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+Midside Nodes [<a class="xref" href="thy_el153.html#thyelem153_fn1">1</a>]</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+Shape Functions</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration Points</a>
+
+</th></tr></thead><tbody><tr valign="middle"><td align="center" valign="middle">All</td><td valign="middle">With midside nodes</td><td valign="middle">w = C<sub>1</sub> + C<sub>2</sub>x + C<sub>3</sub>x<sup>2</sup>
+</td><td align="center" valign="middle">3</td></tr><tr valign="middle"><td align="center" valign="middle">All </td><td valign="middle"> Without midside
+nodes</td><td valign="middle">w = C<sub>1</sub> +
+C<sub>2</sub>x</td><td align="center" valign="middle">2</td></tr></tbody></table></div><div class="blockquote"><blockquote class="blockquote"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="thyelem153_fn1"></a>Midside node setting is controlled
+by KEYOPT(4).</p></li></ol></div></blockquote></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="col1"><col width="432" class="col2"></colgroup><thead><tr valign="middle"><th bgcolor="#E3E3E3" align="center" valign="middle">
+Load Type</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+Distribution</th></tr></thead><tbody><tr valign="middle"><td valign="middle">All Loads</td><td valign="middle">Same as shape functions</td></tr></tbody></table></div><p>The logic is very similar to that given for <a href="../ans_elem/Hlp_E_SURF154.html" class="olink"><span class="structname">SURF154</span></a> in <a class="xref" href="thy_el154.html" title="13.154.&nbsp;SURF154 - 3-D Structural Surface Effect">SURF154 - 3-D Structural Surface Effect</a> with the differences noted below: </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>For surface tension (input as SURT on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command)) on axisymmetric models (KEYOPT(3) = 1), an average force
+is used on both end nodes.   </p></li><li class="listitem"><p>For surface tension with midside nodes, no load is
+applied at the middle node, and only the component directed towards
+the other end node is used. </p></li><li class="listitem"><p>When using large deflections, the area on which pressure
+is applied changes. The updated distance between the two end nodes
+is used. For plain strain problems, the thickness (distance normal
+to the X-Y plane) remains at 1.0, by definition. For plane stress
+problems, the thickness is adjusted:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqe121b773-d2b0-41bd-bb21-69811b6c367b"></a><div><img src="graphics/eqe121b773-d2b0-41bd-bb21-69811b6c367b.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;250)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>t<sub>u</sub> = final thickness used.</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-17.000000px"><img src="graphics/eq2aebaa4e-10cc-4b9b-9fb2-15ad2794cda9.svg"></span>
+</td></tr><tr><td>t<sub>i</sub> = thickness for user input option
+(input as TKPS on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command)</td></tr><tr><td>&#949;<sub>z</sub> = strain in thickness direction
+(normal to X-Y plane)</td></tr></table><p>
+</p><p>Using the assumption of constant volume:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq1ca4d954-ed80-452e-ae67-17c71bfe6834"></a><div><img src="graphics/eq1ca4d954-ed80-452e-ae67-17c71bfe6834.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;251)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#949;<sub>x</sub> = strain along the length
+of the element</td></tr><tr><td>&#949;<sub>y</sub> = strain normal to the underlying
+solid.</td></tr></table><p>
+</p><p>Assuming further that:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq370c4a6e-9419-48d8-8ab7-e4b900462f93"></a><div><img src="graphics/eq370c4a6e-9419-48d8-8ab7-e4b900462f93.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;252)</b></p></td></tr></table><p>yields:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqadfbc8cf-f36d-49fb-b0bc-3695fa2c6475"></a><div><img src="graphics/eqadfbc8cf-f36d-49fb-b0bc-3695fa2c6475.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;253)</b></p></td></tr></table></li></ol></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

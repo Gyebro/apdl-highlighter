@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:30-04:00"><title>17.14.&nbsp;POST1 and POST26 &#8211; Complex Results Postprocessing</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_post.html" title="Chapter&nbsp;17:&nbsp;Postprocessing"><link rel="prev" href="thy_post14.html" title="17.13.&nbsp;POST26 - Computation of Covariance"><link rel="next" href="thy_post16.html" title="17.15.&nbsp;POST1 - Modal Assurance Criterion (MAC)"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="17.14.&nbsp;POST1 and POST26 &#8211; Complex Results Postprocessing"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thycmplx120"></a>17.14.&nbsp;POST1 and POST26 &#8211; Complex Results Postprocessing</h2></div></div></div><a class="indexterm" name="d0e88641"></a><a class="indexterm" name="d0e88644"></a><p>The modal solution obtained using the complex eigensolvers (UNSYM,
+DAMP, QRDAMP) and the solution from a harmonic analysis are complex.
+It can be written as</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1cmplxres1a"></a><div><img src="graphics/thyeq1cmplxres1a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;153)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>R = the complex degree of freedom solution (a nodal displacement
+U<sub>x</sub>, a reaction force F<sub>y</sub>, etc.).</td></tr><tr><td>R<sub>R</sub> = the real part of the solution
+R.</td></tr><tr><td>R<sub>I</sub> = the imaginary part of the solution
+R.</td></tr></table><p>
+</p><p>The same complex solution may also be expressed as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1cmplxres2a"></a><div><img src="graphics/thyeq1cmplxres2a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;154)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>R<sub>max</sub> = the degree of freedom amplitude.</td></tr><tr><td>
+<span class="italic"><em>&#966;</em></span> = the degree of freedom
+phase shift. </td></tr></table><p>
+</p><p>The phase shift of the solution is different at each degree
+of freedom so that the total amplitude at a node is not the square
+root of the sum of squares of the degrees of freedom amplitudes (R<sub>max</sub>). More generally, total amplitudes (SUM), phases
+and other derived results (principal strains/stresses, equivalent
+strain/stress,&#8230; for example) at one node do not vary harmonically
+as degree of freedom solutions do. </p><p>The relationship between R<sub>R</sub>, R<sub>I</sub>, R<sub>max</sub> and <span class="italic"><em>&#966;</em></span> is defined as follows:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1cmplxres3a"></a><div><img src="graphics/thyeq1cmplxres3a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;155)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1cmplxres4a"></a><div><img src="graphics/thyeq1cmplxres4a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;156)</b></p></td></tr></table><p>R<sub>R</sub> = R<sub>max</sub>cos<span class="italic"><em>&#966;</em></span>
+</p><p>R<sub>I</sub> = R<sub>max</sub>sin<span class="italic"><em>&#966;</em></span>
+</p><p>In POST1, use KIMG in the <a href="../ans_cmd/Hlp_C_SET.html" class="olink"><span class="command"><strong>SET</strong></span></a> command to
+specify which results are to be stored: the real parts, the imaginary
+parts, the amplitudes or the phases.</p><p>In POST26, use <a href="../ans_cmd/Hlp_C_PRCPLX.html" class="olink"><span class="command"><strong>PRCPLX</strong></span></a> and <a href="../ans_cmd/Hlp_C_PLCPLX.html" class="olink"><span class="command"><strong>PLCPLX</strong></span></a> to define the output form of the complex variables. </p><p>The complete complex solution is harmonic. It is defined as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1cmplxres5a"></a><div><img src="graphics/thyeq1cmplxres5a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;157)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#937; = the excitation frequency in a harmonic analysis, or
+the natural damped frequency in a complex modal analysis. </td></tr></table><p>
+</p><p>In the equations of motion for harmonic and complex modal analyses,
+the complex notations are used for ease of use but the time dependant
+solution at one degree of freedom is real.</p><p>The solution of the harmonic analysis is defined as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1cmplxres6a"></a><div><img src="graphics/thyeq1cmplxres6a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;158)</b></p></td></tr></table><p>The <a href="../ans_cmd/Hlp_C_ANHARM.html" class="olink"><span class="command"><strong>ANHARM</strong></span></a> command issued after the harmonic
+analysis is based on <a class="xref" href="thy_post15.html#thyeq1cmplxres6a" title="(17&#8211;158)">Equation&nbsp;17&#8211;158</a>. The <a href="../ans_cmd/Hlp_C_HRCPLX.html" class="olink"><span class="command"><strong>HRCPLX</strong></span></a>and <a href="../ans_cmd/Hlp_C_LCOPER.html" class="olink"><span class="command"><strong>LCOPER</strong></span></a> (with <em class="replaceable"><code>Oper2</code></em> = <em class="replaceable"><code>CPXMAX</code></em>) commands
+are based on <a class="xref" href="thy_post15.html#thyeq1cmplxres6a" title="(17&#8211;158)">Equation&nbsp;17&#8211;158</a> for both modal and
+harmonic analyses.</p><p>The complete solution of the complex modal analysis is defined
+as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1cdmplxres6a"></a><div><img src="graphics/thyeq1cdmplxres6a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;159)</b></p></td></tr></table><p>Where &#963; is the real part of the complex
+frequency. See <a class="xref" href="thy_tool13.html#eltcomplexeigens" title="14.13.10.&nbsp;Complex Eigensolutions">Complex Eigensolutions</a> for more details
+about complex eigensolutions.</p><p>The <a href="../ans_cmd/Hlp_C_ANHARM.html" class="olink"><span class="command"><strong>ANHARM</strong></span></a> command
+issued after a complex modal analysis is based on <a class="xref" href="thy_post15.html#thyeq1cdmplxres6a" title="(17&#8211;159)">Equation&nbsp;17&#8211;159</a> except if NPERIOD is set to -1. In this
+case, the exponential term (decay or growth of the oscillation) is
+ignored and the equation reduces to <a class="xref" href="thy_post15.html#thyeq1cmplxres6a" title="(17&#8211;158)">Equation&nbsp;17&#8211;158</a>. </p><p>In the <a href="../ans_cmd/Hlp_C_LCOPER.html" class="olink"><span class="command"><strong>LCOPER</strong></span></a> command with <em class="replaceable"><code>Oper2</code></em> = CPXMAX, a
+   loop on the phase (&#937;t), is performed to calculate the maximum (that may occur at any phase
+   at each location) of the degree of freedom results, displacements and stresses, the principal
+   stresses (<em class="replaceable"><code>S1</code></em>, <em class="replaceable"><code>S2</code></em>, and
+    <em class="replaceable"><code>S3</code></em>), the stress intensity (<em class="replaceable"><code>SINT</code></em>), the
+   equivalent stress (<em class="replaceable"><code>SEQV</code></em>), the equivalent strain, <span>and the principal strains</span>.</p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:01-04:00"><title>5.7.&nbsp;Capacitance Computation</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_emg.html" title="Chapter&nbsp;5:&nbsp;Electromagnetics"><link rel="prev" href="thy_emg7.html" title="5.6.&nbsp;Electromagnetic Particle Tracing"><link rel="next" href="thy_emg13.html" title="5.8.&nbsp;Conductance Computation"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="5.7.&nbsp;Capacitance Computation"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="aILQt1abjjw"></a>5.7.&nbsp;Capacitance Computation</h2></div></div></div><a class="indexterm" name="d0e20515"></a><a class="indexterm" name="d0e20518"></a><p>Capacitance computation is one of the primary goals of an electrostatic
+analysis.  For the definition of ground (partial) and lumped capacitance
+matrices see Vago and Gyimesi(<a class="xref" href="thy_biblio.html#bQWu112jjw" title="Electromagnetic Fields">[240]</a>).  The
+knowledge of capacitance is essential in the design of electrostatic
+devices, Micro Electro Mechanical Systems (MEMS), transmission lines,
+printed circuit boards (PCB), electromagnetic interference and compatibility
+(EMI/EMC) etc.  The computed capacitance can be the input of a subsequent
+MEMS analysis using the electrostructural transducer element TRANS126;
+for the theory, see <a class="xref" href="thy_el126.html" title="13.126.&nbsp;TRANS126 - Electromechanical Transducer">TRANS126 - Electromechanical Transducer</a>. </p><p>The capacitance matrix of an electrostatic system can be computed
+(by the <a href="../ans_cmd/Hlp_C_CMATRIX.html" class="olink"><span class="command"><strong>CMATRIX</strong></span></a> command macro).  The capacitance
+calculation is based on the energy principle.  For details, see Gyimesi
+and Ostergaard(<a class="xref" href="thy_biblio.html#AZWu17bjjw" title="&#34;Capacitance Computation with Ammeter Element&#34;">[250]</a>) and for its successful application, see Hieke(<a class="xref" href="thy_biblio.html#VZWu1e6jjw" title="&#34;ANSYS APDL for Capacitance&#34;">[252]</a>).  The energy principle constitutes
+the basis for inductance matrix computation, as shown in <a class="xref" href="thy_emg6.html" title="5.5.&nbsp;Inductance, Flux and Energy Computation">Inductance, Flux and Energy Computation</a>. </p><p>The electrostatic energy of a linear three electrode (the third
+is ground) system is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1electrocapnov2801"></a><div><img src="graphics/thyeq1electrocapnov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;179)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>W = electrostatic energy </td></tr><tr><td>V<sub>1</sub> = potential of first electrode with
+respect to ground </td></tr><tr><td>V<sub>2</sub> = potential of second electrode
+with respect to ground </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqcf2c8aa8-0eb7-481d-a862-6b4e2e492070.svg"></span> </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq9931858e-d04c-42e2-834b-b87c096bb660.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq7f15abc7-66f5-42c2-897d-683504c5c7f4.svg"></span>
+</td></tr></table><p>
+</p><p>By applying appropriate voltages on electrodes, the coefficients
+of the ground capacitance matrix can be calculated from the stored
+static energy. </p><p>The charges on the conductors are: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2electrocapnov2801"></a><div><img src="graphics/thyeq2electrocapnov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;180)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3electrocapnov2801"></a><div><img src="graphics/thyeq3electrocapnov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;181)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>Q<sub>1</sub> = charge of first electrode </td></tr><tr><td>Q<sub>2</sub> = charge of second electrode </td></tr></table><p>
+</p><p>The charge can be expressed by potential differences, too: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq4electrocapnov2801"></a><div><img src="graphics/thyeq4electrocapnov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;182)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq5electrocapnov2801"></a><div><img src="graphics/thyeq5electrocapnov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;183)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq04890161-114a-4008-94ca-3e375b50299f.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq356d4782-097c-40c6-a87e-f281bfea9abd.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq10d958a7-49d0-496a-8149-fb3744348358.svg"></span>
+</td></tr></table><p>
+</p><p>The lumped capacitances can be obtained by lumped capacitors
+as shown in <a class="xref" href="thy_emg10.html#bIbQt260jjw" title="Figure&nbsp;5.4:&nbsp;&nbsp;Lumped Capacitor Model of Two Conductors and Ground">Figure&nbsp;5.4:&nbsp;Lumped Capacitor Model of Two Conductors and Ground</a>.  Lumped capacitances are
+suitable for use in circuit simulators. </p><div class="figure"><a name="bIbQt260jjw"></a><p class="title"><b>Figure&nbsp;5.4:&nbsp;&nbsp;Lumped Capacitor Model of Two Conductors and Ground</b></p><div class="figure-contents"><div><img src="graphics/gthy5-412.svg" alt="Lumped Capacitor Model of Two Conductors and Ground"></div></div></div><br class="figure-break"><p>In some cases, one of the electrodes may be located very far
+from the other electrodes.  This can be modeled as an open electrode
+problem with one electrode at infinity.  The open boundary region
+can be modeled by infinite elements or simply closing the FEM region
+far enough away by an artificial Dirichlet boundary condition.  In this
+case, the ground key parameter (<span class="italic"><em>GRNDKEY</em></span> on the <a href="../ans_cmd/Hlp_C_CMATRIX.html" class="olink"><span class="command"><strong>CMATRIX</strong></span></a> command macro) should be activated.
+ This key assumes that there is a ground electrode at infinity. </p><p>The previous case should be distinguished from an open boundary
+problem without an electrode at infinity.  In this case the ground
+electrode is one of the modeled electrodes.  The FEM model size can
+be minimized in this case, too, by infinite elements.  When performing
+the capacitance calculation, however, the ground key (<span class="italic"><em>GRNDKEY</em></span> on the <a href="../ans_cmd/Hlp_C_CMATRIX.html" class="olink"><span class="command"><strong>CMATRIX</strong></span></a> command macro) should not be activated since there is no electrode
+at infinity. </p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

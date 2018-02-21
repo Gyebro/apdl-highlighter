@@ -1,0 +1,132 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:01-04:00"><title>5.5.&nbsp;Inductance, Flux and Energy Computation</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_emg.html" title="Chapter&nbsp;5:&nbsp;Electromagnetics"><link rel="prev" href="thy_emg4.html" title="5.4.&nbsp;Stranded Coil Analyses"><link rel="next" href="thy_emg7.html" title="5.6.&nbsp;Electromagnetic Particle Tracing"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="5.5.&nbsp;Inductance, Flux and Energy Computation"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="cc7Vp3djjw"></a>5.5.&nbsp;Inductance, Flux and Energy Computation</h2></div></div></div><a class="indexterm" name="d0e20082"></a><p>Inductance plays an important role in the characterization of
+magnetic devices, electrical machines, sensors and actuators.  The
+concept of a non-variant (time-independent), linear inductance of
+wire-like coils is discussed in every electrical engineering book.
+However, its extension to variant, nonlinear, distributed coil cases
+is far from obvious.</p><p>Time-variance is essential when the geometry of the device is
+changing: actuators and electrical machines, for example. In this case,
+the inductance depends on a stroke (in a 1-D motion case) which, in
+turn, depends on time.  </p><p>Many magnetic devices apply iron for the conductance of magnetic
+flux.  Most iron has a nonlinear B-H curve.  Because of this nonlinear
+feature, two kinds of inductance must be considered:  differential
+and secant.  The secant inductance is the ratio of the total flux
+over current.  The differential inductance is the ratio of flux change
+over a current excitation change. </p><p>The flux of a single wire coil can be defined as the surface
+integral of the flux density.  However, when the size of the wire
+is not negligible, it is not clear which contour spans the surface.
+ The field within the coil must be taken into account.  Even larger
+difficulties occur when the current is not constant:  for example
+solid rotor or squirrel-caged induction machines. </p><p>The voltage induced in a variant coil can be decomposed into
+two major components:  transformer voltage and motion-induced voltage. </p><p>The transformer voltage is induced in coils by the rate change
+of exciting currents.  It is present even if the geometry of the system
+is constant, meaning the coils don't move or expand.  To obtain the transformer
+voltage, the knowledge of flux change (i.e., that of differential
+flux) is necessary when the exciting currents are perturbed.</p><p>The motion-induced voltage (sometimes called back-EMF) is related
+to the geometry change of the system.  It is present even if the currents
+are kept constant.  To obtain the motion-induced voltage, the knowledge
+of absolute flux in the coils as a function of stroke is necessary.</p><p>Obtaining the proper differential and absolute flux values requires
+consistent calculations of magnetic absolute and incremental energies
+and co-energies. For <a href="../ans_elem/Hlp_E_CH2_OLDNEW.html" class="olink">current-technology</a> elements, the linear perturbation procedure
+can be used to calculate the differential inductance and the absolute
+flux using the incremental (IENE) and the co-energy (COEN) element
+records, respectively.</p><div class="sect2" title="5.5.1.&nbsp;Differential Inductance Definition"><div class="titlepage"><div><div><h3 class="title"><a name="elecdiffinductdef"></a>5.5.1.&nbsp;Differential Inductance Definition</h3></div></div></div><a class="indexterm" name="d0e20107"></a><p>Consider a magnetic excitation system consisting of n coils
+each fed by a current, I<sub>i</sub>. The flux linkage &#968;<sub>i</sub> of the coils is defined as the surface integral of
+the flux density over the area multiplied by the number of turns,
+N<sub>i</sub>, of the of the pertinent coil. The relationship
+between the flux linkage and currents can be described by the secant
+inductance matrix, [L<sub>s</sub>]: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1senergynov2801"></a><div><img src="graphics/thyeq1senergynov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;164)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>{&#968;} = vector of coil flux linkages </td></tr><tr><td>t = time </td></tr><tr><td>{I} = vector of coil currents.  </td></tr><tr><td>{&#968;<sub>o</sub>} = vector of flux linkages
+for zero coil currents (effect of permanent magnets) </td></tr></table><p>
+</p><p>Main diagonal element terms of [L<sub>s</sub>] are
+called self inductance, whereas off diagonal terms are the mutual
+inductance coefficients.  [L<sub>s</sub>] is symmetric
+which can be proved by the principle of energy conservation. </p><p>In general, the inductance coefficients depend on time, t, and
+on the currents.  The time dependent case is called time variant which
+is characteristic when the coils move.  The inductance computation
+used by the program is restricted to time invariant cases.  Note that
+time variant problems may be reduced to a series of invariant analyses
+with fixed coil positions.  The inductance coefficient depends on
+the currents when nonlinear magnetic material is present in the domain. </p><p>The voltage vector, {U}, of the coils can be expressed as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2senergynov2801"></a><div><img src="graphics/thyeq2senergynov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;165)</b></p></td></tr></table><p>In the time invariant nonlinear case </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3senergynov2801"></a><div><img src="graphics/thyeq3senergynov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;166)</b></p></td></tr></table><p>The expression in the bracket is called the differential inductance
+matrix, [L<sub>d</sub>].  The circuit behavior of a coil
+system is governed by [L<sub>d</sub>]:  the induced voltage
+is directly proportional to the differential inductance matrix and
+the time derivative of the coil currents.  In general, [L<sub>d</sub>] depends on the currents, therefore it should be evaluated
+for each operating point. </p></div><div class="sect2" title="5.5.2.&nbsp;Review of Inductance Computation Methods"><div class="titlepage"><div><div><h3 class="title"><a name="elecrevinductmeth"></a>5.5.2.&nbsp;Review of Inductance Computation Methods</h3></div></div></div><p>After a magnetic field analysis, the secant inductance matrix
+coefficients, L<sub>sij</sub>, of a coupled coil system
+could be calculated at postprocessing by computing flux linkage as
+the surface integral of the flux density, {B}.  The differential inductance
+coefficients could be obtained by perturbing the operating currents
+with some current increments and calculating numerical derivatives.
+ However, this method is cumbersome and neither accurate nor efficient.
+  A much more convenient and efficient method is offered by the energy
+perturbation method developed by Demerdash and Arkadan(<a class="xref" href="thy_biblio.html#Kd5r210jjw" title="&#34;Notes on FEM Modeling of Permanent Magnets in Electrical Devices&#34;">[226]</a>), Demerdash and Nehl(<a class="xref" href="thy_biblio.html#a96re3jjw" title="&#34;Determination of Inductances in Ferrite Type Magnet Electric Machinery by FEM&#34;">[227]</a>) and Nehl et al.(<a class="xref" href="thy_biblio.html#J96r154jjw" title="&#34;Determination of Saturated Values of Rotation Machinery Incremental and Apparent Inductances by an Energy Perturbation Method&#34;">[228]</a>). The energy perturbation
+method is based on the following formula: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq4senergynov2801"></a><div><img src="graphics/thyeq4senergynov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;167)</b></p></td></tr></table><p>where W is the magnetic energy, I<sub>i</sub> and
+I<sub>j</sub> are the currents of coils i and j.  The
+first step of this procedure is to obtain an operating point solution
+for nominal current loads by a nonlinear analysis.  In the second
+step, linear analyses are carried out with properly perturbed current
+loads and a tangent reluctivity tensor, &#957;<sub>t</sub>, evaluated at the operating point.  For a self coefficient, two, and
+for a mutual coefficient, four, incremental analyses are required.
+ In the third step the magnetic energies are obtained from the incremental
+solutions and the coefficients are calculated according to <a class="xref" href="thy_emg6.html#thyeq4senergynov2801" title="(5&#8211;167)">Equation&nbsp;5&#8211;167</a>. </p></div><div class="sect2" title="5.5.3.&nbsp;Inductance Computation Method Used"><div class="titlepage"><div><div><h3 class="title"><a name="elecinductmethu"></a>5.5.3.&nbsp;Inductance Computation Method Used</h3></div></div></div><p>The inductance computation method is based on Gyimesi and Ostergaard(<a class="xref" href="thy_biblio.html#Txc5r166jjw" title="Dale">[230]</a>) who used Smythe's procedure(<a class="xref" href="thy_biblio.html#azInf98mlg" title="Static and Dynamic Electricity">[150]</a>). </p><p>The incremental energy W<sub>ij</sub> is defined
+by </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq5senergynov2801"></a><div><img src="graphics/thyeq5senergynov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;168)</b></p></td></tr></table><p>where {&#916;H} and {&#916;B} denote the increase of magnetic
+field and flux density due to current increments, &#916;I<sub>i</sub> and &#916;I<sub>j</sub>.  The coefficients
+can be obtained from </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq6senergynov2801"></a><div><img src="graphics/thyeq6senergynov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;169)</b></p></td></tr></table><p>This allows an efficient method that has the following advantages: </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>For any coefficient, self or mutual, only one incremental
+analysis is required. </p></li><li class="listitem"><p>There is no need to evaluate the absolute magnetic
+energy. Instead, an &#8220;incremental energy&#8221; is calculated
+according to a simple expression. </p></li><li class="listitem"><p>The calculation of incremental analysis is more efficient because the factorized stiffness matrix can be applied (no inversion is needed).
+Only incremental load vectors should be evaluated. </p></li></ol></div><p>For elements <a href="../ans_elem/Hlp_E_PLANE233.html" class="olink"><span class="structname">PLANE233</span></a>, <a href="../ans_elem/Hlp_E_SOLID236.html" class="olink"><span class="structname">SOLID236</span></a> and <a href="../ans_elem/Hlp_E_SOLID237.html" class="olink"><span class="structname">SOLID237</span></a>, the
+linear perturbation procedure can be used to derive the differential
+inductance from the element incremental energy (output as IENE). The
+incremental energy is calculated using <a class="xref" href="thy_emg6.html#thyeq5senergynov2801" title="(5&#8211;168)">Equation&nbsp;5&#8211;168</a>, where &#916;H and &#916;B are
+the linear perturbation analysis magnetic field and flux densities
+corresponding to the perturbation current loads &#916;Ii and &#916;Ij. </p></div><div class="sect2" title="5.5.4.&nbsp;Transformer and Motion Induced Voltages"><div class="titlepage"><div><div><h3 class="title"><a name="electransmotvot"></a>5.5.4.&nbsp;Transformer and Motion Induced Voltages</h3></div></div></div><p>The absolute flux linkages of a time-variant multi-coil system
+can be written in general: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq7senergynov2801"></a><div><img src="graphics/thyeq7senergynov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;170)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>{X} = vector of strokes </td></tr></table><p>
+</p><p>The induced voltages in the coils are the time derivative of
+the flux linkages, according to <a class="xref" href="thy_emg6.html#thyeq2senergynov2801" title="(5&#8211;165)">Equation&nbsp;5&#8211;165</a>.  After differentiation: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq8senergynov2801"></a><div><img src="graphics/thyeq8senergynov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;171)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq9senergynov2801"></a><div><img src="graphics/thyeq9senergynov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;172)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>{V} = vector of stroke velocities </td></tr></table><p>
+</p><p>The first term is called transformer voltage (it is related
+to the change of the exciting current).  The proportional term between
+the transformer voltage and current rate is the differential inductance
+matrix according to <a class="xref" href="thy_emg6.html#thyeq3senergynov2801" title="(5&#8211;166)">Equation&nbsp;5&#8211;166</a>. </p><p> The second term is the motion-induced voltage or back-EMF
+(it is related to the change of strokes).  The time derivative of
+the stroke is the velocity, hence the motion-induced voltage is proportional
+to the velocity.  </p></div><div class="sect2" title="5.5.5.&nbsp;Absolute Flux Computation"><div class="titlepage"><div><div><h3 class="title"><a name="elecabsofluxcmp"></a>5.5.5.&nbsp;Absolute Flux Computation</h3></div></div></div><p>Whereas the differential inductance can be obtained from the
+differential flux due to current perturbation as described in <a class="xref" href="thy_emg6.html#elecdiffinductdef" title="5.5.1.&nbsp;Differential Inductance Definition">Differential Inductance Definition</a>, <a class="xref" href="thy_emg6.html#elecrevinductmeth" title="5.5.2.&nbsp;Review of Inductance Computation Methods">Review of Inductance Computation Methods</a>,
+and <a class="xref" href="thy_emg6.html#elecinductmethu" title="5.5.3.&nbsp;Inductance Computation Method Used">Inductance Computation Method Used</a>.  The computation of the motion
+induced voltage requires the knowledge of absolute flux.  In order
+to apply <a class="xref" href="thy_emg6.html#thyeq9senergynov2801" title="(5&#8211;172)">Equation&nbsp;5&#8211;172</a>, the absolute flux
+should be mapped out as a function of strokes for a given current
+excitation ad the derivative 
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq414edd29-c5ba-4dac-bd24-515d494ea534.svg"></span>   provides the matrix link between back-EMF and
+velocity. </p><p>The absolute flux is related to the system co-energy by: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq10senergynov2801"></a><div><img src="graphics/thyeq10senergynov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;173)</b></p></td></tr></table><p>According to <a class="xref" href="thy_emg6.html#thyeq10senergynov2801" title="(5&#8211;173)">Equation&nbsp;5&#8211;173</a>, the absolute
+flux can be obtained with an energy perturbation method by changing
+the excitation current for a given stroke position and taking the
+derivative of the system co-energy.   </p><p>The increment of co-energy can be obtained by: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq11senergynov2801"></a><div><img src="graphics/thyeq11senergynov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;174)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq911a33b5-74ed-4e42-a19d-335857f48edb.svg"></span> = change of co-energy due to change
+of current Ii </td></tr><tr><td>&#916;H<sub>i</sub> = change of magnetic field
+due to change of current Ii </td></tr></table><p>
+</p><p>The incremental co-energy in <a class="xref" href="thy_emg6.html#thyeq11senergynov2801" title="(5&#8211;174)">Equation&nbsp;5&#8211;174</a> is output as COEN in a linear perturbation analysis using elements <a href="../ans_elem/Hlp_E_PLANE233.html" class="olink"><span class="structname">PLANE233</span></a>, <a href="../ans_elem/Hlp_E_SOLID236.html" class="olink"><span class="structname">SOLID236</span></a> and <a href="../ans_elem/Hlp_E_SOLID237.html" class="olink"><span class="structname">SOLID237</span></a>.</p></div><div class="sect2" title="5.5.6.&nbsp;Inductance Computations"><div class="titlepage"><div><div><h3 class="title"><a name="elecinductacomp"></a>5.5.6.&nbsp;Inductance Computations</h3></div></div></div><p>The differential inductance matrix and the absolute flux linkages
+of coils can be calculated using <a href="../ans_str/strlinperturb.html" class="olink">linear perturbation</a> analysis for the <a href="../ans_elem/Hlp_E_CH2_OLDNEW.html" class="olink">current-technology</a> electromagnetic
+elements.</p><p> The differential inductance computation is based on the energy
+perturbation procedure using <a class="xref" href="thy_emg6.html#thyeq5senergynov2801" title="(5&#8211;168)">Equation&nbsp;5&#8211;168</a> and <a class="xref" href="thy_emg6.html#thyeq6senergynov2801" title="(5&#8211;169)">Equation&nbsp;5&#8211;169</a>.  </p><p>The absolute flux computation is based on the co-energy perturbation
+procedure using <a class="xref" href="thy_emg6.html#thyeq10senergynov2801" title="(5&#8211;173)">Equation&nbsp;5&#8211;173</a> and <a class="xref" href="thy_emg6.html#thyeq11senergynov2801" title="(5&#8211;174)">Equation&nbsp;5&#8211;174</a>.  </p><p>The output can be applied to compute the voltages induced in
+the coils using <a class="xref" href="thy_emg6.html#thyeq9senergynov2801" title="(5&#8211;172)">Equation&nbsp;5&#8211;172</a>.  </p></div><div class="sect2" title="5.5.7.&nbsp;Absolute Energy Computation"><div class="titlepage"><div><div><h3 class="title"><a name="absenergcomp"></a>5.5.7.&nbsp;Absolute Energy Computation</h3></div></div></div><p> The absolute magnetic energy is defined by: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq12senergynov2801"></a><div><img src="graphics/thyeq12senergynov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;175)</b></p></td></tr></table><p>and the absolute magnetic co-energy is defined by: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq13senergynov2801"></a><div><img src="graphics/thyeq13senergynov2801.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;176)</b></p></td></tr></table><p>See <a class="xref" href="thy_emg6.html#EdXNwajjw" title="Figure&nbsp;5.2:&nbsp;&nbsp;Energy and Co-energy for Non-Permanent Magnets">Figure&nbsp;5.2:&nbsp;Energy and Co-energy for Non-Permanent Magnets</a> and <a class="xref" href="thy_emg6.html#a9wkf1admlg2" title="Figure&nbsp;5.3:&nbsp;&nbsp;Energy and Co-energy for Permanent Magnets">Figure&nbsp;5.3:&nbsp;Energy and Co-energy for Permanent Magnets</a> for the graphical representation of these energy definitions. 
+Equations and provide the incremental magnetic energy and incremental
+magnetic co-energy definitions used for inductance and absolute flux
+computations. </p><p>For <a href="../ans_elem/Hlp_E_CH2_OLDNEW.html" class="olink">current-technology</a> electromagnetic
+elements, the absolute magnetic energy and co-energy is output as
+MENE and COEN element records, respectively.</p><div class="figure"><a name="EdXNwajjw"></a><p class="title"><b>Figure&nbsp;5.2:&nbsp;&nbsp;Energy and Co-energy for Non-Permanent Magnets</b></p><div class="figure-contents"><div><img src="graphics/gthy5-376.svg" alt="Energy and Co-energy for Non-Permanent Magnets"></div></div></div><br class="figure-break"><div class="figure"><a name="a9wkf1admlg2"></a><p class="title"><b>Figure&nbsp;5.3:&nbsp;&nbsp;Energy and Co-energy for Permanent Magnets</b></p><div class="figure-contents"><div><img src="graphics/gthy5-377.svg" alt="Energy and Co-energy for Permanent Magnets"></div></div></div><br class="figure-break"><p>
+<a class="xref" href="thy_emg6.html#thyeq5senergynov2801" title="(5&#8211;168)">Equation&nbsp;5&#8211;168</a> and <a class="xref" href="thy_emg6.html#thyeq11senergynov2801" title="(5&#8211;174)">Equation&nbsp;5&#8211;174</a> provide the incremental magnetic
+energy and incremental magnetic co-energy definitions used for inductance
+and absolute flux computations.</p><p>In addition to the magnetic energy and co-energy, elements <a href="../ans_elem/Hlp_E_PLANE233.html" class="olink"><span class="structname">PLANE233</span></a>, <a href="../ans_elem/Hlp_E_SOLID236.html" class="olink"><span class="structname">SOLID236</span></a> and <a href="../ans_elem/Hlp_E_SOLID237.html" class="olink"><span class="structname">SOLID237</span></a> calculate the apparent energy defined as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="aJkwtQqsglh4"></a><div><img src="graphics/aJkwtQqsglh4.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(5&#8211;177)</b></p></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

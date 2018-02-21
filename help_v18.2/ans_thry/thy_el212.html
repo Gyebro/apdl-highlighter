@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:44-04:00"><title>13.212.&nbsp;CPT212 - 2-D 4-Node Coupled Pore-Pressure-Thermal Mechanical Solid</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el211.html" title="13.211.&nbsp;Reserved for Future Use"><link rel="next" href="thy_el213.html" title="13.213.&nbsp;CPT213 - 2-D 8-Node Coupled Pore-Pressure-Thermal Mechanical Solid"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.212.&nbsp;CPT212 - 2-D 4-Node Coupled Pore-Pressure-Thermal Mechanical Solid"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thyCPT212"></a>13.212.&nbsp;CPT212 - 2-D 4-Node Coupled Pore-Pressure-Thermal Mechanical Solid </h2></div></div></div><div><img src="graphics/gthy14-212-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="168" class="COLSPEC35"><col width="96" class="COLSPEC0"><col width="216" class="COLSPEC36"><col width="144" class="COLSPEC37"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Matrix or Vector</th><th align="center" valign="middle">Geometry</th><th align="center" valign="middle">Shape Functions</th><th align="center" valign="middle"><a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration
+      Points</a></th></tr></thead><tbody><tr valign="middle"><td rowspan="2" valign="middle">
+      <p>Stiffness and Stress Stiffness Matrices</p>
+     </td><td valign="middle">
+      <p>Quad</p>
+     </td><td valign="middle">
+      <p><a class="xref" href="thy_shp6.html#thyeq1quad43dnov1501" title="(11&#8211;120)">Equation&nbsp;11&#8211;120</a> and <a class="xref" href="thy_shp6.html#thyeq2quad43dnov1501" title="(11&#8211;121)">Equation&nbsp;11&#8211;121</a></p>
+     </td><td align="center" valign="middle">
+      <p>2 x 2</p>
+     </td></tr><tr><td valign="middle">
+      <p>Triangle</p>
+     </td><td valign="middle">
+      <p><a class="xref" href="thy_shp6.html#thyeq1cstnov2101" title="(11&#8211;100)">Equation&nbsp;11&#8211;100</a> and <a class="xref" href="thy_shp6.html#thyeq99cstnov2601" title="(11&#8211;101)">Equation&nbsp;11&#8211;101</a></p>
+     </td><td align="center" valign="middle">
+      <p>1</p>
+     </td></tr><tr valign="middle"><td rowspan="2" valign="middle">
+      <p>Mass Matrix</p>
+     </td><td valign="middle">
+      <p>Quad</p>
+     </td><td rowspan="2" valign="middle">
+      <p>Same as stiffness matrix</p>
+     </td><td align="center" valign="middle">
+      <p>2 x 2</p>
+     </td></tr><tr><td valign="middle">
+      <p>Triangle</p>
+     </td><td align="center" valign="middle">
+      <p>1</p>
+     </td></tr><tr valign="middle"><td valign="middle">
+      <p>Damping matrices</p>
+     </td><td colspan="2" valign="middle">
+      <p>Same as stiffness matrix</p>
+     </td><td align="center" valign="middle">&nbsp;</td></tr><tr><td valign="middle">
+      <p>Pressure and Temperature Load Vector</p>
+     </td><td colspan="2" valign="middle">
+      <p>Same as stiffness matrix, specialized to edge</p>
+     </td><td align="center" valign="middle">
+      <p>2</p>
+     </td></tr><tr><td valign="middle">
+      <p>Flow Load Vector</p>
+     </td><td colspan="2" valign="middle">
+      <p>Linear across each edge</p>
+     </td><td align="center" valign="middle">
+      <p>2</p>
+     </td></tr></tbody></table></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="COLSPEC39"><col width="434" class="COLSPEC40"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Load Type</th><th align="center" valign="middle">Distribution</th></tr></thead><tbody><tr valign="middle"><td valign="middle">
+      <p>Element Temperature</p>
+     </td><td valign="middle">
+      <p>Bilinear across element, constant thru thickness or around circumference</p>
+     </td></tr><tr valign="middle"><td valign="middle">
+      <p>Nodal Temperature</p>
+     </td><td valign="middle">
+      <p>Same as element temperature distribution</p>
+     </td></tr><tr valign="middle"><td valign="middle">
+      <p>Surface Pressure Load</p>
+     </td><td valign="middle">
+      <p>Linear along each edge</p>
+     </td></tr><tr><td valign="middle">
+      <p>Flow and heat flux</p>
+     </td><td valign="middle">
+      <p>Linear along each edge</p>
+     </td></tr></tbody></table></div><div class="sect2" title="13.212.1.&nbsp;Other Applicable Sections"><div class="titlepage"><div><div><h3 class="title"><a name="CPT212other"></a>13.212.1.&nbsp;Other Applicable Sections</h3></div></div></div><p> <a class="link" href="thy_geo5.html" title="3.6.&nbsp;General Element Formulations">General Element Formulations</a> gives
+the general element formulations used by this element.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

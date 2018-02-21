@@ -1,0 +1,108 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:30-04:00"><title>13.110.&nbsp;INFIN110 - 2-D Infinite Solid</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el109.html" title="13.109.&nbsp;Reserved for Future Use"><link rel="next" href="thy_el111.html" title="13.111.&nbsp;INFIN111 - 3-D Infinite Solid"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.110.&nbsp;INFIN110 - 2-D Infinite Solid"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thyinfin110"></a>13.110.&nbsp;INFIN110 - 2-D Infinite Solid</h2></div></div></div><div><img src="graphics/gthy14-110-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="COLSPEC0"><col width="288" class="COLSPEC1"><col width="144" class="COLSPEC2"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Matrix or Vector</th><th align="center" valign="middle">Mapping and Shape Functions
+  </th><th align="center" valign="middle">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration Points</a>
+</th></tr></thead><tbody><tr valign="middle"><td valign="middle">Magnetic Potential Coefficient
+Matrix</td><td valign="middle">
+<a class="xref" href="thy_shp6.html#thyeq1infinnov2601" title="(11&#8211;141)">Equation&nbsp;11&#8211;141</a>, <a class="xref" href="thy_shp6.html#thyeq4infinnov2601" title="(11&#8211;144)">Equation&nbsp;11&#8211;144</a>, and <a class="xref" href="thy_shp6.html#thyeq5infinnov2601" title="(11&#8211;146)">Equation&nbsp;11&#8211;146</a>
+</td><td align="center" valign="middle">2 x 2</td></tr><tr valign="middle"><td valign="middle">Thermal Conductivity and Specific Heat Matrices</td><td valign="middle">
+<a class="xref" href="thy_shp6.html#thyeq2infinnov2601" title="(11&#8211;142)">Equation&nbsp;11&#8211;142</a>, <a class="xref" href="thy_shp6.html#thyeq4infinnov2601" title="(11&#8211;144)">Equation&nbsp;11&#8211;144</a>, and <a class="xref" href="thy_shp6.html#thyeq5infinnov2601" title="(11&#8211;146)">Equation&nbsp;11&#8211;146</a>
+</td><td align="center" valign="middle">2 x 2</td></tr><tr valign="middle"><td valign="middle">Dielectric Permittivity and Electrical Conductivity Coefficient
+Matrices</td><td valign="middle">
+<a class="xref" href="thy_shp6.html#thyeq2infinnov2601" title="(11&#8211;142)">Equation&nbsp;11&#8211;142</a>, <a class="xref" href="thy_shp6.html#thyeq4infinnov2601" title="(11&#8211;144)">Equation&nbsp;11&#8211;144</a>, and <a class="xref" href="thy_shp6.html#thyeq5infinnov2601" title="(11&#8211;146)">Equation&nbsp;11&#8211;146</a> </td><td align="center" valign="middle">2 x 2</td></tr></tbody></table></div><p>References: Zienkiewicz et al.(<a class="xref" href="thy_biblio.html#aZAajd5jw" title="&#34;A Novel Boundary Infinite Element&#34;">[169]</a>),
+Damjanic' and Owen(<a class="xref" href="thy_biblio.html#TZAaj33cjw" title="&#34;Mapped Infinite Elements in Transient Thermal Analysis&#34;">[170]</a>), Marques and Owen(<a class="xref" href="thy_biblio.html#kZAaj2dcjw" title="&#34;Infinite Elements in Quasi-Static Materially Nonlinear Problems&#34;">[171]</a>), Li et al.(<a class="xref" href="thy_biblio.html#MhAaj1dfjw" title="&#34;Mapped Infinite Elements for 3-D Vector Potential Magnetic Problems&#34;">[173]</a>)</p><div class="sect2" title="13.110.1.&nbsp;Mapping Functions"><div class="titlepage"><div><div><h3 class="title"><a name="infin110mapping"></a>13.110.1.&nbsp;Mapping Functions</h3></div></div></div><a class="indexterm" name="d0e47728"></a><p>The theory for the infinite mapping functions is briefly summarized
+here. Consider the 1-D    situation shown below:</p><div class="figure"><a name="wAaj3e4jw"></a><p class="title"><b>Figure&nbsp;13.17:&nbsp;&nbsp;Global to Local Mapping of a 1-D Infinite Element</b></p><div class="figure-contents"><div><img src="graphics/gthy14-110-2.svg" alt="Global to Local Mapping of a 1-D Infinite Element"></div></div></div><br class="figure-break"><p>The 1-D element may be thought of as one edge of the infinite
+element of <a class="xref" href="thy_el110.html#O1Baj27ejw" title="Figure&nbsp;13.18:&nbsp;&nbsp;Mapping of 2-D Solid Infinite Element">Figure&nbsp;13.18:&nbsp;Mapping of 2-D Solid Infinite Element</a>. It extends from node J, through
+node K to the point M at infinity and is    mapped onto the parent
+element defined by the local coordinate system in the range -1   
+ 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqe689d864-44eb-4a9e-b2a9-21fc6fd7c785.svg"></span> t 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq5f456853-3543-4e4b-a36e-2cafe815056a.svg"></span> 1. </p><div class="figure"><a name="O1Baj27ejw"></a><p class="title"><b>Figure&nbsp;13.18:&nbsp;&nbsp;Mapping of 2-D Solid Infinite Element</b></p><div class="figure-contents"><div><img src="graphics/gthy14-110-3.svg" alt="Mapping of 2-D Solid Infinite Element"></div></div></div><br class="figure-break"><p>The position of the "pole", x<sub>o</sub>, is arbitrary,
+and once chosen, the    location of node K is defined by</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1infin110nov2701"></a><div><img src="graphics/thyeq1infin110nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;158)</b></p></td></tr></table><p>The interpolation from local to global positions is performed
+as</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2infin110nov2701"></a><div><img src="graphics/thyeq2infin110nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;159)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>M<sub>J</sub>(t) = -2t/(1 - t) </td></tr><tr><td>M<sub>K</sub>(t) = 1 - M<sub>J</sub>(t) </td></tr></table><p>
+</p><p>Examining the above mapping, it can be seen that t = -1, 0,
+1 correspond respectively to the    global positions x = x<sub>J</sub>, x<sub>K</sub>, 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqdc6db3e4-91a8-4b5d-a781-80475d93ba24.svg"></span>, respectively. </p><p>The basic field variable is: </p><div class="informalequation"><a name="eq009a10f4-2169-42cf-adff-298f22b8fd0f"></a><div><img src="graphics/eq009a10f4-2169-42cf-adff-298f22b8fd0f.svg"></div></div><p>and can be interpolated using standard shape functions, which
+when written in polynomial    form becomes</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3infin110nov2701"></a><div><img src="graphics/thyeq3infin110nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;160)</b></p></td></tr></table><p>Solving <a class="xref" href="thy_el110.html#thyeq2infin110nov2701" title="(13&#8211;159)">Equation&nbsp;13&#8211;159</a> for t yields </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq4infin110nov2701"></a><div><img src="graphics/thyeq4infin110nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;161)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>r = distance from the pole, O, to a general point within the
+element </td></tr><tr><td>a = x<sub>K</sub> - x<sub>J</sub> as
+shown in <a class="xref" href="thy_el110.html#O1Baj27ejw" title="Figure&nbsp;13.18:&nbsp;&nbsp;Mapping of 2-D Solid Infinite Element">Figure&nbsp;13.18:&nbsp;Mapping of 2-D Solid Infinite Element</a>     </td></tr></table><p>
+</p><p>Substituting <a class="xref" href="thy_el110.html#thyeq4infin110nov2701" title="(13&#8211;161)">Equation&nbsp;13&#8211;161</a> into <a class="xref" href="thy_el110.html#thyeq3infin110nov2701" title="(13&#8211;160)">Equation&nbsp;13&#8211;160</a> gives </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq5infin110nov2701"></a><div><img src="graphics/thyeq5infin110nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;162)</b></p></td></tr></table><p>Where c<sub>0</sub> = 0 is implied since the variable
+A is assumed to vanish at    infinity. </p><p>
+<a class="xref" href="thy_el110.html#thyeq5infin110nov2701" title="(13&#8211;162)">Equation&nbsp;13&#8211;162</a> is truncated at the
+quadratic     (r<sup>2</sup>) term in the present
+implementation. <a class="xref" href="thy_el110.html#thyeq5infin110nov2701" title="(13&#8211;162)">Equation&nbsp;13&#8211;162</a> also shows
+the role of the pole position, O. </p><p>In 2-D (<a class="xref" href="thy_el110.html#O1Baj27ejw" title="Figure&nbsp;13.18:&nbsp;&nbsp;Mapping of 2-D Solid Infinite Element">Figure&nbsp;13.18:&nbsp;Mapping of 2-D Solid Infinite Element</a>) mapping is achieved by
+the shape function products.    The mapping functions and the Lagrangian
+isoparametric shape functions for 2-D and axisymmetric 4    node quadrilaterals
+are given in <a class="xref" href="thy_shp6.html#shp2d4ninfin" title="11.7.6.&nbsp;2-D and Axisymmetric 4-Node Quadrilateral Infinite Solids">2-D and Axisymmetric 4-Node Quadrilateral Infinite Solids</a>. The shape functions for
+the    nodes M and N are not needed as the field variable, A, is assumed
+to vanish at infinity. </p></div><div class="sect2" title="13.110.2.&nbsp;Matrices"><div class="titlepage"><div><div><h3 class="title"><a name="infin110matrices"></a>13.110.2.&nbsp;Matrices</h3></div></div></div><a class="indexterm" name="d0e47856"></a><p>The coefficient matrix can be written as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq6infin110nov2701"></a><div><img src="graphics/thyeq6infin110nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;163)</b></p></td></tr></table><p>with the terms defined below:</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Magnetic Vector Potential (accessed with KEYOPT(1)
+= 0) </p><table border="0" summary="Simple list" class="simplelist"><tr><td>[K<sub>e</sub>] = magnetic potential coefficient
+matrix </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eqe8676731-336b-4689-ab3b-eb5350c10e4a.svg"></span>
+</td></tr><tr><td>&#956;<sub>o</sub> = magnetic permeability of free
+space (input on <a href="../ans_cmd/Hlp_C_EMUNIT.html" class="olink"><span class="command"><strong>EMUNIT</strong></span></a> command) </td></tr></table><p>
+</p><p>The infinite elements can be used in magnetodynamic
+analysis even though these elements do not compute mass matrices.
+ This is because air has negligible conductivity. </p></li><li class="listitem"><p>Electric Potential (Electric Charge) (accessed with
+KEYOPT(1) = 1)</p><table border="0" summary="Simple list" class="simplelist"><tr><td>[K<sub>e</sub>] = dielectric permittivity matrix</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-16.000000px"><img src="graphics/eq7aefb72d-4a63-4ad8-b79d-b1d0c0a9aa6e.svg"></span>
+</td></tr><tr><td>&#949;<sub>x</sub>, &#949;<sub>y</sub> = dielectric permittivity (input as PERX and PERY on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command)  </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eqed2759eb-2d2b-479f-8047-7fc6977f0808.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-21.000000px"><img src="graphics/eq863d7c08-4e79-41c1-8abb-43c2a81c1f0e.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqe93ff094-91bf-4df7-a24c-b3df7fc81cfd.svg"></span> = effective
+electrical conductivity (defined by <a class="xref" href="thy_emg1.html#electricscalpoteq14" title="(5&#8211;83)">Equation&nbsp;5&#8211;83</a>)</td></tr></table><p> </p></li><li class="listitem"><p>Temperature (accessed with KEYOPT(1) = 2) </p><table border="0" summary="Simple list" class="simplelist"><tr><td>[K<sub>e</sub>] = thermal conductivity matrix </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-16.000000px"><img src="graphics/eq0ba14d6d-f146-48c0-acb8-df0af71cf4b6.svg"></span>
+</td></tr><tr><td>k<sub>x</sub>, k<sub>y</sub> = thermal
+conductivities in the x and y direction (input as KXX and KYY on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command) </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eq0871c930-dfc8-43ae-b99c-70685bd20b93.svg"></span>
+</td></tr><tr><td>C<sub>c</sub> = &#961; C<sub>p</sub> </td></tr><tr><td>&#961; = density of the fluid (input as DENS on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command) </td></tr><tr><td>C<sub>p</sub> = specific heat of the fluid (input
+as C on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command) </td></tr><tr><td>{N} = shape functions given in <a class="xref" href="thy_shp6.html#shp2d4ninfin" title="11.7.6.&nbsp;2-D and Axisymmetric 4-Node Quadrilateral Infinite Solids">2-D and Axisymmetric 4-Node Quadrilateral Infinite Solids</a> </td></tr></table><p>
+</p></li><li class="listitem"><p>Electric Potential (Electric Current) (accessed with
+KEYOPT(1) = 3)</p><table border="0" summary="Simple list" class="simplelist"><tr><td>[K<sub>e</sub>] = electrical conductivity matrix</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-21.000000px"><img src="graphics/eqf697f218-4df9-40fc-805a-21f5cbacdee8.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqb673d7bd-fcf3-4987-ad85-46a00ccf2572.svg"></span> = effective
+electrical conductivity (defined by <a class="xref" href="thy_emg1.html#electricscalpoteq14" title="(5&#8211;83)">Equation&nbsp;5&#8211;83</a>)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eq65b54a7f-8518-4684-af78-d86b546e7ee3.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-16.000000px"><img src="graphics/eqc546a5c4-0d1d-4486-86bd-109186e7b678.svg"></span>
+</td></tr><tr><td>&#949;<sub>x</sub>, &#949;<sub>y</sub> = dielectric permittivity (input as PERX and PERY on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command)</td></tr></table><p>
+</p></li></ol></div><p>Although it is assumed that the nodal DOFs are zero at infinity,
+it is possible to solve thermal problems in which the nodal temperatures
+tend to some constant value, T<sub>o</sub>, rather than
+zero.  In that case, the temperature differential, &#952; (= T -
+T<sub>o</sub>), may be thought to be posed as the nodal
+DOF.  The actual temperature can then be easily found from T = &#952;
++ T<sub>o</sub>.  For transient analysis, &#952; must
+be zero at infinity t &gt; 0, where t is time.  Neumann boundary condition
+is automatically satisfied at infinity.</p><p>The {B<sub>i</sub>} vectors of the [B] matrix in <a class="xref" href="thy_el110.html#thyeq6infin110nov2701" title="(13&#8211;163)">Equation&nbsp;13&#8211;163</a> contain the derivatives of N<sub>i</sub> with respect to the global coordinates which are evaluated
+according to </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq8infin110nov2701"></a><div><img src="graphics/thyeq8infin110nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;164)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>[J] = Jacobian matrix which defines the geometric mapping </td></tr></table><p>
+</p><p>[J] is given by </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq9infin110nov2701"></a><div><img src="graphics/thyeq9infin110nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;165)</b></p></td></tr></table><p>The mapping functions [M] in terms of s and t are given in <a class="xref" href="thy_shp6.html#shp2d4ninfin" title="11.7.6.&nbsp;2-D and Axisymmetric 4-Node Quadrilateral Infinite Solids">2-D and Axisymmetric 4-Node Quadrilateral Infinite Solids</a>.  The domain differential d(vol) must also
+be written in terms of the local coordinates, so that </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq10infin110nov2701"></a><div><img src="graphics/thyeq10infin110nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;166)</b></p></td></tr></table><p>Subject to the evaluation of {B<sub>i</sub>} and
+d(vol), which involves the mapping functions, the element matrices
+[K<sub>e</sub>] and [C<sub>e</sub>] may now
+be computed in the standard manner using Gaussian quadrature. </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

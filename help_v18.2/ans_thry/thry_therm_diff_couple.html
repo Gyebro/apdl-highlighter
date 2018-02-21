@@ -1,0 +1,61 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:12-04:00"><title>10.11.&nbsp;Thermal-Diffusion Coupling</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_coup.html" title="Chapter&nbsp;10:&nbsp;Coupling"><link rel="prev" href="thry_str_diff_cou.html" title="10.10.&nbsp;Structural-Diffusion Coupling"><link rel="next" href="thry_elec_diff_couple.html" title="10.12.&nbsp;Electric-Diffusion Coupling"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="10.11.&nbsp;Thermal-Diffusion Coupling"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thry_therm_diff_couple"></a>10.11.&nbsp;Thermal-Diffusion Coupling</h2></div></div></div><p>The capability to perform a coupled thermal-diffusion analysis exists in the following elements:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_elem/Hlp_E_PLANE223.html" class="olink"><span class="structname">PLANE223</span></a>: 2-D 8-Node Coupled-Field Solid</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_SOLID226.html" class="olink"><span class="structname">SOLID226</span></a>: 3-D 20-Node Coupled-Field Solid</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_SOLID227.html" class="olink"><span class="structname">SOLID227</span></a>: 3-D 10-Node Coupled-Field Solid</td></tr></table><p>
+</p><p>These elements support the effects of thermomigration (the transport of particles due
+            to a temperature gradient) and temperature-dependent saturated concentration when used
+            in coupled-field analyses having thermal and diffusion DOFs. </p><h3><a name="d0e33639"></a>Constitutive Equations</h3><p>In thermal-diffusion analyses, the diffusion flux {J} is coupled to temperature as
+            follows: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thry_therm_dif_e1"></a><div><img src="graphics/thry_therm_dif_e1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;78)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-29.000000px"><img src="graphics/eq59f4ecac-17b3-4d42-a8f8-df812ad2bb81.svg"></span>= diffusivity matrix</td></tr><tr><td>D<sub>xx</sub>, D<sub>yy</sub>, and
+                        D<sub>zz</sub> = diffusivity coefficients in the element's X, Y,
+                    and Z directions, respectively (input as DXX, DYY, DZZ on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>
+                    command)</td></tr><tr><td>C = concentration; <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq26c3a8ca-e8e1-4126-981b-4efdf7237208.svg"></span> where</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqeb252615-c443-42f7-94b1-3b1fe1f8f45d.svg"></span> = normalized concentration (input/output as CONC)</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq0bf71d26-56f9-445a-a7e9-bd4b0bf4e43e.svg"></span> = saturated concentration (input as
+                    <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,CSAT)</td></tr><tr><td>T = absolute temperature = T<sub>c</sub> +
+                        T<sub>off</sub>
+</td></tr><tr><td>T<sub>c</sub> = current temperature (input/output as TEMP on
+                        <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a> or <a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a> commands)</td></tr><tr><td>T<sub>off</sub> = offset temperature from absolute zero to zero
+                    (input on <a href="../ans_cmd/Hlp_C_TOFFST.html" class="olink"><span class="command"><strong>TOFFST</strong></span></a> command)</td></tr><tr><td>Q/k = heat transport constant (input as C3 on <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a>
+                    command with <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,MIGR)</td></tr><tr><td>Q = particle heat of transport</td></tr><tr><td>k = Boltzmann constant</td></tr></table><p>
+</p><p>If saturated concentration is a function of temperature C<sub>sat</sub> =
+                C<sub>sat</sub>(T), <a class="xref" href="thry_therm_diff_couple.html#thry_therm_dif_e1" title="(10&#8211;78)">Equation&nbsp;10&#8211;78</a> takes the
+            form:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thry_therm_dif_e2"></a><div><img src="graphics/thry_therm_dif_e2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;79)</b></p></td></tr></table><p>where the derivative of C<sub>sat</sub> with respect to the temperature <span class="inlineequation" style="&#xA;          vertical-align:-10.000000px"><img src="graphics/eqb48c4005-e4d3-4067-9d41-4bc28bf88ee9.svg"></span> is numerically evaluated by the program.</p><p>For more information on <a class="xref" href="thry_therm_diff_couple.html#thry_therm_dif_e1" title="(10&#8211;78)">Equation&nbsp;10&#8211;78</a> and the related material
+            constant input, see <a href="../ans_mat/migr.html" class="olink">Migration Model</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>. </p><p>For more information on diffusion analysis, see <a href="thy_diff.html" class="olink">Diffusion</a>.</p><h3><a name="d0e33768"></a>Derivation of Thermal-Diffusion Matrices</h3><p>Applying the variational principle with respect to thermal and diffusion DOFs to the
+            equations of heat flow <a class="xref" href="thy_heat1.html#thyeq1conductnov1601" title="(6&#8211;1)">Equation&nbsp;6&#8211;1</a> and mass continuity
+            equations <a class="xref" href="thrynormconcapp.html#gthy_diff_eq7" title="(9&#8211;7)">Equation&nbsp;9&#8211;7</a> coupled by the constitutive equation <a class="xref" href="thry_therm_diff_couple.html#thry_therm_dif_e2" title="(10&#8211;79)">Equation&nbsp;10&#8211;79</a>, we obtain the following finite element matrix
+            equation for the electric-diffusion analysis:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thry_therm_dif_e3"></a><div><img src="graphics/thry_therm_dif_e3.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;80)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>{T} = nodal temperature vector (input/output as TEMP)</td></tr><tr><td>{C} = nodal concentration vector (input/output as CONC)</td></tr><tr><td>[C<sup>t</sup>] = element specific heat matrix (defined by
+                        <a class="xref" href="thy_heat2.html#thyeq7derivnov2601" title="(6&#8211;22)">Equation&nbsp;6&#8211;22</a>)</td></tr><tr><td>[C<sup>d</sup>] = element diffusion damping matrix (defined
+                    by <a class="xref" href="thry_deriv_dif_mat.html#gthy_diff_eq9b" title="(9&#8211;9)">Equation&nbsp;9&#8211;9</a>)</td></tr><tr><td>[K<sup>t</sup>] = element thermal conductivity matrix
+                    (defined by <a class="xref" href="thy_heat2.html#thyeq7derivnov2601" title="(6&#8211;22)">Equation&nbsp;6&#8211;22</a>)</td></tr><tr><td>[K<sup>d</sup>] = element diffusion conductivity matrix
+                    (defined by <a class="xref" href="thry_deriv_dif_mat.html#gthy_diff_eq9b" title="(9&#8211;9)">Equation&nbsp;9&#8211;9</a>)</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-22.000000px"><img src="graphics/eq450244b5-4092-42e6-b73f-156f9a788262.svg"></span> = element transport conductivity matrix</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-26.000000px"><img src="graphics/eq57d64864-0887-4fea-8f7e-a6b4013d5b32.svg"></span> = nonlinear part of the element transport conductivity
+                    matrix</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq7e3e87f6-aa2e-4597-be88-3573238ba842.svg"></span> = thermal gradient (output as TG)</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eq15b23437-b15b-433b-b954-c883d6da04dd.svg"></span> = element thermal-diffusion conductivity matrix produced by <span class="inlineequation" style="&#xA;          vertical-align:-10.000000px"><img src="graphics/eq5921fd25-6e1b-4c6f-ac8b-69c6fb5ac505.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eq42a4e107-7531-4fb8-863c-f511dc9f88e2.svg"></span> = nonlinear part of the element diffusion conductivity matrix
+                    associated with thermomigration</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eq5b3ccd25-11ef-49b6-9f99-0448daa2f984.svg"></span> nonlinear part of the element diffusion conductivity matrix
+                    produced by <span class="inlineequation" style="&#xA;          vertical-align:-10.000000px"><img src="graphics/eqe9e5fb30-a205-4a49-81ac-ecbb7b8b5153.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eqf2a58c05-4e48-438d-9b0b-e10b010c06b4.svg"></span> = element thermal-diffusion damping matrix produced by <span class="inlineequation" style="&#xA;          vertical-align:-10.000000px"><img src="graphics/eq990a33db-db8c-48b5-97cd-921edebd1e52.svg"></span>
+</td></tr><tr><td>{Q} = sum of the nodal heat generation and convection loads (input/output as
+                    HEAT)</td></tr><tr><td>{R} = nodal diffusion flow rate vector (input/output as RATE) </td></tr><tr><td>{N} = element shape functions </td></tr></table><p>
+</p><p>The finite element equation <a class="xref" href="thry_therm_diff_couple.html#thry_therm_dif_e3" title="(10&#8211;80)">Equation&nbsp;10&#8211;80</a> is unsymmetric. If a
+            symmetric equation is desirable, the thermomigration and temperature-dependent
+                C<sub>sat</sub> coupling can be applied as a load vector <span class="inlineequation" style="&#xA;          vertical-align:-10.000000px"><img src="graphics/eqa72b8051-83ce-4640-b97b-e6bae9fed535.svg"></span> by setting KEYOPT(2) = 1 for the coupled-field elements
+                (<a href="../ans_elem/Hlp_E_PLANE223.html" class="olink"><span class="structname">PLANE223</span></a>, <a href="../ans_elem/Hlp_E_SOLID226.html" class="olink"><span class="structname">SOLID226</span></a>,
+                <a href="../ans_elem/Hlp_E_SOLID227.html" class="olink"><span class="structname">SOLID227</span></a>). </p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:54-04:00"><title>4.4.&nbsp;Gasket Material</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thymatlnonlin.html" title="Chapter&nbsp;4:&nbsp;Structures with Material Nonlinearities"><link rel="prev" href="thy_mat2.html" title="4.3.&nbsp;Rate-Dependent Plasticity (Including Creep and Viscoplasticity)"><link rel="next" href="thy_mat4.html" title="4.5.&nbsp;Nonlinear Elasticity"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="4.4.&nbsp;Gasket Material"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="gasket11602"></a>4.4.&nbsp;Gasket Material</h2></div></div></div><a class="indexterm" name="d0e10755"></a><a class="indexterm" name="d0e10758"></a><p>Gasket joints are essential components in most of structural
+assemblies. Gaskets as sealing components between structural components
+are usually very thin and made of many materials, such as steel, rubber
+and composites. From a mechanics point of view, gaskets act to transfer
+the force between mating components. The gasket material is usually
+under compression. The material under compression exhibits high nonlinearity.
+The gasket material also shows quite complicated unloading behavior.
+The primary deformation of a gasket is usually confined to 1 direction,
+that is through-thickness. The stiffness contribution from membrane
+(in-plane) and transverse shear are much smaller, and are neglected. </p><p>The table option GASKET allows gasket joints to be simulated
+with the interface elements, in which the through-thickness deformation
+is decoupled from the in-plane deformation, see <a class="xref" href="thy_el192.html" title="13.192.&nbsp;INTER192 - 2-D 4-Node Gasket">INTER192 - 2-D 4-Node Gasket</a>, <a class="xref" href="thy_el193.html" title="13.193.&nbsp;INTER193 - 2-D 6-Node Gasket">INTER193 - 2-D 6-Node Gasket</a>, <a class="xref" href="thy_el194.html" title="13.194.&nbsp;INTER194 - 3-D 16-Node Gasket">INTER194 - 3-D 16-Node Gasket</a>, and <a class="xref" href="thy_el195.html" title="13.195.&nbsp;INTER195 - 3-D 8-Node Gasket">INTER195 - 3-D 8-Node Gasket</a> for detailed
+description of interface elements. The user can directly input the
+experimentally measured complex pressure-closure curve (compression
+curve) and several unloading pressure-closure curves for characterizing
+the through thickness deformation of gasket material. </p><p>
+<a class="xref" href="thy_gasket.html#gasketfig1" title="Figure&nbsp;4.23:&nbsp;&nbsp;Pressure vs. Deflection Behavior of a Gasket Material">Figure&nbsp;4.23:&nbsp;Pressure vs. Deflection Behavior of a Gasket Material</a> shows the experimental pressure
+vs. closure (relative displacement of top and bottom gasket surfaces)
+data for a graphite composite gasket material. The sample was unloaded
+and reloaded 5 times along the loading path and then unloaded at the
+end of the test to determine the unloading stiffness of the material. </p><div class="figure"><a name="gasketfig1"></a><p class="title"><b>Figure&nbsp;4.23:&nbsp;&nbsp;Pressure vs. Deflection Behavior of a Gasket Material</b></p><div class="figure-contents"><div><img src="graphics/gthy_gasket.gif" alt="Pressure vs. Deflection Behavior of a Gasket Material"></div></div></div><br class="figure-break"><div class="sect2" title="4.4.1.&nbsp;Stress and Deformation"><div class="titlepage"><div><div><h3 class="title"><a name="sad11602"></a>4.4.1.&nbsp;Stress and Deformation</h3></div></div></div><p>The gasket pressure and deformation are based on the local element
+coordinate systems. The gasket pressure is actually the stress normal
+to the gasket element midsurface in the gasket layer. Gasket deformation
+is characterized by the closure of top and bottom surfaces of gasket
+elements, and is defined as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thysadeq1"></a><div><img src="graphics/thysadeq1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;159)</b></p></td></tr></table><p>Where, u<sup>TOP</sup> and u<sup>BOTTOM</sup> are the displacement of top and bottom surfaces of interface elements
+in the local element coordinate system based on the mid-plane of element.</p></div><div class="sect2" title="4.4.2.&nbsp;Material Definition"><div class="titlepage"><div><div><h3 class="title"><a name="matdef11602"></a>4.4.2.&nbsp;Material Definition</h3></div></div></div><p>The input of material data of a gasket material is specified
+by the command (<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,GASKET). The input of material
+data considers of 2 main parts: general parameters and pressure closure
+behaviors. The general parameters defines initial gasket gap, the
+stable stiffness for numerical stabilization, and the stress cap for
+gasket in tension. The pressure closure behavior includes gasket compression
+(loading) and tension data (unloading).</p><p>The GASKET option has followings sub-options:</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="129" class="col1"><col width="384" class="col2"></colgroup><thead><tr><th align="center" valign="top">Sub-option</th><th align="center" valign="top">Description</th></tr></thead><tbody><tr><td>PARA</td><td>Define gasket material general parameters</td></tr><tr><td>COMP</td><td>Define gasket compression
+data</td></tr><tr><td>LUNL</td><td>Define gasket linear unloading data</td></tr><tr><td>NUNL</td><td>Define gasket
+nonlinear unloading data</td></tr></tbody></table></div><p>A gasket material can have several options at the same time.
+When no unloading curves are defined, the material behavior follows
+the compression curve while it is unloaded.</p></div><div class="sect2" title="4.4.3.&nbsp;Thermal Deformation"><div class="titlepage"><div><div><h3 class="title"><a name="thermdef11602"></a>4.4.3.&nbsp;Thermal Deformation</h3></div></div></div><p>The thermal deformation is taken into account by using an additive
+decomposition in the total deformation, d, as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq3eaa56d5-714c-49e9-8db5-d33d69228642"></a><div><img src="graphics/eq3eaa56d5-714c-49e9-8db5-d33d69228642.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;160)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>d = relative total deformation between top and bottom surfaces
+of the interface element</td></tr><tr><td>d<sub>i</sub> = relative deformation between top
+and bottom surfaces causing by the applying stress, this can be also
+defined as mechanical deformation</td></tr><tr><td>d<sub>th</sub> = relative thermal deformation
+between top and bottom surfaces due to free thermal expansion</td></tr><tr><td>d<sub>o</sub> = initial gap of the element and
+is defined by sub-option PARA</td></tr></table><p>
+</p><p>The thermal deformation causing by free thermal expansion is
+defined as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqfba88c6f-1cf8-45d2-9ccb-b4ed2705fa85"></a><div><img src="graphics/eqfba88c6f-1cf8-45d2-9ccb-b4ed2705fa85.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;161)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<font face="Arial Unicode Ms"><span class="markup">&#945;</span></font> = coefficient
+of thermal expansion (input as ALPX on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command)</td></tr><tr><td>&#916;T = temperature change in the current load step</td></tr><tr><td>h = thickness of layer at the integration point where thermal
+deformation is of interest</td></tr></table><p>
+</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:11-04:00"><title>10.6.&nbsp;Piezoresistivity</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_coup.html" title="Chapter&nbsp;10:&nbsp;Coupling"><link rel="prev" href="electroelasy.html" title="10.5.&nbsp;Electroelasticity"><link rel="next" href="thy_coup5.html" title="10.7.&nbsp;Thermoelectrics"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="10.6.&nbsp;Piezoresistivity"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="presist"></a>10.6.&nbsp;Piezoresistivity</h2></div></div></div><p>The capability to model piezoresistive effect exists in the
+following elements:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_elem/Hlp_E_PLANE223.html" class="olink"><span class="structname">PLANE223</span></a> - 2-D 8-Node Coupled-Field
+Solid</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_SOLID226.html" class="olink"><span class="structname">SOLID226</span></a> - 3-D 20-Node Coupled-Field
+Solid</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_SOLID227.html" class="olink"><span class="structname">SOLID227</span></a> - 3-D 10-Node Coupled-Field
+Solid</td></tr></table><p>
+</p><p>In piezoresistive materials, stress or strain cause a change
+of electric resistivity:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq0e83a659-c584-4fd6-aa58-94e553a12caa"></a><div><img src="graphics/eq0e83a659-c584-4fd6-aa58-94e553a12caa.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;61)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-30.000000px"><img src="graphics/eqe753a7b0-7372-4f5f-9a49-17ecc0660de8.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-35.000000px"><img src="graphics/eq3da5d372-9718-4aff-8209-541ff324947e.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eqd2817d13-612c-4575-aaa6-5329d79b1929.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-24.000000px"><img src="graphics/eq8ab5b16f-d66c-4fd3-887c-fabe0201715d.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-24.000000px"><img src="graphics/eq1cfffe09-cbf6-40b6-b1ce-37f172f7a4b2.svg"></span>
+</td></tr></table><p>
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq598bd43b-d044-45da-81f9-6bde422655e6"></a><div><img src="graphics/eq598bd43b-d044-45da-81f9-6bde422655e6.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;62)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>{r} = vector of matrix [r] components = [r<sub>x</sub>&nbsp;&nbsp;r<sub>y</sub>&nbsp;&nbsp;r<sub>z</sub>&nbsp;&nbsp;r<sub>xy</sub>&nbsp;&nbsp;r<sub>yz</sub>&nbsp;&nbsp;r<sub>xz</sub>]<sup>T</sup>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-76.000000px"><img src="graphics/eq40209c4d-84b0-49d4-9240-36b920762058.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq8b393e09-0b21-4ca8-bbd2-25caaf69d30e.svg"></span>
+</td></tr></table><p>
+</p><p>Similarly, for strains:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq0ab54ca1-e727-40fe-ac59-2ed8a4664869"></a><div><img src="graphics/eq0ab54ca1-e727-40fe-ac59-2ed8a4664869.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;63)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>[m] = piezoresistive strain matrix (input on <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,PZRS command with <em class="replaceable"><code>TBOPT</code></em> = 1)</td></tr><tr><td>{&#949;<sup>el</sup>} = elastic strain
+vector</td></tr></table><p>
+</p><p>The coupled-field finite element matrix equation for the piezoresistive
+analysis is given by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq3347a39f-04bc-4718-baf0-93ec92cb8cd4"></a><div><img src="graphics/eq3347a39f-04bc-4718-baf0-93ec92cb8cd4.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;64)</b></p></td></tr></table><p>The terms used in the above equation are explained in <a class="xref" href="thy_coup1.html#pzrstvanal" title="10.1.2.12.&nbsp;Piezoresistive Analysis">Piezoresistive Analysis</a> where the conductivity matrix [K<sup>v</sup>] is derived as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="piezor1"></a><div><img src="graphics/piezor1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;65)</b></p></td></tr></table></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

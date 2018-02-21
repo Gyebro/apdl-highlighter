@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:52-04:00"><title>3.7.&nbsp;Constraints and Lagrange Multiplier Method</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_geo.html" title="Chapter&nbsp;3:&nbsp;Structures with Geometric Nonlinearities"><link rel="prev" href="thy_geo5.html" title="3.6.&nbsp;General Element Formulations"><link rel="next" href="thy_geosteadystroll.html" title="3.8.&nbsp;Steady State Rolling"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="3.7.&nbsp;Constraints and Lagrange Multiplier Method"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="ss081203"></a>3.7.&nbsp;Constraints and Lagrange Multiplier Method</h2></div></div></div><p>Constraints are generally implemented using the Lagrange Multiplier
+Method (See Belytschko(<a class="xref" href="thy_biblio.html#belyliu" title="&#8220;Nonlinear Finite Elements for Continua and Structures&#8221;">[349]</a>)). This formulation
+has been implemented in <a href="../ans_elem/Hlp_E_MPC184.html" class="olink"><span class="structname">MPC184</span></a> as described
+in the <a href="../ans_elem/Hlp_E_ElemTOC.html" class="olink"><em class="citetitle">Element Reference</em></a>. In this method, the internal energy term given by <a class="xref" href="thy_geo5.html#thyeq2fundelnov1601" title="(3&#8211;90)">Equation&nbsp;3&#8211;90</a> is augmented by a set of constraints,
+imposed by the use of Lagrange multipliers and integrated over the
+volume leading to an augmented form of the virtual work equation:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="ss081203eq1"></a><div><img src="graphics/ss081203eq1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;119)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>W' = augmented potential</td></tr></table><p>
+</p><p>and</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="ss081203eq2"></a><div><img src="graphics/ss081203eq2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;120)</b></p></td></tr></table><p>is the set of constraints to be imposed.</p><p>The variation of the augmented potential is zero provided <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqaff5e1b5-7f21-48b7-b87b-f0eaf1f15851.svg"></span> (and, hence <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq42e6a82d-10ce-4665-9533-c799051bddc5.svg"></span>) and, simultaneously:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="ss081203eq3"></a><div><img src="graphics/ss081203eq3.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;121)</b></p></td></tr></table><p>The equation for augmented potential (<a class="xref" href="thy_geo6.html#ss081203eq1" title="(3&#8211;119)">Equation&nbsp;3&#8211;119</a>) is a system of n<sub>tot</sub> equations, where:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="ss081203eq4"></a><div><img src="graphics/ss081203eq4.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;122)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>n<sub>dof</sub> = number of degrees of freedom
+in the model</td></tr><tr><td>n<sub>c</sub> = number of Lagrange multipliers</td></tr></table><p>
+</p><p>The solution vector consists of the displacement degrees of
+freedom <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq0563d904-a664-4d43-9c12-1ceb6b8cf02b.svg"></span> and the Lagrange multipliers.</p><p>The stiffness matrix is of the form:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="ss081203eq5"></a><div><img src="graphics/ss081203eq5.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;123)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-33.000000px"><img src="graphics/eqa5017a5c-5392-4732-bf70-b557eb80577e.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq662d9568-5e22-4a9c-929c-7d41ee778ea2.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq492de7f6-1066-4182-b9db-9be159c5f95e.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqb5db3c7a-2525-4e37-8891-ae8352085806.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-3.000000px"><img src="graphics/eq2bacc54b-26ae-48ff-a820-1f0e6ed52122.svg"></span> = increments in displacements and Lagrange
+multiplier, respectively.</td></tr></table><p>
+</p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

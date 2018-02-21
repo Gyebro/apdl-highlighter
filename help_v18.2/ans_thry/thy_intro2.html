@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:48-04:00"><title>1.2.&nbsp;Understanding Theory Reference Notation</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_intro.html" title="Chapter&nbsp;1:&nbsp;Introduction"><link rel="prev" href="thy_purp.html" title="1.1.&nbsp;Overview of the Theory Reference"><link rel="next" href="thy_intro3.html" title="1.3.&nbsp;Applicable Products"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="1.2.&nbsp;Understanding Theory Reference Notation"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="intronotation"></a>1.2.&nbsp;Understanding Theory Reference Notation</h2></div></div></div><p>The notation defined below is a partial list of the notation
+used throughout the manual.  There are also some tables of definitions
+given in following sections: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+<a class="xref" href="thy_coup.html" title="Chapter&nbsp;10:&nbsp;Coupling">Coupling</a>
+</p></li><li class="listitem"><p>
+<a class="xref" href="thy_mat1.html" title="4.2.&nbsp;Rate-Independent Plasticity">Rate-Independent Plasticity</a>
+</p></li></ul></div><p>Due to the wide variety of topics covered in this manual, some
+exceptions will exist.</p><div class="table"><a name="thy.intro.tab1.1"></a><p class="title"><b>Table&nbsp;1.1:&nbsp;&nbsp;General Terms</b></p><div class="table-contents"><table summary="General Terms" border="1" width="95%"><colgroup><col width="120" class="COLSPEC0"><col width="432" class="COLSPEC1"></colgroup><thead><tr><th align="center" valign="top">Term</th><th align="center" valign="top">Meaning</th></tr></thead><tbody><tr><td>[B]</td><td>strain-displacement matrix</td></tr><tr><td>[C]</td><td>damping matrix</td></tr><tr><td>[Ct]</td><td>specific heat matrix</td></tr><tr><td>[D]</td><td>elasticity matrix</td></tr><tr><td>E</td><td>Young's modulus</td></tr><tr><td>{F}</td><td>force vector</td></tr><tr><td>[I]</td><td>identity
+matrix</td></tr><tr><td>{I}</td><td>current vector,
+associated with electrical potential degrees of freedom</td></tr><tr><td>{J}</td><td>current vector, associated with magnetic
+potential degrees of freedom</td></tr><tr><td>[K]</td><td>stiffness matrix</td></tr><tr><td>[K<sup>t</sup>]</td><td>conductivity matrix</td></tr><tr><td>[M]</td><td>mass matrix</td></tr><tr><td>[O]</td><td>null
+matrix</td></tr><tr><td>P, {P}</td><td>pressure (vector)</td></tr><tr><td>{Q}</td><td>heat flow vector</td></tr><tr><td>[S]</td><td>stress stiffness matrix</td></tr><tr><td>{T}</td><td>temperature vector</td></tr><tr><td>t</td><td>time, thickness</td></tr><tr><td>[T<sub>R</sub>]</td><td>local to global conversion matrix</td></tr><tr><td>u, v, w, {u}</td><td> displacement, displacement
+vector</td></tr><tr><td>{V}</td><td>electric potential
+vector</td></tr><tr><td>&#948;U</td><td>virtual internal
+work</td></tr><tr><td>&#948;V</td><td>virtual external
+work</td></tr><tr><td>{W}</td><td>fluid flow vector</td></tr><tr><td>x, y, z</td><td>element coordinate</td></tr><tr><td>X, Y, Z</td><td>nodal coordinates (usually global
+Cartesian)</td></tr><tr><td>
+<font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+</td><td>coefficient of thermal expansion</td></tr><tr><td>&#949;</td><td>strain</td></tr><tr><td>&#957;</td><td>Poisson's ratio</td></tr><tr><td>&#963;</td><td>stress</td></tr></tbody></table></div></div><br class="table-break"><p>Below is a partial list of superscripts and subscripts used
+on [K], [M], [C], [S], {u}, {T}, and/or {F}.  See also <a class="xref" href="thy_coup.html" title="Chapter&nbsp;10:&nbsp;Coupling">Coupling</a>.  The absence of a subscript on the above
+terms implies the total matrix in final form, ready for solution.</p><div class="table"><a name="thy.intro.tab1.2"></a><p class="title"><b>Table&nbsp;1.2:&nbsp;&nbsp;Superscripts and Subscripts </b></p><div class="table-contents"><table summary="Superscripts and Subscripts " border="1" width="95%"><colgroup><col width="120" class="COLSPEC2"><col width="432" class="COLSPEC3"></colgroup><thead><tr><th align="center">Term</th><th align="center">Meaning</th></tr></thead><tbody><tr><td>ac</td><td>nodal effects caused by an acceleration
+field</td></tr><tr><td>c</td><td>convection surface</td></tr><tr><td>cr</td><td>creep</td></tr><tr><td>e</td><td>based on element in global coordinates</td></tr><tr><td>el</td><td>elastic</td></tr><tr><td>g</td><td>internal heat generation</td></tr><tr><td>i</td><td>equilibrium iteration number</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq06a3313a-bf3d-416e-8c58-2ce81d4f65b7.svg"></span>
+</td><td>based on element in element coordinates</td></tr><tr><td>m</td><td>master</td></tr><tr><td>n</td><td>substep number (time step)</td></tr><tr><td>nd</td><td>effects applied directly to node</td></tr><tr><td>pl</td><td>plasticity</td></tr><tr><td>pr</td><td>pressure</td></tr><tr><td>s</td><td>slave</td></tr><tr><td>sw</td><td>swelling</td></tr><tr><td>t, th</td><td>thermal</td></tr><tr><td>^</td><td>(flex over term) reduced matrices and vectors</td></tr><tr><td>.</td><td>(dot over term) time derivative</td></tr></tbody></table></div></div><br class="table-break"></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:52-04:00"><title>4.1.&nbsp;Understanding Material Nonlinearities</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thymatlnonlin.html" title="Chapter&nbsp;4:&nbsp;Structures with Material Nonlinearities"><link rel="prev" href="thymatlnonlin.html" title="Chapter&nbsp;4:&nbsp;Structures with Material Nonlinearities"><link rel="next" href="thy_mat1.html" title="4.2.&nbsp;Rate-Independent Plasticity"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="4.1.&nbsp;Understanding Material Nonlinearities"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thyundmatnon"></a>4.1.&nbsp;Understanding Material Nonlinearities</h2></div></div></div><p>Material nonlinearities occur because of the nonlinear relationship
+between stress and strain; that is, the stress is a nonlinear function
+of the strain. The relationship is also path-dependent (except for
+the case of nonlinear elasticity and hyperelasticity), so that the
+stress depends on the strain history as well as the strain itself.</p><p>The program can account for many material nonlinearities, as
+follows:</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
+<a class="link" href="thy_mat1.html" title="4.2.&nbsp;Rate-Independent Plasticity">Rate-independent plasticity</a> is characterized by the irreversible instantaneous straining that
+occurs in a material. </p></li><li class="listitem"><p>
+<a class="link" href="thy_mat2.html" title="4.3.&nbsp;Rate-Dependent Plasticity (Including Creep and Viscoplasticity)">Rate-dependent plasticity</a> allows the plastic-strains to develop over a time interval. This
+is also termed <a class="link" href="thy_mat2.html#matanandvisco" title="4.3.2.4.&nbsp;Anand Viscoplasticity Option">viscoplasticity</a>.</p></li><li class="listitem"><p>
+<a class="link" href="thy_mat2.html#matcreepopt" title="4.3.1.&nbsp;Creep">Creep</a> is also an
+irreversible straining that occurs in a material and is rate-dependent
+so that the strains develop over time. The time frame for creep is
+usually much larger than that for rate-dependent plasticity.</p></li><li class="listitem"><p>
+<a class="link" href="thy_gasket.html" title="4.4.&nbsp;Gasket Material">Gasket material</a> may be modelled using special relationships.</p></li><li class="listitem"><p>
+<a class="link" href="thy_mat4.html" title="4.5.&nbsp;Nonlinear Elasticity">Nonlinear elasticity</a> allows a nonlinear stress-strain relationship to be specified. All
+straining is reversible.</p></li><li class="listitem"><p>
+<a class="link" href="thy_mat5.html" title="4.6.&nbsp;Hyperelasticity">Hyperelasticity</a> is defined by a strain-energy density potential that characterizes
+elastomeric and foam-type materials. All straining is reversible.</p></li><li class="listitem"><p>
+<a class="link" href="thy_mat6.html" title="4.9.&nbsp;Viscoelasticity">Viscoelasticity</a> is
+a rate-dependent material characterization that includes a viscous
+contribution to the elastic straining.</p></li><li class="listitem"><p>
+<a class="link" href="thy_mat7.html" title="4.10.&nbsp;Concrete">Concrete</a> materials
+include cracking and crushing capability.</p></li><li class="listitem"><p>
+<a class="link" href="thy_mat8.html" title="4.11.&nbsp;Swelling">Swelling</a> allows materials
+to enlarge in the presence of neutron flux.</p></li></ol></div><p>Llisted in this table are the number of stress and strain components
+involved. One component uses X (e.g., SX, EPELX, etc.), four components
+use X, Y, Z, XY, and six components use X, Y, Z, XY, YZ, XZ.</p><p><a name="matstrain"></a>
+<span class="bold"><strong>Strain Definitions</strong></span>
+</p><p>For the case of nonlinear materials, the definition of elastic
+strain given with <a class="xref" href="thy_str1.html#thyeq1ssrelnov1501" title="(2&#8211;1)">Equation&nbsp;2&#8211;1</a> has the form
+of:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1strainnov1901"></a><div><img src="graphics/thyeq1strainnov1901.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;1)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#949;<sup>el</sup> = elastic strain vector
+(output as EPEL)</td></tr><tr><td>&#949; = total strain vector</td></tr><tr><td>&#949;<sup>th</sup> = thermal strain vector
+(output as EPTH)</td></tr><tr><td>&#949;<sup>pl</sup> = plastic strain vector
+(output as EPPL)</td></tr><tr><td>&#949;<sup>cr</sup> = creep strain vector
+(output as EPCR)</td></tr><tr><td>&#949;<sup>sw</sup> = swelling strain vector
+(output as EPSW)</td></tr></table><p>
+</p><p>In this case, {&#949;} is the strain measured by a strain
+gauge. <a class="xref" href="thy_undmat.html#thyeq1strainnov1901" title="(4&#8211;1)">Equation&nbsp;4&#8211;1</a> is only intended to show
+the relationships between the terms. See subsequent sections for more
+detail).</p><p>In POST1, total strain is reported as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqfd0b50c4-c963-4be5-88ac-343f1af16829"></a><div><img src="graphics/eqfd0b50c4-c963-4be5-88ac-343f1af16829.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;2)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#949;<sup>tot</sup> = component total
+strain (output as EPTO)</td></tr></table><p>
+</p><p>Comparing the last two equations,</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq07565a2c-2b0e-467b-b6b8-5e0206980418"></a><div><img src="graphics/eq07565a2c-2b0e-467b-b6b8-5e0206980418.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;3)</b></p></td></tr></table><p>The difference between these two &#8220;total&#8221; strains
+stems from the different usages: {&#949;} can be used to compare
+strain gauge results and &#949;<sup>tot</sup> can
+be used to plot nonlinear stress-strain curves.</p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:32-04:00"><title>13.124.&nbsp;CIRCU124 - Electric Circuit</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el123.html" title="13.123.&nbsp;SOLID123 - 3-D 10-Node Tetrahedral Electrostatic Solid"><link rel="next" href="thy_el125.html" title="13.125.&nbsp;CIRCU125 - Diode"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.124.&nbsp;CIRCU124 - Electric Circuit"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thycircu124"></a>13.124.&nbsp;CIRCU124 - Electric Circuit</h2></div></div></div><div><img src="graphics/gthy14-124-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="168" class="col1"><col width="312" class="col2"><col width="144" class="col3"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Matrix or Vector</th><th align="center" valign="middle">Shape Functions</th><th align="center" valign="middle">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration
+Points</a>
+</th></tr></thead><tbody><tr valign="middle"><td valign="middle">Stiffness Matrix</td><td valign="middle">None (lumped) </td><td align="center" valign="middle">None</td></tr><tr valign="middle"><td valign="middle">Damping Matrix</td><td valign="middle">None (lumped, harmonic analysis only) </td><td align="center" valign="middle">None</td></tr><tr valign="middle"><td valign="middle">Load
+Vector</td><td valign="middle">None (lumped)</td><td align="center" valign="middle">None</td></tr></tbody></table></div><div class="sect2" title="13.124.1.&nbsp;Electric Circuit Elements"><div class="titlepage"><div><div><h3 class="title"><a name="circu124elcir"></a>13.124.1.&nbsp;Electric Circuit Elements</h3></div></div></div><a class="indexterm" name="d0e49076"></a><p>CIRCU124 contains 10 linear electric circuit element options. These may be classified into two
+   groups: </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Independent Circuit Element options, defined by 2 or 3 nodes: </p><p>Resistor (KEYOPT(1) = 0) </p><p>Inductor (KEYOPT(1) = 1) </p><p>Capacitor (KEYOPT(1) = 2) </p><p>Current Source (KEYOPT(1) = 3) </p><p>Voltage Source (KEYOPT(1) = 4) </p></li><li class="listitem"><p>Dependent Circuit Element options, defined by 3, 4, 5, or
+6 nodes: </p><p>Mutual  inductor (KEYOPT(1) = 8) </p><p>Voltage-controlled current  source (KEYOPT(1) = 9) </p><p>Voltage-controlled voltage source (KEYOPT(1) = 10) </p><p>Current-controlled voltage  source (KEYOPT(1) = 11) </p><p>Current-controlled current  source (KEYOPT(1) = 12) </p></li></ol></div></div><div class="sect2" title="13.124.2.&nbsp;Electric Circuit Element Matrices"><div class="titlepage"><div><div><h3 class="title"><a name="circu124matrices"></a>13.124.2.&nbsp;Electric Circuit Element Matrices</h3></div></div></div><p>All circuit options in CIRCU124 are based on Kirchhoff's Current Law.
+ These options use stiffness matrices based on a simple lumped circuit model.
+  </p><p>For transient analysis, an inductor with nodes I and J can be presented
+by: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq99dc8fb6-359b-49f0-a7c7-116046ccc80c"></a><div><img src="graphics/eq99dc8fb6-359b-49f0-a7c7-116046ccc80c.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;188)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>L = inductance </td></tr><tr><td>V<sub>I</sub> = voltage at node I </td></tr><tr><td>V<sub>J</sub> = voltage at node J </td></tr><tr><td>&#916;t = time increment </td></tr><tr><td>&#952; = time integration parameter </td></tr><tr><td>n = time step n </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq722eefee-7eab-4a2d-b433-6267a7a3c994.svg"></span>
+    </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqb392945d-bdbe-4777-b7e9-ed9bee30e13a.svg"></span>
+    </td></tr></table><p>
+</p><p>A capacitor with nodes I and J is represented by: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq88b50ffb-1c81-4264-bac3-a921012d7fcd"></a><div><img src="graphics/eq88b50ffb-1c81-4264-bac3-a921012d7fcd.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;189)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>C = capacitance </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqb673ac2b-3e8c-4fa6-bb99-9af843b54f63.svg"></span>
+</td></tr><tr><td>
+     
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqce99df22-fbd1-4254-b266-0042b1291c33.svg"></span>
+    </td></tr></table><p>
+</p><p>Similarly, a mutual inductor with nodes I, J, K and L has the following
+matrix: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqec7762e6-cdb2-4ec6-9445-2af698624be1"></a><div><img src="graphics/eqec7762e6-cdb2-4ec6-9445-2af698624be1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;190)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>L1 = input side inductance </td></tr><tr><td>L2 = output side inductance </td></tr><tr><td>M = mutual inductance </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eqea44e916-549a-43a6-9c3d-3e399aca709a.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eq10f7cfa3-b601-494a-9a92-254b0116a101.svg"></span>
+     
+<span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eq2c51b358-50db-47cc-9c8e-2ddf8a72dd9a.svg"></span>
+    </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eqecb4b245-e86b-493d-b53b-dc118c243bb8.svg"></span>
+    </td></tr></table><p>
+</p><p>For harmonic analysis, the above three circuit element options have
+only a damping matrix.  For an inductor: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq355f83cc-ffef-423b-a474-98b300b538f9"></a><div><img src="graphics/eq355f83cc-ffef-423b-a474-98b300b538f9.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;191)</b></p></td></tr></table><p>for a capacitor: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq8de54938-b2c1-4e43-ac8a-a952005b2b1e"></a><div><img src="graphics/eq8de54938-b2c1-4e43-ac8a-a952005b2b1e.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;192)</b></p></td></tr></table><p>and for a mutual inductor: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqce3243ff-75ba-4cb2-99ed-692bcd578d8e"></a><div><img src="graphics/eqce3243ff-75ba-4cb2-99ed-692bcd578d8e.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;193)</b></p></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

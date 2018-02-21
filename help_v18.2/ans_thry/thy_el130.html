@@ -1,0 +1,88 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:33-04:00"><title>13.130.&nbsp;FLUID130 - 3-D Infinite Acoustic</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el129.html" title="13.129.&nbsp;FLUID129 - 2-D Infinite Acoustic"><link rel="next" href="thy_el131.html" title="13.131.&nbsp;SHELL131 - 4-Node Layered Thermal Shell"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.130.&nbsp;FLUID130 - 3-D Infinite Acoustic"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thyfluid130"></a>13.130.&nbsp;FLUID130 - 3-D Infinite Acoustic</h2></div></div></div><div><img src="graphics/gthy14-130-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="240" class="col1"><col width="240" class="col2"><col width="144" class="col3"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Matrix or Vector</th><th align="center" valign="middle">Shape Functions</th><th align="center" valign="middle">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration
+Points</a>
+</th></tr></thead><tbody><tr valign="middle"><td valign="middle">Fluid Stiffness and Damping
+Matrices</td><td valign="middle">
+<a class="xref" href="thy_shp6.html#thyeq8quad43dnov1501" title="(11&#8211;127)">Equation&nbsp;11&#8211;127</a>
+</td><td align="center" valign="middle">2 x 2</td></tr></tbody></table></div><div class="sect2" title="13.130.1.&nbsp;Mathematical Formulation and F.E. Discretization"><div class="titlepage"><div><div><h3 class="title"><a name="d0e49637"></a>13.130.1.&nbsp;Mathematical Formulation and F.E. Discretization</h3></div></div></div><p>The exterior structural acoustics problem typically involves a structure
+submerged in an infinite, homogeneous, inviscid fluid.  The fluid is considered
+linear, meaning that there is a linear relationship between pressure fluctuations
+and changes in density.  <a class="xref" href="thy_el130.html#thyeq1fluid130nov2701" title="(13&#8211;206)">Equation&nbsp;13&#8211;206</a> is the linearized,
+lossless wave equation for the propagation of sound in fluids. </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1fluid130nov2701"></a><div><img src="graphics/thyeq1fluid130nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;206)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>P = pressure </td></tr><tr><td>c = speed of sound in the fluid (input as SONC on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>
+command) </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqfe172090-7c9d-41fc-9881-62a9155f46f3.svg"></span> = second derivative of pressure
+with respect to time </td></tr><tr><td>&#937;<sup>+</sup> = unbounded region occupied by the
+fluid </td></tr></table><p>
+</p><p>In addition to <a class="xref" href="thy_el130.html#thyeq1fluid130nov2701" title="(13&#8211;206)">Equation&nbsp;13&#8211;206</a>), the following
+Sommerfeld radiation condition (which simply states that the waves generated
+within the fluid are outgoing) needs to be satisfied at infinity: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2fluid130nov2701"></a><div><img src="graphics/thyeq2fluid130nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;207)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>r = distance from the origin </td></tr><tr><td>P<sub>r</sub> = pressure derivative along the radial direction </td></tr><tr><td>d = dimensionality of the problem (i.e.,  d =3 or d =2 if  &#937;<sup>+</sup>
+is 3-D or 2-D respectively </td></tr></table><p>
+</p><p>A primary difficulty associated with the use of finite elements for
+the modeling of the infinite medium stems precisely from the need to satisfy
+the Sommerfeld radiation condition, <a class="xref" href="thy_el130.html#thyeq2fluid130nov2701" title="(13&#8211;207)">Equation&nbsp;13&#8211;207</a>.
+ A typical approach for tackling the difficulty consists of truncating the
+unbounded domain &#937;<sup>+</sup> by the introduction of
+an absorbing (artificial) boundary &#915;<sub>a</sub> at some
+distance from the structure. </p><div class="figure"><a name="fluid130fig1"></a><p class="title"><b>Figure&nbsp;13.22:&nbsp;&nbsp;Absorbing Boundary</b></p><div class="figure-contents"><div><img src="graphics/gthy14-130-5.svg" alt="Absorbing Boundary"></div></div></div><br class="figure-break"><p>The equation of motion <a class="xref" href="thy_el130.html#thyeq1fluid130nov2701" title="(13&#8211;206)">Equation&nbsp;13&#8211;206</a> is then
+solved in the annular region &#937;<sup>f</sup> which is bounded
+by the fluid-structure interface &#915; and the absorbing boundary &#915;<sub>a</sub>.
+In order, however, for the resulting problem in &#937;<sup>f</sup>
+to be well-posed, an appropriate condition needs to be specified on &#915;<sub>a</sub>.
+ Towards this end, the following second-order conditions are used (Kallivokas
+et al.(<a class="xref" href="thy_biblio.html#j7Mep96jjw" title="&#34;Symmetric Local Absorbing Boundaries in Time and Space&#34;">[219]</a>)) on &#915;<sub>a</sub>: </p><p>
+<span class="bold"><strong>
+<span class="emphasis"><em>In two dimensions:</em></span>
+</strong></span>
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3fluid130nov2701"></a><div><img src="graphics/thyeq3fluid130nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;208)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>n = outward normal to &#915;<sub>a</sub> </td></tr><tr><td>P<sub>n</sub> = pressure derivative in the normal direction </td></tr><tr><td>P<sub>&#955;&#955;</sub> = pressure
+derivative along &#915;<sub>a</sub>   </td></tr><tr><td>k = curvature of &#915;<sub>a</sub>  </td></tr><tr><td> &#947; = stability parameter </td></tr></table><p>
+</p><p>
+<span class="bold"><strong>
+<span class="emphasis"><em>In three dimensions:</em></span>
+</strong></span>
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq4fluid130nov2701"></a><div><img src="graphics/thyeq4fluid130nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;209)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>n = outward normal </td></tr><tr><td>u and v = orthogonal curvilinear surface coordinates (e.g., the meridional
+and polar angles in spherical coordinates) </td></tr><tr><td>P<sub>u</sub>, P<sub>v</sub> = pressure derivatives
+in the &#915;<sub>a</sub> surface directions </td></tr><tr><td>H and K = mean and Gaussian curvature, respectively </td></tr><tr><td>E and G = usual coefficients of the first fundamental form </td></tr></table><p>
+</p></div><div class="sect2" title="13.130.2.&nbsp;Finite Element Discretization"><div class="titlepage"><div><div><h3 class="title"><a name="fluid130fedis"></a>13.130.2.&nbsp;Finite Element Discretization</h3></div></div></div><p>Following a Galerkin based procedure, <a class="xref" href="thy_el130.html#thyeq1fluid130nov2701" title="(13&#8211;206)">Equation&nbsp;13&#8211;206</a>
+is multiplied by a virtual quantity &#948;P and integrated over the annular
+domain &#937;<sup>f</sup>.  By using  the divergence theorem
+on the resulting equation it  can be shown that: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq5fluid130nov2701"></a><div><img src="graphics/thyeq5fluid130nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;210)</b></p></td></tr></table><p>Upon discretization of <a class="xref" href="thy_el130.html#thyeq5fluid130nov2701" title="(13&#8211;210)">Equation&nbsp;13&#8211;210</a>, the
+first term on the left hand side will yield the mass matrix of the fluid while
+the second term will yield the stiffness matrix.  </p><p>Next, the following finite element approximations for quantities on
+the absorbing boundary &#915;<sub>a</sub> placed at a radius
+R and their virtual counterparts are introduced: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq6fluid130nov2701"></a><div><img src="graphics/thyeq6fluid130nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;211)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq7fluid130nov2701"></a><div><img src="graphics/thyeq7fluid130nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;212)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>N<sub>1</sub>, N<sub>2</sub>, N<sub>3</sub>
+= vectors of shape functions ( = {N<sub>1</sub>}, {N<sub>2</sub>},
+{N<sub>3</sub>}) </td></tr><tr><td>P, q<sup>(1)</sup>, q<sup>(2)</sup>
+= unknown nodal values (P is output as degree of freedom PRES.  q<sup>(1)</sup>
+and q<sup>(2)</sup> are solved for but not output). </td></tr></table><p>
+</p><p>Furthermore, the shape functions in <a class="xref" href="thy_el130.html#thyeq6fluid130nov2701" title="(13&#8211;211)">Equation&nbsp;13&#8211;211</a>
+and <a class="xref" href="thy_el130.html#thyeq7fluid130nov2701" title="(13&#8211;212)">Equation&nbsp;13&#8211;212</a> are set to: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq8fluid130nov2701"></a><div><img src="graphics/thyeq8fluid130nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;213)</b></p></td></tr></table><p>The element stiffness and damping matrices reduce to: </p><p>
+<span class="bold"><strong>
+<span class="emphasis"><em>For two dimensional case:</em></span>
+</strong></span>
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq9fluid130nov2701"></a><div><img src="graphics/thyeq9fluid130nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;214)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq10fluid130nov2701"></a><div><img src="graphics/thyeq10fluid130nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;215)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>d&#955;<sub>e</sub> = arc-length differential </td></tr></table><p>
+</p><p>These matrices are 6 x 6 in size, having 2 nodes per element with 3
+degrees of freedom per node (P, q<sup>(1)</sup>, q<sup>(2)</sup>). </p><p>
+<span class="bold"><strong>
+<span class="emphasis"><em>For three dimensional case:</em></span>
+</strong></span>
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq11fluid130nov2701"></a><div><img src="graphics/thyeq11fluid130nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;216)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq12fluid130nov2701"></a><div><img src="graphics/thyeq12fluid130nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;217)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>dA<sub>e</sub> = area differential </td></tr></table><p>
+</p><p>These matrices are 8 x 8 in size, having 4 nodes per element with 2
+degrees of freedom per node (P, q) (Barry et al.(<a class="xref" href="thy_biblio.html#nyLep128jjw" title="&#34;On absorbing boundary conditions for wave propagations&#34;">[218]</a>)). </p><p>
+<span class="bold"><strong>
+<span class="emphasis"><em>For axisymmetric case:</em></span>
+</strong></span>
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq13fluid130nov2701"></a><div><img src="graphics/thyeq13fluid130nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;218)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq14fluid130nov2701"></a><div><img src="graphics/thyeq14fluid130nov2701.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;219)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>x = radius </td></tr></table><p>
+</p><p>These matrices are 4 x 4 in size having 2 nodes per element with 2 degrees
+of freedom per node (P, q). </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

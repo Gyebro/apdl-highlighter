@@ -1,0 +1,161 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:59-04:00"><title>14.5.&nbsp;Automatic Time Stepping</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_tool.html" title="Chapter&nbsp;14:&nbsp;Analysis Tools"><link rel="prev" href="thy_tool19.html" title="14.4.&nbsp;Rotating Structures"><link rel="next" href="thy_tool7.html" title="14.6.&nbsp;Solving for Unknowns and Reactions"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="14.5.&nbsp;Automatic Time Stepping"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="Mybpf203mlg"></a>14.5.&nbsp;Automatic Time Stepping</h2></div></div></div><a class="indexterm" name="d0e67459"></a><a class="indexterm" name="d0e67462"></a><a class="indexterm" name="d0e67467"></a><p>The method of automatic time stepping (or automatic loading)
+is one in which the time step size and/or the applied loads are automatically
+determined in response to the current state of the analysis under
+consideration. This method (accessed with <a href="../ans_cmd/Hlp_C_AUTOTS.html" class="olink"><span class="command"><strong>AUTOTS</strong></span></a>,ON) may be applied to structural, thermal, electric, and magnetic
+analyses that are performed in the time domain (using the <a href="../ans_cmd/Hlp_C_TIME.html" class="olink"><span class="command"><strong>TIME</strong></span></a> command), and includes static (or steady state) (<a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,STATIC) and dynamic (or transient) (<a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,TRANS) situations.</p><p>An important point to be made here is that automatic loading
+always works through the adjustment of the time step size; and that
+the loads that are applied are automatically adjusted if ramped boundary
+conditions are activated (using <a href="../ans_cmd/Hlp_C_KBC.html" class="olink"><span class="command"><strong>KBC</strong></span></a>,0). In other
+words the time step size is always subjected to possible adjustment
+when automatic loading is engaged. Applied loads and boundary conditions,
+however, will vary according to how they are applied and whether the
+boundary conditions are stepped or ramped. That is why this method
+may also be thought of as automatic loading.</p><p>There are two important features of the automatic time stepping
+algorithm. The first feature concerns the ability to estimate the
+next time step size, based on current and past analysis conditions,
+and make proper load adjustments. In other words, given conditions
+at the current time, t<sub>n</sub>, and the previous time
+increment, &#916;t<sub>n</sub>, the primary aim is to
+determine the next time increment, &#916;t<sub>n+1</sub>. Since the determination of &#916;t<sub>n+1</sub> is
+largely predictive, this part of the automatic time stepping algorithm
+is referred to as the <span class="italic"><em>time step prediction</em></span> component.</p><p>The second feature of automatic time stepping is referred to
+as the time step bisection component. Its purpose is to decide whether
+or not to reduce the present time step size, &#916;t<sub>n</sub>, and redo the substep with a smaller step size. For example, working
+from the last converged solution at time point t<sub>n-1</sub>, the present solution begins with a predicted time step, &#916;t<sub>n</sub>. Equilibrium iterations are performed; and if proper
+convergence is either not achieved or not anticipated, this time step
+is reduced to &#916;t<sub>n</sub>/2 (i.e., it is bisected),
+and the analysis begins again from time t<sub>n-1</sub>. Multiple bisections can occur per substep for various reasons (discussed
+later).</p><div class="sect2" title="14.5.1.&nbsp;Time Step Prediction"><div class="titlepage"><div><div><h3 class="title"><a name="elttimestep"></a>14.5.1.&nbsp;Time Step Prediction</h3></div></div></div><a class="indexterm" name="d0e67531"></a><a class="indexterm" name="d0e67536"></a><a class="indexterm" name="d0e67539"></a><a class="indexterm" name="d0e67542"></a><a class="indexterm" name="d0e67545"></a><a class="indexterm" name="d0e67548"></a><p>At a given converged solution at time, t<sub>n</sub>, and with the previous time increment, &#916;t<sub>n</sub>, the goal is to predict the appropriate time step size to use as
+the next substep. This step size is derived from the results of several
+unrelated computations and is most easily expressed as the minimization
+statement:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1timenov2101"></a><div><img src="graphics/thyeq1timenov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;57)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#916;t<sub>eq</sub> = time increment which is
+limited by the number of equilibrium iterations needed for convergence
+at the last converged time point. The more iterations required for
+convergence, the smaller the predicted time step. This is a general
+measure of all active nonlinearities. Increasing the maximum number
+of equilibrium iterations (using the <a href="../ans_cmd/Hlp_C_NEQIT.html" class="olink"><span class="command"><strong>NEQIT</strong></span></a> command)
+will tend to promote larger time step sizes.</td></tr><tr><td>&#916;t<sub>1</sub> = time increment which is
+limited by the response eigenvalue computation for 1st order systems
+(e.g., thermal transients) (input on the <a href="../ans_cmd/Hlp_C_TINTP.html" class="olink"><span class="command"><strong>TINTP</strong></span></a> command).</td></tr><tr><td>&#916;t<sub>2</sub> = time increment which is
+limited by the response frequency computation for 2nd order systems
+(e.g., structural dynamics). The aim is to maintain 20 points per
+cycle (described below). Note when the middle step criterion is used,
+this criterion can be turned off.</td></tr><tr><td>&#916;t<sub>g</sub> = time increment that represents
+the time point at which a gap or a nonlinear (multi-status) element
+will change abruptly from one condition to another (status change).
+KEYOPT(7) allows further control for the CONTAC elements.</td></tr><tr><td>&#916;t<sub>c</sub> = time increment based on
+the allowable creep strain increment (described below).</td></tr><tr><td>&#916;t<sub>p</sub> = time increment based on
+the allowable plastic strain increment. The limit is set at 5% per
+time step (described below). </td></tr><tr><td>&#916;t<sub>m</sub> = time increment which is
+limited by the middle step residual tolerance (described below) for
+2nd order systems (e.g., structural dynamics) (input on the <a href="../ans_cmd/Hlp_C_MIDTOL.html" class="olink"><span class="command"><strong>MIDTOL</strong></span></a> command). When it is enabled, the &#916;t<sub>2</sub> criterion can be turned off.</td></tr></table><p>
+</p><p>Several trial step sizes are calculated, and the minimum one
+is selected for the next time step. This predicted value is further
+restricted to a range of values expressed by</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2timenov2101"></a><div><img src="graphics/thyeq2timenov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;58)</b></p></td></tr></table><p>and</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3timenov2101"></a><div><img src="graphics/thyeq3timenov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;59)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>F = increase/decrease factor. F = 2, if static analysis; F
+= 3, if dynamic (see the <a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a> and <a href="../ans_cmd/Hlp_C_TIMINT.html" class="olink"><span class="command"><strong>TIMINT</strong></span></a> commands) </td></tr><tr><td>&#916;t<sub>max</sub> = maximum time step size
+(<span class="italic"><em>DTMAX</em></span> from the <a href="../ans_cmd/Hlp_C_DELTIM.html" class="olink"><span class="command"><strong>DELTIM</strong></span></a> command or the equivalent quantity calculated from the <a href="../ans_cmd/Hlp_C_NSUBST.html" class="olink"><span class="command"><strong>NSUBST</strong></span></a> command) </td></tr><tr><td>&#916;t<sub>min</sub> = minimum time step size
+(<span class="italic"><em>DTMIN</em></span> from the <a href="../ans_cmd/Hlp_C_DELTIM.html" class="olink"><span class="command"><strong>DELTIM</strong></span></a> command or the equivalent quantity calculated from the <a href="../ans_cmd/Hlp_C_NSUBST.html" class="olink"><span class="command"><strong>NSUBST</strong></span></a> command) </td></tr></table><p>
+</p><p>In other words, the current time step is increased or decreased
+by at most a factor of 2 (or 3 if dynamic), and it may not be less
+than &#916;t<sub>min</sub> or greater than &#916;t<sub>max</sub>. </p></div><div class="sect2" title="14.5.2.&nbsp;Time Step Bisection"><div class="titlepage"><div><div><h3 class="title"><a name="elttimebisect"></a>14.5.2.&nbsp;Time Step Bisection</h3></div></div></div><a class="indexterm" name="d0e67683"></a><a class="indexterm" name="d0e67686"></a><a class="indexterm" name="d0e67691"></a><p>When bisection occurs, the current substep solution (&#916;t<sub>n</sub>) is removed, and the time step size is reduced by 50%.
+If applied loads are ramped (<a href="../ans_cmd/Hlp_C_KBC.html" class="olink"><span class="command"><strong>KBC</strong></span></a>,0), then the current
+load increment is also reduced by the same amount. One or more bisections
+can take place for several reasons, namely: </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>The number of equilibrium iterations used for this
+substep exceeds the number allowed (<a href="../ans_cmd/Hlp_C_NEQIT.html" class="olink"><span class="command"><strong>NEQIT</strong></span></a> command).</p></li><li class="listitem"><p>It appears likely that all equilibrium iterations
+will be used.</p></li><li class="listitem"><p>A <span class="italic"><em>negative pivot</em></span> message was encountered in the solution, suggesting instability.</p></li><li class="listitem"><p>The largest calculated displacement DOF exceeds the
+limit (<span class="italic"><em>DLIM</em></span> on the <a href="../ans_cmd/Hlp_C_NCNV.html" class="olink"><span class="command"><strong>NCNV</strong></span></a> command).</p></li><li class="listitem"><p>An illegal element distortion is detected (e.g., negative
+radius in an axisymmetric analysis).</p></li><li class="listitem"><p>For transient structural dynamics, when the middle
+step residual is greater than the given tolerance. This check is done
+only when the middle step residual check is enabled by the <a href="../ans_cmd/Hlp_C_MIDTOL.html" class="olink"><span class="command"><strong>MIDTOL</strong></span></a> command.</p></li></ol></div><p>More than one bisection may be performed per substep. However,
+bisection of the time-step size is limited by the minimum size (defined
+by <span class="italic"><em>DTMIN</em></span> input on the <a href="../ans_cmd/Hlp_C_DELTIM.html" class="olink"><span class="command"><strong>DELTIM</strong></span></a> command or the equivalent <a href="../ans_cmd/Hlp_C_NSUBST.html" class="olink"><span class="command"><strong>NSUBST</strong></span></a> input). </p></div><div class="sect2" title="14.5.3.&nbsp;The Response Eigenvalue for 1st Order Transients"><div class="titlepage"><div><div><h3 class="title"><a name="elt1storder"></a>14.5.3.&nbsp;The Response Eigenvalue for 1st Order Transients</h3></div></div></div><p>The response eigenvalue is used in the computation of &#916;t<sub>1</sub> and is defined as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1eigennov2101"></a><div><img src="graphics/thyeq1eigennov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;60)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#955;<sub>r</sub> = response eigenvalue (item
+RESEIG for POST26 <a href="../ans_cmd/Hlp_C_SOLU.html" class="olink"><span class="command"><strong>SOLU</strong></span></a> command and <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> command) </td></tr><tr><td>{&#916;u} = substep solution vector (t<sub>n-1</sub> to t<sub>n</sub>) </td></tr><tr><td>[K<sup>T</sup>] = the Dirichlet matrix. In
+a heat transfer or an electrical conduction analysis this matrix is
+referred to as the conductivity matrix; in magnetics this is called
+the magnetic &#8220;stiffness&#8221;. The superscript T denotes the
+use of a tangent matrix in nonlinear situations </td></tr><tr><td>[C] = the damping matrix. In heat transfer this is called
+the specific heat matrix. </td></tr></table><p>
+</p><p>The product of the response eigenvalue and the previous time
+step (&#916;t<sub>n</sub>) has been employed by Hughes(<a class="xref" href="thy_biblio.html#hOlf7mlg" title="&#8220;Analysis of Transient Algorithms with Particular Reference to Stability Behavior&#8221;">[145]</a>) for the evaluation of 1st order explicit/implicit
+systems. In Hughes(<a class="xref" href="thy_biblio.html#hOlf7mlg" title="&#8220;Analysis of Transient Algorithms with Particular Reference to Stability Behavior&#8221;">[145]</a>) the quantity &#916;t<sub>n</sub>&#955; is referred to as the &#8220;oscillation limit&#8221;,
+where &#955; is the maximum eigenvalue. For unconditionally stable
+systems, the primary restriction on time-step size is that the inequality &#916;t<sub>n</sub>&#955; &gt;&gt; 1 should be avoided. Hence it is very
+conservative to propose that &#916;t<sub>n</sub>&#955;
+= 1. </p><p>Since the time integration used employs the trapezoidal rule
+(<a class="xref" href="thy_anproc2.html#thyeq2systemsnov2101" title="(15&#8211;40)">Equation&nbsp;15&#8211;40</a>), all analyses of 1st order
+systems are unconditionally stable. The response eigenvalue supplied
+by means of <a class="xref" href="thy_tool6.html#thyeq1eigennov2101" title="(14&#8211;60)">Equation&nbsp;14&#8211;60</a> represents the dominate
+eigenvalue and not the maximum; and the time-step restriction above
+is restated as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2eigennov2101"></a><div><img src="graphics/thyeq2eigennov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;61)</b></p></td></tr></table><p>This equation expresses the primary aim of automatic time stepping
+for 1st order transient analyses. The quantity &#916;t<sub>n</sub>&#955;<sub>r</sub> appears as the oscillation
+limit output during automatic loading. The default is f = 1/2, and
+can be changed (using <span class="italic"><em>OSLM</em></span> and <span class="italic"><em>TOL</em></span> on the <a href="../ans_cmd/Hlp_C_TINTP.html" class="olink"><span class="command"><strong>TINTP</strong></span></a> command).
+The quantity &#916;t<sub>1</sub> is approximated as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqd93ecf03-bc20-4af7-9dc8-25b0a358df34"></a><div><img src="graphics/eqd93ecf03-bc20-4af7-9dc8-25b0a358df34.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;62)</b></p></td></tr></table><div class="sect3" title="14.5.3.1.&nbsp;Additional Considerations for Thermal Transient Analysis"><div class="titlepage"><div><div><h4 class="title"><a name="d0e67847"></a>14.5.3.1.&nbsp;Additional Considerations for Thermal Transient Analysis</h4></div></div></div><p>If the thermal solution reaches steady-state, the time step is allowed to increase by a
+    factor of 2. Steady-state is determined if the maximum temperature change is less than 3 degrees
+    for 3 time steps in a row. Use the <a href="../ans_cmd/Hlp_C_OPNCONTROL.html" class="olink"><span class="command"><strong>OPNCONTROL</strong></span></a> command to modify these
+    defaults, if desired.</p><p>For the <span class="emphasis"><em>Quasi</em></span> option (<a href="../ans_cmd/Hlp_C_THOPT.html" class="olink"><span class="command"><strong>THOPT</strong></span></a> command), the time step
+    is also controlled by the property change tolerance such that the chosen time step keeps the
+    property change below the tolerance. See the <a href="../ans_cmd/Hlp_C_THOPT.html" class="olink"><span class="command"><strong>THOPT</strong></span></a> command for more
+    details.</p></div></div><div class="sect2" title="14.5.4.&nbsp;The Response Frequency for Structural Dynamics"><div class="titlepage"><div><div><h3 class="title"><a name="eltrespfreq"></a>14.5.4.&nbsp;The Response Frequency for Structural Dynamics</h3></div></div></div><p>The response frequency is used in the computation of &#916;t<sub>2</sub> and is defined as (Bergan(<a class="xref" href="thy_biblio.html#auif343mlg" title="&#34;An Automatic Time-Stepping Algorithm for Dynamic Problems&#34;">[105]</a>)): </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq06b5bb2b-d447-4df5-bc85-5e19d713c1c8"></a><div><img src="graphics/eq06b5bb2b-d447-4df5-bc85-5e19d713c1c8.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;63)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>f<sub>r</sub> = response frequency (item RESFRQ
+for POST26 <a href="../ans_cmd/Hlp_C_SOLU.html" class="olink"><span class="command"><strong>SOLU</strong></span></a> command and <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> command) </td></tr><tr><td>{&#916;u} = substep solution vector (t<sub>n-1</sub> to t<sub>n</sub>) </td></tr><tr><td>[K<sup>T</sup>] = tangent stiffness matrix </td></tr><tr><td>[M] = mass matrix </td></tr></table><p>
+</p><p>This equation is a nonlinear form of Rayleigh's quotient. The
+related response period is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq8503799a-f58d-4086-9e15-12644c61e28a"></a><div><img src="graphics/eq8503799a-f58d-4086-9e15-12644c61e28a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;64)</b></p></td></tr></table><p>Using T<sub>r</sub> the time increment limited by
+the response frequency is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq73be08ac-6bd9-4e5b-9b4c-46112d4d38f4"></a><div><img src="graphics/eq73be08ac-6bd9-4e5b-9b4c-46112d4d38f4.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;65)</b></p></td></tr></table><p>When the middle step criterion is used, this criterion can be
+turned off.</p></div><div class="sect2" title="14.5.5.&nbsp;Creep Time Increment"><div class="titlepage"><div><div><h3 class="title"><a name="eltcreepincrem"></a>14.5.5.&nbsp;Creep Time Increment</h3></div></div></div><p>The time step size may be increased or decreased by comparing
+the value of the creep ratio C<sub>max</sub> (<a class="xref" href="thy_mat2.html" title="4.3.&nbsp;Rate-Dependent Plasticity (Including Creep and Viscoplasticity)">Rate-Dependent Plasticity (Including Creep and Viscoplasticity)</a>) to the creep criterion C<sub>cr</sub>. C<sub>cr</sub> is equal to .10 unless it is redefined
+(using the <a href="../ans_cmd/Hlp_C_CRPLIM.html" class="olink"><span class="command"><strong>CRPLIM</strong></span></a> command). The time step estimate
+is computed as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqcc94efa9-785e-471e-a693-301e96a0e577"></a><div><img src="graphics/eqcc94efa9-785e-471e-a693-301e96a0e577.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;66)</b></p></td></tr></table><p>&#916;t<sub>c</sub> is used in <a class="xref" href="thy_tool6.html#thyeq1timenov2101" title="(14&#8211;57)">Equation&nbsp;14&#8211;57</a> only if it differs from &#916;t<sub>n</sub> by more than 10%. </p></div><div class="sect2" title="14.5.6.&nbsp;Plasticity Time Increment"><div class="titlepage"><div><div><h3 class="title"><a name="eltplastictime"></a>14.5.6.&nbsp;Plasticity Time Increment</h3></div></div></div><p>The time step size is increased or decreased by comparing the
+value of the effective plastic strain increment 
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eq4567b054-9e5b-4553-a9d2-36a84366373e.svg"></span> (<a class="xref" href="thy_mat1.html#thyeq2sratnov2101" title="(4&#8211;26)">Equation&nbsp;4&#8211;26</a>) to 0.05 (5%). The time step estimate is computed as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq978b3623-9884-402c-8050-29ae06ce255a"></a><div><img src="graphics/eq978b3623-9884-402c-8050-29ae06ce255a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;67)</b></p></td></tr></table><p>&#916;t<sub>p</sub> is used in <a class="xref" href="thy_tool6.html#thyeq1timenov2101" title="(14&#8211;57)">Equation&nbsp;14&#8211;57</a> only if it differs from &#916;t<sub>n</sub> by more than 10%. </p></div><div class="sect2" title="14.5.7.&nbsp;Midstep Residual for Structural Dynamic Analysis"><div class="titlepage"><div><div><h3 class="title"><a name="autotime_midstep"></a>14.5.7.&nbsp;Midstep Residual for Structural Dynamic Analysis</h3></div></div></div><a class="indexterm" name="d0e67988"></a><p>The midstep residual is used in the computation of &#916;t<sub>m</sub>. The midstep residual for the determination of the
+time step is based on the following consideration. The solution of
+the structural dynamic analysis is carried out at the discrete time
+points, and the solution at the intermediate time remains unknown.
+However, if the time step is small enough, the solution at the intermediate
+time should be close enough to an interpolation between the beginning
+and end of the time step. If so, the unbalanced residual from the
+interpolation should be small. On the other hand, if the time step
+is large, the interpolation will be very different from the true solution,
+which will lead to an unbalanced residual that is too large. The time
+step is chosen to satisfy the criterion set by the user (e.g. <a href="../ans_cmd/Hlp_C_MIDTOL.html" class="olink"><span class="command"><strong>MIDTOL</strong></span></a> command).</p><p>Refer to the discussion in <a class="xref" href="thy_tool10.html" title="14.11.&nbsp;Newton-Raphson Procedure">Newton-Raphson Procedure</a>. The
+residual force at any time between the time step n and n+1 can be
+written as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq4a9c7cff-8efc-4257-affb-ed8cb89f3e2b"></a><div><img src="graphics/eq4a9c7cff-8efc-4257-affb-ed8cb89f3e2b.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;68)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#957; = intermediate state between the time step n and n+1
+(0 &lt; &#957; &lt; 1)</td></tr><tr><td>{R} = residual force vector</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq9a54af08-55eb-45d0-9a26-8c0fe4d5a719.svg"></span> = vector of the applied load at n + &#957;</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqf97aa1ba-268d-45d1-8b6f-f112b5525170.svg"></span> = vector of the restoring
+load corresponding to the element internal load at n + &#957;, which
+depends on the intermediate state of displacement at n + &#957;, and
+also the velocity and acceleration at n + &#957;. This intermediate
+state is approximately calculated based on the Newmark assumption.</td></tr></table><p>
+</p><p>A measure of the magnitude of {R} is established in a manner
+similar to the convergence check at the end of the time step (see <a class="xref" href="thy_tool10.html#eltconverg" title="14.11.2.&nbsp;Convergence">Convergence</a>). After the solution has converged at the end
+of the time step (n+1), the midstep residual force is compared to
+the reference value:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thy_antools_midstep2"></a><div><img src="graphics/thy_antools_midstep2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;69)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>||{R}|| = magnitude (vector norm) of residual force vector</td></tr><tr><td>R<sub>ref</sub> = reference force (see <a class="xref" href="thy_tool10.html#eltconverg" title="14.11.2.&nbsp;Convergence">Convergence</a>)</td></tr></table><p>
+</p><p>The convergence criterion for the midstep residual is defined
+by the value of &#964;<sub>b</sub> (input as <em class="replaceable"><code>TOLERB</code></em> on <a href="../ans_cmd/Hlp_C_MIDTOL.html" class="olink"><span class="command"><strong>MIDTOL</strong></span></a> command):</p><p>If &#964;<sub>b</sub> &gt; 0, the value is used as
+a tolerance. If &#964;<sub>b</sub> = 0 is specified or &#964;<sub>b</sub> is not specified, then a default positive value is
+used as a tolerance. The midstep residual is assumed to have converged
+if its value is within the desired tolerance (&#949; 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq4f865cbd-6177-44f1-ae81-3c033f8ca5e7.svg"></span> &#964;<sub>b</sub> ). Depending
+on how well the convergence criterion is satisfied the time step size
+for the next increment is increased or kept unchanged.</p><p>If the midstep residual hasn&#8217;t converged (&#949; &gt; &#964;<sub>b</sub>), the time step is repeated with a smaller increment:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqb2985c93-afc8-46cb-afd7-636c9f01eae5"></a><div><img src="graphics/eqb2985c93-afc8-46cb-afd7-636c9f01eae5.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;70)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq61e9e856-d56b-4069-bdd2-60a45c1b7200.svg"></span>
+</td></tr><tr><td>&#916;t<sub>n</sub> = old time step size</td></tr><tr><td>&#964;<sub>b</sub> = midstep residual tolerance(<em class="replaceable"><code>TOLERB</code></em> on <a href="../ans_cmd/Hlp_C_MIDTOL.html" class="olink"><span class="command"><strong>MIDTOL</strong></span></a> command)</td></tr></table><p>
+</p><p>If &#964;<sub>b</sub> &lt; 0, the value is used as
+a reference force (reference moment is computed from reference force
+value) for midstep convergence check. A procedure similar to the one
+described above is followed with modified definition of time step
+size:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq3ee0a0c7-284e-4f2b-ad70-338834430235"></a><div><img src="graphics/eq3ee0a0c7-284e-4f2b-ad70-338834430235.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;71)</b></p></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

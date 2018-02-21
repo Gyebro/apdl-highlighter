@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:37-04:00"><title>13.170.&nbsp;TARGE170 - 3-D Target Segment</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el169.html" title="13.169.&nbsp;TARGE169 - 2-D Target Segment"><link rel="next" href="thy_el171.html" title="13.171.&nbsp;CONTA171 - 2-D 2-Node Surface-to-Surface Contact"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.170.&nbsp;TARGE170 - 3-D Target Segment"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thytarge170"></a>13.170.&nbsp;TARGE170 - 3-D Target Segment</h2></div></div></div><div><img src="graphics/gELEM170-1.svg"></div><div class="sect2" title="13.170.1.&nbsp;Introduction"><div class="titlepage"><div><div><h3 class="title"><a name="targe170intro"></a>13.170.1.&nbsp;Introduction</h3></div></div></div><p>In studying the contact between two bodies, the surface of one body
+is conventionally taken as a contact surface and the surface of the other
+body as a target surface.  The &#8220;contact-target&#8221; pair concept has
+been widely used in finite element simulations.  For rigid-flexible contact,
+the contact surface is associated with the deformable body; and the target
+surface must be the rigid surface.  For flexible-flexible contact, both contact
+and target surfaces are associated with deformable bodies. The contact and
+target surfaces constitute a &#8220;Contact Pair&#8221;. </p><p>TARGE170 is used to represent various 3-D target
+surfaces for the associated contact elements (<a href="../ans_elem/Hlp_E_CONTA173.html" class="olink"><span class="structname">CONTA173</span></a>, <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a>, <a href="../ans_elem/Hlp_E_CONTA175.html" class="olink"><span class="structname">CONTA175</span></a>, <a href="../ans_elem/Hlp_E_CONTA176.html" class="olink"><span class="structname">CONTA176</span></a>, and <a href="../ans_elem/Hlp_E_CONTA177.html" class="olink"><span class="structname">CONTA177</span></a>).
+ The contact elements themselves overlay the solid elements, line elements,
+or shell element edges describing the boundary of a deformable body that is
+potentially in contact with the rigid target surface, defined by TARGE170.
+ Hence, a &#8220;target&#8221; is simply a geometric entity in space that
+senses and responds when one or more contact elements move into a target segment
+element.</p></div><div class="sect2" title="13.170.2.&nbsp;Segment Types"><div class="titlepage"><div><div><h3 class="title"><a name="targe170segtypes"></a>13.170.2.&nbsp;Segment Types</h3></div></div></div><p>The target surface is modelled through a set of target segments; typically
+several target segments make up one target surface.  Each target segment
+is a single element with a specific shape or segment type.  TARGE170 supports
+ten 3-D segment types; see <a class="xref" href="thy_el170.html#targe170fig1" title="Figure&nbsp;13.25:&nbsp;&nbsp;3-D Segment Types">Figure&nbsp;13.25:&nbsp;3-D Segment Types</a> </p><div class="figure"><a name="targe170fig1"></a><p class="title"><b>Figure&nbsp;13.25:&nbsp;&nbsp;3-D Segment Types</b></p><div class="figure-contents"><div><img src="graphics/gELEM170-2.svg" alt="3-D Segment Types"></div></div></div><br class="figure-break"></div><div class="sect2" title="13.170.3.&nbsp;Reaction Forces"><div class="titlepage"><div><div><h3 class="title"><a name="targe170react"></a>13.170.3.&nbsp;Reaction Forces</h3></div></div></div><p>The reaction forces on the entire rigid target surface are obtained
+by summing all the nodal forces of the associated contact elements.  The reaction
+forces are accumulated on the pilot node.  If the pilot node has not been
+explicitly defined by the user, one of the target nodes (generally the one
+with the smallest number) will be used to accumulate the reaction forces. </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

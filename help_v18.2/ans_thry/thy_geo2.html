@@ -1,0 +1,153 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:51-04:00"><title>3.3.&nbsp;Large Rotation</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_geo.html" title="Chapter&nbsp;3:&nbsp;Structures with Geometric Nonlinearities"><link rel="prev" href="thy_geo1.html" title="3.2.&nbsp;Large Strain"><link rel="next" href="thy_geo3.html" title="3.4.&nbsp;Stress Stiffening"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="3.3.&nbsp;Large Rotation"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="s4bFf270mlg"></a>3.3.&nbsp;Large Rotation</h2></div></div></div><a class="indexterm" name="d0e3577"></a><p>If the rotations are large but the mechanical strains (those
+that cause stresses) are small, then a large-rotation procedure can
+be used. </p><p>A large-rotation analysis is performed in a static (<a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,STATIC) or transient (<a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,TRANS)
+analysis while flagging large deformations (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON) when the appropriate element type is used.  </p><p>All large-strain elements also support this capability, as both
+options account for the large rotations and for small strains, the
+logarithmic strain measure and the engineering strain measure coincide. </p><div class="sect2" title="3.3.1.&nbsp;Theory"><div class="titlepage"><div><div><h3 class="title"><a name="georotatethy"></a>3.3.1.&nbsp;Theory</h3></div></div></div><p>
+<a class="xref" href="thy_geo1.html" title="3.2.&nbsp;Large Strain">Large Strain</a> presented the theory for general
+motion of a material point.  Large-rotation theory follows a similar
+development, except that the logarithmic strain measure (<a class="xref" href="thy_geo1.html#thyeq6lstheorynov1501" title="(3&#8211;6)">Equation&nbsp;3&#8211;6</a>) is replaced by the Biot, or small
+(engineering) strain measure: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq61bfdc87-1ec1-4305-aad6-ffa3b9eaff48"></a><div><img src="graphics/eq61bfdc87-1ec1-4305-aad6-ffa3b9eaff48.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;36)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>[U] = stretch matrix </td></tr><tr><td>[I] = 3 x 3 identity matrix </td></tr></table><p>
+</p></div><div class="sect2" title="3.3.2.&nbsp;Implementation"><div class="titlepage"><div><div><h3 class="title"><a name="geoimplement2"></a>3.3.2.&nbsp;Implementation</h3></div></div></div><p>A corotational (or convected coordinate) approach is used in
+solving large-rotation/small-strain problems (Rankin and Brogan(<a class="xref" href="thy_biblio.html#bnukf395mlg" title="&#34;An Element Independent Corotational Procedure for the Treatment of Large Rotations&#34;">[66]</a>)). <span class="quote">"<span class="quote">Corotational</span>"</span> may be thought
+of as <span class="quote">"<span class="quote">rotated with</span>"</span>. The nonlinearities are contained
+in the strain-displacement relationship which for this algorithm takes
+on the special form:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1lgrotatenov1501"></a><div><img src="graphics/thyeq1lgrotatenov1501.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;37)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>[B<sub>v</sub>] = usual small strain-displacement
+relationship in the original (virgin) element coordinate system </td></tr><tr><td>[T<sub>n</sub>] = orthogonal transformation relating
+the original element coordinates to the convected (or rotated) element
+coordinates </td></tr></table><p>
+</p><p>The convected element coordinate frame differs from the original
+element coordinate frame by the amount of rigid body rotation.  Hence
+[T<sub>n</sub>] is computed by separating the rigid body
+rotation from the total deformation {u<sub>n</sub>} using
+the polar decomposition theorem, <a class="xref" href="thy_geo1.html#thyeq5lstheorynov1501" title="(3&#8211;5)">Equation&nbsp;3&#8211;5</a>.  From <a class="xref" href="thy_geo2.html#thyeq1lgrotatenov1501" title="(3&#8211;37)">Equation&nbsp;3&#8211;37</a>, the element tangent
+stiffness matrix has the form: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2lgrotatenov1501"></a><div><img src="graphics/thyeq2lgrotatenov1501.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;38)</b></p></td></tr></table><p>and the element restoring force is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3lgrotatenov1501"></a><div><img src="graphics/thyeq3lgrotatenov1501.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;39)</b></p></td></tr></table><p>where the elastic strain is computed from: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq61fa3afb-7811-446a-ae45-0cc4bfc5f4a2"></a><div><img src="graphics/eq61fa3afb-7811-446a-ae45-0cc4bfc5f4a2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;40)</b></p></td></tr></table><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq7d6f897a-104b-44ef-8784-c8163f20fdd9.svg"></span> is the element deformation which causes
+straining as described in a subsequent subsection. </p><p>The large-rotation process can be summarized as a three step
+process for each element: </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Determine the updated transformation matrix [T<sub>n</sub>] for the element. </p></li><li class="listitem"><p>Extract the deformational displacement 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq768d04eb-e0de-4d29-8271-4eb3078f5ffc.svg"></span> from the total element displacement {u<sub>n</sub>} for computing the stresses as well as the restoring
+force 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq9eac49cd-3c94-4c0d-8645-e15798fb0748.svg"></span> . </p></li><li class="listitem"><p>After the rotational increments in {&#916;u} are
+computed, update the node rotations appropriately.  All three steps
+require the concept of a rotational pseudovector in order to be efficiently
+implemented (Rankin and Brogan(<a class="xref" href="thy_biblio.html#bnukf395mlg" title="&#34;An Element Independent Corotational Procedure for the Treatment of Large Rotations&#34;">[66]</a>), Argyris(<a class="xref" href="thy_biblio.html#amukf1fmlg" title="&#34;An Excursion into Large Rotations&#34;">[67]</a>)). </p></li></ol></div></div><div class="sect2" title="3.3.3.&nbsp;Element Transformation"><div class="titlepage"><div><div><h3 class="title"><a name="geoelemtrans2"></a>3.3.3.&nbsp;Element Transformation</h3></div></div></div><p>The updated transformation matrix [T<sub>n</sub>] relates the current element coordinate system to the global Cartesian
+coordinate system as shown in <a class="xref" href="thy_geo2.html#McFre1baleaf" title="Figure&nbsp;3.3:&nbsp;&nbsp;Element Transformation Definitions">Figure&nbsp;3.3:&nbsp;Element Transformation Definitions</a>. </p><div class="figure"><a name="McFre1baleaf"></a><p class="title"><b>Figure&nbsp;3.3:&nbsp;&nbsp;Element Transformation Definitions</b></p><div class="figure-contents"><div><img src="graphics/gthy3-59.svg" alt="Element Transformation Definitions"></div></div></div><br class="figure-break"><p>[T<sub>n</sub>] can be computed directly or the
+rotation of the element coordinate system [R<sub>n</sub>] can be computed and related to [T<sub>n</sub>] by </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq6533d2d9-ffe5-4f0c-9a0d-4a10f459b1ef"></a><div><img src="graphics/eq6533d2d9-ffe5-4f0c-9a0d-4a10f459b1ef.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;41)</b></p></td></tr></table><p>where [T<sub>v</sub>] is the original transformation
+matrix.  The determination of [T<sub>n</sub>] is unique
+to the type of element involved, whether it is a solid element, shell
+element, beam element, or spar element. </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="italic"><em>Solid Elements</em></span>. The rotation
+matrix [R<sub>n</sub>] for these elements is extracted
+from the displacement field using the deformation gradient coupled
+with the polar decomposition theorem (see Malvern(<a class="xref" href="thy_biblio.html#Hmukf1c9mlg" title="Introduction to the Mechanics of a Continuous Medium">[87]</a>)). </td></tr><tr><td>
+<span class="italic"><em>Shell Elements</em></span>. The updated
+normal direction (element z direction) is computed directly from the
+updated coordinates.  The computation of the element normal is given
+in <a class="xref" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library">Element Library</a> for each particular shell element.
+ The extraction procedure outlined for solid elements is used coupled
+with the information on the normal direction to compute the rotation
+matrix [R<sub>n</sub>]. </td></tr><tr><td>
+<span class="italic"><em>Beam Elements</em></span>.  The nodal
+rotation increments from {&#916;u} are averaged to determine the
+average rotation of the element.  The updated average element rotation
+and then the rotation matrix [R<sub>n</sub>] is computed
+using Rankin and Brogan(<a class="xref" href="thy_biblio.html#bnukf395mlg" title="&#34;An Element Independent Corotational Procedure for the Treatment of Large Rotations&#34;">[66]</a>).  In special
+cases where the average rotation of the element computed in the above
+way differs significantly from the average rotation of the element
+computed from nodal translations, the quality of the results will
+be degraded.</td></tr><tr><td>
+<span class="italic"><em>Link Elements</em></span>. The updated
+transformation [T<sub>n</sub>] is computed directly from
+the updated coordinates. </td></tr><tr><td>
+<span class="italic"><em>Generalized Mass Element</em></span> (<a href="../ans_elem/Hlp_E_MASS21.html" class="olink"><span class="structname">MASS21</span></a>).  The nodal rotation increment
+from {&#916;u} is used to update the element rotation which then
+yields the rotation matrix [R<sub>n</sub>]. </td></tr></table></div><div class="sect2" title="3.3.4.&nbsp;Deformational Displacements"><div class="titlepage"><div><div><h3 class="title"><a name="geodisplace"></a>3.3.4.&nbsp;Deformational Displacements</h3></div></div></div><p>The displacement field can be decomposed into a rigid body translation,
+a rigid body rotation, and a component which causes strains: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq000b7457-6793-4253-bbb6-56d28fde826a"></a><div><img src="graphics/eq000b7457-6793-4253-bbb6-56d28fde826a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;42)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>{u<sup>r</sup>} = rigid body motion </td></tr><tr><td>{u<sup>d</sup>} = deformational displacements
+which cause strains </td></tr></table><p>
+</p><p>{u<sup>d</sup>} contains both translational as well as rotational degrees of
+    freedom. </p><p>The translational component of the deformational displacement
+can be extracted from the displacement field by </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq9757fe14-e6ba-42d7-bb06-8ffc9d860b07"></a><div><img src="graphics/eq9757fe14-e6ba-42d7-bb06-8ffc9d860b07.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;43)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq7e3cf926-6c21-4295-8f1c-6ef5182cd27f.svg"></span> = translational component of the deformational
+displacement </td></tr><tr><td>[R<sub>n</sub>] = current element rotation matrix </td></tr><tr><td>{x<sub>v</sub>} = original element coordinates
+in the global coordinate system </td></tr><tr><td>{u} = element displacement vector in global coordinates </td></tr></table><p>
+</p><p>{u<sup>d</sup>} is in the global coordinate
+system. </p><p>For elements with rotational DOFs, the rotational components
+of the deformational displacement must be computed.  The rotational
+components are extracted by essentially &#8220;subtracting&#8221;
+the nodal rotations {u} from the element rotation given by {u<sup>r</sup>}.  In terms of the pseudovectors this operation is
+performed as follows for each node:              </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Compute a transformation matrix from the nodal pseudovector
+{&#952;<sup>n</sup>} yielding [T<sub>n</sub>]. </p></li><li class="listitem"><p>Compute the relative rotation [T<sup>d</sup>] between [R<sub>n</sub>] and [T<sub>n</sub>]: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq7dabb684-e5a8-41cb-a25e-f2058050452e"></a><div><img src="graphics/eq7dabb684-e5a8-41cb-a25e-f2058050452e.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;44)</b></p></td></tr></table><p>This relative rotation contains the rotational deformations
+of that node as shown in <a class="xref" href="thy_geo2.html#GkFre14bleaf" title="Figure&nbsp;3.4:&nbsp;&nbsp;Definition of Deformational Rotations">Figure&nbsp;3.4:&nbsp;Definition of Deformational Rotations</a>. </p></li><li class="listitem"><p>Extract the nodal rotational deformations {u<sup>d</sup>} from [T<sup>d</sup>]. </p></li></ol></div><p>Because of the definition of the pseudovector, the deformational
+rotations extracted in step 3 are limited to less than 30&deg;, since
+2sin(&#952; /2) no longer approximates &#952; itself above 30&deg;.
+ This limitation only applies to the rotational distortion (i.e.,
+bending) within a single element. </p><div class="figure"><a name="GkFre14bleaf"></a><p class="title"><b>Figure&nbsp;3.4:&nbsp;&nbsp;Definition of Deformational Rotations</b></p><div class="figure-contents"><div><img src="graphics/gthy3-71.svg" alt="Definition of Deformational Rotations"></div></div></div><br class="figure-break"></div><div class="sect2" title="3.3.5.&nbsp;Updating Rotations"><div class="titlepage"><div><div><h3 class="title"><a name="geoupdate"></a>3.3.5.&nbsp;Updating Rotations</h3></div></div></div><p>Once the transformation [T] and deformational displacements
+{u<sup>d</sup>} are determined, the element matrices <a class="xref" href="thy_geo2.html#thyeq2lgrotatenov1501" title="(3&#8211;38)">Equation&nbsp;3&#8211;38</a> and restoring force <a class="xref" href="thy_geo2.html#thyeq3lgrotatenov1501" title="(3&#8211;39)">Equation&nbsp;3&#8211;39</a> can be determined.  The solution
+of the system of equations yields a displacement increment {&#916;u}.
+ The nodal rotations at the element level are updated with the rotational
+components of {&#916;u}.  The global rotations (in the output and
+on the results file) are not updated with the pseudovector approach,
+but are simply added to the previous rotation in {u<sub>n-1</sub>}. </p></div><div class="sect2" title="3.3.6.&nbsp;Applicable Input"><div class="titlepage"><div><div><h3 class="title"><a name="geoappinput2"></a>3.3.6.&nbsp;Applicable Input</h3></div></div></div><p>The large-rotation computations in those elements which support
+it are activated by the large-deformation key (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON).  Stress stiffening is also be included and contributes to the
+tangent stiffness matrix (which may be required for structures weak
+in bending resistance). </p></div><div class="sect2" title="3.3.7.&nbsp;Applicable Output"><div class="titlepage"><div><div><h3 class="title"><a name="geoappoutput2"></a>3.3.7.&nbsp;Applicable Output</h3></div></div></div><p>Stresses (output as S) are engineering stresses in the rotated
+element coordinate system (the element coordinate system follows the
+material as it rotates).  Strains (output as EPEL, EPPL, etc.) are
+engineering strains, also in the rotated element coordinate system.
+ This applies to element types that do not have large-strain capability.
+ For element types that have large-strain capability, see <a class="xref" href="thy_geo1.html" title="3.2.&nbsp;Large Strain">Large Strain</a>. </p></div><div class="sect2" title="3.3.8.&nbsp;Consistent Tangent Stiffness Matrix and Finite Rotation"><div class="titlepage"><div><div><h3 class="title"><a name="geoconsistent"></a>3.3.8.&nbsp;Consistent Tangent Stiffness Matrix and Finite Rotation</h3></div></div></div><p>It has been found in many situations that the use of consistent
+tangent stiffness in a nonlinear analysis can speed up the rate of
+convergence greatly.  It normally results in a quadratic rate of convergence.
+ A consistent tangent stiffness matrix is derived from the discretized
+finite element equilibrium equations without the introduction of various
+approximations.  The terminology of  finite rotation in the context
+of geometrical nonlinearity implies that rotations can be arbitrarily
+large and can be updated accurately.  A consistent tangent stiffness
+accounting for finite rotations derived by Nour-Omid and Rankin(<a class="xref" href="thy_biblio.html#kYurj3cdjw" title="&#34;Finite Rotation Analysis and Consistent Linearization Using Projectors&#34;">[176]</a>) for beam/shell elements is used.  The technology
+of consistent tangent matrix and finite rotation makes the buckling
+and postbuckling analysis a relatively easy task. The theory of finite
+rotation representation and update has been described in <a class="xref" href="thy_geo2.html" title="3.3.&nbsp;Large Rotation">Large Rotation</a> using a pseudovector representation.  The
+following will outline the derivations of a consistent tangent stiffness
+matrix used for the corotational approach. </p><p>The nonlinear static finite element equations solved can be
+characterized by at the element level by: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2ctsmatrixnov1501"></a><div><img src="graphics/thyeq2ctsmatrixnov1501.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;45)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>N = number of total elements </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq5ab82f33-bd79-46f1-a0f4-e5e69aafe845.svg"></span> = element internal force
+vector in the element coordinate system, generally see <a class="xref" href="thy_geo2.html#thyeq1ctsmatrixnov1501" title="(3&#8211;46)">Equation&nbsp;3&#8211;46</a> </td></tr><tr><td>[T<sub>n</sub>]<sup>T</sup> =
+transform matrix transferring the local internal force vector into
+the global coordinate system </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq898441ac-bbc7-4a94-aae4-bb898498eb1a.svg"></span> = applied load vector at the element level
+in the global coordinate system </td></tr></table><p>
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1ctsmatrixnov1501"></a><div><img src="graphics/thyeq1ctsmatrixnov1501.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;46)</b></p></td></tr></table><p>Hereafter, we shall focus on the derivation of the consistent
+tangent matrix at the element level without introducing an approximation.
+ The consistent tangent matrix is obtained by differentiating <a class="xref" href="thy_geo2.html#thyeq2ctsmatrixnov1501" title="(3&#8211;45)">Equation&nbsp;3&#8211;45</a> with respect to displacement variables
+{u<sub>e</sub>}: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3ctsmatrixnov1501"></a><div><img src="graphics/thyeq3ctsmatrixnov1501.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;47)</b></p></td></tr></table><p>It can be seen that Part I is the main tangent matrix <a class="xref" href="thy_geo2.html#thyeq2lgrotatenov1501" title="(3&#8211;38)">Equation&nbsp;3&#8211;38</a> and Part II is the stress stiffening
+matrix (<a class="xref" href="thy_geo1.html#thyeq1elformnov1501" title="(3&#8211;34)">Equation&nbsp;3&#8211;34</a>, <a class="xref" href="thy_geo3.html#thyeq11sstheorynov1601" title="(3&#8211;61)">Equation&nbsp;3&#8211;61</a> or <a class="xref" href="thy_geo3.html#thyeq14sstheorynov1601" title="(3&#8211;64)">Equation&nbsp;3&#8211;64</a>).  Part III is another part of
+the stress stiffening matrix (see Nour-Omid and Rankin(<a class="xref" href="thy_biblio.html#kYurj3cdjw" title="&#34;Finite Rotation Analysis and Consistent Linearization Using Projectors&#34;">[176]</a>)) traditionally neglected in the past.  However,
+many numerical experiments have shown that Part III of 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqc5c6194e-944e-4e09-8d67-d31d88b98902.svg"></span> is essential to the faster rate of convergence.
+ In some cases, Part III of 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqb6cb73d9-449d-4268-8cc2-124addfa43c7.svg"></span> is unsymmetric; when this occurs,
+a procedure of symmetrizing 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqe24a9df0-69a0-492b-9880-cb51373000ab.svg"></span> is invoked. </p><p>As Part III of the consistent tangent matrix utilizes the internal
+force vector 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq2cdbf110-d320-491c-b5b7-701207b3eee3.svg"></span> to form the matrix, it
+is required that the internal vector 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqd626c6b5-b65d-402d-832d-0930baeb2b00.svg"></span>  not be so large as to dominate
+the main tangent matrix (Part I).  This can normally be guaranteed
+if the realistic material and geometry are used, that is, the element
+is not used as a rigid link and the actual thicknesses are input. </p><p> It is also noted that the consistent tangent matrix <a class="xref" href="thy_geo2.html#thyeq3ctsmatrixnov1501" title="(3&#8211;47)">Equation&nbsp;3&#8211;47</a> is very suitable for use with the
+arc-length solution method. </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

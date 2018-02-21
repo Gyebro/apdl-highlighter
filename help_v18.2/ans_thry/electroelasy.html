@@ -1,0 +1,49 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:11-04:00"><title>10.5.&nbsp;Electroelasticity</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_coup.html" title="Chapter&nbsp;10:&nbsp;Coupling"><link rel="prev" href="thy_coup2.html" title="10.4.&nbsp;Piezoelectrics"><link rel="next" href="thy_coup3.html" title="10.6.&nbsp;Piezoresistivity"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="10.5.&nbsp;Electroelasticity"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="electroelasy"></a>10.5.&nbsp;Electroelasticity</h2></div></div></div><p>The capability of modeling electric force coupling in elastic
+            dielectrics exists in the following elements:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_elem/Hlp_E_PLANE223.html" class="olink"><span class="structname">PLANE223</span></a> - 2-D 8-Node Coupled-Field
+Solid</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_SOLID226.html" class="olink"><span class="structname">SOLID226</span></a> - 3-D 20-Node Coupled-Field
+Solid</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_SOLID227.html" class="olink"><span class="structname">SOLID227</span></a> - 3-D 10-Node Coupled-Field
+Solid</td></tr></table><p>Elastic dielectrics exhibit a deformation when subject to an
+            electrostatic field. The electric body force that causes the deformation can be derived
+            from the Maxwell stress tensor [&#963;<sup>M</sup>] (Landau and
+                Lifshitz(<a class="xref" href="thy_biblio.html#landaulifshitz" title="&#8220;Electrodynamics of Continuous Media&#8221;">[359]</a>)).</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq574cf647-90a0-4012-a7de-22154da1acb9"></a><div><img src="graphics/eq574cf647-90a0-4012-a7de-22154da1acb9.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;59)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>{E} = electric field intensity vector</td></tr><tr><td>{D} = electric flux density vector</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-24.000000px"><img src="graphics/eq255365f8-d761-4030-9c23-a117b214cd62.svg"></span>
+</td></tr></table><p>
+</p><p>Applying the variational principle to the stress equation of motion and
+            to the charge equation of electrostatics coupled by electric force produces the
+            following finite element equation:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqd9a5eb2a-7365-4592-ae55-2a6b0774f67f"></a><div><img src="graphics/eqd9a5eb2a-7365-4592-ae55-2a6b0774f67f.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;60)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>[K] = element structural stiffness matrix (see [K<sub>e</sub>]
+                    in <a class="xref" href="thy_str2.html#thyeq17dervnov1501" title="(2&#8211;58)">Equation&nbsp;2&#8211;58</a>)</td></tr><tr><td>[M] = element mass matrix (see [M<sub>e</sub>] in <a class="xref" href="thy_str2.html#thyeq17dervnov1501" title="(2&#8211;58)">Equation&nbsp;2&#8211;58</a>)</td></tr><tr><td>[K<sup>d</sup>] = element dielectric
+                    permittivity coefficient matrix (see [K<sup>vs</sup>] in <a class="xref" href="thy_emg2.html#electrostatanal" title="(5&#8211;117)">Equation&nbsp;5&#8211;117</a>) </td></tr><tr><td>[C] = element structural damping matrix (discussed in <a class="xref" href="thy_tool3.html" title="14.3.&nbsp;Damping Matrices">Damping Matrices</a>)</td></tr><tr><td>[C<sup>vh</sup>] = element dielectric
+                    damping matrix (defined by <a class="xref" href="thy_emg2.html#quasielanaleq2" title="(5&#8211;116)">Equation&nbsp;5&#8211;116</a>)</td></tr><tr><td>{F} = vector of nodal and surface forces (defined by <a class="xref" href="thy_str2.html#thyeq15dervnov1501" title="(2&#8211;56)">Equation&nbsp;2&#8211;56</a> and <a class="xref" href="thy_str2.html#thyeq17dervnov1501" title="(2&#8211;58)">Equation&nbsp;2&#8211;58</a>)</td></tr><tr><td>{L} = vector of nodal, surface, and body charges (see
+                        {L<sub>e</sub>} in <a class="xref" href="thy_emg2.html#electrostatanal" title="(5&#8211;117)">Equation&nbsp;5&#8211;117</a>)</td></tr></table><p>
+        </p><p>The electrostatic softening matrix
+                [K<sup>eu</sup>] and the coupling matrix
+                [K<sup>eV</sup>] are calculated as derivatives of the nodal electric
+            force {F<sup>e</sup>} with respect to displacement and voltage: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eq3c536a5a-f6e9-4d33-b53a-727ec4692904.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-12.000000px"><img src="graphics/eq048dea01-7aad-49bc-97a1-a3f58c5529ee.svg"></span>
+</td></tr></table><p>These derivatives are obtained by applying the chain rule to the
+            following expression for the electric force: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+                <span class="inlineequation" style="&#xA;          vertical-align:-11.000000px"><img src="graphics/eqdfe7a518-8408-4b89-97be-77c593dca14e.svg"></span>
+            </td></tr><tr><td>where:</td></tr><tr><td>[B] = strain-displacement matrix (see <a class="xref" href="thy_str2.html#thyeq4dervnov1501" title="(2&#8211;44)">Equation&nbsp;2&#8211;44</a>)</td></tr><tr><td>
+                <span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq7af7c3e1-7304-4f93-89c1-0a72c3453c9b.svg"></span>
+            </td></tr></table><p>The strong (matrix) coupling between structural and electric
+            equations in the finite element system (<a class="xref" href="electroelasy.html#eqd9a5eb2a-7365-4592-ae55-2a6b0774f67f" title="(10&#8211;60)">Equation&nbsp;10&#8211;60</a>) allows the linear perturbation
+            modal and harmonic analyses to be used following a nonlinear static or transient
+            analysis. </p><p>Note that the finite element system (<a class="xref" href="electroelasy.html#eqd9a5eb2a-7365-4592-ae55-2a6b0774f67f" title="(10&#8211;60)">Equation&nbsp;10&#8211;60</a>) is symmetric due to the negative
+            sign assigned to the electric equation. </p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

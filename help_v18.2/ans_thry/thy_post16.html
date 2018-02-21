@@ -1,0 +1,42 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:30-04:00"><title>17.15.&nbsp;POST1 - Modal Assurance Criterion (MAC)</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_post.html" title="Chapter&nbsp;17:&nbsp;Postprocessing"><link rel="prev" href="thy_post15.html" title="17.14.&nbsp;POST1 and POST26 &#8211; Complex Results Postprocessing"><link rel="next" href="thy_biblio.html" title="Bibliography"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="17.15.&nbsp;POST1 - Modal Assurance Criterion (MAC)"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thyrstmac120"></a>17.15.&nbsp;POST1 - Modal Assurance Criterion (MAC)</h2></div></div></div><a class="indexterm" name="d0e88850"></a><a class="indexterm" name="d0e88853"></a><a class="indexterm" name="d0e88858"></a><p>The modal assurance criterion (MAC) can compare two real solutions
+or two complex solutions.</p><p>The MAC between two real solutions is computed using the equation:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="gthy19rstmaceq1b"></a><div><img src="graphics/gthy19rstmaceq1b.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;160)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eqf5ce0e91-0aaf-402a-a2a1-061edeb34828.svg"></span> = the <span class="italic"><em>ith</em></span> displacement vector of solution
+     1. (solution 1 is read on <em class="replaceable"><code>File1</code></em> and index <span class="italic"><em>i</em></span> corresponds to <em class="replaceable"><code>Sbstep1</code></em> on the
+      <a href="../ans_cmd/Hlp_C_RSTMAC.html" class="olink"><span class="command"><strong>RSTMAC</strong></span></a> command).</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-11.000000px"><img src="graphics/eqfd794424-5fa2-4886-a990-543da931f019.svg"></span> = the <span class="italic"><em>jth</em></span> displacement vector of solution
+     2. <span>For the case of the <span class="filename"><strong>.UNV</strong></span> file, it can also
+      be an acceleration vector of solution 2.</span> (solution 2 is read on
+      <em class="replaceable"><code>File2</code></em> and index <span class="italic"><em>j</em></span> corresponds to
+      <em class="replaceable"><code>Sbstep2</code></em> on the <a href="../ans_cmd/Hlp_C_RSTMAC.html" class="olink"><span class="command"><strong>RSTMAC</strong></span></a> command).</td></tr><tr><td>
+<span class="italic"><em>m</em></span>
+<sup>(k) </sup> = diagonal of the mass
+     matrix used in obtaining solution k. It is included in the calculation only if
+      <em class="replaceable"><code>KeyMass</code></em> is ON (default). k = 1 if nodes are matched
+      (<em class="replaceable"><code>TolerN</code></em>
+     <span>and/or TolerR &gt; 0</span> on the <a href="../ans_cmd/Hlp_C_RSTMAC.html" class="olink"><span class="command"><strong>RSTMAC</strong></span></a>
+     command). k = 2 if nodes are mapped and solution 1 is interpolated
+      (<em class="replaceable"><code>TolerN</code></em> = -1 on the <a href="../ans_cmd/Hlp_C_RSTMAC.html" class="olink"><span class="command"><strong>RSTMAC</strong></span></a> command).</td></tr></table><p>
+</p><p>The MAC between two complex solutions is computed using the
+equation:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="gthy19rstmaceq2a"></a><div><img src="graphics/gthy19rstmaceq2a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(17&#8211;161)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq8b61b641-29a5-4283-893c-1687ad984af0.svg"></span> = the complex conjugate of a complex vector 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqff29ac61-1393-4410-9090-572b02773534.svg"></span>.</td></tr></table><p>
+</p><p>If the diagonal of the mass matrix is not available (for example
+on a Universal Format file), the modal assurance criterion is not
+weighted with the mass, i.e. the mass is assumed to be equal at all
+degrees of freedom. </p><p>The dot product of the displacement vectors is calculated at matched
+   nodes if <em class="replaceable"><code>TolerN</code></em> or <em class="replaceable"><code>TolerR</code></em> &gt; 0, and at
+   mapped nodes if <em class="replaceable"><code>TolerN</code></em> = -1.</p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

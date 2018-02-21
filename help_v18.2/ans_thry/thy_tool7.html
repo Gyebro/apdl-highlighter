@@ -1,0 +1,135 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:59-04:00"><title>14.6.&nbsp;Solving for Unknowns and Reactions</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_tool.html" title="Chapter&nbsp;14:&nbsp;Analysis Tools"><link rel="prev" href="thy_tool6.html" title="14.5.&nbsp;Automatic Time Stepping"><link rel="next" href="thy_tool8.html" title="14.7.&nbsp;Equation Solvers"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="14.6.&nbsp;Solving for Unknowns and Reactions"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="laEuf42mlg"></a>14.6.&nbsp;Solving for Unknowns and Reactions</h2></div></div></div><a class="indexterm" name="d0e68120"></a><a class="indexterm" name="d0e68123"></a><p>In general, the equations that are solved for static linear
+analyses are: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1unknownsnov2101"></a><div><img src="graphics/thyeq1unknownsnov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;72)</b></p></td></tr></table><p>or</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2unknownsnov2101"></a><div><img src="graphics/thyeq2unknownsnov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;73)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>[K] = total stiffness or conductivity matrix = 
+<span class="inlineequation" style="&#xA;          vertical-align:-19.000000px"><img src="graphics/eq4dd72573-9c6b-43eb-a593-1dfc9c9f619c.svg"></span> </td></tr><tr><td>{u} = nodal degree of freedom (DOF) vector </td></tr><tr><td>N = number of elements </td></tr><tr><td>[K<sub>e</sub>] = element stiffness or conductivity
+matrix </td></tr><tr><td>{F<sup>r</sup>} = nodal reaction load vector </td></tr></table><p>
+</p><p>{F<sup>a</sup>}, the total applied load vector,
+is defined by: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3unknownsnov2101"></a><div><img src="graphics/thyeq3unknownsnov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;74)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>{F<sup>nd</sup>} = applied nodal load vector </td></tr><tr><td>{F<sup>e</sup>} = total of all element load
+vector effects (pressure, acceleration, thermal, gravity) </td></tr></table><p>
+</p><p>
+<a class="xref" href="thy_tool7.html#thyeq1unknownsnov2101" title="(14&#8211;72)">Equation&nbsp;14&#8211;72</a> thru <a class="xref" href="thy_tool7.html#thyeq3unknownsnov2101" title="(14&#8211;74)">Equation&nbsp;14&#8211;74</a> are similar to <a class="xref" href="thy_anproc1.html#thyeq1descnov2001" title="(15&#8211;1)">Equation&nbsp;15&#8211;1</a> thru <a class="xref" href="thy_anproc1.html#thyeq4descnov2001" title="(15&#8211;4)">Equation&nbsp;15&#8211;4</a>. </p><p>If sufficient boundary conditions are specified on {u} to guarantee
+a unique solution, <a class="xref" href="thy_tool7.html#thyeq1unknownsnov2101" title="(14&#8211;72)">Equation&nbsp;14&#8211;72</a> can be
+solved to obtain the node DOF values at each node in the model. </p><p>Rewriting <a class="xref" href="thy_tool7.html#thyeq2unknownsnov2101" title="(14&#8211;73)">Equation&nbsp;14&#8211;73</a> for linear
+analyses by separating out the matrix and vectors into those DOFs
+with and without imposed values, </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq4unknownsnov2101"></a><div><img src="graphics/thyeq4unknownsnov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;75)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>s = subscript representing DOFs with imposed values (specified
+DOFs) </td></tr><tr><td>c = subscript representing DOFs without imposed values (computed
+DOFs) </td></tr></table><p>
+</p><p>Note that {u<sub>s</sub>} is known, but not necessarily
+equal to {0}. Since the reactions at DOFs without imposed values must
+be zero, <a class="xref" href="thy_tool7.html#thyeq4unknownsnov2101" title="(14&#8211;75)">Equation&nbsp;14&#8211;75</a> can be written as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq5unknownsnov2101"></a><div><img src="graphics/thyeq5unknownsnov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;76)</b></p></td></tr></table><p>The top part of <a class="xref" href="thy_tool7.html#thyeq5unknownsnov2101" title="(14&#8211;76)">Equation&nbsp;14&#8211;76</a> may
+be solved for {u<sub>c</sub>}: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq6unknownsnov2101"></a><div><img src="graphics/thyeq6unknownsnov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;77)</b></p></td></tr></table><p>The actual numerical solution process is not as indicated here
+but is done more efficiently using one of the various equation solvers
+discussed in <a class="xref" href="thy_tool8.html" title="14.7.&nbsp;Equation Solvers">Equation Solvers</a>. </p><div class="sect2" title="14.6.1.&nbsp;Reaction Forces"><div class="titlepage"><div><div><h3 class="title"><a name="eltreactforce"></a>14.6.1.&nbsp;Reaction Forces</h3></div></div></div><a class="indexterm" name="d0e68238"></a><a class="indexterm" name="d0e68241"></a><a class="indexterm" name="d0e68244"></a><a class="indexterm" name="d0e68247"></a><p>The reaction vector 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq0be9c032-2f17-41b8-9126-be85cc93b28d.svg"></span>, may be developed for linear models
+from the bottom part of <a class="xref" href="thy_tool7.html#thyeq5unknownsnov2101" title="(14&#8211;76)">Equation&nbsp;14&#8211;76</a>: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1reactnov2101"></a><div><img src="graphics/thyeq1reactnov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;78)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq3e1d06f1-86c5-4881-9aa5-c1e43d53c8b2.svg"></span> = reaction forces (output using either <a href="../ans_cmd/Hlp_C_OUTPR.html" class="olink"><span class="command"><strong>OUTPR</strong></span></a>,RSOL or <a href="../ans_cmd/Hlp_C_PRRSOL.html" class="olink"><span class="command"><strong>PRRSOL</strong></span></a> command) </td></tr></table><p>
+</p><p>Alternatively, the nodal reaction load vector may be considered
+over all DOFs by combining <a class="xref" href="thy_tool7.html#thyeq2unknownsnov2101" title="(14&#8211;73)">Equation&nbsp;14&#8211;73</a> and <a class="xref" href="thy_tool7.html#thyeq3unknownsnov2101" title="(14&#8211;74)">Equation&nbsp;14&#8211;74</a> to get: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqf5290438-bf16-418d-b9d2-48ff31c7ea28"></a><div><img src="graphics/eqf5290438-bf16-418d-b9d2-48ff31c7ea28.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;79)</b></p></td></tr></table><p>where only the loads at imposed DOF are output. Where applicable,
+the transient/dynamic effects are added: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqbe1a294e-27d7-4a5c-aed3-8eb674f662b5"></a><div><img src="graphics/eqbe1a294e-27d7-4a5c-aed3-8eb674f662b5.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;80)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>[M] = total mass matrix </td></tr><tr><td>[C] = total damping or conductivity matrix </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq9e4b64f5-f734-4e9c-9997-8f1c0fa8e0dd.svg"></span>, 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq43516286-f4a0-4def-bb49-1b2fb898e1f3.svg"></span> = defined below </td></tr></table><p>The element static nodal loads are: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq4d5669d3-97e7-4bd1-8959-6f3532117cd1"></a><div><img src="graphics/eq4d5669d3-97e7-4bd1-8959-6f3532117cd1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;81)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq44924b8b-fc06-450b-8446-9f044ac3f924.svg"></span> = element nodal loads (output using <a href="../ans_cmd/Hlp_C_OUTPR.html" class="olink"><span class="command"><strong>OUTPR</strong></span></a>,NLOAD, or <a href="../ans_cmd/Hlp_C_PRESOL.html" class="olink"><span class="command"><strong>PRESOL</strong></span></a> commands) </td></tr><tr><td>e = subscript for element matrices and load vectors </td></tr></table><p>
+</p><p>The element damping and inertial loads are: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqa5d8f351-4a4f-4e74-bcf2-115d722367f8"></a><div><img src="graphics/eqa5d8f351-4a4f-4e74-bcf2-115d722367f8.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;82)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqc24fdd59-97f5-427b-824f-d483ec0ebd2e"></a><div><img src="graphics/eqc24fdd59-97f5-427b-824f-d483ec0ebd2e.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;83)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq8aa8bb18-266a-4077-893c-9096115286d6.svg"></span> = element damping nodal
+load (output using <a href="../ans_cmd/Hlp_C_OUTPR.html" class="olink"><span class="command"><strong>OUTPR</strong></span></a>,NLOAD, or <a href="../ans_cmd/Hlp_C_PRESOL.html" class="olink"><span class="command"><strong>PRESOL</strong></span></a> commands) </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqc06c3ab0-19e6-43cb-960b-4872252d3573.svg"></span> = element inertial nodal
+load (output using <a href="../ans_cmd/Hlp_C_OUTPR.html" class="olink"><span class="command"><strong>OUTPR</strong></span></a>,NLOAD, or <a href="../ans_cmd/Hlp_C_PRESOL.html" class="olink"><span class="command"><strong>PRESOL</strong></span></a> commands) </td></tr></table><p>
+</p><p>Thus, </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq3367b102-ba01-4234-982d-a45b5bdd68a2"></a><div><img src="graphics/eq3367b102-ba01-4234-982d-a45b5bdd68a2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;84)</b></p></td></tr></table><p>The derivatives of the nodal DOF with respect to time are: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq516586cc-fdbb-4a24-863f-b50499d4e8f4.svg"></span> = first derivative of the nodal DOF with
+respect to time, e.g., velocity </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq8c2e0994-c8a6-4070-b4ea-d05bb55406df.svg"></span> = second derivative of the nodal DOF with
+respect to time, e.g., acceleration </td></tr></table><p>
+</p><p>
+<a class="xref" href="thy_anproc2.html" title="15.2.&nbsp;Transient Analysis">Transient Analysis</a> and <a class="xref" href="thy_anproc4.html" title="15.4.&nbsp;Harmonic Analysis">Harmonic Analysis</a> discuss the transient and harmonic damping and inertia loads. </p><p>If an imposed DOF value is part of a constraint equation, the
+nodal reaction load vector is further modified using the appropriate
+terms of the right hand side of <a class="xref" href="thy_tool11.html#dis012303" title="(14&#8211;194)">Equation&nbsp;14&#8211;194</a>; that
+is, the forces on the non-unique DOFs are summed into the unique DOF
+(the one with the imposed DOF value) to give the total reaction force
+acting on that DOF.</p></div><div class="sect2" title="14.6.2.&nbsp;Disequilibrium"><div class="titlepage"><div><div><h3 class="title"><a name="eltdisequilibrium"></a>14.6.2.&nbsp;Disequilibrium</h3></div></div></div><a class="indexterm" name="d0e68404"></a><a class="indexterm" name="d0e68407"></a><a class="indexterm" name="d0e68410"></a><a class="indexterm" name="d0e68413"></a><p>The following circumstances could cause a disequilibrium, usually
+a moment disequilibrium: </p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="216" class="col1"><col width="408" class="col2"></colgroup><thead><tr><th align="center" valign="top">Program Option </th><th align="center" valign="top">Explanation of Possible
+Difficulty</th></tr></thead><tbody><tr><td>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>non-planar, 4-node membrane shell elements </td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_SHELL181.html" class="olink"><span class="structname">SHELL181</span></a> with KEYOPT(1) = 1</td></tr></table>
+</td><td>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>If the 4 nodes do not lie in a flat plane moment equilibrium
+may not be preserved, as no internal corrections are done. However,
+the program requires such elements to be input very close to flat.</td></tr></table>
+</td></tr><tr><td>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>nodal coupling constraint equations (<a href="../ans_cmd/Hlp_C_CP.html" class="olink"><span class="command"><strong>CP</strong></span></a>, <a href="../ans_cmd/Hlp_C_CE.html" class="olink"><span class="command"><strong>CE</strong></span></a> commands) </td></tr></table>
+</td><td>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>The user can write any form of relationship between the displacements,
+and these may include fictitious forces or moments. Thus, the reaction
+forces printout can be used to detect input errors.</td></tr></table>
+</td></tr><tr><td>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_elem/Hlp_E_MATRIX27.html" class="olink"><span class="structname">MATRIX27</span></a>
+</td></tr><tr><td>User generated super- element matrix</td></tr></table>
+</td><td>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>The user has the option to input almost any type of erroneous
+input, so that such input should be checked carefully. For example,
+all terms representing UX degrees of freedom of one UX row of the
+matrix should sum to zero to preserve equilibrium. </td></tr></table>
+</td></tr><tr><td>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_elem/Hlp_E_COMBIN37.html" class="olink"><span class="structname">COMBIN37</span></a>
+</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_FLUID38.html" class="olink"><span class="structname">FLUID38</span></a>
+</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_COMBIN39.html" class="olink"><span class="structname">COMBIN39</span></a>
+</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_COMBIN40.html" class="olink"><span class="structname">COMBIN40</span></a>
+</td></tr></table>
+</td><td>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>Noncoincident nodes can cause a moment disequilibrium. (This
+is usually not a problem if one of the nodes is attached to a non-rotating
+ground). </td></tr></table>
+</td></tr><tr><td>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_elem/Hlp_E_COMBIN14.html" class="olink"><span class="structname">COMBIN14</span></a> (with KEYOPT(2) &gt; 0)</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MATRIX27.html" class="olink"><span class="structname">MATRIX27</span></a>
+</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_COMBIN37.html" class="olink"><span class="structname">COMBIN37</span></a>
+</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_FLUID38.html" class="olink"><span class="structname">FLUID38</span></a>
+</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_COMBIN39.html" class="olink"><span class="structname">COMBIN39</span></a>
+</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_COMBIN40.html" class="olink"><span class="structname">COMBIN40</span></a>
+</td></tr></table>
+</td><td>
+<table border="0" summary="Simple list" class="simplelist"><tr><td>Elements with one node having a different nodal coordinate
+system from the other are inconsistent.</td></tr></table> </td></tr></tbody></table></div><p>The following circumstances could cause an apparent disequilibrium: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>All nodal coordinate systems are not parallel to the
+global Cartesian coordinate system. However, if all nodal forces are
+rotated to the global Cartesian coordinate system, equilibrium should
+be seen to be satisfied. </p></li><li class="listitem"><p>The solution is not converged. This applies to the
+potential discrepancy between applied and internal element forces
+in a nonlinear analysis. </p></li><li class="listitem"><p>The mesh is too coarse. This may manifest itself for
+elements where there is an element force printout at the nodes, such
+as <a href="../ans_elem/Hlp_E_SHELL61.html" class="olink"><span class="structname">SHELL61</span></a> (axisymmetric-harmonic structural
+shell). </p></li><li class="listitem"><p>The &#8220;TOTAL&#8221; of the moments (MX, MY, MZ)
+given with the reaction forces does not necessarily represent equilibrium.
+It only represents the sum of all applicable moments. Moment equilibrium
+would also need the effects of forces taken about an arbitrary point. </p></li><li class="listitem"><p>Axisymmetric models are used with forces or pressures
+with a radial component. These loads will often be partially equilibrated
+by hoop stresses, which do not show up in the reaction forces. </p></li><li class="listitem"><p>Shell elements have an elastic foundation described.
+The load carried by the elastic foundation is not seen in the reaction
+forces. </p></li><li class="listitem"><p>In substructure expansion pass with the resolve method
+used, the reaction forces at the master degree of freedom are different
+from that given by the backsubstitution method (see <a class="xref" href="thy_anproc6.html" title="15.6.&nbsp;Substructuring Analysis">Substructuring Analysis</a>).</p></li></ul></div></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

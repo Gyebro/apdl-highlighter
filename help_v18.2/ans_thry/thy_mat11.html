@@ -1,0 +1,309 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:58-04:00"><title>4.12.&nbsp;Cohesive Zone Material (CZM) Model</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thymatlnonlin.html" title="Chapter&nbsp;4:&nbsp;Structures with Material Nonlinearities"><link rel="prev" href="thy_mat8.html" title="4.11.&nbsp;Swelling"><link rel="next" href="thyfluidmatmod.html" title="4.13.&nbsp;Fluid Material Models"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="4.12.&nbsp;Cohesive Zone Material (CZM) Model"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="cohmatmod"></a>4.12.&nbsp;Cohesive Zone Material (CZM) Model</h2></div></div></div><a class="indexterm" name="d0e14965"></a><a class="indexterm" name="d0e14968"></a><p>Fracture or delamination along an interface between phases plays
+a major role in limiting the toughness and the ductility of the multi-phase
+materials, such as matrix-matrix composites and laminated composite
+structure. This has motivated considerable research on the failure
+of the interfaces. Interface delamination can be modeled by traditional
+fracture mechanics methods such as the nodal release technique. Alternatively,
+you can use techniques that directly introduce fracture mechanism
+by adopting softening relationships between tractions and the separations,
+which in turn introduce a critical fracture energy that is also the
+energy required to break apart the interface surfaces. This technique
+is called the cohesive zone material (CZM) model . The interface surfaces
+of the materials can be represented by a special set of interface
+elements or contact elements, and a CZM model can be used to characterize
+the constitutive behavior of the interface.</p><p>The CZM model consists of a constitutive relation between the
+traction <span class="bold"><strong>T</strong></span> acting on the interface
+and the corresponding interfacial separation <span class="bold"><strong>&#948;</strong></span> (displacement jump across the interface). The
+definitions of traction and separation depend on the element and the
+material model.</p><div class="highlights"><p>The following related topics are available:</p><ul><li><a href="thy_mat11.html#d0e14986" title="4.12.1.&nbsp;Interface Elements">Interface Elements</a></li><li><a href="thy_mat11.html#d0e15412" title="4.12.2.&nbsp;Contact Elements">Contact Elements</a></li></ul></div><div class="sect2" title="4.12.1.&nbsp;Interface Elements"><div class="titlepage"><div><div><h3 class="title"><a name="d0e14986"></a>4.12.1.&nbsp;Interface Elements</h3></div></div></div><p>For interface elements, the interfacial separation is defined
+as the displacement jump, &#948; (that is, the difference of the
+displacements of the adjacent interface surfaces):</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq9d12a007-8862-4c87-ae25-c5e7115059dc"></a><div><img src="graphics/eq9d12a007-8862-4c87-ae25-c5e7115059dc.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;337)</b></p></td></tr></table><p>The definition of the separation is based on local element coordinate
+system, <a class="xref" href="thy_mat11.html#cohesive_fig1" title="Figure&nbsp;4.32:&nbsp;&nbsp;Schematic of Interface Elements">Figure&nbsp;4.32:&nbsp;Schematic of Interface Elements</a>. The normal of the interface
+is denoted as local direction <span class="bold"><strong>n</strong></span>,
+and the local tangent direction is denoted as <span class="bold"><strong>t</strong></span>. Thus:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqfe38e423-ed74-427c-b63b-21e322ab4d33"></a><div><img src="graphics/eqfe38e423-ed74-427c-b63b-21e322ab4d33.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;338)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq18a4556a-7326-4ce2-a7ec-897f0da849cc"></a><div><img src="graphics/eq18a4556a-7326-4ce2-a7ec-897f0da849cc.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;339)</b></p></td></tr></table><div class="figure"><a name="cohesive_fig1"></a><p class="title"><b>Figure&nbsp;4.32:&nbsp;&nbsp;Schematic of Interface Elements</b></p><div class="figure-contents"><div><img src="graphics/gthy4-524.svg" alt="Schematic of Interface Elements"></div></div></div><br class="figure-break"><div class="highlights"><p>The following related topics are available:</p><ul><li><a href="thy_mat11.html#thymatczmexpbehav" title="4.12.1.1.&nbsp;Material Model - Exponential Behavior">Material Model - Exponential Behavior</a></li><li><a href="thy_mat11.html#thymatczmbilinbehav" title="4.12.1.2.&nbsp;Material Model - Bilinear Behavior">Material Model - Bilinear Behavior</a></li><li><a href="thy_mat11.html#thymatczmviscreg" title="4.12.1.3.&nbsp;Viscous Regularization">Viscous Regularization</a></li></ul></div><div class="sect3" title="4.12.1.1.&nbsp;Material Model - Exponential Behavior"><div class="titlepage"><div><div><h4 class="title"><a name="thymatczmexpbehav"></a>4.12.1.1.&nbsp;Material Model - Exponential Behavior</h4></div></div></div><p>An exponential form of the CZM model (input via <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM with <em class="replaceable"><code>TBOPT</code></em> = EXPO), originally proposed
+by Xu and Needleman(<a class="xref" href="thy_biblio.html#xuneedle" title="&#8220;Numerical simulations of fast crack growth in brittle solids&#8221;">[364]</a>), uses a surface potential:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="surfpotential"></a><div><img src="graphics/surfpotential.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;340)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#981;(&#948;) = surface potential</td></tr><tr><td>e = 2.7182818</td></tr><tr><td>&#963;<sub>max</sub> = maximum normal traction
+at the interface (input on <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command as C1
+using <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-17.000000px"><img src="graphics/eqdd0c87d1-7244-4771-be14-af5fa7feebfe.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-25.000000px"><img src="graphics/eqd9815bc6-c13e-4827-9841-6db0d5ddc221.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eqc78bcde4-fb75-49f7-86ea-0cb3133fe687.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-10.000000px"><img src="graphics/eq5428693a-8161-4a83-866c-2cd30a60ed51.svg"></span>
+</td></tr></table><p>
+</p><p>The traction is defined as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="tractioneq1"></a><div><img src="graphics/tractioneq1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;341)</b></p></td></tr></table><p>or</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="tractioneq2"></a><div><img src="graphics/tractioneq2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;342)</b></p></td></tr></table><p>and</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="tractioneq3"></a><div><img src="graphics/tractioneq3.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;343)</b></p></td></tr></table><p>From equations <a class="xref" href="thy_mat11.html#tractioneq2" title="(4&#8211;342)">Equation&nbsp;4&#8211;342</a> and <a class="xref" href="thy_mat11.html#tractioneq3" title="(4&#8211;343)">Equation&nbsp;4&#8211;343</a>, we obtain the normal traction of the interface</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq1596841d-6d71-4bb4-bd8e-9567f1bf34dc"></a><div><img src="graphics/eq1596841d-6d71-4bb4-bd8e-9567f1bf34dc.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;344)</b></p></td></tr></table><p>and the shear traction</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq70c99195-6bf3-4d10-9857-ecdbca16d08f"></a><div><img src="graphics/eq70c99195-6bf3-4d10-9857-ecdbca16d08f.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;345)</b></p></td></tr></table><p>The normal work of separation is:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq38b682fe-d66d-4d00-9ca6-c4962a06d0d5"></a><div><img src="graphics/eq38b682fe-d66d-4d00-9ca6-c4962a06d0d5.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;346)</b></p></td></tr></table><p>and shear work of separation is assumed to be the same as the
+normal work of separation, &#981;<sub>n</sub>, and is
+defined as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqa577051d-d2a0-4e27-bdde-3b240851eebb"></a><div><img src="graphics/eqa577051d-d2a0-4e27-bdde-3b240851eebb.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;347)</b></p></td></tr></table><p>For the 3-D stress state, the shear or tangential separations
+and the tractions have two components, &#948;<sub>t1</sub> and &#948;<sub>t2</sub> in the element's tangential
+plane, and we have:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq670b5ee1-b7de-428a-98f2-0bbc784357d2"></a><div><img src="graphics/eq670b5ee1-b7de-428a-98f2-0bbc784357d2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;348)</b></p></td></tr></table><p>The traction is then defined as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq434ec29e-a4e2-4dc6-a511-31ce132bf4ff"></a><div><img src="graphics/eq434ec29e-a4e2-4dc6-a511-31ce132bf4ff.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;349)</b></p></td></tr></table><p>and</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq0e79ba73-5596-4acd-bb48-b365ec3925f2"></a><div><img src="graphics/eq0e79ba73-5596-4acd-bb48-b365ec3925f2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;350)</b></p></td></tr></table><p>(In POST1 and POST26 the traction, <span class="bold"><strong>T</strong></span>, is output as SS and the separation, <span class="bold"><strong>&#948;</strong></span>, is output as SD.)</p><p>The tangential direction t<sub>1</sub> is defined
+along ij edge of element and the direction t<sub>2</sub> is defined along direction perpendicular to the plane formed by
+n and t<sub>1</sub>. Directions t<sub>1</sub>, t<sub>2</sub>, and n follow the righthand side rule.</p></div><div class="sect3" title="4.12.1.2.&nbsp;Material Model - Bilinear Behavior"><div class="titlepage"><div><div><h4 class="title"><a name="thymatczmbilinbehav"></a>4.12.1.2.&nbsp;Material Model - Bilinear Behavior</h4></div></div></div><p>The bilinear CZM model (input via <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM
+with <em class="replaceable"><code>TBOPT</code></em> = BILI) can be used with interface
+elements. The model is based on the model proposed by Alfano and Crisfield <a class="xref" href="thy_biblio.html#alfanocris" title="&#8220;Finite Element Interface Models for the Delamination Anaylsis of Laminated Composites: Mechanical and Computational Issues&#8221;">[366]</a>. </p><p>
+<span class="bold"><strong>Mode I Dominated Bilinear CZM Model</strong></span>
+</p><p>The Mode I dominated bilinear CZM model assumes that the separation
+of the material interfaces is dominated by the displacement jump normal
+to the interface, as shown in the following figure:</p><div class="figure"><a name="d0e15184"></a><p class="title"><b>Figure&nbsp;4.33:&nbsp;&nbsp;Mode I Dominated Bilinear CZM Law</b></p><div class="figure-contents"><div><img src="graphics/gthy_czmbi-1.png" alt="Mode I Dominated Bilinear CZM Law"></div></div></div><br class="figure-break"><p>The relation between normal cohesive traction T<sub>n</sub> and normal displacement jump &#948;<sub>n</sub> can
+be expressed as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq1b6e14a3-611d-4f7b-b6ad-de04691b1970"></a><div><img src="graphics/eq1b6e14a3-611d-4f7b-b6ad-de04691b1970.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;351)</b></p></td></tr></table><p>Where:</p><div class="informalequation"><a name="eq1bb14abc-400e-4bd1-aef6-5d55a18cd99c"></a><div><img src="graphics/eq1bb14abc-400e-4bd1-aef6-5d55a18cd99c.svg"></div></div><div class="informalequation"><a name="eq88485331-cbdf-460b-b8e9-8567b80741b5"></a><div><img src="graphics/eq88485331-cbdf-460b-b8e9-8567b80741b5.svg"></div></div><p>For Mode I dominated cohesive law, the tangential cohesive traction
+and tangential displacement jump behavior is assumed to follow the
+normal cohesive traction and normal displacement jump behavior and
+is expressed as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq7814c202-7957-4d09-a7c1-0351628e3214"></a><div><img src="graphics/eq7814c202-7957-4d09-a7c1-0351628e3214.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;352)</b></p></td></tr></table><p>Were:</p><div class="informalequation"><a name="eq5706adb5-c20d-4db1-8e71-1ca632a8be20"></a><div><img src="graphics/eq5706adb5-c20d-4db1-8e71-1ca632a8be20.svg"></div></div><p>
+<span class="bold"><strong>Mode II Dominated Bilinear CZM Model</strong></span>
+</p><p>The Mode II dominated bilinear CZM model assumes that the separation
+of the material interfaces is dominated by the displacement jump that
+is tangent to the interface, as shown in the following figure:</p><div class="figure"><a name="d0e15221"></a><p class="title"><b>Figure&nbsp;4.34:&nbsp;&nbsp;Mode II Dominated Bilinear CZM Law</b></p><div class="figure-contents"><div><img src="graphics/gthy_czmbi-2.png" alt="Mode II Dominated Bilinear CZM Law"></div></div></div><br class="figure-break"><p>The relation between tangential cohesive traction T<sub>t </sub> and tangential displacement jump &#948;<sub>t</sub> can be expressed as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq38ca65ea-2217-4a6c-95a2-7f98ccd2a73a"></a><div><img src="graphics/eq38ca65ea-2217-4a6c-95a2-7f98ccd2a73a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;353)</b></p></td></tr></table><p>Where:</p><div class="informalequation"><a name="eq1fd5a5ee-5a6d-443a-addf-11a96d7346ce"></a><div><img src="graphics/eq1fd5a5ee-5a6d-443a-addf-11a96d7346ce.svg"></div></div><div class="informalequation"><a name="eq0ad386f5-a5cd-49fa-bfc3-6b8c2cca1184"></a><div><img src="graphics/eq0ad386f5-a5cd-49fa-bfc3-6b8c2cca1184.svg"></div></div><p>For Mode II dominated cohesive law, the normal cohesive traction
+and normal displacement jump behavior is assumed to follow the tangential
+cohesive traction and tangential displacement jump behavior and is
+expressed as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqfde9f8a1-be2d-4699-a7f3-a1058a761853"></a><div><img src="graphics/eqfde9f8a1-be2d-4699-a7f3-a1058a761853.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;354)</b></p></td></tr></table><p>Where:</p><div class="informalequation"><a name="eq739569bb-7f85-4b6c-afb2-cb99e4d60a4b"></a><div><img src="graphics/eq739569bb-7f85-4b6c-afb2-cb99e4d60a4b.svg"></div></div><p>
+<span class="bold"><strong>Mixed-Mode Bilinear Cohesive Zone Material
+Model</strong></span>
+</p><p>For bilinear cohesive law under the mixed-mode fracture, the
+separation of material interfaces depends on both the normal and tangential
+components of displacement jumps. To take into account the difference
+in their contributions to the separation of material interfaces, a
+non-dimensional effective displacement jump &#955; for mixed-mode
+fracture is defined as </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="bilidispjump"></a><div><img src="graphics/bilidispjump.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;355)</b></p></td></tr></table><p>where the non-dimensional parameter &#946; (input via the <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command as <em class="replaceable"><code>C6</code></em> using <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM) assigns different weights to the tangential and
+normal displacement jumps.</p><p>The normal and tangential components of the cohesive tractions
+are expressed as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq186e94b7-0575-4026-b21c-97141306ecbf"></a><div><img src="graphics/eq186e94b7-0575-4026-b21c-97141306ecbf.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;356)</b></p></td></tr></table><p>The damage parameter D<sub>m</sub> associated with
+mixed mode bilinear cohesive law is defined as:</p><div class="informalequation"><a name="eqed556fba-dcb4-4c73-aef4-42876ee84797"></a><div><img src="graphics/eqed556fba-dcb4-4c73-aef4-42876ee84797.svg"></div></div><p>Where:</p><div class="informalequation"><a name="eq766a8a8e-8d59-4a9c-9a5d-f285bc8ea663"></a><div><img src="graphics/eq766a8a8e-8d59-4a9c-9a5d-f285bc8ea663.svg"></div></div><p>
+<span class="bold"><strong>Fracture Mode Identification of a CZM
+Model</strong></span>
+</p><p>Determining the fracture mode of a CZM model is based on the
+input data, as follows:</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="28%" class="col1"><col width="72%" class="col2"></colgroup><tbody><tr><td bgcolor="#E3E3E3">
+
+
+<span class="bold"><strong>Case</strong></span>
+</td><td bgcolor="#E3E3E3">
+
+
+<span class="bold"><strong>Input on the </strong></span>
+<a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> <span class="bold"><strong>command as follows:</strong></span>
+</td></tr><tr><td>Mode I Dominated</td><td>
+<em class="replaceable"><code>C1, C2, C3, C4, C5</code></em> (where <em class="replaceable"><code>C3</code></em> = -&#964;<sub>max</sub>)</td></tr><tr><td>Mode II/III Dominated</td><td>
+<em class="replaceable"><code>C1, C2, C3, C4, C5</code></em> (where <em class="replaceable"><code>C1</code></em> = -&#963;<sub>max</sub>)</td></tr><tr><td>Mixed-Mode</td><td>
+<em class="replaceable"><code>C1, C2, C3, C4, C5, C6</code></em> (where <em class="replaceable"><code>C1</code></em> = &#963;<sub>max</sub> and <em class="replaceable"><code>C3</code></em> = &#964;<sub>max</sub>)</td></tr></tbody></table></div></div><div class="sect3" title="4.12.1.3.&nbsp;Viscous Regularization"><div class="titlepage"><div><div><h4 class="title"><a name="thymatczmviscreg"></a>4.12.1.3.&nbsp;Viscous Regularization</h4></div></div></div><p>To avoid convergence difficulties, a small fictitious viscosity
+is introduced in <a href="../ans_mat/cozonemats.html" class="olink">cohesive zone material (CZM)</a> models (<a class="xref" href="thy_biblio.html#gaobower2004" title="&#34;A Simple Technique for Avoiding Convergence Problems in Finite Element Simulations of Crack Nucleation and Growth on Cohesive Interfaces&#34;">[417]</a>). The traction definitions are modified by
+adding viscous damping, as follows:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq31584c6b-7e12-45da-8af0-da0f07619857"></a><div><img src="graphics/eq31584c6b-7e12-45da-8af0-da0f07619857.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;357)</b></p></td></tr></table><p>where:</p><p>T<sub>n</sub> = normal traction before viscous regularization</p><p>T<sub>t</sub> = tangential traction before viscous
+regularization </p><p>&#950; = damping coefficient (input on the <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command as C1 (after defining the CZM model with the viscous regularization
+option [<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM,,,,VREG])</p></div></div><div class="sect2" title="4.12.2.&nbsp;Contact Elements"><div class="titlepage"><div><div><h3 class="title"><a name="d0e15412"></a>4.12.2.&nbsp;Contact Elements</h3></div></div></div><p>Delamination with contact elements is referred to as debonding.
+The interfacial separation is defined in terms of contact gap or penetration
+and tangential slip distance. The computation of contact and tangential
+slip is based on the type of contact element and the location of contact
+detection point. The cohesive zone model can only be used for bonded
+contact (KEYOPT(12) = 2, 3, 4, 5, or 6) with the augmented Lagrangian
+method (KEYOPT(2) = 0) or the pure penalty method (KEYOPT(2) = 1).
+See <a class="xref" href="thy_el174.html" title="13.174.&nbsp;CONTA174 - 3-D 8-Node Surface-to-Surface Contact">CONTA174 - 3-D 8-Node Surface-to-Surface Contact</a> for details.</p><div class="sect3" title="4.12.2.1.&nbsp;Material Models for Debonding"><div class="titlepage"><div><div><h4 class="title"><a name="d0e15419"></a>4.12.2.1.&nbsp;Material Models for Debonding</h4></div></div></div><div class="highlights"><p>Cohesive zone modeling with contact elements includes two different
+traction separation law forms: a bilinear traction separation law
+and an exponential traction separation law. Different variations of
+the bilinear material models are available, with each variation being
+activated by a different <em class="replaceable"><code>TBOPT</code></em> value on
+the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM command, as described in the following
+sections: </p><ul><li><a href="thy_mat11.html#thymatczmbilincont" title="4.12.2.1.1.&nbsp;Bilinear Behavior - Contact (TBOPT = CBDD and CBDE)">Bilinear Behavior - Contact (<em class="replaceable"><code>TBOPT</code></em> = CBDD and CBDE)</a></li><li><a href="thy_mat11.html#d0e16075" title="4.12.2.1.2.&nbsp;Bilinear Behavior - Interface (TBOPT = BILI)">Bilinear Behavior - Interface (<em class="replaceable"><code>TBOPT</code></em> = BILI)</a></li><li><a href="thy_mat11.html#d0e16167" title="4.12.2.1.3.&nbsp;Exponential Behavior">Exponential Behavior</a></li></ul></div><div class="sect4" title="4.12.2.1.1.&nbsp;Bilinear Behavior - Contact (TBOPT = CBDD and CBDE)"><div class="titlepage"><div><div><h5 class="title"><a name="thymatczmbilincont"></a>4.12.2.1.1.&nbsp;Bilinear Behavior - Contact (<em class="replaceable"><code>TBOPT</code></em> = CBDD and CBDE)</h5></div></div></div><p>The bilinear cohesive zone material model (input using <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM with <em class="replaceable"><code>TBOPT</code></em> = CBDD or
+CBDE) is based on the model proposed by Alfano and Crisfield <a class="xref" href="thy_biblio.html#alfanocris" title="&#8220;Finite Element Interface Models for the Delamination Anaylsis of Laminated Composites: Mechanical and Computational Issues&#8221;">[366]</a>.</p><p>
+<span class="bold"><strong>Mode I Debonding</strong></span>
+</p><p>Mode I debonding defines a mode of separation of the interface
+surfaces where the separation normal to the interface dominates the
+slip tangent to the interface. The normal contact stress (tension)
+and contact gap behavior is plotted in <a class="xref" href="thy_mat11.html#normbilin" title="Figure&nbsp;4.35:&nbsp;&nbsp;Normal Contact Stress and Contact Gap Curve for Bilinear Cohesive Zone Material">Figure&nbsp;4.35:&nbsp;Normal Contact Stress and Contact Gap Curve for Bilinear Cohesive
+Zone Material</a>.
+It shows linear elastic loading (<span class="italic"><em>OA</em></span>) followed by linear softening (<span class="italic"><em>AC</em></span>). The maximum normal contact stress is achieved at point <span class="italic"><em>A</em></span>. Debonding begins at point <span class="italic"><em>A</em></span> and is completed at point <span class="italic"><em>C</em></span> when the normal contact stress reaches
+zero value; any further separation occurs without any normal contact
+stress. The area under the curve <span class="italic"><em>OAC</em></span> is the energy released due to debonding and is called the critical
+fracture energy. The slope of the line <span class="italic"><em>OA</em></span> determines the contact gap at the maximum normal contact stress
+and, hence, characterizes how the normal contact stress decreases
+with the contact gap, i.e., whether the fracture is brittle or ductile.
+After debonding has been initiated it is assumed to be cumulative
+and any unloading and subsequent reloading occurs in a linear elastic
+manner along line <span class="italic"><em>OB</em></span> at a more
+gradual slope.</p><div class="figure"><a name="normbilin"></a><p class="title"><b>Figure&nbsp;4.35:&nbsp;&nbsp;Normal Contact Stress and Contact Gap Curve for Bilinear Cohesive
+Zone Material</b></p><div class="figure-contents"><div><img src="graphics/gthy4-552.svg" alt="Normal Contact Stress and Contact Gap Curve for Bilinear Cohesive Zone Material"></div></div></div><br class="figure-break"><p>The equation for curve <span class="italic"><em>OAC</em></span> can be written as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqa3850f67-709f-43ff-88ec-b9380f8ae7e9"></a><div><img src="graphics/eqa3850f67-709f-43ff-88ec-b9380f8ae7e9.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;358)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>P = normal contact stress (tension)</td></tr><tr><td>K<sub>n</sub> = normal contact stiffness</td></tr><tr><td>u<sub>n</sub> = contact gap</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eq81bd38dc-5171-44a6-9a85-a99577e7d8b1.svg"></span> = contact gap at the maximum normal
+contact stress (tension)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eqe7d02a60-c4a6-4184-8378-1688b3acf513.svg"></span> = contact gap at the completion
+of debonding (input on <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command as C2 using <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM)</td></tr><tr><td>d<sub>n</sub> = debonding parameter</td></tr></table><p>
+</p><p>The debonding parameter for Mode I Debonding is defined as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqd463dc28-527c-421e-b7cc-a8563d4896d3"></a><div><img src="graphics/eqd463dc28-527c-421e-b7cc-a8563d4896d3.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;359)</b></p></td></tr></table><p>with d<sub>n</sub> = 0 for &#916;<sub>n</sub> 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqe90f185a-18eb-42e3-ae8b-dac2f75533f0.svg"></span> 1 and 0 &lt; d<sub>n</sub> 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq3640f790-9a06-4600-b5e8-c9af630bf9b9.svg"></span> 1 for &#916;<sub>n</sub> &gt;
+1.</p><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq2e9abece-d576-4711-b2d5-876541af4f2c.svg"></span>
+</td></tr></table><p>
+</p><p>The normal critical fracture energy is computed as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq49d38d17-645f-4903-a787-6275ba1df9d5"></a><div><img src="graphics/eq49d38d17-645f-4903-a787-6275ba1df9d5.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;360)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#963;<sub>max</sub> = maximum normal contact
+stress (input on <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command as <em class="replaceable"><code>C1</code></em> using <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM). </td></tr></table><p>
+</p><p>For mode I debonding the tangential contact stress and tangential
+slip behavior follows the normal contact stress and contact gap behavior
+and is written as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq0edf3390-49e1-4f92-a2c2-58a42058c2f6"></a><div><img src="graphics/eq0edf3390-49e1-4f92-a2c2-58a42058c2f6.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;361)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#964;<sub>t</sub> = tangential contact stress</td></tr><tr><td>K<sub>t</sub> = tangential contact stiffness</td></tr><tr><td>u<sub>t</sub> = tangential slip distance</td></tr></table><p>
+</p><p>
+<span class="bold"><strong>Mode II Debonding</strong></span>
+</p><p>Mode II debonding defines a mode of separation of the interface
+surfaces where tangential slip dominates the separation normal to
+the interface. The equation for the tangential contact stress and
+tangential slip distance behavior is written as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq1c4fc8d4-0a4c-45bd-adfb-69f9ec6166fe"></a><div><img src="graphics/eq1c4fc8d4-0a4c-45bd-adfb-69f9ec6166fe.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;362)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq0a73e9ed-456f-4325-bdf3-6b7ec6ce4a8b.svg"></span> = tangential slip distance at
+the maximum tangential contact stress</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq6303e5d6-c809-4dfe-a8b0-96625d60c6fc.svg"></span> = tangential slip distance at
+the completion of debonding (input on <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command
+as C4 using <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM)</td></tr><tr><td>d<sub>t</sub> = debonding parameter</td></tr></table><p>
+</p><p>The debonding parameter for Mode II Debonding is defined as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq3cc7e98b-f5be-4e5b-8c34-3cff43fb5425"></a><div><img src="graphics/eq3cc7e98b-f5be-4e5b-8c34-3cff43fb5425.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;363)</b></p></td></tr></table><p>with d<sub>t</sub> = 0 for &#916;<sub>t</sub> 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqc508b5f4-11bf-48f0-a144-bb5b01ce46b7.svg"></span> 1 and 0 &lt; d<sub>t</sub> 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqb4b63f89-0ae1-42fb-9052-5ee1a0b87374.svg"></span> 1 for &#916;<sub>t</sub> &gt;
+1.</p><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq4a54d124-390a-476d-a6e6-f6d9a7c688d4.svg"></span>
+</td></tr></table><p>
+</p><p>For the 3-D stress state an <span class="quote">"<span class="quote">isotropic</span>"</span> behavior
+is assumed and the debonding parameter is computed using an equivalent
+tangential slip distance:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq5ce365af-8d65-4e05-b37d-30afb0297717"></a><div><img src="graphics/eq5ce365af-8d65-4e05-b37d-30afb0297717.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;364)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>u<sub>1</sub> and u<sub>2</sub> =
+slip distances in the two principal directions in the tangent plane</td></tr></table><p>
+</p><p>The components of the tangential contact stress are defined
+as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq063839e4-cc89-4cab-b023-4203d2f0686a"></a><div><img src="graphics/eq063839e4-cc89-4cab-b023-4203d2f0686a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;365)</b></p></td></tr></table><p>and</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqbef79a82-fcc8-4b99-90d5-8ad3a75a4957"></a><div><img src="graphics/eqbef79a82-fcc8-4b99-90d5-8ad3a75a4957.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;366)</b></p></td></tr></table><p>The tangential critical fracture energy is computed as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqf29f045b-c807-4701-9aa4-d2732c275a2a"></a><div><img src="graphics/eqf29f045b-c807-4701-9aa4-d2732c275a2a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;367)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#964;<sub>max</sub> = maximum tangential contact
+stress (input on <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command as C3 using <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM). </td></tr></table><p>
+</p><p>The normal contact stress and contact gap behavior follows the
+tangential contact stress and tangential slip behavior and is written
+as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq54559c66-e4b8-44ea-999a-906290ba1c92"></a><div><img src="graphics/eq54559c66-e4b8-44ea-999a-906290ba1c92.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;368)</b></p></td></tr></table><p>
+<span class="bold"><strong>Mixed-Mode Debonding</strong></span>
+</p><p>In mixed-mode debonding the interface separation depends on
+both normal and tangential components. The equations for the normal
+and the tangential contact stresses are written as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqd2637c3a-814a-4a46-99f2-0b80c90ca267"></a><div><img src="graphics/eqd2637c3a-814a-4a46-99f2-0b80c90ca267.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;369)</b></p></td></tr></table><p>and</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqbac37078-b0b7-4591-b438-feb3b2fbd86e"></a><div><img src="graphics/eqbac37078-b0b7-4591-b438-feb3b2fbd86e.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;370)</b></p></td></tr></table><p>The debonding parameter is defined as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq15887395-d17a-4d1c-ab91-8964492ef451"></a><div><img src="graphics/eq15887395-d17a-4d1c-ab91-8964492ef451.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;371)</b></p></td></tr></table><p>with d<sub>m</sub> = 0 for &#916;<sub>m</sub> 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq3d73c049-a464-4fc5-a760-c5517b1b20e7.svg"></span> 1 and 0 &lt; d<sub>m</sub> 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq2880cfc1-9cc0-4a7a-8aac-815a134a9427.svg"></span> 1 for &#916;<sub>m</sub> &gt;
+1, and &#916;<sub>m</sub> and &#967; are defined below.</p><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq6f48e6ea-fb6c-4018-a400-c3a0abef9583.svg"></span> and </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq5410aa91-b71a-47ff-8e61-95183b4bcae2.svg"></span>
+</td></tr></table><p>
+</p><p>The constraint on &#967; that the ratio of the contact gap distances
+be the same as the ratio of tangential slip distances is enforced
+automatically by appropriately scaling the contact stiffness value,
+K<sub>t</sub>, as follows:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq79efb34d-2f8d-430d-82fc-0364e389369b"></a><div><img src="graphics/eq79efb34d-2f8d-430d-82fc-0364e389369b.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;372)</b></p></td></tr></table><p>For mixed-mode debonding, both normal and tangential contact stresses
+                                                contribute to the total fracture energy and
+                                                debonding is completed before the critical fracture
+                                                energy values are reached for the components.
+                                                Therefore, a combined energy criterion is used to
+                                                define the completion of debonding:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq87bf435b-e157-478e-93dd-e95b615670a9"></a><div><img src="graphics/eq87bf435b-e157-478e-93dd-e95b615670a9.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;373)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqbe34a400-a969-470a-901e-405927105699.svg"></span> and </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq6119d5aa-5d31-4508-a1fb-a3df2e91bec8.svg"></span>
+</td></tr></table><p>are, respectively, the normal and tangential fracture
+energies. Verification of satisfaction of energy criterion can be
+done during postprocessing of results.</p><p>
+<span class="bold"><strong>Identifying Debonding Modes</strong></span>
+</p><p>The debonding modes are based on input data:</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Mode I for normal data (input on <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command as <em class="replaceable"><code>C1</code></em>, <em class="replaceable"><code>C2</code></em>, and <em class="replaceable"><code>C5</code></em>).</p></li><li class="listitem"><p>Mode II for tangential data (input on <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command as <em class="replaceable"><code>C3</code></em>, <em class="replaceable"><code>C4</code></em>, and <em class="replaceable"><code>C5</code></em>).</p></li><li class="listitem"><p>Mixed mode for normal and tangential data (input on <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command as <em class="replaceable"><code>C1</code></em>, <em class="replaceable"><code>C2</code></em>, <em class="replaceable"><code>C3</code></em>, <em class="replaceable"><code>C4</code></em>, <em class="replaceable"><code>C5</code></em> and <em class="replaceable"><code>C6</code></em>).</p></li></ol></div><p>
+</p><p>
+<span class="bold"><strong>Artificial Damping</strong></span>
+</p><p>Debonding is accompanied by convergence difficulties in the
+                                                Newton-Raphson solution. Artificial damping is used
+                                                in the numerical solution to overcome these
+                                                problems. The debonding parameter with viscous
+                                                damping, d<sub>v</sub> is calculated
+                                                using the debonding parameter d
+                                                  (d<sub>n</sub> or
+                                                  d<sub>t</sub> or
+                                                  d<sub>m</sub>) and the viscous
+                                                debonding parameter of the previous substep
+                                                as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq5d655c76-4056-4788-bf09-c7f61f2f0b34"></a><div><img src="graphics/eq5d655c76-4056-4788-bf09-c7f61f2f0b34.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;374)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td> &#916;t = time increment</td></tr><tr><td>d<sub>Vold</sub> = viscous
+                                                  debonding parameter at previous substep</td></tr><tr><td>&#951; = damping coefficient (input on
+                                                  <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command as
+                                                  <em class="replaceable"><code>C5</code></em> using
+                                                  <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM). </td></tr></table><p>
+                                        </p><p>This viscous regularized debonding parameter d<sub>v</sub> is used in the calculation of contact tractions when damping is
+activated. The damping coefficient has units of time, and it should
+be smaller than the minimum time step size so that the maximum traction
+and maximum separation (or critical fracture energy) values are not
+exceeded in the debonding calculations.</p><p>The energy dissipated due to damping (accessed via the AENE
+label on the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command) should be compared
+to element potential energy.The energies can be output in the <span class="filename"><strong>Jobname.OUT</strong></span> file (via the <a href="../ans_cmd/Hlp_C_OUTPR.html" class="olink"><span class="command"><strong>OUTPR</strong></span></a> command).
+You can also access the energies as follows:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>In POST1 via <a href="../ans_cmd/Hlp_C_PRENERGY.html" class="olink"><span class="command"><strong>PRENERGY</strong></span></a>, <a href="../ans_cmd/Hlp_C_PRESOL.html" class="olink"><span class="command"><strong>PRESOL</strong></span></a>, <a href="../ans_cmd/Hlp_C_PLESOL.html" class="olink"><span class="command"><strong>PLESOL</strong></span></a>, and <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> commands</p></li><li class="listitem"><p>In POST26 via <a href="../ans_cmd/Hlp_C_ENERSOL.html" class="olink"><span class="command"><strong>ENERSOL</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> commands</p></li></ul></div><p>
+</p><p>The damping energy should be much smaller than the potential
+energy.</p><p>
+<span class="bold"><strong>Tangential Slip Under Normal Compression</strong></span>
+</p><p>An option is provided to control tangential slip under compressive
+normal contact stress for mixed-mode debonding. By default, no tangential
+slip is allowed for this case, but it can be activated by setting
+the flag &#946; (input on <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command as <em class="replaceable"><code>C6</code></em> using <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM) to 1. Settings
+on &#946; are:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#946; = 0 (default) no tangential slip under compressive
+normal contact stress for mixed-mode debonding</td></tr><tr><td>&#946; = 1 tangential slip under compressive normal contact
+stress for mixed-mode debonding</td></tr></table><p>
+</p><p>
+<span class="bold"><strong>Debonding under the
+Presence of Friction</strong></span>
+</p><p>When friction is defined between contact
+surfaces undergoing debonding,             tangential stress is calculated
+as the maximum between the tangential stress as governed         
+   by the debonding model and the tangential stress as governed by
+the friction law.</p><p>
+<span class="bold"><strong>Post Separation Behavior</strong></span>
+</p><p>After debonding is completed the surface interaction is governed
+by standard contact constraints for normal and tangential directions.
+Frictional contact is used if friction is specified for contact elements.</p><p>
+<span class="bold"><strong>Results Output for POST1 and POST26</strong></span>
+</p><p>All applicable output quantities for contact elements are also
+available for debonding: normal contact stress P (output as PRES),
+tangential contact stress &#964;<sub>t</sub> (output as
+SFRIC) or its components &#964;<sub>1</sub> and &#964;<sub>2</sub> (output as TAUR and TAUS), contact gap u<sub>n</sub> (output as GAP), tangential slip u<sub>t</sub> (output as SLIDE) or its components u<sub>1</sub> and
+u<sub>2</sub> (output as TASR and TASS), etc. </p><p>The following debonding-specific output quantities are also
+available (output as NMISC data): debonding time history (output as
+DTSTART), debonding parameter d<sub>n</sub>, d<sub>t</sub>, or d<sub>m</sub> (output as DPARAM), fracture
+energies G<sub>n</sub> and G<sub>t</sub> (output
+as DENERI and DENERII).</p></div><div class="sect4" title="4.12.2.1.2.&nbsp;Bilinear Behavior - Interface (TBOPT = BILI)"><div class="titlepage"><div><div><h5 class="title"><a name="d0e16075"></a>4.12.2.1.2.&nbsp;Bilinear Behavior - Interface (<em class="replaceable"><code>TBOPT</code></em> = BILI)</h5></div></div></div><p>The bilinear interface law described in <a class="xref" href="thy_mat11.html#thymatczmbilinbehav" title="4.12.1.2.&nbsp;Material Model - Bilinear Behavior">Material Model - Bilinear Behavior</a> (input via <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM
+with <em class="replaceable"><code>TBOPT</code></em> = BILI) can be used with contact
+elements. This law differs from the bilinear model described in <a class="xref" href="thy_mat11.html#thymatczmbilincont" title="4.12.2.1.1.&nbsp;Bilinear Behavior - Contact (TBOPT = CBDD and CBDE)">Bilinear Behavior - Contact (<em class="replaceable"><code>TBOPT</code></em> = CBDD and CBDE)</a> in a few subtle ways. </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>In this model, the response under the compressive
+traction is also governed by the traction separation law. This differs
+from bilinear behavior (contact) where, under compressive traction,
+the response is governed by standard contact constraints in the normal
+direction, thus preventing penetration. </p></li><li class="listitem"><p>The separation at which maximum traction is achieved
+is an input quantity in this law. In the bilinear behavior (contact)
+model, this quantity is calculated based on contact stiffness and
+maximum traction. </p></li><li class="listitem"><p>The mixed mode behavior is also different for this
+law, with user control over the contribution of normal and tangential
+separations to the equivalent slip (<a class="xref" href="thy_mat11.html#bilidispjump" title="(4&#8211;355)">Equation&nbsp;4&#8211;355</a>). </p></li><li class="listitem"><p>The viscous regularization is also different, with
+this model requiring use of <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,VREG (see <a class="xref" href="thy_mat11.html#thymatczmviscreg" title="4.12.1.3.&nbsp;Viscous Regularization">Viscous Regularization</a>). </p></li></ul></div><p>
+</p><p>Bilinear behavior (contact) is recommended over bilinear behavior
+(interface) for use with contact elements since it is can prevent
+nonphysical penetration under compressive tractions.</p><p>
+<span class="bold"><strong>Post Separation Behavior</strong></span>
+</p><p>After debonding is completed, the surface interaction is governed
+by standard contact constraints for normal and tangential directions.
+Frictional contact is used if friction is specified for contact elements.</p><p>
+<span class="bold"><strong>Results Output for POST1 and POST26</strong></span>
+</p><p>All applicable output quantities for contact elements are also
+available for debonding: normal contact stress P (output as PRES),
+tangential contact stress &#964;<sub>t</sub> (output as
+SFRIC) or its components &#964;<sub>1</sub> and &#964;<sub>2</sub> (output as TAUR and TAUS), contact gap u<sub>n</sub> (output as GAP), tangential slip u<sub>t</sub> (output as SLIDE) or its components u<sub>1</sub> and
+u<sub>2</sub> (output as TASR and TASS), etc. </p><p>The following debonding-specific output quantities are also
+available (output as NMISC data): debonding time history (output as
+DTSTART), damage parameter d<sub>n</sub>, d<sub>t</sub>, or d<sub>m</sub> (output as DPARAM), total
+debonding energy G<sub>total</sub> (output as DENER).</p></div><div class="sect4" title="4.12.2.1.3.&nbsp;Exponential Behavior"><div class="titlepage"><div><div><h5 class="title"><a name="d0e16167"></a>4.12.2.1.3.&nbsp;Exponential Behavior</h5></div></div></div><p>The exponential interface law described in <a class="xref" href="thy_mat11.html#thymatczmexpbehav" title="4.12.1.1.&nbsp;Material Model - Exponential Behavior">Material Model - Exponential Behavior</a> (input via <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CZM
+with <em class="replaceable"><code>TBOPT</code></em> = EXPO) can be used with contact
+elements. The traction-separation relationship is determined by the
+surface potential (<a class="xref" href="thy_mat11.html#surfpotential" title="(4&#8211;340)">Equation&nbsp;4&#8211;340</a>) under all circumstances.
+Viscous regularization as described in <a class="xref" href="thy_mat11.html#thymatczmviscreg" title="4.12.1.3.&nbsp;Viscous Regularization">Viscous Regularization</a> can be used to improve convergence behavior. </p><p>
+<span class="bold"><strong>Results Output for POST1 and POST26</strong></span>
+</p><p>All applicable output quantities for contact elements are also
+available for debonding: normal contact stress P (output as PRES),
+tangential contact stress &#964;<sub>t</sub> (output as
+SFRIC) or its components &#964;<sub>1</sub> and &#964;<sub>2</sub> (output as TAUR and TAUS), contact gap u<sub>n</sub> (output as GAP), tangential slip u<sub>t</sub> (output as SLIDE) or its components u<sub>1</sub> and
+u<sub>2</sub> (output as TASR and TASS), etc. </p><p>The following debonding-specific output quantity is also available
+(output as NMISC data): total debonding energy G<sub>total</sub> (output as DENER).</p></div></div></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

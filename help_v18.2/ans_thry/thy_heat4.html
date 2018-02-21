@@ -1,0 +1,87 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:02-04:00"><title>6.4.&nbsp;Radiation Matrix Method</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_heat.html" title="Chapter&nbsp;6:&nbsp;Heat Flow"><link rel="prev" href="thy_heat3.html" title="6.3.&nbsp;Heat Flow Evaluations"><link rel="next" href="thy_heat5.html" title="6.5.&nbsp;Radiosity Solution Method"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="6.4.&nbsp;Radiation Matrix Method"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="FXaYt2c2jjw"></a>6.4.&nbsp;Radiation Matrix Method</h2></div></div></div><a class="indexterm" name="d0e21908"></a><p>In the radiation matrix method, for a system of two radiating
+surfaces, <a class="xref" href="thy_heat1.html#thyeq2radiationnov1601" title="(6&#8211;14)">Equation&nbsp;6&#8211;14</a> can be expanded
+as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1radmatnov1901"></a><div><img src="graphics/thyeq1radmatnov1901.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;27)</b></p></td></tr></table><p>or </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2radmatnov1901"></a><div><img src="graphics/thyeq2radmatnov1901.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;28)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqe73c1264-3e96-4b45-b408-e3e251851337.svg"></span> </td></tr></table><p>
+</p><p>K' cannot be calculated directly since it is a function of the
+unknowns T<sub>i</sub> and T<sub>j</sub>.
+ The temperatures from previous iterations are used to calculate K'
+and the solution is computed iteratively.              </p><p>For a more general case, <a class="xref" href="thy_heat1.html#thyeq1radiationnov1601" title="(6&#8211;12)">Equation&nbsp;6&#8211;12</a> can be used to construct a single row in the following matrix equation: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3radmatnov1901"></a><div><img src="graphics/thyeq3radmatnov1901.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;29)</b></p></td></tr></table><p>such that: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq4radmatnov1901"></a><div><img src="graphics/thyeq4radmatnov1901.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;30)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq5radmatnov1901"></a><div><img src="graphics/thyeq5radmatnov1901.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;31)</b></p></td></tr></table><p>Solving for {Q}: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq6radmatnov1901"></a><div><img src="graphics/thyeq6radmatnov1901.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;32)</b></p></td></tr></table><p>and therefore: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq3794e72e-51f9-483d-9ca6-53afcff4d8e6"></a><div><img src="graphics/eq3794e72e-51f9-483d-9ca6-53afcff4d8e6.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;33)</b></p></td></tr></table><p>
+<a class="xref" href="thy_heat4.html#thyeq6radmatnov1901" title="(6&#8211;32)">Equation&nbsp;6&#8211;32</a> is analogous to <a class="xref" href="thy_heat1.html#thyeq1radiationnov1601" title="(6&#8211;12)">Equation&nbsp;6&#8211;12</a> and can be set up for standard
+matrix equation solution by the process similar to the steps shown
+in <a class="xref" href="thy_heat4.html#thyeq1radmatnov1901" title="(6&#8211;27)">Equation&nbsp;6&#8211;27</a> and <a class="xref" href="thy_heat4.html#thyeq2radmatnov1901" title="(6&#8211;28)">Equation&nbsp;6&#8211;28</a>. </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqfda52657-732e-43ab-9b40-b63b19a53e8c"></a><div><img src="graphics/eqfda52657-732e-43ab-9b40-b63b19a53e8c.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;34)</b></p></td></tr></table><p>[K'] now includes T<sup>3</sup> terms and is
+calculated in the same manner as in <a class="xref" href="thy_heat4.html#thyeq2radmatnov1901" title="(6&#8211;28)">Equation&nbsp;6&#8211;28</a>).  To be able to include radiation effects in elements other than <a href="../ans_elem/Hlp_E_LINK31.html" class="olink"><span class="structname">LINK31</span></a>, <a href="../ans_elem/Hlp_E_MATRIX50.html" class="olink"><span class="structname">MATRIX50</span></a> (the substructure
+element) is used to bring in the radiation matrix.  <a href="../ans_elem/Hlp_E_MATRIX50.html" class="olink"><span class="structname">MATRIX50</span></a> has an option that instructs the solution phase to calculate [K'].
+ The AUX12 utility is used to create the substructure radiation matrix.
+ AUX12 calculates the effective conductivity matrix, [K<sup>ts</sup>], in <a class="xref" href="thy_heat4.html#thyeq6radmatnov1901" title="(6&#8211;32)">Equation&nbsp;6&#8211;32</a>, as well
+as the view factors required for finding [K<sup>ts</sup>].  The user defines flat surfaces to be used in AUX12 by overlaying
+nodes and elements on the radiating edge of a 2-D model or the radiating
+face of a 3-D model. </p><div class="sect2" title="6.4.1.&nbsp;View Factor Calculation (2-D): Radiation Matrix Method"><div class="titlepage"><div><div><h3 class="title"><a name="thrycalcviewfacmeths"></a>6.4.1.&nbsp;View Factor Calculation (2-D): Radiation Matrix Method</h3></div></div></div><p>Two methods are available in the radiation matrix method to
+calculate the view factors (<a href="../ans_cmd/Hlp_C_VTYPE.html" class="olink"><span class="command"><strong>VTYPE</strong></span></a> command):</p><div class="sect3" title="6.4.1.1.&nbsp;Non-Hidden Method"><div class="titlepage"><div><div><h4 class="title"><a name="heanonhidden"></a>6.4.1.1.&nbsp;Non-Hidden Method</h4></div></div></div><p>The non-hidden procedure calculates a view factor for every
+surface to every other surface whether the view is blocked by an element
+or not.  In this procedure, the following equation is used and the
+integration is performed adaptively. </p><p>For a finite element discretized model, <a class="xref" href="thy_heat1.html#thyeq1viewnov1901" title="(6&#8211;15)">Equation&nbsp;6&#8211;15</a> for the view factor F<sub>ij</sub> between two surfaces i and j can be written as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1nonhidenov1901"></a><div><img src="graphics/thyeq1nonhidenov1901.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;35)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>m = number of integration points on surface i </td></tr><tr><td>n = number of integration points on surface j </td></tr></table><p>
+</p><p>When the dimensionless distance between two viewing surfaces
+D, defined in <a class="xref" href="thy_heat4.html#thyeq2nonhidenov1901" title="(6&#8211;36)">Equation&nbsp;6&#8211;36</a>, is less than
+0.1, the accuracy of computed view factors is known to be poor (Siegal
+and Howell(<a class="xref" href="thy_biblio.html#hErpf111mlg" title="Thermal Radiation Heat Transfer">[88]</a>)). </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2nonhidenov1901"></a><div><img src="graphics/thyeq2nonhidenov1901.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;36)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>d<sub>min</sub> = minimum distance between the
+viewing surfaces A1 and A2 </td></tr><tr><td>A<sub>max</sub> = max (A1, A2) </td></tr></table><p>
+</p><p>So, the order of surface integration is adaptively increased
+from order one to higher orders as the value of D falls below 8. 
+The area integration is changed to contour integration when D becomes
+less than 0.5 to maintain the accuracy.  The contour integration order
+is adaptively increased as D approaches zero. </p></div><div class="sect3" title="6.4.1.2.&nbsp;Hidden Method"><div class="titlepage"><div><div><h4 class="title"><a name="heahidden"></a>6.4.1.2.&nbsp;Hidden Method</h4></div></div></div><p>The hidden procedure is a simplified method which uses <a class="xref" href="thy_heat1.html#thyeq1viewnov1901" title="(6&#8211;15)">Equation&nbsp;6&#8211;15</a> and assumes that all the variables are
+constant, so that the equation becomes: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq7b2bf3bf-b12b-4942-a73f-5304e4612847"></a><div><img src="graphics/eq7b2bf3bf-b12b-4942-a73f-5304e4612847.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;37)</b></p></td></tr></table><p>The hidden procedure numerically calculates the view factor
+in the following conceptual manner.  The hidden-line algorithm is
+first used to determine which surfaces are visible to every other
+surface.  Then, each radiating, or &#8220;viewing&#8221;, surface
+(i) is enclosed with a hemisphere of unit radius.  This hemisphere
+is oriented in a local coordinate system (x' y' z'), whose center
+is at the centroid of the surface with the z axis normal to the surface,
+the x axis is from node I to node J, and the y axis orthogonal to
+the other axes.  The receiving, or &#8220;viewed&#8221;, surface (j)
+is projected onto the hemisphere exactly as it would appear to an
+observer on surface i.                </p><p>As shown in <a class="xref" href="thy_heat4.html#aEY7i3dcmlg" title="Figure&nbsp;6.5:&nbsp;&nbsp;Receiving Surface Projection">Figure&nbsp;6.5:&nbsp;Receiving Surface Projection</a>, the projected area
+is defined by first extending a line from the center of the hemisphere
+to each node defining the surface or element.  That node is then projected
+to the point where the line intersects the hemisphere and transformed
+into the local system x' y' z', as described in Kreyszig(<a class="xref" href="thy_biblio.html#Xjdjf1dcmlg" title="Advanced Engineering Mathematics">[23]</a>) </p><div class="figure"><a name="aEY7i3dcmlg"></a><p class="title"><b>Figure&nbsp;6.5:&nbsp;&nbsp;Receiving Surface Projection</b></p><div class="figure-contents"><div><img src="graphics/gthy6-75.svg" alt="Receiving Surface Projection"></div></div></div><br class="figure-break"><p>The view factor, F<sub>ij</sub>, is determined by
+counting the number of rays striking the projected surface j and dividing
+by the total number of rays (N<sub>r</sub>) emitted by
+surface i.  This method may violate the radiation reciprocity rule,
+that is, A<sub>i</sub>F<sub>i-j</sub> &#8800;
+A<sub>j</sub> F<sub>j-i</sub>. </p></div></div><div class="sect2" title="6.4.2.&nbsp;View Factors of Axisymmetric Bodies"><div class="titlepage"><div><div><h3 class="title"><a name="heaviewfacaxis"></a>6.4.2.&nbsp;View Factors of Axisymmetric Bodies</h3></div></div></div><p>When the radiation view factors between the surfaces of axisymmetric
+bodies are calculated (<a href="../ans_cmd/Hlp_C_GEOM.html" class="olink"><span class="command"><strong>GEOM</strong></span></a>,1,n command), special
+logic is used.  In this logic, the axisymmetric nature of the body
+is exploited to reduce the amount of computations. The user, therefore,
+needs only to build a model in plane 2-D representing the axisymmetric
+bodies as line &#8220;elements.&#8221; </p><p>Consider two axisymmetric bodies A and B as shown in <a class="xref" href="thy_heat4.html#t3Mjf395mlg" title="Figure&nbsp;6.6:&nbsp;&nbsp;Axisymmetric Geometry">Figure&nbsp;6.6:&nbsp;Axisymmetric Geometry</a>. </p><div class="figure"><a name="t3Mjf395mlg"></a><p class="title"><b>Figure&nbsp;6.6:&nbsp;&nbsp;Axisymmetric Geometry</b></p><div class="figure-contents"><div><img src="graphics/gthy6-76.svg" alt="Axisymmetric Geometry"></div></div></div><br class="figure-break"><p>The view factor of body A to body B is calculated by expanding
+the line &#8220;element&#8221; model into a full 3-D model of n circumferential
+segments (<a href="../ans_cmd/Hlp_C_GEOM.html" class="olink"><span class="command"><strong>GEOM</strong></span></a>,1,n command) as shown in <a class="xref" href="thy_heat4.html#R5Mjf1dcmlg" title="Figure&nbsp;6.7:&nbsp;&nbsp;End View of Showing n = 8 Segments">Figure&nbsp;6.7:&nbsp;End View of Showing n = 8 Segments</a>. </p><div class="figure"><a name="R5Mjf1dcmlg"></a><p class="title"><b>Figure&nbsp;6.7:&nbsp;&nbsp;End View of Showing n = 8 Segments</b></p><div class="figure-contents"><div><img src="graphics/gthy6-77.svg" alt="End View of Showing n = 8 Segments"></div></div></div><br class="figure-break"><p>View factor of body A to B is given by </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1viewbodynov1901"></a><div><img src="graphics/thyeq1viewbodynov1901.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;38)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>F<sub>k</sub> - 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqc5b1a9ca-d267-45fb-a06e-a79b4bb2a15d.svg"></span> = view factor of segment k on body A to segment 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqb9e666ac-2600-4185-ab8a-e05888dc4855.svg"></span> on body B </td></tr></table><p>
+</p><p>The form factors between the segments of the axisymmetric bodies
+are computed using the method described in the previous section. 
+Since the coefficients are symmetric, the summation <a class="xref" href="thy_heat4.html#thyeq1viewbodynov1901" title="(6&#8211;38)">Equation&nbsp;6&#8211;38</a> may be simplified as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2viewbodynov1901"></a><div><img src="graphics/thyeq2viewbodynov1901.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(6&#8211;39)</b></p></td></tr></table><p>Both hidden and non-hidden methods are applicable in the computation
+of axisymmetric view factors.  However, the non-hidden method should
+be used if and only if there are no blocking surfaces.  For example,
+if radiation between concentric cylinders are considered, the outer
+cylinder can not see part of itself without obstruction from the inner
+cylinder.  For this case, the hidden method must be used, as the non-hidden
+method would definitely give rise to inaccurate view factor calculations.
+ </p></div><div class="sect2" title="6.4.3.&nbsp;Space Node"><div class="titlepage"><div><div><h3 class="title"><a name="heaspacenode"></a>6.4.3.&nbsp;Space Node</h3></div></div></div><p>A space node may be defined (<a href="../ans_cmd/Hlp_C_SPACE.html" class="olink"><span class="command"><strong>SPACE</strong></span></a> command)
+to absorb all energy not radiated to other elements.  Any radiant
+energy not incident on any other part of the model will be directed
+to the space node.  If the model is not a closed system, then the
+user must define a space node with its appropriate boundary conditions. </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

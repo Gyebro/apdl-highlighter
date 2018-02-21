@@ -1,0 +1,38 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:04-04:00"><title>8.2.&nbsp;Derivation of Acoustic Matrices</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_acou.html" title="Chapter&nbsp;8:&nbsp;Acoustics"><link rel="prev" href="thy_acou1.html" title="8.1.&nbsp;Acoustic Fundamentals"><link rel="next" href="thyacous_proprad.html" title="8.3.&nbsp;Propagation, Radiation, and Scattering of Acoustic Pressure Waves"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="8.2.&nbsp;Derivation of Acoustic Matrices"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thyacous_dam"></a>8.2.&nbsp;Derivation of Acoustic Matrices</h2></div></div></div><a class="indexterm" name="d0e23788"></a><p>
+<a class="xref" href="thy_acou1.html#thyeqacous-67" title="(8&#8211;12)">Equation&nbsp;8&#8211;12</a> contains the fluid pressure
+p and the structural displacement components u<sub>x,F</sub>, u<sub>y,F</sub>, and u<sub>z,F</sub> as
+the dependent variables to solve. The finite element approximating
+shape functions for the spatial variation of the pressure and displacement
+components are given by: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqacous-15"></a><div><img src="graphics/thyeqacous-15.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(8&#8211;27)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqacous-16"></a><div><img src="graphics/thyeqacous-16.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(8&#8211;28)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>{N} = element shape function for pressure </td></tr><tr><td>{N'} = element shape function for displacements </td></tr><tr><td>{P<sub>e</sub>} = nodal pressure vector </td></tr><tr><td>{u<sub>e</sub>} = {u<sub>xe</sub>},{u<sub>ye</sub>},{u<sub>ze</sub>} = nodal displacement
+component vectors </td></tr></table><p>
+</p><p>From <a class="xref" href="thy_acou2.html#thyeqacous-15" title="(8&#8211;27)">Equation&nbsp;8&#8211;27</a> and <a class="xref" href="thy_acou2.html#thyeqacous-16" title="(8&#8211;28)">Equation&nbsp;8&#8211;28</a>, the second time derivative of the variables
+and the virtual change in the pressure can be expressed as follows: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqacous-17"></a><div><img src="graphics/thyeqacous-17.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(8&#8211;29)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqacous-18"></a><div><img src="graphics/thyeqacous-18.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(8&#8211;30)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqacous-19"></a><div><img src="graphics/thyeqacous-19.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(8&#8211;31)</b></p></td></tr></table><p>After substituting <a class="xref" href="thy_acou2.html#thyeqacous-15" title="(8&#8211;27)">Equation&nbsp;8&#8211;27</a> and <a class="xref" href="thy_acou2.html#thyeqacous-16" title="(8&#8211;28)">Equation&nbsp;8&#8211;28</a> into <a class="xref" href="thy_acou1.html#thyeqacous-67" title="(8&#8211;12)">Equation&nbsp;8&#8211;12</a>, the
+finite element statement of the wave <a class="xref" href="thy_acou1.html#thyeqacous-1" title="(8&#8211;5)">Equation&nbsp;8&#8211;5</a> is expressed as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqacous-74"></a><div><img src="graphics/thyeqacous-74.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(8&#8211;32)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>{n} = outward normal vector at the fluid boundary </td></tr><tr><td>{q} = nodal mass source vector </td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq1c7a6446-df11-4d19-bf6d-941ed7b1b200.svg"></span>
+</td></tr></table><p>
+</p><p>Other terms are defined in <a class="xref" href="thy_acou1.html" title="8.1.&nbsp;Acoustic Fundamentals">Acoustic Fundamentals</a>. <a class="xref" href="thy_acou2.html#thyeqacous-74" title="(8&#8211;32)">Equation&nbsp;8&#8211;32</a> can be written in matrix notation to create
+the following discretized wave equation: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeqacous-75"></a><div><img src="graphics/thyeqacous-75.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(8&#8211;33)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eqefb6dec2-b060-4047-a2d6-8865a3e8cbba.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eq937238b8-7be4-463b-b20a-6fe0e48cfdc4.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eqc43658c1-8347-4800-9253-d1b65b9c84ca.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eq6090f7ac-e30a-4932-8c06-23257951b60a.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eq4f7531bc-dffe-43af-b369-adc3aa198b4a.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq31007284-f7f1-42f9-a4b1-040049137c68.svg"></span>
+</td></tr></table><p>
+</p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

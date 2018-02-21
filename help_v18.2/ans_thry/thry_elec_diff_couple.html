@@ -1,0 +1,53 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:13-04:00"><title>10.12.&nbsp;Electric-Diffusion Coupling</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_coup.html" title="Chapter&nbsp;10:&nbsp;Coupling"><link rel="prev" href="thry_therm_diff_couple.html" title="10.11.&nbsp;Thermal-Diffusion Coupling"><link rel="next" href="thy_shp.html" title="Chapter&nbsp;11:&nbsp;Shape Functions"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="10.12.&nbsp;Electric-Diffusion Coupling"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thry_elec_diff_couple"></a>10.12.&nbsp;Electric-Diffusion Coupling</h2></div></div></div><p>The capability to perform a coupled electrical-diffusion analysis exists in the
+            following elements:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_elem/Hlp_E_PLANE223.html" class="olink"><span class="structname">PLANE223</span></a>: 2-D 8-Node Coupled-Field Solid</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_SOLID226.html" class="olink"><span class="structname">SOLID226</span></a>: 3-D 20-Node Coupled-Field Solid</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_SOLID227.html" class="olink"><span class="structname">SOLID227</span></a>: 3-D 10-Node Coupled-Field Solid</td></tr></table><p>
+</p><p>These elements support electromigration (mass transport of charged particles due to an
+            electric field) when used in coupled-field analyses having electrical and diffusion
+            DOFs.</p><h3><a name="d0e33916"></a>Constitutive Equations</h3><p>In a coupled electric-diffusion analysis, the diffusion flux density {J} is coupled to
+            the electric potential as follows:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thry_diff_coup_e1"></a><div><img src="graphics/thry_diff_coup_e1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;81)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-29.000000px"><img src="graphics/eq86ec1fe2-3e71-4a84-8b08-0bcece1cc49b.svg"></span>= diffusivity matrix</td></tr><tr><td>D<sub>xx</sub>, D<sub>yy</sub>, and
+                        D<sub>zz</sub> = diffusivity coefficients in the element's X, Y,
+                    and Z directions, respectively (input as DXX, DYY, DZZ on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>
+                    command)</td></tr><tr><td>C = concentration; <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqca7048bc-76f2-4afd-973a-72af03ec9efa.svg"></span>
+</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqcd0bf5ff-3ded-4ef2-9219-a2bfcb126041.svg"></span> = normalized concentration (input/output as CONC)</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq49d7ba37-67c6-4d21-bd85-119ff33c15cf.svg"></span> = saturated concentration (input as
+                    <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,CSAT)</td></tr><tr><td>V = electric potential (input/output as VOLT)</td></tr><tr><td>T = absolute temperature = T<sub>c</sub> +
+                        T<sub>off</sub>
+</td></tr><tr><td>T<sub>c</sub> = current temperature (input/output as TEMP on
+                        <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a> or <a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a> commands)</td></tr><tr><td>T<sub>off</sub> = offset temperature from absolute zero to zero
+                    (input on <a href="../ans_cmd/Hlp_C_TOFFST.html" class="olink"><span class="command"><strong>TOFFST</strong></span></a> command)</td></tr><tr><td>Ze/k = charge constant (input as C4 on <a href="../ans_cmd/Hlp_C_TBDATA.html" class="olink"><span class="command"><strong>TBDATA</strong></span></a> command
+                    with <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,MIGR)</td></tr><tr><td>Z = charge number</td></tr><tr><td>e = elementary charge</td></tr><tr><td>k = Boltzmann constant</td></tr></table><p>
+</p><p>For more information on <a class="xref" href="thry_elec_diff_couple.html#thry_diff_coup_e1" title="(10&#8211;81)">Equation&nbsp;10&#8211;81</a> and related material
+            constant input, see <a href="../ans_mat/migr.html" class="olink">Migration Model</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>. </p><p>For more information on diffusion analysis, see <a href="thy_diff.html" class="olink">Diffusion</a>.</p><h3><a name="d0e34028"></a>Derivation of Electric-Diffusion Matrices</h3><p>Applying the variational principle with respect to electrical and diffusion DOFs to
+            the electric charge (<a class="xref" href="thy_emg1.html#thyeq5electronov2801" title="(5&#8211;5)">Equation&nbsp;5&#8211;5</a>) and mass (<a class="xref" href="thrynormconcapp.html#gthy_diff_eq5" title="(9&#8211;6)">Equation&nbsp;9&#8211;6</a>) continuity equations coupled by the constitutive equation
+                (<a class="xref" href="thry_elec_diff_couple.html#thry_diff_coup_e1" title="(10&#8211;81)">Equation&nbsp;10&#8211;81</a>), we obtain the following finite element matrix
+            equation for the electric-diffusion analysis:</p><p>
+            </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thry_diff_coup_e2"></a><div><img src="graphics/thry_diff_coup_e2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;82)</b></p></td></tr></table><p>
+        </p><p>where:</p><p>
+            </p><table border="0" summary="Simple list" class="simplelist"><tr><td>{V} = nodal electric scalar potential (input/output as VOLT)</td></tr><tr><td>{C} = nodal concentration (input/output as CONC)</td></tr><tr><td>[C<sup>v</sup>] = element electric damping matrix (defined
+                    by <a class="xref" href="thy_emg2.html#quasielanaleq1" title="(5&#8211;115)">Equation&nbsp;5&#8211;115</a>)</td></tr><tr><td>[C<sup>d</sup>] = element diffusion damping matrix (defined
+                    by <a class="xref" href="thry_deriv_dif_mat.html#gthy_diff_eq9b" title="(9&#8211;9)">Equation&nbsp;9&#8211;9</a>)</td></tr><tr><td>[K<sup>v</sup>] = element electric conductivity matrix
+                    (defined by <a class="xref" href="thy_emg2.html#quasielanaleq1" title="(5&#8211;115)">Equation&nbsp;5&#8211;115</a>)</td></tr><tr><td>[K<sup>d</sup>] = element diffusion conductivity matrix
+                    (defined by <a class="xref" href="thry_deriv_dif_mat.html#gthy_diff_eq9b" title="(9&#8211;9)">Equation&nbsp;9&#8211;9</a>)</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eq8bc1cf57-154e-4376-a816-0dcfb22126f7.svg"></span> = element transport conductivity matrix</td></tr><tr><td>
+                    <span class="inlineequation" style="&#xA;          vertical-align:-20.000000px"><img src="graphics/eqe8adfe85-5a0c-4ee2-bdf7-b2ac0e1acb4e.svg"></span> = nonlinear part of the element diffusion conductivity
+                    matrix</td></tr><tr><td>{E} = electric field (output as EF)</td></tr><tr><td>{I} = nodal current vector (input/output as AMPS)</td></tr><tr><td>{R} = nodal diffusion flow rate vector (input/output as RATE) </td></tr><tr><td>{N} = element shape functions</td></tr></table><p>
+        </p><p>The finite element equation <a class="xref" href="thry_elec_diff_couple.html#thry_diff_coup_e2" title="(10&#8211;82)">Equation&nbsp;10&#8211;82</a> is unsymmetric. If a
+            symmetric equation is desirable, the electromigration coupling can be applied as a load
+            vector <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq4df90de8-0708-4ba0-90a1-b9cb38b44dcf.svg"></span> by setting KEYOPT(2) = 1 for the coupled-field elements
+                (<a href="../ans_elem/Hlp_E_PLANE223.html" class="olink"><span class="structname">PLANE223</span></a>, <a href="../ans_elem/Hlp_E_SOLID226.html" class="olink"><span class="structname">SOLID226</span></a>,
+                <a href="../ans_elem/Hlp_E_SOLID227.html" class="olink"><span class="structname">SOLID227</span></a>).</p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

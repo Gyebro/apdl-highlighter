@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:11-04:00"><title>10.7.&nbsp;Thermoelectrics</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_coup.html" title="Chapter&nbsp;10:&nbsp;Coupling"><link rel="prev" href="thy_coup3.html" title="10.6.&nbsp;Piezoresistivity"><link rel="next" href="thy_coup4.html" title="10.8.&nbsp;Review of Coupled Electromechanical Methods"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="10.7.&nbsp;Thermoelectrics"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="dv1909thermoelectrics"></a>10.7.&nbsp;Thermoelectrics</h2></div></div></div><p>The capability to model thermoelectric effects exists in the
+following elements:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_elem/Hlp_E_PLANE223.html" class="olink"><span class="structname">PLANE223</span></a> - 2-D 8-Node Coupled-Field
+Solid</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_SOLID226.html" class="olink"><span class="structname">SOLID226</span></a> - 3-D 20-Node Coupled-Field
+Solid</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_SOLID227.html" class="olink"><span class="structname">SOLID227</span></a> - 3-D 10-Node Coupled-Field
+Solid</td></tr></table><p>These elements support the Joule heating effect (irreversible),
+and the Seebeck, Peltier, and Thomson effects (reversible).</p><p>In addition to the above, the following elements support a basic
+thermoelectric analysis that takes into consideration Joule heating
+effect only:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_elem/Hlp_E_SOLID5.html" class="olink"><span class="structname">SOLID5</span></a> - 3-D 8-Node Coupled-Field
+Solid</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_LINK68.html" class="olink"><span class="structname">LINK68</span></a> - 3-D 2-Node Coupled Thermal-Electric
+Line</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_SOLID98.html" class="olink"><span class="structname">SOLID98</span></a> - 3-D 10-Node Coupled-Field
+Solid</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_SHELL157.html" class="olink"><span class="structname">SHELL157</span></a> - 3-D 4-Node Thermal-Electric
+Shell</td></tr></table><p>
+</p><p>
+<span class="bold"><strong>Constitutive Equations of Thermoelectricity</strong></span>
+</p><p>The coupled thermoelectric constitutive equations (Landau and
+Lifshitz(<a class="xref" href="thy_biblio.html#landaulifshitz" title="&#8220;Electrodynamics of Continuous Media&#8221;">[359]</a>)) are:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thermoelectricseq1"></a><div><img src="graphics/thermoelectricseq1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;66)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thermoelectricseq2"></a><div><img src="graphics/thermoelectricseq2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;67)</b></p></td></tr></table><p>Substituting [&#928;] with T[<font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>] to further demonstrate the coupling between the above two equations,</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thermoelectricseq3"></a><div><img src="graphics/thermoelectricseq3.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;68)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thermoelectricseq4"></a><div><img src="graphics/thermoelectricseq4.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;69)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>[&#928;] = Peltier coefficient matrix = T[<font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>]</td></tr><tr><td>T = absolute temperature</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-29.000000px"><img src="graphics/eqf978b38a-35e2-4eff-a0a1-6c0959dfbd81.svg"></span>
+</td></tr><tr><td>{q} = heat flux vector (output as TF)</td></tr><tr><td>{J} = electric current density (output as JC for elements
+that support conduction current calculation)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-29.000000px"><img src="graphics/eq3a3b2c0a-67c6-4943-a159-e752c9e15d81.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqe65011b7-f883-405f-8f24-d6bf03b6fc86.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-43.000000px"><img src="graphics/eq259ead00-d542-43b4-947c-b2ed00dda15f.svg"></span>
+</td></tr><tr><td>{E} = electric field (output as EF)</td></tr><tr><td>
+<font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>xx</sub>, <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>yy</sub>, <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>zz</sub> = Seebeck coefficients (input as SBKX, SBKY, SBKZ
+on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command)</td></tr><tr><td>K<sub>xx</sub>, K<sub>yy</sub>, K<sub>zz</sub> = thermal conductivities (input as KXX, KYY, KZZ on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command)</td></tr><tr><td>&#961;<sub>xx</sub>, &#961;<sub>yy</sub>, &#961;<sub>zz</sub> = resistivity coefficients (input
+as RSVX, RSVY, RSVZ on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command)</td></tr></table><p>
+</p><p>Note that the Thomson effect is associated with the temperature
+dependencies of the Seebeck coefficients (<a href="../ans_cmd/Hlp_C_MPDATA.html" class="olink"><span class="command"><strong>MPDATA</strong></span></a>,SBKX also SBKY, SBKZ).</p><p>
+<span class="bold"><strong>Derivation of Thermoelectric Matrices</strong></span>
+</p><p>After the application of the variational principle to the equations
+of heat flow (<a class="xref" href="thy_heat1.html#thyeq1conductnov1601" title="(6&#8211;1)">Equation&nbsp;6&#8211;1</a>) and of continuity
+of electric charge (<a class="xref" href="thy_emg1.html#thyeq5electronov2801" title="(5&#8211;5)">Equation&nbsp;5&#8211;5</a>) coupled
+by <a class="xref" href="thy_coup5.html#thermoelectricseq1" title="(10&#8211;66)">Equation&nbsp;10&#8211;66</a> and <a class="xref" href="thy_coup5.html#thermoelectricseq2" title="(10&#8211;67)">Equation&nbsp;10&#8211;67</a>, the finite element equation of thermoelectricity
+becomes (Antonova and Looman(<a class="xref" href="thy_biblio.html#antonovalooman" title="&#8220;Finite elements for thermoelectric device analysis in ANSYS&#8221;">[90]</a>)):</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq8d6ac00d-0206-46fd-9c10-3f270d2296cc"></a><div><img src="graphics/eq8d6ac00d-0206-46fd-9c10-3f270d2296cc.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(10&#8211;70)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>[K<sup>t</sup>] = element thermal conductivity
+matrix (defined by <a class="xref" href="thy_heat2.html#thyeq7derivnov2601" title="(6&#8211;22)">Equation&nbsp;6&#8211;22</a>)</td></tr><tr><td>[C<sup>t</sup>] = element specific heat matrix
+(defined by <a class="xref" href="thy_heat2.html#thyeq7derivnov2601" title="(6&#8211;22)">Equation&nbsp;6&#8211;22</a>)</td></tr><tr><td>{Q} = sum of the element heat generation load and element
+convection surface heat flow vectors (defined by <a class="xref" href="thy_heat2.html#thyeq7derivnov2601" title="(6&#8211;22)">Equation&nbsp;6&#8211;22</a>)</td></tr><tr><td>[K<sup>v</sup>] = element electrical conductivity
+coefficient matrix (defined by <a class="xref" href="thy_emg2.html#quasielanaleq1" title="(5&#8211;115)">Equation&nbsp;5&#8211;115</a>)</td></tr><tr><td>[C<sup>v</sup>] = element dielectric permittivity
+coefficient matrix (defined by <a class="xref" href="thy_emg2.html#quasielanaleq1" title="(5&#8211;115)">Equation&nbsp;5&#8211;115</a>)</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-33.000000px"><img src="graphics/eq51eb5a75-d9af-46b0-9b2e-ac2c759a76fb.svg"></span>
+</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-34.000000px"><img src="graphics/eq1d89bcbc-cef6-4c2f-b0e9-a9338cd66b39.svg"></span>
+</td></tr><tr><td>{N} = element shape functions</td></tr><tr><td>{I} = vector of nodal current load</td></tr></table><p>
+</p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

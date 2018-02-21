@@ -1,0 +1,69 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:52-04:00"><title>3.8.&nbsp;Steady State Rolling</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_geo.html" title="Chapter&nbsp;3:&nbsp;Structures with Geometric Nonlinearities"><link rel="prev" href="thy_geo6.html" title="3.7.&nbsp;Constraints and Lagrange Multiplier Method"><link rel="next" href="thymatlnonlin.html" title="Chapter&nbsp;4:&nbsp;Structures with Material Nonlinearities"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="3.8.&nbsp;Steady State Rolling"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thyssrolling"></a>3.8.&nbsp;Steady State Rolling</h2></div></div></div><a class="indexterm" name="d0e6116"></a><a class="indexterm" name="d0e6119"></a><a class="indexterm" name="d0e6122"></a><p>Stress analysis on rolling bodies is common in many practical
+fields. A few examples include vehicle wheels, ball bearings, and
+rollers in printers. A stress analysis using transient analysis is
+typically time-consuming. It can be inefficient when fine meshes are
+necessary for contact analysis. In certain applications where the
+detailed transient dynamic behavior is not the primary concern, one
+can significantly simplify the stress analysis with the arbitrary
+Lagrangian Eulerian (ALE) formulation. </p><p>For a rolling body, the mesh for ALE analysis deforms but does
+not rotate in space; rather, the material flows through the mesh,
+where a steady-state solution can be obtained for each deformed mesh.
+An advantage of the non-rotating mesh is that it allows the mesh in
+the critical region (contact area) to be selectively refined, enhancing
+simulation efficiency and accuracy.</p><div class="highlights"><p>The following topics related to the ALE formulation and steady
+state rolling are available:</p><ul><li><a href="thy_geosteadystroll.html#d0e6140" title="3.8.1.&nbsp;General ALE Formulation">General ALE Formulation</a></li><li><a href="thy_geosteadystroll.html#d0e6162" title="3.8.2.&nbsp;ALE Formulation for Steady State Rolling">ALE Formulation for Steady State Rolling</a></li><li><a href="thy_geosteadystroll.html#d0e6192" title="3.8.3.&nbsp;Kinematics">Kinematics</a></li></ul></div><p>For further information, including supported element types,
+see the description of the <a href="../ans_cmd/Hlp_C_SSTATE.html" class="olink"><span class="command"><strong>SSTATE</strong></span></a> command.</p><div class="sect2" title="3.8.1.&nbsp;General ALE Formulation"><div class="titlepage"><div><div><h3 class="title"><a name="d0e6140"></a>3.8.1.&nbsp;General ALE Formulation</h3></div></div></div><p>In a finite element analysis based on a Lagrangian mesh, quantities
+are expressed in both <span class="italic"><em>material</em></span> and <span class="italic"><em>spatial</em></span> domains. Both domains are related
+via mapping. In the ALE formulation, an additional <span class="italic"><em>ALE domain</em></span> is introduced: </p><div class="figure"><a name="d0e6154"></a><p class="title"><b>Figure&nbsp;3.9:&nbsp;&nbsp;Domains and Maps in General ALE Formulation</b></p><div class="figure-contents"><div><img src="graphics/gthyssaleform.png" alt="Domains and Maps in General ALE Formulation"></div></div></div><br class="figure-break"><p>In the ALE formulation, the mesh motion is prescribed or calculated.
+The inverse map of &#936; is then used to calculate the material
+motion. The mesh displacement is obtained as:</p><div class="informalequation"><a name="eq2f65e9b6-d1a0-46df-9633-ba4b5df47499"></a><div><img src="graphics/eq2f65e9b6-d1a0-46df-9633-ba4b5df47499.svg"></div></div></div><div class="sect2" title="3.8.2.&nbsp;ALE Formulation for Steady State Rolling"><div class="titlepage"><div><div><h3 class="title"><a name="d0e6162"></a>3.8.2.&nbsp;ALE Formulation for Steady State Rolling</h3></div></div></div><p>The steady state rolling analysis using ALE formulation is greatly
+simplified from the general ALE formulation. The following figure
+shows a body rotating at a constant angular velocity of &#969; that
+deforms from the initial shape (solid line) to its steady state deformed
+shape (dotted line). y</p><div class="figure"><a name="d0e6167"></a><p class="title"><b>Figure&nbsp;3.10:&nbsp;&nbsp;Steady State Rolling Using ALE Formulation</b></p><div class="figure-contents"><div><img src="graphics/gthyssrollale.png" alt="Steady State Rolling Using ALE Formulation"></div></div></div><br class="figure-break"><p>For steady state ALE analysis, all time derivatives vanish in
+the ALE domain. Specifically, the mesh velocity is shown as:</p><div class="informalequation"><a name="eq4572a477-1d80-4b12-ad4d-e76ee59d5869"></a><div><img src="graphics/eq4572a477-1d80-4b12-ad4d-e76ee59d5869.svg"></div></div><p>The material velocity <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqde3285ae-ab5e-48cc-a7c6-62a459f2b19e.svg"></span> is equal to the convective velocity <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq3482778b-e87b-4c86-a191-0b075fa4b771.svg"></span>, and can
+be obtained from the spatial gradient and the referential particle
+velocity <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqf914fb40-e646-435e-a73b-c6ab70c1342c.svg"></span>, as shown:</p><div class="informalequation"><a name="eq7c159dd7-1d31-40d6-8fcb-cff6e2b39a8f"></a><div><img src="graphics/eq7c159dd7-1d31-40d6-8fcb-cff6e2b39a8f.svg"></div></div><p>where the referential particle velocity is simply the velocity
+due to the prescribed material rotation. </p><p>Based on the kinematics, the calculation can then be performed
+in the same way as well established methods for a Lagrangian mesh.</p></div><div class="sect2" title="3.8.3.&nbsp;Kinematics"><div class="titlepage"><div><div><h3 class="title"><a name="d0e6192"></a>3.8.3.&nbsp;Kinematics</h3></div></div></div><p>The balance of mass, expressed within the ALE domain, is given
+by:</p><div class="informalequation"><a name="eq8f4fa3ad-b685-4afe-a079-680b371207bd"></a><div><img src="graphics/eq8f4fa3ad-b685-4afe-a079-680b371207bd.svg"></div></div><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td> <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq2cb9ef1b-2da4-4177-ab08-bbbe1a4e8383.svg"></span> = referential
+mass density</td></tr></table><p>Under steady state, the relative velocity as well as the time
+derivative vanish. Therefore:</p><div class="informalequation"><a name="eq4546d15e-a57c-469d-92f7-09911c9de650"></a><div><img src="graphics/eq4546d15e-a57c-469d-92f7-09911c9de650.svg"></div></div><p>Of special significance is the second
+term, where <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqf055a2bb-63a1-474c-922e-a224c4965931.svg"></span>. The conclusion therefore is that steady
+state rolling, within the ALE framework, is possible only if the body
+is homogeneous at least with respect to the axis of rotation, so <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqcb84906a-3788-46f1-a844-46ccbb67e7e7.svg"></span> holds.
+In this case, the balance of mass is reduced to:</p><div class="informalequation"><a name="eq4a0c5e85-8836-4a5b-8318-3b9043aea72a"></a><div><img src="graphics/eq4a0c5e85-8836-4a5b-8318-3b9043aea72a.svg"></div></div><p>From the balance of linear momentum, the first Piola-Kirchoff, <span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq76988e55-70d7-4333-92d7-4cbbe51079a0.svg"></span>, is placed in the ALE domain. Assuming that <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq2391cb7b-d4ce-4b44-8b1b-bc04e4d6c6a7.svg"></span> represents the vector
+field of body forces, then</p><div class="informalequation"><a name="eqa91c6abd-97f4-4d4e-89ac-30375349be38"></a><div><img src="graphics/eqa91c6abd-97f4-4d4e-89ac-30375349be38.svg"></div></div><p>is integrated over the volume of the body <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqdc112341-a83d-4803-a84f-e98ce5a527e3.svg"></span> and multiplied by the test function <span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq33490362-a661-4855-9d18-6010e5c83c7c.svg"></span> to
+obtain the weak formulation of the balance of momentum.</p><p>Considering the Dirichlet and Neumann boundary conditions, the
+weak formulation of the equation of motion can be expressed as:</p><div class="informalequation"><a name="eqab52df5b-cfd7-4f0c-a2e9-ab81c20acfbf"></a><div><img src="graphics/eqab52df5b-cfd7-4f0c-a2e9-ab81c20acfbf.svg"></div></div><p>The first and the second term of the left side of the equation
+describe the virtual work of the inertial forces and the internal
+forces, respectively. On the right side, the virtual work of the volume
+forces and the traction <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqd2c01e05-be06-4f55-a6ea-f99d8538806f.svg"></span> are considered.</p><p>Special attention is given to the inertia term, which inserting
+the time derivative leads to:</p><div class="informalequation"><a name="eqdda618ec-425a-41d8-b07a-173af00cc138"></a><div><img src="graphics/eqdda618ec-425a-41d8-b07a-173af00cc138.svg"></div></div><p>To avoid the higher order gradients that may be obtained inserting
+again the spatial gradient from the material velocity, Nackenhorst
+[<a class="xref" href="thy_biblio.html#nackenhorstale" title="&#8220;The ALE-Formulation of Bodies in Rolling Contact: Theoretical Foundations and Finite Element Approach&#8221;">[429]</a>] proposes that this term be expressed
+as:</p><div class="informalequation"><a name="eqd0fa915e-93f7-4cb9-922a-05fa01398e96"></a><div><img src="graphics/eqd0fa915e-93f7-4cb9-922a-05fa01398e96.svg"></div></div><p>The first term of the right side of the equation describes the
+steady state rolling that, under steady state conditions, is composed
+only of first order gradients. The second term is related to the weighted
+impulse flux going with the convective velocity over the boundary
+as it vanishes at natural boundaries, common in the continuous formulation
+of rotating bodies.</p><p>For the finite element discretization, the weak formulation
+of the principle of virtual work which includes the inertia effects
+is expressed as: </p><div class="informalequation"><a name="eqf7b9052a-e619-4def-b4fe-3994edc844a4"></a><div><img src="graphics/eqf7b9052a-e619-4def-b4fe-3994edc844a4.svg"></div></div><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqe6b17d78-e284-416d-91a8-fca013767548.svg"></span> = tangential stiffness
+matrix</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq5e072cd3-7717-40a5-8654-47c15c50dd62.svg"></span> = inertia matrix</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq7fcdfb6f-8aac-4e34-855f-c5d19ebcfdd6.svg"></span> = external forces</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq1e4dcc7f-c3d9-4946-9727-752538975a77.svg"></span> = inertial forces</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq147b49ef-9453-474c-addb-687dbfefc43a.svg"></span> = internal forces</td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

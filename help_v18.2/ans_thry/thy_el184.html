@@ -1,0 +1,62 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:41-04:00"><title>13.184.&nbsp;MPC184 - Multipoint Constraint</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el183.html" title="13.183.&nbsp;PLANE183 - 2-D 8-Node Structural Solid"><link rel="next" href="thy_el185.html" title="13.185.&nbsp;SOLID185 - 3-D 8-Node Structural Solid"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.184.&nbsp;MPC184 - Multipoint Constraint"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thympc184"></a>13.184.&nbsp;MPC184 - Multipoint Constraint</h2></div></div></div><div><img src="graphics/gELEM184-1.svg"></div><p>
+<a href="../ans_elem/Hlp_E_MPC184.html" class="olink"><span class="structname">MPC184</span></a> represents a general class of
+multipoint constraint elements that implement kinematic constraints
+using Lagrange multipliers. The elements are loosely classified here
+as <span class="quote">"<span class="quote">constraint elements</span>"</span> and <span class="quote">"<span class="quote">joint elements</span>"</span>. All of these elements are used in situations that require you to
+impose some kind of constraint to meet certain requirements. Since
+these elements are implemented using Lagrange multipliers, the constraint
+forces and moments are available for output purposes. The different
+constraint elements and joint elements are identified by KEYOPT(1).</p><div class="sect2" title="13.184.1.&nbsp;Slider Element"><div class="titlepage"><div><div><h3 class="title"><a name="sliderel"></a>13.184.1.&nbsp;Slider Element</h3></div></div></div><p>The slider element (KEYOPT(1) = 3) is a 3-node element that
+allows a <span class="quote">"<span class="quote">slave</span>"</span> node to slide on a line joining two <span class="quote">"<span class="quote">master</span>"</span> nodes.</p><div class="figure"><a name="d0e56558"></a><p class="title"><b>Figure&nbsp;13.38:&nbsp;&nbsp;184.2 Slider Constraint Geometry</b></p><div class="figure-contents"><div><img src="graphics/gelem184-2.svg" alt="184.2 Slider Constraint Geometry"></div></div></div><br class="figure-break"><p>The constraints required to maintain the <span class="quote">"<span class="quote">slave</span>"</span> node on the line joining the two <span class="quote">"<span class="quote">master</span>"</span> nodes are
+as follows:</p><p>Define a unit vector <span class="bold"><strong>n</strong></span> as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq2ce9f247-ae1d-4766-91e4-cb3050914093"></a><div><img src="graphics/eq2ce9f247-ae1d-4766-91e4-cb3050914093.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;347)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="bold"><strong>x</strong></span>
+<sup>
+<span class="bold"><strong>I</strong></span>
+</sup>, <span class="bold"><strong>x</strong></span>
+<sup>
+<span class="bold"><strong>J</strong></span>
+</sup> = position
+vectors of nodes I and J in the current configuration</td></tr></table><p>
+</p><p>Identify unit vectors <span class="bold"><strong>l</strong></span> and <span class="bold"><strong>m</strong></span> such that <span class="bold"><strong>l</strong></span>, <span class="bold"><strong>m</strong></span>, and <span class="bold"><strong>n</strong></span> form an orthonormal set.</p><p>The constraints are then defined as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqb65cae75-0f12-43c3-95e8-684b6b629614"></a><div><img src="graphics/eqb65cae75-0f12-43c3-95e8-684b6b629614.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;348)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqfdfff2bc-11b3-420a-9765-f5926d71bc2c"></a><div><img src="graphics/eqfdfff2bc-11b3-420a-9765-f5926d71bc2c.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;349)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>x<sup>k</sup> = position vector of the node
+K in the current configuration</td></tr></table><p>
+</p><p>Let i, j, and k be the global base vectors. Then we can define
+the unit vector <span class="bold"><strong>l</strong></span> as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqfa91aac2-5e36-49b3-9c20-7a52ebc669cd"></a><div><img src="graphics/eqfa91aac2-5e36-49b3-9c20-7a52ebc669cd.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;350)</b></p></td></tr></table><p>If n = <span class="bold"><strong>l</strong></span>, then:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq78bbf989-85d8-4893-b9ff-8e9efce88009"></a><div><img src="graphics/eq78bbf989-85d8-4893-b9ff-8e9efce88009.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;351)</b></p></td></tr></table><p>Finally, the unit vector <span class="bold"><strong>m</strong></span> is
+defined as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq0fcb0d63-e1a2-4261-90ed-afd5323dd717"></a><div><img src="graphics/eq0fcb0d63-e1a2-4261-90ed-afd5323dd717.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;352)</b></p></td></tr></table><p>The virtual work contributions are obtained from taking the
+variations of the above equations. </p></div><div class="sect2" title="13.184.2.&nbsp;Joint Elements"><div class="titlepage"><div><div><h3 class="title"><a name="revjtel"></a>13.184.2.&nbsp;Joint Elements</h3></div></div></div><p>The equations for the constraints imposed in joint elements
+are described in the individual element descriptions:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184revo.html" class="olink"><span class="structname">MPC184-Revolute</span></a>
+</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184univ.html" class="olink"><span class="structname">MPC184-Universal</span></a>
+</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184slot.html" class="olink"><span class="structname">MPC184-Slot</span></a>
+</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184poin.html" class="olink"><span class="structname">MPC184-Point</span></a>
+</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184tran.html" class="olink"><span class="structname">MPC184-Translational</span></a>
+</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184cyl.html" class="olink"><span class="structname">MPC184-Cylindrical</span></a>
+</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184plan.html" class="olink"><span class="structname">MPC184-Planar</span></a>
+</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184weld.html" class="olink"><span class="structname">MPC184-Weld</span></a>
+</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184orie.html" class="olink"><span class="structname">MPC184-Orient</span></a>
+</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184sphe.html" class="olink"><span class="structname">MPC184-Spherical</span></a>
+</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184gen.html" class="olink"><span class="structname">MPC184-General</span></a>
+</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_MPC184scr.html" class="olink"><span class="structname">MPC184-Screw</span></a>
+</td></tr></table><p>
+</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

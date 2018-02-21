@@ -1,0 +1,74 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:01-04:00"><title>14.9.&nbsp;Extraction of Modal Damping Parameter for Squeeze Film Problems</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_tool.html" title="Chapter&nbsp;14:&nbsp;Analysis Tools"><link rel="prev" href="thy_tool9.html" title="14.8.&nbsp;Mode-Superposition Method"><link rel="next" href="thy_toolrom.html" title="14.10.&nbsp;Reduced Order Modeling of Coupled Domains"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="14.9.&nbsp;Extraction of Modal Damping Parameter for Squeeze Film Problems"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="modalpro1"></a>14.9.&nbsp;Extraction of Modal Damping Parameter for Squeeze Film Problems</h2></div></div></div><p>A constant damping ratio is often applied for harmonic analysis.
+In practice this approach only leads to satisfying results if all
+frequency steps can be represented by the same damping ratio or the
+operating range encloses just one eigenmode. Difficulties arise if
+the damping ratio depends strongly on the excitation frequency as
+happens in case of viscous damping in gaseous environment.</p><p>A typical damping ratio verse frequency function is shown below.
+For this example, the damping ratio is almost constant below the cut-off
+frequency. Harmonic oscillations at frequencies below cutoff are strongly
+damped. Above cut-off the damping ratio decreases. Close to the structural
+eigenfrequency the damping ratio dropped down to about 0.25 and a
+clear resonance peak can be observed.</p><div class="figure"><a name="modalprofig1"></a><p class="title"><b>Figure&nbsp;14.6:&nbsp;&nbsp;Damping and Amplitude Ratio vs. Frequency</b></p><div class="figure-contents"><div><img src="graphics/gthydampfilm.gif" alt="Damping and Amplitude Ratio vs. Frequency"></div></div></div><br class="figure-break"><p>Damping and stiffness coefficients in modal coordinates are
+defined based on their nodal coordinate values as:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqd9c882e1-1828-4596-83f1-f574636b5b42"></a><div><img src="graphics/eqd9c882e1-1828-4596-83f1-f574636b5b42.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;132)</b></p></td></tr></table><p>and</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq9ad2471b-5709-45f9-97b4-ac49ffd4cadf"></a><div><img src="graphics/eq9ad2471b-5709-45f9-97b4-ac49ffd4cadf.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;133)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>[C] = damping coefficient in modal coordinates</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq02bf69b5-3273-4869-82c6-d2e05e93c850.svg"></span>
+</td></tr><tr><td>{&#981;<sub>i</sub>} = eigenvector i (in modal
+coordinates)</td></tr><tr><td>[C*] = finite element damping matrix in modal coordinates</td></tr><tr><td>[K*] = finite element stiffness matrix in nodal coordinates</td></tr></table><p>
+</p><p>Unfortunately, both matrices [C*] and [K*] are not directly
+available for the fluid part of the coupled domain problem (e.g.,
+squeeze film elements FLUID136). Moreover eigenvectors are derived
+from the structural part of the coupled domain problem and consequently
+neither the modal damping matrix nor the modal stiffness matrix of
+the fluidic system are necessarily orthogonal. Essential off-diagonal
+elements occur in case of asymmetric film arrangements or asymmetric
+plate motion as shown below.</p><div class="figure"><a name="mpmfig2"></a><p class="title"><b>Figure&nbsp;14.7:&nbsp;&nbsp;Fluid Pressure From Modal Excitation Distribution</b></p><div class="figure-contents"><div class="blockquote"><blockquote class="blockquote"><p>
+<img src="graphics/gflucrosstalktr.gif" alt="Fluid Pressure From Modal Excitation Distribution">&nbsp;
+<img src="graphics/gflucrosstalkro.gif" alt="Fluid Pressure From Modal Excitation Distribution">&nbsp;
+</p></blockquote></div></div></div><br class="figure-break"><p>The goal is to express the viscous damping in modal coordinates
+as follows:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq0f73ae88-3260-4b53-a7a9-8c8277b96eaf"></a><div><img src="graphics/eq0f73ae88-3260-4b53-a7a9-8c8277b96eaf.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;134)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>{F} = modal force vector</td></tr><tr><td>{q} = vector of modal displacement amplitudes</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq0b23c520-4745-4345-bacb-07b461212922.svg"></span>
+</td></tr><tr><td>[C] = unknown modal damping matrix</td></tr><tr><td>[K] = unknown modal squeeze stiffness matrix</td></tr></table><p>
+</p><p>The following algorithm is necessary to compute all coefficients
+of the modal damping and stiffness matrix:</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Start with the first mode and excite the fluid elements
+by wall velocities which correspond to a unit modal velocity. In fact
+the nodal velocities become equal to the eigenvector of the appropriate
+mode.</p></li><li class="listitem"><p>Compute the real and imaginary part of the pressure
+distribution in a harmonic analyses.</p></li><li class="listitem"><p>Compute modal forces with regard to all other modes.
+The i<sup>th</sup> modal force states how much the
+pressure distribution of the first mode really acts on the i<sup>th</sup> mode.</p></li><li class="listitem"><p>The computed modal forces can be used to extract all
+damping and squeeze stiffness coefficients of the first column in
+the [C] and [K] matrices.</p></li><li class="listitem"><p>Repeat step 1 with the next eigenvector and compute
+the next column of [C] and [K].</p></li></ol></div><p>
+</p><p>The theoretical background is given by the following equations.
+Each coefficient C<sub>ji</sub> and K<sub>ji</sub> is defined by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq564caaa4-10a6-41f4-8abe-15225d64a429"></a><div><img src="graphics/eq564caaa4-10a6-41f4-8abe-15225d64a429.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;135)</b></p></td></tr></table><p>and</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq26e38073-1a23-44cb-aa0a-1f783ad1a644"></a><div><img src="graphics/eq26e38073-1a23-44cb-aa0a-1f783ad1a644.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;136)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>F(q<sub>i</sub>) = complex nodal damping force
+vector caused by a unit modal velocity of the source mode i.</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eqb22505ed-b107-46bc-89ab-a2a37ff3d79a.svg"></span>
+</td></tr></table><p> </p><p>Note that the modal forces are complex numbers with a real and
+imaginary part. The real part, Re, represents the damping force and
+the imaginary part, Im, the squeeze force, which is cause by the fluid
+compression. The damping and squeeze coefficients are output by <a href="../ans_cmd/Hlp_C_DMPEXT.html" class="olink"><span class="command"><strong>DMPEXT</strong></span></a> and are given by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq87b49383-6d3a-4575-bb46-ba8ddda9cc2d"></a><div><img src="graphics/eq87b49383-6d3a-4575-bb46-ba8ddda9cc2d.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;137)</b></p></td></tr></table><p>and</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq6e400f62-d31e-4172-995f-68e42f46dc12"></a><div><img src="graphics/eq6e400f62-d31e-4172-995f-68e42f46dc12.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;138)</b></p></td></tr></table><p>Assuming the structure is excited by a unit modal velocity we
+obtain:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqc332393f-7910-4569-858b-5a8c1142f17a"></a><div><img src="graphics/eqc332393f-7910-4569-858b-5a8c1142f17a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;139)</b></p></td></tr></table><p>and</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqaaf23ef8-92f1-43e8-8da3-54bc30ff4873"></a><div><img src="graphics/eqaaf23ef8-92f1-43e8-8da3-54bc30ff4873.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;140)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#937; = excitation frequency (input on <a href="../ans_cmd/Hlp_C_DMPEXT.html" class="olink"><span class="command"><strong>DMPEXT</strong></span></a> command)</td></tr></table><p>
+</p><p>Modal damping ratios &#958; or the squeeze stiffness to structural
+stiffness ratio K<sub>Ratio</sub> are defined only for
+the main diagonal elements and are also output with the <a href="../ans_cmd/Hlp_C_DMPEXT.html" class="olink"><span class="command"><strong>DMPEXT</strong></span></a> command. These numbers are computed by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq57c384d2-0590-4eb5-a2b4-9465fc44c27d"></a><div><img src="graphics/eq57c384d2-0590-4eb5-a2b4-9465fc44c27d.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;141)</b></p></td></tr></table><p>and</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq5d5e6cc8-e258-4fc4-ad13-229467411f24"></a><div><img src="graphics/eq5d5e6cc8-e258-4fc4-ad13-229467411f24.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;142)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>m<sub>i</sub> = modal mass and the eigenfrequency &#969;<sub>i</sub>
+</td></tr></table><p>
+</p><p>The damping ratio is necessary to compute &#945; and &#946;
+(input as <a href="../ans_cmd/Hlp_C_ALPHAD.html" class="olink"><span class="command"><strong>ALPHAD</strong></span></a> and <a href="../ans_cmd/Hlp_C_BETAD.html" class="olink"><span class="command"><strong>BETAD</strong></span></a> commands)
+parameters for Rayleigh damping models or to specify constant or modal
+damping (input by <a href="../ans_cmd/Hlp_C_DMPRAT.html" class="olink"><span class="command"><strong>DMPRAT</strong></span></a> or <a href="../ans_cmd/Hlp_C_MDAMP.html" class="olink"><span class="command"><strong>MDAMP</strong></span></a> commands).</p><p>The squeeze to stiffness ratio specifies how much the structural
+stiffness is affected by the squeeze film. It can not directly be
+applied to structural elements but is helpful for user defined reduced
+order models.</p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

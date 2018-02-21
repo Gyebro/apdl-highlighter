@@ -1,0 +1,158 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:03-04:00"><title>7.1.&nbsp;Squeeze Film</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_flo.html" title="Chapter&nbsp;7:&nbsp;Thin Fluid Film Flow"><link rel="prev" href="thy_flo.html" title="Chapter&nbsp;7:&nbsp;Thin Fluid Film Flow"><link rel="next" href="thy_flo9.html" title="7.2.&nbsp;Slide Film"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="7.1.&nbsp;Squeeze Film"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="squeeze"></a>7.1.&nbsp;Squeeze Film</h2></div></div></div><p>Reynolds equations known from lubrication technology and theory
+of rarified gas physics are the theoretical background to analyze
+fluid structural interactions of microstructures (Blech(<a class="xref" href="thy_biblio.html#blechjj" title="&#8220;On Isothermal Squeeze Films&#8221;">[338]</a>), Griffin(<a class="xref" href="thy_biblio.html#griffinws" title="&#8220;A Study of Squeeze-film Damping&#8221;">[339]</a>), Langlois(<a class="xref" href="thy_biblio.html#langloiswe" title="&#8220;Isothermal Squeeze Films&#8221;">[340]</a>)).  <a href="../ans_elem/Hlp_E_FLUID136.html" class="olink"><span class="structname">FLUID136</span></a> and <a href="../ans_elem/Hlp_E_FLUID138.html" class="olink"><span class="structname">FLUID138</span></a> can be applied to structures where a small
+gap between two plates opens and closes with respect to time. This
+happens in the case of accelerometers where the seismic mass moves
+perpendicular to a fixed wall, in micromirror displays where the mirror
+plate tilts around a horizontal axis, and for clamped beams such as
+RF filters where a flexible structure moves with respect to a fixed
+wall. Other examples are published in literature (Mehner(<a class="xref" href="thy_biblio.html#mehnerje" title="&#8220;Simulation of Gas Film Damping on Microstructures with Nontrivial Geometries&#8221;">[341]</a>)).</p><p>
+<a href="../ans_elem/Hlp_E_FLUID136.html" class="olink"><span class="structname">FLUID136</span></a> and <a href="../ans_elem/Hlp_E_FLUID138.html" class="olink"><span class="structname">FLUID138</span></a> can be used to determine the fluidic response for given wall velocities.
+Both elements allow for static, harmonic and transient types of analyses.
+Static analyses can be used to compute damping parameter for low driving
+frequencies (compression effects are neglected). Harmonic analysis
+can be used to compute damping and squeeze effects at the higher frequencies.
+Transient analysis can be used for non-harmonic load functions. Both
+elements assume isothermal viscous flow.</p><div class="sect2" title="7.1.1.&nbsp;Flow Between Flat Surfaces"><div class="titlepage"><div><div><h3 class="title"><a name="flatsurfaces"></a>7.1.1.&nbsp;Flow Between Flat Surfaces</h3></div></div></div><p>
+<a href="../ans_elem/Hlp_E_FLUID136.html" class="olink"><span class="structname">FLUID136</span></a> is used to model the thin-film
+fluid behavior between flat surfaces and is based on the generalized
+nonlinear Reynolds equation known from lubrication theory.
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="filmeq1"></a><div><img src="graphics/filmeq1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(7&#8211;1)</b></p></td></tr></table><p>
+</p><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>d = local gap separation</td></tr><tr><td>&#961; = density</td></tr><tr><td>t = time</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqb63d5de3-7240-4cea-9e00-b4c7eb5cb6ba.svg"></span>
+
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq9d964e11-a517-442a-abee-bab404bf665e.svg"></span> = divergence operator </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq2fc0aee3-5f77-4986-94b4-9f920a2eeb90.svg"></span> = gradient operator </td></tr><tr><td>&#951; = dynamic viscosity</td></tr><tr><td>P<sub>abs</sub> = absolute pressure</td></tr></table><p>
+</p><div><img src="graphics/gthy7-312.svg"></div><p>Assuming an ideal gas:
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="filmeq2"></a><div><img src="graphics/filmeq2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(7&#8211;2)</b></p></td></tr></table><p>
+</p><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>R = gas constant</td></tr><tr><td>T = temperature</td></tr></table><p>
+</p><p>Substituting <a class="xref" href="thy_flo8.html#filmeq2" title="(7&#8211;2)">Equation&nbsp;7&#8211;2</a> into <a class="xref" href="thy_flo8.html#filmeq1" title="(7&#8211;1)">Equation&nbsp;7&#8211;1</a> gives:
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="filmeq3"></a><div><img src="graphics/filmeq3.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(7&#8211;3)</b></p></td></tr></table><p>
+</p><p>After substituting ambient pressure plus the pressure for the
+absolute pressure (P<sub>abs</sub> = P<sub>0</sub> + P) this equation becomes:
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="filmeq4"></a><div><img src="graphics/filmeq4.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(7&#8211;4)</b></p></td></tr></table><p>
+</p><p>
+<a class="xref" href="thy_flo8.html#filmeq4" title="(7&#8211;4)">Equation&nbsp;7&#8211;4</a> is valid for large displacements and
+large pressure changes (KEYOPT(4) = 1). Pressure and velocity degrees
+of freedom must be activated (KEYOPT(3) = 1 or 2).</p><p>For small pressure changes (P/P<sub>0</sub> &lt;&lt;
+1), <a class="xref" href="thy_flo8.html#filmeq4" title="(7&#8211;4)">Equation&nbsp;7&#8211;4</a> becomes:
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="filmeq5"></a><div><img src="graphics/filmeq5.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(7&#8211;5)</b></p></td></tr></table><p>
+</p><p>where &#957;<sub>z</sub> = wall velocity in the normal
+direction. That is: 
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq4a9614ae-54de-465c-80b2-d924d58a3e55"></a><div><img src="graphics/eq4a9614ae-54de-465c-80b2-d924d58a3e55.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(7&#8211;6)</b></p></td></tr></table><p>
+</p><p>
+<a class="xref" href="thy_flo8.html#filmeq5" title="(7&#8211;5)">Equation&nbsp;7&#8211;5</a> is valid for large displacements and
+small pressure changes (KEYOPT(4) = 0). Pressure and velocity degrees
+of freedom must be activated (KEYOPT(3) = 1 or 2).</p><p>For small displacements (d/d<sub>0</sub> &lt;&lt;
+1) and small pressure changes (P/P<sub>0</sub> &lt;&lt;
+1), <a class="xref" href="thy_flo8.html#filmeq5" title="(7&#8211;5)">Equation&nbsp;7&#8211;5</a> becomes:
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="filmeq6"></a><div><img src="graphics/filmeq6.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(7&#8211;7)</b></p></td></tr></table><p>
+</p><p>where</p><table border="0" summary="Simple list" class="simplelist"><tr><td>d<sub>o</sub> = nominal gap.</td></tr></table><p> </p><p>This equation applies when pressure is the only degree of freedom
+(KEYOPT(3) = 0).</p><p>For incompressible flows (&#961; is constant), the generalized
+nonlinear Reynolds equation (<a class="xref" href="thy_flo8.html#filmeq1" title="(7&#8211;1)">Equation&nbsp;7&#8211;1</a>) reduces to:
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="filmeq7"></a><div><img src="graphics/filmeq7.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(7&#8211;8)</b></p></td></tr></table><p>
+</p><p>This equation applies for incompressible flow (KEYOPT(4) = 2).
+Pressure and velocity degrees of freedom must be activated (KEYOPT(3)
+= 1 or 2).</p><p>Reynolds squeeze film equations are restricted to structures
+with lateral dimensions much larger than the gap separation. Futhermore,
+viscous friction may not cause a significant temperature change. Continuum
+theory (KEYOPT(1) = 0) is valid for Knudsen numbers smaller than 0.01.</p><p>The Knudsen number Kn of the squeeze film problem can be estimated
+by:
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="filmeq8"></a><div><img src="graphics/filmeq8.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(7&#8211;9)</b></p></td></tr></table><p>
+</p><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>L<sub>o</sub> = mean free path length of the fluid</td></tr><tr><td>P<sub>ref</sub> = reference pressure for the mean
+free path L<sub>o</sub>
+</td></tr><tr><td>P<sub>abs</sub> = P<sub>o</sub> +
+P</td></tr></table><p>
+</p><p>For small pressure changes, P<sub>abs</sub> is approximately
+equal to P<sub>0</sub> and the Knudsen number can be estimated
+by:
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="kn710jjw"></a><div><img src="graphics/kn710jjw.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(7&#8211;10)</b></p></td></tr></table><p>
+</p><p>For systems that operate at Knudsen numbers &lt;0.01, the continuum
+theory is valid (KEYOPT(1) = 0). The effective viscosity &#951;<sub>eff</sub> is then equal to the dynamic viscosity &#951;.</p><p>For systems which operate at higher Knudsen numbers (KEYOPT(1)
+= 1), an effective viscosity &#951;<sub>eff</sub> considers
+slip flow boundary conditions and models derived from Boltzmann equation.
+This assumption holds for Knudsen numbers up to 880 (Veijola(<a class="xref" href="thy_biblio.html#veijolat" title="&#8220;Equivalent Circuit Models for Micromechanical Inertial Sensors&#8221;">[343]</a>)):</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq9ca0c1d8-74b3-49a0-9baa-91ec31d21ad4"></a><div><img src="graphics/eq9ca0c1d8-74b3-49a0-9baa-91ec31d21ad4.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(7&#8211;11)</b></p></td></tr></table><p>For micromachined surfaces, specular reflection decreases the
+effective viscosity at high Knudsen numbers compared to diffuse reflection.
+Surface accommodation factors, <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>, distinguish between diffuse reflection (<font face="Arial Unicode Ms"><span class="markup">&#945;</span></font> = 1), specular reflection
+(<font face="Arial Unicode Ms"><span class="markup">&#945;</span></font> = 0), and molecular
+reflection (0 &lt; <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font> &lt; 1) of the molecules at the walls of the squeeze film. Typical
+accommodation factors for silicon are reported between 0.8 and 0.9,
+those of metal surfaces are almost 1. Different accommodation factors
+can be specified for each wall by using <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>1</sub> and <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>2</sub> (input
+as A1 and A2 on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command). <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>1</sub> is
+the coefficient associated with the top moving surface and <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>2</sub> is
+the coefficient associated with the bottom metallic surface. Results
+for high Knudsen numbers with accommodation factors (KEYOPT(1) =2)
+are not expected to be the same as those for high Knudsen numbers
+without accommodation factors (KEYOPT(1) =1).</p><p>The effective viscosity equations for high Knudsen numbers are
+based on empirical correlations. Fit functions for the effective viscosity
+of micromachined surfaces are found in Veijola(<a class="xref" href="thy_biblio.html#veijolat" title="&#8220;Equivalent Circuit Models for Micromechanical Inertial Sensors&#8221;">[343]</a>). The effective viscosity is given by the following equation if <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>1</sub> = <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>2</sub>:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq7c0805a3-b94f-4e7f-9038-05233225e320"></a><div><img src="graphics/eq7c0805a3-b94f-4e7f-9038-05233225e320.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(7&#8211;12)</b></p></td></tr></table><p>and by the following equation if <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>1</sub> &#8800;<font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>2</sub>:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq644fad85-b140-4a65-8f99-c960c7a4ac6f"></a><div><img src="graphics/eq644fad85-b140-4a65-8f99-c960c7a4ac6f.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(7&#8211;13)</b></p></td></tr></table><p>where D is the inverse Knudsen number:</p><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eq30a35ac0-233d-4614-95d4-160f815045b4.svg"></span>
+</p><p>and Q<sub>1</sub>, Q<sub>2</sub>, and
+Q<sub>3</sub> are Poiseuille flow rate coefficients:</p><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eqce221535-3e6f-4e5e-85c7-9499f292e086.svg"></span>
+</p><p>for p = 1, 2, or 3.</p><p>If both surfaces are the same (<font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>1</sub> = <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>2</sub>),
+the Poiseuille flow rate coefficient is given by:</p><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-33.000000px"><img src="graphics/eqe1bacc16-5913-43d3-b373-e3d1de23339b.svg"></span>
+</p><p>If the bottom fixed plate is metallic (<font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>2</sub> =
+1) and the top moving plate is not metallic (<font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>1</sub> &#8800;1), the Poiseuille flow rate
+coefficient is given by:</p><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-33.000000px"><img src="graphics/eq81250d5d-8cc3-4592-820c-3a5eb5134f39.svg"></span>
+</p><p>The general solution valid for arbitrary <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>1</sub> and <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>
+<sub>2</sub> is
+a simple linear combination of Q<sub>1</sub> and Q<sub>2</sub>:</p><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq4ba306be-a44d-4f4b-b550-f9a38da9eda4.svg"></span>
+</p></div><div class="sect2" title="7.1.2.&nbsp;Flow in Channels"><div class="titlepage"><div><div><h3 class="title"><a name="d0e22767"></a>7.1.2.&nbsp;Flow in Channels</h3></div></div></div><p>
+<a href="../ans_elem/Hlp_E_FLUID138.html" class="olink"><span class="structname">FLUID138</span></a> can be used to model the fluid
+flow though short circular and rectangular channels of micrometer
+size. The element assumes isothermal viscous flow at low Reynolds
+numbers, the channel length to be small compared to the acoustic wave
+length, and a small pressure drop with respect to ambient pressure.</p><p>In contrast to <a href="../ans_elem/Hlp_E_FLUID116.html" class="olink"><span class="structname">FLUID116</span></a>, <a href="../ans_elem/Hlp_E_FLUID138.html" class="olink"><span class="structname">FLUID138</span></a> considers gas rarefaction, is more accurate
+for channels of rectangular cross sections, allows channel dimensions
+to be small compared to the mean free path, allows evacuated systems,
+and considers fringe effects at the inlet and outlet which considerably
+increase the damping force in case of short channel length. <a href="../ans_elem/Hlp_E_FLUID138.html" class="olink"><span class="structname">FLUID138</span></a> can be used to model the stiffening and damping
+effects of fluid flow in channels of micro-electromechanical systems
+(MEMS).</p><p>Using continuum theory (KEYOPT(1) = 0) the flow rate Q of channels
+with circular cross-section (KEYOPT(3) = 0) is given by the Hagen-Poiseuille
+equation:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq31e9c506-93b5-4e83-baf4-aa9548527243"></a><div><img src="graphics/eq31e9c506-93b5-4e83-baf4-aa9548527243.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(7&#8211;14)</b></p></td></tr></table><p>
+</p><table border="0" summary="Simple list" class="simplelist"><tr><td>Q = flow rate in units of volume/time</td></tr><tr><td>r = radius</td></tr><tr><td>l<sub>c</sub> = channel length</td></tr><tr><td>A = cross-sectional area</td></tr><tr><td>&#916;P = pressure difference along channel length</td></tr></table><p>
+</p><p>This assumption holds for low Reynolds numbers (Re &lt; 2300),
+for l &gt;&gt; r and r &gt;&gt; Lm where Lm is the mean free path
+at the current pressure.</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq77b9bc9b-83fa-423c-ac22-b4b73925b90e"></a><div><img src="graphics/eq77b9bc9b-83fa-423c-ac22-b4b73925b90e.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(7&#8211;15)</b></p></td></tr></table><p>In case of rectangular cross sections (KEYOPT(3) = 1) the channel
+resistance depends on the aspect ratio of channel. The flow rate is
+defined by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq6aa6ad6b-5cba-40e2-bc7a-87a7b3966fb7"></a><div><img src="graphics/eq6aa6ad6b-5cba-40e2-bc7a-87a7b3966fb7.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(7&#8211;16)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>r<sub>h</sub> = hydraulic radius (defined below)</td></tr><tr><td>A = true cross-sectional area (not that corresponding to the
+hydraulic radius)</td></tr><tr><td>&#967; = so-called friction factor (defined below)</td></tr></table><p>
+</p><p>The hydraulic radius is defined by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqbc1812b4-94ff-4e57-b456-43ff937ff5c5"></a><div><img src="graphics/eqbc1812b4-94ff-4e57-b456-43ff937ff5c5.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(7&#8211;17)</b></p></td></tr></table><p>and the friction factor &#967; is approximated by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="joe710jjw"></a><div><img src="graphics/joe710jjw.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(7&#8211;18)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>H = height of channel</td></tr><tr><td>W = width of channel (must be greater than H)</td></tr><tr><td>n = H/W</td></tr></table><p> </p><p>A special treatment is necessary to consider high Knudsen numbers
+and short channel length (KEYOPT(1) = 1) (Sharipov(<a class="xref" href="thy_biblio.html#sharipovf" title="&#8220;Rarefied Gas Flow Through a Long Rectangular Channel&#8221;">[344]</a>)).</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

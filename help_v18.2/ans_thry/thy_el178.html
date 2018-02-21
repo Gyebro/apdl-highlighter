@@ -1,0 +1,75 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:40-04:00"><title>13.178.&nbsp;CONTA178 - 3-D Node-to-Node Contact</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el177.html" title="13.177.&nbsp;CONTA177 - 3-D Line-to-Surface Contact"><link rel="next" href="thy_el179.html" title="13.179.&nbsp;PRETS179 - Pretension"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.178.&nbsp;CONTA178 - 3-D Node-to-Node Contact"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thyconta178"></a>13.178.&nbsp;CONTA178 - 3-D Node-to-Node Contact</h2></div></div></div><div><img src="graphics/gthy14-178-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="168" class="col1"><col width="168" class="COLSPEC2"><col width="144" class="col2"><col width="144" class="col3"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Matrix or Vector</th><th align="center" valign="middle">Geometry</th><th align="center" valign="middle">Shape Functions</th><th align="center" valign="middle">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration
+Points</a>
+</th></tr></thead><tbody><tr valign="middle"><td rowspan="2" valign="middle">Stiffness
+Matrix</td><td align="center" valign="middle">Normal Direction</td><td align="center" valign="middle">None</td><td align="center" valign="middle">None</td></tr><tr valign="middle"><td align="center" valign="middle">Sliding Direction</td><td align="center" valign="middle">None</td><td align="center" valign="middle">None</td></tr></tbody></table></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="col1"><col width="432" class="col2"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Load Type</th><th align="center" valign="middle">Distribution</th></tr></thead><tbody><tr valign="middle"><td valign="middle">Element Temperature</td><td valign="middle">None - average used for material property evaluation
+ </td></tr><tr valign="middle"><td valign="middle">Nodal Temperature</td><td valign="middle">None - average used for material property evaluation
+ </td></tr></tbody></table></div><div class="sect2" title="13.178.1.&nbsp;Introduction"><div class="titlepage"><div><div><h3 class="title"><a name="conta178intro"></a>13.178.1.&nbsp;Introduction</h3></div></div></div><p>CONTA178 represents contact and sliding between any two nodes
+of any types of elements.  This node-to-node contact element can handle
+cases when the contact location is known beforehand. </p><p>CONTA178 is applicable to 3-D geometries. It can also be used
+in 2-D and axisymmetric models by constraining the UZ degrees of freedom.
+ The element is capable of supporting compression in the contact normal
+direction and Coulomb friction in the tangential direction. </p></div><div class="sect2" title="13.178.2.&nbsp;Contact Algorithms"><div class="titlepage"><div><div><h3 class="title"><a name="contac178algo"></a>13.178.2.&nbsp;Contact Algorithms</h3></div></div></div><p>Four different contact algorithms are implemented in this element. </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Pure penalty method </p></li><li class="listitem"><p>Augmented Lagrange method </p></li><li class="listitem"><p>Pure Lagrange multiplier method </p></li><li class="listitem"><p>Lagrange multiplier on contact normal penalty on frictional
+direction </p></li></ul></div><p>
+</p><p>
+<span class="bold"><strong>
+<span class="emphasis"><em>Pure Penalty Method</em></span>
+</strong></span>
+</p><p>The Newton-Raphson load vector is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqa188f71a-edcc-402f-a122-95288deb3318"></a><div><img src="graphics/eqa188f71a-edcc-402f-a122-95288deb3318.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;339)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>F<sub>n</sub> = normal contact force  </td></tr><tr><td>F<sub>sy</sub> = tangential contact force in y
+direction </td></tr><tr><td>F<sub>sz</sub> = tangential contact force in z
+direction </td></tr></table><p>
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqad8d9c84-4705-47eb-857b-6f30c4818607"></a><div><img src="graphics/eqad8d9c84-4705-47eb-857b-6f30c4818607.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;340)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>K<sub>n</sub> = contact normal stiffness (input
+FKN on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>u<sub>n</sub> = contact gap size </td></tr></table><p>
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqa4e02c62-0607-499c-b5fa-2192758b993c"></a><div><img src="graphics/eqa4e02c62-0607-499c-b5fa-2192758b993c.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;341)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>K<sub>s</sub> = tangential contact stiffness (input
+as FKS on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>u<sub>y</sub> = contact slip distance in y direction </td></tr><tr><td>&#956; = coefficient of friction (input as MU on <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command with <em class="replaceable"><code>Lab</code></em> = FRIC or <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command)</td></tr></table><p>
+</p><p>
+<span class="bold"><strong>
+<span class="emphasis"><em>Augmented Lagrange Method</em></span>
+</strong></span>
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqcdf5974a-2882-45bd-84d5-42e711285086"></a><div><img src="graphics/eqcdf5974a-2882-45bd-84d5-42e711285086.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;342)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-22.000000px"><img src="graphics/eqbde5412e-c553-4714-9269-61b4846a04c8.svg"></span>
+</td></tr><tr><td>&#949; = user-defined compatibility tolerance (input as
+TOLN on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr></table><p>
+</p><p>The Lagrange multiplier component of force &#955; is computed
+locally (for each element) and iteratively. </p><p>
+<span class="bold"><strong>
+<span class="emphasis"><em>Pure Lagrange Multiplier Method</em></span>
+</strong></span>
+</p><p>The contact forces (i.e., Lagrange multiplier components of
+forces) become unknown DOFs for each element.  The associated Newton-Raphson
+load vector is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq66911a55-99ac-4a65-a6fe-05ae0cf33d54"></a><div><img src="graphics/eq66911a55-99ac-4a65-a6fe-05ae0cf33d54.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;343)</b></p></td></tr></table><p>
+<span class="bold"><strong>
+<span class="emphasis"><em>Lagrange Multiplier on Contact
+Normal Penalty on Frictional Direction</em></span>
+</strong></span>
+</p><p>In this method only the contact normal face is treated as a
+Lagrange multiplier.  The tangential forces are calculated based on
+penalty method: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq7e4c628e-73b3-4cfe-a9a3-db6a98ff38e4"></a><div><img src="graphics/eq7e4c628e-73b3-4cfe-a9a3-db6a98ff38e4.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;344)</b></p></td></tr></table></div><div class="sect2" title="13.178.3.&nbsp;Element Damper"><div class="titlepage"><div><div><h3 class="title"><a name="contac178damp"></a>13.178.3.&nbsp;Element Damper</h3></div></div></div><p>The damping capability is only used for modal and transient
+analyses.  Damping is only active in the contact normal direction
+when contact is closed.  The damping force is computed as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqc198ba91-36fd-4b68-8d58-0a32155b2086"></a><div><img src="graphics/eqc198ba91-36fd-4b68-8d58-0a32155b2086.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;345)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>V = relative velocity between two contact nodes in contact
+normal direction </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq68ad1123-20a2-498b-9771-ec53dc6f953f.svg"></span> </td></tr><tr><td>C<sub>v1</sub> = constant damping coefficient
+(input as CV1 on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>C<sub>v2</sub> = linear damping coefficient (input
+as CV2 on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr></table></div><div class="sect2" title="13.178.4.&nbsp;Rigid Coulomb Friction"><div class="titlepage"><div><div><h3 class="title"><a name="contac178rigidcoul"></a>13.178.4.&nbsp;Rigid Coulomb Friction</h3></div></div></div><p>If you know that a <a href="../ans_elem/Hlp_E_CONTA178.html" class="olink"><span class="structname">CONTA178</span></a> element
+will be in sliding status throughout the analysis, and that the relative
+displacement of the two nodes will be monotonically increasing, the
+rigid Coulomb friction option (KEYOPT(10) = 7) can be used to avoid
+convergence problems. This option removes the stiffness in the sliding
+direction, as shown in <a class="xref" href="thy_el178.html#contac178fordef" title="Figure&nbsp;13.37:&nbsp;&nbsp;Force-Deflection Relations for Rigid Coulomb Option">Figure&nbsp;13.37:&nbsp;Force-Deflection Relations for Rigid Coulomb Option</a>. Note that
+if the relative displacement does not increase monotonically, the
+convergence characteristics of the rigid Coulomb friction law (KEYOPT(10)
+= 7) will be worse than for the elastic Coulomb friction law (KEYOPT(10)
+= 0). </p><div class="figure"><a name="contac178fordef"></a><p class="title"><b>Figure&nbsp;13.37:&nbsp;&nbsp;Force-Deflection Relations for Rigid Coulomb Option</b></p><div class="figure-contents"><div><img src="graphics/gthy14-12-12.svg" alt="Force-Deflection Relations for Rigid Coulomb Option"></div></div></div><br class="figure-break"></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

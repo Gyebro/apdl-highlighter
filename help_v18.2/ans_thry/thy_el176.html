@@ -1,0 +1,51 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:39-04:00"><title>13.176.&nbsp;CONTA176 - 3-D Line-to-Line Contact</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el175.html" title="13.175.&nbsp;CONTA175 - 2-D/3-D Node-to-Surface Contact"><link rel="next" href="thy_el177.html" title="13.177.&nbsp;CONTA177 - 3-D Line-to-Surface Contact"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.176.&nbsp;CONTA176 - 3-D Line-to-Line Contact"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thyconta176"></a>13.176.&nbsp;CONTA176 - 3-D Line-to-Line Contact</h2></div></div></div><div><img src="graphics/gelem176-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="168" class="col1"><col width="168" class="COLSPEC1"><col width="144" class="col2"><col width="144" class="col3"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Matrix or Vector</th><th colspan="2" align="center" valign="middle">Shape Function</th><th align="center" valign="middle">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration
+Points</a>
+</th></tr></thead><tbody><tr valign="middle"><td valign="middle">Stiffness Matrix</td><td colspan="2" align="center" valign="middle">W = C<sub>1</sub> + C<sub>2</sub>x + C<sub>3</sub>x<sup>2</sup>
+</td><td align="center" valign="middle">None</td></tr></tbody></table></div><div class="sect2" title="13.176.1.&nbsp;Other Applicable Sections"><div class="titlepage"><div><div><h3 class="title"><a name="conta176.other"></a>13.176.1.&nbsp;Other Applicable Sections</h3></div></div></div><p>The <a href="../ans_elem/Hlp_E_CONTA176.html" class="olink"><span class="structname">CONTA176</span></a> description is the same
+as for <a class="xref" href="thy_el174.html" title="13.174.&nbsp;CONTA174 - 3-D 8-Node Surface-to-Surface Contact">CONTA174 - 3-D 8-Node Surface-to-Surface Contact</a> except that it is a 3-D line
+contact element.</p></div><div class="sect2" title="13.176.2.&nbsp;Contact Kinematics"><div class="titlepage"><div><div><h3 class="title"><a name="conta176_conkin"></a>13.176.2.&nbsp;Contact Kinematics</h3></div></div></div><p>Three different scenarios can be modeled by <a href="../ans_elem/Hlp_E_CONTA176.html" class="olink"><span class="structname">CONTA176</span></a>:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Internal contact where one beam (or pipe) slides inside
+another hollow beam (or pipe) (see <a class="xref" href="thy_el176.html#conta176_fig2" title="Figure&nbsp;13.31:&nbsp;&nbsp;Beam Sliding Inside a Hollow Beam">Figure&nbsp;13.31:&nbsp;Beam Sliding Inside a Hollow Beam</a>).</p></li><li class="listitem"><p>External contact between two beams that lie next to
+each other and are roughly parallel (see <a class="xref" href="thy_el176.html#conta176_fig3" title="Figure&nbsp;13.32:&nbsp;&nbsp;Parallel Beams in Contact">Figure&nbsp;13.32:&nbsp;Parallel Beams in Contact</a>).</p></li><li class="listitem"><p>External contact between two beams that cross (see <a class="xref" href="thy_el176.html#conta176_fig4" title="Figure&nbsp;13.33:&nbsp;&nbsp;Crossing Beams in Contact">Figure&nbsp;13.33:&nbsp;Crossing Beams in Contact</a>).</p></li></ul></div><p>
+</p><p>Use KEYOPT(3) = 0 for the first two scenarios (internal contact
+and parallel beams). In both cases, the contact condition is only
+checked at contact nodes.</p><p>Use KEYOPT(3) = 1 for the third scenario (beams that cross).
+In this case, the contact condition is checked along the entire length
+of the beams. The beams with circular cross-sections are assumed to
+come in contact in a point-wise manner.</p><div class="figure"><a name="conta176_fig2"></a><p class="title"><b>Figure&nbsp;13.31:&nbsp;&nbsp;Beam Sliding Inside a Hollow Beam</b></p><div class="figure-contents"><div><img src="graphics/gelem175-4.svg" alt="Beam Sliding Inside a Hollow Beam"></div></div></div><br class="figure-break"><div class="figure"><a name="conta176_fig3"></a><p class="title"><b>Figure&nbsp;13.32:&nbsp;&nbsp;Parallel Beams in Contact</b></p><div class="figure-contents"><div><img src="graphics/gelem175-3.svg" alt="Parallel Beams in Contact"></div></div></div><br class="figure-break"><div class="figure"><a name="conta176_fig4"></a><p class="title"><b>Figure&nbsp;13.33:&nbsp;&nbsp;Crossing Beams in Contact</b></p><div class="figure-contents"><div><img src="graphics/gelem176-3.svg" alt="Crossing Beams in Contact"></div></div></div><br class="figure-break"><p>Contact is detected when two circular beams touch or overlap
+each other. The non-penetration condition for beams with a circular
+cross-section can be defined as follows.</p><p>For internal contact:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="conta176_eq1"></a><div><img src="graphics/conta176_eq1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;331)</b></p></td></tr></table><p>and for external contact:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="conta176_eq2"></a><div><img src="graphics/conta176_eq2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;332)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>g = gap distance</td></tr><tr><td>r<sub>c</sub> and r<sub>t</sub> =
+radii of the cross-sections of the beam on the contact and target
+sides, respectively.</td></tr><tr><td>d = minimal distance between the two beam centerlines (also
+determines the contact normal direction).</td></tr></table><p>
+</p><p>Contact occurs for negative values of g.</p></div><div class="sect2" title="13.176.3.&nbsp;Contact Models"><div class="titlepage"><div><div><h3 class="title"><a name="conta176contmod"></a>13.176.3.&nbsp;Contact Models</h3></div></div></div><p>The contact model can be either contact force- based (KEYOPT(3)
+= 0 or 1) or contact traction-based (KEYOPT(3) = 2 or 3). For the
+contact traction-based model, the program determines the area (based
+on the underlying beam element length and the contact radius, R2)
+associated with the contact node.</p></div><div class="sect2" title="13.176.4.&nbsp;Contact Forces"><div class="titlepage"><div><div><h3 class="title"><a name="conta176.forces"></a>13.176.4.&nbsp;Contact Forces</h3></div></div></div><p>In order to satisfy contact compatibility,
+forces are developed in a direction normal (n-direction) to the target
+that will tend to reduce the penetration to an acceptable numerical
+level. In addition to normal contact forces, friction forces are developed
+in directions that are tangent to the target plane.</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="conta176_eq3"></a><div><img src="graphics/conta176_eq3.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;333)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>F<sub>n</sub> = normal contact force</td></tr><tr><td>K<sub>n</sub> = contact normal stiffness (input
+as FKN on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command)</td></tr><tr><td>u<sub>n</sub> = contact gap size</td></tr></table><p>
+</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="conta176_eq4"></a><div><img src="graphics/conta176_eq4.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;334)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>F<sub>T</sub> = tangential contact force</td></tr><tr><td>K<sub>T</sub> = tangential contact stiffness (input
+as FKT on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command)</td></tr><tr><td>u<sub>T</sub> = contact slip distance</td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-49.000000px"><img src="graphics/eqba5cd5fe-6cf6-4f70-894b-8ca31bdc7b99.svg"></span>
+</td></tr></table><p>
+</p><p>For orthotropic friction, &#956;<sub>eq</sub> is computed
+using the expression:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="conta176_eq5"></a><div><img src="graphics/conta176_eq5.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;335)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#956;<sub>eq</sub> = equivalent coefficient of
+friction for orthotropic friction</td></tr><tr><td>&#956;<sub>1</sub>, &#956;<sub>2</sub> = coefficients of friction in first and second principal directions
+(input as MU1 and MU2 using <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command with <em class="replaceable"><code>Lab</code></em> = FRIC)</td></tr></table><p>
+</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

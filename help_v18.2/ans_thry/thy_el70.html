@@ -1,0 +1,55 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:28-04:00"><title>13.70.&nbsp;SOLID70 - 3-D Thermal Solid</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el69.html" title="13.69.&nbsp;Reserved for Future Use"><link rel="next" href="thy_el71.html" title="13.71.&nbsp;MASS71 - Thermal Mass"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.70.&nbsp;SOLID70 - 3-D Thermal Solid"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thysolid70"></a>13.70.&nbsp;SOLID70 - 3-D Thermal Solid</h2></div></div></div><div><img src="graphics/gthy14-70-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="240" class="col1"><col width="240" class="col2"><col width="144" class="col3"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Matrix or Vector</th><th align="center" valign="middle">Shape Functions</th><th align="center" valign="middle">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration
+Points</a>
+</th></tr></thead><tbody><tr valign="middle"><td valign="middle">Conductivity Matrix and
+Heat Generation Load Vector </td><td valign="middle">
+<a class="xref" href="thy_shp8.html#thyeq13bricknov2601" title="(11&#8211;224)">Equation&nbsp;11&#8211;224</a>
+</td><td align="center" valign="middle">2 x 2 x 2</td></tr><tr valign="middle"><td valign="middle">Specific Heat Matrix</td><td valign="middle">
+<a class="xref" href="thy_shp8.html#thyeq13bricknov2601" title="(11&#8211;224)">Equation&nbsp;11&#8211;224</a>.  Matrix is diagonalized as described in <a class="xref" href="thy_et2.html" title="12.5.&nbsp;Lumped Matrices">Lumped Matrices</a>
+</td><td valign="middle">Same as conductivity
+matrix</td></tr><tr valign="middle"><td valign="middle">Convection
+Surface Matrix and Load Vector</td><td valign="middle">
+<a class="xref" href="thy_shp8.html#thyeq13bricknov2601" title="(11&#8211;224)">Equation&nbsp;11&#8211;224</a>
+specialized to the face</td><td align="center" valign="middle">2 x 2</td></tr></tbody></table></div><div class="sect2" title="13.70.1.&nbsp;Other Applicable Sections"><div class="titlepage"><div><div><h3 class="title"><a name="solid70other"></a>13.70.1.&nbsp;Other Applicable Sections</h3></div></div></div><a class="indexterm" name="d0e46239"></a><p>
+<a class="xref" href="thy_heat2.html" title="6.2.&nbsp;Derivation of Heat Flow Matrices">Derivation of Heat Flow Matrices</a> has a complete derivation of the matrices
+and load vectors of a general thermal analysis element. Mass transport is
+discussed in <a class="xref" href="thy_el55.html" title="13.55.&nbsp;PLANE55 - 2-D Thermal Solid">PLANE55 - 2-D Thermal Solid</a>. </p></div><div class="sect2" title="13.70.2.&nbsp;Fluid Flow in a Porous Medium"><div class="titlepage"><div><div><h3 class="title"><a name="solid70fluidflow"></a>13.70.2.&nbsp;Fluid Flow in a Porous Medium</h3></div></div></div><a class="indexterm" name="d0e46251"></a><p>An option (KEYOPT(7) = 1) is available to convert SOLID70 to a nonlinear
+steady-state fluid flow element.  Pressure is the variable rather than temperature.
+ From <a class="xref" href="thy_heat2.html#thyeq7derivnov2601" title="(6&#8211;22)">Equation&nbsp;6&#8211;22</a>, the element conductivity matrix
+is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq92e7fe08-59b4-438c-91f5-14eb172190a8"></a><div><img src="graphics/eq92e7fe08-59b4-438c-91f5-14eb172190a8.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;134)</b></p></td></tr></table><p>[B] is defined by <a class="xref" href="thy_heat2.html#thyeq7derivnov2601" title="(6&#8211;22)">Equation&nbsp;6&#8211;22</a> and for this
+option, [D] is defined as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq184868c7-ce5a-4f7d-a449-b75c4f107dbd"></a><div><img src="graphics/eq184868c7-ce5a-4f7d-a449-b75c4f107dbd.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;135)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eq80d37501-16dd-44fe-982a-54b3b091ba08.svg"></span> = absolute permeability of
+the porous medium in the x direction (input as KXX on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>
+command) </td></tr><tr><td>&#961; = mass density of the fluid (input as DENS on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>
+command) </td></tr><tr><td>&#956; = viscosity of the fluid (input as VISC on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>
+command) </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq98c8c01f-5120-4dc3-9b39-bcf52ca27988.svg"></span> </td></tr><tr><td>&#946; = visco-inertial parameter of the fluid (input as C on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>
+command) </td></tr><tr><td>S = seepage velocity (at centroid from previous iteration, defined
+below) </td></tr><tr><td>
+<font face="Arial Unicode Ms"><span class="markup">&#945;</span></font> = empirical exponent on S (input as MU on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>
+command) </td></tr></table><p>
+</p><p>For this option, no &#8220;specific heat&#8221; matrix or &#8220;heat
+generation&#8221; load vector is computed. </p><p>The pressure gradient components are computed by: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqfff07449-f14e-4f00-bd0d-f1b1f1ccdf25"></a><div><img src="graphics/eqfff07449-f14e-4f00-bd0d-f1b1f1ccdf25.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;136)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eqd36d31d3-aa40-4197-8fea-76a27a7f239a.svg"></span> = pressure gradient in the
+x-direction (output as PRESSURE GRADIENT (X)) </td></tr><tr><td>{T<sub>e</sub>} = vector of element temperatures (pressures) </td></tr></table><p>
+</p><p>The pressure gradient is computed from: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq4eaa4551-8e47-48ab-98b4-676aa373e746"></a><div><img src="graphics/eq4eaa4551-8e47-48ab-98b4-676aa373e746.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;137)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>g<sup>p</sup> = total pressure gradient (output as
+PRESSURE GRADIENT (TOTAL)) </td></tr></table><p>
+</p><p>The mass flux components are: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq3b4d8948-9050-49fe-acd5-50d4f1eb4186"></a><div><img src="graphics/eq3b4d8948-9050-49fe-acd5-50d4f1eb4186.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;138)</b></p></td></tr></table><p>The vector sum of the mass flux components is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq26acb7bb-8271-4a8d-a06e-ee4d52472614"></a><div><img src="graphics/eq26acb7bb-8271-4a8d-a06e-ee4d52472614.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;139)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>f = mass flux (output as MASS FLUX) </td></tr></table><p>
+</p><p>The fluid velocity components are: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq0b3b7e0a-da22-43b4-a57a-1169b2b69f41"></a><div><img src="graphics/eq0b3b7e0a-da22-43b4-a57a-1169b2b69f41.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;140)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>S<sub>x</sub> = fluid velocity in the x-direction (output
+as FLUID VELOCITY (X)) </td></tr></table><p>
+</p><p>and the maximum fluid velocity is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq92aaf459-8fd7-490a-a41f-91b89f06522a"></a><div><img src="graphics/eq92aaf459-8fd7-490a-a41f-91b89f06522a.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;141)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>S = total fluid velocity (output as FLUID VELOCITY (TOTAL)) </td></tr></table><p>
+</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

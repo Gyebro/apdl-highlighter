@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:23-04:00"><title>13.34.&nbsp;LINK34 - Convection Link</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el33.html" title="13.33.&nbsp;LINK33 - 3-D Conduction Bar"><link rel="next" href="thy_el35.html" title="13.35.&nbsp;PLANE35 - 2-D 6-Node Triangular Thermal Solid"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.34.&nbsp;LINK34 - Convection Link"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thylink34"></a>13.34.&nbsp;LINK34 - Convection Link</h2></div></div></div><a class="indexterm" name="d0e42881"></a><a class="indexterm" name="d0e42884"></a><div><img src="graphics/gthy14-31-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="168" class="col1"><col width="312" class="col2"><col width="144" class="col3"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Matrix or Vector</th><th align="center" valign="middle">Shape Functions</th><th align="center" valign="middle">
+<a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration
+Points</a>
+</th></tr></thead><tbody><tr valign="middle"><td valign="middle">Conductivity Matrix and
+Heat Generation Load Vector</td><td valign="middle">None (nodes may be
+coincident)</td><td align="center" valign="middle">None</td></tr></tbody></table></div><div class="sect2" title="13.34.1.&nbsp;Conductivity Matrix"><div class="titlepage"><div><div><h3 class="title"><a name="link34conduc"></a>13.34.1.&nbsp;Conductivity Matrix</h3></div></div></div><p>The element conductivity (convection) matrix is </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thylink34eq1"></a><div><img src="graphics/thylink34eq1.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;32)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>A = area over which element acts (input as AREA on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq5f0b2277-c4e5-47bd-a71c-a03752b05a54.svg"></span>
+</td></tr></table><p>
+</p><p>The effective film coefficient is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thylink34eq2"></a><div><img src="graphics/thylink34eq2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;33)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqebb3779f-a93c-4045-8241-e42b6bc9dffb.svg"></span>
+</td></tr><tr><td>C<sub>c</sub> = user input constant (input as CC on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr></table><p>
+</p><p>The partial film coefficient term is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thylink34eq3"></a><div><img src="graphics/thylink34eq3.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;34)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-17.000000px"><img src="graphics/eqfc7c57cd-c288-4ba5-b01a-61e9da46c34f.svg"></span> </td></tr><tr><td>T<sub>B</sub> = bulk temperature (input as TBULK on <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> command) </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-50.000000px"><img src="graphics/eqc3761c7a-7896-49af-9878-3fbdc2285f89.svg"></span> </td></tr><tr><td>H(x) = alternate film coefficient (input on <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,HF
+command for material x) </td></tr><tr><td>m<sub>e</sub> = material number for this element (input
+on <a href="../ans_cmd/Hlp_C_MAT.html" class="olink"><span class="command"><strong>MAT</strong></span></a> command) </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqa307749c-cd95-4830-82d7-5012fcbeb8ba.svg"></span>
+</td></tr><tr><td>&#916;T<sub>p</sub> = T<sub>p,J</sub> - T<sub>p,I</sub> </td></tr><tr><td>T<sub>p,J</sub> = temperature from previous iteration
+at node J </td></tr><tr><td>n = exponent on temperature change (input as EN on <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> command) </td></tr></table><p>
+</p><p>&#916;T<sub>p</sub> must be thought of as unitless, even
+though it is obviously derived from temperatures. </p><p>The heat generation load vector is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq90e4857e-2d27-434f-8598-8ee34f53f231"></a><div><img src="graphics/eq90e4857e-2d27-434f-8598-8ee34f53f231.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;35)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+     <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqfcb93830-947a-482e-8cc0-b8c8f4e9e557.svg"></span>
+    </td></tr><tr><td>L = distance between nodes </td></tr></table><p>
+</p></div><div class="sect2" title="13.34.2.&nbsp;Output"><div class="titlepage"><div><div><h3 class="title"><a name="link34output"></a>13.34.2.&nbsp;Output</h3></div></div></div><p>The output is computed as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thylink34eq4"></a><div><img src="graphics/thylink34eq4.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(13&#8211;36)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>Q = heat rate (output as HEAT RATE) </td></tr><tr><td>T<sub>I</sub> = temperature at node I </td></tr><tr><td>T<sub>J</sub> = temperature at node J </td></tr></table><p>
+</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:47-04:00"><title>13.227.&nbsp;SOLID227 - 3-D 10-Node Coupled-Field Solid</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_elemlib.html" title="Chapter&nbsp;13:&nbsp;Element Library"><link rel="prev" href="thy_el226.html" title="13.226.&nbsp;SOLID226 - 3-D 20-Node Coupled-Field Solid"><link rel="next" href="thy_el228.html" title="13.228.&nbsp;Reserved for Future Use"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="13.227.&nbsp;SOLID227 - 3-D 10-Node Coupled-Field Solid"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thysolid227"></a>13.227.&nbsp;SOLID227 - 3-D 10-Node Coupled-Field Solid</h2></div></div></div><div><img src="graphics/gthy14-187-1.svg"></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="168" class="COLSPEC16"><col width="312" class="COLSPEC17"><col width="144" class="COLSPEC18"></colgroup><thead><tr valign="middle"><th align="center" valign="middle">Matrix or Vector</th><th align="center" valign="middle">Shape Functions</th><th align="center" valign="middle"><a class="link" href="thy_et1.html" title="12.2.&nbsp;Integration Point Locations">Integration Points</a></th></tr></thead><tbody><tr valign="middle"><td valign="middle">Stiffness, Mass, and Stress Stiffness
+Matrices; and Thermal Expansion and Electrostatic Force Load Vectors</td><td valign="middle"><a class="xref" href="thy_shp8.html#thyeq1tet10nov2601" title="(11&#8211;184)">Equation&nbsp;11&#8211;184</a>, <a class="xref" href="thy_shp8.html#thyeq2tet10nov2601" title="(11&#8211;185)">Equation&nbsp;11&#8211;185</a>, and <a class="xref" href="thy_shp8.html#thyeq3tet10nov2601" title="(11&#8211;186)">Equation&nbsp;11&#8211;186</a></td><td align="center" valign="middle">4</td></tr><tr valign="middle"><td valign="middle">Pressure Load Vector</td><td valign="middle"><a class="xref" href="thy_shp8.html#thyeq1tet10nov2601" title="(11&#8211;184)">Equation&nbsp;11&#8211;184</a>, <a class="xref" href="thy_shp8.html#thyeq2tet10nov2601" title="(11&#8211;185)">Equation&nbsp;11&#8211;185</a>, and <a class="xref" href="thy_shp8.html#thyeq3tet10nov2601" title="(11&#8211;186)">Equation&nbsp;11&#8211;186</a> specialized to the face</td><td align="center" valign="middle">6</td></tr><tr><td valign="middle">Thermal Conductivity Matrix and Heat Generation Load
+Vector</td><td valign="middle"><a class="xref" href="thy_shp8.html#thyeq4tet10nov2601" title="(11&#8211;187)">Equation&nbsp;11&#8211;187</a></td><td align="center" valign="middle">2 x 2</td></tr><tr><td valign="middle">Specific Heat Matrix</td><td valign="middle">Same as thermal conductivity matrix</td><td align="center" valign="middle">11</td></tr><tr><td valign="middle">Convection Surface
+Matrix and Load Vector</td><td valign="middle"><a class="xref" href="thy_shp8.html#thyeq4tet10nov2601" title="(11&#8211;187)">Equation&nbsp;11&#8211;187</a> specialized to the face. Consistent
+surface matrix.</td><td align="center" valign="middle">6</td></tr><tr><td valign="middle">Dielectric Permittivity and Electrical Conductivity
+Matrices; Charge Density, Joule Heating, and Peltier Heat Flux Load
+Vectors</td><td valign="middle"><a class="xref" href="thy_shp8.html#thyeq5tet10nov2601" title="(11&#8211;188)">Equation&nbsp;11&#8211;188</a></td><td align="center" valign="middle">2 x 2</td></tr><tr><td valign="middle">Diffusivity Matrix and Diffusing Substance Generation
+Load Vector</td><td valign="middle"><a class="xref" href="thy_shp8.html#thyeq6tet912" title="(11&#8211;190)">Equation&nbsp;11&#8211;190</a></td><td align="center" valign="middle">2 x 2</td></tr><tr><td>Damping Matrix</td><td>Same as diffusivity matrix. If
+KEYOPT(10) = 1, the matrix is diagonalized as described in <a class="xref" href="thy_et2.html" title="12.5.&nbsp;Lumped Matrices">Lumped Matrices</a></td><td>4</td></tr><tr><td>Diffusion
+Flux Load Vector</td><td><a class="xref" href="thy_shp8.html#thyeq6tet912" title="(11&#8211;190)">Equation&nbsp;11&#8211;190</a> specialized
+to the face</td><td>6</td></tr><tr><td valign="middle">Thermoelastic Stiffness and Damping Matrices</td><td colspan="2" valign="middle">Same
+as combination of stiffness and thermal conductivity matrices</td></tr><tr><td valign="middle">Piezoelectric Coupling
+Matrix</td><td colspan="2" valign="middle">Same as combination of stiffness matrix and dielectric
+matrix</td></tr><tr><td valign="middle">Seebeck Coefficient Coupling
+Matrix</td><td colspan="2" valign="middle">Same as combination of electrical conductivity and
+thermal conductivity matrices</td></tr><tr><td valign="middle">Diffusion-Elastic  Stiffness and Damping Matrices</td><td colspan="2" valign="middle">Same as combination
+of stiffness and diffusivity matrices</td></tr><tr><td valign="middle">Surface Charge Density Load Vector</td><td valign="middle"><a class="xref" href="thy_shp8.html#thyeq5tet10nov2601" title="(11&#8211;188)">Equation&nbsp;11&#8211;188</a> specialized to the face</td><td align="center" valign="middle">6</td></tr></tbody></table></div><div class="sect2" title="13.227.1.&nbsp;Other Applicable Sections"><div class="titlepage"><div><div><h3 class="title"><a name="solid227other"></a>13.227.1.&nbsp;Other Applicable Sections</h3></div></div></div><p><a class="xref" href="thy_str.html" title="Chapter&nbsp;2:&nbsp;Structures">Structures</a> describes the derivation of
+structural element matrices and load vectors as well as stress evaluations.
+ <a class="xref" href="thy_geo5.html" title="3.6.&nbsp;General Element Formulations">General Element Formulations</a> gives the general element formulations
+used by this element. <a class="xref" href="thy_emg.html" title="Chapter&nbsp;5:&nbsp;Electromagnetics">Electromagnetics</a> describes the
+derivation of dielectric and electric conduction matrices. <a class="xref" href="thy_coup2.html" title="10.4.&nbsp;Piezoelectrics">Piezoelectrics</a> discusses the piezoelectric capability used
+by the element. <a class="xref" href="thy_coup3.html" title="10.6.&nbsp;Piezoresistivity">Piezoresistivity</a> discusses the piezoresistive
+effect. <a class="xref" href="thy_coup5.html" title="10.7.&nbsp;Thermoelectrics">Thermoelectrics</a> discusses the thermoelectric
+effects. <a class="xref" href="thy_coup6.html" title="10.2.&nbsp;Thermoelasticity">Thermoelasticity</a> discusses the thermoelastic
+effects. <a class="xref" href="electroelasy.html" title="10.5.&nbsp;Electroelasticity">Electroelasticity</a> discusses the Maxwell stress
+electroelastic coupling. <a class="xref" href="thy_couptp.html" title="10.3.&nbsp;Thermoplasticity">Thermoplasticity</a> discusses
+the thermoplastic effect. <a class="xref" href="thry_str_diff_cou.html" title="10.10.&nbsp;Structural-Diffusion Coupling">Structural-Diffusion Coupling</a> discusses
+diffusion strain coupling.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

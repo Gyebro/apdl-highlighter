@@ -1,0 +1,58 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:09-04:00"><title>14.16.&nbsp;Energies</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_tool.html" title="Chapter&nbsp;14:&nbsp;Analysis Tools"><link rel="prev" href="ans_thry_MRI.html" title="14.15.&nbsp;Mass Related Information"><link rel="next" href="thystatespacemat.html" title="14.17.&nbsp;Reduced-Order Modeling for State-Space Matrices Export"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="14.16.&nbsp;Energies"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="am1af19amlg1"></a>14.16.&nbsp;Energies</h2></div></div></div><a class="indexterm" name="d0e74671"></a><a class="indexterm" name="d0e74674"></a><a class="indexterm" name="d0e74677"></a><a class="indexterm" name="d0e74680"></a><a class="indexterm" name="d0e74683"></a><a class="indexterm" name="d0e74686"></a><a class="indexterm" name="d0e74689"></a><a class="indexterm" name="d0e74692"></a><a class="indexterm" name="d0e74697"></a><a class="indexterm" name="d0e74702"></a><a class="indexterm" name="d0e74707"></a><p>Energies are available in the solution printout (by setting Item = VENG on the
+   <a href="../ans_cmd/Hlp_C_OUTPR.html" class="olink"><span class="command"><strong>OUTPR</strong></span></a> command) or in postprocessing (by choosing items SENE, TENE, KENE, and
+  AENE on the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command or using the <a href="../ans_cmd/Hlp_C_PRENERGY.html" class="olink"><span class="command"><strong>PRENERGY</strong></span></a> command).
+  For each element, <span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eq0027188f-9f66-43f7-9b34-74f218809155.svg"></span> is the potential energy (including strain energy), accessed with SENE or TENE on
+   <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1energiesnov2101"></a><div><img src="graphics/thyeq1energiesnov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;313)</b></p></td></tr></table><p>
+  <span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eq87f9fcba-84ea-4a6d-b98f-7f139e02ecdb.svg"></span> is the kinematic energy, accessed with KENE on <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>
+  (computed only for transient, harmonic and modal analyses):</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2energiesnov2101"></a><div><img src="graphics/thyeq2energiesnov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;314)</b></p></td></tr></table><p>
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eqdb1cc004-5407-4b51-a7fe-f639ffbb226e.svg"></span> is the artificial energy associated with hourglass control, accessed with AENE
+  on <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> (<a href="../ans_arch/Hlp_E_SOLID45.html" class="olink"><span class="structname">SOLID45</span></a>, <a href="../ans_elem/Hlp_E_PLANE182.html" class="olink"><span class="structname">PLANE182</span></a>,
+   <a href="../ans_elem/Hlp_E_SOLID185.html" class="olink"><span class="structname">SOLID185</span></a>, <a href="../ans_elem/Hlp_E_SHELL181.html" class="olink"><span class="structname">SHELL181</span></a> only):</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3energiesnov2101"></a><div><img src="graphics/thyeq3energiesnov2101.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(14&#8211;315)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>NINT = number of integration points </td></tr><tr><td>{&#963;} = stress vector </td></tr><tr><td>{&#949;<sup>el</sup>} = elastic strain
+vector </td></tr><tr><td>vol<sub>i</sub> = volume of integration point
+i </td></tr><tr><td>
+    <span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eq6df8815e-daf1-4c18-a6ef-99144cd7e48a.svg"></span> = plastic strain energy </td></tr><tr><td>E<sub>s</sub> = stress stiffening energy </td></tr><tr><td>
+    <span class="inlineequation" style="&#xA;          vertical-align:-19.000000px"><img src="graphics/eq0c8183dd-f68c-45d7-90b7-7e805632144a.svg"></span>
+   </td></tr><tr><td>[K<sub>e</sub>] = element stiffness/conductivity
+matrix</td></tr><tr><td>[S<sub>e</sub>] = element stress stiffness matrix </td></tr><tr><td>{u<sub>e</sub>} = element DOF vector </td></tr><tr><td>
+    <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqc7747cee-9fbf-401b-80b3-9a6c28a8c83b.svg"></span> = time derivative of element DOF vector </td></tr><tr><td>[M<sub>e</sub>] = element mass matrix </td></tr><tr><td>NCS = total number of converged substeps </td></tr><tr><td>{&#947;} = hourglass strain energy defined in Flanagan and
+Belytschko(<a class="xref" href="thy_biblio.html#acZu30djjw" title="&#34;A Uniform Strain Hexahedron and Quadrilateral with Orthogonal Hourglass Control&#34;">[243]</a>) due to one point integrations. </td></tr><tr><td>[Q] = hourglass control stiffness defined in Flanagan and
+Belytschko(<a class="xref" href="thy_biblio.html#acZu30djjw" title="&#34;A Uniform Strain Hexahedron and Quadrilateral with Orthogonal Hourglass Control&#34;">[243]</a>). </td></tr></table><p>
+</p><p>As may be seen from the bottom part of <a class="xref" href="thy_tool16.html#thyeq1energiesnov2101" title="(14&#8211;313)">Equation&nbsp;14&#8211;313</a> as well as <a class="xref" href="thy_tool16.html#thyeq2energiesnov2101" title="(14&#8211;314)">Equation&nbsp;14&#8211;314</a>, all types of DOFs are combined,
+e.g., <a href="../ans_elem/Hlp_E_SOLID5.html" class="olink"><span class="structname">SOLID5</span></a> using both UX, UY, UZ, TEMP,
+VOLT, and MAG DOF. An exception to this is the piezoelectric elements,
+described in <a class="xref" href="thy_coup2.html" title="10.4.&nbsp;Piezoelectrics">Piezoelectrics</a>, which do report energies
+by separate types of DOFs in the NMISC record of element results.
+See <a class="xref" href="thy_tool13.html" title="14.13.&nbsp;Eigenvalue and Eigenvector Extraction">Eigenvalue and Eigenvector Extraction</a> when complex frequencies are used.
+Also, if the bottom part of <a class="xref" href="thy_tool16.html#thyeq1energiesnov2101" title="(14&#8211;313)">Equation&nbsp;14&#8211;313</a> is used, any nonlinearities are ignored. Elements with other incomplete
+aspects with respect to energy are reported in <a class="xref" href="thy_tool16.html#antools.Energies.tab1" title="Table&nbsp;14.3:&nbsp;&nbsp;Exceptions for Element Energies">Table&nbsp;14.3:&nbsp;Exceptions for Element Energies</a>. </p><p>Artificial energy has no physical meaning. It is used to control
+the hourglass mode introduced by reduced integration. The rule-of-thumb
+to check if the element is stable or not due to the use of reduced
+integration is if 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq9a64fb40-639f-429d-8fd4-e909087cd2c5.svg"></span> &lt; 5% is true. When this inequality is true, the
+element using reduced integration is considered stable (i.e., functions
+the same way as fully integrated element). </p><p>Element type limitations for energy computation are given in <a class="xref" href="thy_tool16.html#antools.Energies.tab1" title="Table&nbsp;14.3:&nbsp;&nbsp;Exceptions for Element Energies">Table&nbsp;14.3:&nbsp;Exceptions for Element Energies</a>. </p><div class="table"><a name="antools.Energies.tab1"></a><p class="title"><b>Table&nbsp;14.3:&nbsp;&nbsp;Exceptions for Element Energies</b></p><div class="table-contents"><table summary="Exceptions for Element Energies" border="1" width="95%"><colgroup><col width="144" class="col1"><col width="432" class="col2"></colgroup><thead><tr><th>Element</th><th valign="top">Exception</th></tr></thead><tbody><tr><td>
+<a href="../ans_elem/Hlp_E_FLUID29.html" class="olink"><span class="structname">FLUID29</span></a>
+</td><td>No potential energy</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_FLUID30.html" class="olink"><span class="structname">FLUID30</span></a>
+</td><td>No potential energy</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_LINK31.html" class="olink"><span class="structname">LINK31</span></a>
+</td><td>No potential energy</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_LINK34.html" class="olink"><span class="structname">LINK34</span></a>
+</td><td>No potential energy</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_COMBIN39.html" class="olink"><span class="structname">COMBIN39</span></a>
+</td><td>No potential energy</td></tr><tr><td>
+<a href="../ans_elem/Hlp_E_SHELL61.html" class="olink"><span class="structname">SHELL61</span></a>
+</td><td>Thermal effects not included</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="energies.tab1.note1"></a>Warping implies for example
+that temperatures T1 + T3 &#8800; T2 + T4, i.e., some thermal strain
+is locked in.</p></li></ol></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

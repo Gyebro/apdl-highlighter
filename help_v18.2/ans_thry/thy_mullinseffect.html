@@ -1,0 +1,40 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:56-04:00"><title>4.8.&nbsp;Mullins Effect</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thymatlnonlin.html" title="Chapter&nbsp;4:&nbsp;Structures with Material Nonlinearities"><link rel="prev" href="thy_bb.html" title="4.7.&nbsp;Bergstrom-Boyce"><link rel="next" href="thy_mat6.html" title="4.9.&nbsp;Viscoelasticity"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="4.8.&nbsp;Mullins Effect"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="thy_mullinseffect"></a>4.8.&nbsp;Mullins Effect </h2></div></div></div><p>The Mullins effect (<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CDM) is a phenomenon
+typically observed in compliant filled polymers. It is characterized
+by a decrease in material stiffness during loading and is readily
+observed during cyclic loading as the material response along the
+unloading path differs noticeably from the response that along the
+loading path. Although the details about the mechanisms responsible
+for the Mullins effect have not yet been settled, they might include
+debonding of the polymer from the filler particles, cavitation, separation
+of particle clusters, and rearrangement of the polymer chains and
+particles. </p><p>In the body of literature that exists concerning this phenomenon,
+a number of methods have been proposed as constitutive models for
+the Mullins effect. The model is a maximum load modification to the
+nearly- and fully-incompressible hyperelastic constitutive models
+already available. In this model, the virgin material is modeled using
+one of the available hyperelastic potentials, and the Mullins effect
+modifications to the constitutive response are proportional to the
+maximum load in the material history.</p><div class="sect2" title="4.8.1.&nbsp;The Pseudo-elastic Model"><div class="titlepage"><div><div><h3 class="title"><a name="d0e12962"></a>4.8.1.&nbsp;The Pseudo-elastic Model</h3></div></div></div><p>The Ogden-Roxburgh <a class="xref" href="thy_biblio.html#thy_mullins.fn.1" title="&#8220;A Pseudo-Elastic Model for the Mullins Effect in Filled Rubber&#8221;">[379]</a> pseudo-elastic
+model (<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,CDM,,,,PSE2) of the Mullins effect is
+a modification of the standard thermodynamic formulation for hyperelastic
+materials and is given by: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="MullinsThy_A"></a><div><img src="graphics/MullinsThy_A.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;265)</b></p></td></tr></table><p>where</p><div class="blockquote"><blockquote class="blockquote"><table border="0" summary="Simple list" class="simplelist"><tr><td>W<sub>0</sub>(Fij) = virgin material deviatoric
+strain-energy potential</td></tr><tr><td>&#951; = evolving scalar damage variable</td></tr><tr><td>&#934;(&#951;) = damage function</td></tr></table></blockquote></div><p>The arbitrary limits 0 &lt; &#951; 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqf809691f-9974-4b6f-8fb5-2ec679ca797e.svg"></span> 1 are imposed with &#951; = 1 defined as
+the state of the material without any changes due to the Mullins effect.
+Then, along with equilibrium, the damage function is defined by: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="MullinsThy_B"></a><div><img src="graphics/MullinsThy_B.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;266)</b></p></td></tr></table><p>which implicitly defines the Ogden-Roxburgh parameter &#951;.
+Using <a class="xref" href="thy_mullinseffect.html#MullinsThy_B" title="(4&#8211;266)">Equation&nbsp;4&#8211;266</a>, deviatoric part of the second
+Piola-Kirchhoff stress tensor is then: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="MullinsThy_C"></a><div><img src="graphics/MullinsThy_C.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;267)</b></p></td></tr></table><p>The modified Ogden-Roxburgh damage function <a class="xref" href="thy_biblio.html#thy_mullins.fn.2" title="&#8220;Modeling of Stress Softening in Filled Elastomers&#8221;">[380]</a> has the following functional form of
+the damage variable: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="MullinsThy_D"></a><div><img src="graphics/MullinsThy_D.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;268)</b></p></td></tr></table><p>where r, m, and &#946; are material parameters and W<sub>m</sub> is the maximum virgin potential over the time interval 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqfb1bafd2-1f1a-4957-ac61-c6d71210daf6.svg"></span>:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="MullinsThy_E"></a><div><img src="graphics/MullinsThy_E.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;269)</b></p></td></tr></table><p>The tangent stiffness tensor 
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq4d09ab35-ebd9-4231-a793-ff52454aaca2.svg"></span> for a constitutive model defined by <a class="xref" href="thy_mullinseffect.html#MullinsThy_A" title="(4&#8211;265)">Equation&nbsp;4&#8211;265</a> is expressed as follows: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="MullinsThy_F"></a><div><img src="graphics/MullinsThy_F.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;270)</b></p></td></tr></table><p>The differential for &#951; in <a class="xref" href="thy_mullinseffect.html#MullinsThy_D" title="(4&#8211;268)">Equation&nbsp;4&#8211;268</a> is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="MullinsThy_G"></a><div><img src="graphics/MullinsThy_G.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(4&#8211;271)</b></p></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

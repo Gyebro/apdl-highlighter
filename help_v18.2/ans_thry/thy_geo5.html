@@ -1,0 +1,374 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:52-04:00"><title>3.6.&nbsp;General Element Formulations</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="ans_thry.html" title="Mechanical APDL Theory Reference"><link rel="up" href="thy_geo.html" title="Chapter&nbsp;3:&nbsp;Structures with Geometric Nonlinearities"><link rel="prev" href="thy_geo4.html" title="3.5.&nbsp;Spin Softening"><link rel="next" href="thy_geo6.html" title="3.7.&nbsp;Constraints and Lagrange Multiplier Method"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="3.6.&nbsp;General Element Formulations"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="aoRavfdjjw"></a>3.6.&nbsp;General Element Formulations</h2></div></div></div><p>Element formulations developed in this section are applicable for
+   general finite strain deformation. Naturally, they are applicable to small deformations, small
+   deformation with large rotations, and stress stiffening as particular cases. The formulations are
+   based on the principle of virtual work. Minimal assumptions are used in arriving at the slope of
+   nonlinear force-displacement relationship, i.e., the element tangent stiffness. Hence, they are
+   also called consistent formulations. These formulations have been implemented in
+    <a href="../ans_elem/Hlp_E_PLANE182.html" class="olink"><span class="structname">PLANE182</span></a>, <a href="../ans_elem/Hlp_E_PLANE183.html" class="olink"><span class="structname">PLANE183</span></a>,
+    <a href="../ans_elem/Hlp_E_SOLID185.html" class="olink"><span class="structname">SOLID185</span></a>, and <a href="../ans_elem/Hlp_E_SOLID186.html" class="olink"><span class="structname">SOLID186</span></a>.
+    <a href="../ans_elem/Hlp_E_SOLID187.html" class="olink"><span class="structname">SOLID187</span></a>, <a href="../ans_elem/Hlp_E_SOLID272.html" class="olink"><span class="structname">SOLID272</span></a>,
+    <a href="../ans_elem/Hlp_E_SOLID273.html" class="olink"><span class="structname">SOLID273</span></a>, <a href="../ans_elem/Hlp_E_SOLID285.html" class="olink"><span class="structname">SOLID285</span></a>,
+    <a href="../ans_elem/Hlp_E_SOLSH190.html" class="olink"><span class="structname">SOLSH190</span></a>, <a href="../ans_elem/Hlp_E_LINK180.html" class="olink"><span class="structname">LINK180</span></a>,
+    <a href="../ans_elem/Hlp_E_SHELL181.html" class="olink"><span class="structname">SHELL181</span></a>, <a href="../ans_elem/Hlp_E_BEAM188.html" class="olink"><span class="structname">BEAM188</span></a>,
+    <a href="../ans_elem/Hlp_E_BEAM189.html" class="olink"><span class="structname">BEAM189</span></a>, <a href="../ans_elem/Hlp_E_SHELL208.html" class="olink"><span class="structname">SHELL208</span></a>,
+    <a href="../ans_elem/Hlp_E_SHELL209.html" class="olink"><span class="structname">SHELL209</span></a>, <a href="../ans_elem/Hlp_E_REINF263.html" class="olink"><span class="structname">REINF263</span></a>,
+    <a href="../ans_elem/Hlp_E_REINF264.html" class="olink"><span class="structname">REINF264</span></a>, <a href="../ans_elem/Hlp_E_REINF265.html" class="olink"><span class="structname">REINF265</span></a>,
+    <a href="../ans_elem/Hlp_E_SHELL281.html" class="olink"><span class="structname">SHELL281</span></a>, <a href="../ans_elem/Hlp_E_SOLID285.html" class="olink"><span class="structname">SOLID285</span></a>,
+    <a href="../ans_elem/Hlp_E_PIPE288.html" class="olink"><span class="structname">PIPE288</span></a>, <a href="../ans_elem/Hlp_E_PIPE289.html" class="olink"><span class="structname">PIPE289</span></a>, and
+    <a href="../ans_elem/Hlp_E_ELBOW290.html" class="olink"><span class="structname">ELBOW290</span></a> are further specializations of the general theory.</p><p>In this section, the convention of index notation will be used.
+ For example, repeated subscripts imply summation on the possible
+range of the subscript, usually the space dimension, so that &#963;<sub>ii</sub> = &#963;<sub>11</sub> + &#963;<sub>22</sub> + &#963;<sub>33</sub>, where 1, 2, and
+3 refer to the three coordinate axes x<sub>1</sub>, x<sub>2</sub>, and x<sub>3</sub>, otherwise called x,
+y, and z.  </p><div class="sect2" title="3.6.1.&nbsp;Fundamental Equations"><div class="titlepage"><div><div><h3 class="title"><a name="geofuneq"></a>3.6.1.&nbsp;Fundamental Equations</h3></div></div></div><p>General finite strain deformation has the following characteristics: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Geometry changes during deformation.  The deformed
+domain at a particular time is generally different from the undeformed
+domain and the domain at any other time. </p></li><li class="listitem"><p>Strain is no longer infinitesimal so that a large-strain
+definition has to be employed. </p></li><li class="listitem"><p>Cauchy stress cannot be updated simply by adding its
+increment.  It has to be updated by a particular algorithm in order
+to take into account the finite deformation. </p></li><li class="listitem"><p>Incremental analysis is necessary to simulate the
+nonlinear behaviors. </p></li></ul></div><p>The updated Lagrangian method is applied to simulate geometric
+nonlinearities (accessed with <a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON).  Assuming
+all variables, such as coordinates x<sub>i</sub>, displacements
+u<sub>i</sub>, strains &#949;<sub>ij</sub>, stresses &#963;<sub>ij</sub>, velocities v<sub>i</sub>, volume V and other material variables have been solved
+for and are known at time t; one solves for a set of linearized simultaneous
+equations having displacements (and hydrostatic pressures in the mixed
+u-P formulation) as primary unknowns to obtain the solution at time
+t + &#916;t. These simultaneous equations are derived from the element
+formulations which are based on the principle of virtual work:    </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1fundelnov1601"></a><div><img src="graphics/thyeq1fundelnov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;89)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#963;<sub>ij</sub> = Cauchy stress component  </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-10.000000px"><img src="graphics/eqf465ed7f-fad2-4ffd-9cfa-bbe8efe8e6df.svg"></span> </td></tr><tr><td>u<sub>i</sub> = displacement </td></tr><tr><td>x<sub>i</sub> = current coordinate </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eq6bacf192-d9c3-473c-bccb-2a18eac08c83.svg"></span> </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eqae51e746-c8ab-45e1-be55-b365011e2056.svg"></span>
+</td></tr><tr><td>V = volume of deformed body </td></tr><tr><td>S = surface of deformed body on which tractions are prescribed </td></tr></table><p>
+</p><p>The internal virtual work can be indicated by: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2fundelnov1601"></a><div><img src="graphics/thyeq2fundelnov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;90)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>W = internal virtual work </td></tr></table><p>
+</p><p>Element formulations are obtained by differentiating this virtual
+work expression (Bonet and Wood(<a class="xref" href="thy_biblio.html#yQqFrb9jjw" title="Nonlinear Continuum Mechanics for Finite Element Analysis">[237]</a>) and
+Gadala and Wang(<a class="xref" href="thy_biblio.html#sYPv16bjjw" title="&#34;Simulation of Metal Forming Processes with Finite Element Methods&#34;">[293]</a>)).  In derivation, only
+linear differential terms are kept and all higher order terms are
+ignored so that finally a linear set of equations can be obtained. </p><p>In element formulation, material constitutive law is used to
+create the relation between stress increment and strain increment.
+ The constitutive law only reflects the stress increment due to straining.
+ However, the Cauchy stress is affected by the rigid body rotation
+and is not objective (not frame invariant).  An objective stress is
+needed, therefore, to be able to be applied in constitutive law. 
+One of these is Jaumann rate of Cauchy stress expressed by McMeeking
+and Rice(<a class="xref" href="thy_biblio.html#acPvdejjw" title="&#34;Finite Element Formulations for Problems of Large Elastic-Plastic Deformation&#34;">[294]</a>)  </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3fundelnov1601"></a><div><img src="graphics/thyeq3fundelnov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;91)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-8.000000px"><img src="graphics/eq6852b0e4-c26f-4876-9aa6-c59af3f41663.svg"></span> = Jaumann rate of
+Cauchy stress </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-10.000000px"><img src="graphics/eq82ba113f-baf3-421d-917f-0691d0671655.svg"></span> </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqeaef4c0f-a64d-40c9-943a-fc2fc55e2e6e.svg"></span> = time rate of Cauchy stress </td></tr></table><p>
+</p><p>Therefore, the Cauchy stress rate is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq4fundelnov1601"></a><div><img src="graphics/thyeq4fundelnov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;92)</b></p></td></tr></table><p>Using the constitutive law, the stress change due to straining
+can be expressed as:   </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq5fundelnov1601"></a><div><img src="graphics/thyeq5fundelnov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;93)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>c<sub>ijkl</sub> = material constitutive tensor </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-10.000000px"><img src="graphics/eq25ff7608-0473-4cde-be14-be91b201224a.svg"></span> </td></tr><tr><td>v<sub>i</sub> = velocity </td></tr></table><p>
+</p><p>The Cauchy stress rate can be written as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq6fundelnov1601"></a><div><img src="graphics/thyeq6fundelnov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;94)</b></p></td></tr></table></div><div class="sect2" title="3.6.2.&nbsp;Classical Pure Displacement Formulation"><div class="titlepage"><div><div><h3 class="title"><a name="geoclassical"></a>3.6.2.&nbsp;Classical Pure Displacement Formulation</h3></div></div></div><a class="indexterm" name="d0e5049"></a><p>Pure displacement formulation only takes displacements or velocities
+as primary unknown variables.  All other quantities such as strains,
+stresses and state variables in history-dependent material models
+are derived from the displacements.  It is the most widely used formulation
+and is able to handle most nonlinear deformation problems. </p><p>The differentiation of &#948;W: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1classnov1601"></a><div><img src="graphics/thyeq1classnov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;95)</b></p></td></tr></table><p>From <a class="xref" href="thy_geo5.html#thyeq6fundelnov1601" title="(3&#8211;94)">Equation&nbsp;3&#8211;94</a>, the stress differentiation
+can be derived as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2classnov1601"></a><div><img src="graphics/thyeq2classnov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;96)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-10.000000px"><img src="graphics/eqed875f42-e27d-421b-8c75-66c75bcd8e58.svg"></span> </td></tr></table><p>
+</p><p>The differentiation of dV is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3classnov1601"></a><div><img src="graphics/thyeq3classnov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;97)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>e<sub>v</sub> = e<sub>ii</sub> </td></tr></table><p>
+</p><p>Substitution of <a class="xref" href="thy_geo5.html#thyeq2classnov1601" title="(3&#8211;96)">Equation&nbsp;3&#8211;96</a> and <a class="xref" href="thy_geo5.html#thyeq3classnov1601" title="(3&#8211;97)">Equation&nbsp;3&#8211;97</a> into <a class="xref" href="thy_geo5.html#thyeq1classnov1601" title="(3&#8211;95)">Equation&nbsp;3&#8211;95</a> yields: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq8801c9bb-c107-4946-8f21-469393aef332"></a><div><img src="graphics/eq8801c9bb-c107-4946-8f21-469393aef332.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;98)</b></p></td></tr></table><p>The third term is unsymmetric and is usually insignificant in
+most of deformation cases.  Hence, it is ignored.  The final pure
+displacement formulation is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eqc170f7c9-b888-4664-996f-69c9893e5895"></a><div><img src="graphics/eqc170f7c9-b888-4664-996f-69c9893e5895.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;99)</b></p></td></tr></table><p>The above equation is a set of linear equations in terms of
+Du<sub>i</sub> or displacement change, which can be solved
+by standard linear solvers.  This formulation is exactly the same
+as the one published by McMeeking and Rice(<a class="xref" href="thy_biblio.html#acPvdejjw" title="&#34;Finite Element Formulations for Problems of Large Elastic-Plastic Deformation&#34;">[294]</a>).  The stiffness has two terms:  the first one is material stiffness
+due to straining; the second one is stiffness due to geometric nonlinearity
+(stress stiffness). </p><p>Since no other assumption is made on the size or type of deformation,
+the formulation can be applied to any deformation problems (small
+deformation, finite deformation, small deformation with large rotation,
+stress stiffening, etc.) so it is called a general element formulation. </p><p>To achieve higher efficiency, the second term or stress stiffness
+is included only if requested for analyses with geometric nonlinearities
+(<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON, or <a href="../ans_cmd/Hlp_C_PSTRES.html" class="olink"><span class="command"><strong>PSTRES</strong></span></a>,ON) or
+buckling analysis (<a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,BUCKLE). </p></div><div class="sect2" title="3.6.3.&nbsp;Mixed u-P Formulations"><div class="titlepage"><div><div><h3 class="title"><a name="geoupform"></a>3.6.3.&nbsp;Mixed u-P Formulations</h3></div></div></div><a class="indexterm" name="d0e5134"></a><p>The above pure displacement formulation is computationally efficient.
+ However, the accuracy of any displacement formulation is dependent
+on Poisson's ratio or the bulk modulus.  In such formulations, volumetric
+strain is determined from derivatives of displacements, which are
+not as accurately predicted as the displacements themselves.  Under
+nearly incompressible conditions (Poisson's ratio is close to 0.5
+or bulk modulus approaches infinity), any small error in the predicted
+volumetric strain will appear as a large error in the hydrostatic
+pressure and subsequently in the stresses.  This error will, in turn,
+also affect the displacement prediction since external loads are balanced
+by the stresses, and may result in displacements very much smaller
+than they should be for a given mesh--this is called <span class="italic"><em>locking</em></span>-- or, in some cases, in no convergence
+at all.</p><p>Another disadvantage of pure displacement formulation is that
+it is not to be able to handle fully incompressible deformation, such
+as fully incompressible hyperelastic materials.</p><p>To overcome these difficulties, mixed u-P formulations were
+developed.  In these u-P formulations of the current-technology elements,
+the hydrostatic pressure 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqd96463e2-6c30-4822-8a64-746a97d2caa8.svg"></span> or volume change rate is interpolated on
+the element level and solved on the global level independently in
+the same way as displacements.  The final stiffness matrix has the
+format of:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1mixedupnov1601"></a><div><img src="graphics/thyeq1mixedupnov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;100)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#916;u = displacement increment </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqb17d8aae-31c1-45b5-bb42-f8a547810501.svg"></span> = hydrostatic pressure
+increment </td></tr></table><p>
+</p><p>Since hydrostatic pressure is obtained on a global level instead
+of being calculated from volumetric strain, the solution accuracy
+is independent of Poisson's ratio and bulk modulus.  Hence, it is
+more robust for nearly incompressible material.  For fully incompressible
+material, mixed u-P formulation has to be employed in order to get
+solutions. </p><p>The pressure DOFs are brought to global level by using internal
+or external nodes.  The internal nodes are different from the regular
+(external) nodes in the following aspects: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Each internal node is associated with only <span class="italic"><em>one</em></span> element. </p></li><li class="listitem"><p>The location of internal nodes is not important. 
+They are used only to bring the pressure DOFs into the global equations. </p></li><li class="listitem"><p>Internal nodes are created automatically and are not
+accessible by users. </p></li></ul></div><p>The interpolation function of pressure is determined according
+to the order of elements.  To remedy the locking problem, they are
+one order less than the interpolation function of strains or stresses.
+ For most current-technology elements, the hydrostatic pressure degrees
+of freedom are introduced by the internal nodes. The number of pressure
+degrees of freedom, number of internal nodes, and interpolation functions
+are shown in <a class="xref" href="thy_geo5.html#nvUvf163mlg2" title="Table&nbsp;3.1:&nbsp;&nbsp;Interpolation Functions of Hydrostatic Pressure of Current-Technology Elements">Table&nbsp;3.1:&nbsp;Interpolation Functions of Hydrostatic Pressure of Current-Technology Elements</a>. </p><div class="table"><a name="nvUvf163mlg2"></a><p class="title"><b>Table&nbsp;3.1:&nbsp;&nbsp;Interpolation Functions of Hydrostatic Pressure of Current-Technology Elements</b></p><div class="table-contents"><table summary="Interpolation Functions of Hydrostatic Pressure of Current-Technology Elements" border="1" width="95%"><colgroup><col width="144" class="col1"><col width="72" class="col2"><col width="72" class="col3"><col width="72" class="col4"><col width="168" class="col5"></colgroup><thead><tr valign="middle"><th bgcolor="#E3E3E3" align="center" valign="middle">
+        
+        Element</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+        
+        KEYOPT(6)</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+        
+        Internal nodes</th><th bgcolor="#E3E3E3" align="center" valign="middle">
+        
+        
+        <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq46f8b127-54e3-4929-95be-d05b3076ccc5.svg"></span>
+       </th><th bgcolor="#E3E3E3" valign="middle">
+        
+        Functions</th></tr></thead><tbody><tr><td align="center">
+        <p>
+         <a href="../ans_elem/Hlp_E_PLANE182.html" class="olink"><span class="structname">PLANE182</span></a>
+        </p>
+        <p>
+         <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq874ebaf4-af57-4e96-bff6-a85fe090ec9d.svg"></span> selective reduced integration and uniform reduced integration</p>
+       </td><td align="center" valign="middle">1</td><td align="center" valign="middle">1</td><td align="center" valign="middle">1</td><td valign="middle">
+        <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq3e19fda4-944e-4db9-8dec-f88043d21450.svg"></span>
+       </td></tr><tr><td bgcolor="#E3E3E3" align="center">
+        
+        
+        <p>
+         <a href="../ans_elem/Hlp_E_PLANE182.html" class="olink"><span class="structname">PLANE182</span></a>
+        </p>
+        <p>Enhanced strain formulation</p>
+       </td><td bgcolor="#E3E3E3" rowspan="2" align="center" valign="middle">
+        
+        1</td><td bgcolor="#E3E3E3" rowspan="2" align="center" valign="middle">
+        
+        2</td><td bgcolor="#E3E3E3" rowspan="2" align="center" valign="middle">
+        
+        3</td><td bgcolor="#E3E3E3" rowspan="2" valign="middle">
+        
+        
+        <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqd51e36d2-80d9-4d1c-9d5b-bcca1d22ce59.svg"></span>
+       </td></tr><tr><td bgcolor="#E3E3E3" align="center">
+        
+        
+        <p>
+         <a href="../ans_elem/Hlp_E_PLANE183.html" class="olink"><span class="structname">PLANE183</span></a>
+        </p>
+       </td></tr><tr><td align="center">
+        <p>
+         <a href="../ans_elem/Hlp_E_SOLID185.html" class="olink"><span class="structname">SOLID185</span></a>
+        </p>
+        <p>
+         <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqc26130bf-bfe3-4c15-827e-9729acf9c170.svg"></span> selective reduced integration and uniform reduced integration</p>
+       </td><td align="center" valign="middle">1</td><td align="center" valign="middle">1</td><td align="center" valign="middle">1</td><td valign="middle">
+        <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq9fd5e1eb-58c1-4ace-946e-887d129ab30a.svg"></span>
+       </td></tr><tr><td bgcolor="#E3E3E3" align="center">
+        
+        
+        <p>
+         <a href="../ans_elem/Hlp_E_SOLID185.html" class="olink"><span class="structname">SOLID185</span></a>
+        </p>
+        <p>Enhanced strain formulation</p>
+       </td><td bgcolor="#E3E3E3" rowspan="2" align="center" valign="middle">
+        
+        1</td><td bgcolor="#E3E3E3" rowspan="2" align="center" valign="middle">
+        
+        2</td><td bgcolor="#E3E3E3" rowspan="2" align="center" valign="middle">
+        
+        4</td><td bgcolor="#E3E3E3" rowspan="2" valign="middle">
+        
+        
+        <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq27703d2a-ed85-4b39-bcef-d7d0bdab8249.svg"></span>
+       </td></tr><tr><td bgcolor="#E3E3E3" align="center">
+        
+        
+        <p>
+         <a href="../ans_elem/Hlp_E_SOLID186.html" class="olink"><span class="structname">SOLID186</span></a>
+        </p>
+        <p>Uniform reduced integration and full integration</p>
+       </td></tr><tr><td align="center">
+        <p>
+         <a href="../ans_elem/Hlp_E_SOLID187.html" class="olink"><span class="structname">SOLID187</span></a>
+        </p>
+       </td><td align="center" valign="middle">1</td><td align="center" valign="middle">1</td><td align="center" valign="middle">1</td><td valign="middle">
+        <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq2a2493c7-7be9-403a-916e-f734caeb140d.svg"></span>
+       </td></tr><tr><td bgcolor="#E3E3E3" align="center">
+        
+        
+        <p>
+         <a href="../ans_elem/Hlp_E_SOLID187.html" class="olink"><span class="structname">SOLID187</span></a>
+        </p>
+       </td><td bgcolor="#E3E3E3" align="center" valign="middle">
+        
+        2</td><td bgcolor="#E3E3E3" align="center" valign="middle">
+        
+        2</td><td bgcolor="#E3E3E3" align="center" valign="middle">
+        
+        4</td><td bgcolor="#E3E3E3" valign="middle">
+        
+        
+        <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqb8bbe347-7eae-42c1-ac52-b61902d57c18.svg"></span>
+       </td></tr><tr><td align="center"><a href="../ans_elem/Hlp_E_SOLSH190.html" class="olink"><span class="structname">SOLSH190</span></a></td><td align="center" valign="middle">1</td><td align="center" valign="middle">2</td><td align="center" valign="middle">4</td><td bgcolor="#E3E3E3" valign="middle">
+        
+        
+        <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq27703d2a-ed85-4b39-bcef-d7d0bdab8249.svg"></span>
+       </td></tr><tr><td bgcolor="#E3E3E3" align="center">
+        
+        
+        <p>
+         <a href="../ans_elem/Hlp_E_SOLID272.html" class="olink"><span class="structname">SOLID272</span></a>
+        </p>
+       </td><td bgcolor="#E3E3E3" align="center" valign="middle">1</td><td bgcolor="#E3E3E3" align="center" valign="middle">KEYOPT(2) / 3</td><td bgcolor="#E3E3E3" align="center" valign="middle">KEYOPT(2)</td><td bgcolor="#E3E3E3" valign="middle">
+        <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq3ed5577d-2bde-48df-a655-d61789f22472.svg"></span> on r-z plane and Fourier interpolation in the circumferential (&#952;)
+        direction</td></tr><tr><td align="center">
+        <p>
+         <a href="../ans_elem/Hlp_E_SOLID273.html" class="olink"><span class="structname">SOLID273</span></a>
+        </p>
+       </td><td align="center" valign="middle">1</td><td align="center" valign="middle">KEYOPT(2)</td><td align="center" valign="middle">KEYOPT(2) x 3</td><td valign="middle">
+        <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq4768b1d3-0b3e-473d-9c52-dbbcd64af036.svg"></span> on r-z plane and Fourier interpolation in the circumferential (&#952;)
+        direction</td></tr></tbody></table></div></div><br class="table-break"><p>In <a class="xref" href="thy_geo5.html#nvUvf163mlg2" title="Table&nbsp;3.1:&nbsp;&nbsp;Interpolation Functions of Hydrostatic Pressure of Current-Technology Elements">Table&nbsp;3.1:&nbsp;Interpolation Functions of Hydrostatic Pressure of Current-Technology Elements</a>, 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqf2787c47-7f1f-476e-9f92-a1c0013fedc4.svg"></span>,  
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq39c2d824-7925-414f-a194-e96f653a327a.svg"></span>, 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq9deb22f0-39dc-499c-82cd-23a8d12a90f1.svg"></span>, 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqf9d767a4-7000-436d-b06f-e7f518fe1d25.svg"></span>, and 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqe50276fe-353a-446e-8b31-513effee3bde.svg"></span> are the pressure degrees
+of freedom at internal node i.  s, t, and r are the natural coordinates.</p><p>For <a href="../ans_elem/Hlp_E_SOLID285.html" class="olink"><span class="structname">SOLID285</span></a>, the hydrostatic pressure
+degrees of freedom are introduced by extra degrees of freedom (HDSP)
+at each node. The total number of pressures and interpolation function
+of hydrostatic pressure are shown in <a class="xref" href="thy_geo5.html#intfunc285" title="Table&nbsp;3.2:&nbsp;&nbsp;Interpolation Functions of Hydrostatic Pressure for SOLID285">Table&nbsp;3.2:&nbsp;Interpolation Functions of Hydrostatic Pressure for SOLID285</a>.</p><div class="table"><a name="intfunc285"></a><p class="title"><b>Table&nbsp;3.2:&nbsp;&nbsp;Interpolation Functions of Hydrostatic Pressure for SOLID285</b></p><div class="table-contents"><table summary="Interpolation Functions of Hydrostatic Pressure for SOLID285" border="1" width="95%"><colgroup><col width="96" class="col1"><col width="96" class="col2"><col width="192" class="col3"></colgroup><thead><tr><th align="center" valign="top">Element</th><th align="center" valign="top">
+
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqbada135b-26fd-41f9-8e7e-106735a81d16.svg"></span>
+</th><th valign="top">Functions</th></tr></thead><tbody><tr><td align="center">285</td><td align="center">4</td><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq50775530-d609-472a-9ce0-d0f3863471b6.svg"></span>
+</td></tr></tbody></table></div></div><br class="table-break"><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq68c6feca-f71f-470d-9d6a-afb903766baa.svg"></span>, 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq43b31282-3504-41d8-ac55-be8f8b9feb49.svg"></span>, 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqe6789f77-85ad-4276-b7be-e2057798cdaf.svg"></span>, and 
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq73e032fc-a687-4551-8bc0-423edc05bfb4.svg"></span> are the pressure degrees of freedom at each element node i.  s,
+t, and r are the natural coordinates.</p></div><div class="sect2" title="3.6.4.&nbsp;u-P Formulation I"><div class="titlepage"><div><div><h3 class="title"><a name="geoupform1"></a>3.6.4.&nbsp;u-P Formulation I</h3></div></div></div><p>This formulation is for nearly incompressible materials other
+than hyperelastic materials.  For these materials, the volumetric
+constraint equations or volumetric compatibility can be defined as
+(see Bathe(<a class="xref" href="thy_biblio.html#aYwgf26dmlg" title="Finite Element Procedures">[2]</a>) for details):  </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1upform1nov1601"></a><div><img src="graphics/thyeq1upform1nov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;101)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq9a2f6185-9418-4417-afc2-6c26ad4fa79b.svg"></span> </td></tr><tr><td>K = bulk modulus </td></tr></table><p>
+</p><p>P can also be defined as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2upform1nov1601"></a><div><img src="graphics/thyeq2upform1nov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;102)</b></p></td></tr></table><p>In mixed formulation, stress is updated and reported by: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3upform1nov1601"></a><div><img src="graphics/thyeq3upform1nov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;103)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#948;<sub>ij</sub> = Kronecker delta </td></tr><tr><td>&#963;<sub>ij</sub> = Cauchy stress from constitutive
+law </td></tr></table><p>
+</p><p>so that the internal virtual work <a class="xref" href="thy_geo5.html#thyeq2fundelnov1601" title="(3&#8211;90)">Equation&nbsp;3&#8211;90</a> can be expressed as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq4upform1nov1601"></a><div><img src="graphics/thyeq4upform1nov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;104)</b></p></td></tr></table><p>Introduce the constraint <a class="xref" href="thy_geo5.html#thyeq1upform1nov1601" title="(3&#8211;101)">Equation&nbsp;3&#8211;101</a> by Lagrangian multiplier 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq1a446ae0-9dee-4a13-ac4d-e54082f23a93.svg"></span>, the augmented internal virtual work is: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq5upform1nov1601"></a><div><img src="graphics/thyeq5upform1nov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;105)</b></p></td></tr></table><p>Substitute <a class="xref" href="thy_geo5.html#thyeq3upform1nov1601" title="(3&#8211;103)">Equation&nbsp;3&#8211;103</a> into above;
+it is obtained: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq6upform1nov1601"></a><div><img src="graphics/thyeq6upform1nov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;106)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>e<sub>v</sub> = &#948;<sub>ij</sub> e<sub>ij</sub> = e<sub>ii</sub> </td></tr></table><p>
+</p><p>Take differentiation of <a class="xref" href="thy_geo5.html#thyeq5upform1nov1601" title="(3&#8211;105)">Equation&nbsp;3&#8211;105</a>, ignore all higher terms of Du<sub>i</sub> and D
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqc3b9e4f2-0028-42a5-9a80-3d4bd37ec144.svg"></span>  than linear term, the final formulation can be expressed as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq7upform1nov1601"></a><div><img src="graphics/thyeq7upform1nov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;107)</b></p></td></tr></table><p>This is a linear set of equations of Du<sub>i</sub> and D <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq8bbb6c3c-772a-4750-86a8-e6211907371a.svg"></span> (displacement and hydrostatic pressure changes). In the final mixed u-P
+    formulation, the third term is the stress stiffness and is included only if requested
+     (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON or <a href="../ans_cmd/Hlp_C_PSTRES.html" class="olink"><span class="command"><strong>PSTRES</strong></span></a>,ON). The rest of the terms are based
+    on the material stiffness. The first term is from material constitutive law directly or from
+    straining; the second term is because of the stress modification (<a class="xref" href="thy_geo5.html#thyeq3upform1nov1601" title="(3&#8211;103)">Equation&nbsp;3&#8211;103</a>); the fourth and fifth terms are the extra rows and columns in
+    stiffness matrix due to the introduction of the extra degree of freedom: pressure, i.e.,
+     K<sub>uP</sub>, K<sub>Pu</sub> and K<sub>PP</sub> as in
+     <a class="xref" href="thy_geo5.html#thyeq1mixedupnov1601" title="(3&#8211;100)">Equation&nbsp;3&#8211;100</a>. </p><p>The stress stiffness in the above formulation is the same as
+the one in pure displacement formulation.  All other terms exist even
+for small deformation and are the same as the one derived by Bathe(<a class="xref" href="thy_biblio.html#aYwgf26dmlg" title="Finite Element Procedures">[2]</a>) for small deformation problems. </p><p>It is worthwhile to indicate that in the mixed formulation of the higher order elements
+     (<a href="../ans_elem/Hlp_E_PLANE183.html" class="olink"><span class="structname">PLANE183</span></a> , <a href="../ans_elem/Hlp_E_SOLID186.html" class="olink"><span class="structname">SOLID186</span></a> and
+     <a href="../ans_elem/Hlp_E_SOLID187.html" class="olink"><span class="structname">SOLID187</span></a> with KEYOPT(6) = 1), elastic strain only relates to the
+    stress in the element on an averaged basis, rather than pointwise. The reason is that the stress
+    is updated by <a class="xref" href="thy_geo5.html#thyeq3upform1nov1601" title="(3&#8211;103)">Equation&nbsp;3&#8211;103</a> and pressure <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq5a06dc31-137e-4edd-ace6-cffb9b8a9c12.svg"></span> is interpolated independently in an element with a function which is one order
+    lower than the function for volumetric strain. For lower order elements
+     (<a href="../ans_elem/Hlp_E_PLANE182.html" class="olink"><span class="structname">PLANE182</span></a>, <a href="../ans_elem/Hlp_E_SOLID185.html" class="olink"><span class="structname">SOLID185</span></a>), this problem is
+    eliminated since either B-bar technology or uniform reduced integration is used; volumetric
+    strain is constant within an element, which is consistent with the constant pressure
+     <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq356f4492-1ac5-4440-b33d-47f4a41832d4.svg"></span> interpolation functions (see <a class="xref" href="thy_geo5.html#nvUvf163mlg2" title="Table&nbsp;3.1:&nbsp;&nbsp;Interpolation Functions of Hydrostatic Pressure of Current-Technology Elements">Table&nbsp;3.1:&nbsp;Interpolation Functions of Hydrostatic Pressure of Current-Technology Elements</a>). In addition,
+    this problem will not arise in element <a href="../ans_elem/Hlp_E_SOLID187.html" class="olink"><span class="structname">SOLID187</span></a> with linear
+    interpolation function of <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq85f7a6e7-f0aa-44d4-88a4-0b5851a48c8e.svg"></span> (KEYOPT(6) = 2). This is because the order of interpolation function of
+     <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq25057f2c-d555-4f66-b10c-deb30afea233.svg"></span> is the same as the one for volumetric strain. In other words, the number of
+    degrees of freedom <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqceec4690-ef1e-41da-a0e9-7fe5fc2ce3b7.svg"></span> in one element is large enough to make <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq9a8d9b69-36c8-48e6-8caf-7abf58502318.svg"></span> consistent with the volumetric strain at each integration point. Therefore,
+    when mixed formulation of element <a href="../ans_elem/Hlp_E_SOLID187.html" class="olink"><span class="structname">SOLID187</span></a> is used with nearly
+    incompressible material, the linear interpolation function of <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq22bcdd19-4797-4733-ae11-46412c8702d0.svg"></span> or KEYOPT(6) = 2 is recommended. </p></div><div class="sect2" title="3.6.5.&nbsp;u-P Formulation II"><div class="titlepage"><div><div><h3 class="title"><a name="geoupform2"></a>3.6.5.&nbsp;u-P Formulation II</h3></div></div></div><p>A special formulation is necessary for fully incompressible hyperelastic material because the
+    volume constraint equation is different and hydrostatic pressure can not be obtained from
+    material constitutive law. Instead, it must be calculated separately. For these types of
+    materials, the stress is updated by:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1upform11nov1601"></a><div><img src="graphics/thyeq1upform11nov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;108)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq85d1c7ea-5d8f-48e1-9417-0b77f0342778.svg"></span> = deviatoric component of Cauchy stress tensor </td></tr></table><p>
+</p><p>The deviatoric component of deformation tensor defined by the
+e<sub>ij</sub> term of <a class="xref" href="thy_geo5.html#thyeq1fundelnov1601" title="(3&#8211;89)">Equation&nbsp;3&#8211;89</a> can be expressed as: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2upform11nov1601"></a><div><img src="graphics/thyeq2upform11nov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;109)</b></p></td></tr></table><p>The internal virtual work (<a class="xref" href="thy_geo5.html#thyeq2fundelnov1601" title="(3&#8211;90)">Equation&nbsp;3&#8211;90</a>) can be shown using 
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqcd3c358e-b230-4b22-8252-71829db297e7.svg"></span> and 
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq9e2e353e-0c72-4f83-88b0-266d58f08d1b.svg"></span>: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3upform11nov1601"></a><div><img src="graphics/thyeq3upform11nov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;110)</b></p></td></tr></table><p>The volume constraint is the incompressible condition.  For
+a fully incompressible hyperelastic material, it can be as defined
+by Sussman and Bathe(<a class="xref" href="thy_biblio.html#x7hf226mlg" title="&#34;A Finite Element Formulation for Nonlinear Incompressible Elastic and Inelastic Analysis&#34;">[124]</a>), Bonet and Wood(<a class="xref" href="thy_biblio.html#yQqFrb9jjw" title="Nonlinear Continuum Mechanics for Finite Element Analysis">[237]</a>), Crisfield(<a class="xref" href="thy_biblio.html#vC3v271jjw" title="Non-linear Finite Element Analysis of Solids and Structures">[295]</a>): </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq4upform11nov1601"></a><div><img src="graphics/thyeq4upform11nov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;111)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-10.000000px"><img src="graphics/eq3ce1bf2b-681b-4be6-a13f-92fef07c815a.svg"></span> </td></tr><tr><td>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq67316d4e-6e63-41c2-9c1f-21153121b60f.svg"></span> = determinant of deformation gradient tensor </td></tr><tr><td>X<sub>i</sub> = original coordinate </td></tr><tr><td>V<sub>o</sub> = original volume  </td></tr></table><p>
+</p><p>As in the mixed u-P formulation I (<a class="xref" href="thy_geo5.html#geoupform1" title="3.6.4.&nbsp;u-P Formulation I">u-P Formulation I</a>), the constraint <a class="xref" href="thy_geo5.html#thyeq4upform11nov1601" title="(3&#8211;111)">Equation&nbsp;3&#8211;111</a> was introduced
+to the internal virtual work by the Lagrangian multiplier 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqf8f3e057-db69-4236-8d3d-d7ddb47771ef.svg"></span>.  Then,  differentiating the augmented internal virtual work, the
+final formulation is obtained. </p><p>This formulation is similar to the formulation for nearly incompressible
+materials, i.e. <a class="xref" href="thy_geo5.html#thyeq7upform1nov1601" title="(3&#8211;107)">Equation&nbsp;3&#8211;107</a>.  The only
+major difference is that [K<sub>PP</sub>] = [0] in this
+formulation.  This is because material in this formulation is fully
+incompressible.</p></div><div class="sect2" title="3.6.6.&nbsp;u-P Formulation III"><div class="titlepage"><div><div><h3 class="title"><a name="upformIII"></a>3.6.6.&nbsp;u-P Formulation III</h3></div></div></div><p>When material behavior is almost incompressible, the pure displacement
+formulation may be applicable. The bulk modulus of material, however,
+is usually very large and thus often results in an ill-conditioned
+matrix. To avoid this problem, a special mixed u-P formulation is
+therefore introduced. The almost incompressible material usually has
+small volume changes at all material integration points. A new variable 
+<span class="inlineequation" style="&#xA;          vertical-align:-4.000000px"><img src="graphics/eq5ebb2422-4886-460d-a857-8f281b46b794.svg"></span> is introduced to quantify this small volume change, and the constraint
+equation</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq16a05f58-3591-4d9f-8d49-8985b97787a2"></a><div><img src="graphics/eq16a05f58-3591-4d9f-8d49-8985b97787a2.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;112)</b></p></td></tr></table><p>is enforced by introduction of the modified potential:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq2510a28a-5346-4f56-a609-5bfbfcf91961"></a><div><img src="graphics/eq2510a28a-5346-4f56-a609-5bfbfcf91961.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;113)</b></p></td></tr></table><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>W = hyperelastic strain energy potential</td></tr><tr><td>Q = energy augmentation due to volume constraint condition</td></tr></table><p>
+</p></div><div class="sect2" title="3.6.7.&nbsp;Volumetric Constraint Equations in u-P Formulations"><div class="titlepage"><div><div><h3 class="title"><a name="geovolupform"></a>3.6.7.&nbsp;Volumetric Constraint Equations in u-P Formulations</h3></div></div></div><p>The final set of linear equations of mixed formulations (see <a class="xref" href="thy_geo5.html#thyeq1mixedupnov1601" title="(3&#8211;100)">Equation&nbsp;3&#8211;100</a>) can be grouped into two: </p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq1voluupnov1601"></a><div><img src="graphics/thyeq1voluupnov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;114)</b></p></td></tr></table><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq2voluupnov1601"></a><div><img src="graphics/thyeq2voluupnov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;115)</b></p></td></tr></table><p>
+<a class="xref" href="thy_geo5.html#thyeq1voluupnov1601" title="(3&#8211;114)">Equation&nbsp;3&#8211;114</a> are the equilibrium equations
+and <a class="xref" href="thy_geo5.html#thyeq2voluupnov1601" title="(3&#8211;115)">Equation&nbsp;3&#8211;115</a> are the volumetric constraint
+equations.  The total number of active equilibrium equations on a
+global level (indicated by N<sub>d</sub>) is the total
+number of displacement DOFs without any prescribed displacement boundary
+condition.  The total number of volumetric constraint equations (indicated
+by N<sub>p</sub>) is the total number of pressure DOFs
+in all mixed u-P elements.  The optimal ratio of N<sub>d</sub>/N<sub>p</sub> is 2 for 2-D elements and 3 for 3-D elements.
+ When N<sub>d</sub>/N<sub>p</sub> is too small,
+the system may have too many constraint equations which may result
+in a severe locking problem.  On the other hand, when N<sub>d</sub>/N<sub>p</sub> is too large, the system
+may have too few constraint equations which may result in too much
+deformation and loss of accuracy. </p><p>When N<sub>d</sub>/N<sub>p</sub> &lt;
+1, the system has more volumetric constraint equations than equilibrium
+equations, thus the system is over-constrained.  In this case, if
+the u-P formulation I is used, the system equations will be very ill-conditioned
+so that it is hard to keep accuracy of solution and may cause divergence.
+ If the u-P formulation II is used, the system equation will be singular
+because [K<sub>PP</sub>] = [0] in this formulation so
+that the system is not solvable.  Therefore, over-constrained models
+should be avoided as described in the <a href="../ans_elem/Hlp_E_ElemTOC.html" class="olink"><em class="citetitle">Element Reference</em></a>. </p><p>Volumetric constraint is incorporated into the final equations
+as extra conditions.  A check is made at the element level for elements
+with internal nodes for pressure degrees of freedom and at degrees
+of freedom (HDSP) at global level for <a href="../ans_elem/Hlp_E_SOLID285.html" class="olink"><span class="structname">SOLID285</span></a> to see if the constraint equations are satisfied.  The  number of
+elements in which constraint equations have not been satisfied is
+reported for current-technology elements if the check is done at element
+level.</p><p>For u-P formulation I, the volumetric constraint is met if:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq3voluupnov1601"></a><div><img src="graphics/thyeq3voluupnov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;116)</b></p></td></tr></table><p>and for u-P formulation II, the volumetric constraint is met
+if:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="thyeq4voluupnov1601"></a><div><img src="graphics/thyeq4voluupnov1601.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;117)</b></p></td></tr></table><p>and for u-P formulation III, the volumetric constraint is met
+if:</p><table width="100%" class="equation"><colgroup><col width="95%" align="center"><col width="5%" align="right"></colgroup><tr><td align="center"><a name="eq28935978-d41c-455a-8941-7b82cb6688e3"></a><div><img src="graphics/eq28935978-d41c-455a-8941-7b82cb6688e3.svg"></div></td><td nowrap="yes" align="right" valign="middle"><p class="title"><b>(3&#8211;118)</b></p></td></tr></table><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>tol<sub>V</sub> = tolerance for volumetric compatibility
+(input as COMP on the <a href="../ans_cmd/Hlp_C_CNVTOL.html" class="olink"><span class="command"><strong>CNVTOL</strong></span></a> command)</td></tr></table><p>
+</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>
