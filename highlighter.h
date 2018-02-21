@@ -13,12 +13,13 @@ private:
     highlight_config hcfg;
     tooltip_config tcfg;
     parameter_config pcfg;
+    user_config ucfg;
     unsigned indentationLevel;
     unsigned lineNumber;
     string convert_line(string line, bool& in_paragraph);
     string get_tooltip(string keyword, string& url);
 public:
-    highlighter(string config_file, string tooltip_file);
+    highlighter(string config_file, string tooltip_file, string userconfig_file);
     void highlight(string input_file);
 };
 

@@ -115,3 +115,38 @@ string parameter_config::annotate(string argument) {
     }
     return annotated;
 }
+
+const string &user_config::get_help_root() const {
+    return help_root;
+}
+
+size_t user_config::get_indent_size() const {
+    return indent_size;
+}
+
+user_config::user_config(string filename) {
+    // Set default configuration
+    indent_size = 2;
+    help_root = "https://www.sharcnet.ca/Software/Ansys/17.0/en-us/help";
+    ifstream in(filename);
+    string line, key, value;
+    vector<string> parts;
+    while(getline(in,line,'\n')) {
+        // ! is the comment character
+        if (line[0] != '!') {
+            parts = split(line, '\t');
+            if (parts.size() == 2) {
+                key = parts[0]; value = parts[1];
+                // We won't have many config keys, so process them in an if-else here
+                if (key == "HELP_ROOT") {
+                    help_root = value;
+                } else if (key == "INDENT_SIZE") {
+                    indent_size = stoul(value);
+                } else {
+                    cout << "Warning: unsupported settings (" << key << ") found in config file!\n";
+                }
+            }
+        }
+    }
+    in.close();
+}

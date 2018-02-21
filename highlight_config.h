@@ -61,5 +61,14 @@ public:
     const vector<scalar_param> &getParams() const;
 };
 
+class user_config {
+private:
+    string help_root;
+    size_t indent_size;
+public:
+    user_config(string filename);
+    const string &get_help_root() const;
+    size_t get_indent_size() const;
+};
 
 #endif //APDL_HIGHLIGHT_HIGHLIGHT_CONFIG_H
