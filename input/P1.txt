@@ -1,0 +1,365 @@
+!!! FEA P1: Static/frequency analysis of a PIPE-network
+! Created by Tamas Poloskei, 2018. February 20.
+!! Units: [N],[N],[N/m^2=Pa],[N/m]
+
+D=200E-3 
+T=10E-3 
+R=300E-3
+ALPHA=1.2E-5   
+THEATA=150  
+S=50E3 
+P=6e6  
+G=9.81 
+RHO=7800   
+ELAST=2E11 
+NU=0.3 
+M=100
+! Second moment of inertias 
+THETAX=0
+THETAY=0
+THETAZ=0
+! Modified inertias, uncomment it for the modified problem
+! THETAX=2.25
+! THETAY=2.25
+! THETAZ=4.56
+
+!! SETUP: element types, real constants, materials, sections
+KEYW,PR_STRUC,1  ! Preferences / Structural
+/PREP7
+ET,1,PIPE16
+ET,2,PIPE17
+ET,3,PIPE18
+ET,4,COMBIN14   
+ET,5,MASS21 
+
+R,1,D,T
+R,2,D,T,1,,,,D,T,1,,,D,T,1
+R,3,D,T,R
+R,4,S,
+R,5,M,M,M,THETAX,THETAY,THETAZ
+
+MPTEMP,1,0  
+MPDATA,EX,1,,ELAST  
+MPDATA,PRXY,1,,NU   
+MPTEMP,1,0  
+MPDATA,DENS,1,,RHO
+MPTEMP,1,0  
+UIMP,1,REFT 
+MPDATA,ALPX,1,,ALPHA
+
+! Set angle of view
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP, FAST
+! Create the keypoints
+K, 1, 8500E-3, -5000E-3, -1000E-3   
+K, 2, 8500E-3, -5000E-3, -300E-3  
+K, 3, 8500E-3, -4700E-3, 0   
+K, 4, 8500E-3, -3500E-3, 0   
+K, 5, 8500E-3, -2300E-3, 0
+K, 6, 8500E-3, -2000E-3, 0
+K, 7, 8500E-3, -1700E-3, 0
+K, 8, 8500E-3, -500E-3, 0
+K, 9, 8500E-3, 1700E-3, 0
+K, 10, 8200E-3, 2000E-3, 0
+K, 11, 7500E-3, 2000E-3, 0
+K, 12, 3300E-3, 2000E-3, 0
+K, 13, 3000E-3, 1700E-3, 0
+K, 14, 3000E-3, 1000E-3, 0
+K, 15, 3000E-3, 300E-3, 0
+K, 16, 2700E-3, 0, 0
+K, 17, 0, 0, 0
+K, 18, 8500E-3, -2000E-3, 300E-3
+K, 19, 8500E-3, -2000E-3, 3000E-3
+K, 20, 7500E-3, 2000E-3, -1000E-3
+K, 21, 5000E-3, 2000E-3, 0
+K, 22, 8500E-3, -4700E-3, -300E-3
+K, 23, 8200E-3, 1700E-3, 0
+K, 24, 3300E-3, 1700E-3, 0
+K, 25, 2700E-3, 300E-3, 0
+
+! Create the lines
+L, 1, 2
+L, 3, 4
+L, 4, 5
+L, 7, 8
+L, 8, 9
+L, 10, 11
+L, 11, 21
+L, 21, 12
+L, 13, 14
+L, 14, 15
+L, 16, 17
+L, 18, 19
+
+! Meshing setup
+LESIZE,ALL,100E-3
+
+! Mesh straight lines with PIPE16 element
+TYPE, 1
+REAL, 1
+LMESH,ALL
+
+! Create further nodes
+NKPT,, 22
+NKPT,, 6
+NKPT,, 23
+NKPT,, 20
+NKPT,, 24
+NKPT,, 25
+
+! Create PIPE17 T element manually
+TYPE, 2
+REAL, 2
+
+KI = 5
+NSEL, S, LOC, X, KX(KI)  
+NSEL, R, LOC, Y, KY(KI) 
+NSEL, R, LOC, Z, KZ(KI) 
+*GET, NODEI, NODE, 0, NUM, MAX
+ALLSEL
+
+KJ = 6
+NSEL, S, LOC, X, KX(KJ)  
+NSEL, R, LOC, Y, KY(KJ) 
+NSEL, R, LOC, Z, KZ(KJ) 
+*GET, NODEJ, NODE, 0, NUM, MAX
+ALLSEL
+
+KK = 7
+NSEL, S, LOC, X, KX(KK)  
+NSEL, R, LOC, Y, KY(KK) 
+NSEL, R, LOC, Z, KZ(KK) 
+*GET, NODEK, NODE, 0, NUM, MAX
+ALLSEL
+
+KL = 18
+NSEL, S, LOC, X, KX(KL)  
+NSEL, R, LOC, Y, KY(KL) 
+NSEL, R, LOC, Z, KZ(KL) 
+*GET, NODEL, NODE, 0, NUM, MAX
+ALLSEL
+
+E, NODEI, NODEJ, NODEK, NODEL
+
+! Create PIPE18 elbow elements
+TYPE, 3
+REAL, 3
+
+KI = 2
+NSEL, S, LOC, X, KX(KI)  
+NSEL, R, LOC, Y, KY(KI) 
+NSEL, R, LOC, Z, KZ(KI) 
+*GET, NODEI, NODE, 0, NUM, MAX
+ALLSEL
+
+KJ = 3
+NSEL, S, LOC, X, KX(KJ)  
+NSEL, R, LOC, Y, KY(KJ) 
+NSEL, R, LOC, Z, KZ(KJ) 
+*GET, NODEJ, NODE, 0, NUM, MAX
+ALLSEL
+
+KK = 22
+NSEL, S, LOC, X, KX(KK)  
+NSEL, R, LOC, Y, KY(KK) 
+NSEL, R, LOC, Z, KZ(KK) 
+*GET, NODEK, NODE, 0, NUM, MAX
+ALLSEL
+
+E, NODEI, NODEJ, NODEK
+
+KI = 9
+NSEL, S, LOC, X, KX(KI)  
+NSEL, R, LOC, Y, KY(KI) 
+NSEL, R, LOC, Z, KZ(KI) 
+*GET, NODEI, NODE, 0, NUM, MAX
+ALLSEL
+
+KJ = 10
+NSEL, S, LOC, X, KX(KJ)  
+NSEL, R, LOC, Y, KY(KJ) 
+NSEL, R, LOC, Z, KZ(KJ) 
+*GET, NODEJ, NODE, 0, NUM, MAX
+ALLSEL
+
+KK = 23
+NSEL, S, LOC, X, KX(KK)  
+NSEL, R, LOC, Y, KY(KK) 
+NSEL, R, LOC, Z, KZ(KK) 
+*GET, NODEK, NODE, 0, NUM, MAX
+ALLSEL
+
+E, NODEI, NODEJ, NODEK
+
+KI = 12
+NSEL, S, LOC, X, KX(KI)  
+NSEL, R, LOC, Y, KY(KI) 
+NSEL, R, LOC, Z, KZ(KI) 
+*GET, NODEI, NODE, 0, NUM, MAX
+ALLSEL
+
+KJ = 13
+NSEL, S, LOC, X, KX(KJ)  
+NSEL, R, LOC, Y, KY(KJ) 
+NSEL, R, LOC, Z, KZ(KJ) 
+*GET, NODEJ, NODE, 0, NUM, MAX
+ALLSEL
+
+KK = 24
+NSEL, S, LOC, X, KX(KK)  
+NSEL, R, LOC, Y, KY(KK) 
+NSEL, R, LOC, Z, KZ(KK) 
+*GET, NODEK, NODE, 0, NUM, MAX
+ALLSEL
+
+E, NODEI, NODEJ, NODEK
+
+KI = 15
+NSEL, S, LOC, X, KX(KI)  
+NSEL, R, LOC, Y, KY(KI) 
+NSEL, R, LOC, Z, KZ(KI) 
+*GET, NODEI, NODE, 0, NUM, MAX
+ALLSEL
+
+KJ = 16
+NSEL, S, LOC, X, KX(KJ)  
+NSEL, R, LOC, Y, KY(KJ) 
+NSEL, R, LOC, Z, KZ(KJ) 
+*GET, NODEJ, NODE, 0, NUM, MAX
+ALLSEL
+
+KK = 25
+NSEL, S, LOC, X, KX(KK)  
+NSEL, R, LOC, Y, KY(KK) 
+NSEL, R, LOC, Z, KZ(KK) 
+*GET, NODEK, NODE, 0, NUM, MAX
+ALLSEL
+
+E, NODEI, NODEJ, NODEK
+
+! Create COMBIN14 spring element
+TYPE, 4
+REAL, 4
+
+KI = 11
+NSEL, S, LOC, X, KX(KI)  
+NSEL, R, LOC, Y, KY(KI) 
+NSEL, R, LOC, Z, KZ(KI) 
+*GET, NODEI, NODE, 0, NUM, MAX
+ALLSEL
+
+KJ = 20
+NSEL, S, LOC, X, KX(KJ)
+NSEL, R, LOC, Y, KY(KJ)
+NSEL, R, LOC, Z, KZ(KJ)
+*GET, NODEJ, NODE, 0, NUM, MAX
+ALLSEL
+
+E, NODEI, NODEJ
+
+
+! Create MASS21 structural mass element
+TYPE, 5
+REAL, 5
+
+KI = 8
+NSEL, S, LOC, X, KX(KI)  
+NSEL, R, LOC, Y, KY(KI) 
+NSEL, R, LOC, Z, KZ(KI) 
+*GET, NODEI, NODE, 0, NUM, MAX
+ALLSEL
+
+E, NODEI
+
+! Define kinematic constraints
+KI = 1
+NSEL, S, LOC, X, KX(KI)  
+NSEL, R, LOC, Y, KY(KI) 
+NSEL, R, LOC, Z, KZ(KI) 
+*GET, NODEI, NODE, 0, NUM, MAX
+ALLSEL
+D, NODEI, ALL
+
+KI = 17
+NSEL, S, LOC, X, KX(KI)  
+NSEL, R, LOC, Y, KY(KI) 
+NSEL, R, LOC, Z, KZ(KI) 
+*GET, NODEI, NODE, 0, NUM, MAX
+ALLSEL
+D, NODEI, ALL
+
+KI = 19
+NSEL, S, LOC, X, KX(KI)  
+NSEL, R, LOC, Y, KY(KI) 
+NSEL, R, LOC, Z, KZ(KI) 
+*GET, NODEI, NODE, 0, NUM, MAX
+ALLSEL
+D, NODEI, ALL
+
+KI = 20
+NSEL, S, LOC, X, KX(KI)  
+NSEL, R, LOC, Y, KY(KI) 
+NSEL, R, LOC, Z, KZ(KI) 
+*GET, NODEI, NODE, 0, NUM, MAX
+ALLSEL
+D, NODEI, ALL
+
+!!! Static analysis
+!! Load case 1 - internal pressure
+! Select the pipe elements, REAL constants 1, 2 and 3
+ESEL, S, REAL,, 1, 3, 1
+! Apply internal pressure
+SFE, ALL, 1, PRES,,P 
+LSWRITE, 1
+!! Load case 2 - own weight
+! Delete internal pressure
+SFEDELE, ALL, 1, PRES 
+ACEL, 0, 0, G
+LSWRITE, 2
+!! Load case 3 - thermal expansion
+! Delete gravity field
+ACEL, 0, 0, 0
+TUNIF, 20
+BFL, ALL, TEMP, THETA
+LSWRITE, 3
+
+! Add thickness and shape of element
+
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15
+/VIEW,1,1,1,1   
+/ANG,1  
+
+/ESHAPE,1.5
+/EFACET,1
+FINISH  
+
+! Solution
+/SOL
+LSSOLVE,1,3,1,
+
+! Post processing
+/POST1  
+LCDEF, 1, 1, Last 
+LCDEF, 2, 2, Last
+LCDEF, 3, 3, Last
+! element tables
+
+FINISH  
+
+!! Modal analysis
+/SOL
+ANTYPE, 2
+MODOPT, LANB, 10  
+EQSLV, SPAR  
+MXPAND, 10,,, 1 
+
+MODOPT,LANB, 10,,, ,OFF
+/STATUS, SOLU
+SOLVE   
+FINISH  
+/POST1  
+SET,LIST

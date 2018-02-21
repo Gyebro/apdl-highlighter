@@ -6,7 +6,7 @@
 #include "highlighter.h"
 #include "common.h"
 
-highlighter::highlighter(string config_file, string tooltip_file): hcfg(config_file), tcfg(tooltip_file), indentationLevel(0) {
+highlighter::highlighter(string config_file, string tooltip_file): hcfg(config_file), tcfg(tooltip_file) {
 
 }
 
@@ -26,6 +26,7 @@ void highlighter::highlight(string input_file) {
     string line;
     bool in_paragraph = false;
     while(getline(input, line, '\n')) {
+        ++lineNumber;
         output << convert_line(line, in_paragraph);
     }
     output << "</body>\n";
@@ -152,6 +153,6 @@ string highlighter::get_tooltip(string keyword, string& url) {
             return tt;
         }
     }
-    cout << "Warning: tooltip for keyword: '" + keyword + "' not found!\n";
+    cout << "Line " << lineNumber << " Warning: tooltip for keyword: '" + keyword + "' not found!\n";
     return tt;
 }

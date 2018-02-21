@@ -14,6 +14,7 @@ private:
     tooltip_config tcfg;
     parameter_config pcfg;
     unsigned indentationLevel;
+    unsigned lineNumber;
     string convert_line(string line, bool& in_paragraph);
     string get_tooltip(string keyword, string& url);
 public:

@@ -1,0 +1,79 @@
+!!! FEA ST1: STABILITY OF A STATICALLY UNDETERMINED BEAM
+! created by Tamas Poloskei, 2017. March 01.
+!! [N],[Nmm],[N/mm^2=MPa],[N/mm] 
+
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15 
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST 
+
+!! Define constant parameters
+ELAST=2E5
+NU=0.3
+F=1E3
+A=20
+L=500
+
+!! SETUP: element types, materials, sections
+KEYW,PR_STRUC,1  ! Preferences / Structural
+/PREP7
+ET,1,BEAM188
+
+! Define the rectangular crossection
+SECTYPE,1,BEAM,RECT 
+SECOFFSET,CENT 
+SECDATA,2*A,A
+
+MPTEMP,1,0  
+MPDATA,EX,1,,ELAST  
+MPDATA,PRXY,1,,NU  
+
+! Create the keypoints
+K,1,0,0,0
+K,2,L,0,0
+K,3,3*L,0,0
+
+! Creating the lines
+L, 1, 2
+L, 2, 3
+
+! Meshing the lines
+LESIZE,1,,,5
+LESIZE,2,,,10
+LMESH,ALL
+! Applying the geometric constraints
+DK,1,ALL,0
+DK,2,UY,0
+DK,2,UZ,0
+DK,3,UY,0
+DK,3,UZ,0
+FK,3,FX,-F
+FINISH
+
+! Calculate prestress effect
+/SOL
+PSTRES,1
+/STATUS,SOLU
+SOLVE   
+FINISH
+  
+! Eigen buckling analysis
+/SOL
+ANTYPE,1
+! Extract eight modes
+BUCOPT,LANB,8,0,0,CENTER
+MXPAND,8,0,0,0,0.001,   
+/STATUS,SOLU
+SOLVE
+
+! Post processing
+/POST1
+SET,FIRST   
+
+! printing the eigenshapes
+*DO, III, 1, 8,1
+	PLNSOL, U,SUM, 1,1.0  
+	/IMAGE,SAVE,strcat(chrval(III),'_eigen_shape'),bmp
+	SET,NEXT
+*ENDDO
