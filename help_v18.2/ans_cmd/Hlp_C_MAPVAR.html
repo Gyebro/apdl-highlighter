@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:41-04:00"><title>MAPVAR</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_M_TOC.html" title="M Commands"><link rel="prev" href="Hlp_C_MAPSOLVE.html" title="MAPSOLVE"><link rel="next" href="Hlp_C_MASCALE.html" title="MASCALE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="MAPVAR"><a name="MAPVAR"></a><div class="titlepage"></div><a class="indexterm" name="d0e160036"></a><span class="refentrytitle"><span class="command"><strong>MAPVAR</strong></span></span><div class="refnamediv"><p><span class="command"><strong>MAPVAR</strong></span>, <em class="replaceable"><code>Option</code></em>, <em class="replaceable"><code>MatId</code></em>, <em class="replaceable"><code>IstrtStress</code></em>, <em class="replaceable"><code>nTenStress</code></em>, <em class="replaceable"><code>IstrtStrain</code></em>, <em class="replaceable"><code>nTenStrain</code></em>,
+, <em class="replaceable"><code>IstrtVect</code></em>, <em class="replaceable"><code>nVect</code></em><br><b class="refpurpose">Defines tensors and vectors in user-defined state variables
+for rezoning and in 2-D to 3-D analyses.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolurezoningrmf051404" title="Table&nbsp;2.63:&nbsp;&nbsp;Rezoning"><span class="type">Rezoning</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="MAPVAR.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Option</code></em></b></span></dt><dd><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DEFINE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Define variables for the specified <em class="replaceable"><code>MatId</code></em> material ID (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LIST</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>List the defined variables for the
+specified <em class="replaceable"><code>MatId</code></em> material ID.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>MatId</code></em></b></span></dt><dd><p>The material ID for the state variables which you
+are defining (<em class="replaceable"><code>Option</code></em> = DEFINE) or listing
+(<em class="replaceable"><code>Option</code></em> = LIST). </p><p>When <em class="replaceable"><code>Option</code></em> = LIST, the default value for this argument
+is ALL (which lists <span class="italic"><em>all</em></span> defined
+variables). When <em class="replaceable"><code>Option</code></em> = DEFINE, you must
+explicitly specify a material ID.</p></dd><dt><span><b class="term"><em class="replaceable"><code>IstrtStress</code></em></b></span></dt><dd><p>The start position of stress-like tensors in the state
+variables. This value must be either a positive integer or 0 (meaning
+no stress-like tensors).</p></dd><dt><span><b class="term"><em class="replaceable"><code>nTenStress</code></em></b></span></dt><dd><p>The number of stress-like tensors in the state variables.
+This value must be either a positive integer (or 0), and all stress-like
+tensors must be contiguous.</p></dd><dt><span><b class="term"><em class="replaceable"><code>IstrtStrain</code></em></b></span></dt><dd><p>The start position of strain-like tensors in the state
+variables. This value must be either a positive integer or 0 (meaning
+no strain-like tensors).</p></dd><dt><span><b class="term"><em class="replaceable"><code>nTenStrain</code></em></b></span></dt><dd><p>The number of strain-like tensors in the state variables.
+This value must be either a positive integer (or 0), and all strain-like
+tensors must be contiguous. </p></dd><dt><span><b class="term"><em class="replaceable"><code>IstrtVect</code></em></b></span></dt><dd><p>The start position of vectors in the state variables.
+This value must be either a positive integer or 0 (meaning no vectors).</p></dd><dt><span><b class="term"><em class="replaceable"><code>nVect</code></em></b></span></dt><dd><p>The number of vectors in the state variables. This
+value must be either a positive integer (or 0), and all vectors must
+be contiguous. </p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="MAPVAR.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>MAPVAR</strong></span> command
+identifies the tensors and vectors in user-defined state variables
+(<a class="link" href="Hlp_C_TB.html" title="TB"><span class="command"><strong>TB</strong></span></a>,STATE) for user-defined materials (<a class="link" href="Hlp_C_TB.html" title="TB"><span class="command"><strong>TB</strong></span></a>,USER and <a href="../ans_prog/Z7K4r1e5lcd.html#UPFusermatjwf032800403" class="olink"><code class="function">UserMat</code></a> or <a href="../ans_prog/Z7K4r1e5lcd.html#UPFusermatthrmf040814" class="olink"><code class="function">UserMatTh</code></a>) or user-defined creep laws
+(<a class="link" href="Hlp_C_TB.html" title="TB"><span class="command"><strong>TB</strong></span></a>,CREEP,,,,100 and <a href="../ans_prog/Z7K4r1e5lcd.html#UPFimplcrpjwf122099345" class="olink"><code class="function">UserCreep</code></a>). </p><p>To handle large-rotation effects and to correctly differentiate between
+   tensor- and vector-mapping, specify the start position of specific state variables. For
+   stress-like tensors, the shear components saved as state variables are the tensor component. For
+   strain-like tensors, the shear components saved as state variables are twice the tensor
+   components. Therefore, issue the <span class="command"><strong>MAPVAR</strong></span> command to define the stress-like and
+   strain-like tensors individually. The command ensures that user-defined state variables are
+   mapped correctly during <a href="../ans_adv/Hlp_G_ADVREZ.html" class="olink">rezoning</a> and in
+    <a href="../ans_adv/Hlp_G_ADV2DTO3D.html" class="olink">2-D to 3-D analyses</a>. </p><p>In a rezoning operation, <span class="command"><strong>MAPVAR</strong></span> must be issued <span class="italic"><em>after</em></span> remeshing (<a class="link" href="Hlp_C_REMESH.html" title="REMESH"><span class="command"><strong>REMESH</strong></span></a>,FINISH) but <span class="italic"><em>before</em></span> mapping (<a class="link" href="Hlp_C_MAPSOLVE.html" title="MAPSOLVE"><span class="command"><strong>MAPSOLVE</strong></span></a>).</p></div><div class="refsect1" title="Menu Paths"><a name="MAPVAR.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

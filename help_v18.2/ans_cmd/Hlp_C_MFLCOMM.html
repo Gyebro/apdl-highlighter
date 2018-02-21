@@ -1,0 +1,74 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:43-04:00"><title>MFLCOMM</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_M_TOC.html" title="M Commands"><link rel="prev" href="Hlp_C_MFITER.html" title="MFITER"><link rel="next" href="Hlp_C_MFLIST.html" title="MFLIST"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="MFLCOMM"><a name="MFLCOMM"></a><div class="titlepage"></div><a class="indexterm" name="d0e163561"></a><span class="refentrytitle"><span class="command"><strong>MFLCOMM</strong></span></span><div class="refnamediv"><p><span class="command"><strong>MFLCOMM</strong></span>, <em class="replaceable"><code>Type</code></em>, <em class="replaceable"><code>Fname1</code></em>, <em class="replaceable"><code>Intname1</code></em>, <em class="replaceable"><code>Label1</code></em>, <em class="replaceable"><code>Fname2</code></em>, <em class="replaceable"><code>Intname2</code></em>, <em class="replaceable"><code>Label2</code></em>, <em class="replaceable"><code>Option</code></em><br><b class="refpurpose">Defines a load transfer for code coupling analyses.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolumfloadtrans" title="Table&nbsp;2.77:&nbsp;&nbsp;ANSYS Multi-field solver Load Transfer"><span class="type">Multi-field Load Transfer</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="MFLC.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Type</code></em></b></span></dt><dd><p> Set to SURF for a surface load transfer. Only surface
+load transfers are available for MFX.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Fname1</code></em></b></span></dt><dd><p>Sets the field solver name for the server (sending)
+code with a case-sensitive character string of up to 80 characters.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Intname1</code></em></b></span></dt><dd><p>Sets the interface name or number for the field solver
+of the server code. ANSYS interfaces are numbered and are defined
+by the SF family of commands (<a class="link" href="Hlp_C_SF.html" title="SF"><span class="command"><strong>SF</strong></span></a>, <a class="link" href="Hlp_C_SFA.html" title="SFA"><span class="command"><strong>SFA</strong></span></a>, or <a class="link" href="Hlp_C_SFE.html" title="SFE"><span class="command"><strong>SFE</strong></span></a>) with the FSIN surface load label. CFX
+interfaces use names, which are set in CFX-Pre. </p></dd><dt><span><b class="term"><em class="replaceable"><code>Label1</code></em></b></span></dt><dd><p>Sets the surface load label for the field solver of
+the server code with a character string of up to 80 characters. ANSYS
+uses a combination of the label and option to determine what data
+is transferred (e.g., heat flows and not fluxes are sent with the
+label/option pair HFLU/CPP). ANSYS cannot serve total force or total
+force density to CFX for either formulation. CFX will send the data
+requested by the label regardless of the option. CFX labels that have
+more than one word must be enclosed in single quotes. Note that this
+field is case-sensitive; i.e., FORC will work, but forc will not.</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="96" class="col1"><col width="96" class="col2"><col width="115" class="COLSPEC0"><col width="268" class="col3"></colgroup><thead><tr><th valign="top">CFX Label</th><th valign="top">ANSYS Label</th><th valign="top"><em class="replaceable"><code>Option</code></em></th><th valign="top">Definition</th></tr></thead><tbody><tr><td>'Total Force'</td><td>FORC</td><td>CPP</td><td>Sets the surface load label to force.</td></tr><tr><td>'Total Force Density'</td><td>FORC</td><td>NONC</td><td>Sets the surface load label to the total force per unit area associated
+with a mesh node.</td></tr><tr><td>'Total Mesh
+Displacement'</td><td>DISP</td><td>NONC, CPP</td><td>Sets the
+surface load label to displacement.</td></tr><tr><td>Temperature</td><td>TEMP</td><td>NONC, CPP</td><td>Sets
+the surface load label to temperature.</td></tr><tr><td>'Wall Heat Flow'</td><td>HFLU</td><td>CPP</td><td>Sets the
+surface load label to total wall heat flow.</td></tr><tr><td>'Wall Heat Flux'</td><td>HFLU</td><td>NONC</td><td>Sets the
+surface load label to heat flux.</td></tr></tbody></table></div></dd><dt><span><b class="term"><em class="replaceable"><code>Fname2</code></em></b></span></dt><dd><p>Sets the field solver name for the client (receiving)
+code with a character string of up to 80 characters.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Intname2</code></em></b></span></dt><dd><p>Sets the interface name or number for the field solver
+of the client code with a character string of up to 80 characters.
+ANSYS interfaces are numbered and are defined by the SF family of
+commands (<a class="link" href="Hlp_C_SF.html" title="SF"><span class="command"><strong>SF</strong></span></a>, <a class="link" href="Hlp_C_SFA.html" title="SFA"><span class="command"><strong>SFA</strong></span></a>, or <a class="link" href="Hlp_C_SFE.html" title="SFE"><span class="command"><strong>SFE</strong></span></a>) with the FSIN surface load label. CFX interfaces use
+names, which are set in CFX-Pre. </p></dd><dt><span><b class="term"><em class="replaceable"><code>Label2</code></em></b></span></dt><dd><p>Sets the surface load label for the field solver of
+the client code with a character string of up to 80 characters. ANSYS
+uses a combination of the label and option to determine what data
+is transferred (e.g., heat flows and not fluxes are sent with the
+label-option pair HFLU/CPP). CFX will send the data requested by the
+label regardless of the option. CFX labels that have more than one
+word must be enclosed in single quotes. Note that this field is case-sensitive;
+i.e., FORC will work, but forc will not.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Option</code></em></b></span></dt><dd><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NONC</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Profile preserving: Sets the interface
+load transfer to the nonconservative formulation (default for displacement
+and temperature). In the nonconservative formulation, the force density
+(or heat flux) is transferred across the interface, preserving the
+density profile between the two fields.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CPP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Conservative: Uses a local conservative
+formulation while preserving the density profile (default for total
+force and wall heat flow). In the conservative formulation, total
+force (or heat flow) must be transferred across the interface from
+the CFX field solver to the ANSYS field solver.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="MFLC.notes"></a><h2>Notes</h2><p>ANSYS input should always be in consistent units for its model.</p><p>ANSYS uses a combination of the label and option to determine
+what data to transfer. CFX will send exactly the data requested by
+the label, regardless of the option. However, for the NONC option,
+the CFX label must be Total Force Density or Wall Heat Flux and for
+the CPP option, the CFX label must be Total Force or Wall Heat Flow. </p><p>For more information on profile preserving and conservative
+load transfer, see <a href="../ans_cou/Hlp_G_COUsocket._WHAT.html#mfx_loadinter" class="olink">Load Interpolation</a> in the <a href="../ans_cou/Hlp_G_CouTOC.html" class="olink"><em class="citetitle">Coupled-Field Analysis Guide</em></a>. <a href="../ans_cou/Hlp_G_COUmulti_ALGO.html#jjs010904246" class="olink">Mapping Diagnostics</a> are also available;
+however, if the improperly-mapped nodes are based on the CFX mesh,
+you should ignore the ANSYS-generated components because the CFX nodes
+are not present in the ANSYS database.</p><p>If you are working interactively, you can choose two pre-defined
+combinations, <span class="guibutton"><strong>Mechanical</strong></span> or <span class="guibutton"><strong>Thermal</strong></span>, or you can choose a <span class="guibutton"><strong>Custom</strong></span> option. If you
+choose the <span class="guibutton"><strong>Mechanical</strong></span> load type, then the Total
+Force Density and Total Mesh Displacement data (corresponding to the
+ANSYS FORC and DISP labels, respectively) is transferred. If you choose
+the <span class="guibutton"><strong>Thermal</strong></span> load type, then the Temperature
+and Wall Heat Flux data (corresponding to the ANSYS TEMP and HFLU
+labels, respectively) is transferred. If you choose <span class="guibutton"><strong>Custom</strong></span>, you can select any valid combination of label and option as described
+above.</p><p>The ANSYS Multi-field solver solver does not allow you to switch the load transfer
+direction for the same load quantity across the same interfaces for
+a restart run. For example, if Field1 sends temperature to and receives
+heat flow from Field2 across Interface 1 in a previous solution, then
+you cannot make Field1 send heat flow to and receive temperatures
+from Field2 across the same interface in a restart run, even if you
+cleared the corresponding load transfer command.   </p><p>See <a href="../ans_cou/Hlp_G_COUsocket_PROC.html#mfscommands" class="olink">Multi-field Commands</a> in the <a href="../ans_cou/Hlp_G_CouTOC.html" class="olink"><em class="citetitle">Coupled-Field Analysis Guide</em></a> for a list of all ANSYS Multi-field solver commands and their availability
+for MFS and MFX analyses. </p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p></div><div class="refsect1" title="Menu Paths"><a name="MFLC.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Multi-field Set Up&gt;MFX-ANSYS/CFX&gt;Load Transfer</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Multi-field Set Up&gt;MFX-ANSYS/CFX&gt;Load Transfer</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

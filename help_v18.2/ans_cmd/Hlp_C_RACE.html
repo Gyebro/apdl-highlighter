@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:41-04:00"><title>RACE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_R_TOC.html" title="R Commands"><link rel="prev" href="Hlp_C_R.html" title="R"><link rel="next" href="Hlp_C_RADOPT.html" title="RADOPT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="RACE"><a name="RACE"></a><div class="titlepage"></div><a class="indexterm" name="d0e222135"></a><span class="refentrytitle"><span class="command"><strong>RACE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>RACE</strong></span>, <em class="replaceable"><code>XC</code></em>, <em class="replaceable"><code>YC</code></em>, <em class="replaceable"><code>RAD</code></em>, <em class="replaceable"><code>TCUR</code></em>, <em class="replaceable"><code>DY</code></em>, <em class="replaceable"><code>DZ</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>Cname</code></em><br><b class="refpurpose">Defines a "racetrack" current source. </b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7specpurpldm061600" title="Table&nbsp;2.48:&nbsp;&nbsp;Special Purpose"><span class="type">Special Purpose</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="RACE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>XC</code></em></b></span></dt><dd><p>Location of the mid-thickness of the vertical leg
+along the working plane X-axis.</p></dd><dt><span><b class="term"><em class="replaceable"><code>YC</code></em></b></span></dt><dd><p>Location of the mid-thickness of the horizontal leg
+along the working plane Y-axis.</p></dd><dt><span><b class="term"><em class="replaceable"><code>RAD</code></em></b></span></dt><dd><p>Radius of curvature of the mid-thickness of the curves
+in the racetrack source.  Defaults to .501 * DY</p></dd><dt><span><b class="term"><em class="replaceable"><code>TCUR</code></em></b></span></dt><dd><p>Total current, amp-turns (MKS), flowing in the source.</p></dd><dt><span><b class="term"><em class="replaceable"><code>DY</code></em></b></span></dt><dd><p>In-plane thickness of the racetrack source.</p></dd><dt><span><b class="term"><em class="replaceable"><code>DZ</code></em></b></span></dt><dd><p>Out-of-plane thickness (depth) of the racetrack source.</p></dd><dt><span><b class="term"><em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused fields</p></dd><dt><span><b class="term"><em class="replaceable"><code>Cname</code></em></b></span></dt><dd><p>An alphanumeric name assigned as a component name
+to the group of <a href="../ans_elem/Hlp_E_SOURC36.html" class="olink"><span class="structname">SOURC36</span></a> elements created
+by the command macro.  Cname must be enclosed in single quotes in
+the <span class="command"><strong>RACE</strong></span> command line.  Cname may be up to 32 characters,
+beginning with a letter and containing only letters, numbers, and
+underscores.  Component names beginning with an underscore (e.g.,
+_LOOP) are reserved for use by ANSYS and should be avoided.  If blank,
+no component name is assigned.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="RACE.notes"></a><h2>Notes</h2><p><span class="command"><strong>RACE</strong></span> invokes an ANSYS macro which defines
+a "racetrack" current source in the working plane coordinate system.
+ The current source is generated from bar and arc source primitives
+using the <a href="../ans_elem/Hlp_E_SOURC36.html" class="olink"><span class="structname">SOURC36</span></a> element (which is assigned
+the next available element type number).  The macro is valid for use
+in 3-D magnetic field analysis using a scalar potential formulation.
+ Current flows in a counterclockwise direction with respect  to the
+working plane.</p><p>The diagram below shows you a racetrack current source.</p><div><img src="graphics/gRACE1.svg"></div></div><div class="refsect1" title="Menu Paths"><a name="RACE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Define Loads&gt;Apply&gt;Magnetic&gt;Excitation&gt;Racetrack Coil</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Racetrack Coil</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Define Loads&gt;Apply&gt;Magnetic&gt;Excitation&gt;Racetrack Coil</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:36:36-04:00"><title>MPC184-Link/Beam</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_MPC184.html" title="MPC184"><link rel="next" href="Hlp_E_MPC184slid.html" title="MPC184-Slider"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="MPC184-Link/Beam"><a name="MPC184LinkBeam"></a><div class="titlepage"></div><a class="indexterm" name="d0e120737"></a><span class="refentrytitle"><span class="structname">MPC184-Link/Beam</span></span><div class="refnamediv"><p><br><b class="refpurpose">Multipoint Constraint Element: Rigid Link or Rigid Beam</b><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_E_MPC184link.html#mpc184linkprores" title="MPC184 Rigid Link/Beam Product Restrictions">Product Restrictions</a></span></div></div></div></p></div><div class="refsect1" title="MPC184 Rigid Link/Beam Element Description"><a name="elemdesc184link"></a><h2>MPC184 Rigid Link/Beam Element Description</h2><p>The <a class="link" href="Hlp_E_MPC184.html" title="MPC184"><span class="structname">MPC184</span></a> rigid link/beam element
+can be used to model a rigid constraint between two deformable bodies
+or as a rigid component used to transmit forces and moments in engineering
+applications. This element is well suited for linear, large rotation,
+and/or large strain nonlinear applications. </p><p>The kinematic constraints are imposed using one of the following
+two methods:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The <span class="bold"><strong>direct elimination method</strong></span>, wherein the kinematic constraints are imposed by internally generated
+MPC (multipoint constraint) equations. The degrees of freedom of a
+dependent node in the MPC equations are eliminated in favor of an
+independent node. </p></li><li class="listitem"><p>The<span class="bold"><strong> Lagrange multiplier method</strong></span>, wherein the kinematic constraints are imposed using Lagrange multipliers.
+In this case, all the participating degrees of freedom are retained.</p></li></ul></div><div class="figure"><a name="mpc184linkgeom"></a><p class="title"><b>Figure&nbsp;184link.1:&nbsp;&nbsp;MPC184 Rigid Link/Beam Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM184-1.svg" alt="MPC184 Rigid Link/Beam Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="MPC184 Rigid Link/Beam Input Data"><a name="mpc184linkinput"></a><h2>MPC184 Rigid Link/Beam Input Data</h2><p><a class="xref" href="Hlp_E_MPC184link.html#mpc184linkgeom" title="Figure&nbsp;184link.1:&nbsp;&nbsp;MPC184 Rigid Link/Beam Geometry">Figure&nbsp;184link.1:&nbsp;MPC184 Rigid Link/Beam Geometry</a> shows the geometry, node locations,
+and the coordinate system for this element. Two nodes define the element.
+The element x-axis is oriented from node I toward node J. The cross-sectional
+area of the element is assumed to be one unit. ANSYS selects the cross-section
+coordinate system automatically. The cross-section coordinate system
+is relevant only for the output of bending moments when the element
+is used as a rigid beam. </p><p>If KEYOPT(1) = 0 (default), the element is a rigid link with
+two nodes and three degrees of freedom at each node (UX, UY, UZ).
+If KEYOPT(1) = 1, the element is a rigid beam with two nodes and six
+degrees of freedom at each node (UX, UY, UZ, ROTX, ROTY, ROTZ).</p><p>If KEYOPT(2) = 0 (default), then the constraints are implemented
+using the direct elimination method. If KEYOPT(2) = 1, then the Lagrange
+multiplier method is used to impose the constraints.</p><p>The <a class="link" href="Hlp_E_MPC184.html" title="MPC184"><span class="structname">MPC184</span></a> rigid link/beam element
+with KEYOPT(2) = 1 can also be used in applications that call for
+thermal expansion on an otherwise rigid structure. The direct elimination
+method cannot be used for thermal expansion problems.</p><p>Because the element models a rigid constraint
+or a rigid component, material stiffness properties are not required.
+When thermal expansion effects are desired, the coefficient of thermal
+expansion must be specified. Density must be specified if the mass
+of the rigid element is to be accounted for in the analysis. If density
+is specified, the program calculates a lumped mass matrix for the
+element. The cross-sectional area is always assumed to be 1 (irrespective
+of the unit system used); therefore, the density should be suitably
+specified to account for the proper mass of the rigid link or beam
+in the appropriate unit system.</p><p>The element supports the birth and death options using <a href="../ans_cmd/Hlp_C_EALIVE.html" class="olink"><span class="command"><strong>EALIVE</strong></span></a> and <a href="../ans_cmd/Hlp_C_EKILL.html" class="olink"><span class="command"><strong>EKILL</strong></span></a>.</p><p><a class="xref" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">Nodal Loading</a> describes element loads.  You
+can input temperatures as element body loads at the nodes. The node
+I temperature T(I) defaults to TUNIF. The node J temperature defaults
+to T(I). </p><div class="refsect2" title="MPC184 Rigid Link/Beam Input Summary"><a name="mpc184linkinsum"></a><h3>MPC184 Rigid Link/Beam Input Summary</h3><p>This input summary applies to the rigid link and rigid beam
+options of <a class="link" href="Hlp_E_MPC184.html" title="MPC184"><span class="structname">MPC184</span></a>: KEYOPT(1) = 0 and 1.</p><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J </p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>UX, UY, UZ if KEYOPT(1) = 0 </p><p>UX, UY, UZ,
+ROTX, ROTY, ROTZ if KEYOPT(1) = 1</p></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p>ALPX (or CTEX <span class="italic"><em>or</em></span> THSX), DENS</p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><p>None&nbsp;</p></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Temperatures&nbsp;--&nbsp;</b></span></dt><dd><p>T(I), T(J) </p></dd></dl></div></div></dd><dt><span><b class="term">Element Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td><a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth
+and death</a></td></tr><tr><td><a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink">Large deflection</a></td></tr><tr><td><a href="../ans_str/strlinperturb.html" class="olink">Linear
+perturbation</a></td></tr></table></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Element behavior:</p><div><div class="variablelist"><dl><dt><span><b class="term">0 &nbsp;--&nbsp;</b></span></dt><dd><p>Rigid link (default)</p></dd><dt><span><b class="term">1 &nbsp;--&nbsp;</b></span></dt><dd><p>Rigid beam</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Reduction method:</p><div><div class="variablelist"><dl><dt><span><b class="term">0 &nbsp;--&nbsp;</b></span></dt><dd><p>Direct elimination method
+(default)</p></dd><dt><span><b class="term">1 &nbsp;--&nbsp;</b></span></dt><dd><p>Lagrange multiplier method</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="MPC184 Rigid Link/Beam Output Data"><a name="mpc184linkoutput"></a><h2>MPC184 Rigid Link/Beam Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal displacements included in the overall nodal
+solution </p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_MPC184link.html#mpc184linkoutdef" title="Table&nbsp;184link.1:&nbsp;&nbsp;MPC184 Rigid Link/Beam Element Output Definitions">Table&nbsp;184link.1:&nbsp;MPC184 Rigid Link/Beam Element Output Definitions</a>.</p></li></ul></div><p><a class="xref" href="Hlp_E_MPC184link.html#mpc184linkoutdef" title="Table&nbsp;184link.1:&nbsp;&nbsp;MPC184 Rigid Link/Beam Element Output Definitions">Table&nbsp;184link.1:&nbsp;MPC184 Rigid Link/Beam Element Output Definitions</a> uses the following notation:</p><p>A colon (:) in the Name column indicates the item can be accessed
+by the Component Name method [<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>].  The O column indicates the availability of the
+items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates
+the availability of the items in the results file.</p><p>In either the O or R columns, Y indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table
+footnote that describes when the item is <span class="italic"><em>conditionally</em></span> available, and a - indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="mpc184linkoutdef"></a><p class="title"><b>Table&nbsp;184link.1:&nbsp;&nbsp;MPC184 Rigid Link/Beam Element Output Definitions</b></p><div class="table-contents"><table summary="MPC184 Rigid Link/Beam Element Output Definitions" border="1" width="95%"><colgroup><col width="120" class="col1"><col width="312" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th align="center">Name</th><th align="center">Definition</th><th align="center">O</th><th align="center">R</th></tr><tr><th colspan="4" align="center">Link/Beam Elements
+(KEYOPT(1) = 0 or 1, and KEYOPT(2) = 0 or 1)</th></tr></thead><tbody><tr><td>EL</td><td>Element number</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Element node numbers (I and J)</td><td align="center">-</td><td align="center">Y</td></tr><tr><td colspan="4" align="center" valign="bottom"><span class="bold"><strong>Link/Beam Elements (KEYOPT(1) = 0 or 1, and KEYOPT(2)
+= 1)</strong></span></td></tr><tr><td>MAT</td><td>Material
+number for the element</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>TEMP</td><td>Temperature at nodes
+I and J</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>FX</td><td>Axial force</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>MY, MZ</td><td>Bending moments</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>SF:Y, Z</td><td>Section shear forces</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>MX</td><td>Torsional moment</td><td align="center">-</td><td align="center">Y</td></tr></tbody></table></div></div><br class="table-break"><p><a class="xref" href="Hlp_E_MPC184link.html#mpc184linkitseq" title="Table&nbsp;184link.2:&nbsp;&nbsp;MPC184 Rigid Link/Beam Item and Sequence Numbers">Table&nbsp;184link.2:&nbsp;MPC184 Rigid Link/Beam Item and Sequence Numbers</a> lists output available via
+the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method.
+ See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General Postprocessor
+(POST1)</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> for
+further information. The table uses the following notation: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the Element Output Definitions
+table.</p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element
+data</p></dd></dl></div></div><div class="table"><a name="mpc184linkitseq"></a><p class="title"><b>Table&nbsp;184link.2:&nbsp;&nbsp;MPC184 Rigid Link/Beam Item and Sequence Numbers</b></p><div class="table-contents"><table summary="MPC184 Rigid Link/Beam Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="192" class="col1"><col width="192" class="col2"><col width="192" class="col3"></colgroup><thead><tr><th rowspan="2" align="center" valign="middle">Output Quantity
+Name</th><th colspan="2" align="center"><a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th align="center">Item</th><th align="center">E</th></tr></thead><tbody><tr><td colspan="3" align="center"><span class="bold"><strong>Link/Beam Constraint (with KEYOPT(2) = 1)</strong></span></td></tr><tr><td align="center">FX</td><td align="center">SMISC</td><td align="center">1</td></tr><tr><td align="center">MY</td><td align="center">SMISC</td><td align="center">2</td></tr><tr><td align="center">MZ</td><td align="center">SMISC</td><td align="center">3</td></tr><tr><td align="center">MX</td><td align="center">SMISC</td><td align="center">4</td></tr><tr><td align="center">SFZ</td><td align="center">SMISC</td><td align="center">5</td></tr><tr><td align="center">SFY</td><td align="center">SMISC</td><td align="center">6</td></tr></tbody></table></div></div><br class="table-break"></div><div class="refsect1" title="MPC184 Rigid Link/Beam Assumptions and Restrictions"><a name="mpc185linkassres"></a><h2>MPC184 Rigid Link/Beam Assumptions and Restrictions</h2><p>The following restrictions apply to both the direct elimination
+method and the Lagrange multiplier method (KEYOPT(2) = 0 and 1):</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>A finite element model cannot be made up of only rigid
+elements in a static analysis. At a minimum, a deformable element
+(or elements) must be connected to one of the end nodes of a rigid
+element.</p></li><li class="listitem"><p>The cross-sectional area of the element is assumed
+to be unity.</p></li><li class="listitem"><p>The element coordinate system (<a href="../ans_cmd/Hlp_C_PSYMB.html" class="olink"><span class="command"><strong>/PSYMB</strong></span></a>,ESYS) is not relevant.</p></li></ul></div><p><span class="bold"><strong>Direct Elimination Method (KEYOPT(2) =
+0)</strong></span></p><p>These additional restrictions apply to the direct elimination
+method:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The <a class="link" href="Hlp_E_MPC184.html" title="MPC184"><span class="structname">MPC184</span></a> rigid link/beam
+using the direct elimination method can be used in static, transient,
+modal, and buckling analyses.</p></li><li class="listitem"><p>This element cannot be used in a distributed solution when the direct elimination method
+     is used.</p></li><li class="listitem"><p>Displacement boundary conditions on the nodes of rigid
+link/beams must be applied prudently. In a rigid linkage (structure)
+made of a number of rigid link/beam elements, if displacement boundary
+conditions are applied at more than one location, ANSYS will use the
+first encountered displacement boundary condition to constrain the
+entire rigid linkage according to rigid kinematic conditions. In some
+cases where the applied displacements may be redundant or self-contradictory,
+ANSYS will issue warning or error messages.</p></li><li class="listitem"><p>The direct elimination method cannot be used in problems
+involving thermal expansion. Use the Lagrange Multiplier method instead.</p></li><li class="listitem"><p>Reaction forces at the constrained nodes of a rigid
+link/beam may not always be available since the dependent and independent
+nodes are determined by ANSYS internally. We recommend that you check
+the interface nodes which connect rigid and deformable elements since
+reaction forces are available on these nodes.</p></li><li class="listitem"><p>The nodes of a rigid link/beam using the direct elimination
+method should not be linked with a node of an element implemented
+via the Lagrange multiplier method. For example, a rigid beam implemented
+using the direct elimination method (KEYOPT(2) = 0) should not be
+linked to a rigid beam implemented via the Lagrange multiplier method
+(KEYOPT(2) = 1). Or, a rigid beam implemented via the direct elimination
+method should not be linked to a node of a contact element that is
+implemented via the Lagrange multiplier method (KEYOPT(2) = 2 on the
+contact element).</p></li><li class="listitem"><p>Coupling constraints (<a href="../ans_cmd/Hlp_C_CP.html" class="olink"><span class="command"><strong>CP</strong></span></a> command)
+cannot be applied to nodes of rigid links/beams using the direct elimination
+method.</p></li><li class="listitem"><p>Nodes of rigid links/beams cannot be part of the retained
+nodes (nodes specified by the <a href="../ans_cmd/Hlp_C_M.html" class="olink"><span class="command"><strong>M</strong></span></a> command) in a substructure.
+However, the rigid links/beams can be entirely within the substructure.</p></li><li class="listitem"><p>Rigid links/beams should be not used in cyclic symmetry
+analyses.</p></li></ul></div><p><span class="bold"><strong>Lagrange Multiplier Method (KEYOPT(2)
+= 1)</strong></span></p><p>These additional restrictions apply to the Lagrange Multiplier
+method:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>To employ this feature successfully, use as few of
+these elements as possible. For example, it may be sufficient to overlay
+rigid line elements on a perimeter of a rigid region modeled with
+shell elements, as opposed to overlaying rigid line elements along
+each element boundary of the interior.</p></li><li class="listitem"><p>Modeling that avoids overconstraining the problem
+is necessary. Overconstrained models may result in trivial solutions,
+zero pivot messages (in a properly restrained system), or nonlinear
+convergence difficulties.</p></li><li class="listitem"><p>The temperature is assumed to vary linearly along
+the spar of the rigid link or rigid beam element.</p></li><li class="listitem"><p>If constraint equations are specified for the DOFs
+of a rigid element, it may be an overconstrained system. Similarly,
+prescribed displacements on both ends of the element is an indication
+of overconstraint.</p></li><li class="listitem"><p>When used as a link element, exercise the same precautions
+that you would when using a truss element (for example, <a class="link" href="Hlp_E_LINK180.html" title="LINK180"><span class="structname">LINK180</span></a>).</p></li><li class="listitem"><p>The equation solver (<a href="../ans_cmd/Hlp_C_EQSLV.html" class="olink"><span class="command"><strong>EQSLV</strong></span></a>) must
+be the sparse solver or the PCG solver. The command <a href="../ans_cmd/Hlp_C_PCGOPT.html" class="olink"><span class="command"><strong>PCGOPT</strong></span></a>,,,,,,,ON is also required in order to use the PCG solver.</p></li><li class="listitem"><p>The element is valid for static and transient analyses
+(linear and nonlinear), and rigid beam is valid for harmonic analyses.
+The element is not supported for buckling analyses.</p></li></ul></div></div><div class="refsect1" title="MPC184 Rigid Link/Beam Product Restrictions"><a name="mpc184linkprores"></a><h2>MPC184 Rigid Link/Beam Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific
+restrictions apply to this element in addition to the general assumptions
+and restrictions given in the previous section.</p><p title="ANSYS Mechanical Pro"><b>ANSYS Mechanical Pro&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li><li class="listitem"><p>Linear perturbation is not available.</p></li></ul></div><p title="ANSYS Mechanical Pro">
+   </p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+   </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

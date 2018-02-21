@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:32-04:00"><title>LATT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_L_TOC.html" title="L Commands"><link rel="prev" href="Hlp_C_LARGE.html" title="LARGE"><link rel="next" href="Hlp_C_LAYER.html" title="LAYER"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="LATT"><a name="LATT"></a><div class="titlepage"></div><a class="indexterm" name="d0e146846"></a><span class="refentrytitle"><span class="command"><strong>LATT</strong></span></span><div class="refnamediv"><p><span class="command"><strong>LATT</strong></span>, <em class="replaceable"><code>MAT</code></em>, <em class="replaceable"><code>REAL</code></em>, <em class="replaceable"><code>TYPE</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>KB</code></em>, <em class="replaceable"><code>KE</code></em>, <em class="replaceable"><code>SECNUM</code></em><br><b class="refpurpose">Associates element attributes with the selected, unmeshed lines.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7meshingldm061600" title="Table&nbsp;2.36:&nbsp;&nbsp;Meshing"><span class="type">Meshing</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="LATT.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>MAT</code></em>, <em class="replaceable"><code>REAL</code></em>, <em class="replaceable"><code>TYPE</code></em></b></span></dt><dd><p>Material number, real constant set number, and type number
+to be associated with selected, unmeshed lines.</p></dd><dt><span><b class="term"><em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused field.</p></dd><dt><span><b class="term"><em class="replaceable"><code>KB</code></em>, <em class="replaceable"><code>KE</code></em></b></span></dt><dd><p>Beginning and ending orientation keypoints to be associated
+with selected, unmeshed lines.  ANSYS uses the location of these keypoints
+to determine how to orient beam cross sections during beam meshing.  Beam
+elements may be created along a line with a constant orientation by specifying
+only one orientation keypoint (<em class="replaceable"><code>KB</code></em>), or a pre-twisted
+beam may be created by selecting different orientation keypoints at each end
+of the line (<em class="replaceable"><code>KB</code></em> and <em class="replaceable"><code>KE</code></em>).
+ (For a line bounded by two keypoints (<em class="replaceable"><code>KP1</code></em> and <em class="replaceable"><code>KP2</code></em>), the orientation vector at the beginning of
+the line extends from <em class="replaceable"><code>KP1</code></em> to <em class="replaceable"><code>KB</code></em>,
+and the orientation vector at the end of the line extends from <em class="replaceable"><code>KP2</code></em> to <em class="replaceable"><code>KE</code></em>.  The orientation
+vectors are used to compute the orientation nodes of the elements.)</p></dd><dt><span><b class="term"><em class="replaceable"><code>SECNUM</code></em></b></span></dt><dd><p>Section identifier to be associated with selected, unmeshed
+lines.  For details, see the description of the <a class="link" href="Hlp_C_SECTYPE.html" title="SECTYPE"><span class="command"><strong>SECTYPE</strong></span></a> and <a class="link" href="Hlp_C_SECNUM.html" title="SECNUM"><span class="command"><strong>SECNUM</strong></span></a> commands.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="LATT.notes"></a><h2>Notes</h2><p>The element attributes specified by the <span class="command"><strong>LATT</strong></span> command
+will be used when the lines are meshed.</p><p>Lines subsequently generated from the lines will also have the attributes
+specified by <em class="replaceable"><code>MAT</code></em>, <em class="replaceable"><code>REAL</code></em>, <em class="replaceable"><code>TYPE</code></em>,
+and <em class="replaceable"><code>SECNUM</code></em>.  If a line does not have these attributes
+associated with it (by this command) at the time it is meshed, the attributes
+are obtained from the then current <a class="link" href="Hlp_C_MAT.html" title="MAT"><span class="command"><strong>MAT</strong></span></a>, <a class="link" href="Hlp_C_REAL.html" title="REAL"><span class="command"><strong>REAL</strong></span></a>, <a class="link" href="Hlp_C_TYPE.html" title="TYPE"><span class="command"><strong>TYPE</strong></span></a>,
+and <a class="link" href="Hlp_C_SECNUM.html" title="SECNUM"><span class="command"><strong>SECNUM</strong></span></a> command settings.</p><p>In contrast, the values specified by <em class="replaceable"><code>KB</code></em> and <em class="replaceable"><code>KE</code></em> apply
+only to the selected lines; that is, lines subsequently generated
+from these lines will not share these attributes.  Similarly, if a line does
+not have <em class="replaceable"><code>KB</code></em> and <em class="replaceable"><code>KE</code></em> attributes
+associated with it via the <span class="command"><strong>LATT</strong></span> command at the time it
+is meshed, ANSYS cannot obtain the attributes from elsewhere.  See the discussion
+on beam meshing in <a href="../ans_mod/Hlp_G_MOD7.html" class="olink">Meshing
+Your Solid Model</a> in the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a> for more information.</p><p>Reissue the <span class="command"><strong>LATT</strong></span> command (before
+lines are meshed) to change the attributes.  A zero (or blank) argument removes
+the corresponding association. If any of the arguments are defined as -1,
+then that value will be left unchanged in the selected set.</p><p>In some cases, ANSYS can proceed with a line meshing operation even
+when no logical element type has been assigned via <span class="command"><strong>LATT</strong></span>,,,<em class="replaceable"><code>TYPE</code></em> or <a class="link" href="Hlp_C_TYPE.html" title="TYPE"><span class="command"><strong>TYPE</strong></span></a>.
+ See <a href="../ans_mod/Hlp_G_MOD7.html" class="olink">Meshing Your Solid
+Model</a> in the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a> for more information about setting element attributes.</p></div><div class="refsect1" title="Menu Paths"><a name="LATT.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Mesh Attributes&gt;All Lines</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Mesh Attributes&gt;Picked Lines</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

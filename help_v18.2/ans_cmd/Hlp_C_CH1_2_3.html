@@ -1,0 +1,71 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:11-04:00"><title>1.2.&nbsp;Terminology</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_C_CH1.html" title="Chapter&nbsp;1:&nbsp;About This Reference"><link rel="prev" href="Hlp_C_CH1_2_1.html" title="1.1.&nbsp;Conventions Used in This Reference"><link rel="next" href="Hlp_C_CH1_3.html" title="1.3.&nbsp;Command Characteristics"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="1.2.&nbsp;Terminology"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="aIG6vq2ddmcm"></a>1.2.&nbsp;Terminology</h2></div></div></div><p>Various terms are used in the command descriptions throughout
+this reference, defined as follows:</p><p><span class="bold"><strong>Analysis</strong></span> -- The set of input lines relating to a single
+   problem. An analysis basically consists of three phases: the Preprocessing Phase, the Solution
+   Phase, and the Postprocessing Phase.</p><p><span class="bold"><strong>Command</strong></span> -- An instruction to supply data, or control, to the
+   program. Commands usually begin with a prescribed name, followed by alphanumeric data. For
+   example, the command <a class="link" href="Hlp_C_ET.html" title="ET"><span class="command"><strong>ET</strong></span></a>, <em class="replaceable"><code>ITYPE</code></em>,
+    <em class="replaceable"><code>Ename</code></em>,&nbsp;... may be input as
+    <a class="link" href="Hlp_C_ET.html" title="ET"><span class="command"><strong>ET</strong></span></a>,1,<a href="../ans_elem/Hlp_E_PIPE288.html" class="olink"><span class="structname">PIPE288</span></a> stating that element type 1 is defined
+   as the <a href="../ans_elem/Hlp_E_PIPE288.html" class="olink"><span class="structname">PIPE288</span></a> element. The uppercase argument name indicates that a
+   numerical value is typically entered in that field, whereas an upper-lower case data label
+   indicates that an alphanumeric value is typically entered in that field. Another command, for
+   example, <a href="Hlp_C_PREP7.html" class="olink"><span class="command"><strong>/PREP7</strong></span></a>, instructs the program to enter the PREP7 portion of the
+   program. All valid commands are alphabetically listed in the <a class="xref" href="Hlp_C_CH3.html" title="Chapter&nbsp;3:&nbsp;Command Dictionary">Command Dictionary</a> of
+   this document. Unrecognized commands are further processed in a macro search
+    (<a href="Hlp_C_USE.html" class="olink"><span class="command"><strong>*USE</strong></span></a>) before being ignored. Commands may be indented on a line for
+   clarity.</p><p><span class="bold"><strong>Data</strong></span> -- Data may be numeric (real or integer), alphabetic, or
+   alphanumeric (containing letters and numbers). Nonnumeric data should not contain special
+   characters such as</p><pre class="programlisting">!   @   #    $   %    ^   &amp;   *   (     )   _    -   +  
+
+=   |   \   {  }   [  ]    "     '   /    &lt;     &gt;   ~    `</pre><p>Numeric data may be input in a variety of ways as described
+in <a class="xref" href="Hlp_C_CH1_3.html#aq97Sq201ctg" title="1.3.1.&nbsp;Data Input">Data Input</a>. Some commands are switches of the
+form <span class="bold"><strong> Commandname</strong></span>,<span class="italic"><em>Key</em></span>   where <span class="italic"><em>Key</em></span> can be 0, NO or OFF to toggle  the switch off; or 1, YES or ON to
+toggle the switch on.</p><p><span class="bold"><strong>Degree of Freedom</strong></span> -- The degrees of freedom are the primary
+   nodal unknowns determined by the analysis. They may be displacements, rotations, temperatures,
+   pressures, voltages, etc. A degree of freedom is defined by a node number and a label, for
+   example, 1 UX, 87 ROTZ, 4 TEMP, etc. Derived results, such as stresses, heat flows, etc. are
+   computed from the degree of freedom results and are considered secondary unknowns. </p><p>Element types with unequal sets of degrees of freedom can be
+combined  in a single structure.  For example, a 2-D structure composed
+ of  2-D solid elements having two degrees  of freedom (UX, UY) at
+each node and a 2-D beam element having three degrees of freedom (UX,
+UY, ROTZ) at each node will have the latter three degrees of freedom
+at the common nodes. Nodes which do not have a beam element attached
+will have only two degrees of freedom with ROTZ eliminated from the
+solution printout.</p><p><span class="bold"><strong>Field</strong></span> -- The command name and data items entered on a command
+   are separated into consecutive fields. A field is assumed to be as "wide" as the number of
+   characters specified. A comma is used to end one field and begin the next.</p><p><span class="bold"><strong>Line</strong></span> -- A line of input is a physical record read by the
+   computer. Input lines are limited to 640 characters (including preceding blanks, commas, and any
+   special characters). For file input, a line is represented by one 640 column data record. For
+   interactive input, a line is the string of characters (640 maximum) entered before the RETURN key
+   is pressed. Several commands may be put on one line as described in <a class="xref" href="Hlp_C_CH1_3.html#aq97Sq201ctg" title="1.3.1.&nbsp;Data Input">Data Input</a>. Blank lines are permitted for clarity.</p><p><span class="bold"><strong>Command name</strong></span> -- Only the first four characters of any
+   alphabetic (or alphanumeric) command name are interpreted by the program (except as noted for
+   certain commands, such as <span class="bold"><strong> /POST<em class="replaceable"><code>N</code></em></strong></span>, <span class="bold"><strong>/AUX<em class="replaceable"><code>N</code></em></strong></span>. <a href="Hlp_C_ENDDO.html" class="olink"><span class="command"><strong>*ENDDO</strong></span></a>, etc.). The remaining characters of the
+   field are ignored. Names shown with fewer than four characters are assumed to have blanks up
+   through the fourth character as part of the name. For example, this sample <a class="link" href="Hlp_C_ET.html" title="ET"><span class="command"><strong>ET</strong></span></a>
+   command may be input as <a class="link" href="Hlp_C_ET.html" title="ET"><span class="command"><strong>ET</strong></span></a>,1,42 or <a class="link" href="Hlp_C_ET.html" title="ET"><span class="command"><strong>ET</strong></span></a> ,1,42 or
+    <a class="link" href="Hlp_C_ET.html" title="ET"><span class="command"><strong>ET</strong></span></a> ,1,42, but not as <span class="bold"><strong>ETABCD</strong></span>,1,42. Names may
+   not contain special characters (as described in <a class="xref" href="Hlp_C_CH1_3.html#aq97Sq201ctg" title="1.3.1.&nbsp;Data Input">Data Input</a>). If the command
+   name is omitted, the name defaults to the name of the previous command, unless it was a slash (/)
+   or star (*) command. </p><p><span class="bold"><strong>Postprocessing Phase</strong></span> -- The set of commands causing further
+   processing of the solution output. These commands consist of commands from the POST1 and POST26
+   processors. The postprocessing phase may consist of input for several postprocessing sessions (in
+   series). </p><p><span class="bold"><strong>Preprocessing Phase</strong></span> -- The set of commands related to
+   defining the model. The preprocessing phase consists of input from the PREP7 processor.</p><p><span class="bold"><strong>Program</strong></span> -- The collection of all processors (preprocessing,
+   postprocessing, auxiliary, etc.) is called the ANSYS program. </p><p><span class="bold"><strong>Processor</strong></span> -- A group of related functions, such as model
+   definition (PREP7) or results examination (POST1).</p><p><span class="bold"><strong>Run</strong></span> -- The collection of all commands between the
+   system-level commands is called a run or session). A session may also consist of several analyses
+   in series (separated by a <a href="Hlp_C_CLEAR.html" class="olink"><span class="command"><strong>/CLEAR</strong></span></a> command).</p><p><span class="bold"><strong>Solution Phase</strong></span> -- The set of commands which apply boundary
+   conditions to the model created in preprocessing, then performs a solution for that set of
+   boundary conditions. The solution phase may consist of several solutions in series, such as a
+   static solution, followed by a modal solution, etc.</p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

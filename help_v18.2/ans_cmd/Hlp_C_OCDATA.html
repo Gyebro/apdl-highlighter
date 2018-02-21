@@ -1,0 +1,272 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:04-04:00"><title>OCDATA</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_O_TOC.html" title="O Commands"><link rel="prev" href="Hlp_O_TOC.html" title="O Commands"><link rel="next" href="Hlp_C_OCDELETE.html" title="OCDELETE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="OCDATA"><a name="OCDATA"></a><div class="titlepage"></div><a class="indexterm" name="d0e188459"></a><span class="refentrytitle">
+<span class="command"><strong>OCDATA</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>OCDATA</strong></span>, <em class="replaceable"><code>VAL1</code></em>, <em class="replaceable"><code>VAL2</code></em>, <em class="replaceable"><code>VAL3</code></em>, . . . , <em class="replaceable"><code>VAL14</code></em>
+<br><b class="refpurpose">Defines an <a href="../ans_bas/Hlp_G_BAS2_6.html#bas_oceanloads" class="olink">ocean load</a> using non-table data.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluocean" title="Table&nbsp;2.70:&nbsp;&nbsp;Ocean"><span class="type">Ocean</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="OCDATA.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>VAL1</code></em>, <em class="replaceable"><code>VAL2</code></em>, <em class="replaceable"><code>VAL3</code></em>, . . . , <em class="replaceable"><code>VAL14</code></em>
+</b></span></dt><dd><p>Values describing the basic ocean load or a wave condition. </p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="OCDATA.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>OCDATA</strong></span> command
+specifies non-table data that defines the ocean load, such as the
+depth of the ocean to the mud line, the ratio of added mass over added
+mass for a circular cross section, or the wave type to apply. The
+terms <em class="replaceable"><code>VAL1</code></em>, <em class="replaceable"><code>VAL2</code></em>, etc. are specialized according to the input set required for the
+given ocean load. </p><p>The program interprets the data input via the <span class="command"><strong>OCDATA</strong></span> command within the context of the most recently issued <a class="link" href="Hlp_C_OCTYPE.html" title="OCTYPE"><span class="command"><strong>OCTYPE</strong></span></a> command.</p><p>Input values in the order indicated.</p><p>This command is also valid in PREP7.</p><div class="highlights"><p>You can define the following ocean data types:</p><ul><li><a href="Hlp_C_OCDATA.html#ocdataBASIC" title="Ocean Data Type: Basic (OCTYPE,BASIC)">"Ocean Data Type: Basic (<span class="command"><strong>OCTYPE</strong></span>,BASIC)"</a></li><li><a href="Hlp_C_OCDATA.html#ocdataWAVE" title="Ocean Data Type: Wave (OCTYPE,WAVE)">"Ocean Data Type: Wave (<span class="command"><strong>OCTYPE</strong></span>,WAVE)"</a></li><li><a href="Hlp_C_OCDATA.html#ocdataZONE" title="Ocean Zone Type: Component, Z-Level, or Pipe (OCZONE,COMP/ZLOC/PIP)">"Ocean Zone Type: Component, Z-Level, or Pipe (<span class="command"><strong>OCZONE</strong></span>,COMP/ZLOC/PIP)"</a></li></ul></div><div class="refsect2" title="Ocean Data Type: Basic (OCTYPE,BASIC)"><a name="ocdataBASIC"></a><h3>Ocean Data Type: Basic (<a class="link" href="Hlp_C_OCTYPE.html" title="OCTYPE"><span class="command"><strong>OCTYPE</strong></span></a>,BASIC)</h3><p>For a better understanding of how to set up a basic ocean type,
+see <a class="xref" href="Hlp_C_OCDATA.html#ocdatafigbasic" title="Figure&nbsp;7:&nbsp;&nbsp;Basic Ocean Data Type Components">Figure&nbsp;7:&nbsp;Basic Ocean Data Type Components </a>.</p><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>VAL1</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>DEPTH</code></em> -- The depth of the
+ocean (that is, the distance between the mean sea level and the mud
+line). The water surface is assumed to be level in the XY plane, with
+Z being positive upwards. This value is required and must be positive. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL2</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>MATOC</code></em> -- The material number
+of the ocean. This value is required and is used to input the required
+density. It is also used to input the viscosity if the Reynolds number
+is used (<a class="link" href="Hlp_C_OCTABLE.html" title="OCTABLE"><span class="command"><strong>OCTABLE</strong></span></a>).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL3</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>KFLOOD</code></em> -- The inside-outside
+fluid-interaction key: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>0 -- The density and pressure of fluid inside and outside
+of the pipe element (<a href="../ans_elem/Hlp_E_PIPE288.html" class="olink"><span class="structname">PIPE288</span></a> or <a href="../ans_elem/Hlp_E_PIPE289.html" class="olink"><span class="structname">PIPE289</span></a>) are independent of each other. This behavior
+is the default.</td></tr><tr><td>1 -- The density and pressure of fluid inside of the pipe
+element (<a href="../ans_elem/Hlp_E_PIPE288.html" class="olink"><span class="structname">PIPE288</span></a> or <a href="../ans_elem/Hlp_E_PIPE289.html" class="olink"><span class="structname">PIPE289</span></a>) are set to equal the values outside of the pipe element.</td></tr></table><p>
+</p><p>For beam
+subtype CTUBE and HREC used with <a href="../ans_elem/Hlp_E_BEAM188.html" class="olink"><span class="structname">BEAM188</span></a> or <a href="../ans_elem/Hlp_E_BEAM189.html" class="olink"><span class="structname">BEAM189</span></a> and ocean loading, <em class="replaceable"><code>KFLOOD</code></em> is always set to 1.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL4</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>Cay</code></em> -- The ratio of added
+mass of the external fluid over the mass of the fluid displaced by
+the element cross section in the y direction (normal). The added mass
+represents the mass of the external fluid (ocean water) that moves
+with the pipe, beam, or link element when the element moves in the
+element y direction during a dynamic analysis.</p><p>If no value
+is specified, and the coefficient of inertia <em class="replaceable"><code>CMy</code></em> is not specified (<a class="link" href="Hlp_C_OCTABLE.html" title="OCTABLE"><span class="command"><strong>OCTABLE</strong></span></a>), both values default
+to 0.0.  </p><p>If no value is specified, but <em class="replaceable"><code>CMy</code></em> <span class="italic"><em>is</em></span> specified, this value defaults
+to <em class="replaceable"><code>Cay</code></em> = <em class="replaceable"><code>CMy</code></em> - 1.0.</p><p>If this value <span class="italic"><em>should</em></span> be 0.0,
+enter 0.0. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL5</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>Caz</code></em> -- The ratio of added
+mass of the external fluid over the mass of a cross section in the
+element z direction (normal). The added mass represents the mass of
+the external fluid (ocean water) that moves with the pipe, beam, or
+link element when the element moves in the element z direction during
+a dynamic analysis.</p><p>If no value is specified, and <span class="italic"><em>Cay</em></span> is specified, this value defaults to <span class="italic"><em>Cay</em></span>.</p><p>If no value is specified, and the coefficient of inertia <em class="replaceable"><code>CMz</code></em> is not specified (<a class="link" href="Hlp_C_OCTABLE.html" title="OCTABLE"><span class="command"><strong>OCTABLE</strong></span></a>),
+both values default to 0.0.  </p><p>If no value is specified, but <em class="replaceable"><code>CMz</code></em> <span class="italic"><em>is</em></span> specified, this value defaults
+to <em class="replaceable"><code>Cay</code></em> = <em class="replaceable"><code>CMz</code></em> - 1.0.</p><p>If this value <span class="italic"><em>should</em></span> be 0.0,
+enter 0.0. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL6</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>Cb</code></em> -- The ratio of buoyancy
+force used over buoyancy force based on the outside diameter and water
+density. Accept the default value in most cases. Adjust this option
+only when you must account for additional hardware (such as a control
+valve) attached to the pipe exterior. A non-default value may lead
+to small non-physical inconsistencies; testing is therefore recommended
+for non-default values.</p><p>If no value is specified, this
+value defaults to 1.0. </p><p>If this value should be 0.0 (useful when troubleshooting your
+input), enter 0.0.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL7</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>Zmsl</code></em> -- A vertical offset
+from the global origin to the mean sea level. The default value is
+zero (meaning that the origin is located at the mean sea level). </p><p>Two example cases for <em class="replaceable"><code>Zmsl</code></em> are:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>A structure with its origin on the sea floor (<em class="replaceable"><code>Zmsl</code></em> = <em class="replaceable"><code>DEPTH</code></em>).</p></li><li class="listitem"><p>A tidal change (<em class="replaceable"><code>tc</code></em>) above
+the mean sea level (<em class="replaceable"><code>Zmsl</code></em> = <em class="replaceable"><code>tc</code></em>, and <em class="replaceable"><code>DEPTH</code></em> becomes <em class="replaceable"><code>DEPTH</code></em> + <em class="replaceable"><code>tc</code></em>)</p></li></ul></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL8</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>Ktable</code></em> -- The dependency
+of <em class="replaceable"><code>VAL1</code></em> on the <a class="link" href="Hlp_C_OCTABLE.html" title="OCTABLE"><span class="command"><strong>OCTABLE</strong></span></a> command:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>Z (or 1) -- Values on the <a class="link" href="Hlp_C_OCTABLE.html" title="OCTABLE"><span class="command"><strong>OCTABLE</strong></span></a> command
+depend on the Z levels (default).</td></tr><tr><td>RE (or 2) -- Values on the <a class="link" href="Hlp_C_OCTABLE.html" title="OCTABLE"><span class="command"><strong>OCTABLE</strong></span></a> command
+depend on the Reynolds number.</td></tr></table><p>
+</p></dd></dl></div></div><div class="figure"><a name="ocdatafigbasic"></a><p class="title"><b>Figure&nbsp;7:&nbsp;&nbsp;Basic Ocean Data Type Components </b></p><div class="figure-contents"><div><img src="graphics/gOCDATA1.png" alt="Basic Ocean Data Type Components"></div></div></div><br class="figure-break"></div><div class="refsect2" title="Ocean Data Type: Wave (OCTYPE,WAVE)"><a name="ocdataWAVE"></a><h3>Ocean Data Type: Wave (<a class="link" href="Hlp_C_OCTYPE.html" title="OCTYPE"><span class="command"><strong>OCTYPE</strong></span></a>,WAVE)</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>VAL1</code></em>
+</b></span></dt><dd><p> <em class="replaceable"><code>KWAVE</code></em> -- The incident
+wave type: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>0 <span class="italic"><em>or</em></span> AIRY -- Small amplitude
+Airy wave without modifications (default).</td></tr><tr><td>1 <span class="italic"><em>or</em></span> WHEELER -- Small amplitude
+wave with Wheeler empirical modification of depth decay function.</td></tr><tr><td>2 <span class="italic"><em>or</em></span> STOKES-- Stokes fifth-order
+wave.</td></tr><tr><td>3 <span class="italic"><em>or</em></span> STREAMFUNCTION --
+Stream function wave.</td></tr><tr><td>5 <span class="italic"><em>or</em></span> RANDOM -- Random (but
+repeatable) combination of linear Airy wave components.</td></tr><tr><td>6 <span class="italic"><em>or</em></span> SHELLNEWWAVE -- Shell
+new wave.</td></tr><tr><td>7 <span class="italic"><em>or</em></span> CONSTRAINED -- Constrained
+new wave.</td></tr><tr><td>8 <span class="italic"><em>or</em></span> DIFFRACTED -- Diffracted
+wave (using <a href="../ans_adv/advoceanloading.html" class="olink">imported hydrodynamic data</a>)</td></tr><tr><td>101+ -- API for computing particle velocities and accelerations
+due to waves and current:</td></tr></table><div class="blockquote"><blockquote class="blockquote"><table border="0" summary="Simple list" class="simplelist"><tr><td>101 through 200 -- Data preprocessed (via <em class="replaceable"><code>KWAVE</code></em> = 0 logic).</td></tr><tr><td>201+ -- Data not preprocessed.</td></tr><tr><td>For more information, see the description of the <a href="../ans_prog/Hlp_P_UPFCUSTLOAD.html#upf_userPartVelAcc" class="olink">
+<code class="function">userPartVelAcc</code> subroutine</a> in the <a href="../ans_prog/ans_prog.html" class="olink"><em class="citetitle">Programmer's Reference</em></a>.</td></tr></table></blockquote></div></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL2</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>THETA</code></em> -- Angle of the wave
+direction &#952; from the global Cartesian X axis toward the global
+Cartesian Y axis (in degrees).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL3</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>WAVELOC</code></em> (valid when <em class="replaceable"><code>KWAVE</code></em> = 0 through 3, and 101+) -- The wave location
+type:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>0 -- Waves act on elements at their actual locations (default).</td></tr><tr><td>1 -- Elements are assumed to be at wave peak.</td></tr><tr><td>2 -- Upward vertical wave velocity acts on elements.</td></tr><tr><td>3 -- Downward vertical wave velocity acts on elements.</td></tr><tr><td>4 -- Elements are assumed to be at wave trough.</td></tr></table><p>
+</p><p>
+<em class="replaceable"><code>SPECTRUM</code></em> (valid
+when <em class="replaceable"><code>KWAVE</code></em> = 5 through 7) -- The wave spectrum
+type:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>0 -- Pierson-Moskowitz (default). </td></tr><tr><td>1 -- JONSWAP.</td></tr><tr><td>2 -- User-defined spectrum.</td></tr></table><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL4</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>KCRC</code></em> -- The wave-current
+interaction key. </p><p>Adjustments to the current profile are
+available via the <em class="replaceable"><code>KCRC</code></em> constant of the
+water motion table. Typically, these options are used only when the
+wave amplitude is large relative to the water depth, such that significant
+wave-current interaction exists.</p><p>
+</p><table border="0" summary="Simple list" class="simplelist"><tr><td>0 -- Use the current profile (as input) for wave locations
+below the mean water level, and the top current profile value for
+wave locations above the mean water level (default). </td></tr><tr><td>1 -- Linearly stretch or compress the current profile from
+the mud line to the top of the wave. </td></tr><tr><td>2 -- Similar to <em class="replaceable"><code>KCRC</code></em> = 1, but also
+adjusts the current profile horizontally such that total flow continuity
+is maintained with the input profile. All current directions <em class="replaceable"><code>Th</code></em>(j) must be identical. </td></tr><tr><td>
+<span class="italic"><em> The following option is valid only
+when KWAVE = 5 through 7:</em></span>
+</td></tr><tr><td>3 -- Nonlinear stretch or compress the current profile, as
+recommended in <span class="italic"><em>API RP 2A Codes of Practice
+for Designing and Constructing Fixed Offshore Platforms</em></span>.</td></tr></table><p>
+</p><div><img src="graphics/gELEM59-3.svg"></div></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL5</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>KMF</code></em> -- The MacCamy-Fuchs
+adjustment key, typically used only for larger-diameter pipes in relatively
+shallow water: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>0 -- Do not apply the adjustment (default). </td></tr><tr><td>1 -- Apply the adjustment (valid only when <em class="replaceable"><code>KWAVE</code></em> = 0 or 1). </td></tr></table><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL6</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>PRKEY</code></em> -- The wavelength
+wave-printout key: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>0 -- No extra printout (default).</td></tr><tr><td>1 -- Include the extra printout. </td></tr><tr><td>2 -- Print wave component details (valid only when <em class="replaceable"><code>KWAVE</code></em> = 5 through 7).</td></tr></table><p>
+</p></dd></dl></div></div><p>
+<span class="bold"><strong>The following input values are valid only
+when <em class="replaceable"><code>KWAVE</code></em> = 5 through 7:</strong></span>
+</p><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>VAL7</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>APC</code></em> -- Activate apparent
+period calculation when a wave is superimposed upon a current: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>0 -- Not activated (default).</td></tr><tr><td>1 -- Activated.</td></tr></table><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL8</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>DSA</code></em> -- Stretching depth
+factor: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>Stretching is performed between a distance of <em class="replaceable"><code>DSA</code></em> * <em class="replaceable"><code>Hs</code></em> below the mean
+water level (MWL) and the water surface, where <em class="replaceable"><code>Hs</code></em> is the significant wave height measured from the MWL. No stretching
+occurs outside this range, or if the wave surface is below the MWL.
+If <em class="replaceable"><code>DSA</code></em> * <em class="replaceable"><code>Hs</code></em> is
+negative, stretching is performed between that level above the MWL
+and the water surface. The default <em class="replaceable"><code>DSA</code></em> value
+is 0.5.</td></tr></table><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL9</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>DELTA</code></em> -- Delta stretching
+parameter (0.0 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq3efe50bf-5330-4bba-86c8-aea5b401ba9e.svg"></span> <em class="replaceable"><code> DELTA</code></em> 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq886e9c9a-ec9a-4cb4-be1b-8714994ccd52.svg"></span> 1.0): </p><table border="0" summary="Simple list" class="simplelist"><tr><td>A value of 0.0 corresponds to Wheeler stretching under wave
+crests, 1.0 corresponds to linear extrapolation of kinematics at mean
+water level to crest. (Default = 0.3.) If zero is required, specify
+a small positive number (0.01 or less) instead.</td></tr></table><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL10</code></em>
+</b></span></dt><dd><p>Wave kinematics factor or wave spreading angle: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<em class="replaceable"><code>KINE</code></em> (<em class="replaceable"><code>KWAVE</code></em> = 5 or 7) -- Wave kinematics factor (0.0 &lt; <em class="replaceable"><code> KINE </code></em> 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq66795d28-0aeb-4a1c-b8ad-698ddc56ee49.svg"></span> 1.0). The factor is used to account for
+wave spreading by modifying the horizontal wave velocities and accelerations.
+A value of 1.0 corresponds to uni-directional wave with no spreading.
+(Default = 1.0, no spreading.) </td></tr><tr><td>
+<em class="replaceable"><code>SPANGLE</code></em> (<em class="replaceable"><code>KWAVE</code></em> = 6) -- Wave spreading angle in degrees (0.0 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqb1bb67fc-d91f-4b70-b296-e83456b9931f.svg"></span> <em class="replaceable"><code> SPANGLE </code></em> &#8804; 40.0.). The angle is used to compute a wave spreading
+factor to modify the horizontal wave kinematics for nearly unidirectional
+seas. <em class="replaceable"><code>SPANGLE</code></em> = 0.0 corresponds to no spreading.
+(Default = 0.0, no spreading.) </td></tr></table><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL11</code></em>
+</b></span></dt><dd><p>Random seed value for phase angle generation, or wave
+crest amplitude value: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<em class="replaceable"><code>SEED</code></em> (<em class="replaceable"><code>KWAVE</code></em> = 5) -- Initial seed for random phase angle generation. (Default
+= 1.) </td></tr><tr><td>
+<em class="replaceable"><code>AMPMAX</code></em> (<em class="replaceable"><code>KWAVE</code></em> = 6) -- Maximum wave crest amplitude (distance between the mean
+water level and maximum wave crest). </td></tr><tr><td>
+<em class="replaceable"><code>AMPCONST</code></em> (<em class="replaceable"><code>KWAVE</code></em> = 7) -- Constrained wave crest amplitude (distance between the mean
+water level and wave crest). </td></tr></table></dd></dl></div></div><p>
+<span class="bold"><strong>The following input values are valid only
+when <em class="replaceable"><code>KWAVE</code></em> = 6 or 7:</strong></span>
+</p><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>VAL12</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>TOFF</code></em> -- Time offset at
+which the maximum wave crest will occur. (Default = 0.0.)</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL13</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>ROFF</code></em> -- Position offset
+along the wave direction where the maximum wave crest will occur.
+(Default = 0.0.)</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL14</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>EVOLVING</code></em> (<em class="replaceable"><code>KWAVE</code></em> = 6) -- Activate evolving wave:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>0 -- Not activated (default).</td></tr><tr><td>1 -- Activated.</td></tr></table><p>
+</p><p>
+<em class="replaceable"><code>SEED</code></em> (<em class="replaceable"><code>KWAVE</code></em> = 7) -- Initial
+seed for random phase angle generation. (Default = 1.)</p></dd></dl></div></div><div class="informaltable"><table border="1" width="95%"><colgroup><col class="col1" width="100%"></colgroup><tbody><tr><td>
+<p>
+<span class="bold"><strong>Usage Hints for <em class="replaceable"><code>KWAVE</code></em> = 5 Through 7</strong></span>
+</p>
+<p>Recommendations
+given in <span class="italic"><em>API RP 2A Codes of Practice for Designing
+and Constructing Fixed Offshore Platforms</em></span> can be enforced
+via the following settings (valid only when <em class="replaceable"><code>KWAVE</code></em> = 5 through 7): </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Set <em class="replaceable"><code>KCRC</code></em> = 3 (<em class="replaceable"><code>VAL4</code></em>) to apply nonlinear current stretching.</p></li><li class="listitem"><p>Set <em class="replaceable"><code>APC</code></em> = 1 (<em class="replaceable"><code>VAL7</code></em>) to enable automatic computation of apparent wave
+period when a wave is superimposed upon a current.</p></li><li class="listitem"><p>If <em class="replaceable"><code>KWAVE</code></em> = 5 or 7, specify
+wave kinematics factor <em class="replaceable"><code>KINE</code></em> (<em class="replaceable"><code>VAL10</code></em>) to modify the horizontal velocities and accelerations
+due to wave spreading. The factor can be estimated from measurement
+or hindcast directional spectral wave data as 
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq8064f53f-ec06-4685-aedc-63c9ef0a9e58.svg"></span>, where n is the exponent in the cosine wave spreading
+function at the spectral peak frequency.</p></li><li class="listitem"><p>If <em class="replaceable"><code>KWAVE</code></em> = 6, specify wave
+spreading angle <em class="replaceable"><code>SPANGLE</code></em> (<em class="replaceable"><code>VAL10</code></em>) to modify the horizontal velocities and accelerations due to wave
+spreading. This parameter differs from the wave kinematics factor
+indicated in the API codes, but the principle is similar nevertheless.</p></li></ul></div>
+<p>For <em class="replaceable"><code>VAL11</code></em> (when <em class="replaceable"><code>KWAVE</code></em> = 6 or 7), if no maximum or constrained wave
+crest amplitude (<em class="replaceable"><code>AMPCONST</code></em> or <em class="replaceable"><code>AMPMAX</code></em>) is defined, the value is calculated based on
+the significant wave height obtained from the spectrum data (<a class="link" href="Hlp_C_OCTABLE.html" title="OCTABLE"><span class="command"><strong>OCTABLE</strong></span></a>). For further information, see <a href="../ans_thry/thy_et8.html" class="olink">Hydrodynamic Loads</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>.</p>
+<p>For <em class="replaceable"><code>VAL14</code></em>, the Shell new wave model
+(<em class="replaceable"><code>KWAVE</code></em> = 6) is evolving (or <span class="italic"><em>dispersive</em></span>) in that the crest height varies
+with time. By default, however, the wave is &#8220;frozen&#8221;
+so that it can be stepped through in a quasi-static manner.</p>
+</td></tr></tbody></table></div><p>When using waves in a <a href="../ans_substr/aKa7uq1a9ldm.html" class="olink">superelement generation run</a> (<a class="link" href="Hlp_C_ANTYPE.html" title="ANTYPE"><span class="command"><strong>ANTYPE</strong></span></a>,SUBSTR), consider whether you should take the ocean
+level into account (<em class="replaceable"><code>SeOcLvL</code></em> on the <a class="link" href="Hlp_C_SEOPT.html" title="SEOPT"><span class="command"><strong>SEOPT</strong></span></a> command). </p></div><div class="refsect2" title="Ocean Zone Type: Component, Z-Level, or Pipe (OCZONE,COMP/ZLOC/PIP)"><a name="ocdataZONE"></a><h3>Ocean Zone Type: Component, Z-Level, or Pipe (<a class="link" href="Hlp_C_OCZONE.html" title="OCZONE"><span class="command"><strong>OCZONE</strong></span></a>,COMP/ZLOC/PIP)</h3><p>An ocean zone is a <span class="italic"><em>local</em></span> space
+where you can override global ocean-loading parameters. The following
+arguments specifying the ocean zone values are described in more detail
+under <a class="xref" href="Hlp_C_OCDATA.html#ocdataBASIC" title="Ocean Data Type: Basic (OCTYPE,BASIC)">"Ocean Data Type: Basic (<span class="command"><strong>OCTYPE</strong></span>,BASIC)"</a>.</p><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>VAL1</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>KFLOOD</code></em> -- The inside-outside
+fluid-interaction key. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL2</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>Cay</code></em> -- The ratio of added
+mass of the external fluid over the mass of a cross section in the
+element y direction (normal).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL3</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>Caz</code></em> -- The ratio of added
+mass of the external fluid over the mass of a cross section in the
+element z direction (normal).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VAL4</code></em>
+</b></span></dt><dd><p>
+<em class="replaceable"><code>Cb</code></em> -- The ratio of buoyancy
+force used over buoyancy force based on the outside diameter and water
+density.</p></dd></dl></div></div><div class="refsect3" title="Ocean Zone Type Usage Notes"><a name="d0e189475"></a><h4>Ocean Zone Type Usage Notes</h4><p>Ocean zone values specified via the <span class="command"><strong>OCDATA</strong></span> command override global ocean-loading parameters. </p><p>Arguments not specified default to the global values specified
+for the basic ocean type. Therefore, the relationship between <em class="replaceable"><code>Ca</code></em> and <em class="replaceable"><code>CM</code></em> values (<em class="replaceable"><code>Ca</code></em> = <em class="replaceable"><code>CM</code></em> - 1.0) is not applied
+to ocean zones.  </p><p>For a pipe-type ocean zone (<a class="link" href="Hlp_C_OCZONE.html" title="OCZONE"><span class="command"><strong>OCZONE</strong></span></a>,PIP), <em class="replaceable"><code>KFLOOD</code></em> is the only valid option. </p></div></div></div><div class="refsect1" title="Menu Paths"><a name="OCDATA.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

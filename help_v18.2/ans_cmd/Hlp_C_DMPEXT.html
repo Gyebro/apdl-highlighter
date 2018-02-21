@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:40-04:00"><title>DMPEXT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_D_TOC.html" title="D Commands"><link rel="prev" href="Hlp_C_DMOVE.html" title="DMOVE"><link rel="next" href="Hlp_C_DMPOPTION.html" title="DMPOPTION"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="DMPEXT"><a name="DMPEXT"></a><div class="titlepage"></div><a class="indexterm" name="d0e72654"></a><span class="refentrytitle"><span class="command"><strong>DMPEXT</strong></span></span><div class="refnamediv"><p><span class="command"><strong>DMPEXT</strong></span>, <em class="replaceable"><code>SMODE</code></em>, <em class="replaceable"><code>TMODE</code></em>, <em class="replaceable"><code>Dmpname</code></em>, <em class="replaceable"><code>Freqb</code></em>, <em class="replaceable"><code>Freqe</code></em>, <em class="replaceable"><code>NSTEPS</code></em><br><b class="refpurpose">Extracts modal damping coefficients in a specified frequency range.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="DMPEXT.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>SMODE</code></em></b></span></dt><dd><p>Source mode number. There is no default for this field; you
+must enter an integer greater than zero.</p></dd><dt><span><b class="term"><em class="replaceable"><code>TMODE</code></em></b></span></dt><dd><p>Target mode. Defaults to <em class="replaceable"><code>SMODE</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Dmpname</code></em></b></span></dt><dd><p>Array parameter name containing the damping results. Defaults
+to <span class="filename"><strong>d_damp</strong></span>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Freqb</code></em></b></span></dt><dd><p>Beginning frequency range (real number greater than zero)
+or 'EIG' at eigenfrequency of source mode. 'EIG' is valid only if <em class="replaceable"><code>SMODE</code></em> = <em class="replaceable"><code>TMODE</code></em>.
+Note that EIG must be enclosed in single quotes when this command is used
+on the command line or in an input file. There is no default for this field;
+you must enter a value. </p></dd><dt><span><b class="term"><em class="replaceable"><code>Freqe</code></em></b></span></dt><dd><p>End of frequency range. Must be blank for <em class="replaceable"><code>Freqb</code></em> =
+EIG. Default is <em class="replaceable"><code>Freqb</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NSTEPS</code></em></b></span></dt><dd><p>Number of substeps. Defaults to 1.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="DMPEXT.notes"></a><h2>Notes</h2><p>DMPEXT invokes an ANSYS macro that uses modal projection techniques
+to compute the damping force by the modal velocity of the source mode onto
+the target mode. From the damping force, damping parameters are extracted.
+DMPEXT creates an array parameter <em class="replaceable"><code>Dmpname</code></em>, with
+the following entries in each row:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>response frequency</p></li><li class="listitem"><p>modal damping coefficient</p></li><li class="listitem"><p>modal squeeze stiffness coefficient</p></li><li class="listitem"><p>damping ratio</p></li><li class="listitem"><p>squeeze-to-structural stiffness ratio</p></li></ul></div><p>The macro requires the modal displacements from the file <span class="filename"><strong>Jobname.EFL</strong></span> obtained
+from the <a class="link" href="Hlp_C_RMFLVEC.html" title="RMFLVEC"><span class="command"><strong>RMFLVEC</strong></span></a> command. In addition, a node component
+FLUN must exist from all <a href="../ans_elem/Hlp_E_FLUID136.html" class="olink"><span class="structname">FLUID136</span></a> nodes. The computed
+damping ratio may be used to specify constant or modal damping by means of
+the <a class="link" href="Hlp_C_DMPRAT.html" title="DMPRAT"><span class="command"><strong>DMPRAT</strong></span></a> or <a class="link" href="Hlp_C_MDAMP.html" title="MDAMP"><span class="command"><strong>MDAMP</strong></span></a> commands. For Rayleigh
+damping, use the <a class="link" href="Hlp_C_ABEXTRACT.html" title="ABEXTRACT"><span class="command"><strong>ABEXTRACT</strong></span></a> command to compute ALPHAD and
+BETAD damping parameters. See <a href="../ans_flu/Hlp_G_FLU_FLU1.html" class="olink">Thin
+Film Analysis</a> for more information on thin film analyses.</p><p>The macro uses the <a class="link" href="Hlp_C_LSSOLVE.html" title="LSSOLVE"><span class="command"><strong>LSSOLVE</strong></span></a> command to perform two
+load steps for each frequency.  The first load case contains the solution
+of the source mode excitation and can be used for further postprocessing.
+Solid model boundary conditions are deleted from the model.  In addition,
+prescribed nodal boundary conditions are applied to the model.  You should
+carefully check the boundary conditions of your model prior to executing a
+subsequent analysis.</p><p>This command is also valid in PREP7.</p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p></div><div class="refsect1" title="Menu Paths"><a name="DMPEXT.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;ThinFilm&gt;DampExtract&gt;Eigenfrequency</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;ThinFilm&gt;DampExtract&gt;Frequency Range</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

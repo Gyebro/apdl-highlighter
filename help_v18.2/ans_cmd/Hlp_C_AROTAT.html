@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:23-04:00"><title>AROTAT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_A_TOC.html" title="A Commands"><link rel="prev" href="Hlp_C_AREVERSE.html" title="AREVERSE"><link rel="next" href="Hlp_C_ARSCALE.html" title="ARSCALE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="AROTAT"><a name="AROTAT"></a><div class="titlepage"></div><a class="indexterm" name="d0e27642"></a><span class="refentrytitle"><span class="command"><strong>AROTAT</strong></span></span><div class="refnamediv"><p><span class="command"><strong>AROTAT</strong></span>, <em class="replaceable"><code>NL1</code></em>, <em class="replaceable"><code>NL2</code></em>, <em class="replaceable"><code>NL3</code></em>, <em class="replaceable"><code>NL4</code></em>, <em class="replaceable"><code>NL5</code></em>, <em class="replaceable"><code>NL6</code></em>, <em class="replaceable"><code>PAX1</code></em>, <em class="replaceable"><code>PAX2</code></em>, <em class="replaceable"><code>ARC</code></em>, <em class="replaceable"><code>NSEG</code></em><br><b class="refpurpose">Generates cylindrical areas by rotating a line pattern about an
+axis.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7areasldm061600" title="Table&nbsp;2.33:&nbsp;&nbsp;Areas"><span class="type">Areas</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="AROTAT.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NL1</code></em>, <em class="replaceable"><code>NL2</code></em>, <em class="replaceable"><code>NL3</code></em>,
+. . . , <em class="replaceable"><code>NL6</code></em></b></span></dt><dd><p>List of lines in the pattern to be rotated (6 maximum if using
+keyboard entry of <em class="replaceable"><code>NL1</code></em> to <em class="replaceable"><code>NL6</code></em>).
+ The lines must lie in the plane of the axis of rotation.  If <em class="replaceable"><code>NL1</code></em> =
+P, graphical picking is enabled and all remaining arguments are ignored (valid
+only in the GUI).  If <em class="replaceable"><code>NL1</code></em> = ALL, all selected lines
+will define the pattern to be rotated.  A component name may also be substituted
+for <em class="replaceable"><code>NL1</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>PAX1</code></em>, <em class="replaceable"><code>PAX2</code></em></b></span></dt><dd><p>Keypoints defining the axis about which the line pattern is
+to be rotated.</p></dd><dt><span><b class="term"><em class="replaceable"><code>ARC</code></em></b></span></dt><dd><p>Arc length (in degrees).  Positive follows right-hand rule
+about <em class="replaceable"><code>PAX1</code></em>-<em class="replaceable"><code>PAX2</code></em> vector.
+ Defaults to 360&deg;.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NSEG</code></em></b></span></dt><dd><p>Number of areas (8 maximum) around circumference.  Defaults
+to minimum number required for 90&deg; -maximum arcs, i.e., 4 for 360&deg;,
+3 for 270&deg;, etc.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="AROTAT.notes"></a><h2>Notes</h2><p>Generates cylindrical areas (and their corresponding keypoints and lines)
+by rotating a line pattern (and its associated keypoint pattern) about an
+axis.  Keypoint patterns are generated at regular angular locations, based
+on a maximum spacing of 90&deg;.  Line patterns are generated at the keypoint
+patterns.  Arc lines are also generated to connect the keypoints circumferentially.
+ Keypoint, line, and area numbers are automatically assigned, beginning with
+the lowest available values [<a class="link" href="Hlp_C_NUMSTR.html" title="NUMSTR"><span class="command"><strong>NUMSTR</strong></span></a>].  Adjacent lines use
+a common keypoint.  Adjacent areas use a common line.</p></div><div class="refsect1" title="Menu Paths"><a name="AROTAT.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Operate&gt;Extrude&gt;Lines&gt;About Axis</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

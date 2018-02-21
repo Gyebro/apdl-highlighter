@@ -1,0 +1,95 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:10-04:00"><title>PCALC</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_P_TOC.html" title="P Commands"><link rel="prev" href="Hlp_C_PBF.html" title="/PBF"><link rel="next" href="Hlp_C_PCGOPT.html" title="PCGOPT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="PCALC"><a name="PCALC"></a><div class="titlepage"></div><a class="indexterm" name="d0e195671"></a><span class="refentrytitle">
+<span class="command"><strong>PCALC</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>PCALC</strong></span>, <em class="replaceable"><code>Oper</code></em>, <em class="replaceable"><code>LabR</code></em>, <em class="replaceable"><code>Lab1</code></em>, <em class="replaceable"><code>Lab2</code></em>, <em class="replaceable"><code>FACT1</code></em>, <em class="replaceable"><code>FACT2</code></em>, <em class="replaceable"><code>CONST</code></em>
+<br><b class="refpurpose">Forms additional labeled path items by operating on existing path
+items.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1pathopjla070199" title="Table&nbsp;2.86:&nbsp;&nbsp;Path Operations"><span class="type">Path Operations</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="PCALC.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Oper</code></em>
+</b></span></dt><dd><p>Type of operation to be performed.  See <a class="xref" href="Hlp_C_PCALC.html#PCALC.notes" title="Notes">"Notes"</a> below
+for specific descriptions of each operation:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ADD</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Adds two existing path items.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MULT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Multiplies two existing path items.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DIV</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Divides two existing path items (a divide
+by zero results in a value of zero).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">EXP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Exponentiates and adds existing path items.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DERI</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Finds a derivative.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">INTG</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Finds an integral.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SIN</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Sine.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">COS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Cosine.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ASIN</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Arcsine.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ACOS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Arccosine.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LOG</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Natural log.</p></td></tr></tbody></table></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>LabR</code></em>
+</b></span></dt><dd><p>Label assigned to the resulting path item.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Lab1</code></em>
+</b></span></dt><dd><p>First labeled path item in operation.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Lab2</code></em>
+</b></span></dt><dd><p>Second labeled path item in operation.  <em class="replaceable"><code>Lab2</code></em> must
+not be blank for the MULT, DIV, DERI, and INTG operations.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>FACT1</code></em>
+</b></span></dt><dd><p>Factor applied to <em class="replaceable"><code>Lab1</code></em>. A (blank)
+or '0' entry defaults to 1.0.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>FACT2</code></em>
+</b></span></dt><dd><p>Factor applied to <em class="replaceable"><code>Lab2</code></em>. A (blank)
+or '0' entry defaults to 1.0.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>CONST</code></em>
+</b></span></dt><dd><p>Constant value (defaults to 0.0).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="PCALC.notes"></a><h2>Notes</h2><p>If <em class="replaceable"><code>Oper</code></em> = ADD, the command format is:</p><p>
+<span class="command"><strong>PCALC</strong></span>,ADD,<em class="replaceable"><code>LabR</code></em>,<em class="replaceable"><code>Lab1</code></em>,<em class="replaceable"><code>Lab2</code></em>,<em class="replaceable"><code>FACT1</code></em>,<em class="replaceable"><code>FACT2</code></em>,<em class="replaceable"><code>CONST</code></em>
+</p><p>This operation adds two existing path items according to the operation:</p><div class="blockquote"><blockquote class="blockquote"><p>
+<em class="replaceable"><code>LabR</code></em> = (<em class="replaceable"><code>FACT1</code></em> 
+ x <em class="replaceable"><code>Lab1</code></em>) + (<em class="replaceable"><code>FACT2</code></em> x <em class="replaceable"><code>Lab2</code></em>)
++ <em class="replaceable"><code>CONST</code></em>
+</p></blockquote></div><p>It may be used to scale the results for a single path item.</p><p>If <em class="replaceable"><code>Oper</code></em> = MULT, the command format is:</p><p>
+<span class="command"><strong>PCALC</strong></span>,MULT,<em class="replaceable"><code>LabR</code></em>,<em class="replaceable"><code>Lab1</code></em>,<em class="replaceable"><code>Lab2</code></em>,<em class="replaceable"><code>FACT1</code></em>
+</p><p>
+<em class="replaceable"><code>Lab2</code></em> must not be blank.  This operation multiplies
+two existing path items according to the operation:</p><div class="blockquote"><blockquote class="blockquote"><p>
+<em class="replaceable"><code>LabR</code></em> = <em class="replaceable"><code>Lab1</code></em> x <em class="replaceable"><code>Lab2</code></em> x <em class="replaceable"><code>FACT1</code></em>
+</p></blockquote></div><p>If <em class="replaceable"><code>Oper</code></em> = DIV, the command format is:</p><p>
+<span class="command"><strong>PCALC</strong></span>,DIV,<em class="replaceable"><code>LabR</code></em>,<em class="replaceable"><code>Lab1</code></em>,<em class="replaceable"><code>Lab2</code></em>,<em class="replaceable"><code>FACT1</code></em>
+</p><p>
+<em class="replaceable"><code>Lab2</code></em> must not be blank.  This operation divides
+two existing path items according to the operation:</p><div class="blockquote"><blockquote class="blockquote"><p>
+<em class="replaceable"><code>LabR</code></em> = (<em class="replaceable"><code>Lab1</code></em>/<em class="replaceable"><code>Lab2</code></em>)
+x <em class="replaceable"><code>FACT1</code></em>
+</p></blockquote></div><p>If <em class="replaceable"><code>Oper</code></em> = EXP, the command format is:</p><p>
+<span class="command"><strong>PCALC</strong></span>,EXP,<em class="replaceable"><code>LabR</code></em>,<em class="replaceable"><code>Lab1</code></em>,<em class="replaceable"><code>Lab2</code></em>,<em class="replaceable"><code>FACT1</code></em>,<em class="replaceable"><code>FACT2</code></em>
+</p><p>This operation exponentiates and adds existing path items according
+to the operation:</p><div class="blockquote"><blockquote class="blockquote"><p>
+<em class="replaceable"><code>LabR</code></em> = (|<em class="replaceable"><code>Lab1</code></em>|<sup>FACT1</sup>)
++ (|<em class="replaceable"><code>Lab2</code></em>|<sup>FACT2</sup>|)</p></blockquote></div><p>If <em class="replaceable"><code>Oper</code></em> = DERI, the command format is:</p><p>
+<span class="command"><strong>PCALC</strong></span>,DERI,<em class="replaceable"><code>LabR</code></em>,<em class="replaceable"><code>Lab1</code></em>,<em class="replaceable"><code>Lab2</code></em>,<em class="replaceable"><code>FACT1</code></em>
+</p><p>
+<em class="replaceable"><code>Lab2</code></em> must not be blank.  This operation finds
+a derivative according to the operation:</p><div class="blockquote"><blockquote class="blockquote"><p>
+<em class="replaceable"><code>LabR</code></em> = <em class="replaceable"><code>FACT1</code></em> x
+d(<em class="replaceable"><code>Lab1</code></em>)/d(<em class="replaceable"><code>Lab2</code></em>)</p></blockquote></div><p>If <em class="replaceable"><code>Oper</code></em> = INTG, the command format is:</p><p>
+<span class="command"><strong>PCALC</strong></span>,INTG,<em class="replaceable"><code>LabR</code></em>,<em class="replaceable"><code>Lab1</code></em>,<em class="replaceable"><code>Lab2</code></em>,<em class="replaceable"><code>FACT1</code></em>
+</p><p>
+<em class="replaceable"><code>Lab2</code></em> must not be blank.  This operation finds
+an integral according to the operation:</p><div class="informalequation"><a name="eqb7ec3fe5-6192-4739-ab47-6047369573ed"></a><div><img src="graphics/eqb7ec3fe5-6192-4739-ab47-6047369573ed.svg"></div></div><p>Use S for <em class="replaceable"><code>Lab2</code></em> to integrate <em class="replaceable"><code>Lab1</code></em> with
+respect to the path length.  S, the distance along the path, is automatically
+calculated by the program when a path item is created with the <a class="link" href="Hlp_C_PDEF.html" title="PDEF"><span class="command"><strong>PDEF</strong></span></a> command.</p><p>If <em class="replaceable"><code>Oper</code></em> = SIN, COS, ASIN, ACOS, or LOG, the
+command format is:</p><p>
+<span class="command"><strong>PCALC</strong></span>,Oper,<em class="replaceable"><code>LabR</code></em>,<em class="replaceable"><code>Lab1</code></em>,,<em class="replaceable"><code>FACT1</code></em>,<em class="replaceable"><code>CONST</code></em>
+</p><p>where the function (SIN, COS, ASIN, ACOS or LOG) is substituted for <em class="replaceable"><code>Oper</code></em> and <em class="replaceable"><code>Lab2</code></em> is
+blank.</p><p>The operation finds the resulting path item according to one of the
+following formulas:</p><div class="blockquote"><blockquote class="blockquote"><p>
+<em class="replaceable"><code>LabR</code></em> = FACT2 x <em class="replaceable"><code>sin(FACT1 x Lab1)
++ CONST</code></em>
+</p><p>
+<em class="replaceable"><code>LabR</code></em> = FACT2 x <em class="replaceable"><code>cos(FACT1 x Lab1)
++ CONST</code></em>
+</p><p>
+<em class="replaceable"><code>LabR</code></em> = FACT2 x <em class="replaceable"><code>sin<sup>-1</sup>(FACT1
+x Lab1) + CONST</code></em>
+</p><p>
+<em class="replaceable"><code>LabR</code></em> = FACT2 x <em class="replaceable"><code>cos<sup>-1</sup>(FACT1
+x Lab1) + CONST</code></em>
+</p><p>
+<em class="replaceable"><code>LabR</code></em> = FACT2 x <em class="replaceable"><code>log(FACT1 x Lab1)
++ CONST</code></em>
+</p></blockquote></div></div><div class="refsect1" title="Menu Paths"><a name="PCALC.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Path Operations&gt;Add</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Path Operations&gt;ArcCosine</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Path Operations&gt;ArcSine</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Path Operations&gt;Cosine</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Path Operations&gt;Differentiate</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Path Operations&gt;Divide</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Path Operations&gt;Exponentiate</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Path Operations&gt;Integrate</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Path Operations&gt;Multiply</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Path Operations&gt;Natural Log</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Path Operations&gt;Sine</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

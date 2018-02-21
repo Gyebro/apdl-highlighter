@@ -1,0 +1,65 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:25-04:00"><title>HRCPLX</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_H_TOC.html" title="H Commands"><link rel="prev" href="Hlp_C_HPTDELETE.html" title="HPTDELETE"><link rel="next" href="Hlp_C_HREXP.html" title="HREXP"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="HRCPLX"><a name="HRCPLX"></a><div class="titlepage"></div><a class="indexterm" name="d0e133881"></a><span class="refentrytitle">
+<span class="command"><strong>HRCPLX</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>HRCPLX</strong></span>, <em class="replaceable"><code>LOADSTEP</code></em>, <em class="replaceable"><code>SUBSTEP</code></em>, <em class="replaceable"><code>OMEGAT</code></em>, <em class="replaceable"><code>1STLCASE</code></em>, <em class="replaceable"><code>2NDLCASE</code></em>
+<br><b class="refpurpose">Computes and stores in the database the time-harmonic
+solution at a prescribed phase angle.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1setupjla070199" title="Table&nbsp;2.80:&nbsp;&nbsp;Setup"><span class="type">Set Up</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="HRCPLX.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>LOADSTEP</code></em>
+</b></span></dt><dd><p>Load step number of the data set to be read (defaults
+to 1).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>SUBSTEP</code></em>
+</b></span></dt><dd><p>Substep number within <em class="replaceable"><code>LOADSTEP</code></em>.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>OMEGAT</code></em>
+</b></span></dt><dd><p>Angle in degrees (&#937; (angle) times T (time)).</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>If &#8805; 360&deg;, the amplitude is supplied.</p></li><li class="listitem"><p>All others supply results at that angle. For example,
+if the angle is set to 0.0&deg;, the real part of the solution is
+supplied. If the angle is set to -90&deg; the imaginary part of the
+solution is supplied. </p></li></ul></div></dd><dt><span><b class="term">
+<em class="replaceable"><code>1STLCASE</code></em>
+</b></span></dt><dd><p>First load case number (defaults to 1).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>2NDLCASE</code></em>
+</b></span></dt><dd><p>Second load case number (defaults to 2).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="HRCPLX.notes"></a><h2>Notes</h2><p>
+<span class="command"><strong>HRCPLX</strong></span> invokes a macro that combines the
+real and imaginary parts of the solution. If the angle is specified,
+it produces the following: 
+</p><div class="informalequation"><a name="eq665bae1a-434c-45a7-b364-f7e862a4a775"></a><div><img src="graphics/eq665bae1a-434c-45a7-b364-f7e862a4a775.svg"></div></div><p>Where: </p><p>R<sub>R</sub> and R<sub>I</sub> are,
+respectively, the real and imaginary parts of the results quantity
+(e.g. the nodal displacements, the reaction forces, ...). </p><p>&#945; is the angle (OMEGAT). </p><p>
+<em class="replaceable"><code>1STLCASE</code></em> and <em class="replaceable"><code>2NDLCASE</code></em> are internally generated load cases. You may want to specify these
+to avoid overwriting an existing load case number 1 or 2. </p><p>Not all results computed by this command are valid. See <a href="../ans_bas/Hlp_G_BAS5_4.html#bassummtlm51499325" class="olink">Summable, Non-Summable
+and Constant Data</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for more information. When
+the amplitude of the solution is requested (<em class="replaceable"><code>OMEGAT</code></em> &gt;= 360&deg;), averaged values (such as the nodal component stresses,
+which are an average of element nodal component stresses) are calculated
+by averaging the amplitudes. Because the degrees of freedom results
+have different phases, derived results (such as the equivalent stress
+SEQV) are not valid. See <a href="../ans_thry/thy_post15.html" class="olink">POST1 and POST26 &#8211; Complex Results Postprocessing</a> for more details about post-processing
+complex results.</p><p>For postprocessing amplitudes, the only appropriate coordinate
+system is the solution coordinate system (<a class="link" href="Hlp_C_RSYS.html" title="RSYS"><span class="command"><strong>RSYS</strong></span></a> ,SOLU).
+ When displaying the displacement amplitudes, use a contour display
+(<a class="link" href="Hlp_C_PLNSOL.html" title="PLNSOL"><span class="command"><strong>PLNSOL</strong></span></a> command). Because a deformed shape display
+(<a class="link" href="Hlp_C_PLDISP.html" title="PLDISP"><span class="command"><strong>PLDISP</strong></span></a> command) could lead to a non-physical shape,
+the displacement scaling is off by default (<a href="Hlp_C_DSCALE_sl.html" class="olink"><span class="command"><strong>/DSCALE</strong></span></a>,,OFF).</p><p>For postprocessing cylindrical geometry, it is suggested that
+you rotate the element coordinate systems into the appropriate cylindrical
+system (<em class="replaceable"><code>EMODIF,,ESYS</code></em>) before running the
+solution and then view the results in this system (<em class="replaceable"><code>RSYS,SOLU</code></em>) in POST1.</p><p>Since <span class="command"><strong>HRCPLX</strong></span> performs load case combinations,
+it alters most of the data in the database. In particular, it alters
+applied loads such as forces and imposed displacements. To restore
+the original loads in the database for a subsequent analysis, reissue
+the <a class="link" href="Hlp_C_SET.html" title="SET"><span class="command"><strong>SET</strong></span></a> command in POST1 to retrieve the real and
+imaginary set data.</p><p>To animate the solution over one period, use the <a class="link" href="Hlp_C_ANHARM.html" title="ANHARM"><span class="command"><strong>ANHARM</strong></span></a> command. </p><p>
+<em class="replaceable"><code>OMEGAT</code></em> is not equal to the phase
+shift.</p><p>This command is not supported after a
+cyclic symmetry analysis; use <a href="Hlp_C_CYCEXPAND_sl.html" class="olink"><span class="command"><strong>/CYCEXPAND</strong></span></a>,,PHASEANG
+instead.</p></div><div class="refsect1" title="Menu Paths"><a name="HRCPLX.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

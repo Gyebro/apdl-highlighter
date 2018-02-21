@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:23-04:00"><title>SV</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_S_TOC.html" title="S Commands"><link rel="prev" href="Hlp_C_SUVECT.html" title="SUVECT"><link rel="next" href="Hlp_C_SVPLOT.html" title="SVPLOT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SV"><a name="SV"></a><div class="titlepage"></div><a class="indexterm" name="d0e265480"></a><span class="refentrytitle"><span class="command"><strong>SV</strong></span></span><div class="refnamediv"><p><span class="command"><strong>SV</strong></span>, <em class="replaceable"><code>DAMP</code></em>, <em class="replaceable"><code>SV1</code></em>, <em class="replaceable"><code>SV2</code></em>, <em class="replaceable"><code>SV3</code></em>, <em class="replaceable"><code>SV4</code></em>, <em class="replaceable"><code>SV5</code></em>, <em class="replaceable"><code>SV6</code></em>, <em class="replaceable"><code>SV7</code></em>, <em class="replaceable"><code>SV8</code></em>, <em class="replaceable"><code>SV9</code></em><br><b class="refpurpose">Defines spectrum values to be associated with frequency points.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluspectrumjla070199" title="Table&nbsp;2.52:&nbsp;&nbsp;Spectrum Options"><span class="type">Spectrum Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="SV.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>DAMP</code></em></b></span></dt><dd><p>Damping ratio for this response spectrum curve.  If the same
+as a previously defined curve, the SV values are added to the previous curve.
+ Up to four different curves may be defined, each with a different damping
+ratio.  Damping values must be input in ascending order.</p></dd><dt><span><b class="term"><em class="replaceable"><code>SV1</code></em>, <em class="replaceable"><code>SV2</code></em>, <em class="replaceable"><code>SV3</code></em>,
+. . . , <em class="replaceable"><code>SV9</code></em></b></span></dt><dd><p>Spectrum values corresponding to the frequency points [<a class="link" href="Hlp_C_FREQ.html" title="FREQ"><span class="command"><strong>FREQ</strong></span></a>].
+ Values are interpreted as defined with the <a class="link" href="Hlp_C_SVTYP.html" title="SVTYP"><span class="command"><strong>SVTYP</strong></span></a> command.
+  SV values should not be zero.  Values required outside the frequency range
+use the extreme input values.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="SV.notes"></a><h2>Notes</h2><p>Defines the spectrum values to be associated with the previously defined
+frequency points [<a class="link" href="Hlp_C_FREQ.html" title="FREQ"><span class="command"><strong>FREQ</strong></span></a>].  Applies only to the single-point
+response spectrum.  Damping has no effect on the frequency solution.  Damping
+values are used only to identify SV curves for the mode combinations calculation.
+ Only the curve with the lowest damping value is used in the initial mode
+coefficient calculation.  Use <a class="link" href="Hlp_C_STAT.html" title="STAT"><span class="command"><strong>STAT</strong></span></a> command to list current
+spectrum curve values.</p><p>Repeat <span class="command"><strong>SV</strong></span> command for additional SV points (100 maximum
+per <em class="replaceable"><code>DAMP</code></em> curve).  SV values are added to the <em class="replaceable"><code>DAMP</code></em> curve
+after the last nonzero SV value.</p><p>The interpolation method between response spectrum points and curves
+is specified using <em class="replaceable"><code>KeyInterp</code></em> in the <a class="link" href="Hlp_C_SVTYP.html" title="SVTYP"><span class="command"><strong>SVTYP</strong></span></a> command.
+It is logarithmic by default.</p><p>This command is also valid in PREP7.</p></div><div class="refsect1" title="Menu Paths"><a name="SV.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Load Step Opts&gt;Spectrum&gt;SinglePt&gt;Spectr Values</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Load Step Opts&gt;Spectrum&gt;SinglePt&gt;Spectr Values</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

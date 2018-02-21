@@ -1,0 +1,38 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:45-04:00"><title>UPCOORD</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_U_TOC.html" title="U Commands"><link rel="prev" href="Hlp_C_UNPAUSE.html" title="UNPAUSE"><link rel="next" href="Hlp_C_UPGEOM.html" title="UPGEOM"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="UPCOORD"><a name="UPCOORD"></a><div class="titlepage"></div><a class="indexterm" name="d0e286683"></a><span class="refentrytitle"><span class="command"><strong>UPCOORD</strong></span></span><div class="refnamediv"><p><span class="command"><strong>UPCOORD</strong></span>, <em class="replaceable"><code>FACTOR</code></em>, <em class="replaceable"><code>Key</code></em><br><b class="refpurpose">Modifies the coordinates of the active set of nodes, based
+on the current displacements.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluldstepjla070199" title="Table&nbsp;2.53:&nbsp;&nbsp;Load Step Options"><span class="type">Load Step Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="UPCOORD.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>FACTOR</code></em></b></span></dt><dd><p>Scale factor for displacements being added to nodal
+coordinates.  If <em class="replaceable"><code>FACTOR</code></em> = 1.0, the full
+displacement value will be added to each node, 0.5, half the displacement
+value will be added, etc.  If <em class="replaceable"><code>FACTOR</code></em> =
+-1, the full displacement value will be subtracted from each node,
+etc.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Key</code></em></b></span></dt><dd><p>Key for zeroing displacements in the database:   
+   </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Do not zero the displacements (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ON</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Zero the displacements.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="UPCOORD.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>UPCOORD</strong></span> command uses displacements stored
+in the ANSYS database, and not those contained within the results
+file, <span class="filename"><strong>Jobname.RST</strong></span>.  Nodal coordinates are updated
+each time the command is issued.  After updating, both the nodal displacements
+and rotations are set to zero if <em class="replaceable"><code>Key</code></em> =
+ON.</p><p>For structural solutions with an updated mesh, unless the coefficient
+matrix is otherwise reformed (e.g., a new analysis or <a class="link" href="Hlp_C_NLGEOM.html" title="NLGEOM"><span class="command"><strong>NLGEOM</strong></span></a>,ON) it should first be reformed by issuing a <a class="link" href="Hlp_C_KUSE.html" title="KUSE"><span class="command"><strong>KUSE</strong></span></a>,-1 command.</p><p><span class="command"><strong>UPCOORD</strong></span> should not be
+issued between load steps in structural analysis.</p><p>For a multiphysics simulation where a CFD or electromagnetic
+field is being coupled to a structure undergoing large displacements,
+all (or a portion) of the surrounding field mesh may take part in
+the structural solution to "move" with the displacing structure. 
+You can use the <span class="command"><strong>UPCOORD</strong></span> command with a suitable <em class="replaceable"><code>FACTOR</code></em> to update the coordinates of the nodes using
+the newly computed displacements.  The mesh will now conform with
+the displaced structure for subsequent field solutions.  However,
+the mesh should always be restored to its original location by using
+an <span class="command"><strong>UPCOORD</strong></span>,<em class="replaceable"><code>FACTOR</code></em> command
+before performing any subsequent structural solutions.  This is true
+for both repeated linear solutions, and for nonlinear restarts. (All
+saved displacements are relative to the original mesh location.)</p><p>This command is not intended to replace either the large displacement
+or birth and death logic.</p><p>This command is also valid in PREP7.</p></div><div class="refsect1" title="Menu Paths"><a name="UPCOORD.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Load Step Opts&gt;Other&gt;Updt Node Coord</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Load Step Opts&gt;Other&gt;Updt Node Coord</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

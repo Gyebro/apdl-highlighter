@@ -1,0 +1,77 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:44-04:00"><title>EDDAMP</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_EDCURVE.html" title="EDCURVE"><link rel="next" href="Hlp_C_EDDBL.html" title="EDDBL"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="EDDAMP"><a name="EDDAMP"></a><div class="titlepage"></div><a class="indexterm" name="d0e80899"></a><span class="refentrytitle"><span class="command"><strong>EDDAMP</strong></span></span><div class="refnamediv"><p><span class="command"><strong>EDDAMP</strong></span>, <em class="replaceable"><code>PART</code></em>, <em class="replaceable"><code>LCID</code></em>, <em class="replaceable"><code>VALDMP</code></em><br><b class="refpurpose">Defines mass weighted (Alpha) or stiffness weighted (Beta)
+damping for an explicit dynamics model.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluexpdyjla070199" title="Table&nbsp;2.72:&nbsp;&nbsp;Explicit Dynamics"><span class="type">Explicit Dynamics</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="EDDAMP.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>PART</code></em></b></span></dt><dd><p>PART number [<a class="link" href="Hlp_C_EDPART.html" title="EDPART"><span class="command"><strong>EDPART</strong></span></a>] identifying
+the group of elements to which damping should be applied. If <em class="replaceable"><code>PART</code></em> = ALL (default), damping is applied to the entire
+model.</p></dd><dt><span><b class="term"><em class="replaceable"><code>LCID</code></em></b></span></dt><dd><p>Load curve ID (previously defined with the <a class="link" href="Hlp_C_EDCURVE.html" title="EDCURVE"><span class="command"><strong>EDCURVE</strong></span></a> command) identifying the damping coefficient versus
+time curve. If time-dependent damping is defined, an <em class="replaceable"><code>LCID</code></em> is required.</p></dd><dt><span><b class="term"><em class="replaceable"><code>VALDMP</code></em></b></span></dt><dd><p>Constant system damping coefficient or a scale factor
+applied to the curve defining damping coefficient versus time.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="EDDAMP.notes"></a><h2>Notes</h2><p>Mass-weighted (Alpha) or stiffness-weighted (Beta) damping can
+be defined with the <span class="command"><strong>EDDAMP</strong></span> command. Generally,
+stiffness proportional or beta damping is effective for oscillatory
+motion at high frequencies. This type of damping is orthogonal to
+rigid body motion and so will not damp out rigid body motion. On the
+other hand, mass proportional or alpha damping is more effective for
+low frequencies and will damp out rigid body motion. The different
+possibilities are described below:</p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p><div class="refsect2" title="Global Damping"><a name="EDDAMP.extranote1"></a><h3>Global Damping</h3><p><span class="italic"><em>Mass-weighted or Alpha damping</em></span></p><p>When <em class="replaceable"><code>PART</code></em> = (blank) or ALL (default),
+mass-weighted global damping can be defined in the following two ways.
+In this case, the same damping is applied for the entire structure.
+  </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>When the damping coefficient versus time curve (<em class="replaceable"><code>LCID</code></em>) is specified using the <a class="link" href="Hlp_C_EDCURVE.html" title="EDCURVE"><span class="command"><strong>EDCURVE</strong></span></a> command, <em class="replaceable"><code>VALDMP</code></em> is ignored by LS-DYNA
+(although it is written in the LS-DYNA input file <span class="filename"><strong>Jobname.K</strong></span>).  The damping force applied to each node in the model is given
+by f<sub>d</sub> = d(t)mv, where d(t) is the damping coefficient
+as a function of time defined by the <a class="link" href="Hlp_C_EDCURVE.html" title="EDCURVE"><span class="command"><strong>EDCURVE</strong></span></a> command,
+m is the mass, and v is the velocity.</p></li><li class="listitem"><p>When the <em class="replaceable"><code>LCID</code></em> is 0 or blank
+(default), a constant mass-weighted system damping coefficient can
+be specified using <em class="replaceable"><code>VALDMP</code></em>.</p></li></ul></div><p>The constant and time-dependent damping, described above, cannot
+be defined simultaneously. The last defined global damping will overwrite
+any previously defined global damping.</p></div><div class="refsect2" title="Damping defined for a PART"><a name="EDDAMP.extranote2"></a><h3>Damping defined for a PART</h3><p><span class="italic"><em>Mass-weighted or Alpha damping</em></span></p><p>When <span class="italic"><em>both</em></span> a valid <em class="replaceable"><code>PART</code></em> number is specified and the damping coefficient
+versus time curve (<em class="replaceable"><code>LCID</code></em>) is specified using
+the <a class="link" href="Hlp_C_EDCURVE.html" title="EDCURVE"><span class="command"><strong>EDCURVE</strong></span></a> command, mass-weighted time-dependent
+damping will be defined for the particular <em class="replaceable"><code>PART</code></em>.  In this case, <em class="replaceable"><code>VALDMP</code></em> will act as a
+scaling factor for the damping versus time curve (if <em class="replaceable"><code>VALDMP</code></em> is not specified, it will default to 1). A valid <em class="replaceable"><code>PART</code></em> number must be specified to define this type of
+damping. For example, use <em class="replaceable"><code>PART</code></em> =1 (and
+not blank) when the entire model consists of only one <em class="replaceable"><code>PART</code></em>.  Issue the command repeatedly with different <em class="replaceable"><code>PART</code></em> numbers in order to specify alpha damping for
+different <em class="replaceable"><code>PARTS</code></em>.</p><p><span class="italic"><em>Stiffness-weighted or Beta damping</em></span></p><p>When a valid <em class="replaceable"><code>PART</code></em> number is specified
+with <em class="replaceable"><code>LCID</code></em> = 0 or (blank) (default), a stiffness-weighted
+(Beta) constant damping coefficient for this particular <em class="replaceable"><code>PART</code></em> can be defined by <em class="replaceable"><code>VALDMP</code></em>. The stiffness-weighted value corresponds to the percentage of damping
+in the high frequency domain. For example, 0.1 roughly corresponds
+to 10% damping in the high frequency domain. Recommended values range
+from 0.01 to 0.25. Values lower than 0.01 may have little effect.
+If a value larger than 0.25 is used, it may be necessary to lower
+the time step size significantly (see the <a class="link" href="Hlp_C_EDCTS.html" title="EDCTS"><span class="command"><strong>EDCTS</strong></span></a> command). Issue the command repeatedly with different PART numbers
+in order to specify beta damping for different <em class="replaceable"><code>PARTS</code></em>. Time-dependent stiffness-weighted damping is not available in ANSYS LS-DYNA.</p><p>The mass-weighted and stiffness-weighted damping, described
+above, cannot be defined simultaneously for a particular <em class="replaceable"><code>PART</code></em> number. The last defined damping for the particular
+PART number will overwrite any previously defined mass-weighted or
+stiffness-weighted damping for this <em class="replaceable"><code>PART</code></em>.</p><p>In order to define the mass-weighted
+and stiffness-weighted damping simultaneously, you can use the <a class="link" href="Hlp_C_MP.html" title="MP"><span class="command"><strong>MP</strong></span></a>,BETD command (instead of the <span class="command"><strong>EDDAMP</strong></span>,PART, ,VALDMP command) to define stiffness-weighted (Beta) constant
+damping coefficient. However, do <span class="italic"><em>not</em></span> use both of these commands together to define stiffness-weighted
+(Beta) constant damping coefficient for a particular <em class="replaceable"><code>PART</code></em>. If you do, duplicate stiffness-weighted (Beta)
+constant damping coefficients for this <em class="replaceable"><code>PART</code></em> will be written to the LS-DYNA input file <span class="filename"><strong>Jobname.K</strong></span>.  The last defined value will be used by LS-DYNA. Also, note that
+the <a class="link" href="Hlp_C_MP.html" title="MP"><span class="command"><strong>MP</strong></span></a>,BETD command is applied on the MAT number,
+and not on the PART number. Since a group of elements having the same
+MAT ID may belong to more than one <em class="replaceable"><code>PART</code></em> (the opposite is not true), you need to issue the <a class="link" href="Hlp_C_MP.html" title="MP"><span class="command"><strong>MP</strong></span></a>,BETD command only once for this MAT ID and the stiffness-weighted
+(Beta) damping coefficients will be automatically defined for all
+the <em class="replaceable"><code>PART</code></em>s with that MAT ID.</p><p>Mass-weighted and stiffness-weighted damping can be defined
+simultaneously using the <span class="command"><strong>EDDAMP</strong></span> command only when
+mass-weighted damping (constant or time-dependent) is defined as global
+damping (<span class="command"><strong>EDDAMP</strong></span>, ALL, LCID, VALDMP) and stiffness-weighted
+damping is defined for all necessary PARTs (<span class="command"><strong>EDDAMP</strong></span>,PART, ,VALDMP).</p><p>To remove defined <span class="italic"><em>global</em></span> damping,
+reissue the <span class="command"><strong>EDDAMP</strong></span>, ALL command with <em class="replaceable"><code>LCID</code></em> and <em class="replaceable"><code>VALDMP</code></em> set to 0.
+To remove damping defined for a particular PART, reissue <span class="command"><strong>EDDAMP</strong></span>, PART, where PART is the <em class="replaceable"><code>PART</code></em> number, with <em class="replaceable"><code>LCID</code></em> and <em class="replaceable"><code>VALDMP</code></em> set to 0. There is no default for the <span class="command"><strong>EDDAMP</strong></span> command,
+i.e., issuing the <span class="command"><strong>EDDAMP</strong></span> command with PART = LCID
+= VALDMP = 0 will result in an error. Stiffness-weighted damping defined
+by the <a class="link" href="Hlp_C_MP.html" title="MP"><span class="command"><strong>MP</strong></span></a>,BETD command can be deleted using <a class="link" href="Hlp_C_MPDELE.html" title="MPDELE"><span class="command"><strong>MPDELE</strong></span></a>, BETD, MAT.</p><p>In an explicit dynamic small restart (<a class="link" href="Hlp_C_EDSTART.html" title="EDSTART"><span class="command"><strong>EDSTART</strong></span></a>,2) or full restart analysis (<a class="link" href="Hlp_C_EDSTART.html" title="EDSTART"><span class="command"><strong>EDSTART</strong></span></a>,3), you
+can only specify global alpha damping. This damping will overwrite
+any alpha damping input in the original analysis. If you do not input
+global alpha damping in the restart, the damping properties input
+in the original analysis will carry over to the restart.</p><p>Damping specified by the <span class="command"><strong>EDDAMP</strong></span> command can
+be listed, along with other explicit dynamics specifications, by typing
+the command string <a class="link" href="Hlp_C_EDSOLV.html" title="EDSOLV"><span class="command"><strong>EDSOLV</strong></span></a>$<a class="link" href="Hlp_C_STAT.html" title="STAT"><span class="command"><strong>STAT</strong></span></a> into the ANSYS input window. Beta damping specified by the <a class="link" href="Hlp_C_MP.html" title="MP"><span class="command"><strong>MP</strong></span></a>,BETD command can be listed by <a class="link" href="Hlp_C_MPLIST.html" title="MPLIST"><span class="command"><strong>MPLIST</strong></span></a>, MAT command.</p><p>This command is also valid in PREP7.</p></div></div><div class="refsect1" title="Menu Paths"><a name="EDDAMP.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Load Step Opts&gt;Other&gt;Change Mat Props&gt;Damping</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Material Props&gt;Damping</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Load Step Opts&gt;Other&gt;Change Mat Props&gt;Damping</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:37:22-04:00"><title>SOLSH190</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_BEAM189.html" title="BEAM189"><link rel="next" href="Hlp_E_INTER192.html" title="INTER192"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SOLSH190"><a name="SOLSH190"></a><div class="titlepage"></div><a class="indexterm" name="d0e149778"></a><span class="refentrytitle">
+<span class="structname">SOLSH190</span>  </span><div class="refnamediv"><p><br><b class="refpurpose">3-D 8-Node
+Structural Solid Shell</b><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  DesSpc | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+<div class=""><div class="application"><span class="application">
+<a class="link" href="Hlp_E_SOLSH190.html#s190restrict" title="SOLSH190 Product Restrictions">Product Restrictions</a>
+</span></div></div>
+</div></p></div><div class="refsect1" title="SOLSH190 Element Description"><a name="ELEMsolsh190descjjw"></a><h2>SOLSH190 Element Description</h2><p>
+<span class="structname">SOLSH190</span> is used for simulating shell
+structures with a wide range of thickness (from thin to moderately
+thick).  The element possesses the continuum solid element topology
+and features eight-node connectivity with three degrees of freedom
+at each node: translations in the nodal x, y, and z directions. Thus,
+connecting SOLSH190 with other continuum elements requires no extra
+efforts.  A degenerate prism option is available, but should only
+be used as filler elements in mesh generation. The element has plasticity,
+hyperelasticity, stress stiffening, creep, large deflection, and large
+strain capabilities. It also has mixed u-P formulation capability
+for simulating deformations of nearly incompressible elastoplastic
+materials, and fully incompressible hyperelastic materials. The element
+formulation is based on logarithmic strain and true stress measures.</p><p>You can use <span class="structname">SOLSH190</span> for layered applications
+such as modeling laminated shells or sandwich construction. The layered
+section definition is given by section (SEC<em class="replaceable"><code>xxx</code></em>) commands. Accuracy in modeling composite shells is governed by
+the first-order shear-deformation theory (also known as Mindlin-Reissner
+shell theory).</p><p>See <a href="../ans_thry/thy_el190.html" class="olink">
+SOLSH190
+</a> for more details about
+this element.</p><div class="figure"><a name="elem190.1jjw"></a><p class="title"><b>Figure&nbsp;190.1:&nbsp;&nbsp;SOLSH190 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gelem190-1.svg" alt="SOLSH190 Geometry"></div><div class="blockquote"><blockquote class="blockquote"><p>x<sub>o</sub> = Element x-axis if ESYS is not supplied.</p><p> x = Element x-axis if ESYS is supplied.</p></blockquote></div></div></div><br class="figure-break"></div><div class="refsect1" title="SOLSH190 Input Data"><a name="s190inputdata"></a><h2>SOLSH190 Input Data</h2><p>The geometry, node locations, and the element coordinate system
+for this element are shown in <a class="xref" href="Hlp_E_SOLSH190.html#elem190.1jjw" title="Figure&nbsp;190.1:&nbsp;&nbsp;SOLSH190 Geometry">Figure&nbsp;190.1:&nbsp;SOLSH190 Geometry</a>.  The
+element is defined by eight nodes.  The element coordinate system
+follows the shell convention where the z axis is normal to the surface
+of the shell. The node ordering must follow the convention that the
+I-J-K-L and M-N-O-P element faces represent the bottom and top shell
+surfaces, respectively. You can change the orientation within the
+plane of the layers via the <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a> command as you
+would for shell elements (as described in <a class="xref" href="Hlp_E_CH2_3.html" title="3.3.&nbsp;Coordinate Systems">Coordinate Systems</a>). To achieve the correct nodal ordering for a volume mapped (hexahedron)
+mesh, you can use the <a href="../ans_cmd/Hlp_C_VEORIENT.html" class="olink"><span class="command"><strong>VEORIENT</strong></span></a> command to specify
+the desired volume orientation before executing the <a href="../ans_cmd/Hlp_C_VMESH.html" class="olink"><span class="command"><strong>VMESH</strong></span></a> command. Alternatively, you can use the <a href="../ans_cmd/Hlp_C_EORIENT.html" class="olink"><span class="command"><strong>EORIENT</strong></span></a> command after automatic meshing to reorient the elements to be in
+line with the orientation of another element, or to be as parallel
+as possible to a defined <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a> axis.  </p><p>
+<span class="bold"><strong>Layered Section Definition Using Section
+Commands</strong></span>
+</p><p>You can associate <span class="structname">SOLSH190</span> with a shell
+section (<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>). The layered composite specifications
+(including layer thickness, material, orientation, and number of integration
+points through the thickness of the layer) are specified via shell
+section (SEC<em class="replaceable"><code>xxx</code></em>) commands. You can use
+the shell section commands even with a single-layered <span class="structname">SOLSH190</span> element. The program obtains the actual layer
+thicknesses used for element calculations by scaling the input layer
+thickness so that they are consistent with the thickness between the
+nodes. </p><p>You can designate the number of integration points (1, 3, 5,
+7, or 9) located through the thickness of each layer. Two points are
+located on the top and bottom surfaces respectively and the remaining
+points are distributed equal distance between the two points. The
+element requires at least two points through the entire thickness.
+ When no shell section definition is provided, the element is treated
+as single-layered and uses two integration points through the thickness.</p><p>
+<span class="structname">SOLSH190</span> does not support real constant
+input for defining layer sections. </p><p>
+<span class="bold"><strong>Other Input</strong></span>
+</p><p>The default orientation for this element has the S1 (shell surface
+coordinate) axis aligned with the first parametric direction of the
+element at the center of the element and is shown as x<sub>o</sub> in <a class="xref" href="Hlp_E_SOLSH190.html#elem190.1jjw" title="Figure&nbsp;190.1:&nbsp;&nbsp;SOLSH190 Geometry">Figure&nbsp;190.1:&nbsp;SOLSH190 Geometry</a>. The axis can be defined as shown:</p><div class="informalequation"><a name="eqac217954-c16f-4dd2-ad8d-e7806f975a61"></a><div><img src="graphics/eqac217954-c16f-4dd2-ad8d-e7806f975a61.svg"></div></div><p>where: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq0f0e5ea3-7b92-4eba-97d5-1a80528f3275.svg"></span>
+</td></tr><tr><td>{x}<sup>I</sup>, {x}<sup>J</sup>, . . . , {x}<sup>P</sup> = global nodal coordinates</td></tr></table><p>
+</p><p>If edges IJ and KL are parallel (rectangular or trapezoidal elements),
+   the default orientation is the same as described in <a class="xref" href="Hlp_E_CH2_3.html" title="3.3.&nbsp;Coordinate Systems">Coordinate Systems</a> (the first
+   surface direction is aligned with the IJ side). For elements with nonparallel edges IJ and JK,
+   the default orientation represents the stress state better because the element uses a single
+   point of quadrature (by default) in the element domain.</p><p>You can reorient the default first surface direction S1 in the
+element reference plane via the <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a> command. You
+can further rotate S1 by angle THETA (in degrees) for each layer via
+the <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> command to create layer-wise coordinate
+systems. See <a class="xref" href="Hlp_E_CH2_3.html" title="3.3.&nbsp;Coordinate Systems">Coordinate Systems</a> for details. </p><p>Element loads are described in <a class="xref" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">Nodal Loading</a>.
+ Pressures may be input as surface loads on the element faces as shown
+by the circled numbers on <a class="xref" href="Hlp_E_SOLSH190.html#elem190.1jjw" title="Figure&nbsp;190.1:&nbsp;&nbsp;SOLSH190 Geometry">Figure&nbsp;190.1:&nbsp;SOLSH190 Geometry</a>.  Positive
+pressures act into the element.  </p><p>If you specify no element body load for defining temperatures--that
+is, you define temperatures with commands other than <a href="../ans_cmd/Hlp_C_BFE.html" class="olink"><span class="command"><strong>BFE</strong></span></a>--<span class="structname">SOLSH190</span> adopts an element-wise temperature
+pattern and requires only eight temperatures for the eight element
+nodes. Unspecified nodal temperatures default to the assigned uniform
+temperature (<a href="../ans_cmd/Hlp_C_TUNIF.html" class="olink"><span class="command"><strong>TUNIF</strong></span></a>). ANSYS computes all layer interface
+temperatures by interpolating nodal temperatures T1 ~ T8.</p><p>Alternatively, you can input temperatures as element body loads
+at the corners of the outside faces of the element and at the corners
+of the interfaces between layers. In such a case, the element uses
+a layer-wise pattern. Temperatures T1, T2, T3, T4 are used for the
+bottom of layer 1, temperatures T5, T6, T7, T8  are used for interface
+corners between layers 1 and 2, and so on between successive layers,
+ending with temperatures at the top layer NL. If you input exactly
+NL + 1 temperatures, one temperature is used for the four bottom corners
+of each layer, and the last temperature is used for the four top corner
+temperatures of the top layer. The first corner temperature T1 defaults
+to TUNIF. If all other corner temperatures are unspecified, they default
+to T1. For any other input pattern, unspecified temperatures default
+to TUNIF. </p><p>You can use the <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command to define the
+isotropic or orthotropic elastic material properties and the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,ANEL command to define anisotropic elastic material
+properties. Other material properties include density, damping ratios,
+and coefficients of thermal expansion. You may also use the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command to define nonlinear material behavior such as
+plasticity, hyperelasticity, viscoelasticity, creep, and viscoplasticity.</p><p>KEYOPT(2) = 1 activates the internal strain enhancements to
+the element transverse-shear strains. With this option, the element
+is capable of quadratic transverse-shear strain distributions through
+the entire thickness of the element. At least three integration points
+through the thickness are required for this option. Use a shell section
+to define more integration points through the thickness.</p><p>KEYOPT(6) = 1 sets the element for using u-P mixed formulation.
+For details on the use of mixed formulation, see <a class="xref" href="Hlp_E_continuumelems.html#EL2appmfjwf091100" title="5.1.3.3.&nbsp;Applications of Mixed u-P Formulations">Applications of Mixed u-P Formulations</a>.</p><p>KEYOPT(16) = 1 activates steady state analysis (defined via
+the <a href="../ans_cmd/Hlp_C_SSTATE.html" class="olink"><span class="command"><strong>SSTATE</strong></span></a> command). For more information, see <a href="../ans_thry/thy_geosteadystroll.html" class="olink">Steady State Rolling in the <span class="olinkdocname">Mechanical APDL Theory Reference</span></a>.</p><p>You can apply an initial stress state to this element via the <a href="../ans_cmd/Hlp_C_INISTATE.html" class="olink"><span class="command"><strong>INISTATE</strong></span></a> command. For more information, see <a href="../ans_adv/Hlp_G_INSTINTRO.html" class="olink">Initial State in the <span class="olinkdocname">Mechanical APDL Advanced Analysis Guide</span></a>. </p><p>The effects of pressure load stiffness are automatically included
+for this element. If an unsymmetric matrix is needed for pressure
+load stiffness effects, use <a href="../ans_cmd/Hlp_C_NROPT.html" class="olink"><span class="command"><strong>NROPT</strong></span></a>,UNSYM.</p><p>
+<a class="xref" href="Hlp_E_SOLSH190.html#s190inputsum" title="SOLSH190 Input Summary">"SOLSH190 Input Summary"</a> contains a summary of element
+input.  For a general description of element input, see <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>.</p><div class="refsect2" title="SOLSH190 Input Summary"><a name="s190inputsum"></a><h3>SOLSH190 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J, K, L, M, N, O, P</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>UX, UY, UZ</p></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command: See <a class="xref" href="elem_matsupp.html" title="Chapter&nbsp;4:&nbsp;Element Support for Material Models">Element Support for Material Models</a> for this element.</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: EX, EY, EZ, PRXY, PRYZ, PRXZ
+(or NUXY, NUYZ, NUXZ),</td></tr><tr><td>ALPX, ALPY, ALPZ (or CTEX, CTEY, CTEZ <span class="italic"><em>or</em></span> THSX, THSY, THSZ), </td></tr><tr><td>DENS, GXY, GYZ, GXZ, ALPD, BETD, <span>DMPR</span>
+</td></tr></table></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Pressures&nbsp;--&nbsp;</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>face 1 (J-I-L-K), face 2 (I-J-N-M), face 3 (J-K-O-N),</td></tr><tr><td>face 4 (K-L-P-O), face 5 (L-I-M-P), face 6 (M-N-O-P)</td></tr></table></dd><dt><span><b class="term">Equivalent source surface flag&nbsp;--&nbsp;</b></span></dt><dd><p>MXWF (input on the <a href="../ans_cmd/Hlp_C_SF.html" class="olink"><span class="command"><strong>SF</strong></span></a> command)</p></dd></dl></div></div></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Temperatures&nbsp;--&nbsp;</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>Element-wise pattern (no element body load command issued):&nbsp;&nbsp;&nbsp;T1,
+T2, T3, T4, T5, T6, T7, T8 for 8 element nodes. Temperatures at layer
+interface corners are computed by interpolating nodal temperatures.
+ </td></tr><tr><td>Layer-wise pattern (element body load command issued): &nbsp;&nbsp;T1,
+T2, T3, T4 (at bottom of layer 1), T5, T6, T7, T8 (between layers
+1-2); similarly for temperatures between subsequent layers, ending
+with temperatures at top of layer NL (4 * (NL + 1) maximum). For a
+one-layer element, therefore, 8 temperatures are used.</td></tr></table></dd><dt><span><b class="term">Body force densities&nbsp;--&nbsp;</b></span></dt><dd><p>The
+element values in the global X, Y, and Z directions. </p></dd></dl></div></div></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth
+and death</a> </td></tr><tr><td><a href="../ans_cmd/Hlp_C_CORIOLIS.html" class="olink">Coriolis effect</a></td></tr><tr><td>
+<a href="Hlp_E_AutoSelectElems.html" class="olink">Element
+technology autoselect</a>
+</td></tr><tr><td>
+<a href="../ans_str/Hlp_G_STRNGBS.html" class="olink">Generalized
+cross-section</a>
+</td></tr><tr><td>
+<a href="../ans_adv/Hlp_G_INSTINTRO.html" class="olink">Initial state</a>
+</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink">Large deflection</a>
+</td></tr><tr><td>
+<a href="../ans_thry/thy_geo1.html" class="olink">Large
+strain</a>
+</td></tr><tr><td>
+<a href="../ans_str/strlinperturb.html" class="olink">Linear
+perturbation</a>
+</td></tr><tr><td>
+<a href="../ans_str/Hlp_G_STRUNST.html#strnonlinstab" class="olink">Nonlinear
+stabilization</a>
+</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_SSTATE.html" class="olink">Steady state</a> (except for the degenerated shape [prism] option) </td></tr><tr><td>
+<a href="../ans_str/Hlp_G_STR8_2.html#strstrstiftlm61199434" class="olink">Stress stiffening</a>
+</td></tr></table></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Enhanced transverse-shear strains:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>No enhanced transverse-shear
+strains (default).</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Include enhanced transverse-shear
+strains.</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(6)</b></span></dt><dd><p>Element formulation:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Use pure displacement
+formulation (default).</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Use mixed u-P formulation.</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(8)</b></span></dt><dd><p>Storage of layer data:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>For multi-layer elements, store data for bottom of bottom layer and top of top layer.
+          For single-layer elements, store data for TOP and BOTTOM. (Default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>For multilayer elements,
+store data for top and bottom for all layers. (Before using this option,
+be aware that the amount of data involved can be very large.) </p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(16)</b></span></dt><dd><p>Steady state analysis flag:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Steady state analysis
+disabled (default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Enable steady state analysis</p></dd></dl></div></div></dd></dl></div></div><div class="refsect3" title="SOLSH190 Element Technology"><a name="s190eltech"></a><h4>SOLSH190 Element Technology</h4><p>SOLSH190 employs incompatible modes to enhance the accuracy
+in in-plane bending situations. The satisfaction of the in-plane patch
+test is ensured. A separate set of incompatible modes is adopted to
+overcome the thickness locking in bending dominant problems. The incompatible
+modes introduce seven internal DOFs that are inaccessible to users
+and condensed out at the element level.  </p><p>SOLSH190 utilizes a suite of special kinematic formulations
+to avoid locking when the shell thickness becomes extremely small.
+However, due to its shell-like behavior, SOLSH190 fails to pass the
+patch test if the element is distorted in the thickness direction.
+ </p><p>SOLSH190 is fully compatible with 3-D constitutive relations.
+Compared to classical shell elements that are based on plane stress
+assumptions, SOLSH190 usually gives more accurate predictions when
+the shell is thick.</p></div></div></div><div class="refsect1" title="SOLSH190 Output Data"><a name="s190outdata"></a><h2>SOLSH190 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal displacements included in the overall nodal
+solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_SOLSH190.html#s190eoutdef" title="Table&nbsp;190.1:&nbsp;&nbsp;SOLSH190 Element Output Definitions">Table&nbsp;190.1:&nbsp;SOLSH190 Element Output Definitions</a>
+</p></li></ul></div><p>
+</p><p>Several items are illustrated in <a class="xref" href="Hlp_E_SOLSH190.html#e190fig2.jjw" title="Figure&nbsp;190.2:&nbsp;&nbsp;SOLSH190 Stress Output">Figure&nbsp;190.2:&nbsp;SOLSH190 Stress Output</a>.  See <a href="../ans_bas/Hlp_G_BAS5_2.html#basfillnotlm51799" class="olink">Element Table for Variables Identified By Sequence Number</a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in this reference for more information.</p><div class="figure"><a name="e190fig2.jjw"></a><p class="title"><b>Figure&nbsp;190.2:&nbsp;&nbsp;SOLSH190 Stress Output</b></p><div class="figure-contents"><div><img src="graphics/gelem190-2.svg" alt="SOLSH190 Stress Output"></div><div class="blockquote"><blockquote class="blockquote"><table border="0" summary="Simple list" class="simplelist"><tr><td>x<sub>o</sub> = Element x-axis if ESYS is not
+supplied.</td></tr><tr><td> x = Element x-axis if ESYS is supplied.</td></tr></table></blockquote></div></div></div><p><br class="figure-break">
+</p><p>KEYOPT(8) controls the amount of data output to the results
+file for processing with the <a href="../ans_cmd/Hlp_C_LAYER.html" class="olink"><span class="command"><strong>LAYER</strong></span></a> command. Interlaminar
+shear stress is available as SYZ and SXZ evaluated at the layer interfaces.
+KEYOPT(8) must be set to 1 to output these stresses in POST1. A general
+description of solution output is given in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a>. See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways to view results.</p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="s190eoutdef"></a><p class="title"><b>Table&nbsp;190.1:&nbsp;&nbsp;SOLSH190 Element Output Definitions</b></p><div class="table-contents"><table summary="SOLSH190 Element Output Definitions" border="1" width="95%"><colgroup><col width="139" class="col1"><col width="340" class="col2"><col width="38" align="center" class="col3"><col width="38" align="center" class="col4"></colgroup><thead><tr><th align="center">Name</th><th align="center">Definition</th><th align="center">O</th><th align="center">R</th></tr></thead><tbody><tr><td>EL</td><td>Element Number</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Nodes - I, J,
+K, L, M, N, O, P</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>MAT</td><td>Material number</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>VOLU:</td><td>Volume</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>XC, YC, ZC</td><td>Location where results are reported</td><td align="center">Y</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.3">2</a>
+</td></tr><tr><td>PRES</td><td>Pressures  P1 at nodes J, I, L, K;  P2 at I, J, N, M; P3 at
+J, K, O, N; P4 at K, L, P, O;  P5 at L, I, M, P;  P6 at M, N, O, P</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>TEMP</td><td>T1, T2, T3, T4 at bottom of layer 1; &nbsp;T5, T6, T7, T8 between
+layers 1-2; &nbsp;similarly for between successive layers, ending
+with temperatures at top of layer NL (4 * (NL + 1) maximum)</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>S:X,
+Y, Z, XY, YZ, XZ</td><td>Stresses</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>S:1, 2, 3</td><td>Principal
+stresses</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>S:INT</td><td>Stress intensity</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>S:EQV</td><td>Equivalent stress</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>EPEL:X, Y, Z, XY, YZ, XZ</td><td>Elastic strains</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>EPEL:EQV</td><td>Equivalent elastic strains [<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.6">5</a>]</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>EPTH:X,
+Y, Z, XY, YZ, XZ</td><td>Thermal strains</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>EPTH:EQV</td><td>Equivalent
+thermal strains [<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.6">5</a>]</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>EPPL:X, Y, Z, XY, YZ, XZ</td><td>Plastic strains [<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.EPPLX">6</a>]</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.1">1</a>
+</td></tr><tr><td>EPPL:EQV</td><td>Equivalent plastic strains
+[<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.6">5</a>]</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.1">1</a>
+</td></tr><tr><td>EPCR:X, Y, Z, XY, YZ, XZ</td><td>Creep strains</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.1">1</a>
+</td></tr><tr><td>EPCR:EQV</td><td>Equivalent creep strains [<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.6">5</a>]</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.1">1</a>
+</td></tr><tr><td>EPTO:X, Y, Z, XY, YZ, XZ</td><td>Total mechanical strains (EPEL + EPPL + EPCR)</td><td align="center">Y</td><td align="center">-</td></tr><tr><td>EPTO:EQV</td><td>Total
+equivalent mechanical strains (EPEL + EPPL + EPCR)</td><td align="center">-</td><td align="center">-</td></tr><tr><td>NL:SEPL</td><td>Plastic yield stress</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.1">1</a>
+</td></tr><tr><td>NL:EPEQ</td><td>Accumulated equivalent plastic
+strain</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.1">1</a>
+</td></tr><tr><td>NL:CREQ</td><td>Accumulated equivalent creep strain</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.1">1</a>
+</td></tr><tr><td>NL:SRAT</td><td>Plastic
+yielding (1 = actively yielding, 0 = not yielding)</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.1">1</a>
+</td></tr><tr><td>NL:HPRES</td><td>Hydrostatic
+pressure</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.1">1</a>
+</td></tr><tr><td>SEND:ELASTIC, PLASTIC, CREEP, ENTO</td><td>Strain
+energy densities</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.1">1</a>
+</td></tr><tr><td>N11, N22, N12</td><td>In-plane
+forces (per unit length)</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>M11, M22,
+M12</td><td>Out-of-plane moments (per unit length)</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>Q13, Q23</td><td>Transverse-shear
+forces (per unit length)</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>LOCI:X, Y,
+Z</td><td>Integration point locations</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.4">3</a>
+</td></tr><tr><td>SVAR:1, 2, ... , N</td><td>State variables</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.5">4</a>
+</td></tr><tr><td>ILSXZ </td><td>SXZ interlaminar shear stress </td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.7">7</a>
+</td></tr><tr><td>ILSYZ </td><td>SYZ interlaminar shear stress </td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.7">7</a>
+</td></tr><tr><td>ILSUM </td><td>Magnitude of the interlaminar shear stress vector  </td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.7">7</a>
+</td></tr><tr><td>ILANG </td><td>Angle of interlaminar shear
+stress vector (measured from the element x-axis toward the element
+y-axis in degrees) </td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SOLSH190.html#solsh190.tab.2.ft.7">7</a>
+</td></tr><tr><td>Sm: 11, 22,
+12</td><td>Membrane stresses</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>Sb: 11, 22, 12</td><td>Bending stresses</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>Sp: 11, 22, 12</td><td>Peak stresses</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>St: 13, 23</td><td>Averaged transverse-shear stresses</td><td align="center">-</td><td align="center">Y</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="solsh190.tab.2.ft.1"></a>Nonlinear solution, output
+only if the element has a nonlinear material, or if large-deflection
+effects are enabled (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON) for SEND.</p></li><li class="listitem"><p><a name="solsh190.tab.2.ft.3"></a>Available only at centroid
+as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item.</p></li><li class="listitem"><p><a name="solsh190.tab.2.ft.4"></a>Available only if <a href="../ans_cmd/Hlp_C_OUTRES.html" class="olink"><span class="command"><strong>OUTRES</strong></span></a>,LOCI is used.</p></li><li class="listitem"><p><a name="solsh190.tab.2.ft.5"></a>Available only if the <a href="../ans_mat/matcustommatmods.html#user" class="olink">
+<code class="function">UserMat</code> subroutine</a> and <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,STATE command are used.</p></li><li class="listitem"><p><a name="solsh190.tab.2.ft.6"></a>The equivalent strains use
+an effective Poisson's ratio: for elastic and thermal this value is
+set by the user (<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,NUXY); for plastic and creep
+this value is set at 0.5.</p></li><li class="listitem"><p><a name="solsh190.tab.2.ft.EPPLX"></a>For the shape memory
+alloy material model, transformation strains are reported as plasticity
+strain EPPL.</p></li><li class="listitem"><p><a name="solsh190.tab.2.ft.7"></a>Available only if a valid
+shell section (<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,,SHELL) is defined for the
+element.</p></li></ol></div><p> <a class="xref" href="Hlp_E_SOLSH190.html#e190iandsn" title="Table&nbsp;190.2:&nbsp;&nbsp;SOLSH190 Item and Sequence Numbers">Table&nbsp;190.2:&nbsp;SOLSH190 Item and Sequence Numbers</a> lists output available through <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> using the Sequence Number method. See <a href="../ans_bas/Hlp_G_BAS5_2.html#basfillnotlm51799" class="olink">Element Table
+for Variables Identified By Sequence Number</a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in this reference for more information. The
+following notation is used in <a class="xref" href="Hlp_E_SOLSH190.html#e190iandsn" title="Table&nbsp;190.2:&nbsp;&nbsp;SOLSH190 Item and Sequence Numbers">Table&nbsp;190.2:&nbsp;SOLSH190 Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="Hlp_E_SOLSH190.html#s190eoutdef" title="Table&nbsp;190.1:&nbsp;&nbsp;SOLSH190 Element Output Definitions">Table&nbsp;190.1:&nbsp;SOLSH190 Element Output Definitions</a>
+</p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command</p></dd><dt><span><b class="term">I,J,...,P</b></span></dt><dd><p>sequence number for data at nodes I, J, ..., P</p></dd></dl></div></div><p>
+</p><div class="table"><a name="e190iandsn"></a><p class="title"><b>Table&nbsp;190.2:&nbsp;&nbsp;SOLSH190 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="SOLSH190 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="72" class="col1"><col width="72" class="col2"><col width="36" class="COLSPEC0"><col width="38" align="center" class="col4"><col width="38" align="center" class="col5"><col width="38" align="center" class="col6"><col width="38" align="center" class="col7"><col width="38" align="center" class="col8"><col width="38" align="center" class="col9"><col width="38" align="center" class="col10"><col width="38" align="center" class="col11"></colgroup><thead><tr><th bgcolor="#E3E3E3" rowspan="2" align="center" valign="middle">
+
+Output Quantity
+Name</th><th bgcolor="#E3E3E3" colspan="10" align="center">
+
+
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th bgcolor="#E3E3E3" align="center">
+
+Item</th><th bgcolor="#E3E3E3" align="center">
+
+E</th><th bgcolor="#E3E3E3" align="center">
+
+I</th><th bgcolor="#E3E3E3" align="center">
+
+J</th><th bgcolor="#E3E3E3" align="center">
+
+K</th><th bgcolor="#E3E3E3" align="center">
+
+L</th><th bgcolor="#E3E3E3" align="center">
+
+M</th><th bgcolor="#E3E3E3" align="center">
+
+N</th><th bgcolor="#E3E3E3" align="center">
+
+O</th><th bgcolor="#E3E3E3" align="center">
+
+P</th></tr></thead><tbody><tr><td align="center">P1</td><td align="center">SMISC</td><td align="center">-</td><td align="center">2</td><td align="center">1</td><td align="center">4</td><td align="center">3</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">P2</td><td align="center">SMISC</td><td align="center">-</td><td align="center">5</td><td align="center">6</td><td align="center">-</td><td align="center">-</td><td align="center">8</td><td align="center">7</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">P3</td><td align="center">SMISC</td><td align="center">-</td><td align="center">-</td><td align="center">9</td><td align="center">10</td><td align="center">-</td><td align="center">-</td><td align="center">12</td><td align="center">11</td><td align="center">-</td></tr><tr><td align="center">P4</td><td align="center">SMISC</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">13</td><td align="center">14</td><td align="center">-</td><td align="center">-</td><td align="center">16</td><td align="center">15</td></tr><tr><td align="center">P5</td><td align="center">SMISC</td><td align="center">-</td><td align="center">18</td><td align="center">-</td><td align="center">-</td><td align="center">17</td><td align="center">19</td><td align="center">-</td><td align="center">-</td><td align="center">20</td></tr><tr><td align="center">P6</td><td align="center">SMISC</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td></tr><tr><td align="center">THICK</td><td align="center">SMISC</td><td align="center">27</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">N11</td><td align="center">SMISC</td><td align="center">28</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">N22</td><td align="center">SMISC</td><td align="center">29</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">N12</td><td align="center">SMISC</td><td align="center">30</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">M11</td><td align="center">SMISC</td><td align="center">31</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">M22</td><td align="center">SMISC</td><td align="center">32</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">M12</td><td align="center">SMISC</td><td align="center">33</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Q13</td><td align="center">SMISC</td><td align="center">34</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Q23</td><td align="center">SMISC</td><td align="center">35</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sm: 11</td><td align="center">SMISC</td><td align="center">36</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sm: 22</td><td align="center">SMISC</td><td align="center">37</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sm: 12</td><td align="center">SMISC</td><td align="center">38</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sb: 11</td><td align="center">SMISC</td><td align="center">39</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sb: 22</td><td align="center">SMISC</td><td align="center">40</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sb: 12</td><td align="center">SMISC</td><td align="center">41</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sp: 11 (at bottom face)</td><td align="center">SMISC</td><td align="center">42</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sp:
+22 (at bottom face)</td><td align="center">SMISC</td><td align="center">43</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sp: 12 (at bottom face)</td><td align="center">SMISC</td><td align="center">44</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sp: 11 (at top face)</td><td align="center">SMISC</td><td align="center">45</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sp:
+22 (at top face)</td><td align="center">SMISC</td><td align="center">46</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sp: 12 (at top face)</td><td align="center">SMISC</td><td align="center">47</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">St: 13</td><td align="center">SMISC</td><td align="center">48</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">St: 23</td><td align="center">SMISC</td><td align="center">49</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr></tbody></table></div></div><br class="table-break"><div class="informaltable"><table border="1" width="95%"><colgroup><col width="72" class="col1"><col width="72" class="col2"><col width="172" class="col3"><col width="172" class="col4"></colgroup><thead><tr><th bgcolor="#E3E3E3" rowspan="2" align="center" valign="top">
+
+Output
+Quantity Name</th><th bgcolor="#E3E3E3" colspan="3" align="center" valign="top">
+
+
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th bgcolor="#E3E3E3" align="center" valign="top">
+
+Item</th><th bgcolor="#E3E3E3" align="center" valign="top">
+
+Bottom
+of Layer i</th><th bgcolor="#E3E3E3" align="center" valign="top">
+
+Top
+of Layer NL</th></tr></thead><tbody><tr><td align="center">ILSXZ</td><td align="center">SMISC</td><td align="center">8 * (i - 1) + 51</td><td align="center">8 * (NL - 1) + 52</td></tr><tr><td align="center">ILSYZ</td><td align="center">SMISC</td><td align="center">8 * (i - 1) + 53</td><td align="center">8 * (NL - 1) + 54</td></tr><tr><td align="center">ILSUM</td><td align="center">SMISC</td><td align="center">8 * (i - 1) + 55</td><td align="center">8 * (NL - 1) + 56</td></tr><tr><td align="center">ILANG</td><td align="center">SMISC</td><td align="center">8 * (i - 1) + 57</td><td align="center">8 * (NL - 1) + 58</td></tr></tbody></table></div></div><div class="refsect1" title="SOLSH190 Assumptions and Restrictions"><a name="s190assumps"></a><h2>SOLSH190 Assumptions and Restrictions</h2><p>
+</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Zero-volume elements are not allowed.</p></li><li class="listitem"><p>Elements may be numbered either as shown in <a class="xref" href="Hlp_E_SOLSH190.html#elem190.1jjw" title="Figure&nbsp;190.1:&nbsp;&nbsp;SOLSH190 Geometry">Figure&nbsp;190.1:&nbsp;SOLSH190 Geometry</a> or may have the planes IJKL and MNOP interchanged.
+The element may not be twisted such that the element has two separate
+volumes (which occurs most frequently when the elements are not numbered
+properly).</p></li><li class="listitem"><p>All elements must have eight nodes.  You can form
+a prism-shaped element by defining duplicate K and L and duplicate
+O and P node numbers. (See <a class="xref" href="Hlp_E_CH2_8.html" title="2.5.&nbsp;Degenerated Shape Elements">Degenerated Shape Elements</a>.)</p></li><li class="listitem"><p>If you use the mixed u-P formulation (KEYOPT(6) =
+1), the damped eigensolver is not supported. You must use the sparse
+solver (default).</p></li><li class="listitem"><p>If the material of a layer is hyperelastic, the layer
+orientation angle has no effect.</p></li><li class="listitem"><p>Using both hyperelastic and elastoplastic layers in
+the same element can produce unpredictable results and is not recommended.</p></li><li class="listitem"><p>Stress stiffening is always included in geometrically
+nonlinear analyses (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON). Prestress effects
+can be activated by the <a href="../ans_cmd/Hlp_C_PSTRES.html" class="olink"><span class="command"><strong>PSTRES</strong></span></a> command.</p></li><li class="listitem"><p>To obtain more accurate transverse shear results,
+use multiple elements though the thickness.</p></li><li class="listitem"><p>For sandwich plates or shells, analyze the face and
+core of the sandwich using stacked layers of <span class="structname">SOLSH190</span> elements. Doing so accounts for the large variation in face and
+core material properties, and the distortion through-the-thickness.
+(Sandwich modeling can yield excessively stiff results if <span class="structname">SOLSH190</span> is used as a single element through-the-thickness.)
+Generally, it is good practice to use additional elements through-the-thickness
+when the material properties between layers vary significantly. </p></li></ul></div><p>
+</p></div><div class="refsect1" title="SOLSH190 Product Restrictions"><a name="s190restrict"></a><h2>SOLSH190 Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific
+   restrictions apply to this element in addition to the general assumptions and restrictions given
+   in the previous section.</p><p title="ANSYS Mechanical Pro"><b>ANSYS Mechanical Pro&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li><li class="listitem"><p>Initial state is not available.</p></li><li class="listitem"><p>Linear perturbation is not available.</p></li></ul></div><p title="ANSYS Mechanical Pro">
+   </p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+   </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

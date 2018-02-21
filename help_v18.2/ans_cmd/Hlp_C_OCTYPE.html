@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:04-04:00"><title>OCTYPE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_O_TOC.html" title="O Commands"><link rel="prev" href="Hlp_C_OCTABLE.html" title="OCTABLE"><link rel="next" href="Hlp_C_OCZONE.html" title="OCZONE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="OCTYPE"><a name="OCTYPE"></a><div class="titlepage"></div><a class="indexterm" name="d0e190686"></a><span class="refentrytitle"><span class="command"><strong>OCTYPE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>OCTYPE</strong></span>, <em class="replaceable"><code>DataType</code></em>, <em class="replaceable"><code>Name</code></em><br><b class="refpurpose">Specifies the type of <a href="../ans_bas/Hlp_G_BAS2_6.html#bas_oceanloads" class="olink">ocean load</a> data to follow.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluocean" title="Table&nbsp;2.70:&nbsp;&nbsp;Ocean"><span class="type">Ocean</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="OCTYPE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>DataType</code></em></b></span></dt><dd><p>The type of ocean data to be input following this
+command: </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BASIC</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The basic ocean load, required for
+any ocean loading.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CURR</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>An optional drift current.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">WAVE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>An optional ocean wave state. </p></td></tr></tbody></table></div></div><div class="blockquote"><blockquote class="blockquote"><p>Specify basic, current, or wave input data via the <a class="link" href="Hlp_C_OCDATA.html" title="OCDATA"><span class="command"><strong>OCDATA</strong></span></a> and <a class="link" href="Hlp_C_OCTABLE.html" title="OCTABLE"><span class="command"><strong>OCTABLE</strong></span></a> commands. The example
+input fragment listed in the <a class="link" href="Hlp_C_SECTYPE.html#SECTYPE.notes" title="Notes">Notes</a> section shows how to use the ocean load data types.</p></blockquote></div></dd><dt><span><b class="term"><em class="replaceable"><code>Name</code></em></b></span></dt><dd><p>An eight-character name for the ocean load. An ocean
+name can consist of letters and numbers, but cannot contain punctuation,
+special characters, or spaces.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="OCTYPE.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>OCTYPE</strong></span> command specifies the type of
+ocean load data to follow (basic, current, or wave). Issue this command <span class="italic"><em>before</em></span> defining your ocean load data (<a class="link" href="Hlp_C_OCDATA.html" title="OCDATA"><span class="command"><strong>OCDATA</strong></span></a> and <a class="link" href="Hlp_C_OCTABLE.html" title="OCTABLE"><span class="command"><strong>OCTABLE</strong></span></a>).</p><p>Ocean loading applies only to current-technology pipe (<a href="../ans_elem/Hlp_E_PIPE288.html" class="olink"><span class="structname">PIPE288</span></a> and <a href="../ans_elem/Hlp_E_PIPE289.html" class="olink"><span class="structname">PIPE289</span></a>), surface
+(<a href="../ans_elem/Hlp_E_SURF154.html" class="olink"><span class="structname">SURF154</span></a>), link (<a href="../ans_elem/Hlp_E_LINK180.html" class="olink"><span class="structname">LINK180</span></a>) and beam (<a href="../ans_elem/Hlp_E_BEAM188.html" class="olink"><span class="structname">BEAM188</span></a> and <a href="../ans_elem/Hlp_E_BEAM189.html" class="olink"><span class="structname">BEAM189</span></a>) elements.</p><p>An ocean current or wave is accessible repeatedly. For example,
+it is not necessary to input an identical current table again just
+because the drag coefficients of the basic input table have changed.</p><p>The following example shows how you can use the basic (<em class="replaceable"><code>DataType</code></em> = BASIC), current (<em class="replaceable"><code>DataType</code></em> = CURR), and wave (<em class="replaceable"><code>DataType</code></em> = WAVE) ocean
+data types within the context of a simple input file fragment: </p><pre class="programlisting">Do=1.5                        ! outside diameter
+th=0.1                        ! wall thickness
+height=10                     ! wave height
+CS=2                          ! surface current speed
+Depth=100                     ! water depth
+matwat=2                      ! material number id of the ocean
+secpipe= 1                    ! section number of the pipe
+!
+sectype,secpipe,pipe,,pipetest
+secdata,Do,th,16              ! 16 cells around circumference
+!
+octype,basic
+ocdata,Depth,matwat,0,0,0,0   ! suppress added mass and buoyancy
+octable,,,.5,.5,,2            ! CD = .5, CM = 2
+
+octype,curr
+octable,0.0,CS                ! input free surface current speed
+octable,Depth,0.00            ! input ocean floor current speed of 0.0
+!
+octype,wave
+ocdata,2                      ! request Stokes wave type
+octable,height,8              ! wave period of 8 seconds
+
+slist,all                     ! lists pipe section AND 
+!                                 mentions ocean loading
+oclist,all                    ! lists details of ocean loading
+</pre></div><div class="refsect1" title="Menu Paths"><a name="OCTYPE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

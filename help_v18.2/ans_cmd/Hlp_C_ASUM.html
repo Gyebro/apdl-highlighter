@@ -1,0 +1,31 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:24-04:00"><title>ASUM</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_A_TOC.html" title="A Commands"><link rel="prev" href="Hlp_C_ASUB.html" title="ASUB"><link rel="next" href="Hlp_C_ATAN.html" title="ATAN"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="ASUM"><a name="ASUM"></a><div class="titlepage"></div><a class="indexterm" name="d0e30686"></a><span class="refentrytitle"><span class="command"><strong>ASUM</strong></span></span><div class="refnamediv"><p><span class="command"><strong>ASUM</strong></span>, <em class="replaceable"><code>LAB</code></em><br><b class="refpurpose">Calculates and prints geometry statistics of the selected
+areas.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7areasldm061600" title="Table&nbsp;2.33:&nbsp;&nbsp;Areas"><span class="type">Areas</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="ASUM.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>LAB</code></em></b></span></dt><dd><p>Controls the degree of tessellation used in the calculation
+of area properties.  If <em class="replaceable"><code>LAB</code></em> = DEFAULT,
+area calculations will use the degree of tessellation set through
+the <a href="Hlp_C_FACET.html" class="olink"><span class="command"><strong>/FACET</strong></span></a> command.  If <em class="replaceable"><code>LAB</code></em> = FINE, area calculations are based on a finer tessellation.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="ASUM.notes"></a><h2>Notes</h2><p>Calculates and prints geometry statistics (area, centroid location,
+moments of inertia, volume, etc.) associated with the selected areas.
+ <span class="command"><strong>ASUM</strong></span> should only be used on perfectly flat areas.</p><p>Geometry items are reported in the global
+Cartesian coordinate system. A unit thickness is assumed unless the
+areas have a non-zero total thickness defined by real constant or
+section data.  </p><p>For layered areas, a unit density is always
+assumed. For single-layer areas, a unit density is assumed unless
+the areas have a valid material (density).</p><p>The thickness and density are associated
+to the areas via the <a class="link" href="Hlp_C_AATT.html" title="AATT"><span class="command"><strong>AATT</strong></span></a> command.</p><p>Items calculated via <span class="command"><strong>ASUM</strong></span> and later retrieved
+via a <a href="Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> or <a href="Hlp_C_VGET_st.html" class="olink"><span class="command"><strong>*VGET</strong></span></a> command
+are valid only if the model is not modified after issuing the <span class="command"><strong>ASUM</strong></span> command.</p><p>Setting a finer degree of tessellation will provide area calculations
+with greater accuracy, especially for thin, hollow models.  However,
+using a finer degree of tessellation requires longer processing.</p><p>For very narrow (sliver) areas, such that the ratio of the minimum
+to the maximum dimension is less than 0.01, the <span class="command"><strong>ASUM</strong></span> command can provide erroneous area information.  To ensure that
+the calculations are accurate, subdivide such areas so that the ratio
+of the minimum to the maximum is at least 0.05.</p></div><div class="refsect1" title="Menu Paths"><a name="ASUM.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Operate&gt;Calc Geom Items&gt;Of Areas</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

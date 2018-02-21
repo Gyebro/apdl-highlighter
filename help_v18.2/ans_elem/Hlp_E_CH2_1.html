@@ -1,0 +1,313 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:01-04:00"><title>3.1.&nbsp;Element Input</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_FEATURES.html" title="Chapter&nbsp;3:&nbsp;General Element Features"><link rel="prev" href="Hlp_E_FEATURES.html" title="Chapter&nbsp;3:&nbsp;General Element Features"><link rel="next" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="3.1.&nbsp;Element Input"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="ae68sq42ldm"></a>3.1.&nbsp;Element Input</h2></div></div></div><a class="indexterm" name="d0e8190"></a><div class="highlights"><p><a class="xref" href="Hlp_E_LIBRARY.html" title="Chapter&nbsp;7:&nbsp;Element Library">Element Library</a> includes a summary table of element input. The
+                table usually contains information about the following:</p><ul><li><a href="Hlp_E_CH2_1.html#aV8sq2fcldm" title="3.1.1.&nbsp;Element Name">Element Name</a></li><li><a href="Hlp_E_CH2_1.html#asW8sq29cldm" title="3.1.2.&nbsp;Nodes">Nodes</a></li><li><a href="Hlp_E_CH2_1.html#aFZ8sq5fldm" title="3.1.3.&nbsp;Degrees of Freedom">Degrees of Freedom</a></li><li><a href="Hlp_E_CH2_1.html#ana8sq88ldm" title="3.1.4.&nbsp;Material Properties">Material Properties</a></li><li><a href="Hlp_E_CH2_1.html#a4d8sq179ldm" title="3.1.5.&nbsp;Special Element Features">Special Element Features</a></li><li><a href="Hlp_E_CH2_1.html#d0e8497" title="3.1.6.&nbsp;Sections">Sections</a></li><li><a href="Hlp_E_CH2_1.html#awZ8sq1cbldm" title="3.1.7.&nbsp;Real Constants">Real Constants</a></li><li><a href="Hlp_E_CH2_1.html#elem_loads" title="3.1.8.&nbsp;Element Loading">Element Loading</a></li><li><a href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">Nodal Loading</a></li><li><a href="Hlp_E_CH2_1.html#aWe8sq3b3ldm" title="3.1.10.&nbsp;Element Properties and Controls (KEYOPTs)">Element Properties and Controls (KEYOPTs)</a></li></ul></div><div class="sect2" title="3.1.1.&nbsp;Element Name"><div class="titlepage"><div><div><h3 class="title"><a name="aV8sq2fcldm"></a>3.1.1.&nbsp;Element Name</h3></div></div></div><a class="indexterm" name="d0e8200"></a><p>An element type is identified by a name (eight characters maximum), such as
+                    <a class="link" href="Hlp_E_SOLID285.html" title="SOLID285"><span class="structname">SOLID285</span></a>, consisting of a group label (SOLID) and a
+                unique, identifying number (285). The element descriptions in <a class="xref" href="Hlp_E_LIBRARY.html" title="Chapter&nbsp;7:&nbsp;Element Library">Element Library</a> are arranged in order of these identification numbers.
+                The element is selected from the library for use in the analysis by inputting its
+                name on the element type command (<a href="../ans_cmd/Hlp_C_ET.html" class="olink"><span class="command"><strong>ET</strong></span></a>). See <a class="xref" href="Hlp_E_CLASS.html" title="Chapter&nbsp;2:&nbsp;Element Classifications">Element Classifications</a> for a list of all available elements.</p></div><div class="sect2" title="3.1.2.&nbsp;Nodes"><div class="titlepage"><div><div><h3 class="title"><a name="asW8sq29cldm"></a>3.1.2.&nbsp;Nodes</h3></div></div></div><a class="indexterm" name="d0e8222"></a><p>The nodes associated with the element are listed as I, J, K, and so on. Elements
+                are connected to the nodes in the sequence and orientation shown on the input figure
+                for each element type. </p><p>Connectivity can be defined by automatic meshing, or can be input directly
+                    (<a href="../ans_cmd/Hlp_C_E.html" class="olink"><span class="command"><strong>E</strong></span></a>). The node numbers must correspond to the order indicated
+                in the "Nodes" list. The I node is the first node of the element. </p><p>The node order determines the element coordinate system orientation for some
+                element types. See <a class="xref" href="Hlp_E_CH2_3.html" title="3.3.&nbsp;Coordinate Systems">Coordinate Systems</a> for a description of the element
+                coordinate system.</p><div class="sect3" title="3.1.2.1.&nbsp;Internal nodes"><div class="titlepage"><div><div><h4 class="title"><a name="d0e8239"></a>3.1.2.1.&nbsp;Internal nodes</h4></div></div></div><p>The program also uses internal nodes for elements with Lagrangian multiplier
+                    in their formulations, such as the <a href="../ans_thry/thy_geo5.html#geoupform" class="olink">mixed u-P formulation</a> of
+                        <a class="link" href="Hlp_E_PLANE182.html" title="PLANE182"><span class="structname">PLANE182</span></a>, <a class="link" href="Hlp_E_MPC184.html" title="MPC184"><span class="structname">MPC184</span></a> and
+                        <a href="../ans_thry/thy_geo6.html" class="olink">Lagrangian-multiplier-based</a> contact elements, and other elements
+                    such as <a class="link" href="Hlp_E_BEAM188.html" title="BEAM188"><span class="structname">BEAM188</span></a>, <a class="link" href="Hlp_E_SHELL208.html" title="SHELL208"><span class="structname">SHELL208</span></a> and
+                        <a class="link" href="Hlp_E_PIPE288.html" title="PIPE288"><span class="structname">PIPE288</span></a> with quadratic and cubic options. </p><p>Internal nodes are generated automatically during the solution phase of an
+                    analysis to make more degrees of freedom available for the elements.</p><p>Internal nodes are inaccessible and require no input from you or any other
+                    action on your part.</p></div></div><div class="sect2" title="3.1.3.&nbsp;Degrees of Freedom"><div class="titlepage"><div><div><h3 class="title"><a name="aFZ8sq5fldm"></a>3.1.3.&nbsp;Degrees of Freedom</h3></div></div></div><a class="indexterm" name="d0e8277"></a><p>Each element type has a degree-of-freedom set which constitutes the primary nodal
+                unknowns to be determined by the analysis. The set can consist of displacements,
+                rotations, temperatures, pressures, voltages, etc. </p><p>Derived results, such as stresses, heat flows, etc., are calculated from these
+                degree-of-freedom results. You do not explicitly define degrees of freedom on the
+                nodes, as they are implied by the element types attached to them. Your <a href="Hlp_E_CH3_Classifications.html" class="olink">choice of element types</a> is
+                therefore of primary concern in any analysis.</p><div class="sect3" title="3.1.3.1.&nbsp;Internal Degrees of Freedom"><div class="titlepage"><div><div><h4 class="title"><a name="d0e8289"></a>3.1.3.1.&nbsp;Internal Degrees of Freedom</h4></div></div></div><p>In addition to the standard (external) degrees of freedom, some elements or
+                    element-formulation options have <span class="italic"><em>internal</em></span>
+                    degrees of freedom that are not user-accessible. </p><p>The program typically uses internal degrees of freedom to enhance the
+                    gradients of the primary unknowns of the elements so that better element
+                    behavior can be obtained, but they may also serve other purposes. </p><p>Internal degrees of freedom are not shared with nodes of any other elements so
+                    that they can be condensed out at the element level during the solution phase of
+                    the analysis.</p></div></div><div class="sect2" title="3.1.4.&nbsp;Material Properties"><div class="titlepage"><div><div><h3 class="title"><a name="ana8sq88ldm"></a>3.1.4.&nbsp;Material Properties</h3></div></div></div><a class="indexterm" name="d0e8304"></a><p>Most element types use various material properties. Typical material properties
+                include Young's modulus (of elasticity), density, coefficient of thermal expansion,
+                and thermal conductivity. Each property is referenced by a label: EX, EY, and EZ for
+                the directional components of Young's modulus, DENS for density, and so on. All
+                material properties can be input as functions of temperature.</p><p>
+                <span class="bold"><strong>Linear Material Properties</strong></span>
+            </p><p>Some properties for non-thermal analyses are called <span class="italic"><em>linear</em></span> properties because typical solutions with these properties
+                require only a single iteration.</p><p>
+                <span class="bold"><strong>Nonlinear Material Properties</strong></span>
+            </p><p>Properties such as stress-strain data and B-H curves are called<span class="italic"><em> nonlinear</em></span> because an analysis with these properties
+                usually requires an iterative solution.</p><p>
+                <span class="bold"><strong>Material Property Input</strong></span>
+            </p><p>Typically, <span class="italic"><em>linear</em></span> material properties are input
+                via the <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> family of commands. </p><p><span class="italic"><em>Nonlinear</em></span> material properties are input via the
+                    <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> family of commands. </p><p>The <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> family of commands can, however, be used for some
+                    <span class="italic"><em>linear</em></span> material properties (such as <a href="../ans_mat/anel.html" class="olink">anisotropic elasticity</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">material structural damping</a>,
+                    <a href="../ans_mat/mat_electricmagnet.html#piez" class="olink">piezoelectric matrix</a>, and
+                    <a href="../ans_mat/mat_electricmagnet.html#pzrs" class="olink">piezoresistivity</a>).</p><p>Some elements require other special data which must be input iin tabular form.
+                Such data are also input via the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> family of commands and are
+                described with the element in <a class="xref" href="Hlp_E_LIBRARY.html" title="Chapter&nbsp;7:&nbsp;Element Library">Element Library</a>, or in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a> if
+                they apply to a family of elements.</p><p>
+                <span class="bold"><strong>Materials for Explicit Dynamic Analyses</strong></span>
+            </p><p>Material models used in explicit dynamic analyses are discussed in <a href="../ans_lsd/Hlp_L_matl1.html" class="olink">Material Models</a> in
+                the <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink"><em class="citetitle">ANSYS LS-DYNA User's Guide</em></a>.</p><p>
+                <span class="bold"><strong>Supported Material Properties for Each Element</strong></span>
+            </p><p>See &#8220;Material Properties&#8221; in the documentation for each element
+                type.</p><p>For a list of elements and the material properties supported for each, see <a class="xref" href="elem_matsupp.html" title="Chapter&nbsp;4:&nbsp;Element Support for Material Models">Element Support for Material Models</a>. </p></div><div class="sect2" title="3.1.5.&nbsp;Special Element Features"><div class="titlepage"><div><div><h3 class="title"><a name="a4d8sq179ldm"></a>3.1.5.&nbsp;Special Element Features</h3></div></div></div><a class="indexterm" name="d0e8414"></a><p>The "Special Features" list in the documentation for each element indicates that
+                certain additional capabilities are available for the element. In most cases, the
+                special features make the element nonlinear and therefore require an iterative
+                solution.</p><p>Examples of special element features include:</p><div class="informaltable"><table border="0" width="95%"><colgroup><col width="240" class="col1"><col width="240" class="col2"></colgroup><tbody><tr><td>
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>
+                                        <a href="../ans_thry/thy_tool10.html#eltadaptive" class="olink">Adaptive
+                                            descent</a>
+                                    </td></tr><tr><td>
+                                        <a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth and death</a>
+                                    </td></tr><tr><td>
+                                        <a href="../ans_ctec/ctec_debonding.html" class="olink">Debonding</a>
+                                    </td></tr><tr><td>
+                                        <a href="../ans_adv/Hlp_G_INSTINTRO.html" class="olink">Initial state</a>
+                                    </td></tr><tr><td>
+                                        <a href="../ans_cmd/Hlp_C_RIMPORT.html" class="olink">Initial
+                                            stress import</a>
+                                    </td></tr><tr><td>
+                                        <a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink">Large
+                                            deflection</a>
+                                    </td></tr></table>
+                            </td><td>
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>
+                                        <a href="../ans_str/strlinperturb.html" class="olink">Linear
+                                            perturbation</a>
+                                    </td></tr><tr><td>
+                                        <a href="../ans_str/Hlp_G_STRUNST.html#strnonlinstab" class="olink">Nonlinear stabilization</a>
+                                    </td></tr><tr><td>
+                                        <a href="../ans_bas/Hlp_G_BAS2_6.html#bas_oceanloads" class="olink">Ocean
+                                            loading</a>
+                                    </td></tr><tr><td>
+                                        <a href="../ans_adv/Hlp_G_ADVREZ.html" class="olink">Rezoning</a>
+                                    </td></tr><tr><td>
+                                        <a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink">Section
+                                            definition</a>
+                                    </td></tr><tr><td>
+                                        <a href="../ans_str/Hlp_G_STR8_2.html#strstrstiftlm61199434" class="olink">Stress stiffening</a>
+                                    </td></tr></table>
+                            </td></tr></tbody></table></div></div><div class="sect2" title="3.1.6.&nbsp;Sections"><div class="titlepage"><div><div><h3 class="title"><a name="d0e8497"></a>3.1.6.&nbsp;Sections</h3></div></div></div><a class="indexterm" name="d0e8500"></a><p>Sections are generally used to describe the geometry in the missing direction(s)
+                of an idealized model. By idealizing a structure and capturing calculations that are
+                common to many elements, sections may significantly reduce the number of degrees of
+                freedom and lower computational requirements.</p><p>Following are common section types:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p><a href="../ans_str/Hlp_G_STR15.html" class="olink"><span class="bold"><strong>Beam Sections</strong></span></a> -- A beam cross section defines
+                        the geometry of the beam in a plane perpendicular to the element axial
+                        direction. </p></li><li class="listitem"><p><a href="../ans_str/Hlp_G_STRSHELL.html" class="olink"><span class="bold"><strong>Shell Sections</strong></span></a> -- A shell cross section defines
+                        the geometry of the shell in a plane parallel to the shell x-y plane.</p></li><li class="listitem"><p><a href="../ans_str/Hlp_G_STRREINF.html" class="olink"><span class="bold"><strong>Reinforcing Sections</strong></span></a> -- Reinforcing sections
+                        allow you to describe the reinforcing fibers collectively within an existing
+                        structure rather than model each fiber individually. </p></li><li class="listitem"><p><a href="Hlp_E_continuumelems.html#elemgeneralaxis" class="olink"><span class="bold"><strong>Axisymmetric Sections</strong></span></a> -- An axis of
+                        symmetry around which a plane of general axisymmetric solid elements is
+                        revolved.</p></li></ul></div><p>Special section types are also available. For example, rather than describing a
+                missing dimension of the model, a <a href="../ans_ctec/ctecgeomcor.html" class="olink">contact section</a> corrects the geometry of a
+                meshed circle, sphere, or cylinder.</p><p>For a complete list of available section types, see the <a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>
+                command.</p></div><div class="sect2" title="3.1.7.&nbsp;Real Constants"><div class="titlepage"><div><div><h3 class="title"><a name="awZ8sq1cbldm"></a>3.1.7.&nbsp;Real Constants</h3></div></div></div><a class="indexterm" name="d0e8548"></a><p>Data required for the calculation of the element matrices and load vectors, but
+                which cannot be determined by other means, are input as real constants. Typical real
+                constants include hourglass stiffness, contact parameters, stranded coil parameters,
+                and plane thicknesses. </p><p>With each element type that supports them, a description of the real constants is
+                given in the "Real Constants" list. The real constant values that you input
+                    (<a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a> and <a href="../ans_cmd/Hlp_C_RMORE.html" class="olink"><span class="command"><strong>RMORE</strong></span></a>) must correspond to the order
+                indicated in the list.</p><p>To learn more about how real constants are used within each element type, see the
+                    <a href="../ans_thry/thy_elemlib.html" class="olink">description of each element
+                    type</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>. </p></div><div class="sect2" title="3.1.8.&nbsp;Element Loading"><div class="titlepage"><div><div><h3 class="title"><a name="elem_loads"></a>3.1.8.&nbsp;Element Loading</h3></div></div></div><a class="indexterm" name="d0e8577"></a><p>Element loads are surface loads, body loads, inertial loads, and ocean loads.
+                Element loads are always associated with a particular element (even if the input is
+                at the nodes). Certain elements may also have <span class="italic"><em>flags</em></span>.</p><p>Flags are not actually loads, but are used to indicate that a certain type of
+                calculation is to be performed. For example, when the FSI (fluid-structure
+                interaction) flag is active, a specified face of an acoustic element is treated as
+                an interface between a fluid portion and a structural portion of the model.
+                Similarly, MXWF and MVDI are flags used to trigger magnetic force (Maxwell surface)
+                and Jacobian force (virtual displacement) calculations, respectively, in certain
+                magnetics elements. Details about flags are discussed under the applicable elements
+                in <a class="xref" href="Hlp_E_LIBRARY.html" title="Chapter&nbsp;7:&nbsp;Element Library">Element Library</a>.</p><p>Flags are associated either with a surface (FSI and MXWF) and are applied as
+                surface loads (below), or with an element (MVDI) and are applied as body loads
+                (below). For the FSI and MXWF flags, values have no meaning - these flags are simply
+                turned on by specifying their label on the appropriate command. For the MVDI flag,
+                its value (which can range from zero to one) is specified, along with the label, on
+                the appropriate command. Flags are always step-applied (i.e., the
+                    <a href="../ans_cmd/Hlp_C_KBC.html" class="olink"><span class="command"><strong>KBC</strong></span></a> command does not affect them).</p><div class="highlights"><p>The following topics related to element loading are available:</p><ul><li><a href="Hlp_E_CH2_1.html#aYb8sqeldm" title="3.1.8.1.&nbsp;Surface Loads">Surface Loads</a></li><li><a href="Hlp_E_CH2_1.html#aCc8sq1bbldm" title="3.1.8.2.&nbsp;Body Loads">Body Loads</a></li><li><a href="Hlp_E_CH2_1.html#elem_inertialloads" title="3.1.8.3.&nbsp;Inertial Loads">Inertial Loads</a></li><li><a href="Hlp_E_CH2_1.html#elem_initstresses" title="3.1.8.4.&nbsp;Initial Stresses">Initial Stresses</a></li><li><a href="Hlp_E_CH2_1.html#d0e9063" title="3.1.8.5.&nbsp;Ocean Loads">Ocean Loads</a></li></ul></div><p>Also see <a class="xref" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">Nodal Loading</a>, which refers to loads defined at the nodes
+                and are not directly related to the elements. </p><div class="sect3" title="3.1.8.1.&nbsp;Surface Loads"><div class="titlepage"><div><div><h4 class="title"><a name="aYb8sqeldm"></a>3.1.8.1.&nbsp;Surface Loads</h4></div></div></div><p>Some element types allow surface loads. Surface loads are typically pressures
+                    for structural element types, convections or heat fluxes for thermal element
+                    types, and so on. </p><div class="table"><a name="aVUIg255ctg"></a><p class="title"><b>Table&nbsp;3.1:&nbsp;&nbsp;Surface Loads Available in Each Discipline</b></p><div class="table-contents"><table summary="Surface Loads Available in Each Discipline" border="1" width="95%"><colgroup><col width="96" class="col1"><col width="192" class="col2"><col width="120" class="col3"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center">Discipline</th><th bgcolor="#E3E3E3" align="center">Surface
+                                    Load</th><th bgcolor="#E3E3E3" align="center">Label</th></tr></thead><tbody><tr><td>
+                                    <p>Structural</p>
+                                </td><td>
+                                    <p>Pressure</p>
+                                </td><td>
+                                    <p>PRES [<a class="xref" href="Hlp_E_CH2_1.html#elem.ch2-7.tab.19.ft.1">1</a>] [<a class="xref" href="Hlp_E_CH2_1.html#elem.ch2-7.tab.19.ft.2">2</a>]</p>
+                                </td></tr><tr><td>
+                                    <p>Thermal</p>
+                                </td><td>
+                                    <p>Convection</p>
+                                    <p>Heat Flux</p>
+                                    <p>Infinite Surface</p>
+                                </td><td>
+                                    <p>CONV</p>
+                                    <p>HFLUX</p>
+                                    <p>INF</p>
+                                </td></tr><tr><td>
+                                    <p>Magnetic</p>
+                                </td><td>
+                                    <p>Maxwell Surface</p>
+                                    <p>Infinite Surface</p>
+                                </td><td>
+                                    <p>MXWF</p>
+                                    <p>INF</p>
+                                </td></tr><tr><td>
+                                    <p>Electric</p>
+                                </td><td>
+                                    <p>Maxwell Surface</p>
+                                    <p>Surface Charge Density</p>
+                                    <p>Infinite Surface</p>
+                                    <p>Temperature</p>
+                                </td><td>
+                                    <p>MXWF</p>
+                                    <p>CHRGS</p>
+                                    <p>INF</p>
+                                    <p>TEMP</p>
+                                </td></tr><tr><td>
+                                    <p>Fluid</p>
+                                </td><td>
+                                    <p>Fluid-Structure Interface</p>
+                                    <p>Impedance</p>
+                                </td><td>
+                                    <p>FSI</p>
+                                    <p>IMPD</p>
+                                </td></tr><tr><td>
+                                    <p>All</p>
+                                </td><td>
+                                    <p>Superelement Load Vector</p>
+                                </td><td>
+                                    <p>SELV</p>
+                                </td></tr></tbody></table></div></div><br class="table-break"><div class="blockquote"><blockquote class="blockquote"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="elem.ch2-7.tab.19.ft.1"></a>Not to be confused with the PRES degree of freedom</p></li><li class="listitem"><p><a name="elem.ch2-7.tab.19.ft.2"></a>Buoyancy, wave, current and other ocean loads can be applied to
+                                some line and surface element types. For more information, see
+                                    <a href="../ans_cmd/Hlp_C_OCTYPE.html" class="olink"><span class="command"><strong>OCTYPE</strong></span></a> and related <a href="../ans_cmd/Hlp_C_CH2_6.html#cmdsoluocean" class="olink">ocean commands</a>.</p></li></ol></div></blockquote></div><div class="sect4" title="3.1.8.1.1.&nbsp;Applying Surface Loads"><div class="titlepage"><div><div><h5 class="title"><a name="d0e8789"></a>3.1.8.1.1.&nbsp;Applying Surface Loads</h5></div></div></div><p>Surface loads (such as pressures for structural elements and convections
+                        for thermal element) are typically input via the <a href="../ans_cmd/Hlp_C_SF.html" class="olink"><span class="command"><strong>SF</strong></span></a> and
+                            <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> commands. </p><p>Surface loads may also be input in a <a class="link" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">nodal
+                            format</a>. For example, rather than applying surface loading to an
+                        element face, it may be convenient to apply the loading to the face nodes of
+                        an element (which are then processed like face input). For more information,
+                        see <a class="xref" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">Nodal Loading</a>. </p></div><div class="sect4" title="3.1.8.1.2.&nbsp;Multiple Surface Loads"><div class="titlepage"><div><div><h5 class="title"><a name="d0e8809"></a>3.1.8.1.2.&nbsp;Multiple Surface Loads</h5></div></div></div><p>Some elements allow multiple types of surface loads (as shown with the
+                        load labels listed under "Surface Loads" in the input table for each element
+                        type). Also, some elements allow multiple loads on a single element face (as
+                        indicated with the load numbers after the load labels). </p><p>Load numbers are shown on the element figures (within circles) and point
+                        in the direction of positive load to the face upon which the load acts. A
+                        surface load applied on the edge of a shell element is on a per-unit-length
+                        basis, not per-unit area.</p></div><div class="sect4" title="3.1.8.1.3.&nbsp;Surface Load Labels and Keys"><div class="titlepage"><div><div><h5 class="title"><a name="d0e8816"></a>3.1.8.1.3.&nbsp;Surface Load Labels and Keys</h5></div></div></div><p>Surface loads are designated by a label and a key. The label indicates the
+                        type of surface load and the key indicates where on the element the load
+                        acts. </p><p>The surface load can be defined on element faces via the
+                            <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> command by using a key
+                            (<em class="replaceable"><code>LKEY</code></em>), the load label
+                            (<em class="replaceable"><code>Lab</code></em>), and the load value. The
+                            <a href="../ans_cmd/Hlp_C_SF.html" class="olink"><span class="command"><strong>SF</strong></span></a> command can define surface loads by using nodes to
+                        identify element faces. The CONV load label requires two values, the film
+                        coefficient and the bulk temperature.</p></div><div class="sect4" title="3.1.8.1.4.&nbsp;Tapered Surface Load"><div class="titlepage"><div><div><h5 class="title"><a name="d0e8837"></a>3.1.8.1.4.&nbsp;Tapered Surface Load</h5></div></div></div><p>A tapered surface load, which allows different values to be defined at the
+                        nodes of an element, can be entered via the <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> command.
+                        Tapered loads are input in the same order that the face nodes are listed.
+                    </p></div></div><div class="sect3" title="3.1.8.2.&nbsp;Body Loads"><div class="titlepage"><div><div><h4 class="title"><a name="aCc8sq1bbldm"></a>3.1.8.2.&nbsp;Body Loads</h4></div></div></div><p>Some element types allow body loads. Body loads are typically temperatures for
+                    structural element types, heat-generation rates for thermal element types, and
+                    so on.</p><div class="table"><a name="aXb7Eh318ctg"></a><p class="title"><b>Table&nbsp;3.2:&nbsp;&nbsp;Body Loads Available in Each Discipline</b></p><div class="table-contents"><table summary="Body Loads Available in Each Discipline" border="1" width="95%"><colgroup><col width="96" class="col1"><col width="192" class="col2"><col width="120" class="col3"></colgroup><thead><tr><th bgcolor="#E3E3E3">Discipline</th><th bgcolor="#E3E3E3">Body
+                                    Load</th><th bgcolor="#E3E3E3">Label</th></tr></thead><tbody><tr><td>
+                                    <p>Structural</p>
+                                </td><td>
+                                    <p>Temperature</p>
+                                    <p>Fluence</p>
+                                </td><td>
+                                    <p>TEMP [<a class="xref" href="Hlp_E_CH2_1.html#elem.ch2-7.tab.20.ft.1">1</a>]</p>
+                                    <p>FLUE</p>
+                                </td></tr><tr><td>
+                                    <p>Thermal</p>
+                                </td><td>
+                                    <p>Heat Generation Rate</p>
+                                </td><td>
+                                    <p>HGEN</p>
+                                </td></tr><tr><td>
+                                    <p>Magnetic</p>
+                                </td><td>
+                                    <p>Temperature</p>
+                                    <p>Current Density</p>
+                                    <p>Virtual Displacement</p>
+                                    </td><td>
+                                    <p>TEMP [<a class="xref" href="Hlp_E_CH2_1.html#elem.ch2-7.tab.20.ft.1">1</a>]</p>
+                                    <p>JS</p>
+                                    <p>MVDI</p>
+                                    </td></tr><tr><td>
+                                    <p>Electric</p>
+                                </td><td>
+                                    <p>Temperature</p>
+                                    <p>Charge Density</p>
+                                </td><td>
+                                    <p>TEMP [<a class="xref" href="Hlp_E_CH2_1.html#elem.ch2-7.tab.20.ft.1">1</a>]</p>
+                                    <p>CHRGD</p>
+                                </td></tr><tr><td>
+                                    <p>Fluid</p>
+                                </td><td>
+                                    <p>Heat Generation Rate</p>
+                                    <p>Force Density</p>
+                                </td><td>
+                                    <p>HGEN</p>
+                                    <p>FORC</p>
+                                </td></tr></tbody></table></div></div><br class="table-break"><div class="blockquote"><blockquote class="blockquote"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="elem.ch2-7.tab.20.ft.1"></a>Not to be confused with the TEMP degree of freedom</p></li></ol></div></blockquote></div><div class="sect4" title="3.1.8.2.1.&nbsp;Applying Body loads"><div class="titlepage"><div><div><h5 class="title"><a name="d0e8995"></a>3.1.8.2.1.&nbsp;Applying Body loads</h5></div></div></div><p>Body loads are designated in the "Input Summary" table of each element by
+                        a label and a list of load values at various locations within the element. </p><p>Body loads are input via the <a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a> or
+                            <a href="../ans_cmd/Hlp_C_BFE.html" class="olink"><span class="command"><strong>BFE</strong></span></a> commands. The load values input on the
+                            <a href="../ans_cmd/Hlp_C_BFE.html" class="olink"><span class="command"><strong>BFE</strong></span></a> command must correspond to the order indicated in
+                        the "Body Load" list.</p><p>Body loads can also be applied in a <a class="link" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">nodal
+                            format</a>. For more information, see <a class="xref" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">Nodal Loading</a>.</p></div><div class="sect4" title="3.1.8.2.2.&nbsp;Temperature Body Loads"><div class="titlepage"><div><div><h5 class="title"><a name="d0e9021"></a>3.1.8.2.2.&nbsp;Temperature Body Loads</h5></div></div></div><p>For some structural elements, the temperature does not contribute to the
+                        element load vector but is only used for material property evaluation. For
+                        thermal elements using the diagonalized specified heat matrix option in a
+                        transient analyses, a spatially varying heat generation rate is averaged
+                        over the element. Heat-generation rates are input per-unit-volume unless
+                        otherwise noted with the element. The element format is usually in terms of
+                        the element nodes but may be in terms of fictitious corner points as
+                        described for each element. Corner point numbers are shown on the element
+                        figures where applicable. </p></div></div><div class="sect3" title="3.1.8.3.&nbsp;Inertial Loads"><div class="titlepage"><div><div><h4 class="title"><a name="elem_inertialloads"></a>3.1.8.3.&nbsp;Inertial Loads</h4></div></div></div><p>Inertial loads (gravity, spinning, etc.), are applicable to all elements with
+                    structural degrees of freedom and having mass (that is, elements having mass as
+                    an input real constant or having a density (DENS) material property). </p><p>Inertia loads are typically entered via the <a href="../ans_cmd/Hlp_C_ACEL.html" class="olink"><span class="command"><strong>ACEL</strong></span></a> and
+                        <a href="../ans_cmd/Hlp_C_OMEGA.html" class="olink"><span class="command"><strong>OMEGA</strong></span></a> commands.</p></div><div class="sect3" title="3.1.8.4.&nbsp;Initial Stresses"><div class="titlepage"><div><div><h4 class="title"><a name="elem_initstresses"></a>3.1.8.4.&nbsp;Initial Stresses</h4></div></div></div><p>Initial stresses can be set as constant or read in from a file for most <a href="Hlp_E_CH2_OLDNEW.html" class="olink">current-technology</a> beam, link, plane, solid, and shell element
+                    types. </p><p>The <a href="../ans_cmd/Hlp_C_INISTATE.html" class="olink"><span class="command"><strong>INISTATE</strong></span></a> command sets constant initial stress for
+                    selected elements and, optionally, only for specified materials. The command
+                    also allows you to read in a file specifying the initial stresses. The stresses
+                    specified in the input file can be applied to the element centroids or element
+                    integration points, and can be applied to the same points for all selected
+                    elements or can be applied differently for each element. The stresses can also
+                    be a written to an external file. </p><p>For more information about the initial state capability, see the
+                        <a href="../ans_cmd/Hlp_C_INISTATE.html" class="olink"><span class="command"><strong>INISTATE</strong></span></a> command, and <a href="../ans_adv/Hlp_G_INSTINTRO.html" class="olink">Initial State in the <span class="olinkdocname">Mechanical APDL Advanced Analysis Guide</span></a>.</p></div><div class="sect3" title="3.1.8.5.&nbsp;Ocean Loads"><div class="titlepage"><div><div><h4 class="title"><a name="d0e9063"></a>3.1.8.5.&nbsp;Ocean Loads</h4></div></div></div><p>Ocean loads can be applied to line and surface element types that support such
+                    loads. Ocean loading includes the effects of waves, current, drag, and buoyancy.
+                    Loading occurs via the <a href="../ans_cmd/Hlp_C_CH2_6.html#cmdsoluocean" class="olink">ocean
+                        family of commands</a>.</p><p>For more information, see <a href="../ans_bas/Hlp_G_BAS2_6.html#bas_oceanloads" class="olink">Applying Ocean Loads in the <span class="olinkdocname">Mechanical APDL Basic Analysis Guide</span></a>.</p></div></div><div class="sect2" title="3.1.9.&nbsp;Nodal Loading"><div class="titlepage"><div><div><h3 class="title"><a name="aT8sq34fldm"></a>3.1.9.&nbsp;Nodal Loading</h3></div></div></div><a class="indexterm" name="d0e9078"></a><p>Unlike <a class="link" href="Hlp_E_CH2_1.html#elem_loads" title="3.1.8.&nbsp;Element Loading">element loads</a>, nodal loads are defined at
+                the nodes and are not directly related to the elements. </p><p>Nodal loads are associated with the degrees of freedom at the node and are
+                typically entered via the <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a> and <a href="../ans_cmd/Hlp_C_F.html" class="olink"><span class="command"><strong>F</strong></span></a> commands
+                (such as nodal displacement constraints and nodal force loads). </p><p>The nodal or element loading format may be used for an element, with the <a class="link" href="Hlp_E_CH2_1.html#elem_loads" title="3.1.8.&nbsp;Element Loading">element loading format</a> taking precedence. </p></div><div class="sect2" title="3.1.10.&nbsp;Element Properties and Controls (KEYOPTs)"><div class="titlepage"><div><div><h3 class="title"><a name="aWe8sq3b3ldm"></a>3.1.10.&nbsp;Element Properties and Controls (KEYOPTs)</h3></div></div></div><a class="indexterm" name="d0e9106"></a><p>Elements use KEYOPTs (or <span class="italic"><em>key options</em></span>) to
+                control element behavior, formulation, and output for some beam and shell elements.
+                The KEYOPT is the most important element input and should be selected with
+                care.</p><p>Depending on the element type, the KEYOPTs can be used to control stress states,
+                degrees of freedom, element technologies, formulation options, element coordinate
+                systems, printout, results file (<span class="filename"><strong>.rst</strong></span>) output, loads,
+                temperatures, and so on. </p><p>A basic description of each KEYOPT is given with the detailed description of each
+                element type. Because KEYOPTs can be combined, a great deal of flexibility is
+                available for refining the element type to perfectly suit a specific problem. </p><p>KEYOPTs are identified by number, such as KEYOPT(1), KEYOPT(2), and so on. Each
+                KEYOPT can be set to a specific value, as follows:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Values for the first six KEYOPTs (KEYOPT(1) through KEYOPT(6)) can be
+                        input via the <a href="../ans_cmd/Hlp_C_ET.html" class="olink"><span class="command"><strong>ET</strong></span></a> or <a href="../ans_cmd/Hlp_C_KEYOPT.html" class="olink"><span class="command"><strong>KEYOPT</strong></span></a> command.
+                    </p></li><li class="listitem"><p>Values for KEYOPT(7) or greater are input via the
+                            <a href="../ans_cmd/Hlp_C_KEYOPT.html" class="olink"><span class="command"><strong>KEYOPT</strong></span></a> command.</p></li></ul></div><div class="sect3" title="3.1.10.1.&nbsp;Element KEYOPT Defaults"><div class="titlepage"><div><div><h4 class="title"><a name="elem_keyoptdefaults"></a>3.1.10.1.&nbsp;Element KEYOPT Defaults</h4></div></div></div><div class="highlights"><p>The following topics concern element KEYOPT defaults:</p><ul><li><a href="Hlp_E_CH2_1.html#elem_autoelsel" title="3.1.10.1.1.&nbsp;Consider Automatic Element Selection">Consider Automatic Element Selection</a></li><li><a href="Hlp_E_CH2_1.html#d0e9163" title="3.1.10.1.2.&nbsp;KEYOPT Settings May Vary Between Products">KEYOPT Settings May Vary Between Products</a></li></ul></div><div class="sect4" title="3.1.10.1.1.&nbsp;Consider Automatic Element Selection"><div class="titlepage"><div><div><h5 class="title"><a name="elem_autoelsel"></a>3.1.10.1.1.&nbsp;Consider Automatic Element Selection</h5></div></div></div><p>Although element KEYOPT defaults can accommodate many problem types, and
+                        KEYOPTs can be adjusted as needed, it is often more convenient to allow
+                        automatic selection of element technologies via the
+                            <a href="../ans_cmd/Hlp_C_ETCONTROL.html" class="olink"><span class="command"><strong>ETCONTROL</strong></span></a> command. The command sets element options
+                        based on the associated constitutive models of the element type. </p><p>For more information, see <a class="xref" href="Hlp_E_AutoSelectElems.html" title="5.8.&nbsp;Automatic Selection of Element Technologies and Formulations">Automatic Selection of Element Technologies and Formulations</a>.</p></div><div class="sect4" title="3.1.10.1.2.&nbsp;KEYOPT Settings May Vary Between Products"><div class="titlepage"><div><div><h5 class="title"><a name="d0e9163"></a>3.1.10.1.2.&nbsp;KEYOPT Settings May Vary Between Products</h5></div></div></div><p>Exercise caution when using the same input for other ANSYS, Inc. products,
+                        as some default KEYOPT settings may vary between products. Such cases are
+                        indicated in the "Product Restrictions" section of the affected elements. If
+                        you intend to use an input file in more than one product, it is a good
+                        practice to explicitly input these settings, rather than letting them
+                        default; otherwise, element behavior in the other product may differ.</p></div></div></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

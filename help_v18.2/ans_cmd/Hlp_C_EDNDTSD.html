@@ -1,0 +1,54 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:46-04:00"><title>EDNDTSD</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_EDNB.html" title="EDNB"><link rel="next" href="Hlp_C_EDNROT.html" title="EDNROT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="EDNDTSD"><a name="EDNDTSD"></a><div class="titlepage"></div><a class="indexterm" name="d0e85427"></a><span class="refentrytitle"><span class="command"><strong>EDNDTSD</strong></span></span><div class="refnamediv"><p><span class="command"><strong>EDNDTSD</strong></span>, <em class="replaceable"><code>Vect1</code></em>, <em class="replaceable"><code>Vect2</code></em>, <em class="replaceable"><code>DATAP</code></em>, <em class="replaceable"><code>FITPT</code></em>, <em class="replaceable"><code>Vect3</code></em>, <em class="replaceable"><code>Vect4</code></em>, <em class="replaceable"><code>DISP</code></em><br><b class="refpurpose">Allows smoothing of noisy data for explicit dynamics analyses
+and provides a graphical representation of the data.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7expdynldm061600" title="Table&nbsp;2.44:&nbsp;&nbsp;Explicit Dynamics"><span class="type">Explicit Dynamics</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="EDNDTSD.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Vect1</code></em></b></span></dt><dd><p>Name of the first vector that contains the noisy data set
+(i.e., independent variable). You must create and fill this vector before
+issuing <span class="command"><strong>EDNDTSD</strong></span>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Vect2</code></em></b></span></dt><dd><p>Name of the second vector that contains the dependent set
+of data.  Must be the same length as the first vector. You must create and
+fill this vector before issuing <span class="command"><strong>EDNDTSD</strong></span>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>DATAP</code></em></b></span></dt><dd><p>Number of data points to be fitted, starting from the beginning
+of the vector. If left blank, the entire vector will be fitted. The maximum
+number of data points is 100,000 (or greater, depending on the memory of the
+computer).</p></dd><dt><span><b class="term"><em class="replaceable"><code>FITPT</code></em></b></span></dt><dd><p>Curve fitting order to be used as a smooth representation
+of the data. This number should be less than or equal to the number of data
+points. However, because high order polynomial curve fitting can cause numerical
+difficulties, a polynomial order less than 7 is suggested. The default (blank)
+is one-half the number of data points or 7, which ever is less. The following
+values are available:       </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Curve is the absolute average of all of the
+data points.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Curve is the least square average of all of
+the data points.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">3 or more</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Curve is a polynomial of the order (n-1),
+where n is the number of data fitting order points.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Vect3</code></em></b></span></dt><dd><p>Name of the vector that contains the smoothed data of the
+independent variable. This vector should have a length equal to or greater
+than the number of smoothed data points. In batch (command) mode, you must
+create this vector before issuing the <span class="command"><strong>EDNDTSD</strong></span> command.
+In interactive mode, the GUI automatically creates this vector (if it does
+not exist). If you do not specify a vector name, the GUI will name the vector
+smth_ind.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Vect4</code></em></b></span></dt><dd><p>Name of the vector that contains the smoothed data of the
+dependent variable.  This vector must be the same length as <em class="replaceable"><code>Vect3</code></em>.
+ In batch (command) mode, you must create this vector before issuing the <span class="command"><strong>EDNDTSD</strong></span> command.
+In interactive mode, the GUI automatically creates this vector (if it does
+not exist). If you do not specify a vector name, the GUI will name the vector
+smth_dep.</p></dd><dt><span><b class="term"><em class="replaceable"><code>DISP</code></em></b></span></dt><dd><p>Specifies how you want to display data. No default; you must
+specify an option.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Unsmoothed data only</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Smoothed data only</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">3</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Both smoothed and unsmoothed data</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="EDNDTSD.notes"></a><h2>Notes</h2><p>You can control the attributes of the graph using standard ANSYS controls
+(<a href="Hlp_C_GRID.html" class="olink"><span class="command"><strong>/GRID</strong></span></a>, <a href="Hlp_C_GTHK.html" class="olink"><span class="command"><strong>/GTHK</strong></span></a>, <a href="Hlp_C_COLOR.html" class="olink"><span class="command"><strong>/COLOR</strong></span></a>,
+etc.). If working interactively, these controls appear in this dialog box
+for convenience, as well as in their standard dialog boxes. You must always
+create <em class="replaceable"><code>Vect1</code></em> and <em class="replaceable"><code>Vect2</code></em> (using <a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a>)
+and fill these vectors before smoothing the data. If you're working interactively,
+ANSYS automatically creates <em class="replaceable"><code>Vect3</code></em> and <em class="replaceable"><code>Vect4</code></em>,
+but if you're working in batch (command) mode, you must create <em class="replaceable"><code>Vect3</code></em> and <em class="replaceable"><code>Vect4</code></em> (using <a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a>) before issuing <span class="command"><strong>EDNDTSD</strong></span>.  <em class="replaceable"><code>Vect3</code></em> and <em class="replaceable"><code>Vect4</code></em> are
+then filled automatically by ANSYS.  In addition, ANSYS creates an additional
+TABLE type array that contains the smoothed array and the unsmoothed data
+to allow for plotting later with <a href="Hlp_C_VPLOT_st.html" class="olink"><span class="command"><strong>*VPLOT</strong></span></a>.  Column 1 in this
+table corresponds to <em class="replaceable"><code>Vect1</code></em>, column 2 to <em class="replaceable"><code>Vect2</code></em>,
+and column 3 to <em class="replaceable"><code>Vect4</code></em>.  This array is named <em class="replaceable"><code>Vect3</code></em>_SMOOTH,
+up to a limit of 32 characters. For example, if the array name is X1, the
+table name is X1_SMOOTH.</p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p></div><div class="refsect1" title="Menu Paths"><a name="EDNDTSD.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Define Loads&gt;Settings&gt;Replace vs Add&gt;Smooth Data</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;LS-DYNA Options&gt;Loading Options&gt;Smooth Data</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Define Loads&gt;Settings&gt;Replace vs Add&gt;Smooth Data</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Loading Options&gt;Smooth Data</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;TimeHist Postpro&gt;Smooth Data</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

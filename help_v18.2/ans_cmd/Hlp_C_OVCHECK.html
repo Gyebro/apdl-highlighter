@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:08-04:00"><title>OVCHECK</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_O_TOC.html" title="O Commands"><link rel="prev" href="Hlp_C_OUTRES.html" title="OUTRES"><link rel="next" href="Hlp_P_TOC.html" title="P Commands"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="OVCHECK"><a name="OVCHECK"></a><div class="titlepage"></div><a class="indexterm" name="d0e193417"></a><span class="refentrytitle"><span class="command"><strong>OVCHECK</strong></span></span><div class="refnamediv"><p><span class="command"><strong>OVCHECK</strong></span>, <em class="replaceable"><code>Method</code></em>, <em class="replaceable"><code>Frequency</code></em>, <em class="replaceable"><code>Set</code></em> <br><b class="refpurpose">Checks for overconstraint among constraint equations and
+Lagrange multipliers.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  DesSpc | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="OVCHECK.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Method</code></em></b></span></dt><dd><p>Method used to determine which slave DOFs will be
+eliminated:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TOPO</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Topological approach (default). This
+method only works with constraint equations; it does not work with
+Lagrange multipliers.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ALGE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Algebraic approach.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NONE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Do not use overconstraint detection
+logic.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Frequency</code></em></b></span></dt><dd><p>Frequency of overconstraint detection for static or
+full transient analyses:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ITERATION</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>For all equilibrium iterations
+(default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SUBSTEP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>At the beginning of each substep.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LOADSTEP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>At the beginning of each load
+step.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Set</code></em></b></span></dt><dd><p>Set of equations:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">All</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Check for overconstraint between all
+constraint equations (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LAG</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Check for overconstraint only on the
+set of equations that involves Lagrange multipliers. This is faster
+than checking all sets, especially when the model contains large MPC
+bonded contact pairs.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Command Default"><a name="OVCHECK.default"></a><h2>Command Default</h2><p>Overconstraint detection is performed by using the topological
+approach among constraint equations only; the topological approach
+does not support Lagrange multipliers.</p></div><div class="refsect1" title="Notes"><a name="OVCHECK.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>OVCHECK</strong></span> command checks for overconstraint
+among the constraint equations (<a class="link" href="Hlp_C_CE.html" title="CE"><span class="command"><strong>CE</strong></span></a>/<a class="link" href="Hlp_C_CP.html" title="CP"><span class="command"><strong>CP</strong></span></a>) and the Lagrange multipliers for the globally assembled stiffness
+matrix. If overconstrained constraint equations or Lagrange multipliers
+are detected, they are automatically removed from the system of equations.</p><p>The constraint equations that are identified as redundant are
+removed from the system and printed to the output file. It is very
+important that you check the removed equations&#8212;they may lead
+to convergence issues, especially for nonlinear analyses.</p><p>The <em class="replaceable"><code>Frequency</code></em>  and <em class="replaceable"><code>Set</code></em> arguments are active only for the topological method (<em class="replaceable"><code>Method</code></em> = TOPO). If you do not issue the <span class="command"><strong>OVCHECK</strong></span> command, overconstraint detection is performed topologically, and
+the slave DOFs are also determined topologically.</p><p>Overconstraint detection slows down the run. We recommend using
+it to validate that your model does not contain any overconstraints.
+Then, you can switch back to the default method (no <span class="command"><strong>OVCHECK</strong></span> command is needed).</p><p>As an example, consider the redundant set of constraint equations
+defined below:</p><pre class="programlisting">CE,1, 1., 150,UX,1., 160,UX,-1. 
+CE,2, 2., 150,UX,1., 160,UX,-1. 
+</pre><p>Equation number 2 will be removed by the overconstraint detection
+logic. However, this is an arbitrary decision since equation number
+1 could be removed instead. This is an important choice as the constant
+term is not the same in these two constraint equations. Therefore,
+you must check the removed constraint equations carefully. </p><p>For detailed information on the topological and algebraic methods
+of overconstraint detection, see <a href="../ans_thry/thy_tool11.html#thyantcnstrauto" class="olink">Constraints: Automatic Selection of Slave DOFs </a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a></p></div><div class="refsect1" title="Menu Paths"><a name="OVCHECK.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

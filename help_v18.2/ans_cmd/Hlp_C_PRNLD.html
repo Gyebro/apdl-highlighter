@@ -1,0 +1,47 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:32-04:00"><title>PRNLD</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_P_TOC.html" title="P Commands"><link rel="prev" href="Hlp_C_PRNEAR.html" title="PRNEAR"><link rel="next" href="Hlp_C_PRNSOL.html" title="PRNSOL"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="PRNLD"><a name="PRNLD"></a><div class="titlepage"></div><a class="indexterm" name="d0e213604"></a><span class="refentrytitle"><span class="command"><strong>PRNLD</strong></span></span><div class="refnamediv"><p><span class="command"><strong>PRNLD</strong></span>, <em class="replaceable"><code>Lab</code></em>, <em class="replaceable"><code>TOL</code></em>, <em class="replaceable"><code>Item</code></em><br><b class="refpurpose">Prints the summed element nodal loads.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1resultjla070199" title="Table&nbsp;2.82:&nbsp;&nbsp;Results"><span class="type">Results</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="PRNLD.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><p>Nodal reaction load type.  If blank, use the first
+ten of all available labels.  Valid labels are:  </p><div class="blockquote"><blockquote class="blockquote"><p>Structural force labels:  FX, FY or FZ (forces); F (includes
+FX, FY and FZ); MX, MY or MZ (moments); M (includes MX, MY and MZ). </p><p>Thermal force labels:  HEAT, HBOT, HE2, HE3, . . ., HTOP (heat
+flow). </p><p>Fluid force labels:  FLOW (fluid flow);  VFX, VFY and VFZ (fluid
+"forces"); VF (includes VFX, VFY and VFZ). </p><p>Electric force labels:  AMPS (current flow); CHRG (charge);
+CURT (current); VLTG (voltage drop). Magnetic force labels:  FLUX
+(magnetic flux);  CSGX, CSGY, CSGZ (magnetic current segments);  CSG
+(includes CSGX, CSGY and CSGZ). </p><p>Diffusion labels: RATE (diffusion flow rate).</p></blockquote></div></dd><dt><span><b class="term"><em class="replaceable"><code>TOL</code></em></b></span></dt><dd><p>Tolerance value about zero within which loads are
+not printed, as follows:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">&gt; 0 </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Relative tolerance about zero within
+which loads are not printed. In this case, the tolerance is <em class="replaceable"><code>TOL</code></em> * <em class="replaceable"><code>Load</code></em>, where <em class="replaceable"><code>Load</code></em> is the absolute value of the maximum load on the
+selected nodes. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term"> 0 </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p> Print <span class="italic"><em>all</em></span> nodal loads.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">&gt; 0 </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Absolute tolerance about zero within
+which loads are not printed. </p></td></tr></tbody></table></div></div><p>Defaults to 1.0E-9 times the absolute value of the
+maximum load on the selected nodes. </p></dd><dt><span><b class="term"><em class="replaceable"><code>ITEM</code></em></b></span></dt><dd><p>Selected set of nodes.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">(blank)</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Prints the summed element nodal
+loads for all selected nodes (default), excluding contact elements.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CONT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Prints the summed element nodal loads
+for contact nodes only.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BOTH</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Prints the summed element nodal loads
+for all selected nodes, including contact nodes.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="PRNLD.notes"></a><h2>Notes</h2><p>Prints the summed element nodal loads (forces, moments, heat
+flows, flux, etc.) for the selected nodes in the sorted sequence.
+ Results are in the global Cartesian coordinate directions unless
+transformed [<a class="link" href="Hlp_C_RSYS.html" title="RSYS"><span class="command"><strong>RSYS</strong></span></a>].  Zero values (within a tolerance
+range) are not printed.  Loads applied to a constrained degree of
+freedom are not included.  The <a class="link" href="Hlp_C_FORCE.html" title="FORCE"><span class="command"><strong>FORCE</strong></span></a> command can
+be used to define which component of the nodal load is to be used
+(static, damping, inertia, or total).</p><p>By default, <span class="command"><strong>PRNLD</strong></span> excludes
+elements <a href="../ans_elem/Hlp_E_TARGE169.html" class="olink"><span class="structname">TARGE169</span></a> - <a href="../ans_elem/Hlp_E_CONTA177.html" class="olink"><span class="structname">CONTA177</span></a>. Setting <em class="replaceable"><code>ITEM</code></em> = CONT will only account
+for nodal forces on selected contact elements (<a href="../ans_elem/Hlp_E_CONTA171.html" class="olink"><span class="structname">CONTA171</span></a> - <a href="../ans_elem/Hlp_E_CONTA177.html" class="olink"><span class="structname">CONTA177</span></a>). Setting <em class="replaceable"><code>ITEM</code></em> = BOTH will account for nodal forces on all selected nodes, including
+contact nodes. </p></div><div class="refsect1" title="Using PRNLD in a Spectrum or PSD Analysis (ANTYPE, SPECTR)"><a name="d0e213764"></a><h2>Using <span class="command"><strong>PRNLD</strong></span> in a Spectrum or PSD Analysis
+(<a class="link" href="Hlp_C_ANTYPE.html" title="ANTYPE"><span class="command"><strong>ANTYPE</strong></span></a>, SPECTR)</h2><p>When using <span class="command"><strong>PRNLD</strong></span> in a spectrum analysis after
+the combination file has been input (<a href="Hlp_C_INPUT.html" class="olink"><span class="command"><strong>/INPUT</strong></span></a>,,MCOM),
+or in a PSD analysis when postprocessing 1-sigma results (loadstep
+3, 4, or 5), the following message will display in the printout header:</p><pre class="screen">(Spectrum analysis summation is used)</pre><p>This message means that the summation of the element nodal forces
+is performed prior to the combination of those forces. In this case, <a class="link" href="Hlp_C_RSYS.html" title="RSYS"><span class="command"><strong>RSYS</strong></span></a> does not apply. The forces are in the nodal coordinate
+systems, and the vector sum is always printed in the global coordinate
+system. </p><p>The spectrum analysis summation is available
+when the element results are written to the mode file, <span class="filename"><strong>Jobname.MODE</strong></span> (<em class="replaceable"><code>MSUPkey</code></em> = Yes on the <a class="link" href="Hlp_C_MXPAND.html" title="MXPAND"><span class="command"><strong>MXPAND</strong></span></a> command).</p><p>Because modal displacements cannot be used to calculate contact
+element nodal forces, <em class="replaceable"><code>ITEM</code></em> does not apply
+to spectrum and PSD analyses.</p></div><div class="refsect1" title="Menu Paths"><a name="PRNLD.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;List Results&gt;Nodal Loads</strong></span></td></tr><tr><td><span class="guimenu"><strong>Utility Menu&gt;List&gt;Results&gt;Nodal Loads</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

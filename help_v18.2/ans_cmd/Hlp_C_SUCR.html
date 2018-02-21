@@ -1,0 +1,47 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:22-04:00"><title>SUCR</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_S_TOC.html" title="S Commands"><link rel="prev" href="Hlp_C_SUCALC.html" title="SUCALC"><link rel="next" href="Hlp_C_SUDEL.html" title="SUDEL"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SUCR"><a name="SUCR"></a><div class="titlepage"></div><a class="indexterm" name="d0e264102"></a><span class="refentrytitle"><span class="command"><strong>SUCR</strong></span></span><div class="refnamediv"><p><span class="command"><strong>SUCR</strong></span>, <em class="replaceable"><code>SurfName</code></em>, <em class="replaceable"><code>SurfType</code></em>, <em class="replaceable"><code>nRefine</code></em>, <em class="replaceable"><code>Radius</code></em>, <em class="replaceable"><code>blank</code></em>, <em class="replaceable"><code>blank</code></em>, <em class="replaceable"><code>TolOut</code></em><br><b class="refpurpose">Create a surface.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1surfaceope" title="Table&nbsp;2.87:&nbsp;&nbsp;Surface Operations"><span class="type">Surface Operations</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="SUCR.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>SurfName</code></em></b></span></dt><dd><p>Eight character surface name.</p></dd><dt><span><b class="term"><em class="replaceable"><code>SurfType</code></em></b></span></dt><dd><p>Surface type.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CPLANE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Surface is defined by the cutting
+plane in window one (controlled by the working plane (/CPLANE,1),
+NOT the view settings (/CPLANE,0)).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SPHERE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Surface is defined by a spherical
+surface centered about the working plane origin.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">INFC</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Surface is defined by a cylindrical
+surface centered about the working plane origin and extending indefinitely
+in the positive and negative Z directions.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>nRefine</code></em></b></span></dt><dd><p>Refinement level.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">For&nbsp;SurfType&nbsp;=&nbsp;CPLANE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p> The
+refinement level of the surface <span class="quote">"<span class="quote">mesh</span>"</span>. This will be
+an integer between 0 and 3 (default = 0). See Notes below.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">For&nbsp;SurfType&nbsp;=&nbsp;SPHERE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The
+number of divisions along a 90&deg; arc (minimum = 9). The default
+is 9.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">For&nbsp;SurfType&nbsp;=&nbsp;INFC</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The
+number of divisions along a 90&deg; arc (minimum = 9). The default
+is 9.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Radius</code></em></b></span></dt><dd><p>Appropriate radius value (for INFC or SPHERE).</p></dd><dt><span><b class="term"><em class="replaceable"><code>TolOut</code></em></b></span></dt><dd><p>Tolerance value for inclusion of element facets within
+a prescribed volume. (for INFC)</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="SUCR.notes"></a><h2>Notes</h2><p>This command creates a new surface and stores the following
+data for that surface:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>GCX, GCY, GCZ - global Cartesian coordinates at each point
+on the surface.</td></tr><tr><td>NORMX, NORMY, NORMZ - components of the unit normal at each
+point on the surface.</td></tr><tr><td>DA - the contributory area of each point.</td></tr></table><p>For <em class="replaceable"><code>SurfType</code></em> = CPLANE, <em class="replaceable"><code>nRefine</code></em> refers to the number of points that define
+the surface. An <em class="replaceable"><code>nRefine</code></em> value of zero is
+used for points where the element face intersects the cutting plane. </p><p>If <em class="replaceable"><code>SurfType</code></em> = CPLANE and <em class="replaceable"><code>nRefine</code></em> = 0, the points reside at the section cuts
+where the element intersects the cutting plane. Increasing <em class="replaceable"><code>nRefine</code></em> from 0 to 1 will subdivide each surface facet
+into 4 subfacets, and increase the number of points at which results
+can be interpolated.</p><p>For <em class="replaceable"><code>SurfType</code></em> = CPLANE , the setting
+from the <a href="Hlp_C_EFACET.html" class="olink"><span class="command"><strong>/EFACET</strong></span></a> command will affect the creation
+of surface facets and the quality of the fit of the surface in the
+model.  <span class="command"><strong>SUCR</strong></span> employs geometry data from PowerGraphics
+to aid in determining where the surface intersects the model.  If
+ <a href="Hlp_C_EFACET.html" class="olink"><span class="command"><strong>/EFACET</strong></span></a>,1 is in effect when the <span class="command"><strong>SUCR</strong></span> command is issued, then the curvature of high order elements (that
+is, elements with midside nodes)  will be ignored.  If your model
+contains high order elements, you can see a better fit for your surface
+if /EFACET,2 is in effect when the <span class="command"><strong>SUCR</strong></span> command
+is issued.  Currently, the <span class="command"><strong>SUCR</strong></span> command interprets <a href="Hlp_C_EFACET.html" class="olink"><span class="command"><strong>/EFACET</strong></span></a>,4 to mean <a href="Hlp_C_EFACET.html" class="olink"><span class="command"><strong>/EFACET</strong></span></a>,2.</p><p>For <em class="replaceable"><code>SurfType</code></em> = INFC, a default tolerance
+of 0.01 will be applied to include the vertices of any facets that
+fall out of the cylinder definition. This tolerance increases the
+facet size by one percent to check for inclusion. Excluding facets
+under such a small tolerance may yield unacceptable (aesthetically)
+results. Increasing the tolerance by a larger amount (0.1 or 10%)
+will sometimes yield smother edges along the surface you create. </p></div><div class="refsect1" title="Menu Paths"><a name="SUCR.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Surface Operations&gt;Create Surface&gt;Inf. Cylinder</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Surface Operations&gt;Create Surface&gt;On Cuttng Plane</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Surface Operations&gt;Create Surface&gt;Sphere&gt;At Node</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Surface Operations&gt;Create Surface&gt;Sphere&gt;By Dimensions</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

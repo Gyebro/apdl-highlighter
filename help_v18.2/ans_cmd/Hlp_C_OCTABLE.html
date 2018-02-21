@@ -1,0 +1,154 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:04-04:00"><title>OCTABLE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_O_TOC.html" title="O Commands"><link rel="prev" href="Hlp_C_OCREAD.html" title="OCREAD"><link rel="next" href="Hlp_C_OCTYPE.html" title="OCTYPE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="OCTABLE"><a name="OCTABLE"></a><div class="titlepage"></div><a class="indexterm" name="d0e189839"></a><span class="refentrytitle">
+<span class="command"><strong>OCTABLE</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>OCTABLE</strong></span>, <em class="replaceable"><code>VAL1</code></em>, <em class="replaceable"><code>VAL2</code></em>, <em class="replaceable"><code>VAL3</code></em>, <em class="replaceable"><code>VAL4</code></em>, <em class="replaceable"><code>VAL5</code></em>, <em class="replaceable"><code>VAL6</code></em>, <em class="replaceable"><code>VAL7</code></em>
+<br><b class="refpurpose">Defines an <a href="../ans_bas/Hlp_G_BAS2_6.html#bas_oceanloads" class="olink">ocean load</a> using table data.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluocean" title="Table&nbsp;2.70:&nbsp;&nbsp;Ocean"><span class="type">Ocean</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="OCTABLE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>VAL1</code></em>, <em class="replaceable"><code>VAL2</code></em>, <em class="replaceable"><code>VAL3</code></em>, . . . , <em class="replaceable"><code>VAL6</code></em>
+</b></span></dt><dd><p>Values describing the basic ocean load, a current
+condition, or a wave condition. </p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="OCTABLE.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>OCTABLE</strong></span> specifies table data that defines
+the ocean load. The terms <em class="replaceable"><code>VAL1</code></em>, <em class="replaceable"><code>VAL2</code></em>, etc. are specialized according to the input set
+required for the given ocean load. </p><p>The program interprets the data input via the <span class="command"><strong>OCTABLE</strong></span> command within the context of the most recently issued <a class="link" href="Hlp_C_OCTYPE.html" title="OCTYPE"><span class="command"><strong>OCTYPE</strong></span></a> command.</p><p>There is no limit to the number of data input. </p><p>Input values in the order indicated.</p><p>This command is also valid in PREP7.</p><div class="highlights"><p>You can define the following ocean data types:</p><ul><li><a href="Hlp_C_OCTABLE.html#octabletypebasic" title="Ocean Data Type: Basic (OCTYPE,BASIC)">"Ocean Data Type: Basic (<span class="command"><strong>OCTYPE</strong></span>,BASIC)"</a></li><li><a href="Hlp_C_OCTABLE.html#d0e190069" title="Ocean Data Type: Current (OCTYPE,CURR)">"Ocean Data Type: Current (<span class="command"><strong>OCTYPE</strong></span>,CURR)"</a></li><li><a href="Hlp_C_OCTABLE.html#OCTYPEWAVE-6E898667" title="Ocean Data Type: Wave (OCTYPE,WAVE)">"Ocean Data Type: Wave (<span class="command"><strong>OCTYPE</strong></span>,WAVE)"</a></li><li><a href="Hlp_C_OCTABLE.html#d0e190546" title="Ocean Zone Type: Component or Z-Level (OCZONE,COMP/ZLOC)">"Ocean Zone Type: Component or Z-Level (<span class="command"><strong>OCZONE</strong></span>,COMP/ZLOC)"</a></li></ul></div><div class="refsect2" title="Ocean Data Type: Basic (OCTYPE,BASIC)"><a name="octabletypebasic"></a><h3>Ocean Data Type: Basic (<a class="link" href="Hlp_C_OCTYPE.html" title="OCTYPE"><span class="command"><strong>OCTYPE</strong></span></a>,BASIC)</h3><table border="0" summary="Simple list" class="simplelist"><tr><td>Basic ocean data to provide in the value fields:</td></tr><tr><td> <em class="replaceable"><code>IndVar</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>CDy</code></em>, <em class="replaceable"><code>CDz</code></em>, <em class="replaceable"><code>CT</code></em>, <em class="replaceable"><code>CMy</code></em>, <em class="replaceable"><code>CMz</code></em>
+</td></tr><tr><td>where </td></tr><tr><td>
+<em class="replaceable"><code>IndVar</code></em> = Independent variable for
+the table inputs. This value is dependent on the <em class="replaceable"><code>Ktable</code></em> value specified via the <a class="link" href="Hlp_C_OCDATA.html" title="OCDATA"><span class="command"><strong>OCDATA</strong></span></a> command. If <em class="replaceable"><code>Ktable</code></em> = Z, enter this value in <span class="italic"><em>descending</em></span> order on each <span class="command"><strong>OCTABLE</strong></span> command.
+If <em class="replaceable"><code>Ktable</code></em> = RE, enter this value field
+in <span class="italic"><em>ascending</em></span> order.</td></tr><tr><td>-- = Reserved.</td></tr><tr><td>
+<em class="replaceable"><code>CDy</code></em> = Drag coefficient in the element
+y direction (normal).</td></tr><tr><td>
+<em class="replaceable"><code>CDz</code></em> = Drag coefficient in the element
+z direction (normal). This value defaults to <em class="replaceable"><code>CDy</code></em>.</td></tr><tr><td>
+<em class="replaceable"><code>CT</code></em> = Drag coefficient in the element
+x direction (tangential).</td></tr><tr><td>
+<em class="replaceable"><code>CMy</code></em> = Coefficient of inertia in
+the element y direction. If no value is specified, and <em class="replaceable"><code>Cay</code></em> is specified, this value defaults to <em class="replaceable"><code>Cay</code></em> + 1.0. If neither this value nor <em class="replaceable"><code>Cay</code></em> is specified, both values default to 0.0.</td></tr><tr><td>
+<em class="replaceable"><code>CMz</code></em> = Coefficent of inertia in
+the element z direction. If no value is specified, and <em class="replaceable"><code>CMy</code></em> is specified on the same <span class="command"><strong>OCTABLE</strong></span> command, this value defaults to <em class="replaceable"><code>CMy</code></em>.
+If neither this value nor <em class="replaceable"><code>CMy</code></em> is specified,
+and <em class="replaceable"><code>Caz</code></em> is specified, this value defaults
+to <em class="replaceable"><code>Caz</code></em> + 1.0. If neither this value nor <em class="replaceable"><code>Caz</code></em> is specified, both values default to 0.0.</td></tr></table></div><div class="refsect2" title="Ocean Data Type: Current (OCTYPE,CURR)"><a name="d0e190069"></a><h3>Ocean Data Type: Current (<a class="link" href="Hlp_C_OCTYPE.html" title="OCTYPE"><span class="command"><strong>OCTYPE</strong></span></a>,CURR)</h3><table border="0" summary="Simple list" class="simplelist"><tr><td>Current data to provide in the value fields:</td></tr><tr><td>
+<em class="replaceable"><code>Dep</code></em>, <em class="replaceable"><code>W</code></em>, <em class="replaceable"><code>Th</code></em>, <em class="replaceable"><code>Te</code></em>
+</td></tr><tr><td>where </td></tr><tr><td>
+<em class="replaceable"><code>Dep </code></em> = Depth of the drift current
+being input. Input these values in ascending order from one command
+to the next. </td></tr></table><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>If the current is constant, only one <span class="command"><strong>OCTABLE</strong></span> command is necessary and <em class="replaceable"><code>Dep </code></em> is not
+required. </p></li><li class="listitem"><p>For <a class="link" href="Hlp_C_OCTABLE.html#OCTYPEWAVE-6E898667" title="Ocean Data Type: Wave (OCTYPE,WAVE)">waves</a>, the current profile is stretched or compressed linearly up to 10
+percent.</p></li><li class="listitem"><p>The first <em class="replaceable"><code>Dep</code></em> value (representing
+the mean sea level) must be zero. The last <em class="replaceable"><code>Dep</code></em> value (representing the mud line) must be equal to the <em class="replaceable"><code>DEPTH</code></em> value input on the <a class="link" href="Hlp_C_OCDATA.html" title="OCDATA"><span class="command"><strong>OCDATA</strong></span></a> command. </p></li><li class="listitem"><p>The Cartesian Z values used to locate nodes, etc.
+decrease as one moves from the ocean surface to the sea floor, but
+the <em class="replaceable"><code>Dep</code></em> values increase. See <a class="xref" href="Hlp_C_OCDATA.html#ocdatafigbasic" title="Figure&nbsp;7:&nbsp;&nbsp;Basic Ocean Data Type Components">Figure&nbsp;7:&nbsp;Basic Ocean Data Type Components </a>. </p></li><li class="listitem"><p>
+<em class="replaceable"><code>Dep</code></em> is not affected by
+changes to <em class="replaceable"><code>Zmsl</code></em> on the <a class="link" href="Hlp_C_OCDATA.html" title="OCDATA"><span class="command"><strong>OCDATA</strong></span></a> command, as that value simply relocates the origin.</p></li></ul></div><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<em class="replaceable"><code>W</code></em> = Velocity of the drift current
+at this location.</td></tr><tr><td>
+<em class="replaceable"><code>Th</code></em> = Angle of the drift current
+from the global Cartesian X axis toward the global Cartesian Y axis
+(in degrees) at this location.</td></tr><tr><td>
+<em class="replaceable"><code>Te</code></em> = Temperature at this location.</td></tr></table></div><div class="refsect2" title="Ocean Data Type: Wave (OCTYPE,WAVE)"><a name="OCTYPEWAVE-6E898667"></a><h3>Ocean Data Type: Wave (<a class="link" href="Hlp_C_OCTYPE.html" title="OCTYPE"><span class="command"><strong>OCTYPE</strong></span></a>,WAVE)</h3><div class="highlights"><p>When specifying an ocean wave type, issue the <span class="command"><strong>OCTABLE</strong></span> command to input either <a class="link" href="Hlp_C_OCTABLE.html#octablewavelocinput" title="Wave Location Input Data">wave
+location data</a> or <a class="link" href="Hlp_C_OCTABLE.html#octablewavespectinput" title="Wave Spectrum Input Data">wave
+spectrum data</a>. </p><ul></ul></div><div class="refsect3" title="Wave Location Input Data"><a name="octablewavelocinput"></a><h4>Wave Location Input Data</h4><table border="0" summary="Simple list" class="simplelist"><tr><td>Wave location data to provide in the value fields (valid only
+when <em class="replaceable"><code>KWAVE</code></em> = 0 through 3, or 8, on the <a class="link" href="Hlp_C_OCDATA.html" title="OCDATA"><span class="command"><strong>OCDATA</strong></span></a> command):</td></tr><tr><td>
+<em class="replaceable"><code>H</code></em>, <em class="replaceable"><code>T</code></em>, <em class="replaceable"><code>Ps</code></em>, <em class="replaceable"><code>L</code></em>, <em class="replaceable"><code>NORDER</code></em>, <em class="replaceable"><code>KPRCO</code></em>
+</td></tr><tr><td>where </td></tr><tr><td>
+<em class="replaceable"><code>H </code></em> = Wave height (peak-to-trough).</td></tr><tr><td>
+<em class="replaceable"><code>T</code></em> = Wave period.</td></tr><tr><td>
+<em class="replaceable"><code>Ps</code></em> = Phase shift (in degrees)</td></tr><tr><td>
+<em class="replaceable"><code>L</code></em> = Wavelength. An optional value
+used only when <em class="replaceable"><code>KWAVE</code></em> = 0 or 1 (and ignored
+for all other <em class="replaceable"><code>KWAVE</code></em> types).</td></tr><tr><td>
+<em class="replaceable"><code>NORDER</code></em> = Order used by stream function
+wave theory (<em class="replaceable"><code>KWAVE</code></em> = 3). This value is
+optional.</td></tr><tr><td>
+<em class="replaceable"><code>KPRCO</code></em> = Key for printing (1) or
+not printing (0 and default) the calculated dimensionless coefficients
+of the stream function wave theory (<em class="replaceable"><code>KWAVE</code></em> = 3). This value is optional.</td></tr></table><div class="blockquote"><blockquote class="blockquote"><p>
+<span class="bold"><strong>Hints for Wave Location Input:</strong></span>
+</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The <a class="link" href="Hlp_C_TIME.html" title="TIME"><span class="command"><strong>TIME</strong></span></a> command is not used, except
+perhaps to identify the load case. </p></li><li class="listitem"><p>	The phase shift (<em class="replaceable"><code>Ps</code></em>) determines
+the wave position (that is, the point at which the load is to be applied).</p></li><li class="listitem"><p>When using the Stokes fifth-order (<em class="replaceable"><code>KWAVE</code></em> = 2) or stream function (<em class="replaceable"><code>KWAVE</code></em> = 3) wave
+type, issue only one <span class="command"><strong>OCTABLE</strong></span> command.</p></li><li class="listitem"><p>The valid range of the order of the stream function
+(<em class="replaceable"><code>NORDER</code></em>) is 3 through 50. If no value is
+specified, the program determines a value automatically. </p></li><li class="listitem"><p>When using the diffracted wave type (<em class="replaceable"><code>KWAVE</code></em> = 8), an <a class="link" href="Hlp_C_OCREAD.html" title="OCREAD"><span class="command"><strong>OCREAD</strong></span></a> command is
+also required to read in the hydrodynamic data from the <a href="../ans_adv/advoceanloading.html" class="olink">hydrodynamic analysis</a>.</p></li></ul></div><p>
+</p></blockquote></div></div><div class="refsect3" title="Wave Spectrum Input Data"><a name="octablewavespectinput"></a><h4>Wave Spectrum Input Data </h4><table border="0" summary="Simple list" class="simplelist"><tr><td>Wave spectrum data to provide in the value fields (valid only
+when <em class="replaceable"><code>KWAVE</code></em> = 5 through 7 on the <a class="link" href="Hlp_C_OCDATA.html" title="OCDATA"><span class="command"><strong>OCDATA</strong></span></a> command):</td></tr><tr><td>
+<span class="bold"><strong>
+<em class="replaceable"><code>SPECTRUM</code></em> =
+0</strong></span> (Pierson-Moskowitz spectrum)</td></tr><tr><td> <em class="replaceable"><code>HS</code></em>, <em class="replaceable"><code>TP</code></em>, <em class="replaceable"><code>NWC</code></em>
+</td></tr><tr><td>where </td></tr><tr><td>
+<em class="replaceable"><code>HS </code></em> = Significant wave height of
+the spectrum.</td></tr><tr><td>
+<em class="replaceable"><code>TP</code></em> = Peak period for the spectrum.</td></tr><tr><td>
+<em class="replaceable"><code>NWC</code></em> = Number of wave components
+(1 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqf5ce0708-78ef-458e-9236-67d0a5203ea4.svg"></span> <em class="replaceable"><code>NWC</code></em> 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq64ca5447-abb4-44b6-b5bb-62eca29c3873.svg"></span> 1000) to model the spectrum. (Default
+= 50.)</td></tr><tr><td>
+<span class="bold"><strong>
+<em class="replaceable"><code>SPECTRUM</code></em> =
+1</strong></span>  (JONSWAP spectrum)</td></tr><tr><td> <em class="replaceable"><code>HS</code></em>, <em class="replaceable"><code>TP</code></em>, <em class="replaceable"><code>GAMMA</code></em>, <em class="replaceable"><code>NWC</code></em>
+</td></tr><tr><td>where</td></tr><tr><td>
+<em class="replaceable"><code>HS </code></em> = Significant wave height of
+the spectrum.</td></tr><tr><td>
+<em class="replaceable"><code>TP</code></em> = Peak period for the spectrum.</td></tr><tr><td>
+<em class="replaceable"><code>GAMMA</code></em> = Peak enhancement factor
+for the spectrum. (Default = 3.3.)</td></tr><tr><td>
+<em class="replaceable"><code>NWC</code></em> = Number of wave components
+(1 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq553daeb6-518f-4ce4-ac7d-ba2b624ffdf1.svg"></span> <em class="replaceable"><code>NWC</code></em> 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq1850b36a-b5c9-439c-84b6-d3aaa19aecdf.svg"></span> 1000) to model the spectrum. (Default
+= 50.)</td></tr><tr><td>
+<span class="bold"><strong>
+<em class="replaceable"><code>SPECTRUM</code></em> =
+2</strong></span> (User-defined spectrum)</td></tr><tr><td> <em class="replaceable"><code>w</code></em>, <em class="replaceable"><code>s</code></em>, <em class="replaceable"><code>NWC</code></em>
+</td></tr><tr><td>
+<em class="replaceable"><code>w</code></em> = Angular frequency (rad/s).</td></tr><tr><td>
+<em class="replaceable"><code>s</code></em> = Spectral energy density (Length<sup>2</sup> / (rad/s))</td></tr><tr><td>
+<em class="replaceable"><code>NWC</code></em> = Number of wave components
+(1 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq4e834afd-95fb-4661-85d8-596e3b929124.svg"></span> <em class="replaceable"><code>NWC</code></em> 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq74124840-ae99-4778-8938-c48ecc8cdee7.svg"></span> 1000) to model the spectrum. (Default
+= 50.)</td></tr></table><div class="blockquote"><blockquote class="blockquote"><p>
+<span class="bold"><strong>Hints for Wave Spectrum Input:</strong></span>
+</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>When defining a Pierson-Moskowitz or JONSWAP spectrum
+(<em class="replaceable"><code>SPECTRUM</code></em> = 0 or 1, respectively, on the <a class="link" href="Hlp_C_OCDATA.html" title="OCDATA"><span class="command"><strong>OCDATA</strong></span></a> command), issue only one <span class="command"><strong>OCTABLE</strong></span> command.</p></li><li class="listitem"><p>When defining a Pierson-Moskowitz or JONSWAP spectrum
+for Shell new wave (<em class="replaceable"><code>KWAVE</code></em> = 6 on the <a class="link" href="Hlp_C_OCDATA.html" title="OCDATA"><span class="command"><strong>OCDATA</strong></span></a> command), <em class="replaceable"><code>HS</code></em> is calculated
+from the maximum wave crest amplitude (<em class="replaceable"><code>AMPMAX</code></em> on the <a class="link" href="Hlp_C_OCDATA.html" title="OCDATA"><span class="command"><strong>OCDATA</strong></span></a> command) if no value is specified.
+For further information, see <a href="../ans_thry/thy_et8.html" class="olink">Hydrodynamic Loads</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>.</p></li><li class="listitem"><p>For a user-defined spectrum (<em class="replaceable"><code>SPECTRUM</code></em> = 2 on the <a class="link" href="Hlp_C_OCDATA.html" title="OCDATA"><span class="command"><strong>OCDATA</strong></span></a> command), issue an <span class="command"><strong>OCTABLE</strong></span> command for <span class="italic"><em>each</em></span> frequency data point defining the spectrum. Specify the frequency
+data in ascending order. The number of wave components (<em class="replaceable"><code>NWC</code></em>) is required on the <span class="italic"><em>first</em></span> <span class="command"><strong>OCTABLE</strong></span> command only.</p></li></ul></div><p>
+</p></blockquote></div></div></div><div class="refsect2" title="Ocean Zone Type: Component or Z-Level (OCZONE,COMP/ZLOC)"><a name="d0e190546"></a><h3>Ocean Zone Type: Component or Z-Level (<a class="link" href="Hlp_C_OCZONE.html" title="OCZONE"><span class="command"><strong>OCZONE</strong></span></a>,COMP/ZLOC)</h3><p>An ocean zone is a <span class="italic"><em>local</em></span> space
+where you can override global ocean-loading parameters. </p><p>Ocean zone data to provide in the value fields:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<em class="replaceable"><code>Z</code></em>, --, <em class="replaceable"><code>CDy</code></em>, <em class="replaceable"><code>CDz</code></em>, <em class="replaceable"><code>CT</code></em>, <em class="replaceable"><code>CMy</code></em>, <em class="replaceable"><code>CMz</code></em>, <em class="replaceable"><code>Mbio</code></em>, <em class="replaceable"><code>Tbio</code></em>
+</td></tr></table><p>where </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<em class="replaceable"><code>Z</code></em> = Z level for the coefficients
+specified on this command.</td></tr><tr><td>
+<em class="replaceable"><code>--</code></em> = Reserved.</td></tr><tr><td>
+<em class="replaceable"><code>CDy</code></em> = Drag coefficient in the element
+y direction (normal).</td></tr><tr><td>
+<em class="replaceable"><code>CDz</code></em> = Drag coefficient in the element
+z direction (normal). This value defaults to <em class="replaceable"><code>CDy</code></em>.</td></tr><tr><td>
+<em class="replaceable"><code>CT</code></em> = Drag coefficient in the element
+x direction (tangential).</td></tr><tr><td>
+<em class="replaceable"><code>CMy</code></em> = Coefficient of inertia in
+the element y direction.</td></tr><tr><td>
+<em class="replaceable"><code>CMz</code></em> = Coefficient of inertia in
+the element z direction. This value defaults to <em class="replaceable"><code>CMy</code></em>.</td></tr><tr><td>
+<em class="replaceable"><code>Mbio</code></em> = Material ID of biofouling.</td></tr><tr><td>
+<em class="replaceable"><code>Tbio</code></em> = Thickness of biofouling.</td></tr></table><div class="refsect3" title="Ocean Zone Type Usage Notes"><a name="d0e190641"></a><h4>Ocean Zone Type Usage Notes</h4><p>Ocean zone values specified via the <span class="command"><strong>OCTABLE</strong></span> command override global ocean-loading parameters. </p><p>Arguments not specified default to the global values specified for the
+     basic ocean type (<a class="link" href="Hlp_C_OCTYPE.html" title="OCTYPE"><span class="command"><strong>OCTYPE</strong></span></a>,BASIC). Therefore, the relationship between
+      <em class="replaceable"><code>Ca</code></em> and <em class="replaceable"><code>CM</code></em> values
+      (<em class="replaceable"><code>Ca</code></em> = <em class="replaceable"><code>CM</code></em> - 1.0) is not applied to ocean
+     zones.</p><p>The <span class="command"><strong>OCTABLE</strong></span> command is not valid for a pipe-type
+ocean zone (<a class="link" href="Hlp_C_OCZONE.html" title="OCZONE"><span class="command"><strong>OCZONE</strong></span></a>,PIP). </p></div></div></div><div class="refsect1" title="Menu Paths"><a name="OCTABLE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:42:04-04:00"><title>WPCSYS</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_W_TOC.html" title="W Commands"><link rel="prev" href="Hlp_C_WPAVE.html" title="WPAVE"><link rel="next" href="Hlp_C_WPLANE.html" title="WPLANE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="WPCSYS"><a name="WPCSYS"></a><div class="titlepage"></div><a class="indexterm" name="d0e302461"></a><span class="refentrytitle"><span class="command"><strong>WPCSYS</strong></span></span><div class="refnamediv"><p><span class="command"><strong>WPCSYS</strong></span>, <em class="replaceable"><code>WN</code></em>, <em class="replaceable"><code>KCN</code></em><br><b class="refpurpose">Defines the working plane location based on a coordinate
+system.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_2.html" title="2.2.&nbsp;DATABASE Commands"><code class="classname">DATABASE</code></a>: <a class="link" href="Hlp_C_CH2_2.html#cmddatawkplanejla070199" title="Table&nbsp;2.8:&nbsp;&nbsp;Working Plane"><span class="type">Working Plane</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="WPCSYS.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>WN</code></em></b></span></dt><dd><p>Window number whose viewing direction will be modified
+to be normal to the working plane (defaults to 1).  If <em class="replaceable"><code>WN</code></em> is a negative value, the viewing direction will
+not be modified.</p></dd><dt><span><b class="term"><em class="replaceable"><code>KCN</code></em></b></span></dt><dd><p>Coordinate system number.  <em class="replaceable"><code>KCN</code></em> may be 0,1,2 or any previously defined local coordinate system number
+(defaults to the active system).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="WPCSYS.notes"></a><h2>Notes</h2><p>Defines a working plane location and orientation based on an
+existing coordinate system.  If a Cartesian system is used as the
+basis (<em class="replaceable"><code>KCN</code></em>) for the working plane, the
+working plane will also be Cartesian, in the X-Y plane of the base
+system.  If a cylindrical, spherical, or toroidal base system is used,
+the working plane will be a polar system in the R-&#952; plane of
+the base system.</p><p>If working plane tracking has been activated (<a class="link" href="Hlp_C_CSYS.html" title="CSYS"><span class="command"><strong>CSYS</strong></span></a>,WP or <a class="link" href="Hlp_C_CSYS.html" title="CSYS"><span class="command"><strong>CSYS</strong></span></a>,4), the updated active coordinate
+system will be of a similar type, except that a toroidal system will
+be updated to a cylindrical system.  See the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a> for more information
+on working plane tracking.</p><p>This command is valid in any processor.</p><p>Some primitive generation commands will
+not honor R-theta transformations for non-cartesian coordinate systems.
+Refer to the <a href="Hlp_C_CH2_5.html#cmdprep7primitivesldm061600" class="olink">primitive commands table</a> for more information.</p></div><div class="refsect1" title="Menu Paths"><a name="WPCSYS.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Surface Operations&gt;Create Surface&gt;Sphere&gt;At Node</strong></span></td></tr><tr><td><span class="guimenu"><strong>Utility Menu&gt;WorkPlane&gt;Align WP with&gt;Active Coord Sys</strong></span></td></tr><tr><td><span class="guimenu"><strong>Utility Menu&gt;WorkPlane&gt;Align WP with&gt;Global Cartesian</strong></span></td></tr><tr><td><span class="guimenu"><strong>Utility Menu&gt;WorkPlane&gt;Align WP with&gt;Specified Coord Sys</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

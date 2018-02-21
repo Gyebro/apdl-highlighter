@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:37-04:00"><title>DCUM</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_D_TOC.html" title="D Commands"><link rel="prev" href="Hlp_C_DCGOMG.html" title="DCGOMG"><link rel="next" href="Hlp_C_DCVSWP.html" title="DCVSWP"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="DCUM"><a name="DCUM"></a><div class="titlepage"></div><a class="indexterm" name="d0e65062"></a><span class="refentrytitle"><span class="command"><strong>DCUM</strong></span></span><div class="refnamediv"><p><span class="command"><strong>DCUM</strong></span>, <em class="replaceable"><code>Oper</code></em>, <em class="replaceable"><code>RFACT</code></em>, <em class="replaceable"><code>IFACT</code></em>, <em class="replaceable"><code>TBASE</code></em><br><b class="refpurpose">Specifies that DOF constraint values are to be accumulated.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolufeconstjla070199" title="Table&nbsp;2.66:&nbsp;&nbsp;FE Constraints"><span class="type">FE Constraints</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="DCUM.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Oper</code></em></b></span></dt><dd><p>Accumulation key:       </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">REPL&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Subsequent values replace the
+previous values (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ADD&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Subsequent values are added to
+the previous values.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">IGNO&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Subsequent values are ignored.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>RFACT</code></em></b></span></dt><dd><p>Scale factor for the real component.  Zero (or blank) defaults
+to 1.0.  Use a small number for a zero scale factor.</p></dd><dt><span><b class="term"><em class="replaceable"><code>IFACT</code></em></b></span></dt><dd><p>Scale factor for the imaginary component.  Zero (or blank)
+defaults to 1.0.  Use a small number for a zero scale factor.</p></dd><dt><span><b class="term"><em class="replaceable"><code>TBASE</code></em></b></span></dt><dd><p>Base temperature for temperature difference.  Used only with
+temperature degree of freedom.  Scale factor is applied to the temperature
+difference (<em class="replaceable"><code>T</code></em>-<em class="replaceable"><code>TBASE</code></em>)
+and then added to <em class="replaceable"><code>TBASE</code></em>.  <em class="replaceable"><code>T</code></em> is
+the current temperature.</p></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="DCUM.default"></a><h3>Command Default</h3><p>Replace previous values.</p></div></div><div class="refsect1" title="Notes"><a name="DCUM.notes"></a><h2>Notes</h2><p>Allows repeated degree of freedom constraint
+values (displacement, temperature, etc.)  to be replaced, added, or ignored.
+ Operations apply to the selected nodes [<a class="link" href="Hlp_C_NSEL.html" title="NSEL"><span class="command"><strong>NSEL</strong></span></a>] and the
+selected degree of freedom labels [<a class="link" href="Hlp_C_DOFSEL.html" title="DOFSEL"><span class="command"><strong>DOFSEL</strong></span></a>]. This command
+also operates on velocity and acceleration loads applied in a structural analysis.</p><p>The operations occur when the next degree of
+freedom constraints are defined.  For example, issuing the command <a class="link" href="Hlp_C_D.html" title="D"><span class="command"><strong>D</strong></span></a>,1,UX,.025
+after a previous <a class="link" href="Hlp_C_D.html" title="D"><span class="command"><strong>D</strong></span></a>,1,UX,.020 causes the new value of the
+displacement on node 1 in the x-direction to be 0.045 with the add operation,
+0.025 with the replace operation, or 0.020 with the ignore operation.  Scale
+factors are also available to multiply the next value before the add or replace
+operation.  A scale factor of 2.0 with the previous "add" example results
+in a displacement of 0.070.  Scale factors are applied even if no previous
+values exist.  Issue <span class="command"><strong>DCUM</strong></span>,STAT to show the current label,
+operation, and scale factors.  Solid model boundary conditions are not affected
+by this command, but boundary conditions on the FE model are affected.   </p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;FE boundary conditions may still be overwritten by existing solid model
+boundary conditions if a subsequent boundary condition transfer occurs.</p><hr></div><p><span class="command"><strong>DCUM</strong></span> does not work for tabular boundary conditions.</p><p>This command is also valid in PREP7.</p></div><div class="refsect1" title="Menu Paths"><a name="DCUM.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Define Loads&gt;Settings&gt;Replace vs Add&gt;Constraints</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Define Loads&gt;Settings&gt;Replace vs Add&gt;Constraints</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

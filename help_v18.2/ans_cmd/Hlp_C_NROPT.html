@@ -1,0 +1,65 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:56-04:00"><title>NROPT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_N_TOC.html" title="N Commands"><link rel="prev" href="Hlp_C_NRM.html" title="*NRM"><link rel="next" href="Hlp_C_NROTAT.html" title="NROTAT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="NROPT"><a name="NROPT"></a><div class="titlepage"></div><a class="indexterm" name="d0e182565"></a><span class="refentrytitle"><span class="command"><strong>NROPT</strong></span></span><div class="refnamediv"><p><span class="command"><strong>NROPT</strong></span>, <em class="replaceable"><code>Option1</code></em>, <em class="replaceable"><code>Option2</code></em>, <em class="replaceable"><code>Optval</code></em><br><b class="refpurpose">Specifies the Newton-Raphson options in a static or full
+transient analysis.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolunonlinjla070199" title="Table&nbsp;2.50:&nbsp;&nbsp;Nonlinear Options"><span class="type">Nonlinear Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="NROPT.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Option1</code></em></b></span></dt><dd><p>Option key:       </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">AUTO&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Let the program choose
+the option (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">FULL&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use full Newton-Raphson.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MODI&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use modified Newton-Raphson.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">INIT&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use the previously computed
+matrix (initial-stiffness).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">UNSYM&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use full Newton-Raphson
+with unsymmetric matrices of elements where the unsymmetric option
+exists. </p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Option2</code></em></b></span></dt><dd><p>Option key:       </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CRPL </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>When applicable in a static creep
+analysis, activates modified Newton-Raphson with a creep-ratio limit.
+Valid only when <em class="replaceable"><code>Option1</code></em> = AUTO. </p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Optval</code></em></b></span></dt><dd><p>If <em class="replaceable"><code>Option2</code></em> is blank, <em class="replaceable"><code>Optval</code></em> is the Adaptive Descent Key (<em class="replaceable"><code>Adptky</code></em>):       </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ON&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use adaptive descent (default
+if frictional contact exists). Explicit ON is valid only if <em class="replaceable"><code>Option</code></em> = FULL.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Do not use adaptive descent
+(default in all other cases).</p></td></tr></tbody></table></div></div><p>If <em class="replaceable"><code>Option2</code></em> =
+CRPL, <em class="replaceable"><code>Optval</code></em> is the creep ratio limit:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term"><em class="replaceable"><code>CRLIMIT</code></em>&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The creep ratio limit for use with the modified Newton-Raphson
+procedure. Valid only when <em class="replaceable"><code>Option1</code></em> = AUTO
+(default) and <em class="replaceable"><code>Option2</code></em> = CRPL. Typically,
+this value should not exceed 0.15 in order to make the modified Newton-Raphson
+solution converge efficiently. For more information about the creep
+ratio limit, see the <a class="link" href="Hlp_C_CUTCONTROL.html" title="CUTCONTROL"><span class="command"><strong>CUTCONTROL</strong></span></a> command.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="NROPT.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>NROPT</strong></span> command specifies the <a href="../ans_str/Hlp_G_STR8_13.html#strnewtraptlm81999" class="olink">Newton-Raphson
+option</a> used to solve the nonlinear equations in a static or
+full transient analysis. </p><p>The automatic modified Newton-Raphson procedure with creep-ratio
+limit control (<span class="command"><strong>NROPT</strong></span>,AUTO,CRPL,<em class="replaceable"><code>CRLIMIT</code></em>) applies to static creep analysis only. When the creep ratio is
+smaller than the value of the creep ratio limit specified, the modified
+Newton-Raphson procedure is used. If convergence difficulty occurs
+during solution, use the full Newton-Raphson procedure.</p><p>The command <span class="command"><strong>NROPT</strong></span>,UNSYM is also valid in
+a <a href="../ans_str/Hlp_G_STRmodanexamp.html#strlinearnonpresmodan" class="olink">linear
+non-prestressed modal analysis</a> that is used to perform a brake
+squeal analysis. In this special case, the command is used only to
+generate the unsymmetric stiffness matrix; no Newton-Raphson iterations
+are performed.</p><p><span class="command"><strong>NROPT</strong></span>,MODI and <span class="command"><strong>NROPT</strong></span>,INIT
+are only applicable with the sparse solver (<a class="link" href="Hlp_C_EQSLV.html" title="EQSLV"><span class="command"><strong>EQSLV</strong></span></a>,SPARSE). Thermal analyses will always use full Newton-Raphson irrespective
+of the <em class="replaceable"><code>Option1</code></em> value selected.</p><p>See <a href="../ans_str/Hlp_G_STR8_13.html#strnewtraptlm81999" class="olink">Newton-Raphson Option</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a> for more information.</p><p>This command is also valid in PREP7.</p><p><span class="bold"><strong>Switching Between
+the Symmetric and Unsymmetric Option</strong></span></p><p>Normally, switching from the symmetric
+Newton-Raphson option (<span class="command"><strong>NROPT</strong></span>,FULL) to the unsymmetric
+option (<span class="command"><strong>NROPT</strong></span>,UNSYM) or from the unsymmetric option
+to the symmetric option is allowed between load steps within the same
+analysis type. This is applicable to linear and nonlinear, static
+and full transient analyses.</p><p>Under the following circumstances, the
+solution could be slightly different or inaccurate if you switch from
+symmetric to unsymmetric or vice versa:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The underlying elements or materials are unsymmetric
+by their mathematical definition, and you switch from unsymmetric
+to symmetric. </p></li><li class="listitem"><p>You change analysis types and also switch from symmetric
+to unsymmetric (or vise versa) at the same time. This situation could
+result in failures such as data corruption or a core dump and should
+therefore be avoided.</p></li><li class="listitem"><p>In some rare cases, switching between the symmetric
+and unsymmetric options can cause a system core dump when reading/writing
+the <span class="filename"><strong>.ESAV</strong></span> or <span class="filename"><strong>.OSAV</strong></span> file,
+and the analysis terminates. Typically, this happens when the record
+length of the element nonlinear saved variables cannot be altered
+between load steps by their mathematical definition.</p></li></ul></div><p>If all the elements and the material are
+symmetric by their mathematical definition and you use the unsymmetric
+option, the solution accuracy is the same as the symmetric option.
+However, the analysis will run twice as slow as the symmetric case. </p><p>If the static or full transient solution
+is used as the base analysis for a linear perturbation, be aware that
+switching to the unsymmetric Newton-Raphson option forces the program
+to use the UNSYM or DAMP eigensolver in a downstream modal analysis,
+which may be more expensive than symmetric modal analysis. </p></div><div class="refsect1" title="Menu Paths"><a name="NROPT.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Analysis Type&gt;Analysis Options</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Analysis Type&gt;Analysis Options</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

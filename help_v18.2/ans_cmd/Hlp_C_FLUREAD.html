@@ -1,0 +1,47 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:03-04:00"><title>FLUREAD</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_F_TOC.html" title="F Commands"><link rel="prev" href="Hlp_C_FLUXV.html" title="FLUXV"><link rel="next" href="Hlp_C_FOCUS.html" title="/FOCUS"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="FLUREAD"><a name="FLUREAD"></a><div class="titlepage"></div><a class="indexterm" name="d0e111709"></a><span class="refentrytitle"><span class="command"><strong>FLUREAD</strong></span></span><div class="refnamediv"><p><span class="command"><strong>FLUREAD</strong></span>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>Fname</code></em>, <em class="replaceable"><code>Ext</code></em>, <em class="replaceable"><code>KDIM</code></em>, <em class="replaceable"><code>KOUT</code></em>, <em class="replaceable"><code>LIMIT</code></em>, <em class="replaceable"><code>ListOpt</code></em><br><b class="refpurpose">Reads one-way Fluent-to-Mechanical APDL coupling data
+via a <span class="filename"><strong>.cgns</strong></span> file with one-side fast Fourier transformation
+complex pressure peak value.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolumiscldsjla070199" title="Table&nbsp;2.59:&nbsp;&nbsp;Miscellaneous Loads"><span class="type">Misc Loads</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="FLUREAD.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">--</b></span></dt><dd><p>Reserved.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Fname</code></em></b></span></dt><dd><p>File name and directory path of a one-way Fluent-to-Mechanical APDL coupling
+data file (248 characters maximum, including the characters needed
+for the directory path). An unspecified directory path defaults to
+the working directory; in this case, you can use all 248 characters
+for the file name. Defaults to <span class="filename"><strong>jobname</strong></span>. </p></dd><dt><span><b class="term"><em class="replaceable"><code>Ext</code></em></b></span></dt><dd><p>File name extension of the one-way Fluent-to-Mechanical APDL coupling
+data file. Defaults to <span class="filename"><strong>.cgns</strong></span>).</p></dd><dt><span><b class="term"><em class="replaceable"><code>KDIM</code></em></b></span></dt><dd><p>Interpolation data for mapping. A value of 0 (default)
+or 2 applies 2-D interpolation (where interpolation occurs on a surface).</p></dd><dt><span><b class="term"><em class="replaceable"><code>KOUT</code></em></b></span></dt><dd><p>Outside region results for mapping: </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use the value(s) of the nearest region
+point for points outside of the region. This behavior is the default.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Set results extrapolated outside of
+the region to zero. </p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>LIMIT</code></em></b></span></dt><dd><p>Number of nearby nodes considered for mapping interpolation.
+Minimum = 5. Default = 20.</p><p>Lower values reduce processing
+time; however, some distorted or irregular meshes require a higher
+value in cases where three nodes are encountered for triangulation.</p></dd><dt><span><b class="term"><em class="replaceable"><code>ListOpt</code></em></b></span></dt><dd><p>Type of items picked:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">(blank)</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>No listing (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SOURCE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>List the node coordinates and complex
+pressure values on the Fluent source side during the solution.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TARGET</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>List the node coordinates and complex
+pressure values on the mapped Mechanical APDL target side during
+the solution.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BOTH</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>List the node coordinates and complex
+pressure values on both the Fluent source side and the mapped Mechanical APDL target
+side during the solution.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="FLUREAD.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>FLUREAD</strong></span> command reads one-way Fluent-to-Mechanical APDL coupling
+data from a <span class="filename"><strong>.cgns</strong></span> file. The Fluent one-side
+fast Fourier transformation (FFT) peak complex pressure values are
+mapped to the Mechanical APDL structure model during the acoustic-structural
+solution at each FFT frequency.</p><p>The command can be used only for the model
+with the acoustic elements.</p><p>To apply complex pressure to the structure model, define the <a href="../ans_elem/Hlp_E_SURF154.html" class="olink"><span class="structname">SURF154</span></a> surface element, then define the one-way coupling
+interface (<a class="link" href="Hlp_C_SF.html" title="SF"><span class="command"><strong>SF</strong></span></a>,,FSIN) on the element. </p><p>You can define the solving frequency range via the <a href="Hlp_C_HARFRQ.html" class="olink"><span class="structname">HARFRQ</span></a> command. The solver selects the FFT frequencies
+between the beginning and ending frequencies. The number of substeps
+is determined by the number of FFT frequencies over the frequency
+range. The number of substeps defined via the <a class="link" href="Hlp_C_NSUBST.html" title="NSUBST"><span class="command"><strong>NSUBST</strong></span></a> command is overwritten. </p><p>For better mapping performance, consider the following:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Calculations for out-of-bound points require much
+more processing time than do points that are within bounds.</p></li><li class="listitem"><p>For each point in the structural destination mesh,
+the command searches all possible triangles in the Fluent source mesh
+to find the best triangle containing each point, then performs a linear
+interpolation inside this triangle. For faster and more accurate results,
+consider your interpolation method and search criteria carefully.
+(See <em class="replaceable"><code>LIMIT</code></em>.)</p></li></ul></div><p>It is possible to apply one-way coupling excitation to multiple
+frequencies. The one-side FFT peak complex pressure values are necessary
+to do so.</p></div><div class="refsect1" title="Menu Paths"><a name="FLUREAD.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

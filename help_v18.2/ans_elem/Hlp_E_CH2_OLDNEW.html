@@ -1,0 +1,110 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:00-04:00"><title>2.4.&nbsp;Current-Technology Elements</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_CLASS.html" title="Chapter&nbsp;2:&nbsp;Element Classifications"><link rel="prev" href="Hlp_E_CH3_Classifications.html" title="2.3.&nbsp;Selecting Elements for Your Analysis"><link rel="next" href="Hlp_E_CH2_8.html" title="2.5.&nbsp;Degenerated Shape Elements"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="2.4.&nbsp;Current-Technology Elements"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="EL2curtechelembenefits"></a>2.4.&nbsp;Current-Technology Elements</h2></div></div></div><a class="indexterm" name="d0e7596"></a><p>As technology advances, ANSYS, Inc. continues to develop robust new element types using
+            the most current technologies available. Current-technology elements are more advanced
+            and feature-rich than legacy elements. For example, support for the following
+            capabilities is available only in applicable current-technology elements:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>A vast array of <a href="elem_matsupp.html" class="olink">material
+                        constitutive options</a> (such as anisotropic hyperelasticity, cast iron
+                    plasticity, enhanced Drucker-Prager plasticity, Hill plasticity,
+                    hyperelasticity, shape memory alloy, plasticity, rate-dependent plasticity,
+                    viscoelasticity, and others).</p></li><li class="listitem"><p>Association of a single element with <a href="../ans_mat/elemamoco050301.html" class="olink">several material constitutive options</a>
+                    (such as a combination of hyperelasticity and viscoelasticity with Prony series
+                    expansion).</p></li><li class="listitem"><p>A <a href="../ans_mat/Hlp_G_STRmcf.html" class="olink">curve-fitting</a>
+                    tool (<a href="../ans_cmd/Hlp_C_TBFT.html" class="olink"><span class="command"><strong>TBFT</strong></span></a>) for calibrating material parameters through
+                    experimental data, which currently supports creep, hyperelasticity, and
+                    viscoelasticity.</p></li><li class="listitem"><p>
+                    <a href="../ans_frac/frac_mech.html" class="olink">Fracture mechanics</a> parameter calculation
+                        (<a href="../ans_cmd/Hlp_C_CINT.html" class="olink"><span class="command"><strong>CINT</strong></span></a>), which uses the domain-integration approach to
+                    calculate the J-Integrals for both linear and elastoplastic material behavior at
+                    a designated tip location (2-D) or at specific location along the crack front
+                    (3-D) through a structure component.</p></li><li class="listitem"><p>
+                    <a href="../ans_adv/Hlp_G_INSTINTRO.html" class="olink">Initial state</a> conditions
+                        (<a href="../ans_cmd/Hlp_C_INISTATE.html" class="olink"><span class="command"><strong>INISTATE</strong></span></a>) that may exist in the structure. </p></li><li class="listitem"><p>Custom <a href="../ans_prog/Z7K4r1e5lcd.html#UPFusermatjwf032800403" class="olink">user-defined material models</a> created via the
+                        <code class="function">UserMat</code> subroutine.</p></li><li class="listitem"><p>3-D smeared reinforcing, provided by elements such as
+                        <a class="link" href="Hlp_E_REINF265.html" title="REINF265"><span class="structname">REINF265</span></a> when used with 3-D solid and shell
+                    elements (referred to as the base elements) to achieve the effect of extra
+                    reinforcement to those elements.</p></li><li class="listitem"><p>
+                    <a href="../ans_str/Hlp_G_STRUNST.html" class="olink">Nonlinear
+                        stabilization</a>, a viscous-based algorithm for improving convergence
+                    behavior when instabilities are expected.</p></li><li class="listitem"><p>
+                    <a href="../ans_adv/Hlp_G_ADVREZ.html" class="olink">Rezoning</a> for solid
+                    elements.</p></li><li class="listitem"><p>
+                    <a href="../ans_str/strlinperturb.html" class="olink">Linear perturbation</a>
+                    based on nonlinear analysis.</p></li><li class="listitem"><p>Precise control of the element technologies (<a href="../ans_cmd/Hlp_C_ETCONTROL.html" class="olink"><span class="command"><strong>ETCONTROL</strong></span></a>)
+                    used in element formulation for applicable elements.</p></li><li class="listitem"><p>A layered-section option (via <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> and other section
+                    commands) for shell and solid elements.</p></li></ul></div><p>In <a class="xref" href="Hlp_E_CH3_Classifications.html" title="2.3.&nbsp;Selecting Elements for Your Analysis">Selecting Elements for Your Analysis</a>, current-technology elements appear first. You can
+            readily identify them, as they are not typically associated with specific material
+            types, nor do they specify restrictions such as &#8220;linear.&#8221; Most of the
+            elements listed are current-technology elements in the sense that they are the best
+            technologies that ANSYS, Inc. is able to offer at the current product release. </p><p>A few legacy elements are still supported to meet the needs of longtime users who have
+            input files containing those elements. Legacy elements may eventually be replaced by new
+            elements.</p><div class="sect2" title="2.4.1.&nbsp;Legacy vs. Current Element Technologies"><div class="titlepage"><div><div><h3 class="title"><a name="EL2oldnewtable"></a>2.4.1.&nbsp;Legacy vs. Current Element Technologies</h3></div></div></div><a class="indexterm" name="d0e7703"></a><p>It is good practice to use <a class="link" href="Hlp_E_CH2_OLDNEW.html" title="2.4.&nbsp;Current-Technology Elements">current-technology elements</a> rather than legacy elements in your analysis
+                wherever possible.</p><p>The following table lists the remaining legacy elements and suggests
+                current-technology elements to use instead. In some cases, an element KEYOPT
+                setting, degree-of-freedom constraint, or <a href="../ans_cmd/Hlp_C_CmdTOC.html" class="olink">command</a> may be necessary to more precisely
+                reproduce the behavior of a given legacy element.</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="144" class="col1"><col width="120" class="col2"><col width="153" class="col3"><col width="206" class="col4"></colgroup><thead><tr><th bgcolor="#C0C0C0" rowspan="2" valign="middle">
+                                
+                                Legacy Element Type [<a class="xref" href="Hlp_E_CH2_OLDNEW.html#legacyelemnote1">1</a>]</th><th bgcolor="#C0C0C0" rowspan="2" valign="middle">
+                                
+                                Suggested Current Element Type [<a class="xref" href="Hlp_E_CH2_OLDNEW.html#legacyelemnote2">2</a>]</th><th bgcolor="#C0C0C0" colspan="2" valign="top">
+                                
+                                Suggested Setting(s) to Approximate Legacy
+                                Element Behavior [<a class="xref" href="Hlp_E_CH2_OLDNEW.html#legacyelemnote3">3</a>]</th></tr><tr><th bgcolor="#E3E3E3" valign="top">
+                                
+                                Element KEYOPT</th><th bgcolor="#E3E3E3" valign="top">
+                                
+                                Comments</th></tr></thead><tbody><tr><td>
+                                <a class="link" href="Hlp_E_INFIN47.html" title="INFIN47"><span class="structname">INFIN47</span></a>
+                            </td><td>
+                                <a class="link" href="Hlp_E_INFIN111.html" title="INFIN111"><span class="structname">INFIN111</span></a>
+                            </td><td valign="middle">--- </td><td valign="middle">--- </td></tr><tr><td>
+                                <a class="link" href="Hlp_E_PLANE13.html" title="PLANE13"><span class="structname">PLANE13</span></a>
+                            </td><td valign="middle">
+                                <a class="link" href="Hlp_E_PLANE223.html" title="PLANE223"><span class="structname">PLANE223</span></a>
+                            </td><td>--- </td><td>--- </td></tr><tr><td>
+                                <a class="link" href="Hlp_E_PLANE25.html" title="PLANE25"><span class="structname">PLANE25</span></a>
+                            </td><td>
+                                <a class="link" href="Hlp_E_SOLID272.html" title="SOLID272"><span class="structname">SOLID272</span></a>
+                            </td><td>KEYOPT(6) = 0</td><td>&nbsp;</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_PLANE83.html" title="PLANE83"><span class="structname">PLANE83</span></a>
+                            </td><td>
+                                <a class="link" href="Hlp_E_SOLID273.html" title="SOLID273"><span class="structname">SOLID273</span></a>
+                            </td><td>KEYOPT(6) = 0</td><td>--- </td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SOLID5.html" title="SOLID5"><span class="structname">SOLID5</span></a>
+                            </td><td>
+                                <a class="link" href="Hlp_E_SOLID226.html" title="SOLID226"><span class="structname">SOLID226</span></a>
+                            </td><td>--- </td><td>--- </td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SOLID65.html" title="SOLID65"><span class="structname">SOLID65</span></a>
+                            </td><td>
+                                <a class="link" href="Hlp_E_SOLID185.html" title="SOLID185"><span class="structname">SOLID185</span></a>
+                            </td><td>
+                                <p>KEYOPT(3) = 0 and KEYOPT(2) = 0 -- Full integration with the
+                                        <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq0c515e21-3267-459f-b9a5-0220d9502776.svg"></span> method</p>
+                                <p>--------</p>
+                                <p>KEYOPT(3) = 0 and KEYOPT(2) = 3 -- simplified enhanced strain
+                                    formulation </p>
+                            </td><td>See <a href="../ans_mat/microplane.html" class="olink">Microplane in the <span class="olinkdocname">Mechanical APDL Material Reference</span></a>.</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SOLID98.html" title="SOLID98"><span class="structname">SOLID98</span></a>
+                            </td><td>
+                                <a class="link" href="Hlp_E_SOLID227.html" title="SOLID227"><span class="structname">SOLID227</span></a>
+                            </td><td>--- </td><td>--- </td></tr></tbody></table></div><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="legacyelemnote1"></a>After considering element redundancy and consistency issues, ANSYS, Inc.
+                        may in future releases move legacy element documentation to the <a href="../ans_arch/ans_arch.html" class="olink"><em class="citetitle">Feature Archive</em></a> or
+                        undocument those elements altogether; however, the table does not imply that
+                        all legacy elements listed are immediate targets for such action.</p></li><li class="listitem"><p><a name="legacyelemnote2"></a>The table is not a definitive listing of legacy-to-current element
+                        equivalents in terms of either formulation or use of shape functions; for
+                        example, a suggested current element may require a more refined mesh in some
+                        cases, or may require adaptation via appropriate constraints for specific
+                        2-D analyses.</p></li><li class="listitem"><p><a name="legacyelemnote3"></a>While a given KEYOPT setting can allow you to approximate the behavior of
+                        a <span class="italic"><em>legacy</em></span> element, it may not be the most
+                        desirable KEYOPT for the <span class="italic"><em>current</em></span> element.
+                        For structural-only analyses, try the <a href="../ans_cmd/Hlp_C_ETCONTROL.html" class="olink"><span class="command"><strong>ETCONTROL</strong></span></a> command
+                        for element and KEYOPT recommendations. For more information, see <a class="xref" href="Hlp_E_AutoSelectElems.html" title="5.8.&nbsp;Automatic Selection of Element Technologies and Formulations">Automatic Selection of Element Technologies and Formulations</a>. </p></li></ol></div></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

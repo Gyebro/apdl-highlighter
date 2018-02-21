@@ -1,0 +1,176 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:22-04:00"><title>HSFLD242</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_HSFLD241.html" title="HSFLD241"><link rel="next" href="Hlp_E_SURF251.html" title="SURF251"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="HSFLD242"><a name="HSFLD242"></a><div class="titlepage"></div><a class="indexterm" name="d0e188062"></a><span class="refentrytitle"><span class="structname">HSFLD242</span> </span><div class="refnamediv"><p><br><b class="refpurpose">3-D Hydrostatic
+Fluid</b><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_E_HSFLD242.html#hs242prdres" title="HSFLD242 Product Restrictions">Product Restrictions</a></span></div></div></div></p></div><div class="refsect1" title="HSFLD242 Element Description"><a name="ELEMhsfld242desc"></a><h2>HSFLD242 Element Description</h2><p><span class="structname">HSFLD242</span> is used to model fluids that
+are fully enclosed by solids (containing vessels). The hydrostatic
+fluid element is well suited for calculating fluid volume and pressure
+for coupled problems involving fluid-solid interaction. The pressure
+in the fluid volume is assumed to be uniform (no pressure gradients),
+so sloshing effects cannot be included. Temperature effects and compressibility
+may be included, but fluid viscosity cannot be included.</p><p>Hydrostatic fluid elements are overlaid on the faces of 3-D
+solid or shell elements enclosing the fluid volume. See <a href="../ans_thry/thy_el242.html" class="olink">HSFLD242</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for
+more details about this element. See <a class="link" href="Hlp_E_HSFLD241.html" title="HSFLD241"><span class="structname">HSFLD241</span></a> for a 2-D version of this element.</p><div class="figure"><a name="HS242geom"></a><p class="title"><b>Figure&nbsp;242.1:&nbsp;&nbsp;HSFLD242 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gelem242-1.png" alt="HSFLD242 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="HSFLD242 Input Data"><a name="hsfld242indata"></a><h2>HSFLD242 Input Data</h2><p>The geometry, node locations, and the coordinate system for
+this element are shown in <a class="xref" href="Hlp_E_HSFLD242.html#HS242geom" title="Figure&nbsp;242.1:&nbsp;&nbsp;HSFLD242 Geometry">Figure&nbsp;242.1:&nbsp;HSFLD242 Geometry</a>. The hydrostatic
+fluid element is defined by five to nine nodes. Nodes I, J, K, L,
+M, N, O, and P on the surface (face 1) are shared with the solid or
+shell element and have three degrees of freedom at each node: translation
+in x, y, and z directions. Nodes M, N, O, and P  are not used if the
+underlying solid or shell element does not have midside nodes. For
+the case of a degenerate solid or shell element sharing the collapsed
+face with the hydrostatic fluid element, some of the surface nodes
+of the hydrostatic fluid element will be coincident. Node Q is a pressure
+node with a hydrostatic pressure degree of freedom. Hydrostatic fluid
+elements can be generated automatically using the <a href="../ans_cmd/Hlp_C_ESURF.html" class="olink"><span class="command"><strong>ESURF</strong></span></a> command.</p><p>The pressure node (Q) can be located anywhere in the fluid volume,
+except when the fluid volume has symmetry boundaries; in this case
+the pressure node must be located on the symmetry plane or on the
+intersection point or edge of multiple symmetry planes. The pressure
+node is automatically moved to the centroid of the fluid volume if
+there are no displacement degree-of-freedom constraints specified.
+To keep the pressure node on a symmetry line, you must specify symmetry
+boundary conditions at this node. (The displacement degrees of freedom
+at the pressure node do not have any displacement solution associated
+with them. They are only available for applying displacement degree
+of freedom constraints.) The pressure node is shared by all the hydrostatic
+fluid elements used to define the fluid volume. It is also used to
+apply temperature loads, fluid mass flow rate, or hydrostatic pressure
+degree-of-freedom constraints for the fluid. </p><p>You can define a hydrostatic fluid element without an underlying
+solid or shell element in situations where the underlying solid has
+a discontinuity. In this case, the surface nodes (I through P) of
+the hydrostatic fluid element must be shared with adjacent solid or
+shell elements, or the displacement degrees of freedom at the surface
+nodes should be constrained. For example, the gap between the cylinder
+and piston in a cylinder-piston assembly with fluid may be bridged
+with a hydrostatic fluid element by sharing some of its surface nodes
+with a solid or shell element on the cylinder and sharing its other
+surface nodes with a solid or shell element on the piston  (see <a href="../ans_str/strhydroexample.html" class="olink">Example Model Using Hydrostatic Fluid Elements</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>). </p><p>You can define material properties for hydrostatic fluid elements
+using <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> or <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> commands. All
+hydrostatic fluid elements sharing a pressure node must use the same
+material property definition and must have the same real constant
+values (PREF).</p><p>You can input a reference pressure (must be specified for compressible
+gas defined via <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command with <em class="replaceable"><code>Lab</code></em> = FLUID and <em class="replaceable"><code>TBOPT</code></em> = GAS) as real constant
+PREF.</p><p>You can define the initial state of the hydrostatic fluid by
+defining initial pressure (input via the <a href="../ans_cmd/Hlp_C_IC.html" class="olink"><span class="command"><strong>IC</strong></span></a> command
+with <em class="replaceable"><code>Lab</code></em> = HDSP) at the pressure node.
+Specify the reference temperature by using the <a href="../ans_cmd/Hlp_C_TREF.html" class="olink"><span class="command"><strong>TREF</strong></span></a> command or the <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,REFT command. For compressible
+gas (defined via the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command with <em class="replaceable"><code>Lab</code></em> = FLUID and <em class="replaceable"><code>TBOPT</code></em> =
+GAS), the initial pressure and the reference pressure (input as real
+constant PREF) are added internally to get the total initial pressure
+for the Ideal Gas Law. Internal force corresponding to initial pressure
+is calculated internally and applied over the first load step.</p><p>You can prescribe uniform pressure for the fluid as a hydrostatic
+pressure degree-of-freedom constraint at the pressure node (input
+via the <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a> command with <em class="replaceable"><code>Lab</code></em> = HDSP). The change in hydrostatic pressure value is assumed to
+occur as a result of the addition or removal of fluid mass to or from
+the containing vessel. Applying a hydrostatic pressure degree-of-freedom
+constraint is equivalent to applying a surface load on the underlying
+solid or shell element surface. Element loads are described in <a class="xref" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">Nodal Loading</a>. You can apply a fluid mass flow rate as a
+load on the pressure node (input via the <a href="../ans_cmd/Hlp_C_F.html" class="olink"><span class="command"><strong>F</strong></span></a> command
+with <em class="replaceable"><code>Lab</code></em> = DVOL); a positive value indicates
+fluid mass flowing into the containing vessel. You can also input
+fluid temperature as an element body load at the pressure node (input
+via the <a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a> command with <em class="replaceable"><code>Lab</code></em> = TEMP). The nodal temperature defaults to <a href="../ans_cmd/Hlp_C_TUNIF.html" class="olink"><span class="command"><strong>TUNIF</strong></span></a>.</p><p>You can model fluid flow between two fluid volumes in two containing
+   vessels by using <a class="link" href="Hlp_E_FLUID116.html" title="FLUID116"><span class="structname">FLUID116</span></a> coupled thermal-fluid pipe elements to connect
+   the pressure nodes of the two fluid volumes (using only one <a class="link" href="Hlp_E_FLUID116.html" title="FLUID116"><span class="structname">FLUID116</span></a>
+   element is recommended). You can also model fluid flow through an orifice between a fluid volume
+   and the atmosphere by connecting one node of a <a class="link" href="Hlp_E_FLUID116.html" title="FLUID116"><span class="structname">FLUID116</span></a> element with the
+    <span class="structname">HSFLD242</span> pressure node; the other node of the
+    <a class="link" href="Hlp_E_FLUID116.html" title="FLUID116"><span class="structname">FLUID116</span></a> element represents environmental pressure. For either of these
+   scenarios, you must activate the PRES degree of freedom (KEYOPT(1) = 1) on the pressure node of
+   the hydrostatic fluid elements, and you must set KEYOPT(1) = 3 on the
+    <a class="link" href="Hlp_E_FLUID116.html" title="FLUID116"><span class="structname">FLUID116</span></a> element.</p><p>KEYOPT(1) defines degrees of freedom for the hydrostatic fluid
+element:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>Use KEYOPT(1) = 0 (default) to activate UX, UY, and UZ degrees
+of freedom on the surface nodes (I through P) and HDSP degree of freedom
+on the pressure node (Q).</td></tr><tr><td>Use KEYOPT(1) = 1 to activate UX, UY, and UZ degrees of freedom
+on surface nodes (I through P) and HDSP and PRES degrees of freedom
+on the pressure node (Q). You must activate the PRES degree of freedom
+if the pressure node of the hydrostatic fluid element is shared with
+a coupled thermal-fluid pipe (<a class="link" href="Hlp_E_FLUID116.html" title="FLUID116"><span class="structname">FLUID116</span></a>) element
+to model fluid flow. In this case, you must also set KEYOPT(1) = 3
+on the <a class="link" href="Hlp_E_FLUID116.html" title="FLUID116"><span class="structname">FLUID116</span></a> element.</td></tr></table><p>KEYOPT(5) specifies how mass is computed for the hydrostatic
+fluid element:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>Use KEYOPT(5) = 0 (default) to ignore the mass contribution
+from the fluid element. However, you can attach <a class="link" href="Hlp_E_MASS21.html" title="MASS21"><span class="structname">MASS21</span></a> elements to the nodes of the underlying 3-D solid or shell elements
+to account for the fluid mass.</td></tr><tr><td>Use KEYOPT(5) = 1 to distribute the fluid element mass to
+the surface nodes (I through P) based on the volume of the fluid element.
+No mass is added to the surface nodes if the volume of the fluid element
+becomes negative.</td></tr><tr><td>Use KEYOPT(5) = 2 to distribute the fluid element mass to
+the surface nodes (I through P) based on the ratio of element surface
+area (area of face 1) to the total fluid surface area.</td></tr></table><p>KEYOPT(6) defines the hydrostatic fluid element compressibility:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>Use KEYOPT(6) = 0 (default) to model the hydrostatic fluid
+element as compressible. You need to define a fluid material property
+(use the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command with <em class="replaceable"><code>Lab</code></em> = FLUID) to relate changes in fluid pressure to fluid volume. </td></tr><tr><td>Use KEYOPT(6) = 1 or 2 to model the
+hydrostatic fluid element as incompressible. The fluid volume is kept
+constant, even as the solid enclosing the fluid undergoes large deformations.
+The fluid volume, however, can change when fluid mass is added to
+or taken out of the containing vessel; this is achieved by applying
+a fluid mass flow rate or by prescribing a non-zero hydrostatic pressure
+degree-of-freedom constraint at the pressure node. The fluid volume
+can also change when a temperature load is applied at the pressure
+node for a fluid with a non-zero coefficient of thermal expansion.
+When KEYOPT(6) = 1, the change in volume is accommodated by a change
+in fluid mass (mass flows into or out of the cavity). When KEYOPT(6)
+= 2, the change in volume is accommodated by a change in fluid density
+such that fluid mass is held constant.</td></tr></table><p>You can define contact and target surfaces on the underlying
+3-D solid or shell elements to model self-contact between walls of
+the vessel after the fluid has been removed. Note that contact should
+not cause a single fluid region to be separated into two since the
+pressure-volume calculations are performed assuming a single cavity.</p><p>For more information on using hydrostatic fluid elements to
+model fluids enclosed by solids, see <a href="../ans_str/strhydro.html" class="olink">Modeling Hydrostatic Fluids</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p><p><a class="xref" href="Hlp_E_HSFLD242.html#hsfld242insum" title="HSFLD242 Input Summary">"HSFLD242 Input Summary"</a> contains a summary of the element
+input. See <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a> in this document for a general
+description of element input.</p><div class="refsect2" title="HSFLD242 Input Summary"><a name="hsfld242insum"></a><h3>HSFLD242 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J, K, L, M, N, O, P, Q</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>UX, UY, UZ for surface nodes (I, J, K, L, M, N, O,
+P)</p><p>HSDP and PRES for pressure node (Q)</p></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><p>PREF - Reference pressure for compressible gas defined
+via <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command with <em class="replaceable"><code>Lab</code></em> = FLUID and <em class="replaceable"><code>TBOPT</code></em> = GAS</p></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p><a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command: <a href="../ans_mat/fluidmat.html" class="olink">Fluid</a></p><p><a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: ALPX, DENS, ALPD</p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Temperatures&nbsp;--&nbsp;</b></span></dt><dd><p>T(Q)</p></dd></dl></div></div></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td><a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink">Large deflection</a></td></tr><tr><td><a href="../ans_str/strlinperturb.html" class="olink">Linear
+perturbation</a></td></tr><tr><td><a href="../ans_str/Hlp_G_STRnlbasin.html" class="olink">Nonlinearity</a></td></tr></table></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Degrees of freedom:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>UX, UY, and UZ degrees
+of freedom at surface nodes, HDSP degree of freedom at pressure node
+(default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>UX, UY, and UZ degrees
+of freedom at surface nodes, HDSP and PRES degrees of freedom at pressure
+node</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(5)</b></span></dt><dd><p>Fluid mass:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>No fluid mass (default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Fluid mass calculated
+based on the volume of the fluid element</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Fluid mass calculated
+based on the surface area of the fluid element</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(6)</b></span></dt><dd><p>Fluid compressibility:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Compressible (default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Incompressible</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Incompressible, but allows
+change in density under thermal expansion</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="HSFLD242 Output Data"><a name="hsfld242outdata"></a><h2>HSFLD242 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal degrees of freedom included in the overall nodal
+solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_HSFLD242.html#hs242outdeftab" title="Table&nbsp;242.1:&nbsp;&nbsp;HSFLD242 Element Output Definitions">Table&nbsp;242.1:&nbsp;HSFLD242 Element Output Definitions</a></p></li></ul></div><p>A general description of solution output is given in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a>.  See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways to view results.</p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="hs242outdeftab"></a><p class="title"><b>Table&nbsp;242.1:&nbsp;&nbsp;HSFLD242 Element Output Definitions</b></p><div class="table-contents"><table summary="HSFLD242 Element Output Definitions" border="1" width="95%"><colgroup><col width="120" class="col1"><col width="360" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th align="center">Name</th><th align="center">Definition</th><th align="center">O</th><th align="center">R</th></tr></thead><tbody><tr><td>EL</td><td>Element Number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Nodes - I, J, K, L, M, N, O, P</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>MAT</td><td>Material number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>AREA</td><td>Element
+surface area (face 1)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>VOLU</td><td>Element volume</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>XC, YC, ZC</td><td>Location on
+the surface (face 1) where results are reported</td><td align="center">Y</td><td align="center"><a class="xref" href="Hlp_E_HSFLD242.html#hsfld242.tab.1.ft.1">1</a></td></tr><tr><td>DENSITY</td><td>Fluid density</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>TEMP</td><td>Temperature
+at nodes: T(I), T(J), T(K), T(L), T(M), T(N), T(O), T(P), T(Q)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>TVOL</td><td>Total volume of the fluid in the containing
+vessel</td><td align="center"><a class="xref" href="Hlp_E_HSFLD242.html#hsfld242.tab.1.ft.2">2</a></td><td align="center"><a class="xref" href="Hlp_E_HSFLD242.html#hsfld242.tab.1.ft.2">2</a></td></tr><tr><td>TMAS</td><td>Total mass of the fluid in the containing vessel</td><td align="center"><a class="xref" href="Hlp_E_HSFLD242.html#hsfld242.tab.1.ft.3">3</a></td><td align="center"><a class="xref" href="Hlp_E_HSFLD242.html#hsfld242.tab.1.ft.3">3</a></td></tr><tr><td>MFLO</td><td>Fluid mass flow rate</td><td align="center"><a class="xref" href="Hlp_E_HSFLD242.html#hsfld242.tab.1.ft.4">4</a></td><td align="center"><a class="xref" href="Hlp_E_HSFLD242.html#hsfld242.tab.1.ft.4">4</a></td></tr><tr><td>TVOLO</td><td>Total original volume of the fluid in the containing vessel</td><td align="center"><a class="xref" href="Hlp_E_HSFLD242.html#hsfld242.tab.1.ft.2">2</a></td><td align="center"><a class="xref" href="Hlp_E_HSFLD242.html#hsfld242.tab.1.ft.2">2</a></td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="hsfld242.tab.1.ft.1"></a>Available only at centroid
+as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item.</p></li><li class="listitem"><p><a name="hsfld242.tab.1.ft.2"></a>Elements that share a pressure
+node have the same TVOL and TVOLO output values.</p></li><li class="listitem"><p><a name="hsfld242.tab.1.ft.3"></a>Elements that share a pressure
+node have the same TMAS output value.</p></li><li class="listitem"><p><a name="hsfld242.tab.1.ft.4"></a>Elements that share a pressure
+node have the same MFLO output value.</p></li></ol></div><p><a class="xref" href="Hlp_E_HSFLD242.html#hs242itnumtab" title="Table&nbsp;242.2:&nbsp;&nbsp;HSFLD242 Item and Sequence Numbers">Table&nbsp;242.2:&nbsp;HSFLD242 Item and Sequence Numbers</a> lists output available through
+the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method.
+ See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General Postprocessor
+(POST1)</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in
+this reference for more information.  The following notation is used
+in <a class="xref" href="Hlp_E_HSFLD242.html#hs242itnumtab" title="Table&nbsp;242.2:&nbsp;&nbsp;HSFLD242 Item and Sequence Numbers">Table&nbsp;242.2:&nbsp;HSFLD242 Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in <a class="xref" href="Hlp_E_HSFLD242.html#hs242outdeftab" title="Table&nbsp;242.1:&nbsp;&nbsp;HSFLD242 Element Output Definitions">Table&nbsp;242.1:&nbsp;HSFLD242 Element Output Definitions</a></p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element
+data</p></dd></dl></div></div><div class="table"><a name="hs242itnumtab"></a><p class="title"><b>Table&nbsp;242.2:&nbsp;&nbsp;HSFLD242 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="HSFLD242 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="144" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"></colgroup><thead><tr><th rowspan="2" align="center" valign="middle">Output Quantity
+Name</th><th colspan="2" align="center"><a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th align="center">Item</th><th align="center">E</th></tr></thead><tbody><tr><td align="center">DENSITY</td><td align="center">NMISC</td><td align="center">1</td></tr><tr><td align="center">AREA</td><td align="center">NMISC</td><td align="center">2</td></tr><tr><td align="center">TVOL</td><td align="center">NMISC</td><td align="center">3</td></tr><tr><td align="center">TMAS</td><td align="center">NMISC</td><td align="center">4</td></tr><tr><td align="center">MFLO</td><td align="center">NMISC</td><td align="center">5</td></tr><tr><td align="center">TVOLO</td><td align="center">NMISC</td><td align="center">6</td></tr></tbody></table></div></div><br class="table-break"></div><div class="refsect1" title="HSFLD242 Assumptions and Restrictions"><a name="hs242restr"></a><h2>HSFLD242 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The fluid volume has no free surface; it is completely
+enclosed by the solid (containing vessel). </p></li><li class="listitem"><p>The fluid volume has uniform pressure, temperature,
+and density without any gradients.</p></li><li class="listitem"><p>All elements used to define a fluid volume share a
+pressure node with a hydrostatic pressure degree of freedom.</p></li><li class="listitem"><p>The pressure node can be located anywhere within the
+fluid volume; it is automatically moved to the centroid of the fluid
+volume if there are no displacement degree-of-freedom constraints
+specified. However, if the fluid volume is bounded by one or more
+symmetry lines, the pressure node must be on the symmetry plane, intersecting
+point, or edge of multiple symmetry planes, and it must have symmetry
+boundary condition.</p></li><li class="listitem"><p>The fluid may be modeled as incompressible or compressible
+without any viscosity.</p></li><li class="listitem"><p>The PRES degree of freedom must be active (KEYOPT(1)
+= 1) on the pressure node of the hydrostatic fluid element to model
+fluid flow with <a class="link" href="Hlp_E_FLUID116.html" title="FLUID116"><span class="structname">FLUID116</span></a> coupled thermal-fluid
+pipe elements. In this case, the PRES (pressure) and HDSP (hydrostatic
+pressure) degrees of freedom are made to be the same at the pressure
+node.</p></li><li class="listitem"><p>Inertial effects such as sloshing cannot be included,
+but fluid mass can be added to the surface nodes (I through P) shared
+with the underlying 3-D solid or shell elements by using KEYOPT(5).</p></li><li class="listitem"><p>This element can be used in linear and nonlinear static
+and transient analyses and modal analyses. </p></li></ul></div></div><div class="refsect1" title="HSFLD242 Product Restrictions"><a name="hs242prdres"></a><h2>HSFLD242 Product Restrictions</h2><p>There are no product-specific restrictions for this element.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

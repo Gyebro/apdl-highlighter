@@ -1,0 +1,31 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:40-04:00"><title>PSTRES</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_P_TOC.html" title="P Commands"><link rel="prev" href="Hlp_C_PSTATUS.html" title="/PSTATUS"><link rel="next" href="Hlp_C_PSYMB.html" title="/PSYMB"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="PSTRES"><a name="PSTRES"></a><div class="titlepage"></div><a class="indexterm" name="d0e220042"></a><span class="refentrytitle"><span class="command"><strong>PSTRES</strong></span></span><div class="refnamediv"><p><span class="command"><strong>PSTRES</strong></span>, <em class="replaceable"><code>Key</code></em><br><b class="refpurpose">Specifies whether prestress effects are calculated or
+included.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolunonlinjla070199" title="Table&nbsp;2.50:&nbsp;&nbsp;Nonlinear Options"><span class="type">Nonlinear Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  DesSpc | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="PSTRES.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Key</code></em></b></span></dt><dd><p>Prestress key:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Do not calculate (or include) prestress
+effects (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ON</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Calculate (or include) prestress effects.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="PSTRES.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>PSTRES</strong></span> command specifies whether or not
+prestress effects are to be calculated or included. The command should
+be issued <span class="italic"><em>after</em></span> the <a class="link" href="Hlp_C_ANTYPE.html" title="ANTYPE"><span class="command"><strong>ANTYPE</strong></span></a> command.</p><p>Prestress effects are calculated in a
+static or transient analysis for inclusion in a buckling, modal, harmonic
+(Method = FULL), or substructure generation analysis. If used in the
+solution processor (<a href="Hlp_C_SOLU_sl.html" class="olink"><span class="command"><strong>/SOLU</strong></span></a>), this command is valid
+only within the first load step.</p><p>If you apply thermal body forces during a static analysis to
+calculate prestress effects, do not delete the forces during any subsequent
+full harmonic analyses. If you delete the thermal body forces, the
+thermal prestress effects will not be included in the harmonic analysis.
+Temperature loads used to define the thermal prestress will also be
+used in the full harmonic analysis as sinusoidally time-varying temperature
+loads.</p><p>A prestress effect applied with non-follower loads resists rigid
+body rotation of the model. For example, an unsupported beam with
+axial tensile forces applied to both ends will have two nonzero rotational
+rigid body modes.</p><p>If tabular loading (<a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a>,,<a href="Hlp_C_DIM.html#a-DIM.tab.1" class="olink">TABLE</a>) was used
+in the prestress static analysis step, the corresponding value of <a class="link" href="Hlp_C_TIME.html" title="TIME"><span class="command"><strong>TIME</strong></span></a> will be used for tabular evaluations in the modal
+analysis.</p><p>This command is also valid in PREP7.</p></div><div class="refsect1" title="Menu Paths"><a name="PSTRES.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Analysis Type&gt;Analysis Options</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Analysis Type&gt;Sol'n Controls&gt;Basic</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Analysis Type&gt;Analysis Options</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Analysis Type&gt;Sol'n Controls&gt;Basic</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

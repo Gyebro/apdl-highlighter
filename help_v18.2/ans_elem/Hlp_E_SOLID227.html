@@ -1,0 +1,659 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:10-04:00"><title>SOLID227</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_SOLID226.html" title="SOLID226"><link rel="next" href="Hlp_E_PLANE230.html" title="PLANE230"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SOLID227"><a name="SOLID227"></a><div class="titlepage"></div><a class="indexterm" name="d0e176221"></a><span class="refentrytitle"><span class="structname">SOLID227</span></span><div class="refnamediv"><p><br><b class="refpurpose">3-D 10-Node
+Coupled-Field Solid</b><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_E_SOLID227.html#restrictions227jjs062403" title="SOLID227 Product Restrictions">Product Restrictions</a></span></div></div></div></p></div><div class="refsect1" title="SOLID227 Element Description"><a name="elemdesc227jjs062403"></a><h2>SOLID227 Element Description</h2><p><span class="structname">SOLID227</span>
+   <span>supports the following physics combinations</span>: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Structural-Thermal</p></li><li class="listitem"><p>Piezoresistive</p></li><li class="listitem"><p>Electrostatic-Structural</p></li><li class="listitem"><p>Piezoelectric</p></li><li class="listitem"><p>Thermal-Electric</p></li><li class="listitem"><p>Structural-Thermoelectric</p></li><li class="listitem"><p>Thermal-Piezoelectric</p></li><li class="listitem"><p>Structural-Diffusion</p></li><li class="listitem"><p>Thermal-Diffusion</p></li><li class="listitem"><p>Electric-Diffusion</p></li><li class="listitem"><p>Thermal-Electric-Diffusion</p></li><li class="listitem"><p>Structural-Thermal-Diffusion</p></li><li class="listitem"><p>Structural-Electric-Diffusion</p></li><li class="listitem"><p>Structural-Thermal-Electric-Diffusion</p></li></ul></div><p>The element has ten nodes with up to six degrees of freedom per node. </p><p>Structural capabilities include elasticity, plasticity,
+   hyperelasticity, viscoelasticity, viscoplasticity, creep, large strain, large deflection, and
+   stress stiffening effects. It also has mixed formulation capability for simulating deformations
+   of nearly incompressible elastoplastic materials, and fully incompressible hyperelastic
+   materials. </p><p><span>Piezoresistive capabilities include the piezoresistive effect.
+    Piezoelectric capabilities include direct and converse piezoelectric effects.
+    Electrostatic-structural capabilities include electrostatic force coupling.</span>
+   Thermoelectric capabilities include Seebeck, Peltier, and Thomson effects, as well as Joule
+   heating. In addition to thermal expansion, structural-thermal capabilities include the
+   piezocaloric effect in dynamic analyses. The Coriolis effect is available for analyses with
+   structural degrees of freedom. The thermoplastic effect is available for analyses with structural
+   and thermal degrees of freedom. </p><p>The diffusion expansion and hydrostatic stress-migration effects are available for analyses
+   with structural and diffusion degrees of freedom. The thermo-migration effect (Soret effect) and
+   the temperature-dependent saturated concentration effect are available for analyses with thermal
+   and diffusion degrees of freedom. The electro-migration effect is available for analyses with
+   electrical and diffusion degrees of freedom.</p><p>See <a href="../ans_thry/thy_el227.html" class="olink"><span class="structname">SOLID227</span></a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for more details about this
+   element.</p><div class="figure"><a name="geometry227jjs062403"></a><p class="title"><b>Figure&nbsp;227.1:&nbsp;&nbsp;SOLID227 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM87-1.svg" alt="SOLID227 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="SOLID227 Input Data"><a name="inputdata227jjs062403"></a><h2>SOLID227 Input Data</h2><p>The geometry, node locations, and the coordinate system for
+this element are shown in <a class="xref" href="Hlp_E_SOLID227.html#geometry227jjs062403" title="Figure&nbsp;227.1:&nbsp;&nbsp;SOLID227 Geometry">Figure&nbsp;227.1:&nbsp;SOLID227 Geometry</a>.
+ The element input data includes ten nodes and structural, thermal,
+and electrical material properties.  The type of units (MKS or user
+defined) is specified through the <a href="../ans_cmd/Hlp_C_EMUNIT.html" class="olink"><span class="command"><strong>EMUNIT</strong></span></a> command. <a href="../ans_cmd/Hlp_C_EMUNIT.html" class="olink"><span class="command"><strong>EMUNIT</strong></span></a> also determines the value of free-space permittivity
+EPZRO.  The <a href="../ans_cmd/Hlp_C_EMUNIT.html" class="olink"><span class="command"><strong>EMUNIT</strong></span></a> defaults are MKS units and EPZRO
+= 8.85e-12 Farads/meter.</p><p>KEYOPT(1) determines the element DOF set and the corresponding
+force labels and reaction solution. KEYOPT(1) is set equal to the
+sum of the field keys shown in <a class="xref" href="Hlp_E_SOLID227.html#elem227tablejjs062403308" title="Table&nbsp;227.1:&nbsp;&nbsp;SOLID227 Field Keys">Table&nbsp;227.1:&nbsp;SOLID227 Field Keys</a>. For example, KEYOPT(1) is set to 11 for a structural-thermal analysis
+(structural field key + thermal field key = 1 + 10). For a structural-thermal
+analysis, UX, UY, and TEMP are the DOF labels and force and heat flow
+are the reaction solution.</p><div class="table"><a name="elem227tablejjs062403308"></a><p class="title"><b>Table&nbsp;227.1:&nbsp;&nbsp;SOLID227 Field Keys</b></p><div class="table-contents"><table summary="SOLID227 Field Keys" border="1" width="95%"><colgroup><col width="144" class="col1"><col width="72" class="col2"><col width="96" align="center" class="col3"><col width="96" class="COLSPEC1"><col width="192" class="COLSPEC0"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center">Field</th><th bgcolor="#E3E3E3" align="center">Field
+Key</th><th bgcolor="#E3E3E3" align="center">DOF
+Label</th><th bgcolor="#E3E3E3" align="center">Force
+Label</th><th bgcolor="#E3E3E3" align="center">Reaction
+Solution</th></tr></thead><tbody><tr><td>Structural</td><td align="right">1</td><td align="left">UX, UY, UZ</td><td>FX,
+FY, FZ</td><td>Force</td></tr><tr><td>Thermal</td><td align="right">10</td><td align="left">TEMP</td><td>HEAT</td><td>Heat Flow</td></tr><tr><td>Electric Conduction</td><td align="right">100</td><td align="left">VOLT</td><td>AMPS</td><td>Electric Current</td></tr><tr><td>Electrostatic</td><td align="right">1000</td><td align="left">VOLT</td><td>CHRG</td><td>Electric
+Charge</td></tr><tr><td>Diffusion</td><td align="right">100000</td><td align="left">CONC</td><td>RATE</td><td>Diffusion Flow Rate</td></tr></tbody></table></div></div><br class="table-break"><p>The coupled-field analysis KEYOPT(1) settings, DOF labels, force
+labels, reaction solutions, and analysis types are shown in the following
+table.</p><div class="table"><a name="elem227tablejjs0624031108"></a><p class="title"><b>Table&nbsp;227.2:&nbsp;&nbsp;SOLID227 Coupled-Field Analyses</b></p><div class="table-contents"><table summary="SOLID227 Coupled-Field Analyses" border="1" width="95%"><colgroup><col width="41%" class="col1"><col width="12%" class="col2"><col width="12%" align="center" class="col3"><col width="11%" class="COLSPEC1"><col width="12%" class="COLSPEC0"><col width="12%" class="COLSPEC4"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center">Coupled-Field
+       Analysis </th><th bgcolor="#E3E3E3" align="center">KEYOPT(1)</th><th bgcolor="#E3E3E3" align="center">DOF Label</th><th bgcolor="#E3E3E3" align="center">Force Label</th><th bgcolor="#E3E3E3" align="center">Reaction Solution</th><th bgcolor="#E3E3E3" align="center">Analysis Type</th></tr></thead><tbody><tr><td>
+       <p>Structural-Thermal [<a class="xref" href="Hlp_E_SOLID227.html#plane227.tab.2.ft.1">1</a>], [<a class="xref" href="Hlp_E_SOLID227.html#plane227.tab.2.ft.2">2</a>]</p>
+      </td><td align="right">11</td><td align="left">
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>UX, UY, UZ,</td></tr><tr><td>TEMP</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>FX, FY, FZ,</td></tr><tr><td>HEAT</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Force,</td></tr><tr><td>Heat Flow</td></tr></table>
+      </td><td>
+       <p>Static</p>
+       <p>Full Harmonic</p>
+       <p>Full Transient</p>
+      </td></tr><tr><td>Piezoresistive</td><td align="right">101</td><td align="left">
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>UX, UY, UZ,</td></tr><tr><td>VOLT</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>FX, FY, FZ,</td></tr><tr><td>AMPS</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Force,</td></tr><tr><td>Electric Current</td></tr></table>
+      </td><td>
+       <p>Static</p>
+       <p>Full Transient</p>
+      </td></tr><tr><td>Electrostatic-Structural </td><td align="right">1001 [<a class="xref" href="Hlp_E_SOLID227.html#plane227.tab.2.ft.3">3</a>]</td><td align="left">
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>UX, UY, UZ,</td></tr><tr><td>VOLT</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>FX, FY, FZ,</td></tr><tr><td>CHRG</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Force,</td></tr><tr><td>Electric Charge (negative)</td></tr></table>
+      </td><td>
+       <p>Static</p>
+       <p>Full Transient</p>
+       <p>Linear Perturbation Static</p>
+       <p>Linear Perturbation Harmonic</p>
+       <p>Linear Perturbation Modal</p>
+      </td></tr><tr><td>Piezoelectric</td><td align="right">1001 [<a class="xref" href="Hlp_E_SOLID227.html#plane227.tab.2.ft.3">3</a>]</td><td align="left">
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>UX, UY, UZ,</td></tr><tr><td>VOLT</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>FX, FY, FZ,</td></tr><tr><td>CHRG</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Force,</td></tr><tr><td>Electric Charge (negative)</td></tr></table>
+      </td><td>
+       <p>Static</p>
+       <p>Modal</p>
+       <p>Linear Perturbation Modal</p>
+       <p>Full, Linear Perturbation, or Mode Superposition Harmonic</p>
+       <p>Full or Mode Superposition Transient</p>
+      </td></tr><tr><td>Thermal-Electric</td><td align="right">110</td><td align="left">TEMP, VOLT</td><td>HEAT, AMPS</td><td>Heat Flow, Electric Current</td><td>
+       <p>Static</p>
+       <p>Full Transient</p>
+      </td></tr><tr><td>
+       <p>Structural-Thermoelectric [<a class="xref" href="Hlp_E_SOLID227.html#plane227.tab.2.ft.1">1</a>]</p>
+      </td><td align="right">111</td><td align="left">
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>UX, UY, UZ,</td></tr><tr><td>TEMP,</td></tr><tr><td>VOLT</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>FX, FY, FZ,</td></tr><tr><td>HEAT,</td></tr><tr><td>AMPS</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Force,</td></tr><tr><td>Heat Flow,</td></tr><tr><td>Electric Current</td></tr></table>
+      </td><td>
+       <p>Static</p>
+       <p>Full Transient</p>
+      </td></tr><tr><td>
+       <p>Thermal-Piezoelectric [<a class="xref" href="Hlp_E_SOLID227.html#plane227.tab.2.ft.1">1</a>], [<a class="xref" href="Hlp_E_SOLID227.html#plane227.tab.2.ft.2">2</a>]</p>
+      </td><td align="right">1011</td><td align="left">
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>UX, UY, UZ,</td></tr><tr><td>TEMP,</td></tr><tr><td>VOLT</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>FX, FY, FZ,</td></tr><tr><td>HEAT,</td></tr><tr><td>CHRG</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Force,</td></tr><tr><td>Heat Flow,</td></tr><tr><td>Electric Charge (negative)</td></tr></table>
+      </td><td>
+       <p>Static</p>
+       <p>Full Harmonic</p>
+       <p>Full Transient</p>
+      </td></tr><tr><td>
+       <p>Structural-Diffusion [<a class="xref" href="Hlp_E_SOLID227.html#plane227.tab.2.ft.1">1</a>]</p>
+      </td><td align="right">100001</td><td align="left">
+       <p>UX, UY, UZ, </p>
+       <p>CONC</p>
+      </td><td>
+       <p>FX, FY, FZ, </p>
+       <p>RATE</p>
+      </td><td>
+       <p>Force,</p>
+       <p>Diffusion Flow Rate</p>
+      </td><td>
+       <p>Static </p>
+       <p>Full Transient</p>
+      </td></tr><tr><td>
+       <p>Thermal-Diffusion [<a class="xref" href="Hlp_E_SOLID227.html#plane227.tab.2.ft.1">1</a>]</p>
+      </td><td align="right">100010</td><td align="left">
+       <p>TEMP,</p>
+       <p>CONC</p>
+      </td><td>
+       <p>HEAT,</p>
+       <p>RATE</p>
+      </td><td>
+       <p>Heat Flow,</p>
+       <p>Diffusion Flow Rate</p>
+      </td><td>
+       <p>Static </p>
+       <p>Full Transient</p>
+      </td></tr><tr><td>
+       <p>Electric-Diffusion [<a class="xref" href="Hlp_E_SOLID227.html#plane227.tab.2.ft.1">1</a>]</p>
+      </td><td align="right">100100</td><td align="left">
+       <p>VOLT,</p>
+       <p>CONC</p>
+      </td><td>
+       <p>AMP,</p>
+       <p>RATE</p>
+      </td><td>
+       <p>Electric Current,</p>
+       <p>Diffusion Flow Rate</p>
+      </td><td>
+       <p>Static</p>
+       <p>Full Transient</p>
+      </td></tr><tr><td>
+       <p>Thermal-Electric-Diffusion [<a class="xref" href="Hlp_E_SOLID227.html#plane227.tab.2.ft.1">1</a>]</p>
+      </td><td align="right">100110</td><td align="left">
+       <p>TEMP,</p>
+       <p>VOLT,</p>
+       <p>CONC</p>
+      </td><td>
+       <p>HEAT,</p>
+       <p>AMP,</p>
+       <p>RATE</p>
+      </td><td>
+       <p>Heat Flow,</p>
+       <p>Electric Current,</p>
+       <p>Diffusion Flow Rate</p>
+      </td><td>
+       <p>Static</p>
+       <p>Full Transient</p>
+      </td></tr><tr><td>Structural-Thermal-Diffusion [<a class="xref" href="Hlp_E_SOLID227.html#plane227.tab.2.ft.1">1</a>]</td><td align="right">100011</td><td align="left">
+       <p>UX, UY, UZ,</p>
+       <p>TEMP,</p>
+       <p>CONC</p>
+      </td><td>
+       <p>FX, FY, FZ, </p>
+       <p>HEAT,</p>
+       <p>RATE</p>
+      </td><td>
+       <p>Force,</p>
+       <p>Heat Flow,</p>
+       <p>Diffusion Flow Rate</p>
+      </td><td>
+       <p>Static </p>
+       <p>Full Transient</p>
+      </td></tr><tr><td>
+       <p>Structural-Electric Diffusion [<a class="xref" href="Hlp_E_SOLID227.html#plane227.tab.2.ft.1">1</a>]</p>
+      </td><td align="right">100101</td><td align="left">
+       <p>UX, UY, UZ,</p>
+       <p>VOLT,</p>
+       <p>CONC</p>
+      </td><td>
+       <p>FX, FY, FZ,</p>
+       <p>AMPS,</p>
+       <p>RATE</p>
+      </td><td>
+       <p>Force,</p>
+       <p>Electric Current,</p>
+       <p>Diffusion Flow Rate</p>
+      </td><td>
+       <p>Static</p>
+       <p>Full Transient</p>
+      </td></tr><tr><td>
+       <p>Structural-Thermal-Electric-Diffusion [<a class="xref" href="Hlp_E_SOLID227.html#plane227.tab.2.ft.1">1</a>]</p>
+      </td><td align="right">100111</td><td align="left">
+       <p>UX, UY, UZ,</p>
+       <p>TEMP,</p>
+       <p>VOLT,</p>
+       <p>CONC</p>
+      </td><td>
+       <p>FX, FY, FZ,</p>
+       <p>HEAT,</p>
+       <p>AMPS,</p>
+       <p>RATE</p>
+      </td><td>
+       <p>Force,</p>
+       <p>Heat Flow,</p>
+       <p>Electric Current,</p>
+       <p>Diffusion Flow Rate</p>
+      </td><td>
+       <p>Static</p>
+       <p>Full Transient</p>
+      </td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="plane227.tab.2.ft.1"></a>For static and full transient analyses, KEYOPT(2) can specify a strong (matrix) or weak
+     (load vector) structural-thermal, structural-diffusion, thermal diffusion, and
+     electric-diffusion coupling.</p></li><li class="listitem"><p><a name="plane227.tab.2.ft.2"></a>For harmonic analyses, only strong coupling (KEYOPT(2) = 0) applies.</p></li><li class="listitem"><p><a name="plane227.tab.2.ft.3"></a>The electrostatic-structural analysis available with KEYOPT(1) = 1001 defaults to
+     electrostatic force coupling, unless a piezoelectric matrix is specified on
+      <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,PIEZ.</p></li></ol></div><p>As shown in the following <span>tables</span>, material property requirements consist of
+   those required for the individual fields (structural, thermal, electric conduction,
+   electrostatic, or diffusion) and those required for field coupling. Individual material
+   properties are defined via the <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> and <a href="../ans_cmd/Hlp_C_MPDATA.html" class="olink"><span class="command"><strong>MPDATA</strong></span></a> commands.
+   Nonlinear <span>and multiphysics</span> material models are defined via
+   the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command. (The nonlinear material models do not apply to piezoelectric
+   analyses (<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,PIEZ) where <a class="link" href="Hlp_E_PLANE223.html#elem223tablejjs0720041109" title="Table&nbsp;223.5:&nbsp;&nbsp;PLANE223 Surface and Body Loads">KEYOPT(1) =
+    1001 or 1011</a>).</p><div class="table"><a name="elem227structmat"></a><p class="title"><b>Table&nbsp;227.3:&nbsp;&nbsp;Structural Material Properties</b></p><div class="table-contents"><table summary="Structural Material Properties" border="1" width="95%"><colgroup><col width="22%" class="c1"><col width="18%" class="c2"><col width="60%" class="c3"></colgroup><thead><tr><th>Field</th><th>Field Key</th><th>Material Properties and Materal Models</th></tr></thead><tbody><tr><td>Structural</td><td align="right">1</td><td align="left">
+       <p>EX, EY, EZ, PRXY, PRYZ, PRXZ (or NUXY, NUYZ, NUXZ), GXY, GYZ, GXZ, DENS, ALPD, BETD,
+        DMPR</p>
+       <p>ALPX, ALPY, ALPZ (or CTEX, CTEY, CTEZ, or THSX, THSY, THSZ), REFT</p>
+       <p>---</p>
+       <p><a href="../ans_mat/aQw8sq22dldm.html#anhyper1g" class="olink">Anisotropic hyperelasticity</a>,
+         <a href="../ans_mat/anel.html" class="olink">Anisotropic elasticity</a>, <a href="../ans_mat/aQw8sq22dldm.html#elbergboyce" class="olink">Bergstrom-Boyce</a>, <a href="../ans_mat/amp8sq21dldm.html#biso" class="olink">Bilinear isotropic hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#bkin" class="olink">Bilinear kinematic hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#cast" class="olink">Cast iron</a>, <a href="../ans_mat/amp8sq21dldm.html#chab" class="olink">Chaboche nonlinear kinematic hardening</a>, <a href="../ans_mat/rate.html#aQy8sq33aldm" class="olink">Creep</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Elasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#elemedp" class="olink">Extended
+         Drucker-Prager</a>, <a href="../ans_mat/amp8sq21dldm.html#elmgurson" class="olink">Gurson
+         pressure-dependent plasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#matRIPisohillyield" class="olink">Hill
+         anisotropy</a>, <a href="../ans_mat/aQw8sq22dldm.html" class="olink">Hyperelasticity</a>, <a href="../ans_mat/aQw8sq22dldm.html#elemmullinsconstants" class="olink">Mullins effect</a>, <a href="../ans_mat/amp8sq21dldm.html#nlis" class="olink">Voce isotropic
+         hardening law</a>, <a href="../ans_str/Hlp_G_STR8_3.html#strplasttlm61199445" class="olink">Plasticity</a>, <a href="../ans_mat/evis.html" class="olink">Prony series</a>
+        constants for viscoelastic materials, <a href="../ans_mat/rate.html#aQy8sq33aldm" class="olink">Rate-dependent plasticity</a> (viscoplasticity), <a href="../ans_mat/amp8sq21dldm.html" class="olink">Rate-independent plasticity</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Material structural damping</a>, <a href="../ans_mat/evis.html" class="olink">Shift function</a> for viscoelastic materials, <a href="../ans_mat/smas.html" class="olink">Shape memory alloy</a>, <a href="../ans_mat/amp8sq21dldm.html#cast" class="olink">Uniaxial stress-strain relation</a></p>
+      </td></tr></tbody></table></div></div><br class="table-break"><div class="table"><a name="elem227tablejjs0612031104"></a><p class="title"><b>Table&nbsp;227.4:&nbsp;&nbsp;SOLID227 Material Properties and Material Models</b></p><div class="table-contents"><table summary="SOLID227 Material Properties and Material Models" border="1" width="95%"><colgroup><col width="23%" class="c1"><col width="15%" class="c2"><col width="22%" class="c3"><col width="40%" class="c4"></colgroup><thead><tr><th>Coupled-Field Analysis</th><th>KEYOPT(1)</th><th>Field</th><th>Material Properties and Material Models</th></tr></thead><tbody><tr><td rowspan="3">Structural-Thermal</td><td rowspan="3" align="right">11</td><td>Structural</td><td>See <a class="xref" href="Hlp_E_SOLID227.html#elem227structmat" title="Table&nbsp;227.3:&nbsp;&nbsp;Structural Material Properties">Table&nbsp;227.3:&nbsp;Structural Material Properties</a></td></tr><tr><td>Thermal</td><td>
+       <p>KXX, KYY, KZZ, DENS, C, ENTH, HF</p>
+      </td></tr><tr><td>Coupling</td><td>
+       <p>ALPX, ALPY, ALPZ, REFT, QRATE</p>
+      </td></tr><tr><td rowspan="3">Piezoresistive [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.mat.ft.1">1</a>]</td><td rowspan="3" align="right">101</td><td>Structural</td><td>See <a class="xref" href="Hlp_E_SOLID227.html#elem227structmat" title="Table&nbsp;227.3:&nbsp;&nbsp;Structural Material Properties">Table&nbsp;227.3:&nbsp;Structural Material Properties</a></td></tr><tr><td>Electric</td><td>
+       <p>RSVX, RSVY, RSVZ, PERX, PERY, PERZ</p>
+      </td></tr><tr><td>Coupling</td><td>
+       <p><a href="../ans_mat/mat_electricmagnet.html#pzrs" class="olink">Piezoresistivity</a></p>
+      </td></tr><tr><td rowspan="2">Electrostatic-Structural</td><td rowspan="2" align="right">1001</td><td>Structural</td><td>See <a class="xref" href="Hlp_E_SOLID227.html#elem227structmat" title="Table&nbsp;227.3:&nbsp;&nbsp;Structural Material Properties">Table&nbsp;227.3:&nbsp;Structural Material Properties</a></td></tr><tr><td>Electric</td><td>
+       <p>PERX, PERY, PERZ</p>
+       <p>---</p>
+       <p><a href="../ans_mat/mat_electricmagnet.html#DPER" class="olink">Anisotropic electric
+        permittivity</a></p>
+      </td></tr><tr><td rowspan="3">Piezoelectric</td><td rowspan="3" align="right">1001</td><td>Structural</td><td>See <a class="xref" href="Hlp_E_SOLID227.html#elem227structmat" title="Table&nbsp;227.3:&nbsp;&nbsp;Structural Material Properties">Table&nbsp;227.3:&nbsp;Structural Material Properties</a></td></tr><tr><td>Electric</td><td>
+       <p>PERX, PERY, PERZ, <a href="../ans_thry/thy_emg1.html#electricscalpot" class="olink">LSST</a>
+        (and/or RSVX, RSVY, RSVZ)</p>
+       <p>---</p>
+       <p><a href="../ans_mat/mat_electricmagnet.html#DPER" class="olink">Anisotropic electric
+        permittivity</a></p>
+      </td></tr><tr><td>Coupling</td><td>
+       <p><a href="../ans_mat/mat_electricmagnet.html#piez" class="olink">Piezoelectric matrix</a></p>
+      </td></tr><tr><td rowspan="3">Thermal-Electric [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.mat.ft.1">1</a>]</td><td rowspan="3" align="right">110</td><td>Thermal</td><td>
+       <p>KXX, KYY, KZZ, DENS, C, ENTH, HF</p>
+      </td></tr><tr><td>Electric</td><td>
+       <p>RSVX, RSVY, RSVZ, PERX, PERY, PERZ</p>
+      </td></tr><tr><td>Coupling</td><td>
+       <p>SBKX, SBKY, SBKZ</p>
+      </td></tr><tr><td rowspan="4">Structural-Thermoelectric</td><td rowspan="4" align="right">111</td><td>Structural</td><td>See <a class="xref" href="Hlp_E_SOLID227.html#elem227structmat" title="Table&nbsp;227.3:&nbsp;&nbsp;Structural Material Properties">Table&nbsp;227.3:&nbsp;Structural Material Properties</a></td></tr><tr><td>Thermal</td><td>
+       <p>KXX, KYY, KZZ, DENS, C, ENTH, HF</p>
+      </td></tr><tr><td>Electric</td><td>
+       <p>RSVX, RSVY, RSVZ, PERX, PERY, PERZ</p>
+      </td></tr><tr><td>Coupling</td><td>
+       <p>ALPX, ALPY, ALPZ, REFT, QRATE</p>
+       <p>---</p>
+       <p>SBKX, SBKY, SBKZ</p>
+       <p>---</p>
+       <p><a href="../ans_mat/mat_electricmagnet.html#pzrs" class="olink">Piezoresistivity</a></p>
+      </td></tr><tr><td rowspan="4">Thermal-Piezoelectric</td><td rowspan="4" align="right">1011</td><td>Structural</td><td>See <a class="xref" href="Hlp_E_SOLID227.html#elem227structmat" title="Table&nbsp;227.3:&nbsp;&nbsp;Structural Material Properties">Table&nbsp;227.3:&nbsp;Structural Material Properties</a></td></tr><tr><td>Thermal</td><td>
+       <p>KXX, KYY, KZZ, DENS, C, ENTH, HF</p>
+      </td></tr><tr><td>Electric</td><td>
+       <p>PERX, PERY, PERZ, <a href="../ans_thry/thy_emg1.html#electricscalpot" class="olink">LSST</a>
+        (and/or RSVX, RSVY, RSVZ)</p>
+       <p>---</p>
+       <p><a href="../ans_mat/mat_electricmagnet.html#DPER" class="olink">Anisotropic electric
+        permittivity</a></p>
+      </td></tr><tr><td>Coupling</td><td>
+       <p>ALPX, ALPY, ALPZ, REFT</p>
+       <p>---</p>
+       <p><a href="../ans_mat/mat_electricmagnet.html#piez" class="olink">Piezoelectric matrix</a></p>
+      </td></tr><tr><td rowspan="3">Structural-Diffusion [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.mat.ft.1">1</a>]</td><td rowspan="3" align="right">100001</td><td>Structural</td><td>See <a class="xref" href="Hlp_E_SOLID227.html#elem227structmat" title="Table&nbsp;227.3:&nbsp;&nbsp;Structural Material Properties">Table&nbsp;227.3:&nbsp;Structural Material Properties</a></td></tr><tr><td>Diffusion</td><td>
+       <p>DXX, DYY, DZZ, CSAT</p>
+      </td></tr><tr><td>Coupling</td><td>
+       <p>BETX, BETY, BETZ, CREF</p>
+       <p>---</p>
+       <p><a href="../ans_mat/migr.html" class="olink">Migration Model</a></p>
+      </td></tr><tr><td rowspan="3">Thermal-Diffusion [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.mat.ft.1">1</a>]</td><td rowspan="3" align="right">100010</td><td>Thermal</td><td>
+       <p>KXX, KYY, KZZ, DENS, C, ENTH, HF</p>
+      </td></tr><tr><td>Diffusion</td><td>
+       <p>DXX, DYY, DZZ, CSAT</p>
+      </td></tr><tr><td>Coupling</td><td>
+       <p>Temperature-dependent CSAT</p>
+       <p>---</p>
+       <p><a href="../ans_mat/migr.html" class="olink">Migration Model</a></p>
+      </td></tr><tr><td rowspan="3">Electric-Diffusion [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.mat.ft.1">1</a>]</td><td rowspan="3" align="right">100100</td><td>Electric</td><td>
+       <p>RSVX, RSVY, RSVZ, PERX, PERY, PERZ</p>
+      </td></tr><tr><td>Diffusion</td><td>
+       <p>DXX, DYY, DZZ, CSAT</p>
+      </td></tr><tr><td>Coupling</td><td>
+       <p><a href="../ans_mat/migr.html" class="olink">Migration Model</a></p>
+      </td></tr><tr><td rowspan="4">Thermal-Electric-Diffusion [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.mat.ft.1">1</a>]</td><td rowspan="4" align="right">100110</td><td>Thermal</td><td>
+       <p>KXX, KYY, KZZ, DENS, C, ENTH, HF</p>
+      </td></tr><tr><td>Electric</td><td>
+       <p>RSVY, RSVY, RSVZ, PERX, PERY, PERZ</p>
+      </td></tr><tr><td>Diffusion</td><td>
+       <p>DXX, DYY, DZZ, CSAT</p>
+      </td></tr><tr><td>Coupling</td><td>
+       <p>SBKX, SBKY, SBKZ</p>
+       <p>---</p>
+       <p>Temperature-dependent CSAT</p>
+       <p>---</p>
+       <p><a href="../ans_mat/migr.html" class="olink">Migration Model</a></p>
+      </td></tr><tr><td rowspan="4">Structural-Thermal-Diffusion [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.mat.ft.1">1</a>]</td><td rowspan="4" align="right">100011</td><td>Structural</td><td>See <a class="xref" href="Hlp_E_SOLID227.html#elem227structmat" title="Table&nbsp;227.3:&nbsp;&nbsp;Structural Material Properties">Table&nbsp;227.3:&nbsp;Structural Material Properties</a></td></tr><tr><td>Thermal</td><td>
+       <p>KXX, KYY, KZZ, DENS, C, ENTH, HF</p>
+      </td></tr><tr><td>Diffusion</td><td>
+       <p>DXX, DYY, DZZ, CSAT</p>
+      </td></tr><tr><td>Coupling</td><td>
+       <p>ALPX, ALPY, ALPZ, REFT, QRATE</p>
+       <p>---</p>
+       <p>BETX, BETY, BETZ, CREF</p>
+       <p>---</p>
+       <p>Temperature-dependent CSAT</p>
+       <p>---</p>
+       <p><a href="../ans_mat/migr.html" class="olink">Migration Model</a></p>
+      </td></tr><tr><td rowspan="4">Structural-Electric-Diffusion [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.mat.ft.1">1</a>]</td><td rowspan="4" align="right">100101</td><td>Structural</td><td>See <a class="xref" href="Hlp_E_SOLID227.html#elem227structmat" title="Table&nbsp;227.3:&nbsp;&nbsp;Structural Material Properties">Table&nbsp;227.3:&nbsp;Structural Material Properties</a></td></tr><tr><td>Electric</td><td>
+       <p>RSVY, RSVY, RSVZ, PERX, PERY, PERZ</p>
+      </td></tr><tr><td>Diffusion</td><td>
+       <p>DXX, DYY, DZZ, CSAT</p>
+      </td></tr><tr><td>Coupling</td><td>
+       <p>BETX, BETY, BETZ, CREF</p>
+       <p>---</p>
+       <p><a href="../ans_mat/migr.html" class="olink">Migration Model</a></p>
+      </td></tr><tr><td rowspan="5">Structural-Thermal-Electric-Diffusion [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.mat.ft.1">1</a>]</td><td rowspan="5" align="right">100111</td><td>Structural</td><td>See <a class="xref" href="Hlp_E_SOLID227.html#elem227structmat" title="Table&nbsp;227.3:&nbsp;&nbsp;Structural Material Properties">Table&nbsp;227.3:&nbsp;Structural Material Properties</a></td></tr><tr><td>Thermal</td><td>
+       <p>KXX, KYY, KZZ, DENS, C, ENTH, HF</p>
+      </td></tr><tr><td>Electric</td><td>
+       <p>RSVX, RSVY, RSVZ, PERX, PERY, PERZ</p>
+      </td></tr><tr><td>Diffusion</td><td>
+       <p>DXX, DYY, DZZ, CSAT</p>
+      </td></tr><tr><td>Coupling</td><td><p>ALPX, ALPY, ALPZ, REFT, QRATE</p><p>---</p><p>BETX, BETY, BETZ,
+        CREF</p><p>---</p><p>SBKX, SBKY,
+        SBKZ</p><p>---</p><p>Temperature-dependent CSAT</p><p>---</p><a href="../ans_mat/migr.html" class="olink">Migration Model</a></td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="solid227.tab.mat.ft.1"></a>For this analysis type, some of the material properties can be defined as a function of
+     primary variables by using tabular input on the <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command. For more
+     information, see <a href="../ans_bas/bas_tabinputmat.html" class="olink">Defining Materials Using TABLE Type Array Parameters in the <span class="olinkdocname">Mechanical APDL Basic Analysis Guide</span></a>.</p></li></ol></div><p>Various combinations of nodal loading are available for this
+element (depending upon the KEYOPT(1) value).  Nodal loads are defined
+with the <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a> and the <a href="../ans_cmd/Hlp_C_F.html" class="olink"><span class="command"><strong>F</strong></span></a> commands.</p><p>Element loads are described in <a class="xref" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">Nodal Loading</a>.
+ Loads may be input on the element faces indicated by the circled
+numbers in <a class="xref" href="Hlp_E_SOLID227.html#geometry227jjs062403" title="Figure&nbsp;227.1:&nbsp;&nbsp;SOLID227 Geometry">Figure&nbsp;227.1:&nbsp;SOLID227 Geometry</a> using the <a href="../ans_cmd/Hlp_C_SF.html" class="olink"><span class="command"><strong>SF</strong></span></a> and <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> commands.  Positive pressures
+act into the element. Body loads may be input at the element's nodes
+or as a single element value using the <a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a> and <a href="../ans_cmd/Hlp_C_BFE.html" class="olink"><span class="command"><strong>BFE</strong></span></a> commands.</p><p><span class="structname">SOLID227</span> surface and body loads are
+given in the following table.</p><p>Most surface and body loads can be defined as a function of primary
+   variables by using tabular input. For more information, see <a href="../ans_bas/Hlp_G_BAS2_6.html#apoQxq21cmcm" class="olink">Applying Loads Using TABLE Type Array Parameters in the <span class="olinkdocname">Mechanical APDL Basic Analysis Guide</span></a> and the individual surface or body load command description in the
+   <a href="../ans_cmd/Hlp_C_CmdTOC.html" class="olink"><em class="citetitle">Command Reference</em></a>.</p><div class="table"><a name="elem227tablejjs092304"></a><p class="title"><b>Table&nbsp;227.5:&nbsp;&nbsp;SOLID227 Surface and Body Loads</b></p><div class="table-contents"><table summary="SOLID227 Surface and Body Loads" border="1" width="95%"><colgroup><col width="144" class="col1"><col width="81" class="col2"><col width="62" class="col3"><col width="186" class="col4"><col width="183" class="col5"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center">Coupled-Field Analysis</th><th bgcolor="#E3E3E3" align="center">KEYOPT(1)</th><th bgcolor="#E3E3E3" align="center">Load Type</th><th bgcolor="#E3E3E3" align="center">Load</th><th bgcolor="#E3E3E3" align="center">Command Label</th></tr></thead><tbody><tr><td rowspan="4">Structural-Thermal</td><td rowspan="4" align="right">11</td><td rowspan="2">Surface</td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Pressure</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>PRES</td></tr></table>
+      </td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Convection</td></tr><tr><td>Heat Flux</td></tr><tr><td>Radiation</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>CONV</td></tr><tr><td>HFLUX</td></tr><tr><td>RDSF</td></tr></table>
+      </td></tr><tr><td rowspan="2">Body</td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Force Density</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>FORC</td></tr></table>
+      </td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Heat Generation -- </td></tr><tr><td>Nodes I through R</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>HGEN</td></tr></table>
+      </td></tr><tr><td rowspan="3">Piezoresistive</td><td rowspan="3" align="right">101</td><td>Surface</td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Pressure</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>PRES</td></tr></table>
+      </td></tr><tr><td rowspan="2">Body</td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Force Density</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>FORC</td></tr></table>
+      </td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Temperatures --</td></tr><tr><td>Nodes I through R</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>TEMP</td></tr></table>
+      </td></tr><tr><td rowspan="4">Electrostatic-Structural and Piezoelectric</td><td rowspan="4" align="right">1001</td><td>Surface</td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Pressure</td></tr><tr><td>Surface Charge Density</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>PRES</td></tr><tr><td>CHRGS [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.4.ft.1">1</a>]</td></tr></table>
+      </td></tr><tr><td rowspan="3">Body</td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Force Density</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>FORC</td></tr></table>
+      </td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Temperatures --</td></tr><tr><td>Nodes I through R</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>TEMP</td></tr></table>
+      </td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Volume Charge Density -- </td></tr><tr><td>Nodes I through R</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>CHRGD [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.4.ft.1">1</a>]</td></tr></table>
+      </td></tr><tr><td rowspan="2">Thermal-Electric</td><td rowspan="2" align="right">110</td><td>Surface</td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Convection</td></tr><tr><td>Heat Flux</td></tr><tr><td>Radiation</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>CONV</td></tr><tr><td>HFLUX</td></tr><tr><td>RDSF</td></tr></table>
+      </td></tr><tr><td>Body</td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Heat Generation --</td></tr><tr><td>Nodes I through R</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>HGEN</td></tr></table>
+      </td></tr><tr><td rowspan="4">Structural-Thermoelectric</td><td rowspan="4" align="right">111</td><td rowspan="2">Surface</td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Pressure</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>PRES</td></tr></table>
+      </td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Convection</td></tr><tr><td>Heat Flux</td></tr><tr><td>Radiation</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>CONV</td></tr><tr><td>HFLUX</td></tr><tr><td>RDSF</td></tr></table>
+      </td></tr><tr><td rowspan="2">Body</td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Force Density</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>FORC</td></tr></table>
+      </td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Heat Generation -- </td></tr><tr><td>Nodes I through R</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>HGEN</td></tr></table>
+      </td></tr><tr><td rowspan="5">Thermal-Piezoelectric</td><td rowspan="5" align="right">1011</td><td rowspan="2">Surface</td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Pressure</td></tr><tr><td>Surface Charge Density</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>PRES</td></tr><tr><td> CHRGS [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.4.ft.1">1</a>]</td></tr></table>
+      </td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Convection</td></tr><tr><td>Heat Flux</td></tr><tr><td>Radiation</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>CONV</td></tr><tr><td>HFLUX</td></tr><tr><td>RDSF</td></tr></table>
+      </td></tr><tr><td rowspan="3">Body</td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Force Density</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>FORC</td></tr></table>
+      </td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Heat Generation --</td></tr><tr><td>Nodes I through R</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>HGEN</td></tr></table>
+      </td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Volume Charge Density --</td></tr><tr><td>Nodes I through R</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>CHRGD [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.4.ft.1">1</a>]</td></tr></table>
+      </td></tr><tr><td rowspan="5">Structural-Diffusion </td><td rowspan="5" align="right">100001</td><td rowspan="2">Surface</td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Pressure</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>PRES</td></tr></table>
+      </td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Diffusion Flux</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>DFLUX</td></tr></table>
+      </td></tr><tr><td rowspan="3">Body</td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Force Density</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>FORC</td></tr></table>
+      </td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Temperature -- </td></tr><tr><td>Nodes I through R</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>TEMP</td></tr></table>
+      </td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Diffusing Substance Generation --</td></tr><tr><td>Nodes I through R</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>DGEN</td></tr></table>
+      </td></tr><tr><td rowspan="4">Thermal-Diffusion</td><td rowspan="4" align="right">100010</td><td rowspan="2">Surface</td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Convection</td></tr><tr><td>Heat Flux</td></tr><tr><td>Radiation</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>CONV</td></tr><tr><td>HFLUX</td></tr><tr><td>RDSF</td></tr></table>
+      </td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Diffusion Flux</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>DFLUX</td></tr></table>
+      </td></tr><tr><td rowspan="2">Body</td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Heat Generation -- </td></tr><tr><td>Nodes I through R</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>HGEN</td></tr></table>
+      </td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Diffusing Substance Generation --</td></tr><tr><td>Nodes I through R</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>DGEN</td></tr></table>
+      </td></tr><tr><td rowspan="3">Electric-Diffusion</td><td rowspan="3" align="right">100100</td><td>Surface</td><td>Diffusion Flux</td><td>DFLUX</td></tr><tr><td rowspan="2">Body</td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Diffusing Substance Generation --</td></tr><tr><td>Nodes I through R</td></tr></table>
+      </td><td>DGEN</td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Temperature -- </td></tr><tr><td>Nodes I through R</td></tr></table>
+      </td><td>TEMP</td></tr><tr><td rowspan="4">Thermal-Electric-Diffusion</td><td rowspan="4" align="right">100110</td><td rowspan="2">Surface</td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Convection</td></tr><tr><td>Heat Flux</td></tr><tr><td>Radiation</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>CONV</td></tr><tr><td>HFLUX</td></tr><tr><td>RDSF</td></tr></table>
+      </td></tr><tr><td>Diffusion Flux</td><td>DFLUX</td></tr><tr><td rowspan="2">Body</td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Heat Generation --</td></tr><tr><td>Nodes I through R</td></tr></table>
+      </td><td>HGEN</td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Diffusing Substance Generation --</td></tr><tr><td>Nodes I through R</td></tr></table>
+      </td><td>DGEN</td></tr><tr><td rowspan="6">Structural-Thermal-Diffusion</td><td rowspan="6" align="right">100011</td><td rowspan="3">Surface</td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Pressure</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>PRES</td></tr></table>
+      </td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Convection</td></tr><tr><td>Heat Flux</td></tr><tr><td>Radiation</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>CONV</td></tr><tr><td>HFLUX</td></tr><tr><td>RDSF</td></tr></table>
+      </td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Diffusion Flux</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>DFLUX</td></tr></table>
+      </td></tr><tr><td rowspan="3">Body</td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Force Density</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>FORC</td></tr></table>
+      </td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Heat Generation -- </td></tr><tr><td>Nodes I through R</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>HGEN</td></tr></table>
+      </td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Diffusing Substance Generation --</td></tr><tr><td>Nodes I through R</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>DGEN</td></tr></table>
+      </td></tr><tr><td rowspan="5">Structural-Electric-Diffusion</td><td rowspan="5" align="right">100101</td><td rowspan="2">Surface</td><td>Pressure</td><td>PRES</td></tr><tr><td>Diffusion Flux</td><td>DFLUX</td></tr><tr><td rowspan="3">Body</td><td>Force Density</td><td>FORC</td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Diffusion Substance Generation --</td></tr><tr><td>Nodes I through R</td></tr></table>
+      </td><td>DGEN</td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Temperature -- </td></tr><tr><td>Nodes I through R</td></tr></table>
+      </td><td>TEMP</td></tr><tr><td rowspan="6">Structural-Thermal-Electric-Diffusion</td><td rowspan="6" align="right">100111</td><td rowspan="3">Surface</td><td>Pressure</td><td>PRES</td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Convection</td></tr><tr><td>Heat Flux</td></tr><tr><td>Radiation</td></tr></table>
+      </td><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>CONV</td></tr><tr><td>HFLUX</td></tr><tr><td>RDSF</td></tr></table>
+      </td></tr><tr><td>Diffusion Flux</td><td>DFLUX</td></tr><tr><td rowspan="3">Body</td><td>Force Density</td><td>FORC</td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Heat Generation --</td></tr><tr><td>Nodes I through R</td></tr></table>
+      </td><td>HGEN</td></tr><tr><td>
+       <table border="0" summary="Simple list" class="simplelist"><tr><td>Diffusing Substance Generation --</td></tr><tr><td>Nodes I through R</td></tr></table>
+      </td><td>DGEN</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="solid227.tab.4.ft.1"></a>CHRGS and CHRGD are interpreted
+as negative surface charge density and negative volume charge density,
+respectively.</p></li></ol></div><p>Automatic element technology selections are given in the following
+table.</p><div class="table"><a name="elem227autosel"></a><p class="title"><b>Table&nbsp;227.6:&nbsp;&nbsp;Automatic Element Technology Selection</b></p><div class="table-contents"><table summary="Automatic Element Technology Selection" border="1" width="95%"><colgroup><col width="192" class="col1"><col width="192" class="col2"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center">Coupled-Field
+Analysis</th><th bgcolor="#E3E3E3" align="center"><a href="../ans_cmd/Hlp_C_ETCONTROL.html" class="olink"><span class="command"><strong>ETCONTROL</strong></span></a> Command Suggestions/Resettings</th></tr></thead><tbody><tr><td align="left"><p>Structural-Thermal (KEYOPT(1)
+= 11)</p><p>Structural-Thermoelectric (KEYOPT(1) = 111)</p></td><td align="left">KEYOPT(2) =1 for nonlinear inelastic
+materials</td></tr></tbody></table></div></div><br class="table-break"><p>A summary of the element input is given in <a class="xref" href="Hlp_E_SOLID227.html#a3x7f274062403ABC" title="SOLID227 Input Summary">"SOLID227 Input Summary"</a>.  A general description of element input
+is given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>.</p><div class="refsect2" title="SOLID227 Input Summary"><a name="a3x7f274062403ABC"></a><h3>SOLID227 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J, K, L, M, N, O, P, Q, R</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>Set by KEYOPT(1). See <a class="xref" href="Hlp_E_SOLID227.html#elem227tablejjs0624031108" title="Table&nbsp;227.2:&nbsp;&nbsp;SOLID227 Coupled-Field Analyses">Table&nbsp;227.2:&nbsp;SOLID227 Coupled-Field Analyses</a>.</p></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p>See <a class="xref" href="Hlp_E_SOLID227.html#elem227tablejjs0612031104" title="Table&nbsp;227.4:&nbsp;&nbsp;SOLID227 Material Properties and Material Models">Table&nbsp;227.4:&nbsp;SOLID227 Material Properties and Material Models</a>.</p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><p>See <a class="xref" href="Hlp_E_SOLID227.html#elem227tablejjs092304" title="Table&nbsp;227.5:&nbsp;&nbsp;SOLID227 Surface and Body Loads">Table&nbsp;227.5:&nbsp;SOLID227 Surface and Body Loads</a>.</p></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><p>See <a class="xref" href="Hlp_E_SOLID227.html#elem227tablejjs092304" title="Table&nbsp;227.5:&nbsp;&nbsp;SOLID227 Surface and Body Loads">Table&nbsp;227.5:&nbsp;SOLID227 Surface and Body Loads</a>.</p></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td><a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth
+and death</a></td></tr><tr><td><a href="../ans_cmd/Hlp_C_CORIOLIS.html" class="olink">Coriolis effect</a></td></tr><tr><td><a href="Hlp_E_AutoSelectElems.html" class="olink">Element
+technology autoselect</a></td></tr><tr><td><a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink">Large deflection</a></td></tr><tr><td><a href="../ans_thry/thy_geo1.html" class="olink">Large
+strain</a></td></tr><tr><td><a href="../ans_str/strlinperturb.html" class="olink">Linear
+         perturbation</a> (electrostatic-structural and piezoelectric analyses only [KEYOPT(1) =
+        1001])</td></tr><tr><td><a href="../ans_str/Hlp_G_STRUNST.html#strnonlinstab" class="olink">Nonlinear
+stabilization</a></td></tr><tr><td><a href="../ans_str/Hlp_G_STR8_2.html#strstrstiftlm61199434" class="olink">Stress stiffening</a></td></tr></table></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Element degrees of freedom. See <a class="xref" href="Hlp_E_SOLID227.html#elem227tablejjs0624031108" title="Table&nbsp;227.2:&nbsp;&nbsp;SOLID227 Coupled-Field Analyses">Table&nbsp;227.2:&nbsp;SOLID227 Coupled-Field Analyses</a>.</p></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Coupling method between the DOFs for the following types of coupling:
+       structural-thermal, structural-diffusion, thermal-diffusion, and electric-diffusion.</p><div><div class="variablelist"><dl><dt><span><b class="term">0 --</b></span></dt><dd><p>Strong (matrix) coupling. Produce an unsymmetric matrix. In a linear analysis, a
+          coupled response is achieved after one iteration.</p></dd><dt><span><b class="term">1 --</b></span></dt><dd><p>Weak (load vector) coupling. Produces a symmetric matrix and requires at least two
+          iterations to achieve a coupled response.</p></dd></dl></div></div><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;The weak coupling option (KEYOPT(2) = 1) can be used in a coupled
+        electrostatic-structural analysis (KEYOPT(1) = 1001) to produce legacy element behavior. In
+        this case, the reaction solution for the VOLT degree of freedom is positive charge (CHRG),
+        and the analysis types are limited to static and full transient analyses. Linear
+        perturbation analyses are not supported.</p><hr></div></dd><dt><span><b class="term">KEYOPT(4)</b></span></dt><dd><p>Electrostatic force in electrostatic-structural analysis (KEYOPT(1) =
+       1001):</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Applied to every element
+node.</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Applied to the air-structure
+interface or to element nodes that have constrained structural degrees
+of freedom.</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Not applied.</p></dd></dl></div></div><p>For more information, see <a href="../ans_cou/Hlp_G_COU3_elecelas.html" class="olink">Electrostatic-Structural Analysis</a> in the <a href="../ans_cou/Hlp_G_CouTOC.html" class="olink"><em class="citetitle">Coupled-Field Analysis Guide</em></a>.</p></dd><dt><span><b class="term">KEYOPT(9)</b></span></dt><dd><p>Thermoelastic damping (piezocaloric effect) in coupled-field
+       analyses having structural and thermal DOFs. Applicable to harmonic and transient analyses
+       only.</p><div><div class="variablelist"><dl><dt><span><b class="term">0 --</b></span></dt><dd><p>Active</p></dd><dt><span><b class="term">1 --</b></span></dt><dd><p>Suppressed (required for frictional heating analyses)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(10)</b></span></dt><dd><p>Specific heat matrix in coupled-field analyses having the thermal
+       DOF (TEMP), or damping matrix in coupled-field analyses having the diffusion DOF
+       (CONC).</p><div><div class="variablelist"><dl><dt><span><b class="term">0 --</b></span></dt><dd><p>Consistent</p></dd><dt><span><b class="term">1 --</b></span></dt><dd><p>Diagonalized</p></dd><dt><span><b class="term">2 --</b></span></dt><dd><p>Diagonalized. Temperature-dependent specific heat or enthalpy is evaluated at the
+          element centroid.</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(11)</b></span></dt><dd><p>Element formulation in coupled-field analyses with
+structural DOFs:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Pure displacement formulation
+(default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Mixed u-P formulation,
+hydrostatic pressure P is constant in an element (recommended for
+hyperelastic materials)</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Mixed u-P formulation,
+hydrostatic pressure P is interpolated linearly in an element (recommended
+for nearly incompressible elastoplastic materials)</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="SOLID227 Output Data"><a name="outputdata227jjs062403"></a><h2>SOLID227 Output Data</h2><p>The solution output associated with the element is in two forms:
+ </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal degrees of freedom included in the overall nodal
+solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_SOLID227.html#elem227tablejjs062403400" title="Table&nbsp;227.7:&nbsp;&nbsp;SOLID227 Element Output Definitions">Table&nbsp;227.7:&nbsp;SOLID227 Element Output Definitions</a>.</p></li></ul></div><p>The element output directions are parallel to the element coordinate
+system.  A general description of solution output is given in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a>.  See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways to view results.</p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="elem227tablejjs062403400"></a><p class="title"><b>Table&nbsp;227.7:&nbsp;&nbsp;SOLID227 Element Output Definitions</b></p><div class="table-contents"><table summary="SOLID227 Element Output Definitions" border="1" width="95%"><colgroup><col width="118" class="col1"><col width="360" class="col2"><col width="51" align="center" class="col3"><col width="141" align="center" class="col4"></colgroup><thead><tr><th bgcolor="#C0C0C0" align="center">Name</th><th bgcolor="#C0C0C0" align="center">Definition</th><th bgcolor="#C0C0C0" align="center">O</th><th bgcolor="#C0C0C0" align="center">R</th></tr></thead><tbody><tr><td bgcolor="#E3E3E3" colspan="4" align="center"><span class="bold"><strong>ALL
+        ANALYSES</strong></span></td></tr><tr><td>EL</td><td>Element Number</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Nodes - I, J, K, L, M, N, O, P, Q, R</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>MAT</td><td>Material number</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>VOLU:</td><td>Volume</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>XC, YC, ZC</td><td>Location where results are reported</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.2">2</a></td></tr><tr><td bgcolor="#E3E3E3" colspan="4" align="center"><span class="bold"><strong>ALL ANALYSES
+        WITH A STRUCTURAL FIELD</strong></span></td></tr><tr><td>S:X, Y, Z, XY, YZ, XZ</td><td>Stresses (SZ = 0.0 for plane stress elements)</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID226.html#solid226.tab.5.ft.1">1</a></td></tr><tr><td>S:1, 2, 3</td><td>Principal stresses</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID226.html#solid226.tab.5.ft.1">1</a></td></tr><tr><td>S:EQV</td><td>Equivalent stress</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID226.html#solid226.tab.5.ft.1">1</a></td></tr><tr><td>EPEL:X, Y, Z, XY, YZ, XZ</td><td>Elastic strains</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID226.html#solid226.tab.5.ft.1">1</a></td></tr><tr><td>EPEL:EQV</td><td>Equivalent elastic strain [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.3">3</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID226.html#solid226.tab.5.ft.1">1</a></td></tr><tr><td>EPTH:X, Y, Z, XY, YZ, XZ</td><td>Thermal strains</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID226.html#solid226.tab.5.ft.1">1</a></td></tr><tr><td>EPTH:EQV</td><td>Equivalent thermal strain [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.3">3</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID226.html#solid226.tab.5.ft.1">1</a></td></tr><tr><td>EPPL:X, Y, Z, XY, YZ, XZ</td><td>Plastic strains</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID226.html#solid226.tab.5.ft.1">1</a></td></tr><tr><td>EPPL:EQV</td><td>Equivalent plastic strain [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.3">3</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID226.html#solid226.tab.5.ft.1">1</a></td></tr><tr><td>EPCR:X, Y, Z, XY, YZ, XZ</td><td>Creep strains</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID226.html#solid226.tab.5.ft.1">1</a></td></tr><tr><td>EPCR:EQV</td><td>Equivalent creep strain [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.3">3</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID226.html#solid226.tab.5.ft.1">1</a></td></tr><tr><td>EPTO:X, Y, Z, XY, YZ, XZ</td><td>Total mechanical strains (EPEL + EPPL + EPCR)</td><td align="center">-</td><td align="center">-</td></tr><tr><td>EPTO:EQV</td><td>Total equivalent mechanical strain (EPEL + EPPL + EPCR)</td><td align="center">-</td><td align="center">-</td></tr><tr><td>NL:SEPL</td><td>Plastic yield stress [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.10">10</a>]</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>NL:EPEQ</td><td>Accumulated equivalent plastic strain [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.10">10</a>]</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>NL:CREQ</td><td>Accumulated equivalent creep strain [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.10">10</a>]</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>NL:SRAT</td><td>Plastic yielding (1 = actively yielding, 0 = not yielding) [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.10">10</a>]</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>NL:HPRES</td><td>Hydrostatic pressure [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.10">10</a>]</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>SENE:</td><td>Elastic strain energy</td><td align="center">-</td><td align="center">Y</td></tr><tr><td bgcolor="#E3E3E3" colspan="4" align="center"><span class="bold"><strong>ADDITIONAL
+        OUTPUT FOR STRUCTURAL-THERMAL ANALYSES (KEYOPT(1) = 11)</strong></span></td></tr><tr><td>TG:X, Y, Z, SUM</td><td>Thermal gradient components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>TF:X, Y, Z, SUM</td><td>Thermal flux components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>UE</td><td>Electric strain energy [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.7">7</a>]</td><td align="center">&nbsp;</td><td align="center">&nbsp;</td></tr><tr><td>UT</td><td>Total strain energy [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.qQ">8</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>PHEAT </td><td>Plastic heat generation rate per unit volume</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_PLANE223.html#plane223.tab.4.ft.1">1</a></td></tr><tr><td bgcolor="#E3E3E3" colspan="4" align="center"><span class="bold"><strong>ADDITIONAL
+        OUTPUT FOR PIEZORESISTIVE ANALYSES (KEYOPT(1) = 101) </strong></span></td></tr><tr><td>TEMP</td><td>Input temperatures</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>EF:X, Y, Z, SUM</td><td>Electric field components (X, Y, Z) and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>JC:X, Y, Z, SUM</td><td>Conduction current density components (X, Y, Z) and vector
+       magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>JS:X, Y, Z, SUM</td><td>Current density components (in the global Cartesian coordinate system)
+       and vector magnitude [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.4">4</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>JHEAT</td><td>Joule heat generation per unit volume [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.5">5</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td bgcolor="#E3E3E3" colspan="4" align="center" valign="middle"><span class="bold"><strong>ADDITIONAL
+        OUTPUT FOR ELECTROSTATIC-STRUCTURAL ANALYSES (KEYOPT(1) = 1001)</strong></span></td></tr><tr><td>TEMP</td><td>Input temperatures</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>EF:X, Y, Z, SUM</td><td>Electric field components (X, Y, Z) and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>D:X, Y, Z, SUM</td><td>Electric flux density components (X, Y, Z) and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>FMAG:X, Y, Z, SUM</td><td>Electrostatic force components (X, Y, Z) and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>UE, UD</td><td>Stored elastic and dielectric energies</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr valign="middle"><td bgcolor="#E3E3E3" colspan="4" align="center" valign="middle"><span class="bold"><strong>ADDITIONAL
+        OUTPUT FOR PIEZOELECTRIC ANALYSES (KEYOPT(1) = 1001)</strong></span></td></tr><tr><td>TEMP</td><td>Input temperatures</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>EF:X, Y, Z, SUM</td><td>Electric field components (X, Y, Z) and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>D:X, Y, Z, SUM</td><td>Electric flux density components (X, Y, Z) and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>JHEAT</td><td>Joule heat generation per unit volume [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.5">5</a>], [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.6">6</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>UE, UM, UD</td><td>Elastic, mutual, and dielectric energies [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.7">7</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>UT</td><td>Total strain energy [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.qQ">8</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td bgcolor="#E3E3E3" colspan="4" align="center" valign="middle"><span class="bold"><strong>ADDITIONAL
+        OUTPUT FOR STRUCTURAL-DIFFUSION ANALYSES (KEYOPT(1)=100001)</strong></span></td></tr><tr><td>TEMP</td><td>Input temperatures</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>EPDI:X, Y, Z, XY, YZ, XZ</td><td>Diffusion strains</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>CG:X, Y, Z, SUM</td><td>Concentration gradient components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>DF:X, Y, Z, SUM</td><td>Diffusion flux components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>CONC</td><td>Element concentration [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.8">9</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr valign="middle"><td bgcolor="#E3E3E3" colspan="4" align="center" valign="middle"><span class="bold"><strong>THERMAL-ELECTRIC ANALYSES (KEYOPT(1) = 110)</strong></span></td></tr><tr><td>TG:X, Y, Z, SUM</td><td>Thermal gradient components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>TF:X, Y, Z, SUM</td><td>Thermal flux components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>EF:X, Y, Z, SUM</td><td>Electric field components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>JC:X, Y, Z, SUM</td><td>Conduction current density components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>JS:X, Y, Z, SUM</td><td>Current density components (in the global Cartesian coordinate system)
+       and vector magnitude [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.4">4</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>JHEAT</td><td>Joule heat generation per unit volume [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.5">5</a>], [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.6">6</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td bgcolor="#E3E3E3" colspan="4" align="center"><span class="bold"><strong>ADDITIONAL
+        OUTPUT FOR STRUCTURAL-THERMOELECTRIC ANALYSES (KEYOPT(1) = 111)</strong></span></td></tr><tr><td>TG:X, Y, Z, SUM</td><td>Thermal gradient components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>TF:X, Y, Z, SUM</td><td>Thermal flux components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>EF:X, Y, Z, SUM</td><td>Electric field components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>JC:X, Y, Z, SUM</td><td>Conduction current density components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>JS:X, Y, Z, SUM</td><td>Current density components (in the global Cartesian coordinate system)
+       and vector magnitude [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.4">4</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td align="center">JHEAT</td><td align="center">Joule heat generation per unit volume [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.5">5</a>], [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.6">6</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>UT</td><td>Total strain energy [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.qQ">8</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>PHEAT </td><td>Plastic heat generation rate per unit volume</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_PLANE223.html#plane223.tab.4.ft.1">1</a></td></tr><tr><td bgcolor="#E3E3E3" colspan="4" align="center"><span class="bold"><strong>ADDITIONAL
+        OUTPUT FOR THERMAL-PIEZOELECTRIC ANALYSES (KEYOPT(1) = 1011)</strong></span></td></tr><tr><td>TG:X, Y, Z, SUM</td><td>Thermal gradient components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>TF:X, Y, Z, SUM</td><td>Thermal flux components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>EF:X, Y, Z, SUM</td><td>Electric field components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>D:X, Y, Z, SUM</td><td>Electric flux density components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>JHEAT</td><td align="left">Joule heat generation per unit volume [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.5">5</a>], [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.6">6</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>UE, UM, UD</td><td>Elastic, mutual, and dielectric energies [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.7">7</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>UT</td><td>Total strain energy [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.qQ">8</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>PHEAT </td><td>Plastic heat generation rate per unit volume</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_PLANE223.html#plane223.tab.4.ft.1">1</a></td></tr><tr><td bgcolor="#E3E3E3" colspan="4" align="center"><span class="bold"><strong>THERMAL-DIFFUSION ANALYSES (KEYOPT(1) = 100010)</strong></span></td></tr><tr><td>TG:X, Y, Z, SUM</td><td>Thermal gradient components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>TF:X, Y, Z, SUM</td><td>Thermal flux components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>CG:X, Y, Z, SUM</td><td>Concentration gradient components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>DF:X, Y, Z, SUM</td><td>Diffusion flux components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>CONC</td><td>Element concentration [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.8">9</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td bgcolor="#E3E3E3" colspan="4" align="center"><span class="bold"><strong>ELECTRIC
+        DIFFUSION ANALYSES (KEYOPT(1) = 100100)</strong></span></td></tr><tr><td>TEMP</td><td>Input temperatures</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>EF:X, Y, Z, SUM</td><td>Electric field components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>JC:X, Y, Z, SUM</td><td>Conduction current density components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>JS:X, Y, Z, SUM</td><td>Current density components (in the global Cartesian coordinate system) and vector
+       magnitude [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.4">4</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>CG:X, Y, Z, SUM</td><td>Concentration gradient components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>DF:X, Y, Z, SUM</td><td>Diffusion flux components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>CONC</td><td>Element concentration [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.8">9</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td bgcolor="#E3E3E3" colspan="4" align="center"><span class="bold"><strong>THERMAL-ELECTRIC-DIFFUSION ANALYSES (KEYOPT(1) = 100110)</strong></span></td></tr><tr><td>TG:X, Y, Z, SUM</td><td>Thermal gradient components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>TF:X, Y, Z, SUM</td><td>Thermal flux components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>EF:X, Y, Z, SUM</td><td>Electric field components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>JC:X, Y, Z, SUM</td><td>Conduction current density components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>JS:X, Y, Z, SUM</td><td>Current density components (in the global Cartesian coordinate system) and vector
+       magnitude [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.4">4</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>JHEAT</td><td>Joule heat generation per unit volume [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.5">5</a>], [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.6">6</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>CG:X, Y, Z, SUM</td><td>Concentration gradient components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>DF:X, Y, Z, SUM</td><td>Diffusion flux components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>CONC</td><td>Element concentration [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.8">9</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td bgcolor="#E3E3E3" colspan="4" align="center"><span class="bold"><strong>ADDITIONAL
+        OUTPUT FOR STRUCTURAL-ELECTRIC-DIFFUSION ANALYSES (KEYOPT(1) = 100101)</strong></span></td></tr><tr><td>TEMP</td><td>Input temperatures</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>EPDI:X, Y, Z, XY, YZ, XZ</td><td>Diffusion strains</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>EF:X, Y, Z, SUM</td><td>Electric field components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>JC:X, Y, Z, SUM</td><td>Conduction current density components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>JS:X, Y, Z, SUM</td><td>Current density components (in the global Cartesian coordinate system) and vector
+       magnitude [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.4">4</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>JHEAT</td><td>Joule heat generation per unit volume [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.5">5</a>], [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.6">6</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>CG:X, Y, Z, SUM</td><td>Concentration gradient components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>DF:X, Y, Z, SUM</td><td>Diffusion flux components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>CONC</td><td>Element concentration [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.8">9</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td bgcolor="#E3E3E3" colspan="4" align="center"><span class="bold"><strong>ADDITIONAL
+        OUTPUT FOR STRUCTURAL-THERMAL-DIFFUSION ANALYSES (KEYOPT(1) = 100011)</strong></span></td></tr><tr><td>EPDI:X, Y, Z, XY, YZ, XZ</td><td>Diffusion strains</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>TG:X, Y, Z, SUM</td><td>Thermal gradient components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>TF:X, Y, Z, SUM</td><td>Thermal flux components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>CG:X, Y, Z, SUM</td><td>Concentration gradient components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>DF:X, Y, Z, SUM</td><td>Diffusion flux components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>CONC</td><td>Element concentration [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.8">9</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td bgcolor="#E3E3E3" colspan="4" align="center"><span class="bold"><strong>ADDITIONAL
+        OUTPUT FOR STRUCTURAL-THERMAL-ELECTRIC-DIFFUSION ANALYSES (KEYOPT(1) =
+       100111)</strong></span></td></tr><tr><td>EPDI:X, Y, Z, XY, YZ, XZ</td><td>Diffusion strains</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>TG:X, Y, Z, SUM</td><td>Thermal gradient components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>TF:X, Y, Z, SUM</td><td>Thermal flux components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>EF:X, Y, Z, SUM</td><td>Electric field components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>JC:X, Y, Z, SUM</td><td>Conduction current density components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>JS:X, Y, Z, SUM</td><td>Current density components (in the global Cartesian coordinate system) and vector
+       magnitude [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.4">4</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>JHEAT</td><td>Joule heat generation per unit volume [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.5">5</a>], [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.6">6</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>CG:X, Y, Z, SUM</td><td>Concentration gradient components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>DF:X, Y, Z, SUM</td><td>Diffusion flux components and vector magnitude</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr><tr><td>CONC</td><td>Element concentration [<a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.8">9</a>]</td><td align="center">-</td><td align="center"><a class="xref" href="Hlp_E_SOLID227.html#solid227.tab.5.ft.1">1</a></td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="solid227.tab.5.ft.1"></a>Solution values are output
+only if calculated (based on input values).</p></li><li class="listitem"><p><a name="solid227.tab.5.ft.2"></a>Available only at centroid
+as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item.</p></li><li class="listitem"><p><a name="solid227.tab.5.ft.3"></a>The equivalent strains use
+an effective Poisson's ratio: for elastic and thermal this value is
+set by the user (<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,PRXY); for plastic and creep
+this value is set at 0.5.</p></li><li class="listitem"><p><a name="solid227.tab.5.ft.4"></a>JS represents the sum of
+element conduction and displacement current densities.</p></li><li class="listitem"><p><a name="solid227.tab.5.ft.5"></a>Calculated Joule heat generation
+rate per unit volume (JHEAT) may be made available for a subsequent
+thermal analysis with companion thermal elements.</p></li><li class="listitem"><p><a name="solid227.tab.5.ft.6"></a>For a time-harmonic analysis,
+Joule losses (JHEAT) are time-averaged. These values are stored in
+both the real and imaginary data sets. For more information, see <a href="../ans_thry/thy_emg3.html#thyquaselec" class="olink">Quasistatic Electric
+Analysis</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>.</p></li><li class="listitem"><p><a name="solid227.tab.5.ft.7"></a>For a time-harmonic analysis,
+elastic (UE), mutual (UM), and dielectric (UD) energies are time-averaged.
+Their real part represents the average energy, while the imaginary
+part represents the average energy loss. For more information, see <a href="../ans_thry/thy_coup2.html" class="olink">Piezoelectrics</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>.</p></li><li class="listitem"><p><a name="solid227.tab.5.ft.qQ"></a>For a time-harmonic analysis,
+total strain (UT) energy is time-averaged. The real part represents
+the average energy, while the imaginary part represents the average
+energy loss. For more information, see <a href="../ans_thry/thy_coup6.html" class="olink">Thermoelasticity</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>.</p></li><li class="listitem"><p><a name="solid227.tab.5.ft.8"></a>With the normalized concentration
+approach, CONC is the actual concentration obtained by multiplying
+the saturated concentration (<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,CSAT) and the normalized
+concentration evaluated at the element centroid. For more information,
+see <a href="../ans_thry/thrynormconcapp.html" class="olink">Normalized Concentration Approach in the <span class="olinkdocname">Mechanical APDL Theory Reference</span></a>.</p></li><li class="listitem"><p><a name="solid227.tab.5.ft.10"></a>Nonlinear solution, output only if the element has a nonlinear material, or if
+     large-deflection effects are enabled (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON). </p></li></ol></div><p><a class="xref" href="Hlp_E_SOLID227.html#elem227tablejjs062403400" title="Table&nbsp;227.7:&nbsp;&nbsp;SOLID227 Element Output Definitions">Table&nbsp;227.7:&nbsp;SOLID227 Element Output Definitions</a> lists output available
+through the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number
+method.  See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General
+Postprocessor (POST1)</a> of the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> of this reference for more information. 
+The following notation is used in <a class="xref" href="Hlp_E_SOLID227.html#elem227tablejjs062403401" title="Table&nbsp;227.8:&nbsp;&nbsp;SOLID227 Item and Sequence Numbers">Table&nbsp;227.8:&nbsp;SOLID227 Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="Hlp_E_SOLID227.html#elem227tablejjs062403400" title="Table&nbsp;227.7:&nbsp;&nbsp;SOLID227 Element Output Definitions">Table&nbsp;227.7:&nbsp;SOLID227 Element Output Definitions</a></p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item  label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element
+data</p></dd></dl></div></div><div class="table"><a name="elem227tablejjs062403401"></a><p class="title"><b>Table&nbsp;227.8:&nbsp;&nbsp;SOLID227 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="SOLID227 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="96" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"></colgroup><thead><tr><th bgcolor="#C0C0C0" rowspan="2" align="center" valign="middle">Output
+Quantity Name</th><th bgcolor="#C0C0C0" colspan="2" align="center"><a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> Command Input</th></tr><tr><th bgcolor="#E3E3E3" align="center">Item</th><th bgcolor="#E3E3E3" align="center">E</th></tr></thead><tbody><tr><td align="center">CONC</td><td align="center">SMISC</td><td align="center">1</td></tr><tr><td align="center">UE</td><td align="center">NMISC</td><td align="center">1</td></tr><tr><td align="center">UD</td><td align="center">NMISC</td><td align="center">2</td></tr><tr><td align="center">UM</td><td align="center">NMISC</td><td align="center">3</td></tr><tr><td align="center">UT</td><td align="center">NMISC</td><td align="center">4</td></tr><tr><td align="center">PHEAT</td><td align="center">NMISC</td><td align="center">5</td></tr></tbody></table></div></div><br class="table-break"></div><div class="refsect1" title="SOLID227 Assumptions and Restrictions"><a name="assumptions227jjs062403"></a><h2>SOLID227 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>In a piezoelectric or electrostatic-structural analysis, electric charge loading is
+     interpreted as negative electric charge or negative charge density.</p></li><li class="listitem"><p>Optimized nonlinear solution defaults are applied
+in coupled-field analyses with structural degrees of freedom using
+this element.</p></li><li class="listitem"><p>An edge with a removed midside node implies that the
+degrees-of-freedom varies linearly, rather than parabolically, along
+that edge. See <a href="../ans_mod/Hlp_G_MOD2_4.html#aQXQxq1ecmcm" class="olink">Quadratic Elements (Midside Nodes)</a> in the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a> for more
+information about the use of midside nodes.</p></li><li class="listitem"><p>In an analysis with structural and diffusion degrees of freedom coupled by the stress
+     migration effect (specified using <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,MIGR), you may not:</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>remove midside nodes;</p></li><li class="listitem"><p>use the weak coupling option (KEYOPT(2) = 1).</p></li></ul></div></li><li class="listitem"><p>This element may not be compatible with other elements
+with the VOLT degree of freedom. To be compatible, the elements must
+have the same through reaction solution for the VOLT DOF. Elements
+that have an electric charge reaction solution must all have the same
+electric charge reaction sign. For more information, see <a href="../ans_lof/Hlp_G_ELE13_3.html" class="olink">Element Compatibility</a> in the <a href="../ans_lof/Hlp_G_EleTOC.html" class="olink"><em class="citetitle">Low-Frequency Electromagnetic Analysis Guide</em></a>. </p></li><li class="listitem"><p>When a coupled-field analysis with structural degrees
+of freedom uses mixed u-P formulation (KEYOPT(11) = 1), no midside
+nodes can be dropped. When using mixed formulation (KEYOPT(11) = 1),
+use the sparse solver (default).</p></li><li class="listitem"><p>Stress stiffening is always included in geometrically nonlinear
+     (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON) coupled-field analyses with structural degrees of freedom.
+     Prestress effects can be activated via the <a href="../ans_cmd/Hlp_C_PSTRES.html" class="olink"><span class="command"><strong>PSTRES</strong></span></a> command.</p></li><li class="listitem"><p>Graphical Solution Tracking (<a href="../ans_cmd/Hlp_C_GST.html" class="olink"><span class="command"><strong>/GST</strong></span></a>) is not supported with coupled-diffusion analyses (KEYOPT(1)=100001,
+100010, and 100011).</p></li><li class="listitem"><p>Reaction forces are not available for an electrostatic-structural analysis (KEYOPT(1) =
+     1001) with the elastic air option (KEYOPT(4) = 1).</p></li></ul></div></div><div class="refsect1" title="SOLID227 Product Restrictions"><a name="restrictions227jjs062403"></a><h2>SOLID227 Product Restrictions</h2><p>There are no product-specific restrictions for this element.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

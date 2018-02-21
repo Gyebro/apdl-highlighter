@@ -1,0 +1,28 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:37-04:00"><title>PSDCOM</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_P_TOC.html" title="P Commands"><link rel="prev" href="Hlp_C_PSCR.html" title="PSCR"><link rel="next" href="Hlp_C_PSDFRQ.html" title="PSDFRQ"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="PSDCOM"><a name="PSDCOM"></a><div class="titlepage"></div><a class="indexterm" name="d0e217042"></a><span class="refentrytitle"><span class="command"><strong>PSDCOM</strong></span></span><div class="refnamediv"><p><span class="command"><strong>PSDCOM</strong></span>, <em class="replaceable"><code>SIGNIF</code></em>, <em class="replaceable"><code>COMODE</code></em>, , <em class="replaceable"><code>ForceType</code></em><br><b class="refpurpose">Specifies the power spectral density mode combination
+method.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluspectrumjla070199" title="Table&nbsp;2.52:&nbsp;&nbsp;Spectrum Options"><span class="type">Spectrum Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="PSDCOM.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>SIGNIF</code></em></b></span></dt><dd><p>Combine only those modes whose significance level
+exceeds the<em class="replaceable"><code>SIGNIF</code></em> threshold.  For PSD response
+(<a class="link" href="Hlp_C_SPOPT.html" title="SPOPT"><span class="command"><strong>SPOPT</strong></span></a>,PSD), the significance level is defined
+as the modal covariance matrix term, divided by the maximum modal
+covariance matrix term.  Any term whose significance level is less
+than <em class="replaceable"><code>SIGNIF</code></em> is considered insignificant
+and is not contributed to the mode combinations.  The higher the <em class="replaceable"><code>SIGNIF</code></em> threshold, the fewer the number of terms used. <em class="replaceable"><code>SIGNIF</code></em> defaults to 0.0001.  If <em class="replaceable"><code>SIGNIF</code></em> is specified as 0.0, it is taken as 0.0.</p></dd><dt><span><b class="term"><em class="replaceable"><code>COMODE</code></em></b></span></dt><dd><p>First <em class="replaceable"><code>COMODE</code></em> number of
+modes to be actually combined.  <em class="replaceable"><code>COMODE</code></em> must
+always be less than or equal to <em class="replaceable"><code>NMODE</code></em> (input
+quantity <em class="replaceable"><code>NMODE</code></em> on the <a class="link" href="Hlp_C_SPOPT.html" title="SPOPT"><span class="command"><strong>SPOPT</strong></span></a> command).  <em class="replaceable"><code>COMODE</code></em> defaults to <em class="replaceable"><code>NMODE</code></em>.  <em class="replaceable"><code>COMODE</code></em> performs
+a second level of control for the first sequential <em class="replaceable"><code>COMODE</code></em> number of modes to be combined.  It uses the significance level
+threshold indicated by <em class="replaceable"><code>SIGNIF</code></em> and operates
+only on the significant modes.</p></dd><dt><span><b class="term">ForceType</b></span></dt><dd><p>Label identifying the forces to be combined:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">STATIC</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Combine the modal static forces
+(default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TOTAL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Combine the modal static plus inertial
+forces.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="PSDCOM.notes"></a><h2>Notes</h2><p>This command is also valid for PREP7.   This command is valid
+only for <a class="link" href="Hlp_C_SPOPT.html" title="SPOPT"><span class="command"><strong>SPOPT</strong></span></a>,PSD.</p></div><div class="refsect1" title="Menu Paths"><a name="PSDCOM.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Load Step Opts&gt;Spectrum&gt;PSD&gt;Mode Combine</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Load Step Opts&gt;Spectrum&gt;PSD&gt;Mode Combine</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:57-04:00"><title>SECREAD</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_S_TOC.html" title="S Commands"><link rel="prev" href="Hlp_C_SECPLOT.html" title="SECPLOT"><link rel="next" href="Hlp_C_SECSTOP.html" title="SECSTOP"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SECREAD"><a name="SECREAD"></a><div class="titlepage"></div><a class="indexterm" name="d0e240810"></a><span class="refentrytitle"><span class="command"><strong>SECREAD</strong></span></span><div class="refnamediv"><p><span class="command"><strong>SECREAD</strong></span>, <em class="replaceable"><code>Fname</code></em>, <em class="replaceable"><code>Ext</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>Option</code></em><br><b class="refpurpose">Reads a custom section library or a user-defined section
+mesh into ANSYS.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7crosssectldm061600" title="Table&nbsp;2.45:&nbsp;&nbsp;Sections"><span class="type">Cross Sections</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="SECREAD.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Fname</code></em></b></span></dt><dd><p>Section library file name and directory path containing
+the section library file (248 characters maximum, including directory).
+If you do not specify a directory path, it will default to your working
+directory and you can use all 248 characters for the file name.</p><p>When the <span class="command"><strong>SECREAD</strong></span> command is given without
+a directory path, the command searches for a section library in the
+following order:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The user's home directory</p></li><li class="listitem"><p>The current working directory</p></li><li class="listitem"><p>The path specified by the <a href="Hlp_C_SECLIB.html" class="olink"><span class="command"><strong>/SECLIB</strong></span></a> command</p></li></ul></div><p>The file name defaults to <span class="filename"><strong>Jobname</strong></span> if <em class="replaceable"><code>Fname</code></em> is left blank.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Ext</code></em></b></span></dt><dd><p>Filename extension (eight-character maximum).</p><p>The extension defaults to SECT if <em class="replaceable"><code>Ext</code></em> is left blank.</p></dd><dt><span><b class="term"><em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused field.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Option</code></em></b></span></dt><dd><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LIBRARY</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Reads in a library of sections
+and their associated section data values; the default. A section library
+may be created by editing the section-defining portions of the <span class="filename"><strong>Jobname.LOG</strong></span> file and saving it with a <span class="filename"><strong>.SECT</strong></span> suffix.</p></td></tr></tbody></table></div></div><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MESH</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Reads in a user mesh section file
+containing the cell connectivity, cell flags, and nodal coordinates
+for the current beam section of subtype MESH as defined by <a class="link" href="Hlp_C_SECTYPE.html" title="SECTYPE"><span class="command"><strong>SECTYPE</strong></span></a>. See the <a class="xref" href="Hlp_C_SECREAD.html#SECREAD.notes" title="Notes">"Notes"</a> section
+of this command description for details about user mesh section files.
+ <a class="link" href="Hlp_C_SECWRITE.html" title="SECWRITE"><span class="command"><strong>SECWRITE</strong></span></a> builds mesh files based on 2-D models
+you create.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="SECREAD.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>SECREAD</strong></span> command operates on the section
+specified via the most recently issued <span class="bold"><strong>SECTYPE</strong></span> command. Issue a separate <span class="command"><strong>SECREAD</strong></span> command for
+each section ID that you want to read in.</p><div class="refsect2" title="Sample User Section Cell Mesh File"><a name="SECREAD.extranote1"></a><h3>Sample User Section Cell Mesh File</h3><p>Here are excerpts from a sample user section mesh file for a
+section with 75 nodes, 13 cells, and 9 nodes per cell for a two-hole
+box section. Illustrations of the two-hole box section and the cell
+mesh for it appear later in this command description.</p><div class="informaltable"><table border="0" width="95%"><colgroup><col width="105" class="col1"><col width="848" class="col2"></colgroup><tbody><tr><td><span class="bold"><strong>First Line:</strong></span></td><td><pre class="programlisting">75   13</pre></td></tr><tr><td valign="top"><span class="bold"><strong>Cells Section:</strong></span></td><td valign="top"><pre class="programlisting">      1   3   25   23   2   14   24   12   13   1
+      3   5   27   25   4   16   26   14   15   1
+      5   7   29   27   6   18   28   16   17   1
+      7   9   31   29   8   20   30   18   19   1
+      9   11  33   31   10  22   32   20   21   1
+      23  25  45   43   24  36   44   34   35   1
+...
+      49  51  73   71   50  62   72   60   61   1
+      51  53  75   73   52  64   74   62   63   1
+0     0.0          0.0
+0     0.025        0.0
+0     0.05         0.0
+0     5.0175       0.0</pre></td></tr><tr><td><span class="bold"><strong>Nodes Section:</strong></span></td><td><pre class="programlisting">...
+0    19.98        10.00
+0    20.00        10.00</pre></td></tr></tbody></table></div><p>The mesh file is divided into three sections: the First Line,
+the Cells Section, and the Nodes Section.  Here are brief descriptions
+of the contents of each.</p><p><span class="bold"><strong>First Line:  </strong></span>The First Line
+defines the number of nodes and the number of cells for the mesh.</p><p><span class="bold"><strong>Cells Section:  </strong></span>The Cells Section
+contains as many lines as there are cells.  In this example, there
+are thirteen cells, so there are thirteen lines in this section. In
+each line, the number &#8220;1&#8221; that follows the cell connectivity
+information is the material number.</p><p>Cell nodal connectivity must be given in a counterclockwise
+direction, with the center node being the ninth node. For details,
+see <a class="xref" href="Hlp_C_SECREAD.html#secread.fig.2" title="Figure&nbsp;14:&nbsp;&nbsp;Cell Mesh for the Two-hole Box Section">Figure&nbsp;14:&nbsp;Cell Mesh for the Two-hole Box Section</a>. </p><p><span class="bold"><strong>Nodes Section: </strong></span> The Nodes Section
+contains as many lines as there are nodes.  In this example, there
+are 75 nodes, so there are a total of 75 lines in this section.  Each
+node line contains the node's boundary flag, the Y coordinate of the
+node, and the Z coordinate of the node. Currently, all node boundary
+flags appear as 0s in a cell mesh file (as illustrated in <a class="xref" href="Hlp_C_SECREAD.html#secread.fig.1" title="Figure&nbsp;13:&nbsp;&nbsp;Two-hole Box Section">Figure&nbsp;13:&nbsp;Two-hole Box Section</a>). Since all node boundary flags are 0, <span class="command"><strong>SECREAD</strong></span> ignores them when it reads a cell mesh file into
+ANSYS.</p><p>There cannot be any gaps in the node numbering of a cell mesh.
+ The nodes in a cell mesh must be numbered consecutively, with the
+first node having a node number of 1, and the last node having a node
+number that is equal to the maximum number of nodes in the cell mesh.</p><div class="figure"><a name="secread.fig.1"></a><p class="title"><b>Figure&nbsp;13:&nbsp;&nbsp;Two-hole Box Section</b></p><div class="figure-contents"><div><a name="SECREAD.fig.2"></a><img src="graphics/gSECR2.svg" alt="Two-hole Box Section"></div></div></div><br class="figure-break"><div class="figure"><a name="secread.fig.2"></a><p class="title"><b>Figure&nbsp;14:&nbsp;&nbsp;Cell Mesh for the Two-hole Box Section</b></p><div class="figure-contents"><div><img src="graphics/gSECR3.svg" alt="Cell Mesh for the Two-hole Box Section"></div></div></div><br class="figure-break"></div></div><div class="refsect1" title="Menu Paths"><a name="SECREAD.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Beam&gt;Custom Sections&gt;Read Sect Mesh</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Section Library&gt;Import Library</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:44-04:00"><title>/TYPE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_T_TOC.html" title="T Commands"><link rel="prev" href="Hlp_C_TXTRE.html" title="/TXTRE"><link rel="next" href="Hlp_C_TYPE.html" title="TYPE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="/TYPE"><a name="s-TYPE"></a><div class="titlepage"></div><a class="indexterm" name="d0e284177"></a><span class="refentrytitle"><a href="Hlp_C_TYPE_sl.html" class="olink"><span class="command"><strong>/TYPE</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>/TYPE</strong></span>, <em class="replaceable"><code>WN</code></em>, <em class="replaceable"><code>Type</code></em><br><b class="refpurpose">Defines the type of display.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_3.html" title="2.3.&nbsp;GRAPHICS Commands"><code class="classname">GRAPHICS</code></a>: <a class="link" href="Hlp_C_CH2_3.html#cmdgraphicstylejla070199" title="Table&nbsp;2.14:&nbsp;&nbsp;Style"><span class="type">Style</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="s-TYPE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>WN</code></em></b></span></dt><dd><p>Window number (or ALL) to which command applies (defaults
+to 1).</p></dd><dt><span><b class="term"><em class="replaceable"><code>Type</code></em></b></span></dt><dd><p>Display type.  Defaults to ZBUF for raster mode displays or
+BASIC for vector mode displays:  </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BASIC&nbsp;or&nbsp;0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Basic display (no hidden or section
+operations).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SECT&nbsp;or&nbsp;1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Section display (plane view).  Use the <a href="Hlp_C_CPLANE.html" class="olink"><span class="command"><strong>/CPLANE</strong></span></a> command
+to define the cutting plane.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">HIDC&nbsp;or&nbsp;2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Centroid hidden display (based on item
+centroid sort).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">HIDD&nbsp;or&nbsp;3</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Face hidden display (based on face centroid
+sort).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">HIDP&nbsp;or&nbsp;4</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Precise hidden display (like HIDD but
+with more precise checking). Because all facets are sorted, this mode can
+be extremely slow, especially for large models. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CAP&nbsp;or&nbsp;5</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Capped hidden display (same as combined
+SECT and HIDD with model in front of section plane removed).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ZBUF&nbsp;or&nbsp;6</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Z-buffered display (like HIDD but using
+software Z-buffering).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ZCAP&nbsp;or&nbsp;7</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Capped Z-buffered display (same as combined
+SECT and ZBUF with model in front of section plane removed).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ZQSL&nbsp;or&nbsp;8</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>QSLICE Z-buffered display (same as SECT
+but the edge lines of the remaining 3-D model are shown).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">HQSL&nbsp;or&nbsp;9</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>QSLICE precise hidden display (like
+ZQSL but using precise hidden).</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Command Default"><a name="s-TYPE.default"></a><h2>Command Default</h2><p>ZBUF for raster mode displays; BASIC for vector mode displays.</p></div><div class="refsect1" title="Notes"><a name="s-TYPE.notes"></a><h2>Notes</h2><p>Defines the type of display, such as section display or hidden-line
+display.  Use the <a href="Hlp_C_DEVICE.html" class="olink"><span class="command"><strong>/DEVICE</strong></span></a> command to specify either raster
+or vector mode.</p><p>The SECT, CAP, ZCAP, ZQSL, and HQSL options produce section displays.
+ The section or "cutting" plane is specified on the <a href="Hlp_C_CPLANE.html" class="olink"><span class="command"><strong>/CPLANE</strong></span></a> command
+as either normal to the viewing vector at the focus point (default), or as
+the working plane.</p><p>When you use PowerGraphics, the section display options (Section, Slice,
+and Capped) use different averaging techniques for the interior and exterior
+results. Because of the different averaging schemes, anomalies may appear
+at the transition areas. In many cases, the automatically computed MIN and
+MAX values will differ from the full range of interior values. You can lessen
+the effect of these anomalies by issuing <a class="link" href="Hlp_C_AVRES.html" title="AVRES"><span class="command"><strong>AVRES</strong></span></a>,,FULL (<span class="guimenu"><strong>Main
+Menu&gt; General Post Proc&gt; Options for Outp</strong></span>). This command sets your
+legend's automatic contour interval range according to the minimum and maximum
+results found throughout the entire model. </p><p>With PowerGraphics active (<a href="Hlp_C_GRAPHICS.html" class="olink"><span class="command"><strong>/GRAPHICS</strong></span></a>,POWER), the
+averaging scheme for surface data with interior element data included (<a class="link" href="Hlp_C_AVRES.html" title="AVRES"><span class="command"><strong>AVRES</strong></span></a>,,FULL)
+and multiple facets per edge (<a href="Hlp_C_EFACET.html" class="olink"><span class="command"><strong>/EFACET</strong></span></a>,2 or <a href="Hlp_C_EFACET.html" class="olink"><span class="command"><strong>/EFACET</strong></span></a>,4)
+will yield differing minimum and maximum contour values depending on the 
+Z-Buffering options (<a href="Hlp_C_TYPE_sl.html" class="olink"><span class="command"><strong>/TYPE</strong></span></a>,,6 or <a href="Hlp_C_TYPE_sl.html" class="olink"><span class="command"><strong>/TYPE</strong></span></a>,,7).
+ When the Section data is not included in the averaging schemes (<a href="Hlp_C_TYPE_sl.html" class="olink"><span class="command"><strong>/TYPE</strong></span></a>,,7),
+the resulting absolute value for the midside node is significantly smaller.</p><p>The HIDC, HIDD, HIDP, ZBUF, ZQSL, and HQSL options produce displays
+with "hidden" lines removed.  Hidden lines are lines obscured from view by
+another element, area, etc.  The choice of non-Z-buffered hidden-line procedure
+types is available only for raster mode [<a href="Hlp_C_DEVICE.html" class="olink"><span class="command"><strong>/DEVICE</strong></span></a>] displays.
+ For vector mode displays, all non-Z-buffered "hidden-line" options use the
+same procedure (which is slightly different from the raster procedures). 
+Both geometry and postprocessing displays may be of the hidden-line type.
+ Interior stress contour lines within solid elements can also be removed as
+hidden lines, leaving only the stress contour lines and element outlines on
+the visible surfaces.  Midside nodes of elements are ignored on postprocessing
+displays.  Overlapping elements will not be displayed.</p><p>The ZBUF, ZCAP, and ZQSL options use a specific hidden-line technique
+called software Z-buffering.  This technique allows a more accurate display
+of overlapping surfaces (common when using Boolean operations or <a href="Hlp_C_ESHAPE.html" class="olink"><span class="command"><strong>/ESHAPE</strong></span></a> on
+element displays), and allows smooth shaded displays on all interactive graphics
+displays.  Z-buffered displays can be performed faster than HIDP and CAP type
+displays for large models.  See also the <a href="Hlp_C_LIGHT.html" class="olink"><span class="command"><strong>/LIGHT</strong></span></a>, <a href="Hlp_C_SHADE.html" class="olink"><span class="command"><strong>/SHADE</strong></span></a>,
+and <a href="Hlp_C_GFILE.html" class="olink"><span class="command"><strong>/GFILE</strong></span></a> commands for additional options when Z-buffering
+is used.</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="s-TYPE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;Style&gt;Hidden-Line Options</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

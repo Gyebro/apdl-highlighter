@@ -1,0 +1,1052 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:31-04:00"><title>TB</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_T_TOC.html" title="T Commands"><link rel="prev" href="Hlp_C_TAXIS.html" title="*TAXIS"><link rel="next" href="Hlp_C_TBCOPY.html" title="TBCOPY"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="TB"><a name="TB"></a><div class="titlepage"></div><a class="indexterm" name="d0e267121"></a><span class="refentrytitle">
+<span class="command"><strong>TB</strong></span>
+</span><div class="refnamediv"><p>
+      <span class="command"><strong>TB</strong></span>, <em class="replaceable"><code>Lab</code></em>, <em class="replaceable"><code>MATID</code></em>,
+        <em class="replaceable"><code>NTEMP</code></em>, <em class="replaceable"><code>NPTS</code></em>,
+        <em class="replaceable"><code>TBOPT</code></em>, <em class="replaceable"><code>EOSOPT</code></em>,
+        <em class="replaceable"><code>FuncName</code></em>
+    <br><b class="refpurpose">Activates a <a href="../ans_mat/mat_understandingdt.html" class="olink">data table</a> for material
+      properties or special element input.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7datatablesldm061600" title="Table&nbsp;2.28:&nbsp;&nbsp;Material Data Tables"><span class="type">Data Tables</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div>
+<div class=""><div class="application"><span class="application">
+<a class="link" href="Hlp_C_TB.html#TBprodRest" title="Product Restrictions">Product Restrictions</a>
+</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="TB.argdescript"></a><h2></h2><p>For a list of <span class="italic"><em>elements</em></span> and the material models they
+      support (<em class="replaceable"><code>Lab</code></em> value), see <a href="../ans_elem/elem_matsupp.html" class="olink">Element Support for Material Models</a> in the <a href="../ans_elem/Hlp_E_ElemTOC.html" class="olink"><em class="citetitle">Element Reference</em></a>.</p><p>For a list of <span class="italic"><em>material models</em></span> and the elements that
+      support them, see <a href="../ans_mat/Mp8sasdgh.html" class="olink">Material Model Element Support</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Lab</code></em>
+</b></span></dt><dd><p>Material model data table type: </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">AFDM</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBafdm_spec" title="AFDM -- Acoustic Frequency-Dependent Material Specifications">Acoustic frequency-dependent
+                    material.</a>
+</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">AHYPER</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBahyperspec" title="AHYPER -- Anisotropic Hyperelasticity Specifications">Anisotropic hyperelasticity</a>. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ANEL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpANELjwf070600" title="ANEL -- Anisotropic Elasticity Specifications">Anisotropic elasticity</a>. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BB</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBBBspecs" title="BB -- Bergstrom-Boyce Hyperelasticity Specifications">Bergstrom-Boyce</a>. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BH</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpBHjwf070600" title="BH -- Magnetic Field Data Specifications">Magnetic</a> field data. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BISO</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpBISOjwf070600" title="BISO -- Bilinear Isotropic Hardening Specifications">Bilinear isotropic hardening</a>
+                    using von Mises or Hill plasticity. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BKIN</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpBKINjwf070600" title="BKIN -- Bilinear Kinematic Hardening Specifications">Bilinear kinematic hardening</a>
+                    using von Mises or Hill plasticity. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CAST</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#tbcastspecjmb" title="CAST -- Cast Iron Plasticity Specifications">Cast iron</a>. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CDM</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBCDMspecs" title="CDM -- Mullins Effect Hyperelasticity Specifications">Mullins effect</a> (for isotropic
+                    hyperelasticity models). </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CGCR</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#tbcgcrspec" title="CGCR -- Crack-Growth Fracture Criterion">Crack-growth</a> fracture criterion
+                      (<a class="link" href="Hlp_C_CGROW.html" title="CGROW"><span class="command"><strong>CGROW</strong></span></a>). </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CHABOCHE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpCHABjwf070600" title="CHABOCHE -- Chaboche Nonlinear Kinematic Hardening Specifications">Chaboche nonlinear kinematic
+                      hardening</a> using von Mises or Hill plasticity. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">COMP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpCOMPjwf070600" title="COMP -- Composite Damage Specifications">Composite damage</a> (explicit
+                    dynamic analysis).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CONCR</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpCONCjwf070600" title="CONCR -- Concrete Plasticity Specifications">Concrete</a> element or material
+                    data. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CREEP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpCREEjwf070600" title="CREEP -- Creep Specifications">Creep</a>. Pure creep, creep with
+                    isotropic hardening plasticity, or creep with kinematic hardening plasticity
+                    using both von Mises or Hill potentials. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CTE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Secant <a class="link" href="Hlp_C_TB.html#TBctespec" title="CTE -- Secant Coefficient of Thermal Expansion Specifications">coefficient of thermal
+                    expansion</a>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CZM</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBczmspec" title="CZM -- Cohesive Zone Specifications">Cohesive zone</a>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DENS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBdensspec" title="DENS -- Mass Density Specifications">Mass Density</a>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DISCRETE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Explicit spring-damper (<a class="link" href="Hlp_C_TB.html#TBDTSpDISCjwf070600" title="DISCRETE -- Explicit Spring-Damper (Discrete) Specifications">discrete</a>).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DMGE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBdmge" title="DMGE -- Damage Evolution Law Specifications">Damage evolution law</a>. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DMGI</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBdmgi" title="DMGI -- Damage Initiation Criteria Specifications">Damage initiation criteria</a>. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpDPjwf070600" title="DP -- Classic Drucker-Prager Plasticity Specifications">Classic Drucker-Prager plasticity</a>.
+                  </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DPER</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#tbdperspec" title="DPER -- Anisotropic Electric Permittivity Specifications">Anisotropic electric permittivity</a>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">EDP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBedpspec" title="EDP -- Extended Drucker-Prager Plasticity Specifications">Extended Drucker-Prager</a> (for granular
+                    materials such as rock, concrete, soil, ceramics and other pressure-dependent
+                    materials).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ELASTIC</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#tbelasticpec" title="ELASTIC -- Elasticity Specifications">Elasticity</a>. For full harmonic analyses,
+                    properties can be defined as frequency- or temperature-dependent
+                      (<a class="link" href="Hlp_C_TBFIELD.html" title="TBFIELD"><span class="command"><strong>TBFIELD</strong></span></a>).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">EOS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpEOSjwf070600" title="EOS -- Equation of State Specifications">Equation of state</a> (explicit
+                    dynamic analysis). </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">EVISC</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpEVISjwf070600" title="EVISC -- Viscoelastic Element Data Specifications">Viscoelastic element data</a>
+                    (explicit dynamic analysis). </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">EXPE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBexperimental" title="EXPE -- Experimental Data Specifications">Experimental data</a>. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">FCON</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpFCONjwf070600" title="FCON -- Fluid Conductance Data Specifications">Fluid conductance data</a> (explicit
+                    dynamic analysis). </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">FCLI</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBfclispecs" title="FCLI -- Material Strength Limits Specifications">Material strength limits</a> for calculating
+                    failure criteria. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">FLUID</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#tbfluidspec" title="FLUID -- Fluid Specifications">Fluid</a>. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">FOAM</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpFOAMjwf070600" title="FOAM -- Foam Specifications">Foam</a> (explicit dynamic analysis).
+                  </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">FRIC</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#tbfricspec" title="FRIC -- Coefficient of Friction Specifications">Coefficient of friction</a> based on Coulomb's
+                    Law or user-defined friction. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">GASKET</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSgas111501" title="GASKET -- Gasket Specifications">Gasket</a>. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">GCAP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBGCAP52901" title="GCAP -- Geological Cap Specifications">Geological cap</a> (explicit dynamic
+                    analysis). </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">GURSON</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBgurspec" title="GURSON -- Gurson Plasticity Specifications">Gurson pressure-dependent plasticity</a> for
+                    porous metals. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">HFLM</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpHFLMjwf070600" title="HFLM -- Film Coefficient Data Specifications">Film coefficient data</a>. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">HILL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpHILLjwf070600" title="HILL -- Hill Plasticity Specifications">Hill anisotropy</a>. When combined
+                    with other material options, simulates plasticity, viscoplasticity, and creep --
+                    all with the Hill potential. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">HONEY</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpHONEjwf070600" title="HONEY -- Honeycomb Specifications">Honeycomb</a> (explicit dynamic
+                    analysis). </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">HYPER</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpHYPEjwf070600" title="HYPER -- Hyperelasticity Specifications">Hyperelasticity</a> material models
+                    (Arruda-Boyce, Blatz-Ko, Extended Tube, Gent, Mooney-Rivlin [default],
+                    Neo-Hookean, Ogden, Ogden Foam, Polynomial Form, Response Function, Yeoh, and
+                    user-defined). </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">INTER</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#tbinterspec" title="INTER -- Contact Interaction Specifications">Contact interaction</a>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">JOIN</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#tbjoinspec" title="JOIN -- Joint Element Specifications">Joint</a> (linear and nonlinear elastic
+                    stiffness, linear and nonlinear damping, and frictional behavior).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">JROCK</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#tbjointedrockspec" title="JROCK -- Jointed Rock Specifications">Jointed rock</a>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MC</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#tbmohrcoulombspec" title="MC -- Mohr-Coulomb Specifications">Mohr-Coulomb.</a>
+</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MIGR</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#tbmigrspec" title="MIGR -- Migration Model Specifications">Migration model</a>. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MOONEY</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpMOONjwf070600" title="MOONEY -- Mooney-Rivlin Hyperelasticity Specifications">Mooney-Rivlin hyperelasticity</a>
+                    (explicit dynamic analysis). </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MPLANE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBmplanespec" title="MPLANE -- Microplane Specifications">Microplane</a>. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NLISO</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpNLISjwf070600" title="NLISO -- Nonlinear Isotropic Hardening Specifications">Voce isotropic hardening law</a> (or
+                    power law) for modeling nonlinear isotropic hardening using von Mises or Hill
+                    plasticity. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">PELAS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#tbporelasspec" title="PELAS -- Porous Elasticity Specifications">Porous elasticity</a>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">PERF</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBperf_model_spec" title="PERF -- Equivalent Fluid Model of Perforated Media Specifications">Equivalent fluid model of perforated
+                      media</a>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">PIEZ</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpPIEZjwf070600" title="PIEZ -- Piezoelectric Matrix Specifications">Piezoelectric matrix</a>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">PLASTIC</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Nonlinear <a class="link" href="Hlp_C_TB.html#tbplasticspec" title="PLASTIC -- Nonlinear Plasticity Specifications">plasticity</a>. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">PLAW</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpPLAWjwf070600" title="PLAW -- Plasticity Law Specifications">Plasticity laws</a> (explicit dynamic
+                    analysis). </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">PM</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBpmspec" title="PM -- Coupled Pore-Fluid Diffusion and Structural Model of Porous Media Specifications">Porous media</a>. Coupled pore-fluid diffusion
+                    and structural model of porous media. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">PRONY</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#tbpronyspecjmb" title="PRONY -- Prony Series Constant Specifications">Prony series</a> constants for
+                    viscoelastic materials. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">PZRS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#tbpzrsspec" title="PZRS -- Piezoresistivity Specifications">Piezoresistivity</a>. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">RATE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpRATEjwf070600" title="RATE -- Rate-Dependent Plasticity Specifications">Rate-dependent plasticity</a>
+                    (viscoplasticity) when combined with the BISO, NLISO or PLASTIC material
+                    options, or rate-dependent anisotropic plasticity (anisotropic viscoplasticity)
+                    when combined with the HILL and BISO, NLISO or PLASTIC material options. </p><p>The exponential visco-hardening option includes an explicit function for
+                    directly defining static yield stresses of materials. </p><p>The Anand unified plasticity option requires no combination with other
+                    material models.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SDAMP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#tbsdampspec" title="SDAMP -- Material Damping Coefficient Specifications">Material damping</a> coefficients. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SHIFT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#tbshiftspecjmb" title="SHIFT -- Shift Function Specifications">Shift function</a> for viscoelastic
+                    materials. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SMA</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpSMA" title="SMA -- Shape Memory Alloy Specifications">Shape memory alloy</a> for simulating
+                    hysteresis superelastic behavior with no performance degradation. Plane stress
+                    is not supported. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SOIL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#tbsoilspec" title="SOIL -- Soil Specifications">Soil models</a>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">STATE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpSTATjwf070600" title="STATE -- User-Defined State Variable Specifications">User-defined state variables</a>.
+                    Valid with <span class="command"><strong>TB</strong></span>,USER and used with either the <a href="../ans_prog/Z7K4r1e5lcd.html#UPFusermatjwf032800403" class="olink">
+<code class="function">UserMat</code>
+</a> or <a href="../ans_prog/Z7K4r1e5lcd.html#UPFusermatthrmf040814" class="olink">
+<code class="function">UserMatTh</code>
+</a>
+                    subroutine. Also valid with <span class="command"><strong>TB</strong></span>,CREEP (when
+                      <em class="replaceable"><code>TBOPT</code></em> = 100) and used with the <a href="../ans_prog/Z7K4r1e5lcd.html#UPFimplcrpjwf122099345" class="olink">
+<code class="function">UserCreep</code>
+</a> subroutine.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SWELL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+                    <a class="link" href="Hlp_C_TB.html#TBDTSpSWELjwf070600" title="SWELL -- Swelling Specifications">Swelling</a> strain function. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">THERM</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+                    <a class="link" href="Hlp_C_TB.html#tbthermspec" title="THERM -- Thermal Properties Specifications">Thermal properties</a>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">UNIAXIAL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#tbuniaxspecjmb" title="UNIAXIAL -- Uniaxial Stress-Strain Relation Specifications">Uniaxial stress-strain relation</a>
+                    associated with the <a href="../ans_mat/amp8sq21dldm.html#cast" class="olink">Cast
+                      iron</a> material model.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">USER</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#TBDTSpUSERjwf070600" title="USER -- User-Defined Material Model or Thermal Material Model Specifications">User-defined</a> material model
+                    (general-purpose except for incompressible material models) or thermal material
+                    model.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">WEAR</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>
+<a class="link" href="Hlp_C_TB.html#tbwearspec" title="WEAR -- Contact Surface Wear Specifications">Contact surface wear</a>. </p></td></tr></tbody></table></div></div><p>
+</p></dd><dt><span><b class="term">
+          <em class="replaceable"><code>MATID</code></em>
+        </b></span></dt><dd><p>Material reference identification number. Default = 1. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>
+</b></span></dt><dd><p>The number of temperatures for which data will be provided (if applicable). Specify
+            temperatures via the <a class="link" href="Hlp_C_TBTEMP.html" title="TBTEMP"><span class="command"><strong>TBTEMP</strong></span></a> command.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>
+</b></span></dt><dd><p>For most labels where <em class="replaceable"><code>NPTS</code></em> is defined, the number of data
+            points to be specified for a given temperature. Define data points via the
+              <a class="link" href="Hlp_C_TBDATA.html" title="TBDATA"><span class="command"><strong>TBDATA</strong></span></a> or <a class="link" href="Hlp_C_TBPT.html" title="TBPT"><span class="command"><strong>TBPT</strong></span></a> commands.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>EOSOPT</code></em>
+</b></span></dt><dd><p>Indicates which equation of state model will be used. Used only for explicit
+            dynamics, and only when <em class="replaceable"><code>Lab</code></em> = EOS. </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Linear polynomial equation of state</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Gruneisen equation of state</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">3</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Tabulated equation of state</p></td></tr></tbody></table></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>FuncName</code></em>
+</b></span></dt><dd><p>The name of the function to be used (entered as
+            %<em class="replaceable"><code>tabname</code></em>%, where <em class="replaceable"><code>tabname</code></em> is the
+            name of the table created by the Function Tool). Valid only when
+              <em class="replaceable"><code>Lab</code></em> = JOIN (joint element material) and nonlinear stiffness
+            or damping are specified on the <em class="replaceable"><code>TBOPT</code></em> field (see <a class="xref" href="Hlp_C_TB.html#tbjoinspec" title="JOIN -- Joint Element Specifications">"JOIN -- Joint Element Specifications"</a>). The function must be previously defined using the Function
+            Tool. To learn more about how to create a function, see <a href="../ans_bas/Hlp_G_BASFUNCTOOL.html" class="olink">Using the Function Tool</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a>.</p></dd></dl></div></div><div><img src="graphics/Linebrk.gif"></div></div><div class="refsect1" title="Data Table Specifications"><a name="TB.datatabspec"></a><h2>Data Table Specifications</h2><p>Following are input requirements (<em class="replaceable"><code>NTEMP</code></em>,
+        <em class="replaceable"><code>NPTS</code></em>, and <em class="replaceable"><code>TBOPT</code></em> values) and links to
+      detailed documentation for each data table type
+        (<span class="command"><strong>TB</strong></span>,<em class="replaceable"><code>Lab</code></em> value):</p><div class="refsect2" title="AFDM -- Acoustic Frequency-Dependent Material Specifications"><a name="TBafdm_spec"></a><h3>AFDM -- Acoustic Frequency-Dependent Material Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP:</code></em>
+</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT:</code></em>
+</b></span></dt><dd><p>Acoustic material options:</p><div><div class="variablelist"><dl><dt><span><b class="term">MAT</b></span></dt><dd><p>Material properties</p></dd><dt><span><b class="term">THIN</b></span></dt><dd><p>Thin layer</p></dd><dt><span><b class="term">RECT</b></span></dt><dd><p>Rectangular cross-section</p></dd><dt><span><b class="term">CIRC</b></span></dt><dd><p>Circular cross-section</p></dd></dl></div></div></dd><dt><span><b class="term">References:</b></span></dt><dd><p>
+<a href="../ans_acous/ansacousmatprop.html" class="olink">Defining Acoustic Material Properties</a> in the
+              <a href="../ans_acous/ans_acous.html" class="olink"><em class="citetitle">Acoustic Analysis Guide</em></a>.</p><p>
+<a href="../ans_mat/acousticmat.html#acousafdm" class="olink">Acoustic Frequency-Dependent Materials</a> in the <a href="../ans_mat/ans_mat.html" class="olink">
+<em class="citetitle">Material
+                Reference.</em>
+</a>
+</p><p>See the <a class="link" href="Hlp_C_TBFIELD.html" title="TBFIELD"><span class="command"><strong>TBFIELD</strong></span></a> command for more information about defining
+              temperature- and/or frequency-dependent properties.</p></dd></dl></div></div></div><div class="refsect2" title="AHYPER -- Anisotropic Hyperelasticity Specifications"><a name="TBahyperspec"></a><h3>AHYPER -- Anisotropic Hyperelasticity Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. Maximum =
+              40.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of data points to be specified for a given temperature. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Anisotropic hyperelastic material options. </p><div><div class="variablelist"><dl><dt><span><b class="term">POLY -- </b></span></dt><dd><p>Polynomial strain energy potential.</p></dd><dt><span><b class="term">EXPO -- </b></span></dt><dd><p>Exponential strain energy potential.</p></dd><dt><span><b class="term">AVEC -- </b></span></dt><dd><p>Define the A vector. </p></dd><dt><span><b class="term">BVEC -- </b></span></dt><dd><p>Define the B vector.</p></dd><dt><span><b class="term">PVOL -- </b></span></dt><dd><p>Volumetric potential. </p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/aQw8sq22dldm.html#anhyper1g" class="olink">Anisotropic
+                Hyperelasticity</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_thry/thy_mat5.html#anisohyper" class="olink">Anisotropic
+                Hyperelasticity</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> </p></dd></dl></div></div></div><div class="refsect2" title="ANEL -- Anisotropic Elasticity Specifications"><a name="TBDTSpANELjwf070600"></a><h3>ANEL -- Anisotropic Elasticity Specifications</h3><p>This material model is not supported for use with the <a class="link" href="Hlp_C_TB.html#TBctespec" title="CTE -- Secant Coefficient of Thermal Expansion Specifications">coefficient of thermal expansion</a> (<span class="command"><strong>TB</strong></span>,CTE).</p><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 6. Maximum = 6.
+                <em class="replaceable"><code>NTEMP</code></em> is not used for explicit dynamic elements.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Anisotropic elastic matrix options. </p><div><div class="variablelist"><dl><dt><span><b class="term">0 -- </b></span></dt><dd><p>Elasticity matrix used as supplied (input in stiffness form).</p></dd><dt><span><b class="term">1 -- </b></span></dt><dd><p>Elasticity matrix inverted before use (input in flexibility form). This
+                      option is not valid for explicit dynamic elements.</p></dd></dl></div></div><p>
+            </p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/anel.html" class="olink">Anisotropic Elasticity</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_lsd/Hlp_L_matl3.html#lsdlinearelasticjla4400" class="olink">Linear Elastic
+                Models</a> in the <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink"><em class="citetitle">ANSYS LS-DYNA User's Guide</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="BB -- Bergstrom-Boyce Hyperelasticity Specifications"><a name="TBBBspecs"></a><h3>BB -- Bergstrom-Boyce Hyperelasticity Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. The maximum
+              must be a value such that (<em class="replaceable"><code>NTEMP</code></em> x
+                <em class="replaceable"><code>NPTS</code></em>) &lt;= 1000. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of material constants. If <em class="replaceable"><code>TBOPT</code></em> = ISO, then
+                <em class="replaceable"><code>NPTS</code></em> = 7. If <em class="replaceable"><code>TBOPT</code></em> = 1, then
+                <em class="replaceable"><code>NPTS</code></em> = 1. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Isochoric or volumetric strain-energy function:</p><div><div class="variablelist"><dl><dt><span><b class="term">ISO -- </b></span></dt><dd><p>Define material constants for isochoric strain energy. </p></dd><dt><span><b class="term">PVOL -- </b></span></dt><dd><p>Define material constants for volumetric strain energy. </p></dd></dl></div></div><p>
+            </p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_thry/thy_bb.html" class="olink">Bergstrom-Boyce</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>.</p><p>
+<a href="../ans_mat/aQw8sq22dldm.html#elbergboyce" class="olink">Bergstrom-Boyce Material</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_str/Hlp_G_STR8_3.html#strbergboyceoption" class="olink">Bergstrom-Boyce Hyperviscoelastic Material Model</a> in the
+              <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="BH -- Magnetic Field Data Specifications"><a name="TBDTSpBHjwf070600"></a><h3>BH -- Magnetic Field Data Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of data points to be specified. Default = 20. Maximum = 500.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/mat_electricmagnet.html#bh" class="olink">Magnetic Materials</a> in the
+              <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_lof/Hlp_G_ELE2_3.html#emagdefregjla062199" class="olink">Additional Guidelines
+                for Defining Regional Material Properties and Real Constants</a> in the
+              <a href="../ans_lof/Hlp_G_EleTOC.html" class="olink"><em class="citetitle">Low-Frequency Electromagnetic Analysis Guide</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="BISO -- Bilinear Isotropic Hardening Specifications"><a name="TBDTSpBISOjwf070600"></a><h3>BISO -- Bilinear Isotropic Hardening Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. Maximum =
+              6.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/amp8sq21dldm.html#biso" class="olink">Bilinear Isotropic Hardening</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_lsd/Hlp_L_matl3.html#lsdplasticityjla4400" class="olink">Nonlinear Inelastic
+                Models</a> in the <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink"><em class="citetitle">ANSYS LS-DYNA User's Guide</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="BKIN -- Bilinear Kinematic Hardening Specifications"><a name="TBDTSpBKINjwf070600"></a><h3>BKIN -- Bilinear Kinematic Hardening Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>: </b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. Maximum =
+              6.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>: </b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>: </b></span></dt><dd><p>Stress-strain options (not used in an explicit dynamics analysis). </p><div><div class="variablelist"><dl><dt><span><b class="term">0 -- </b></span></dt><dd><p>No stress relaxation with temperature increase (not recommended for
+                      nonisothermal problems).</p></dd><dt><span><b class="term">1 -- </b></span></dt><dd><p>Rice's hardening rule, which takes into account stress relaxation with
+                      increasing temperature (default).</p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/amp8sq21dldm.html#bkin" class="olink">Bilinear Kinematic Hardening</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_lsd/Hlp_L_matl3.html#lsdplasticityjla4400" class="olink">Nonlinear Inelastic Models</a> in the
+              <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink"><em class="citetitle">ANSYS LS-DYNA User's Guide</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="CAST -- Cast Iron Plasticity Specifications"><a name="tbcastspecjmb"></a><h3>CAST -- Cast Iron Plasticity Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP:</code></em>
+</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. Maximum =
+              10.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS:</code></em>
+</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT:</code></em>
+</b></span></dt><dd><p>Defines hardening type.</p><div><div class="variablelist"><dl><dt><span><b class="term">ISOTROPIC -- </b></span></dt><dd><p>Specifies cast iron plasticity with isotropic hardening.</p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/amp8sq21dldm.html#cast" class="olink">Cast Iron</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="CDM -- Mullins Effect Hyperelasticity Specifications"><a name="TBCDMspecs"></a><h3>CDM -- Mullins Effect Hyperelasticity Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. The maximum
+              must be a value such that (<em class="replaceable"><code>NTEMP</code></em> x
+                <em class="replaceable"><code>NPTS</code></em>) &lt;= 1000. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of data points to be specified for a given temperature. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Mullins effect option:</p><div><div class="variablelist"><dl><dt><span><b class="term">PSE2 -- </b></span></dt><dd><p>Pseudo-elastic model with modified Ogden-Roxburgh damage function.
+                      Requires <em class="replaceable"><code>NPTS</code></em> = 3.</p></dd></dl></div></div><p>
+            </p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_thry/thy_mullinseffect.html" class="olink">Mullins Effect </a> in the
+              <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>.</p><p>
+<a href="../ans_mat/aQw8sq22dldm.html#elemmullinsconstants" class="olink">Mullins Effect</a> in the
+              <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_str/Hlp_G_STR8_3.html#strmullinseffect" class="olink">Mullins Effect Material Model</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="CGCR -- Crack-Growth Fracture Criterion"><a name="tbcgcrspec"></a><h3>CGCR -- Crack-Growth Fracture Criterion</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of data points to be specified for a given temperature. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Fracture criterion option: </p><div><div class="variablelist"><dl><dt><span><b class="term">
+<a href="../ans_frac/Hlp_G_STR_VCCT.html#vcctlinearfractcrit" class="olink">LINEAR</a> -- </b></span></dt><dd><p>Linear fracture criterion. Valid when <em class="replaceable"><code>NPTS</code></em> =
+                      3.</p></dd><dt><span><b class="term">
+<a href="../ans_frac/Hlp_G_STR_VCCT.html#vcctbilinearfractcrit" class="olink">BILINEAR</a> -- </b></span></dt><dd><p>Bilinear fracture criterion. Valid when <em class="replaceable"><code>NPTS</code></em> =
+                      4.</p></dd><dt><span><b class="term">
+<a href="../ans_frac/Hlp_G_STR_VCCT.html#vcctBKfractcrit" class="olink">BK</a> -- </b></span></dt><dd><p>B-K fracture criterion. Valid when <em class="replaceable"><code>NPTS</code></em> =
+                      3.</p></dd><dt><span><b class="term">
+<a href="../ans_frac/Hlp_G_STR_VCCT.html#vcctmodBKfractcrit" class="olink">MBK</a> -- </b></span></dt><dd><p>Modified B-K (Reeder) fracture criterion. Valid when
+                        <em class="replaceable"><code>NPTS</code></em> = 4.</p></dd><dt><span><b class="term">
+<a href="../ans_frac/Hlp_G_STR_VCCT.html#vcctpowerlawfractcrit" class="olink">POWERLAW</a> -- </b></span></dt><dd><p>Wu's Power Law fracture criterion. Valid when
+                        <em class="replaceable"><code>NPTS</code></em> = 6.</p></dd><dt><span><b class="term">
+<a href="../ans_frac/Hlp_G_STR_VCCT.html#vcctuserdeffractcrit" class="olink">USER</a> -- </b></span></dt><dd><p>User-defined fracture criterion. Valid when
+                        <em class="replaceable"><code>NPTS</code></em> = 20.</p></dd><dt><span><b class="term">
+<a href="../ans_frac/Hlp_G_STR_VCCT.html#vcctuserdeffractcrit" class="olink">PSMAX</a> -- </b></span></dt><dd><p>Circumferential stress criterion based on <span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq4d382484-99d1-41ac-82dc-5a82d9911274.svg"></span> when sweeping around the crack tip at a given radius. Valid
+                      when <em class="replaceable"><code>NPTS</code></em> = 1. This option is used in an XFEM-based
+                      crack-growth analysis only.</p></dd><dt><span><b class="term">
+<a href="../ans_frac/Hlp_G_STR_VCCT.html#vcctuserdeffractcrit" class="olink">STTMAX</a> -- </b></span></dt><dd><p>Maximum circumferential stress criterion. Valid when
+                        <em class="replaceable"><code>NPTS</code></em> = 1. This option is used in an XFEM-based
+                      crack-growth analysis only.</p></dd><dt><span><b class="term">
+<a href="../ans_frac/Hlp_G_FRACXFEM.html#fracdefstressdecay" class="olink">RLIN</a> -- </b></span></dt><dd><p>Rigid linear evolution law for the decay of stress. Valid when
+                        <em class="replaceable"><code>NPTS</code></em> = 4. This option is used in an XFEM-based
+                      crack-growth analysis only.</p></dd><dt><span><b class="term">
+<a href="../ans_frac/fracfcgxfem.html" class="olink">PARIS</a> -- </b></span></dt><dd><p>Paris' Law for fatigue crack growth. Valid when
+                        <em class="replaceable"><code>NPTS</code></em> = 2. </p></dd></dl></div></div><p>
+</p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;In an <a href="../ans_frac/Hlp_G_FRACXFEM.html" class="olink">XFEM-based crack-growth</a> analysis,
+                the only valid options are PSMAX, STTMAX and RLIN. The PARIS option is valid for
+                  <a href="../ans_frac/fracfcgxfem.html" class="olink">XFEM-based fatigue crack-growth analysis</a>
+                only.</p><hr></div></dd></dl></div></div><div><div class="variablelist"><dl><dt><span><b class="term">References:</b></span></dt><dd><p>
+<a href="../ans_frac/Hlp_G_STR_VCCT.html#vcctfractcrit" class="olink">Fracture Criteria</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p><p>
+<a class="link" href="Hlp_C_CGROW.html" title="CGROW"><span class="command"><strong>CGROW</strong></span></a> command in the <a href="Hlp_C_CmdTOC.html" class="olink"><em class="citetitle">Command Reference</em></a>. </p></dd></dl></div></div></div><div class="refsect2" title="CHABOCHE -- Chaboche Nonlinear Kinematic Hardening Specifications"><a name="TBDTSpCHABjwf070600"></a><h3>CHABOCHE -- Chaboche Nonlinear Kinematic Hardening Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. The maximum
+              value of <em class="replaceable"><code>NTEMP</code></em> is such that
+                <em class="replaceable"><code>NTEMP</code></em> x (1 + 2<em class="replaceable"><code>NPTS</code></em>) =
+              1000.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of kinematic models to be superposed. Default = 1. Maximum = 5.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/amp8sq21dldm.html#chab" class="olink">Nonlinear Kinematic Hardening</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="COMP -- Composite Damage Specifications"><a name="TBDTSpCOMPjwf070600"></a><h3>COMP -- Composite Damage Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_lsd/Hlp_L_matl3.html#lcom" class="olink">Composite Damage Model</a> in the
+              <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink"><em class="citetitle">ANSYS LS-DYNA User's Guide</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="CONCR -- Concrete Plasticity Specifications"><a name="TBDTSpCONCjwf070600"></a><h3>CONCR -- Concrete Plasticity Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided (used only if
+                <em class="replaceable"><code>TBOPT</code></em> = 0 or 1). Default = 6. Maximum = 6.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+            <em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Concrete material options. </p><div><div class="variablelist"><dl><dt><span><b class="term">DP -- </b></span></dt><dd><p><a href="../ans_mat/mat_geomechanics.html#matgeomechDPconc" class="olink">Drucker-Prager</a> concrete
+                      strength parameters.</p></dd><dt><span><b class="term">RCUT -- </b></span></dt><dd><p>Rankine tension failure parameter.</p></dd><dt><span><b class="term">DILA -- </b></span></dt><dd><p>Drucker-Prager concrete dilatation.</p></dd><dt><span><b class="term">HSD2 -- </b></span></dt><dd><p>Drucker-Prager concrete <a href="../ans_mat/mat_geomechanics.html#matDPconcrexpsoft" class="olink">exponential</a>
+                      <a href="../ans_mat/mat_geomechanics.html#DPconchardsoftdil" class="olink">hardening/softening/dilitation
+                        (HSD)</a> behavior.</p></dd><dt><span><b class="term">HSD4 -- </b></span></dt><dd><p>Drucker-Prager concrete <a href="../ans_mat/mat_geomechanics.html#matDPconcrsteelrein" class="olink">steel
+                        reinforcement</a> HSD behavior.</p></dd><dt><span><b class="term">HSD5 -- </b></span></dt><dd><p>Drucker-Prager concrete <a href="../ans_mat/mat_geomechanics.html#matDPconcrfracenergy" class="olink">fracture
+                        energy</a> HSD behavior.</p></dd><dt><span><b class="term">HSD6 -- </b></span></dt><dd><p>Drucker-Prager concrete <a href="../ans_mat/mat_geomechanics.html#matDPconcrlinearsoft" class="olink">linear</a> HSD behavior.</p></dd><dt><span><b class="term">FPLANE -- </b></span></dt><dd><p>Drucker-Prager concrete joint parameters.</p></dd><dt><span><b class="term">FTCUT -- </b></span></dt><dd><p>Drucker-Prager concrete joint tension cutoff.</p></dd><dt><span><b class="term">FORIE -- </b></span></dt><dd><p>Drucker-Prager concrete joint orientation.</p></dd><dt><span><b class="term">MW -- </b></span></dt><dd><p>Menetrey-Willam constitutive model.</p></dd><dt><span><b class="term">0 or 1 -- </b></span></dt><dd><p>General concrete option for element
+                      <a href="../ans_elem/Hlp_E_SOLID65.html" class="olink"><span class="structname">SOLID65</span></a>.</p></dd><dt><span><b class="term">2 -- </b></span></dt><dd><p>Concrete damage model for explicit dynamic elements
+                        <a href="../ans_elem/Hlp_E_SOLID164.html" class="olink"><span class="structname">SOLID164</span></a> and
+                      <a href="../ans_elem/Hlp_E_SOLID168.html" class="olink"><span class="structname">SOLID168</span></a>.</p></dd></dl></div></div><p>
+            </p></dd><dt><span><b class="term">References: </b></span></dt><dd><p><a href="../ans_mat/mat_geomechanics.html#matgeomechDPconc" class="olink">Drucker-Prager
+                Concrete</a>.</p><p><a href="../ans_mat/mat_geomechanics.html#DPconchardsoftdil" class="olink">Hardening, Softening and Dilatation (HSD)
+                Behavior</a></p><p><a href="../ans_mat/mat_geomechanics.html#matgeomechmenetrey" class="olink">Menetrey-Willam</a>.</p><p><a href="../ans_lsd/Hlp_L_matl3.html#lcon" class="olink">Concrete Damage Model</a>
+              and <a href="../ans_elem/Hlp_E_SOLID65.html" class="olink"><span class="structname">SOLID65</span></a>.</p></dd></dl></div></div></div><div class="refsect2" title="CREEP -- Creep Specifications"><a name="TBDTSpCREEjwf070600"></a><h3>CREEP -- Creep Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. Maximum value
+              of <em class="replaceable"><code>NTEMP</code></em> is such that <em class="replaceable"><code>NTEMP</code></em> x
+                <em class="replaceable"><code>NPTS</code></em> = 250 for explicit creep. There is no limit for
+              implicit creep.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of data points to be specified for a given temperature. Default = 72 for
+              explicit creep. There is no limit for implicit creep with the USER CREEP
+              option.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Creep model options. </p><div><div class="variablelist"><dl><dt><span><b class="term">0 -- </b></span></dt><dd><p>(or Blank) Explicit creep option. Creep is defined by constants
+                        C<sub>6</sub>, C<sub>12</sub>, and
+                        C<sub>66</sub>, via <a class="link" href="Hlp_C_TBDATA.html" title="TBDATA"><span class="command"><strong>TBDATA</strong></span></a>. See <a href="../ans_mat/rate.html#aJuBsq143ldm" class="olink">Primary Explicit Creep Equation for C6 = 0</a> through <a href="../ans_mat/rate.html#arTPg1dcmlg" class="olink">Irradiation Induced Explicit Creep Equation for C66 = 5</a> for the associated equations.
+                      (Applicable to <a href="../ans_elem/Hlp_E_SOLID65.html" class="olink"><span class="structname">SOLID65</span></a>.) C<sub>6</sub> =
+                      100 defines the USER CREEP option for explicit creep. You must define the
+                      creep law using the subroutine <span class="filename"><strong>USERCR.F</strong></span>. See the <a href="../ans_prog/Hlp_P_UPFTOC.html" class="olink">Guide to User-Programmable Features in the <span class="olinkdocname">Mechanical APDL Programmer's Reference</span></a> for more
+                      information.</p></dd><dt><span><b class="term">1 through 13 -- </b></span></dt><dd><p>Implicit creep option. See <a href="../ans_mat/rate.html#ELEMimpljwf060899" class="olink">Table&nbsp;4.2:&nbsp;Implicit Creep Equations</a> for a list of available equations. Use
+                        <a class="link" href="Hlp_C_TBTEMP.html" title="TBTEMP"><span class="command"><strong>TBTEMP</strong></span></a> and <a class="link" href="Hlp_C_TBDATA.html" title="TBDATA"><span class="command"><strong>TBDATA</strong></span></a> to define
+                      temperature-dependent constants. (Applicable to
+                        <a href="../ans_elem/Hlp_E_LINK180.html" class="olink"><span class="structname">LINK180</span></a> , <a href="../ans_elem/Hlp_E_SHELL181.html" class="olink"><span class="structname">SHELL181</span></a>,
+                        <a href="../ans_elem/Hlp_E_PLANE182.html" class="olink"><span class="structname">PLANE182</span></a>, <a href="../ans_elem/Hlp_E_PLANE183.html" class="olink"><span class="structname">PLANE183</span></a>,
+                        <a href="../ans_elem/Hlp_E_SOLID185.html" class="olink"><span class="structname">SOLID185</span></a>, <a href="../ans_elem/Hlp_E_SOLID186.html" class="olink"><span class="structname">SOLID186</span></a> ,
+                        <a href="../ans_elem/Hlp_E_SOLID187.html" class="olink"><span class="structname">SOLID187</span></a> , <a href="../ans_elem/Hlp_E_BEAM188.html" class="olink"><span class="structname">BEAM188</span></a>,
+                        <a href="../ans_elem/Hlp_E_BEAM189.html" class="olink"><span class="structname">BEAM189</span></a>, <a href="../ans_elem/Hlp_E_SOLSH190.html" class="olink"><span class="structname">SOLSH190</span></a>,
+                        <a href="../ans_elem/Hlp_E_SHELL208.html" class="olink"><span class="structname">SHELL208</span></a>, <a href="../ans_elem/Hlp_E_SHELL209.html" class="olink"><span class="structname">SHELL209</span></a>,
+                        <a href="../ans_elem/Hlp_E_REINF264.html" class="olink"><span class="structname">REINF264</span></a>, <a href="../ans_elem/Hlp_E_REINF265.html" class="olink"><span class="structname">REINF265</span></a>,
+                        <a href="../ans_elem/Hlp_E_SOLID272.html" class="olink"><span class="structname">SOLID272</span></a>, <a href="../ans_elem/Hlp_E_SOLID273.html" class="olink"><span class="structname">SOLID273</span></a>,
+                        <a href="../ans_elem/Hlp_E_SHELL281.html" class="olink"><span class="structname">SHELL281</span></a>, <a href="../ans_elem/Hlp_E_SOLID285.html" class="olink"><span class="structname">SOLID285</span></a>,
+                        <a href="../ans_elem/Hlp_E_PIPE288.html" class="olink"><span class="structname">PIPE288</span></a>, <a href="../ans_elem/Hlp_E_PIPE289.html" class="olink"><span class="structname">PIPE289</span></a>, and
+                        <a href="../ans_elem/Hlp_E_ELBOW290.html" class="olink"><span class="structname">ELBOW290</span></a>).</p></dd><dt><span><b class="term">100 -- </b></span></dt><dd><p>USER CREEP option (applicable to <a href="../ans_elem/Hlp_E_LINK180.html" class="olink"><span class="structname">LINK180</span></a>,
+                        <a href="../ans_elem/Hlp_E_SHELL181.html" class="olink"><span class="structname">SHELL181</span></a>, <a href="../ans_elem/Hlp_E_PLANE182.html" class="olink"><span class="structname">PLANE182</span></a>,
+                        <a href="../ans_elem/Hlp_E_PLANE183.html" class="olink"><span class="structname">PLANE183</span></a>, <a href="../ans_elem/Hlp_E_SOLID185.html" class="olink"><span class="structname">SOLID185</span></a>,
+                        <a href="../ans_elem/Hlp_E_SOLID186.html" class="olink"><span class="structname">SOLID186</span></a>, <a href="../ans_elem/Hlp_E_SOLID187.html" class="olink"><span class="structname">SOLID187</span></a>,
+                        <a href="../ans_elem/Hlp_E_BEAM188.html" class="olink"><span class="structname">BEAM188</span></a>, <a href="../ans_elem/Hlp_E_BEAM189.html" class="olink"><span class="structname">BEAM189</span></a>,
+                        <a href="../ans_elem/Hlp_E_SOLSH190.html" class="olink"><span class="structname">SOLSH190</span></a>, <a href="../ans_elem/Hlp_E_SHELL208.html" class="olink"><span class="structname">SHELL208</span></a>,
+                        <a href="../ans_elem/Hlp_E_SHELL209.html" class="olink"><span class="structname">SHELL209</span></a>, <a href="../ans_elem/Hlp_E_REINF264.html" class="olink"><span class="structname">REINF264</span></a>,
+                        <a href="../ans_elem/Hlp_E_REINF265.html" class="olink"><span class="structname">REINF265</span></a>, <a href="../ans_elem/Hlp_E_SOLID272.html" class="olink"><span class="structname">SOLID272</span></a>,
+                        <a href="../ans_elem/Hlp_E_SOLID273.html" class="olink"><span class="structname">SOLID273</span></a>, <a href="../ans_elem/Hlp_E_SHELL281.html" class="olink"><span class="structname">SHELL281</span></a>,
+                        <a href="../ans_elem/Hlp_E_SOLID285.html" class="olink"><span class="structname">SOLID285</span></a>, <a href="../ans_elem/Hlp_E_PIPE288.html" class="olink"><span class="structname">PIPE288</span></a>,
+                        <a href="../ans_elem/Hlp_E_PIPE289.html" class="olink"><span class="structname">PIPE289</span></a>, and <a href="../ans_elem/Hlp_E_ELBOW290.html" class="olink"><span class="structname">ELBOW290</span></a>).
+                      You must define the creep law using the subroutine
+                        <span class="filename"><strong>USERCREEP.F</strong></span>. See the <a href="../ans_prog/Hlp_P_UPFTOC.html" class="olink">Guide to User-Programmable Features in the <span class="olinkdocname">Mechanical APDL Programmer's Reference</span></a> for more information. Use
+                        <a class="link" href="Hlp_C_TBTEMP.html" title="TBTEMP"><span class="command"><strong>TBTEMP</strong></span></a> and <a class="link" href="Hlp_C_TBDATA.html" title="TBDATA"><span class="command"><strong>TBDATA</strong></span></a> to define
+                      temperature-dependent constants. For implicit creep, use with
+                        <span class="command"><strong>TB</strong></span>,STATE for defining the number of state variables. </p></dd></dl></div></div><p>
+            </p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/rate.html#aQy8sq33aldm" class="olink">Creep</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_str/Hlp_G_STR8_3.html#strcreeptlm61199510" class="olink">Creep</a> in the
+              <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p><p>See also <a href="../ans_mat/elemamoco050301.html" class="olink">Material Model
+                Combinations</a>.</p></dd></dl></div></div></div><div class="refsect2" title="CTE -- Secant Coefficient of Thermal Expansion Specifications"><a name="TBctespec"></a><h3>CTE -- Secant Coefficient of Thermal Expansion Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+            <em class="replaceable"><code>NTEMP:</code></em>
+          </b></span></dt><dd><p>No limit.</p></dd><dt><span><b class="term">
+            <em class="replaceable"><code>NPTS:</code></em>
+          </b></span></dt><dd><p>Not used. </p></dd><dt><span><b class="term">
+            <em class="replaceable"><code>TBOPT:</code></em>
+          </b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">(blank) -- </b></span></dt><dd><p>Enter the secant coefficients of thermal expansion (CTEX,CTEY,CTEZ)
+                    (default). </p></dd><dt><span><b class="term">USER -- </b></span></dt><dd><p>User-defined thermal strain. For more information, see <a href="../ans_prog/Z7K4r1e5lcd.html#upfuserthstrain" class="olink">Subroutine userthstrain (Defining Your Own Thermal Strain) in the <span class="olinkdocname">Mechanical APDL Programmer's Reference</span></a>.</p></dd></dl></div></div></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+              <a href="../ans_mat/ansmattherexp.html" class="olink">Thermal Expansion</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>See also <a class="link" href="Hlp_C_TBFIELD.html" title="TBFIELD"><span class="command"><strong>TBFIELD</strong></span></a> (for defining frequency-dependent,
+              temperature-dependent, and <a href="../ans_mat/mat_fielduserdef.html" class="olink">user-defined
+                field-variable-based</a> properties). </p></dd></dl></div></div></div><div class="refsect2" title="CZM -- Cohesive Zone Specifications"><a name="TBczmspec"></a><h3>CZM -- Cohesive Zone Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of data points to be specified for a given temperature. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Cohesive zone material options. </p><div><div class="variablelist"><dl><dt><span><b class="term">EXPO -- </b></span></dt><dd><p>
+<a href="../ans_mat/cozonemats.html#cozoneinter" class="olink">Exponential material
+                        behavior</a>. Valid for interface elements and contact elements.</p></dd><dt><span><b class="term">BILI -- </b></span></dt><dd><p>
+<a href="../ans_mat/cozonemats.html#cozonebilinear" class="olink">Bilinear material
+                        behavior</a>. Valid for interface elements, contact elements, and in an
+                        <a href="../ans_frac/Hlp_G_FRACXFEM.html" class="olink">XFEM-based
+                        crack-growth</a> analysis when cohesive behavior on the initial crack is
+                      desired.</p></dd><dt><span><b class="term">CBDD -- </b></span></dt><dd><p>Bilinear material behavior with linear softening characterized by maximum
+                      traction and maximum separation. Valid for contact elements only.</p></dd><dt><span><b class="term">CBDE -- </b></span></dt><dd><p>Bilinear material behavior with linear softening characterized by maximum
+                      traction and critical energy release rate. Valid for contact elements
+                      only.</p></dd><dt><span><b class="term">VREG -- </b></span></dt><dd><p>
+<a href="../ans_mat/cozonemats.html#cozoneviscousreg" class="olink">Viscous
+                        regularization</a>. Valid for interface elements and contact elements.
+                      Also valid in an XFEM-based crack-growth analysis when cohesive behavior is
+                      specified for the initial crack.</p></dd><dt><span><b class="term">USER -- </b></span></dt><dd><p>User-defined option. Valid for interface elements only.</p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_thry/thy_mat11.html" class="olink">Cohesive Zone Material (CZM) Model</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>.</p><p>
+<a href="../ans_mat/cozonemats.html" class="olink">Cohesive Material Law</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_prog/Z7K4r1e5lcd.html#upf_userczm" class="olink">Subroutine userCZM (Defining Your Own Cohesive Zone Material)</a> in the <a href="../ans_prog/ans_prog.html" class="olink"><em class="citetitle">Programmer's Reference</em></a>.</p><p>
+<a href="../ans_frac/frac_delam.html" class="olink">Crack Growth Simulation, Interface Delamination, and Fatigue Crack Growth</a> in the <a href="../ans_frac/ans_frac.html" class="olink"><em class="citetitle">Fracture Analysis Guide</em></a>.</p><p>
+<a href="../ans_frac/Hlp_G_FRACXFEM.html" class="olink">XFEM-Based Crack Analysis and Crack-Growth Simulation</a> in the <a href="../ans_frac/ans_frac.html" class="olink"><em class="citetitle">Fracture Analysis Guide</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="DENS -- Mass Density Specifications"><a name="TBdensspec"></a><h3>DENS -- Mass Density Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>1</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>See  the <a class="link" href="Hlp_C_TBFIELD.html" title="TBFIELD"><span class="command"><strong>TBFIELD</strong></span></a> command and <a href="../ans_mat/mat_fielduserdef.html" class="olink">User-Defined Field Variables in the <span class="olinkdocname">Mechanical APDL Material Reference</span></a> and for more information
+              about defining temperature-dependent and/or user-defined field-variable-based
+              properties.</p></dd></dl></div></div></div><div class="refsect2" title="DISCRETE -- Explicit Spring-Damper (Discrete) Specifications"><a name="TBDTSpDISCjwf070600"></a><h3>DISCRETE -- Explicit Spring-Damper (Discrete) Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Explicit spring-damper (discrete) material options.</p><div><div class="variablelist"><dl><dt><span><b class="term">0 -- </b></span></dt><dd><p>Linear elastic spring (translational or rotational elastic spring)
+                      (default).</p></dd><dt><span><b class="term">1 -- </b></span></dt><dd><p>Linear viscous damper (linear translational or rotational damper)</p></dd><dt><span><b class="term">2 -- </b></span></dt><dd><p>Elastoplastic spring (elastoplastic translational or rotational spring
+                      with isotropic hardening)</p></dd><dt><span><b class="term">3 -- </b></span></dt><dd><p>Nonlinear elastic spring (nonlinear elastic translational or rotational
+                      spring with arbitrary force/displacement response moment/rotation
+                      dependency)</p></dd><dt><span><b class="term">4 -- </b></span></dt><dd><p>Nonlinear viscous damper (nonlinear damping with arbitrary force/velocity
+                      response moment/rotational velocity dependency)</p></dd><dt><span><b class="term">5 -- </b></span></dt><dd><p>General nonlinear spring (general nonlinear translational or rotational
+                      spring with arbitrary loading and unloading definitions)</p></dd><dt><span><b class="term">6 -- </b></span></dt><dd><p>Maxwell viscoelastic spring (Maxwell viscoelastic translational or
+                      rotational spring)</p></dd><dt><span><b class="term">7 -- </b></span></dt><dd><p>Inelastic tension or compression-only spring (inelastic tension or
+                      compression only, translational or rotational spring)</p></dd></dl></div></div><p>
+            </p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_lsd/Hlp_L_matl3.html#lsddiscretemodtlm51700" class="olink">Spring-Damper
+                (Discrete) Models</a> in the <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink"><em class="citetitle">ANSYS LS-DYNA User's Guide</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="DMGE -- Damage Evolution Law Specifications"><a name="TBdmge"></a><h3>DMGE -- Damage Evolution Law Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of data points to be specified for a given temperature. Default = 4 when
+                <em class="replaceable"><code>TBOPT</code></em> = MPDG</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Damage initiation definition:</p><div><div class="variablelist"><dl><dt><span><b class="term">1 <span class="italic"><em>or</em></span> MPDG --</b></span></dt><dd><p>Progressive damage evolution based on simple instant material stiffness
+                      reduction.</p></dd><dt><span><b class="term">2 <span class="italic"><em>or</em></span> CDM --</b></span></dt><dd><p>Progressive damage evolution based on continuum damage mechanics.</p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">Reference: </b></span></dt><dd><p>
+<a href="../ans_mat/mat_damageall.html#mat_dmge" class="olink">Damage Evolution Law</a> in
+              the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="DMGI -- Damage Initiation Criteria Specifications"><a name="TBdmgi"></a><h3>DMGI -- Damage Initiation Criteria Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of data points to be specified for a given temperature. Default = 4 when
+                <em class="replaceable"><code>TBOPT</code></em> = FCRT.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Damage initiation definition:</p><div><div class="variablelist"><dl><dt><span><b class="term">1 or FCRT --</b></span></dt><dd><p>Define failure criteria as the damage initiation criteria.</p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">Reference: </b></span></dt><dd><p>
+<a href="../ans_mat/mat_damageall.html#mat_dmgi" class="olink">Damage Initiation Criteria</a>
+              in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="DP -- Classic Drucker-Prager Plasticity Specifications"><a name="TBDTSpDPjwf070600"></a><h3>DP -- Classic Drucker-Prager Plasticity Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/amp8sq21dldm.html#dp" class="olink">Classic Drucker-Prager</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="DPER -- Anisotropic Electric Permittivity Specifications"><a name="tbdperspec"></a><h3>DPER -- Anisotropic Electric Permittivity Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP:</code></em>
+</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS:</code></em>
+</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT:</code></em>
+</b></span></dt><dd><p>Permittivity matrix options for <a href="../ans_elem/Hlp_E_PLANE223.html" class="olink"><span class="structname">PLANE223</span></a>,
+                <a href="../ans_elem/Hlp_E_SOLID226.html" class="olink"><span class="structname">SOLID226</span></a>, and <a href="../ans_elem/Hlp_E_SOLID227.html" class="olink"><span class="structname">SOLID227</span></a>:</p><div><div class="variablelist"><dl><dt><span><b class="term">0 -- </b></span></dt><dd><p>Permittivity matrix at constant strain
+                        [&#949;<sup>S</sup>] (used as supplied)</p></dd><dt><span><b class="term">1 -- </b></span></dt><dd><p>Permittivity matrix at constant stress
+                        [&#949;<sup>T</sup>] (converted to
+                        [&#949;<sup>S</sup>] form before use)</p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/mat_electricmagnet.html#DPER" class="olink">Anisotropic Electric Permittivity</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="EDP -- Extended Drucker-Prager Plasticity Specifications"><a name="TBedpspec"></a><h3>EDP -- Extended Drucker-Prager Plasticity Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. Maximum =
+              40.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of data points to be specified for a given temperature. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>EDP material options. </p><div><div class="variablelist"><dl><dt><span><b class="term">LYFUN -- </b></span></dt><dd><p>Linear yield function. </p></dd><dt><span><b class="term">PYFUN -- </b></span></dt><dd><p>Power law yield function. </p></dd><dt><span><b class="term">HYFUN -- </b></span></dt><dd><p>Hyperbolic yield function.</p></dd><dt><span><b class="term">LFPOT -- </b></span></dt><dd><p>Linear flow potential function. </p></dd><dt><span><b class="term">PFPOT -- </b></span></dt><dd><p>Power law flow potential function. </p></dd><dt><span><b class="term">HFPOT -- </b></span></dt><dd><p>Hyperbolic flow potential function. </p></dd><dt><span><b class="term">CYFUN -- </b></span></dt><dd><p>Cap yield function. </p></dd><dt><span><b class="term">CFPOT -- </b></span></dt><dd><p>Cap flow potential function. </p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>See <a href="../ans_mat/amp8sq21dldm.html#elemedp" class="olink">Extended Drucker-Prager (EDP)</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="ELASTIC -- Elasticity Specifications"><a name="tbelasticpec"></a><h3>ELASTIC -- Elasticity Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP:</code></em>
+</b></span></dt><dd><p>Number of temperatures for which data will be provided. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS:</code></em>
+</b></span></dt><dd><p>Number of properties to be defined for the material option. This value is set
+              automatically according to the elasticity option (<em class="replaceable"><code>TBOPT</code></em>)
+              selected. If <em class="replaceable"><code>TBOPT</code></em> is not specified, default settings
+              become <em class="replaceable"><code>NPTS</code></em> = 2 and <em class="replaceable"><code>TBOPT</code></em> =
+              ISOT.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT:</code></em>
+</b></span></dt><dd><p>Elasticity options:</p><div><div class="variablelist"><dl><dt><span><b class="term">ISOT -- </b></span></dt><dd><p>Isotropic property (EX, NUXY) (default). Setting
+                        <em class="replaceable"><code>NPTS</code></em> = 2 also selects this option automatically. </p></dd><dt><span><b class="term">OELN -- </b></span></dt><dd><p>Orthotropic option with minor Poisson's ratio (EX, EY, EZ, GXY, GYZ, GXZ,
+                      NUXY, NUYZ, NUXZ). <em class="replaceable"><code>NPTS</code></em> = 9. Setting
+                        <em class="replaceable"><code>NPTS</code></em> = 9 selects this option automatically. All
+                      nine parameters must be set, even for the 2-D case. </p></dd><dt><span><b class="term">OELM -- </b></span></dt><dd><p>Orthotropic option with major Poisson's ratio (EX, EY, EZ, GXY, GYZ, GXZ,
+                      PRXY, PRYZ, PRXZ). <em class="replaceable"><code>NPTS</code></em> = 9. All nine parameters
+                      must be set, even for the 2-D case. </p></dd><dt><span><b class="term">AELS -- </b></span></dt><dd><p>Anisotropic option in stiffness form (D11, D21, D31, D41, D51, D61, D22,
+                      D32, D42, D52, D62, D33, D43, ..... D66). <em class="replaceable"><code>NPTS</code></em> =
+                      21. Setting <em class="replaceable"><code>NPTS</code></em> = 21 selects this option
+                      automatically. </p></dd><dt><span><b class="term">AELF -- </b></span></dt><dd><p>Anisotropic option in compliance form (C11, C21, C31, C41, C51, C61, C22,
+                      C32, C42, C52, C62, C33, C43, ..... C66). <em class="replaceable"><code>NPTS</code></em> =
+                      21. </p></dd><dt><span><b class="term">USER -- </b></span></dt><dd><p>User-defined linear elastic properties. For more information on the
+                        <code class="function">user_tbelastic</code> subroutine, see the <a href="../ans_prog/Hlp_P_UPFTOC.html" class="olink">Guide to User-Programmable Features in the <span class="olinkdocname">Mechanical APDL Programmer's Reference</span></a>. </p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>See the <a class="link" href="Hlp_C_TBFIELD.html" title="TBFIELD"><span class="command"><strong>TBFIELD</strong></span></a> command for more information about defining
+              temperature- and/or frequency-dependent properties. </p><p>
+<a href="../ans_str/Hlp_G_STR4_5.html" class="olink">Full Harmonic Analysis</a>
+              in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="EOS -- Equation of State Specifications"><a name="TBDTSpEOSjwf070600"></a><h3>EOS -- Equation of State Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Equation of state (<a href="../ans_lsd/Hlp_L_elem.html" class="olink">explicit dynamic elements</a> only). No default--a specified value is required.</p><div><div class="variablelist"><dl><dt><span><b class="term">1 -- </b></span></dt><dd><p>Johnson-Cook material model - for strain, strain rate, and temperature
+                      dependent impact/forming analyses.</p></dd><dt><span><b class="term">2 -- </b></span></dt><dd><p>Null material model - for allowing equation of state to be considered
+                      without computing deviatoric stresses.</p></dd><dt><span><b class="term">3 -- </b></span></dt><dd><p>Zerilli-Armstrong material model - for metal forming processes in which
+                      the stress depends on strain, strain rate, and temperature.</p></dd><dt><span><b class="term">4 -- </b></span></dt><dd><p>Bamman material model - for metal forming processes with strain rate and
+                      temperature dependent plasticity. Does not require an additional equation of
+                      state (<em class="replaceable"><code>EOSOPT</code></em> is not used).</p></dd><dt><span><b class="term">5 -- </b></span></dt><dd><p>Steinberg material model - for modeling high strain rate effects in solid
+                      elements with failure.</p></dd></dl></div></div><p>
+            </p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_lsd/Hlp_L_matl3.html#lsdeqstatemodjla4400" class="olink">Equation of State
+                Models</a> in the <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink"><em class="citetitle">ANSYS LS-DYNA User's Guide</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="EVISC -- Viscoelastic Element Data Specifications"><a name="TBDTSpEVISjwf070600"></a><h3>EVISC -- Viscoelastic Element Data Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_lsd/Hlp_L_matl3.html#lsdnonlinearelasticjla4400" class="olink">Nonlinear
+                Elastic Models</a> in the <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink"><em class="citetitle">ANSYS LS-DYNA User's Guide</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="EXPE -- Experimental Data Specifications"><a name="TBexperimental"></a><h3>EXPE -- Experimental Data Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of data points to be specified for a given temperature. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Experimental data type:</p><div><div class="variablelist"><dl><dt><span><b class="term">UNITENSION --</b></span></dt><dd><p>Uniaxial tension experimental data.</p></dd><dt><span><b class="term">UNICOMPRESSION --</b></span></dt><dd><p>Uniaxial compression experimental data. </p></dd><dt><span><b class="term">UNIAXIAL --</b></span></dt><dd><p>Uniaxial experimental data (combined uniaxial tension and
+                      compression).</p></dd><dt><span><b class="term">BIAXIAL --</b></span></dt><dd><p>Equibiaxial experimental data.</p></dd><dt><span><b class="term">SHEAR --</b></span></dt><dd><p>Pure shear experimental data (also known as planar tension).</p></dd><dt><span><b class="term">SSHEAR --</b></span></dt><dd><p>Simple shear experimental data. </p></dd><dt><span><b class="term">VOLUME --</b></span></dt><dd><p>Volumetric experimental data. </p></dd><dt><span><b class="term">GMODULUS --</b></span></dt><dd><p>Shear modulus experimental data.</p></dd><dt><span><b class="term">KMODULUS --</b></span></dt><dd><p>Bulk modulus experimental data. </p></dd><dt><span><b class="term">EMODULUS --</b></span></dt><dd><p>Tensile modulus experimental data. </p></dd><dt><span><b class="term">NUXY --</b></span></dt><dd><p>Poisson's ratio experimental data. </p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/elem_experimental_mat.html" class="olink">Experimental
+                Data</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_thry/thy_mat5.html#thy_experrespfunc" class="olink">Experimental Response
+                Functions</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a></p><p>
+<a href="../ans_mat/evis.html" class="olink">Viscoelastic Material Model</a>
+              <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>See also the <a class="link" href="Hlp_C_TBFIELD.html" title="TBFIELD"><span class="command"><strong>TBFIELD</strong></span></a> command documentation for information
+              about defining field-dependent experimental data.</p></dd></dl></div></div></div><div class="refsect2" title="FCON -- Fluid Conductance Data Specifications"><a name="TBDTSpFCONjwf070600"></a><h3>FCON -- Fluid Conductance Data Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. Maximum =
+              20.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of data points to be specified for a given temperature. Default = 1.
+              Maximum = 100.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_elem/Hlp_E_FLUID116.html" class="olink"><span class="structname">FLUID116</span></a> in the <a href="../ans_elem/Hlp_E_ElemTOC.html" class="olink"><em class="citetitle">Element Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="FCLI -- Material Strength Limits Specifications"><a name="TBfclispecs"></a><h3>FCLI -- Material Strength Limits Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of data points to be specified for a given temperature. Default = 20 when
+                <em class="replaceable"><code>TBOPT</code></em> = 1. Default = 9 when
+                <em class="replaceable"><code>TBOPT</code></em> = 2.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Material strength limit definition:</p><div><div class="variablelist"><dl><dt><span><b class="term">1 --</b></span></dt><dd><p>Define stress-strength limits.</p></dd><dt><span><b class="term">2 --</b></span></dt><dd><p>Define strain-strength limits.</p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/elemmatstrenlimits.html" class="olink">Material Strength
+                Limits</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="FLUID -- Fluid Specifications"><a name="tbfluidspec"></a><h3>FLUID -- Fluid Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP:</code></em>
+</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS:</code></em>
+</b></span></dt><dd><p>Number of data points to be specified for a given temperature.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT:</code></em>
+</b></span></dt><dd><p>Fluid material options:</p><div><div class="variablelist"><dl><dt><span><b class="term">LIQUID -- </b></span></dt><dd><p>Define material constants for a liquid material. </p></dd><dt><span><b class="term">GAS -- </b></span></dt><dd><p>Define material constants for a gas material.</p></dd><dt><span><b class="term">PVDATA --</b></span></dt><dd><p>Define pressure-volume data for a fluid material. </p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/fluidmat.html" class="olink">Fluids</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_thry/thyfluidmatmod.html" class="olink">Fluid Material Models</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="FOAM -- Foam Specifications"><a name="TBDTSpFOAMjwf070600"></a><h3>FOAM -- Foam Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Foam material options for explicit dynamics elements. No default--a specified
+              value is required.</p><div><div class="variablelist"><dl><dt><span><b class="term">1 -- </b></span></dt><dd><p>Rigid, closed cell, low density polyurethane foam material model.</p></dd><dt><span><b class="term">2 -- </b></span></dt><dd><p>Highly compressible urethane foam material model.</p></dd><dt><span><b class="term">3 -- </b></span></dt><dd><p>Energy absorbing foam material model.</p></dd><dt><span><b class="term">4 -- </b></span></dt><dd><p>Crushable foam material model.</p></dd></dl></div></div><p>
+            </p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_lsd/Hlp_L_matl3.html#lsdfoamjla4400" class="olink">Foam Models</a> in the
+              <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink"><em class="citetitle">ANSYS LS-DYNA User's Guide</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="FRIC -- Coefficient of Friction Specifications"><a name="tbfricspec"></a><h3>FRIC -- Coefficient of Friction Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP:</code></em>
+</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. No maximum
+              limit.</p><p>
+<em class="replaceable"><code>NTEMP</code></em> is not used for the following situations:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Isotropic or orthotropic friction defined in terms of field data
+                      (<a class="link" href="Hlp_C_TBFIELD.html" title="TBFIELD"><span class="command"><strong>TBFIELD</strong></span></a> command)</p></li><li class="listitem"><p>User-defined friction (<em class="replaceable"><code>TBOPT</code></em> = USER)</p></li></ul></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS:</code></em>
+</b></span></dt><dd><p>Number of data points to be specified for user-defined friction
+                (<em class="replaceable"><code>TBOPT</code></em> = USER). Not used for
+                <em class="replaceable"><code>TBOPT</code></em> = ISO or <em class="replaceable"><code>TBOPT</code></em> =
+              ORTHO.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT:</code></em>
+</b></span></dt><dd><p>Friction options:</p><div><div class="variablelist"><dl><dt><span><b class="term">ISO -- </b></span></dt><dd><p>Isotropic friction (one coefficient of friction, MU) (default). This
+                      option is valid for all 2-D and 3-D contact elements.</p></dd><dt><span><b class="term">ORTHO -- </b></span></dt><dd><p>Orthotropic friction (two coefficients of friction, MU1 and MU2). This
+                      option is valid for the following 3-D contact elements:
+                        <a href="../ans_elem/Hlp_E_CONTA173.html" class="olink"><span class="structname">CONTA173</span></a>, <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a>,
+                        <a href="../ans_elem/Hlp_E_CONTA175.html" class="olink"><span class="structname">CONTA175</span></a>, <a href="../ans_elem/Hlp_E_CONTA176.html" class="olink"><span class="structname">CONTA176</span></a>, and
+                        <a href="../ans_elem/Hlp_E_CONTA177.html" class="olink"><span class="structname">CONTA177</span></a>. </p></dd><dt><span><b class="term">EORTHO --</b></span></dt><dd><p>Equivalent orthotropic friction (two coefficients of friction, MU1 and
+                      MU2). This option differs from <em class="replaceable"><code>TBOPT</code></em>=ORTHO only in
+                      the way the friction coefficients are interpolated when they are dependent
+                      upon the following field variables: sliding distance and/or sliding velocity.
+                      In this case, the total magnitude of the field variable is used to do the
+                      interpolation.</p></dd><dt><span><b class="term">USER --</b></span></dt><dd><p>User defined friction. This option is valid for all 2-D and 3-D contact
+                      elements.</p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/contfriction.html" class="olink">Contact Friction</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>See also the <a class="link" href="Hlp_C_TBFIELD.html" title="TBFIELD"><span class="command"><strong>TBFIELD</strong></span></a> command for more information about
+              defining a coefficient of friction that is dependent on temperature, time, normal
+              pressure, sliding distance, or sliding relative velocity. </p></dd></dl></div></div></div><div class="refsect2" title="GASKET -- Gasket Specifications"><a name="TBDTSgas111501"></a><h3>GASKET -- Gasket Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. The maximum
+              number of temperatures specified is such that <em class="replaceable"><code>NTEMP</code></em> *
+                <em class="replaceable"><code>NPTS</code></em> &lt; 2000.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of data points to be specified for a given temperature. Default = 5 for
+                <em class="replaceable"><code>TBOPT</code></em> = PARA. Default = 1 for all other values of
+                <em class="replaceable"><code>TBOPT</code></em>.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Gasket material options. </p><div><div class="variablelist"><dl><dt><span><b class="term">PARA -- </b></span></dt><dd><p>Gasket material general parameters.</p></dd></dl></div></div><p>
+              </p><div><div class="variablelist"><dl><dt><span><b class="term">COMP -- </b></span></dt><dd><p>Gasket material compression data.</p></dd></dl></div></div><p>
+              </p><div><div class="variablelist"><dl><dt><span><b class="term">LUNL -- </b></span></dt><dd><p>Gasket linear unloading data.</p></dd></dl></div></div><p>
+              </p><div><div class="variablelist"><dl><dt><span><b class="term">NUNL -- </b></span></dt><dd><p>Gasket nonlinear unloading data.</p></dd><dt><span><b class="term">TSS -- </b></span></dt><dd><p>Transverse shear data.</p></dd><dt><span><b class="term">TSMS -- </b></span></dt><dd><p>Transverse shear and membrane stiffness data. (If selected, this option
+                      takes precedence over TSS.)</p></dd></dl></div></div><p>
+            </p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/gask.html" class="olink">Gasket Materials</a> in the
+              <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_str/Hlp_G_STRgas.html" class="olink">Gasket Joints Simulation</a>
+              in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="GCAP -- Geological Cap Specifications"><a name="TBGCAP52901"></a><h3>GCAP -- Geological Cap Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_lsd/Hlp_L_matl3.html#lsdprdepl51800" class="olink">Pressure Dependent
+                Plasticity Models</a> in the <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink"><em class="citetitle">ANSYS LS-DYNA User's Guide</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="GURSON -- Gurson Plasticity Specifications"><a name="TBgurspec"></a><h3>GURSON -- Gurson Plasticity Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. Maximum =
+              40.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of data points to be specified for a given temperature. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>GURSON material options.</p><div><div class="variablelist"><dl><dt><span><b class="term">BASE -- </b></span></dt><dd><p>Basic model without nucleation or coalescence (default).</p></dd><dt><span><b class="term">SNNU -- </b></span></dt><dd><p>Strain controlled nucleation. </p></dd><dt><span><b class="term">SSNU -- </b></span></dt><dd><p>Stress controlled nucleation.</p></dd><dt><span><b class="term">COAL -- </b></span></dt><dd><p>Coalescence.</p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/amp8sq21dldm.html#elmgurson" class="olink">Gurson in the <span class="olinkdocname">Mechanical APDL Material Reference</span></a>
+</p><p>
+<a href="../ans_thry/thy_mat1.html#gurson" class="olink">Gurson's Model in the <span class="olinkdocname">Mechanical APDL Theory Reference</span></a>
+</p></dd></dl></div></div></div><div class="refsect2" title="HFLM -- Film Coefficient Data Specifications"><a name="TBDTSpHFLMjwf070600"></a><h3>HFLM -- Film Coefficient Data Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. Maximum =
+              20.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of data points to be specified for a given temperature. Default = 1.
+              Maximum = 100.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_elem/Hlp_E_FLUID116.html" class="olink"><span class="structname">FLUID116</span></a> in the <a href="../ans_elem/Hlp_E_ElemTOC.html" class="olink"><em class="citetitle">Element Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="HILL -- Hill Plasticity Specifications"><a name="TBDTSpHILLjwf070600"></a><h3>HILL -- Hill Plasticity Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. Maximum =
+              40.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT:</code></em>
+</b></span></dt><dd><p>Hill plasticity option:</p><div><div class="variablelist"><dl><dt><span><b class="term">(blank) --</b></span></dt><dd><p>Use one set of Hill parameters (default).</p></dd><dt><span><b class="term">PC --</b></span></dt><dd><p>Enter separate Hill parameters for plasticity and creep. This option is
+                      valid for material combinations of creep and Chaboche nonlinear kinematic
+                      hardening only.</p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/amp8sq21dldm.html#matRIPisohillyield" class="olink">Hill Yield Criterion</a> in the
+              <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>Also see <a href="../ans_mat/elemamoco050301.html" class="olink">Material Model
+                Combinations</a>.</p></dd></dl></div></div></div><div class="refsect2" title="HONEY -- Honeycomb Specifications"><a name="TBDTSpHONEjwf070600"></a><h3>HONEY -- Honeycomb Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_lsd/Hlp_L_matl3.html#lsdfoamjla4400" class="olink">Foam Models</a> in the
+              <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink"><em class="citetitle">ANSYS LS-DYNA User's Guide</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="HYPER -- Hyperelasticity Specifications"><a name="TBDTSpHYPEjwf070600"></a><h3>HYPER -- Hyperelasticity Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. The maximum
+              value of <em class="replaceable"><code>NTEMP</code></em> is such that
+                <em class="replaceable"><code>NTEMP</code></em> x <em class="replaceable"><code>NPTS</code></em> = 1000.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of data points to be specified for a given temperature, except for
+                <em class="replaceable"><code>TBOPT</code></em> = MOONEY, where <em class="replaceable"><code>NPTS</code></em> is
+              the number of parameters in the Mooney-Rivlin model (2 [default], 3, 5, or 9), and
+                <em class="replaceable"><code>TBOPT</code></em> = RESPONSE, where <em class="replaceable"><code>NPTS</code></em>
+              is the number of terms in the volumetric strain energy polynomial.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Hyperelastic material options.</p><div><div class="variablelist"><dl><dt><span><b class="term">BOYCE-- </b></span></dt><dd><p>Arruda-Boyce model. For <em class="replaceable"><code>NPTS</code></em>, default = 3 and
+                      maximum = 3.</p><p>
+<span class="bold"><strong>References:</strong></span>
+</p><p>
+<a href="../ans_mat/aQw8sq22dldm.html#boyc" class="olink">Arruda-Boyce Hyperelasticity</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_str/Hlp_G_STR8_3.html#str8arrboyjwf0406000300" class="olink">Arruda-Boyce Hyperelastic Option</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p></dd><dt><span><b class="term">BLATZ -- </b></span></dt><dd><p>Blatz-Ko model. For <em class="replaceable"><code>NPTS</code></em>, default = 1 and
+                      maximum = 1.</p><p>
+<span class="bold"><strong>References:</strong></span>
+</p><p>
+<a href="../ans_mat/aQw8sq22dldm.html#blat" class="olink">Blatz-Ko Foam Hyperelasticity</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_str/Hlp_G_STR8_3.html#strblat61302" class="olink">Blatz-Ko Hyperelastic
+                        Option</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p></dd><dt><span><b class="term">ETUBE -- </b></span></dt><dd><p>Extended tube model. Five material constants
+                        (<em class="replaceable"><code>NPTS</code></em> = 5) are required.</p><p>
+<span class="bold"><strong>References:</strong></span>
+</p><p>
+<a href="../ans_mat/aQw8sq22dldm.html#exttube" class="olink">Extended Tube Hyperelasticity</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+                      <a href="../ans_thry/thy_mat5.html#matnonexttube" class="olink"><span class="italic"><em>Extended Tube Model</em></span></a> in the
+                      <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>.</p></dd><dt><span><b class="term">FOAM -- </b></span></dt><dd><p>Hyperfoam (Ogden) model. For <em class="replaceable"><code>NPTS</code></em>, default = 1
+                      and maximum is such that <em class="replaceable"><code>NTEMP</code></em> x
+                        <em class="replaceable"><code>NPTS</code></em> x 3 = 1000.</p><p>
+<span class="bold"><strong>References:</strong></span>
+</p><p>
+<a href="../ans_mat/aQw8sq22dldm.html#ogfo" class="olink">Ogden Compressible Foam Hyperelasticity</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_str/Hlp_G_STR8_3.html#strfoam61302" class="olink">Ogden Compressible
+                        Foam Hyperelastic Option</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p></dd><dt><span><b class="term">GENT -- </b></span></dt><dd><p>Gent model. For <em class="replaceable"><code>NPTS</code></em>, default = 3 and maximum =
+                      3.</p><p>
+<span class="bold"><strong>References:</strong></span>
+</p><p>
+<a href="../ans_mat/aQw8sq22dldm.html#gent" class="olink">Gent Hyperelasticity</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_str/Hlp_G_STR8_3.html#strgent61302" class="olink">Gent Hyperelastic
+                        Option</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p></dd><dt><span><b class="term">MOONEY -- </b></span></dt><dd><p>Mooney-Rivlin model (default). You can choose a two-parameter
+                      Mooney-Rivlin model with <em class="replaceable"><code>NPTS</code></em> = 2 (default), or a
+                      three-, five-, or nine-parameter model by setting
+                        <em class="replaceable"><code>NPTS</code></em> equal to one of these values.</p><p>
+<span class="bold"><strong>References:</strong></span>
+</p><p>
+<a href="../ans_mat/aQw8sq22dldm.html#moon" class="olink">Mooney-Rivlin Hyperelasticity</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_str/Hlp_G_STR8_3.html#str8moonhypjwf072600" class="olink">Mooney-Rivlin
+                        Hyperelastic Option</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p></dd><dt><span><b class="term">NEO -- </b></span></dt><dd><p>Neo-Hookean model. For <em class="replaceable"><code>NPTS</code></em>, default = 2 and
+                      maximum = 2.</p><p>
+<span class="bold"><strong>References:</strong></span>
+</p><p>
+<a href="../ans_mat/aQw8sq22dldm.html#neo" class="olink">Neo-Hookean Hyperelasticity</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_str/Hlp_G_STR8_3.html#str8neohoojwf0406000258" class="olink">Neo-Hookean
+                        Hyperelastic Option</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p></dd><dt><span><b class="term">OGDEN -- </b></span></dt><dd><p>Ogden model. For <em class="replaceable"><code>NPTS</code></em>, default = 1 and maximum
+                      is such that <em class="replaceable"><code>NTEMP</code></em> x
+                        <em class="replaceable"><code>NPTS</code></em> x 3 = 1000.</p><p>
+<span class="bold"><strong>References:</strong></span>
+</p><p>
+<a href="../ans_mat/aQw8sq22dldm.html#ogde" class="olink">Ogden Hyperelasticity</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_str/Hlp_G_STR8_3.html#str8ogdenjwf071400" class="olink">Ogden
+                        Hyperelastic Option</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p></dd><dt><span><b class="term">POLY -- </b></span></dt><dd><p>Polynomial form model. For <em class="replaceable"><code>NPTS</code></em>, default = 1
+                      and maximum is such that <em class="replaceable"><code>NTEMP</code></em> x
+                        <em class="replaceable"><code>NPTS</code></em> = 1000.</p><p>
+<span class="bold"><strong>References:</strong></span>
+</p><p>
+<a href="../ans_mat/aQw8sq22dldm.html#poly" class="olink">Polynomial Form Hyperelasticity</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_str/Hlp_G_STR8_3.html#str8polforjwf0406000259" class="olink">Polynomial
+                        Form Hyperelastic Option</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p></dd><dt><span><b class="term">RESPONSE -- </b></span></dt><dd><p>Experimental response function model. For <em class="replaceable"><code>NPTS</code></em>,
+                      default = 0 and maximum is such that <em class="replaceable"><code>NTEMP</code></em> x
+                        <em class="replaceable"><code>NPTS</code></em> + 2 = 1000.</p><p>
+<span class="bold"><strong>References:</strong></span>
+</p><p>
+<a href="../ans_mat/aQw8sq22dldm.html#respfunc_mat" class="olink">Response Function Hyperelasticity</a> in the
+                      <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_str/Hlp_G_STR8_3.html#strrespfunchyper" class="olink">Response Function Hyperelastic Option (TB,HYPER,,,,RESPONSE)</a> in the
+                      <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p><p>
+<a href="../ans_thry/thy_mat5.html#thy_experrespfunc" class="olink">Experimental Response Functions </a>in the
+                      <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a></p></dd><dt><span><b class="term">YEOH -- </b></span></dt><dd><p>Yeoh model. For <em class="replaceable"><code>NPTS</code></em>, default = 1 and maximum
+                      is such that <em class="replaceable"><code>NTEMP</code></em> x
+                        <em class="replaceable"><code>NPTS</code></em> x 2 = 1000.</p><p>
+<span class="bold"><strong>References:</strong></span>
+</p><p>
+<a href="../ans_mat/aQw8sq22dldm.html#yeoh" class="olink">Yeoh Hyperelasticity</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_str/Hlp_G_STR8_3.html#stryeoh61302" class="olink">Yeoh Hyperelastic
+                        Option</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p></dd><dt><span><b class="term">USER -- </b></span></dt><dd><p>User-defined hyperelastic model. See the <span class="italic"><em>ANSYS
+                        Guide to User Programmable Features</em></span> for details.</p><p>
+<span class="bold"><strong>References:</strong></span>
+</p><p>
+<a href="../ans_mat/aQw8sq22dldm.html#useh" class="olink">User-Defined Hyperelastic Material</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_str/Hlp_G_STR8_3.html#str8uesdefjwf0406000302" class="olink">User-Defined Hyperelastic Option</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p></dd></dl></div></div><p>
+</p></dd></dl></div></div></div><div class="refsect2" title="INTER -- Contact Interaction Specifications"><a name="tbinterspec"></a><h3>INTER -- Contact Interaction Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. No maximum
+              limit. <em class="replaceable"><code>NTEMP</code></em> is used only for user-defined contact
+              interaction (<em class="replaceable"><code>TBOPT</code></em> = USER).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of data points to be specified. <em class="replaceable"><code>NPTS</code></em> is used
+              only for user-defined contact interaction (<em class="replaceable"><code>TBOPT</code></em> =
+              USER).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Contact interaction options.</p><div><div class="variablelist" title="The following options are valid only for general contact interactions specified via the GCDEF command:"><p class="title"><b>The following options are valid only for general contact interactions
+                  specified via the <a class="link" href="Hlp_C_GCDEF.html" title="GCDEF"><span class="command"><strong>GCDEF</strong></span></a> command:</b></p><dl><dt><span><b class="term">STANDARD -- </b></span></dt><dd><p>Standard unilateral contact (default).</p></dd><dt><span><b class="term">ROUGH -- </b></span></dt><dd><p>Rough, no sliding.</p></dd><dt><span><b class="term">NOSEPE -- </b></span></dt><dd><p>No separation (sliding permitted).</p></dd><dt><span><b class="term">BONDED -- </b></span></dt><dd><p>Bonded contact (no separation, no sliding).</p></dd><dt><span><b class="term"> ANOSEP-- </b></span></dt><dd><p>No separation (always).</p></dd><dt><span><b class="term">ABOND -- </b></span></dt><dd><p>Bonded (always).</p></dd><dt><span><b class="term">IBOND -- </b></span></dt><dd><p>Bonded (initial contact).</p></dd></dl></div></div><p>
+</p><div><div class="variablelist" title="The following option is valid for all 2-D and 3-D contact elements:"><p class="title"><b>The following option is valid for all 2-D and 3-D contact elements:</b></p><dl><dt><span><b class="term">USER -- </b></span></dt><dd><p>User-defined contact interaction. </p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/continteraction.html" class="olink">Contact Interaction</a>
+              in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_ctec/ctecuserinterfacial.html#ctecuserinteract" class="olink">Defining Your Own Contact Interaction (<code class="function">USERINTER</code>)</a> in the
+              <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="JOIN -- Joint Element Specifications"><a name="tbjoinspec"></a><h3>JOIN -- Joint Element Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP:</code></em>
+</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS:</code></em>
+</b></span></dt><dd><p>Number of data points to be specified for a given temperature.
+                <em class="replaceable"><code>NPTS</code></em> is ignored if <em class="replaceable"><code>TBOPT</code></em> =
+              STIF or DAMP.</p><p>If Coulomb friction is specified, <em class="replaceable"><code>NPTS</code></em> is used only for
+                <em class="replaceable"><code>TBOPT</code></em> = MUS1, MUS4, and MUS6.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT:</code></em>
+</b></span></dt><dd><p>Joint element material options.</p><div><div class="variablelist" title="Linear stiffness behavior:"><p class="title"><b>Linear stiffness behavior:</b></p><dl><dt><span><b class="term">STIF -- </b></span></dt><dd><p>Linear stiffness.</p></dd></dl></div></div><p>
+</p><div><div class="variablelist" title="Nonlinear stiffness behavior:"><p class="title"><b>Nonlinear stiffness behavior:</b></p><dl><dt><span><b class="term">JNSA -- </b></span></dt><dd><p>Nonlinear stiffness behavior in all available components of relative
+                      motion for the joint element.</p></dd><dt><span><b class="term">JNS1 -- </b></span></dt><dd><p>Nonlinear stiffness behavior in local UX direction only.</p></dd><dt><span><b class="term">JNS2 -- </b></span></dt><dd><p>Nonlinear stiffness behavior in local UY direction only.</p></dd><dt><span><b class="term">JNS3 -- </b></span></dt><dd><p>Nonlinear stiffness behavior in local UZ direction only.</p></dd><dt><span><b class="term">JNS4 -- </b></span></dt><dd><p>Nonlinear stiffness behavior in local ROTX direction only.</p></dd><dt><span><b class="term">JNS5 -- </b></span></dt><dd><p>Nonlinear stiffness behavior in local ROTY direction only.</p></dd><dt><span><b class="term">JNS6 -- </b></span></dt><dd><p>Nonlinear stiffness behavior in local ROTZ direction only.</p></dd></dl></div></div><p>
+</p><div><div class="variablelist" title="Linear damping behavior:"><p class="title"><b>Linear damping behavior:</b></p><dl><dt><span><b class="term">DAMP -- </b></span></dt><dd><p>Linear damping.</p></dd></dl></div></div><p>
+</p><div><div class="variablelist" title="Nonlinear damping behavior:"><p class="title"><b>Nonlinear damping behavior:</b></p><dl><dt><span><b class="term">JNDA -- </b></span></dt><dd><p>Nonlinear damping behavior in all available components of relative motion
+                      for the joint element.</p></dd><dt><span><b class="term">JND1 -- </b></span></dt><dd><p>Nonlinear damping behavior in local UX direction only.</p></dd><dt><span><b class="term">JND2 -- </b></span></dt><dd><p>Nonlinear damping behavior in local UY direction only.</p></dd><dt><span><b class="term">JND3 -- </b></span></dt><dd><p>Nonlinear damping behavior in local UZ direction only.</p></dd><dt><span><b class="term">JND4 -- </b></span></dt><dd><p>Nonlinear damping behavior in local ROTX direction only.</p></dd><dt><span><b class="term">JND5 -- </b></span></dt><dd><p>Nonlinear damping behavior in local ROTY direction only.</p></dd><dt><span><b class="term">JND6 -- </b></span></dt><dd><p>Nonlinear damping behavior in local ROTZ direction only.</p></dd></dl></div></div><p>
+</p><div><div class="variablelist" title="Friction Behavior:"><p class="title"><b>Friction Behavior:</b></p><dl><dt><span><b class="term">Coulomb friction coefficient -</b></span></dt><dd><p>The values can be specified using either <a class="link" href="Hlp_C_TBDATA.html" title="TBDATA"><span class="command"><strong>TBDATA</strong></span></a>
+                        (<em class="replaceable"><code>NPTS</code></em> = 0) or <a class="link" href="Hlp_C_TBPT.html" title="TBPT"><span class="command"><strong>TBPT</strong></span></a>
+                        (<em class="replaceable"><code>NPTS</code></em> is nonzero).</p></dd><dt><span><b class="term">MUS1 -- </b></span></dt><dd><p>Coulomb friction coefficient (stiction) in local UX direction only.</p></dd><dt><span><b class="term">MUS4 -- </b></span></dt><dd><p>Coulomb friction coefficient (stiction) in local ROTX direction
+                      only.</p></dd><dt><span><b class="term">MUS6 -- </b></span></dt><dd><p>Coulomb friction coefficient (stiction) in local ROTZ direction
+                      only.</p></dd><dt><span><b class="term">Coulomb friction coefficient - Exponential Law -</b></span></dt><dd><p>Use <a class="link" href="Hlp_C_TBDATA.html" title="TBDATA"><span class="command"><strong>TBDATA</strong></span></a> to specify &#956;<sub>s</sub>,
+                        &#956;<sub>d</sub>, and c for the exponential law.</p></dd><dt><span><b class="term">EXP1 -- </b></span></dt><dd><p>Exponential law for friction in local UX direction only.</p></dd><dt><span><b class="term">EXP4 -- </b></span></dt><dd><p>Exponential law for friction in local ROTX direction only.</p></dd><dt><span><b class="term">EXP6 -- </b></span></dt><dd><p>Exponential law for friction in local ROTZ direction only.</p></dd></dl></div></div><p>
+</p><div><div class="variablelist" title="Elastic slip:"><p class="title"><b>Elastic slip:</b></p><dl><dt><span><b class="term">SL1 -- </b></span></dt><dd><p>Elastic slip in local UX direction only.</p></dd><dt><span><b class="term">SL4 -- </b></span></dt><dd><p>Elastic slip in local ROTX direction only.</p></dd><dt><span><b class="term">SL6 -- </b></span></dt><dd><p>Elastic slip in local ROTZ direction only.</p></dd><dt><span><b class="term">TMX1 -- </b></span></dt><dd><p>Critical force in local UX direction only.</p></dd><dt><span><b class="term">TMX4 -- </b></span></dt><dd><p>Critical moment in local ROTX direction only.</p></dd><dt><span><b class="term">TMX6 -- </b></span></dt><dd><p>Critical moment in local ROTZ direction only.</p></dd></dl></div></div><p>
+</p><div><div class="variablelist" title="Stick-stiffness:"><p class="title"><b>Stick-stiffness:</b></p><dl><dt><span><b class="term">SK1 -- </b></span></dt><dd><p>Stick-stiffness in local UX direction only.</p></dd><dt><span><b class="term">SK4 -- </b></span></dt><dd><p>Stick-stiffness in local ROTX direction only.</p></dd><dt><span><b class="term">SK6 -- </b></span></dt><dd><p>Stick-stiffness in local ROTZ direction only.</p></dd></dl></div></div><p>
+</p><div><div class="variablelist" title="Interference fit force/moment:"><p class="title"><b>Interference fit force/moment:</b></p><dl><dt><span><b class="term">FI1 -- </b></span></dt><dd><p>Interference fit force in local UX direction only.</p></dd><dt><span><b class="term">FI4 -- </b></span></dt><dd><p>Interference fit moment in local ROTX direction only.</p></dd><dt><span><b class="term">FI6 -- </b></span></dt><dd><p>Interference fit moment in local ROTZ direction only.</p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/jointmat.html" class="olink">MPC184 Joint</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="JROCK -- Jointed Rock Specifications"><a name="tbjointedrockspec"></a><h3>JROCK -- Jointed Rock Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">BASE -- </b></span></dt><dd><p>Base material parameters.</p></dd><dt><span><b class="term">RCUT -- </b></span></dt><dd><p>Base material tension cutoff.</p></dd><dt><span><b class="term">RSC -- </b></span></dt><dd><p>Residual strength coupling.</p></dd><dt><span><b class="term">FPLANE -- </b></span></dt><dd><p>Joint parameters.</p></dd><dt><span><b class="term">FTCUT -- </b></span></dt><dd><p>Joint tension cutoff.</p></dd><dt><span><b class="term">FORIE -- </b></span></dt><dd><p>Joint orientation.</p></dd></dl></div></div></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/mat_geomechanics.html#matgeomecgjointedrock" class="olink">Jointed
+                Rock</a>.</p></dd></dl></div></div></div><div class="refsect2" title="MC -- Mohr-Coulomb Specifications"><a name="tbmohrcoulombspec"></a><h3>MC -- Mohr-Coulomb Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">BASE -- </b></span></dt><dd><p>Mohr-Coulomb material parameters.</p></dd><dt><span><b class="term">RCUT -- </b></span></dt><dd><p>Tension cutoff.</p></dd><dt><span><b class="term">RSC -- </b></span></dt><dd><p>Residual strength coupling.</p></dd></dl></div></div></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/mat_geomechanics.html#matgeomechmohrcoul" class="olink">Mohr-Coulomb</a>.</p></dd></dl></div></div></div><div class="refsect2" title="MIGR -- Migration Model Specifications"><a name="tbmigrspec"></a><h3>MIGR -- Migration Model Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Migration model options.</p><div><div class="variablelist"><dl><dt><span><b class="term">1 -- </b></span></dt><dd><p>Atomic (or ion) flux (default).</p></dd><dt><span><b class="term">2 -- </b></span></dt><dd><p>Vacancy flux. </p></dd></dl></div></div><p>
+            </p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/migr.html" class="olink">Migration Model</a> in the
+              <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_cou/coupelecdiff.html" class="olink">Electric-Diffusion Analysis</a>, <a href="../ans_cou/couthermdiffanal.html" class="olink">Thermal-Diffusion Analysis</a>, and
+                <a href="../ans_cou/coustrdiffana.html" class="olink">Structural-Diffusion Analysis</a> in the <a href="../ans_cou/Hlp_G_CouTOC.html" class="olink"><em class="citetitle">Coupled-Field Analysis Guide</em></a>.</p><p>
+<a href="../ans_thry/thry_elec_diff_couple.html" class="olink">Electric-Diffusion Coupling</a>, <a href="../ans_thry/thry_therm_diff_couple.html" class="olink">Thermal-Diffusion Coupling</a>, and <a href="../ans_thry/thry_str_diff_cou.html" class="olink">Structural-Diffusion Coupling</a> in
+              the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="MOONEY -- Mooney-Rivlin Hyperelasticity Specifications"><a name="TBDTSpMOONjwf070600"></a><h3>MOONEY -- Mooney-Rivlin Hyperelasticity Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 6. Maximum =
+              6.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>(Not used for explicit dynamic elements.)</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Mooney-Rivlin material option, applicable to explicit dynamic elements
+                <a href="../ans_elem/Hlp_E_PLANE162.html" class="olink"><span class="structname">PLANE162</span></a>, <a href="../ans_elem/Hlp_E_SHELL163.html" class="olink"><span class="structname">SHELL163</span></a>,
+                <a href="../ans_elem/Hlp_E_SOLID164.html" class="olink"><span class="structname">SOLID164</span></a>, and <a href="../ans_elem/Hlp_E_SOLID168.html" class="olink"><span class="structname">SOLID168</span></a>. </p><div><div class="variablelist"><dl><dt><span><b class="term">0 -- </b></span></dt><dd><p>Direct input of hyperelastic material constants (default).</p></dd><dt><span><b class="term">1 -- </b></span></dt><dd><p>Reserved for future use. </p></dd><dt><span><b class="term">2 -- </b></span></dt><dd><p>Material constants to be calculated by the LS-DYNA program from
+                      experimental data. This option is only valid for explicit dynamic
+                      elements.</p></dd></dl></div></div><p>
+            </p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_lsd/Hlp_L_matl3.html#lsdnonlinearelasticjla4400" class="olink">Nonlinear
+                Elastic Models</a> in the <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink"><em class="citetitle">ANSYS LS-DYNA User's Guide</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="MPLANE -- Microplane Specifications"><a name="TBmplanespec"></a><h3>MPLANE -- Microplane Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>The number of temperatures for which data will be provided. Default = 1. Maximum
+              is such that <em class="replaceable"><code>NTEMP</code></em> x <em class="replaceable"><code>NPTS</code></em> =
+              1000.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of material constants (six total).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/microplane.html" class="olink">Microplane</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="NLISO -- Nonlinear Isotropic Hardening Specifications"><a name="TBDTSpNLISjwf070600"></a><h3>NLISO -- Nonlinear Isotropic Hardening Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. Maximum =
+              20.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of data points to be specified for a given temperature. Default = 4.
+              Maximum = 4.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Isotropic hardening options.</p><div><div class="variablelist"><dl><dt><span><b class="term">VOCE -- </b></span></dt><dd><p>Voce hardening law (default).</p></dd><dt><span><b class="term">POWER -- </b></span></dt><dd><p>Power hardening law.</p></dd></dl></div></div><p>
+            </p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/amp8sq21dldm.html#nlis" class="olink">Nonlinear Isotropic Hardening</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="PERF -- Equivalent Fluid Model of Perforated Media Specifications"><a name="TBperf_model_spec"></a><h3>PERF -- Equivalent Fluid Model of Perforated Media Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP:</code></em>
+</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS:</code></em>
+</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT:</code></em>
+</b></span></dt><dd><p>Equivalent fluid model options:</p><div><div class="variablelist"><dl><dt><span><b class="term">JCA</b></span></dt><dd><p>Johnson-Champoux-Allard model</p></dd><dt><span><b class="term">DLB</b></span></dt><dd><p>Delaney-Bazley model</p></dd><dt><span><b class="term">MIKI</b></span></dt><dd><p>Miki model</p></dd><dt><span><b class="term">ZPRO</b></span></dt><dd><p>Complex impedance and propagating constant model</p></dd><dt><span><b class="term">CDV</b></span></dt><dd><p>Complex density and velocity model</p></dd><dt><span><b class="term">YMAT</b></span></dt><dd><p>Transfer admittance matrix model</p></dd><dt><span><b class="term">SGYM</b></span></dt><dd><p>Transfer admittance matrix model of square grid structure</p></dd><dt><span><b class="term">HGYM</b></span></dt><dd><p>Transfer admittance matrix model of hexagonal grid structure</p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References:</b></span></dt><dd><p>
+<a href="../ans_acous/ansacousmatprop.html" class="olink">Defining Acoustic Material Properties</a> in the
+              <a href="../ans_acous/ans_acous.html" class="olink"><em class="citetitle">Acoustic Analysis Guide</em></a>.</p><p>
+<a href="../ans_mat/acousticmat.html#elemdatatblperf" class="olink">Equivalent Fluid Model of Perforated Media</a> in the <a href="../ans_mat/ans_mat.html" class="olink">
+<em class="citetitle">Material
+                Reference</em>
+</a>.</p><p>
+<a href="../ans_thry/thyacous_proprad.html#thyacous_equiflow" class="olink">Equivalent Fluid of Perforated Materials</a> in the
+              <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a></p><p>See the <a class="link" href="Hlp_C_TBFIELD.html" title="TBFIELD"><span class="command"><strong>TBFIELD</strong></span></a> command for more information about defining
+              temperature and/or frequency-dependent properties.</p></dd></dl></div></div></div><div class="refsect2" title="PIEZ -- Piezoelectric Matrix Specifications"><a name="TBDTSpPIEZjwf070600"></a><h3>PIEZ -- Piezoelectric Matrix Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Piezoelectric matrix options.</p><div><div class="variablelist"><dl><dt><span><b class="term">0 -- </b></span></dt><dd><p>Piezoelectric stress matrix [e] (used as supplied)</p></dd><dt><span><b class="term">1 -- </b></span></dt><dd><p>Piezoelectric strain matrix [d] (converted to [e] form before use)</p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/mat_electricmagnet.html#piez" class="olink">Piezoelectricity</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_cou/Hlp_G_COU3_piezo.html" class="olink">Piezoelectric Analysis</a>
+              in the <a href="../ans_cou/Hlp_G_CouTOC.html" class="olink"><em class="citetitle">Coupled-Field Analysis Guide</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="PLASTIC -- Nonlinear Plasticity Specifications"><a name="tbplasticspec"></a><h3>PLASTIC -- Nonlinear Plasticity Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP:</code></em>
+</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS:</code></em>
+</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT:</code></em>
+</b></span></dt><dd><p>Plasticity option:</p><div><div class="variablelist"><dl><dt><span><b class="term">MISO --</b></span></dt><dd><p>
+<a href="../ans_mat/amp8sq21dldm.html#miso" class="olink">Multilinear isotropic hardening
+                      plasticity</a>.</p></dd><dt><span><b class="term">KINH --</b></span></dt><dd><p>
+<a href="../ans_mat/amp8sq21dldm.html#matplaskinh" class="olink">Multilinear kinematic hardening
+                        plasticity</a>.</p><p>The number of points (<a class="link" href="Hlp_C_TBPT.html" title="TBPT"><span class="command"><strong>TBPT</strong></span></a> commands issued) is limited
+                      to 100 for this option.</p></dd><dt><span><b class="term">KSR --</b></span></dt><dd><p>
+<a href="../ans_mat/amp8sq21dldm.html#kinhardstatrecov" class="olink">Kinematic static
+                      recovery</a>.</p></dd><dt><span><b class="term">ISR --</b></span></dt><dd><p>
+<a href="../ans_mat/amp8sq21dldm.html#isohardstatrecov" class="olink">Isotropic static
+                      recovery</a>.</p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/amp8sq21dldm.html" class="olink">Rate-Independent
+                Plasticity</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="PLAW -- Plasticity Law Specifications"><a name="TBDTSpPLAWjwf070600"></a><h3>PLAW -- Plasticity Law Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Plasticity options for explicit dynamics elements. No default--a specified value
+              is required. </p><div><div class="variablelist"><dl><dt><span><b class="term">1 -- </b></span></dt><dd><p>Isotropic/kinematic hardening model.</p></dd><dt><span><b class="term">2 -- </b></span></dt><dd><p>Strain rate dependent plasticity model used for metal and plastic forming
+                      analyses.</p></dd><dt><span><b class="term">3 -- </b></span></dt><dd><p>Anisotropic plasticity model (Barlat and Lian).</p></dd><dt><span><b class="term">4 -- </b></span></dt><dd><p>Strain rate dependent plasticity model used for superplastic forming
+                      analyses.</p></dd><dt><span><b class="term">5 -- </b></span></dt><dd><p>Strain rate dependent isotropic plasticity model used for metal and
+                      plastic forming analyses.</p></dd><dt><span><b class="term">6 -- </b></span></dt><dd><p>Anisotropic plasticity model (Barlat, Lege, and Brem) used for forming
+                      processes.</p></dd><dt><span><b class="term">7 -- </b></span></dt><dd><p>Fully iterative anisotropic plasticity model for explicit shell elements
+                      only.</p></dd><dt><span><b class="term">8 -- </b></span></dt><dd><p>Piecewise linear plasticity model for explicit elements only.</p></dd><dt><span><b class="term">9 -- </b></span></dt><dd><p>Elastic-plastic hydrodynamic model for explicit elements only.</p></dd><dt><span><b class="term">10 -- </b></span></dt><dd><p>Transversely anisotropic FLD (flow limit diagram) model for explicit
+                      elements only.</p></dd><dt><span><b class="term">11 -- </b></span></dt><dd><p> Modified piecewise linear plasticity model for explicit shell elements
+                      only.</p></dd><dt><span><b class="term">12 -- </b></span></dt><dd><p>Elastic viscoplastic thermal model for explicit solid and shell elements
+                      only.</p></dd></dl></div></div><p>
+            </p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_lsd/Hlp_L_matl3.html#lsdplasticityjla4400" class="olink">Nonlinear Inelastic
+                Models</a> in the <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink"><em class="citetitle">ANSYS LS-DYNA User's Guide</em></a>.</p><p>
+<a href="../ans_lsd/Hlp_L_matl3.html#lsdprdepl51800" class="olink">Pressure Dependent
+                Plasticity Models</a> in the <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink"><em class="citetitle">ANSYS LS-DYNA User's Guide</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="PELAS -- Porous Elasticity Specifications"><a name="tbporelasspec"></a><h3>PELAS -- Porous Elasticity Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">POISSON -- </b></span></dt><dd><p>Porous elasticity model..</p></dd></dl></div></div></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/mat_porous_elasticity.html" class="olink">Porous
+                Elasticity</a>.</p></dd></dl></div></div></div><div class="refsect2" title="PM -- Coupled Pore-Fluid Diffusion and Structural Model of Porous Media Specifications"><a name="TBpmspec"></a><h3>PM -- Coupled Pore-Fluid Diffusion and Structural Model of Porous Media
+        Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>The number of temperatures. Default = 1. The maximum must be a value such that
+                (<em class="replaceable"><code>NTEMP</code></em> x <em class="replaceable"><code>NPTS</code></em>) &lt;=
+              1000.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>The number of material constants. Default = 4. The maximum must be a value such
+              that (<em class="replaceable"><code>NTEMP</code></em> x <em class="replaceable"><code>NPTS</code></em>) &lt;=
+              1000.</p></dd><dt><span><b class="term">
+            <em class="replaceable"><code>TBOPT</code></em>: </b></span></dt><dd><p>Porous media options: </p><div><div class="variablelist"><dl><dt><span><b class="term">PERM -- </b></span></dt><dd><p>Permeability </p></dd><dt><span><b class="term">BIOT -- </b></span></dt><dd><p>Biot coefficient</p></dd><dt><span><b class="term">SP -- </b></span></dt><dd><p>Solid property</p></dd><dt><span><b class="term">FP -- </b></span></dt><dd><p>Fluid property</p></dd><dt><span><b class="term">DSAT -- </b></span></dt><dd><p>Degree-of-saturation table</p></dd><dt><span><b class="term">RPER -- </b></span></dt><dd><p>Relative-permeability table</p></dd><dt><span><b class="term">GRAV -- </b></span></dt><dd><p>Gravity magnitude</p></dd></dl></div></div><p>
+            </p></dd><dt><span><b class="term">References: </b></span></dt><dd><p><a href="../ans_mat/elemdatatblpor.html#elemdatatblpm" class="olink">Porous Media Material Properties in the <span class="olinkdocname">Mechanical APDL Material Reference</span></a>.</p><p>
+              <a href="../ans_thry/thypormediaflow.html" class="olink">Porous Media Flow in the <span class="olinkdocname">Mechanical APDL Theory Reference</span></a>.</p><p>
+              <a href="../ans_cou/Hlp_G_COU_porefluiddiffstruct.html" class="olink">Structural-Pore-Fluid-Diffusion-Thermal Analysis in the <span class="olinkdocname">Mechanical APDL Coupled-Field Analysis Guide</span></a>.</p><p><a href="../ans_adv/Hlp_G_INSTAPPL.html#initdsatrper" class="olink">Initial Degree of Saturation and Relative Permeability Application in the <span class="olinkdocname">Mechanical APDL Advanced Analysis Guide</span></a>.</p><p>Also see <a href="../ans_vm/Hlp_V_VM260.html" class="olink">VM260</a>.</p></dd></dl></div></div></div><div class="refsect2" title="PRONY -- Prony Series Constant Specifications"><a name="tbpronyspecjmb"></a><h3>PRONY -- Prony Series Constant Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP:</code></em>
+</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. Maximum =
+              100.</p><p>Unused for <em class="replaceable"><code>TBOPT</code></em> = EXPERIMENTAL.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS:</code></em>
+</b></span></dt><dd><p>Defines the number of Prony series pairs for <em class="replaceable"><code>TBOPT</code></em> =
+              SHEAR or <em class="replaceable"><code>TBOPT</code></em> = BULK. Default = 1. Maximum = 100.</p><p>The number of temperatures and Prony pairs specified should be such that
+                <em class="replaceable"><code>NTEMP</code></em> * 2 * <em class="replaceable"><code>NPTS</code></em> &lt;
+              1000.</p><p>Unused for <em class="replaceable"><code>TBOPT</code></em> = INTEGRATION and
+                <em class="replaceable"><code>TBOPT</code></em> = EXPERIMENTAL.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT:</code></em>
+</b></span></dt><dd><p>Defines the behavior for viscoelasticity.</p><div><div class="variablelist"><dl><dt><span><b class="term">SHEAR-- </b></span></dt><dd><p>Shear Prony series.</p></dd><dt><span><b class="term">BULK -- </b></span></dt><dd><p>Bulk Prony series.</p></dd><dt><span><b class="term">INTEGRATION -- </b></span></dt><dd><p>Stress update algorithm.</p></dd><dt><span><b class="term">EXPERIMENTAL -- </b></span></dt><dd><p>Complex modulus from experimental data.</p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/evis.html" class="olink">Viscoelasticity</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="PZRS -- Piezoresistivity Specifications"><a name="tbpzrsspec"></a><h3>PZRS -- Piezoresistivity Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP:</code></em>
+</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS:</code></em>
+</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT:</code></em>
+</b></span></dt><dd><p>Piezoresistive matrix options</p><div><div class="variablelist"><dl><dt><span><b class="term">0 -- </b></span></dt><dd><p>Piezoresistive stress matrix (used as supplied)</p></dd><dt><span><b class="term">1 -- </b></span></dt><dd><p>Piezoresistive strain matrix (used as supplied)</p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/mat_electricmagnet.html#pzrs" class="olink">Piezoresistivity</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_cou/Hlp_G_COU3_piezores.html" class="olink">Piezoresistive Analysis</a>
+              in the <a href="../ans_cou/Hlp_G_CouTOC.html" class="olink"><em class="citetitle">Coupled-Field Analysis Guide</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="RATE -- Rate-Dependent Plasticity Specifications"><a name="TBDTSpRATEjwf070600"></a><h3>RATE -- Rate-Dependent Plasticity Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>The number of temperatures for which data will be provided. Default is 1. Maximum
+              is such that <em class="replaceable"><code>NTEMP</code></em> x <em class="replaceable"><code>NPTS</code></em> =
+              1000.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>The number of data points to be specified for a given temperature. Default = 2.
+              Maximum is such that <em class="replaceable"><code>NTEMP</code></em> x
+                <em class="replaceable"><code>NPTS</code></em> = 1000.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Rate-dependent viscoplasticity options.</p><div><div class="variablelist"><dl><dt><span><b class="term">PERZYNA -- </b></span></dt><dd><p>Perzyna option (default).</p></dd><dt><span><b class="term">PEIRCE -- </b></span></dt><dd><p>Peirce option.</p></dd><dt><span><b class="term">EVH -- </b></span></dt><dd><p>Exponential visco-hardening option.</p></dd><dt><span><b class="term">ANAND -- </b></span></dt><dd><p>Anand option.</p></dd></dl></div></div><p>
+            </p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/rate.html" class="olink">Rate-Dependent Plasticity (Viscoplasticity)</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_str/Hlp_G_STR8_3.html#strvisplastlm61199" class="olink">Viscoplasticity</a> in the
+              <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p><p>
+<a href="../ans_thry/thy_mat2.html#thy_matratedepend" class="olink">Rate-Dependent Plasticity </a> in the
+              <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>.</p><p>See also <a href="../ans_mat/elemamoco050301.html" class="olink">Material Model
+                Combinations</a>.</p></dd></dl></div></div></div><div class="refsect2" title="SDAMP -- Material Damping Coefficient Specifications"><a name="tbsdampspec"></a><h3>SDAMP -- Material Damping Coefficient Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP:</code></em>
+</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS:</code></em>
+</b></span></dt><dd><p>Number of properties to be defined for the material option. Default = 1 for each
+              material damping option (<em class="replaceable"><code>TBOPT</code></em>) selected.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT:</code></em>
+</b></span></dt><dd><p>Material damping options:</p><div><div class="variablelist"><dl><dt><span><b class="term">STRU or 1 -- </b></span></dt><dd><p>Structural damping coefficient (default).</p></dd><dt><span><b class="term">ALPD or 2-- </b></span></dt><dd><p>Rayleigh mass proportional material damping.</p></dd><dt><span><b class="term">BETD or 3-- </b></span></dt><dd><p>Rayleigh stiffness proportional material damping.</p></dd></dl></div></div><p>
+</p></dd></dl></div></div><div><div class="variablelist"><dl><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/mat_matdamping.html" class="olink">Material Damping in the <span class="olinkdocname">Mechanical APDL Material Reference</span></a>.</p><p>
+<a href="../ans_str/Hlp_G_STR4_5.html" class="olink">Full Harmonic Analysis in the <span class="olinkdocname">Mechanical APDL Structural Analysis Guide</span></a>.</p><p>
+<a href="../ans_thry/thy_tool3.html" class="olink">Damping Matrices in the <span class="olinkdocname">Mechanical APDL Theory Reference</span></a>.</p></dd></dl></div></div></div><div class="refsect2" title="SHIFT -- Shift Function Specifications"><a name="tbshiftspecjmb"></a><h3>SHIFT -- Shift Function Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP:</code></em>
+</b></span></dt><dd><p>Allows one temperature for which data will be provided.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS:</code></em>
+</b></span></dt><dd><p>Number of material constants to be entered as determined by the shift function
+              specified by <em class="replaceable"><code>TBOPT</code></em>.</p><div><div class="variablelist"><dl><dt><span><b class="term">3 -- </b></span></dt><dd><p>for <em class="replaceable"><code>TBOPT</code></em> = 1 <span class="italic"><em>or</em></span> WLF</p></dd><dt><span><b class="term">2 -- </b></span></dt><dd><p>for <em class="replaceable"><code>TBOPT</code></em> = 2 <span class="italic"><em>or</em></span> TN</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>n</code></em>
+<sub>
+<em class="replaceable"><code>f</code></em>
+</sub>
+                    --</b></span></dt><dd><p>for <em class="replaceable"><code>TBOPT</code></em> = 3 <span class="italic"><em>or</em></span> FICT, where
+                          <em class="replaceable"><code>n</code></em>
+<sub>
+<em class="replaceable"><code>f</code></em>
+</sub>
+                      is the number of partial fictive temperatures</p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT:</code></em>
+</b></span></dt><dd><p>Defines the shift function</p><div><div class="variablelist"><dl><dt><span><b class="term">1 <span class="italic"><em>or</em></span> WLF -- </b></span></dt><dd><p>Williams-Landel-Ferry shift function</p></dd><dt><span><b class="term">2 <span class="italic"><em>or</em></span> TN -- </b></span></dt><dd><p> Tool-Narayanaswamy shift function</p></dd><dt><span><b class="term">3 <span class="italic"><em>or</em></span> FICT -- </b></span></dt><dd><p>Tool-Narayanaswamy with fictive temperature shift function</p></dd><dt><span><b class="term">100 -- </b></span></dt><dd><p>(or USER) User-defined shift function.</p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/evis.html" class="olink">Viscoelasticity</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="SMA -- Shape Memory Alloy Specifications"><a name="TBDTSpSMA"></a><h3>SMA -- Shape Memory Alloy Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of data points to be specified for a given temperature. Default = 6 if
+                <em class="replaceable"><code>TBOPT</code></em> = SUPE, or 7 otherwise.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Shape memory model option:</p><div class="blockquote"><blockquote class="blockquote"><p>SUPE -- <a href="../ans_mat/smas.html#matsmasuperelas" class="olink">Superelasticity</a> option (default).</p><p>MEFF -- <a href="../ans_mat/smas.html#matsmamemeffect" class="olink">Memory-effect</a> option.</p><p>Because the material tangent stiffness matrix is generally unsymmetric,
+                convergence problems typically occur when <em class="replaceable"><code>TBOPT</code></em> = MEFF
+                and the (default) full Newton-Raphson option (<a class="link" href="Hlp_C_NROPT.html" title="NROPT"><span class="command"><strong>NROPT</strong></span></a>,FULL) is in
+                effect; therefore, use the unsymmetric Newton-Raphson option
+                  (<a class="link" href="Hlp_C_NROPT.html" title="NROPT"><span class="command"><strong>NROPT</strong></span></a>,UNSYM) when <em class="replaceable"><code>TBOPT</code></em> =
+                MEFF.</p></blockquote></div></dd><dt><span><b class="term">Reference: </b></span></dt><dd><p>
+<a href="../ans_mat/smas.html" class="olink">Shape Memory Alloy (SMA)</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="SOIL -- Soil Specifications"><a name="tbsoilspec"></a><h3>SOIL -- Soil Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">CAMCLAY -- </b></span></dt><dd><p>Modified Cam-clay material model.</p></dd></dl></div></div></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/mat_geomechanics.html#matgeomechcamclay" class="olink">Cam-clay</a>.</p></dd></dl></div></div></div><div class="refsect2" title="STATE -- User-Defined State Variable Specifications"><a name="TBDTSpSTATjwf070600"></a><h3>STATE -- User-Defined State Variable Specifications</h3><p>When <em class="replaceable"><code>Lab</code></em> = STATE is applied to user-defined materials, the
+        state variable specifications affect either the <a href="../ans_prog/Z7K4r1e5lcd.html#UPFusermatjwf032800403" class="olink">
+<code class="function">UserMat</code>
+</a> (user-defined
+        material) or <a href="../ans_prog/Z7K4r1e5lcd.html#UPFusermatthrmf040814" class="olink">
+<code class="function">UserMatTh</code>
+</a> (user-defined thermal material) subroutine, as
+        appropriate. The subroutine in use depends on the element type used when
+          <em class="replaceable"><code>Lab</code></em> = USER is specified.</p><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of state variables.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/matcustommatmods.html#matstatvaruserdefmats" class="olink">Using State Variables with User-Defined Materials</a> in the
+              <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="SWELL -- Swelling Specifications"><a name="TBDTSpSWELjwf070600"></a><h3>SWELL -- Swelling Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. The maximum value of
+                <span class="italic"><em>NTEMP</em></span> is such that <span class="italic"><em>NTEMP</em></span> x <span class="italic"><em>NPTS</em></span> = 1000</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of data points to be specified for a given temperature. The maximum value
+              of <span class="italic"><em>NPTS</em></span> is such that <span class="italic"><em>NPTS</em></span> x <span class="italic"><em>NTEMP</em></span> = 1000.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Swelling model options: </p><div><div class="variablelist"><dl><dt><span><b class="term">LINEAR -- </b></span></dt><dd><p>Linear swelling function.</p></dd><dt><span><b class="term">EXPT -- </b></span></dt><dd><p>Exponential swelling function. </p></dd><dt><span><b class="term">USER -- </b></span></dt><dd><p>User-defined swelling function. Define the swelling function via
+                      subroutine <a href="../ans_prog/Z7K4r1e5lcd.html#Z7K4r340lcd" class="olink">
+                        <code class="function">usersw</code>
+                      </a> (described in the <a href="../ans_prog/ans_prog.html" class="olink"><em class="citetitle">Programmer's Reference</em></a>). Define temperature-dependent constants
+                      via the <a class="link" href="Hlp_C_TBTEMP.html" title="TBTEMP"><span class="command"><strong>TBTEMP</strong></span></a> and <a class="link" href="Hlp_C_TBDATA.html" title="TBDATA"><span class="command"><strong>TBDATA</strong></span></a> commands. For
+                      solution-dependent variables, define the number of variables via the
+                        <span class="command"><strong>TB</strong></span>,STATE command. </p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/swel.html" class="olink">Swelling</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_str/Hlp_G_STR8_3.html#strswelltlm61199" class="olink">Swelling</a> in the
+              <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="THERM -- Thermal Properties Specifications"><a name="tbthermspec"></a><h3>THERM -- Thermal Properties Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+            <em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+            <em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Not used.</p></dd><dt><span><b class="term">
+            <em class="replaceable"><code>TBOPT</code></em>:</b></span></dt><dd><p>Thermal properties:</p><div><div class="variablelist"><dl><dt><span><b class="term">COND -- </b></span></dt><dd><p>Thermal conductivity.</p></dd></dl></div></div><div><div class="variablelist"><dl><dt><span><b class="term">SPHT -- </b></span></dt><dd><p>Specific heat.</p></dd></dl></div></div></dd><dt><span><b class="term">References: </b></span></dt><dd><p><a href="../ans_mat/thermalmat.html" class="olink">Thermal Properties</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="UNIAXIAL -- Uniaxial Stress-Strain Relation Specifications"><a name="tbuniaxspecjmb"></a><h3>UNIAXIAL -- Uniaxial Stress-Strain Relation Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP:</code></em>
+</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. Maximum =
+              10.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS:</code></em>
+</b></span></dt><dd><p>Number of data points to be specified for a given temperature. Default = 20.
+              Maximum = 20.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT:</code></em>
+</b></span></dt><dd><p>Defines stress-strain relationship for cast iron plasticity.</p><div><div class="variablelist"><dl><dt><span><b class="term">TENSION -- </b></span></dt><dd><p>Defines stress-strain relation in tension</p></dd><dt><span><b class="term">COMPRESSION -- </b></span></dt><dd><p>Defines stress-strain relation in compression.</p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/amp8sq21dldm.html#cast" class="olink">Cast Iron</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="USER -- User-Defined Material Model or Thermal Material Model Specifications"><a name="TBDTSpUSERjwf070600"></a><h3>USER -- User-Defined Material Model or Thermal Material Model Specifications</h3><p>When <em class="replaceable"><code>Lab</code></em> = USER, the <span class="command"><strong>TB</strong></span> command activates
+        either the <a href="../ans_prog/Z7K4r1e5lcd.html#UPFusermatjwf032800403" class="olink">
+<code class="function">UserMat</code>
+</a> (user-defined material) or the <a href="../ans_prog/Z7K4r1e5lcd.html#UPFusermatthrmf040814" class="olink">
+<code class="function">UserMatTh</code>
+</a> (user-defined thermal material) subroutine
+        automatically. The subroutine activated depends on the element type used.</p><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP</code></em>:</b></span></dt><dd><p>Number of temperatures for which data will be provided. Default = 1. </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS</code></em>:</b></span></dt><dd><p>Number of data points to be specified for a given temperature. Default = 48.
+            </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT:</code></em>
+</b></span></dt><dd><p>User-defined material model (<a href="../ans_prog/Z7K4r1e5lcd.html#UPFusermatjwf032800403" class="olink">
+<code class="function">UserMat</code>
+</a>) or thermal
+              material model (<a href="../ans_prog/Z7K4r1e5lcd.html#UPFusermatthrmf040814" class="olink">
+<code class="function">UserMatTh</code>
+</a>) options:</p><div><div class="variablelist"><dl><dt><span><b class="term">NONLINEAR</b></span></dt><dd><p>Nonlinear iterations are applied (default).</p></dd><dt><span><b class="term">LINEAR</b></span></dt><dd><p>Nonlinear iterations are not applied. This option is ignored if there is
+                      any other nonlinearity involved, such as contact, geometric nonlinearity, etc.
+                    </p></dd><dt><span><b class="term">MXUP</b></span></dt><dd><p>This option indicates a <a href="../ans_mat/matcustommatmods.html#user" class="olink">
+UserMat
+</a> material model to be used with
+                        <a href="../ans_elem/Hlp_E_continuumelems.html#EL2mixforjwf091100" class="olink">mixed u-P element formulation</a>
+                      for material exhibiting incompressible or nearly incompressible behavior.
+                    </p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/matcustommatmods.html#user" class="olink">User-Defined Material Model (UserMat)</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>
+<a href="../ans_prog/Z7K4r1e5lcd.html#UPFusermatjwf032800403" class="olink">Subroutine UserMat (Creating Your Own Material Model)</a> in the
+              <a href="../ans_prog/ans_prog.html" class="olink"><em class="citetitle">Programmer's Reference</em></a>.</p><p>
+<a href="../ans_prog/Z7K4r1e5lcd.html#UPFusermatthrmf040814" class="olink">Subroutine UserMatTh (Creating Your Own Thermal Material Model)</a> in the
+              <a href="../ans_prog/ans_prog.html" class="olink"><em class="citetitle">Programmer's Reference</em></a>.</p></dd></dl></div></div></div><div class="refsect2" title="WEAR -- Contact Surface Wear Specifications"><a name="tbwearspec"></a><h3>WEAR -- Contact Surface Wear Specifications</h3><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NTEMP:</code></em>
+</b></span></dt><dd><p>Number of temperatures for which data will be provided.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NPTS:</code></em>
+</b></span></dt><dd><p>Number of data points to be specified for the wear option. This value is set
+              automatically based on the selected wear option (<em class="replaceable"><code>TBOPT</code></em>). If
+                <em class="replaceable"><code>TBOPT</code></em> is not specified, the default becomes
+                <em class="replaceable"><code>NPTS</code></em> = 5 and <em class="replaceable"><code>TBOPT</code></em> =
+              ARCD.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TBOPT:</code></em>
+</b></span></dt><dd><p>Wear model options:</p><div><div class="variablelist"><dl><dt><span><b class="term">ARCD -- </b></span></dt><dd><p>Archard wear model (default).</p></dd><dt><span><b class="term">USER --</b></span></dt><dd><p>User-defined wear model. </p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">References: </b></span></dt><dd><p>
+<a href="../ans_mat/contwearmat.html" class="olink">Contact Surface Wear</a> in
+              the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>See also the <a class="link" href="Hlp_C_TBFIELD.html" title="TBFIELD"><span class="command"><strong>TBFIELD</strong></span></a> command for more information on defining
+              temperature and/or time-dependent properties. </p></dd></dl></div></div></div></div><div class="refsect1" title="Notes"><a name="TB.notes"></a><h2>Notes</h2><p>
+<span class="command"><strong>TB</strong></span> activates a data table to be used with subsequent
+        <a class="link" href="Hlp_C_TBDATA.html" title="TBDATA"><span class="command"><strong>TBDATA</strong></span></a> or <a class="link" href="Hlp_C_TBPT.html" title="TBPT"><span class="command"><strong>TBPT</strong></span></a> commands. The table space is
+      initialized to zero values. Data from this table are used for certain nonlinear material
+      descriptions as well as for special input for some elements. </p><p>For a list of elements supporting each material model (<em class="replaceable"><code>Lab</code></em>
+      value), see <a href="../ans_mat/Mp8sasdgh.html" class="olink">Material Model Element Support</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>For a description of data table input required for <a href="../ans_mat/aHZaCr30ftlm.html" class="olink">explicit dynamic materials</a>, see <a href="../ans_lsd/Hlp_L_matl1.html" class="olink">Material Models</a> in the <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink"><em class="citetitle">ANSYS LS-DYNA User's Guide</em></a>. </p><p>For information about linear material property input, see the <a class="link" href="Hlp_C_MP.html" title="MP"><span class="command"><strong>MP</strong></span></a>
+      command. </p><p>This command is also valid in SOLUTION.</p><div class="refsect2" title="Product Restrictions"><a name="TBprodRest"></a><h3>Product Restrictions</h3><div class="informaltable"><table border="1" width="95%"><colgroup><col width="20%" class="col1"><col width="80%" class="col2"></colgroup><tbody><tr><td bgcolor="#E3E3E3">
+                
+                
+                <span class="bold"><strong>Command Option Lab</strong></span>
+              </td><td bgcolor="#E3E3E3">
+                
+                
+                <span class="bold"><strong>Available Products</strong></span>
+              </td></tr><tr><td>AFDM</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>AHYPER</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>ANEL</td><td>Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>BB</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>BH</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>BISO</td><td>&#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>BKIN</td><td>&#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>BB</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>CAST</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>CDM</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>CGCR</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>CHABOCHE</td><td>&#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>COMP</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>CONCR</td><td>&#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>CREEP</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>CTE</td><td>Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>CZM</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>CNDE</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>CNDM</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>DISCRETE</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>DMGE</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>DMGI</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>DP</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>DPER</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>EDP </td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>ELASTIC</td><td>Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>ELASTIC (<em class="replaceable"><code>TBOPT</code></em> = USER)</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>EOS</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>EVISC</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>EXPE</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>FCON</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>FCLI</td><td>&#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>FLUID</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>FOAM</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>FRIC</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>GASKET</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>GCAP</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>HFLM</td><td>Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>HILL</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>HONEY</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>HYPER</td><td>&#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>HYPER (<em class="replaceable"><code>TBOPT</code></em> = USER)</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>INTER</td><td>Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>INTER (<em class="replaceable"><code>TBOPT</code></em> = USER)</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>JOIN</td><td>&#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>JOIN (<em class="replaceable"><code>TBOPT</code></em> = STIF)</td><td>Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>JROCK</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>MC</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>MOONEY</td><td>&#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>MPLANE</td><td>&#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>NLISO</td><td>&#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>PELAS</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>PERF</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>PIEZ</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>PLASTIC</td><td>&#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>PLAW</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>PRONY</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>PZRS</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>RATE</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>SDAMP</td><td>&#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>SHIFT</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>SMA </td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>SOIL</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>STATE</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>SWELL</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>UNIAXIAL</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>USER</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr><tr><td>WEAR</td><td>&#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</td></tr></tbody></table></div></div></div><div class="refsect1" title="Menu Paths"><a name="TB.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Load Step Opts&gt;Other&gt;Change Mat Props&gt;Material Models</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Material Props&gt;Material Models</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Load Step Opts&gt;Other&gt;Change Mat Props&gt;Material Models</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

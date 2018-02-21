@@ -1,0 +1,50 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:32-04:00"><title>CNKMOD</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_C_CTOC.html" title="C Commands"><link rel="prev" href="Hlp_C_CNCHECK.html" title="CNCHECK"><link rel="next" href="Hlp_C_CNTR.html" title="CNTR"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="CNKMOD"><a name="CNKMOD"></a><div class="titlepage"></div><a class="indexterm" name="d0e52366"></a><span class="refentrytitle"><span class="command"><strong>CNKMOD</strong></span> </span><div class="refnamediv"><p><span class="command"><strong>CNKMOD</strong></span>, <em class="replaceable"><code>ITYPE</code></em>, <em class="replaceable"><code>KNUM</code></em>, <em class="replaceable"><code>VALUE</code></em><br><b class="refpurpose">Modifies contact element key options.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  DesSpc | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="CNKMOD.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>ITYPE</code></em></b></span></dt><dd><p>Contact element type number as defined on the <a class="link" href="Hlp_C_ET.html" title="ET"><span class="command"><strong>ET</strong></span></a> command.</p></dd><dt><span><b class="term"><em class="replaceable"><code>KNUM</code></em></b></span></dt><dd><p>Number of the KEYOPT to be modified (KEYOPT(<em class="replaceable"><code>KNUM</code></em>)).</p></dd><dt><span><b class="term"><em class="replaceable"><code>VALUE</code></em></b></span></dt><dd><p>Value to be assigned to the KEYOPT.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="CNKMOD.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>CNKMOD</strong></span> command has the same syntax as the <a class="link" href="Hlp_C_KEYOPT.html" title="KEYOPT"><span class="command"><strong>KEYOPT</strong></span></a>
+   command; however, it is valid only in the SOLUTION processor. The command is intended only for
+   use in a linear perturbation analysis, and can only be used to modify certain contact element
+   KEYOPT values as described below. </p><p><span class="bold"><strong>Modifying KEYOPT(12)</strong></span></p><p>A common use for this command is to modify contact interface behavior between load steps in a
+    <a href="../ans_str/strlinperturb.html" class="olink">linear perturbation analysis</a>; it allows you to control
+   the contact status locally per contact pair. For this application, the command is limited to
+   changing the contact interface behavior key option: KEYOPT(12) of
+    <a href="../ans_elem/Hlp_E_CONTA171.html" class="olink"><span class="structname">CONTA171</span></a>, <a href="../ans_elem/Hlp_E_CONTA172.html" class="olink"><span class="structname">CONTA172</span></a>,
+    <a href="../ans_elem/Hlp_E_CONTA173.html" class="olink"><span class="structname">CONTA173</span></a>, <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a>,
+    <a href="../ans_elem/Hlp_E_CONTA175.html" class="olink"><span class="structname">CONTA175</span></a>, <a href="../ans_elem/Hlp_E_CONTA176.html" class="olink"><span class="structname">CONTA176</span></a>, and
+    <a href="../ans_elem/Hlp_E_CONTA177.html" class="olink"><span class="structname">CONTA177</span></a>; and KEYOPT(10) of <a href="../ans_elem/Hlp_E_CONTA178.html" class="olink"><span class="structname">CONTA178</span></a>.</p><p>The command adjusts the contact status from the linear perturbation base analysis (at the
+   point of restart) as described in the table below. It enables you to take points in the base
+   analysis that are near contact (within the pinball region) and modify them to be treated as
+   in-contact in the perturbation analysis; see the "1 - near-field" row with KEYOPT(12) values set
+   to 4 or 5. You can also take points that are sliding in the base analysis and treat them as
+   sticking in the perturbation analysis, irrespective of the MU value; see the "2 - sliding" row
+   with KEYOPT(12) values set to 1,3, 5, or 6.</p><div class="table"><a name="d0e52486"></a><p class="title"><b>Table&nbsp;118:&nbsp;&nbsp;Contact Status Adjusted via CNKMOD</b></p><div class="table-contents"><table summary="Contact Status Adjusted via CNKMOD" border="1" width="95%"><colgroup><col width="168" class="col1"><col width="168" class="col2"><col width="240" class="col3"></colgroup><tbody><tr><td rowspan="2"><span class="bold"><strong>Contact Status
+from the Base Analysis Solution at the Restart Point</strong></span></td><td colspan="2" align="center"><span class="bold"><strong>CNKMOD,<em class="replaceable"><code>ITYPE</code></em>,12,<em class="replaceable"><code>Value</code></em></strong></span></td></tr><tr><td>KEYOPT(12) Value</td><td>Adjusted Contact Status</td></tr><tr><td>0 - far-field </td><td>any</td><td>0 - far-field </td></tr><tr><td rowspan="5">1 - near-field</td><td>0, 1, 2, 3, 6 </td><td>1 - near-field </td></tr><tr><td rowspan="2">4</td><td>1 - near-field<p>(if outside of the adjusted pinball region)</p></td></tr><tr><td>2 - sliding<p>(if inside of the adjusted
+pinball region)</p></td></tr><tr><td rowspan="2">5</td><td>1 - near-field<p>(if outside of the adjusted pinball region)</p></td></tr><tr><td>3 - sticking<p>(if inside of the adjusted
+pinball region)</p></td></tr><tr><td rowspan="2">2 - sliding</td><td>0, 2, 4 </td><td>2 - sliding</td></tr><tr><td>1, 3, 5, 6 </td><td>3 - sticking</td></tr><tr><td>3
+- sticking</td><td>any</td><td>3 - sticking</td></tr></tbody></table></div></div><br class="table-break"><p>If an open gap exists at the end of the previous load step and the contact status is adjusted
+   as sliding or sticking due to a bonded or no-separation contact behavior definition, the program
+   considers it a near-field contact when executing <span class="command"><strong>CNKMOD</strong></span> in the subsequent load
+   steps.</p><p>In the linear perturbation analysis procedure, contact status can also be controlled or
+   modified via the <a class="link" href="Hlp_C_PERTURB.html" title="PERTURB"><span class="command"><strong>PERTURB</strong></span></a> command. The contact status always follows local
+   controls defined by the <span class="command"><strong>CNKMOD</strong></span> command first, and is then adjusted by the
+   global sticking or bonded setting (<em class="replaceable"><code>ContKey</code></em> = STICKING or BONDED) on
+   the <a class="link" href="Hlp_C_PERTURB.html" title="PERTURB"><span class="command"><strong>PERTURB</strong></span></a> command. </p><p><span class="bold"><strong>Modifying KEYOPT(3)</strong></span></p><p>Another use for the <span class="command"><strong>CNKMOD</strong></span> command is to change the units of normal contact
+   stiffness (contact element real constant FKN) in a <a href="../ans_str/strlinperturb.html" class="olink">linear
+    perturbation modal analysis</a> that is used to model <a href="../ans_str/Hlp_G_STRmodanexamp.html#strPresModaBrakeSqueal" class="olink">brake squeal</a>. For contact elements
+    <a href="../ans_elem/Hlp_E_CONTA171.html" class="olink"><span class="structname">CONTA171</span></a>, <a href="../ans_elem/Hlp_E_CONTA172.html" class="olink"><span class="structname">CONTA172</span></a>,
+    <a href="../ans_elem/Hlp_E_CONTA173.html" class="olink"><span class="structname">CONTA173</span></a>, and <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a>, KEYOPT(3) controls the
+   units of normal contact stiffness. You can issue the command
+    <span class="command"><strong>CNKMOD</strong></span>,<em class="replaceable"><code>ITYPE</code></em>,3,1 during the first phase of the
+   linear perturbation analysis in order to change the units of normal contact stiffness from
+    FORCE/LENGTH<sup>3</sup> (in the base analysis) to FORCE/LENGTH. Note that
+   KEYOPT(3) = 1 is valid only when a penalty-based algorithm is used (KEYOPT(2) = 0 or 1) and the
+   absolute normal contact stiffness value is explicitly specified (that is, a negative value input
+   for real constant FKN).</p></div><div class="refsect1" title="Menu Paths"><a name="d0e52628"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

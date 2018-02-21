@@ -1,0 +1,25 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:39-04:00"><title>LSREAD</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_L_TOC.html" title="L Commands"><link rel="prev" href="Hlp_C_LSPEC.html" title="/LSPEC"><link rel="next" href="Hlp_C_LSRESTORE.html" title="*LSRESTORE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="LSREAD"><a name="LSREAD"></a><div class="titlepage"></div><a class="indexterm" name="d0e157007"></a><span class="refentrytitle"><span class="command"><strong>LSREAD</strong></span></span><div class="refnamediv"><p><span class="command"><strong>LSREAD</strong></span>, <em class="replaceable"><code>LSNUM</code></em><br><b class="refpurpose">Reads load and load step option data into the database.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluldstepopjla070199" title="Table&nbsp;2.60:&nbsp;&nbsp;Load Step Operations"><span class="type">Load Step Operations</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="LSREAD.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>LSNUM</code></em></b></span></dt><dd><p>Identification number of the load step file to be read.  Defaults
+to 1 + highest number read in the current session.  Issue <span class="command"><strong>LSREAD</strong></span>,STAT
+to list the current value of <em class="replaceable"><code>LSNUM</code></em>.  Issue <span class="command"><strong>LSREAD</strong></span>,INIT
+to reset <em class="replaceable"><code>LSNUM</code></em> to 1.  The load step files are assumed
+to be named <span class="filename"><strong>Jobname.S<em class="replaceable"><code>n</code></em></strong></span>,
+where <em class="replaceable"><code>n</code></em> is a number assigned by the <a class="link" href="Hlp_C_LSWRITE.html" title="LSWRITE"><span class="command"><strong>LSWRITE</strong></span></a> command
+(01--09,10,11, etc.).  On systems with a 3-character limit on the extension,
+the <span class="quote">"<span class="quote">S</span>"</span> is dropped for <em class="replaceable"><code>LSNUM</code></em> &gt; 99.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="LSREAD.notes"></a><h2>Notes</h2><p>Reads load and load step option data from the load step file into the
+database.  <span class="command"><strong>LSREAD</strong></span> <span class="italic"><em>will not</em></span> clear
+the database of <span class="italic"><em>all</em></span> current loads.  However,
+if a load is respecified with <span class="command"><strong>LSREAD</strong></span>, then it will overwrite
+the existing load. See the <a class="link" href="Hlp_C_LSWRITE.html" title="LSWRITE"><span class="command"><strong>LSWRITE</strong></span></a> command to write load
+step files, and the <a class="link" href="Hlp_C_LSDELE.html" title="LSDELE"><span class="command"><strong>LSDELE</strong></span></a> command to delete load step
+files.  <span class="command"><strong>LSREAD</strong></span> removes any existing <a class="link" href="Hlp_C_SFGRAD.html" title="SFGRAD"><span class="command"><strong>SFGRAD</strong></span></a> specification.</p><p>This command is also valid in PREP7.</p></div><div class="refsect1" title="Menu Paths"><a name="LSREAD.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Load Step Opts&gt;Read LS File</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Load Step Opts&gt;Read LS File</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

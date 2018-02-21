@@ -1,0 +1,31 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:48-04:00"><title>ROCK</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_R_TOC.html" title="R Commands"><link rel="prev" href="Hlp_C_RMXPORT.html" title="RMXPORT"><link rel="next" href="Hlp_C_ROSE.html" title="ROSE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="ROCK"><a name="ROCK"></a><div class="titlepage"></div><a class="indexterm" name="d0e231342"></a><span class="refentrytitle">
+<span class="command"><strong>ROCK</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>ROCK</strong></span>, <em class="replaceable"><code>CGX</code></em>, <em class="replaceable"><code>CGY</code></em>, <em class="replaceable"><code>CGZ</code></em>, <em class="replaceable"><code>OMX</code></em>, <em class="replaceable"><code>OMY</code></em>, <em class="replaceable"><code>OMZ</code></em>
+<br><b class="refpurpose">Specifies a rocking response spectrum. </b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluspectrumjla070199" title="Table&nbsp;2.52:&nbsp;&nbsp;Spectrum Options"><span class="type">Spectrum Options</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="ROCK.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>CGX</code></em>, <em class="replaceable"><code>CGY</code></em>, <em class="replaceable"><code>CGZ</code></em>
+</b></span></dt><dd><p>Global Cartesian X, Y, and Z location of center of
+rotation about which rocking occurs.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>OMX</code></em>, <em class="replaceable"><code>OMY</code></em>,
+      <em class="replaceable"><code>OMZ</code></em>
+</b></span></dt><dd><p>Global Cartesian angular components of the rocking.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="ROCK.notes"></a><h2>Notes</h2><p>Specifies a rocking response spectrum effect in the spectrum
+(<a class="link" href="Hlp_C_ANTYPE.html" title="ANTYPE"><span class="command"><strong>ANTYPE</strong></span></a>,SPECTR) analysis.</p><p>The excitation direction with rocking included is not normalized to one; rather, it scales the
+   spectrum. <span>For example, consider a node at coordinates (1,1,0),
+    subject to an excitation in the X direction (<em class="replaceable"><code>SEDX</code></em> = 1.0 on
+     <a class="link" href="Hlp_C_SED.html" title="SED"><span class="command"><strong>SED</strong></span></a>), and a rocking with center <em class="replaceable"><code>CGX</code></em> = 1.0,
+     <em class="replaceable"><code>CGY</code></em> = <em class="replaceable"><code>CGZ</code></em> = 0, and angular component
+    about Z (<em class="replaceable"><code>OMZ</code></em> = 0.5). The total excitation direction at this node is:
+   </span></p><div class="informalequation"><a name="eq1ba261c8-13a9-49c4-bf96-c653c3ebcdff"></a><div><img src="graphics/eq1ba261c8-13a9-49c4-bf96-c653c3ebcdff.svg"></div></div><p>So that half the spectrum input is applied at this node.</p><p>For more information <span>on the equations</span>, see <a href="../ans_thry/thy_anproc7.html#anppartmode" class="olink">Participation Factors and Mode Coefficients</a>. </p><p>This command is also valid in PREP7.</p></div><div class="refsect1" title="Menu Paths"><a name="ROCK.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Load Step Opts&gt;Spectrum&gt;SinglePt&gt;Settings</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Load Step Opts&gt;Spectrum&gt;SinglePt&gt;Settings</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

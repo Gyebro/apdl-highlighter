@@ -1,0 +1,151 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:44-04:00"><title>EDCGEN</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_EDCADAPT.html" title="EDCADAPT"><link rel="next" href="Hlp_C_EDCLIST.html" title="EDCLIST"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="EDCGEN"><a name="EDCGEN"></a><div class="titlepage"></div><a class="indexterm" name="d0e78428"></a><span class="refentrytitle">
+<span class="command"><strong>EDCGEN</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>EDCGEN</strong></span>, <em class="replaceable"><code>Option</code></em>, <em class="replaceable"><code>Cont</code></em>, <em class="replaceable"><code>Targ</code></em>, <em class="replaceable"><code>FS</code></em>, <em class="replaceable"><code>FD</code></em>, <em class="replaceable"><code>DC</code></em>, <em class="replaceable"><code>VC</code></em>, <em class="replaceable"><code>VDC</code></em>, <em class="replaceable"><code>V1</code></em>, <em class="replaceable"><code>V2</code></em>, <em class="replaceable"><code>V3</code></em>, <em class="replaceable"><code>V4</code></em>, <em class="replaceable"><code>BTIME</code></em>, <em class="replaceable"><code>DTIME</code></em>, <em class="replaceable"><code>BOXID1</code></em>, <em class="replaceable"><code>BOXID2</code></em>
+<br><b class="refpurpose">Specifies contact parameters for an explicit dynamics analysis.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7expdynldm061600" title="Table&nbsp;2.44:&nbsp;&nbsp;Explicit Dynamics"><span class="type">Explicit Dynamics</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | DYNA</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="EDCGEN.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Option</code></em>
+</b></span></dt><dd><p>Label identifying the contact behavior (dictates the meaning
+of <em class="replaceable"><code>V1</code></em> through <em class="replaceable"><code>V4</code></em>).</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">AG</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Automatic general contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ANTS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Automatic nodes-to-surface contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ASSC</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Automatic single surface contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ASS2D</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Automatic 2-D single surface contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ASTS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Automatic surface-to-surface contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DRAWBEAD</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Drawbead contact</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ENTS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Eroding nodes-to-surface contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ESS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Eroding single surface contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ESTS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Eroding surface-to-surface contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">FNTS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Forming nodes-to-surface contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">FOSS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Forming one way surface-to-surface contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">FSTS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Forming surface-to-surface contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NTS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Nodes-to-surface contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OSTS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>One way surface-to-surface contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">RNTR</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Rigid nodes to rigid body contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ROTR</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Rigid body to rigid body (one way) contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Single edge contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Single surface contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">STS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Surface-to-surface contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TDNS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Tied nodes-to-surface contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TSES</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Tied shell edge-to-surface contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TDSS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Tied surface-to-surface contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TNTS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Tiebreak nodes-to-surface contact</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TSTS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Tiebreak surface-to-surface contact.</p></td></tr></tbody></table></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Cont</code></em>
+</b></span></dt><dd><p>Contact surface identified by a component
+name [<a class="link" href="Hlp_C_CM.html" title="CM"><span class="command"><strong>CM</strong></span></a>] , a part ID number [<a class="link" href="Hlp_C_EDPART.html" title="EDPART"><span class="command"><strong>EDPART</strong></span></a>],
+or an assembly ID number [<a class="link" href="Hlp_C_EDASMP.html" title="EDASMP"><span class="command"><strong>EDASMP</strong></span></a>]. If a component name
+is input, the component must contain nodes that represent the contact surface
+(assemblies are not valid for a component name). Alternatively, a part number
+may be input that identifies a group of elements as the contact surface, or
+an assembly number may be input containing a maximum of 16 parts. The assembly
+ID number must be greater than the highest number used for the part ID. <em class="replaceable"><code>Cont</code></em> is
+not required for automatic general contact, single edge contact, and single
+surface contact options (<em class="replaceable"><code>Option</code></em> = AG, SE, ASSC,
+ESS, and SS). For automatic 2-D single surface contact (ASS2D), <em class="replaceable"><code>Cont</code></em> must
+be defined as a part assembly. For eroding node-to-surface contact (ENTS), <em class="replaceable"><code>Cont</code></em> must
+be defined as a nodal component. For eroding single surface contact (ESS)
+and eroding surface-to-surface contact (ESTS), <em class="replaceable"><code>Cont</code></em> must
+be defined as a part ID or part assembly.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Targ</code></em>
+</b></span></dt><dd><p>Target surface identified by a component
+name [<a class="link" href="Hlp_C_CM.html" title="CM"><span class="command"><strong>CM</strong></span></a>] , a part ID number [<a class="link" href="Hlp_C_EDPART.html" title="EDPART"><span class="command"><strong>EDPART</strong></span></a>],
+or an assembly ID number [<a class="link" href="Hlp_C_EDASMP.html" title="EDASMP"><span class="command"><strong>EDASMP</strong></span></a>]. If a component name
+is input, the component must contain nodes that represent the target surface
+(assemblies are not valid for a component name). Alternatively, a part number
+may be input that identifies a group of elements as the target surface, or
+an assembly number may be input containing a maximum of 16 parts. The assembly
+ID number must be greater than the highest number used for the part ID. <em class="replaceable"><code>Targ</code></em> is
+not defined for automatic general contact, single edge contact, automatic
+single surface contact, eroding single surface contact, single surface contact,
+and automatic 2-D single surface contact options (<em class="replaceable"><code>Option</code></em> =
+AG, SE, ASSC, ESS, SS, and ASS2D). For eroding node-to-surface contact (ENTS)
+and eroding surface-to-surface contact (ESTS), <em class="replaceable"><code>Targ</code></em> must
+be defined as a part ID or part assembly.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>FS</code></em>
+</b></span></dt><dd><p>Static friction coefficient (defaults to 0).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>FD</code></em>
+</b></span></dt><dd><p>Dynamic friction coefficient (defaults to 0).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>DC</code></em>
+</b></span></dt><dd><p>Exponential decay coefficient (defaults to 0).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VC</code></em>
+</b></span></dt><dd><p>Coefficient for viscous friction (defaults to 0).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VDC</code></em>
+</b></span></dt><dd><p>Viscous damping coefficient in percent of critical damping
+(defaults to 0).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>V1</code></em>, <em class="replaceable"><code>V2</code></em>, <em class="replaceable"><code>V3</code></em>, <em class="replaceable"><code>V4</code></em>
+</b></span></dt><dd><p>Additional input for drawbead, eroding, rigid, and tiebreak
+contact.  The meanings of <em class="replaceable"><code>V1</code></em>-<em class="replaceable"><code>V4</code></em> will
+vary, depending on <em class="replaceable"><code>Option</code></em>. See the table below
+for <em class="replaceable"><code>V1</code></em>-<em class="replaceable"><code>V4</code></em> definitions.</p><p>Additional input for drawbead contact (<em class="replaceable"><code>Option</code></em> =
+DRAWBEAD):</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">V1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Load curve ID giving the bending component
+of the restraining force per unit draw bead length as a function of draw bead
+displacement. <em class="replaceable"><code>V1</code></em> must be specified.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">V2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Load curve ID giving the normal force per unit
+draw bead length as a function of draw bead displacement. <em class="replaceable"><code>V2</code></em> is
+optional.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">V3</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Draw bead depth.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">V4</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Number of equally spaced integration points
+along the draw bead (default = 0, in which case ANSYS LS-DYNA calculates this value
+based on the size of the elements that interact with the draw bead).</p></td></tr></tbody></table></div></div><p>
+</p><p>Additional input for eroding contact (<em class="replaceable"><code>Option</code></em> =
+ENTS, ESS, or ESTS):</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">V1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Symmetry plane option. The purpose of this
+option is to retain the correct boundary conditions in a model with symmetry.
+ </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Off (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Do not include faces with normal boundary constraints
+(e.g., segments of brick elements on a symmetry plane).</p></td></tr></tbody></table></div></div><p>
+</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">V2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Erosion/interior node option.  </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Erosion occurs only at exterior boundaries.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Interior eroding contact can occur (default).</p></td></tr></tbody></table></div></div><p>
+</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">V3</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Adjacent material treatment for solid elements.
+ </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Solid element faces are included only for free
+boundaries (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Solid element faces are included if they are
+on the boundary of the material subset. This option also allows erosion within
+a body and the consequent treatment of contact.</p></td></tr></tbody></table></div></div><p>
+</p></td></tr></tbody></table></div></div><p>
+</p><p>Additional input for rigid contact (<em class="replaceable"><code>Option</code></em> =
+RNTR or ROTR):</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">V1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Data curve id for force versus deflection behavior
+[<a class="link" href="Hlp_C_EDCURVE.html" title="EDCURVE"><span class="command"><strong>EDCURVE</strong></span></a>].  Also specify <em class="replaceable"><code>V2</code></em>.
+(No default.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">V2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Force calculation method for rigid contact.
+(No default.)       </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Data curve gives total normal force on surface
+versus maximum penetration of any node (only applicable for <em class="replaceable"><code>Option</code></em> =
+ROTR).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Data curve gives normal force on each node versus
+penetration of node through the surface (<em class="replaceable"><code>Option</code></em> =
+RNTR or ROTR).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">3</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Data curve gives normal pressure versus penetration
+of node through the surface (only applicable for <em class="replaceable"><code>Option</code></em> =
+RNTR).</p></td></tr></tbody></table></div></div><p>
+</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">V3</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Unloading stiffness for rigid contact. This
+should not be larger than the maximum value used in the data curve. The default
+is to unload along the data curve (specified on <em class="replaceable"><code>V1</code></em>).</p></td></tr></tbody></table></div></div><p>
+</p><p>Additional input for tiebreak surface-to-surface contact (<em class="replaceable"><code>Option</code></em> =
+TSTS). <em class="replaceable"><code>V1</code></em> and <em class="replaceable"><code>V2</code></em> are
+used to calculate the failure criterion:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">V1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Normal failure stress. (No default.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">V2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Shear failure stress. (No default.)</p></td></tr></tbody></table></div></div><p>
+</p><p>Additional input for tiebreak nodes-to-surface contact (<em class="replaceable"><code>Option</code></em> =
+TNTS). <em class="replaceable"><code>V1</code></em> through <em class="replaceable"><code>V4</code></em> are
+used to calculate the failure criterion:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">V1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Normal failure force. Only tensile failure
+(i.e., tensile normal forces) will be considered in the failure criterion.
+(No default.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">V2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Shear failure force. (No default.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">V3</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Exponent for normal force. (Defaults to 2.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">V4</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Exponent for shear force. (Defaults to 2.)</p></td></tr></tbody></table></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>BTIME</code></em>
+</b></span></dt><dd><p>Birth time for which contact definition will become active
+(defaults to 0.0).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>DTIME</code></em>
+</b></span></dt><dd><p>Death time for which contact definition will become inactive
+(defaults to 1e21).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>BOXID1</code></em>
+</b></span></dt><dd><p>Contact volume as defined using the <a class="link" href="Hlp_C_EDBX.html" title="EDBX"><span class="command"><strong>EDBX</strong></span></a> command
+(valid only when defining contact with parts or assemblies).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>BOXID2</code></em>
+</b></span></dt><dd><p>Target volume as defined using the <a class="link" href="Hlp_C_EDBX.html" title="EDBX"><span class="command"><strong>EDBX</strong></span></a> command
+(valid only when defining contact with parts or assemblies).</p></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="EDCGEN.default"></a><h3>Command Default</h3><p>No contact defined.</p></div></div><div class="refsect1" title="Notes"><a name="EDCGEN.notes"></a><h2>Notes</h2><p>The frictional coefficient used for contact is determined from <em class="replaceable"><code>FS</code></em>, <em class="replaceable"><code>FD</code></em>,
+and <em class="replaceable"><code>DC</code></em>, and is assumed to be dependent on the relative
+velocity of the surfaces in contact:</p><div class="blockquote"><blockquote class="blockquote"><p>&micro;c = FD+(FS-FD) e<sup>-DC(v<sub>rel</sub>)</sup>
+</p></blockquote></div><p>
+</p><p>The coefficient for viscous friction, <em class="replaceable"><code>VC</code></em>,
+is necessary to limit the friction force to a maximum. A limiting force is
+computed: </p><div class="blockquote"><blockquote class="blockquote"><p>F<sub>lim</sub> = VC(A<sub>cont</sub>)</p></blockquote></div><p>
+</p><p>where A<sub>cont</sub> is the area of the segment contacted
+by the node in contact. The suggested value for <em class="replaceable"><code>VC</code></em> is
+to use the yield stress in shear:</p><div class="blockquote"><blockquote class="blockquote"><p>
+
+<span class="inlineequation" style="&#xA;          vertical-align:-17.000000px"><img src="graphics/eq50ae7c27-4c64-4650-9376-0193270dc9e4.svg"></span>
+</p></blockquote></div><p>
+</p><p>where &#963;<sub>o</sub> is the yield stress of the contacted
+material.</p><p>If a part number is input for <em class="replaceable"><code>Cont</code></em> or <em class="replaceable"><code>Targ</code></em>,
+it must represent a valid explicit dynamics part definition. For example,
+an elastic material for explicit dynamics requires EX, NUXY, and DENS. If
+any part of the material definition is missing for the part, the EDCGEN command
+will be ignored.</p><p>In addition to the contact parameters on this command, you can specify
+penalty scale factors for the contact (slave) and target (master) surfaces
+by using the <a class="link" href="Hlp_C_EDCMORE.html" title="EDCMORE"><span class="command"><strong>EDCMORE</strong></span></a> command.</p><p>Duplicate definitions of the same contact type on the same components
+or parts will cause only one contact to be defined (previous definitions will
+be ignored). Duplicate definitions of different contact types on the same
+components or parts will cause multiple contact types to be defined.</p><p>Use the <a class="link" href="Hlp_C_EDCLIST.html" title="EDCLIST"><span class="command"><strong>EDCLIST</strong></span></a> and <a class="link" href="Hlp_C_EDDC.html" title="EDDC"><span class="command"><strong>EDDC</strong></span></a> commands
+to list and delete contact surface specifications. Use the <a class="link" href="Hlp_C_EDPC.html" title="EDPC"><span class="command"><strong>EDPC</strong></span></a> command
+to select and plot contact entities. </p><p>The EDCGEN command is not supported in an explicit dynamic full restart
+analysis (<a class="link" href="Hlp_C_EDSTART.html" title="EDSTART"><span class="command"><strong>EDSTART</strong></span></a>,3). Thus, you cannot add new contact
+specifications in a full restart. You can use the  <a class="link" href="Hlp_C_EDCLIST.html" title="EDCLIST"><span class="command"><strong>EDCLIST</strong></span></a> command
+to list any contact specifications that were defined in the previous analysis.</p><p>EDCGEN is also valid in SOLUTION.</p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p></div><div class="refsect1" title="Menu Paths"><a name="EDCGEN.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;LS-DYNA Options&gt;Contact&gt;Define Contact</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

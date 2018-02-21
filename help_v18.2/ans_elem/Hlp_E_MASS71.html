@@ -1,0 +1,105 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:22-04:00"><title>MASS71</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_SOLID70.html" title="SOLID70"><link rel="next" href="Hlp_E_PLANE75.html" title="PLANE75"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="MASS71"><a name="MASS71"></a><div class="titlepage"></div><a class="indexterm" name="d0e43340"></a><span class="refentrytitle">
+<span class="structname">MASS71</span>   </span><div class="refnamediv"><p><br><b class="refpurpose">Thermal
+Mass</b><div class="refclass">
+   <div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+   <div class=""><div class="application"><span class="application">
+    <a class="link" href="Hlp_E_MASS71.html#adqNxq20mcm" title="MASS71 Product Restrictions">Product Restrictions</a>
+   </span></div></div>
+  </div></p></div><div class="refsect1" title="MASS71 Element Description"><a name="ELEMmass71desc"></a><h2>MASS71 Element Description</h2><p>
+<span class="structname">MASS71</span> is a point element having one
+degree of freedom, temperature, at the node.  The element may be used
+in a transient thermal analysis to represent a body having thermal
+capacitance capability but negligible internal thermal resistance,
+that is, no significant temperature gradients within the body.  The
+element also has a temperature-dependent heat generation capability.
+ The lumped thermal mass element is applicable to a 1-D, 2-D, or 3-D
+steady-state or transient thermal analysis.  See <a href="../ans_thry/thy_el71.html" class="olink">MASS71</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for
+more details about this element.</p><p>In a steady-state solution the element acts only as a temperature-dependent
+heat source or sink.  Other elements having special thermal applications
+are the <a class="link" href="Hlp_E_COMBIN14.html" title="COMBIN14"><span class="structname">COMBIN14</span></a> and <a class="link" href="Hlp_E_COMBIN40.html" title="COMBIN40"><span class="structname">COMBIN40</span></a> elements.  These elements, which are normally used in structural
+models, may be used for thermally analogous situations.</p><p>If the model containing the thermal mass element is also to
+be analyzed structurally, the thermal element should be replaced by
+an equivalent structural element (such as <a class="link" href="Hlp_E_MASS21.html" title="MASS21"><span class="structname">MASS21</span></a>)</p><div class="figure"><a name="ag343lmm"></a><p class="title"><b>Figure&nbsp;71.1:&nbsp;&nbsp;MASS71 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM71-1.svg" alt="MASS71 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="MASS71 Input Data"><a name="acqNxq2bfmcm"></a><h2>MASS71 Input Data</h2><p>The lumped thermal mass element is defined by one node (as shown
+in <a class="xref" href="Hlp_E_MASS71.html#ag343lmm" title="Figure&nbsp;71.1:&nbsp;&nbsp;MASS71 Geometry">Figure&nbsp;71.1:&nbsp;MASS71 Geometry</a>) and a thermal capacitance (Heat/Degree).
+ When used with axisymmetric elements, the thermal capacitance should
+be input on a full 360&deg; basis.  The thermal capacitance (CON1)
+may be input as a real constant or calculated (KEYOPT(3)) from the
+real constant volume (CON1) and either the DENS and C or ENTH material
+properties.  KEYOPT(3) determines whether CON1 is interpreted as volume
+or thermal capacitance.</p><p>The heat generation is applied directly as a nodal load and
+is not first multiplied by the volume.  Thus, if KEYOPT(3) = 0 (that
+is, when using the specific heat matrix), the heat generation must
+be adjusted to account for the volume.  For an axisymmetric analysis
+the heat generation rate should be input on a full 360&deg; basis.
+ A temperature-dependent heat generation rate of the following polynomial
+form may be input:</p><div class="informalequation"><a name="eq60d6fce7-a72f-44e9-8dd1-2fea7e2c34f6"></a><div><img src="graphics/eq60d6fce7-a72f-44e9-8dd1-2fea7e2c34f6.svg"></div></div><p>where T is the absolute temperature from the previous substep.
+ The constants, A<sub>1</sub> through A<sub>6</sub>, should be entered as real constants.  If any of the constants A<sub>2</sub> through A<sub>6</sub> are nonzero, KEYOPT(4)
+must be set to 1.  Also, if temperatures are not absolute, the offset
+conversion [<a href="../ans_cmd/Hlp_C_TOFFST.html" class="olink"><span class="command"><strong>TOFFST</strong></span></a>] must be specified.  </p><p>Alternately, the heat generation expression may be defined as a temperature-dependent material
+   property (QRATE) with the <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> commands. QRATE can be input as numerical values
+   or as <a href="../ans_bas/bas_tabinputmat.html" class="olink">tabular inputs</a> evaluated
+   as a function of temperature, time, and location.</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_MASS71.html#avYAg245lmm" title="MASS71 Input Summary">"MASS71 Input Summary"</a>.  A general description of element input is
+given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>. See <a class="xref" href="Hlp_E_continuumelems.html#axele520jjw" title="5.1.5.2.&nbsp;Harmonic Axisymmetric Elements">Harmonic Axisymmetric Elements</a> for more details.</p><div class="refsect2" title="MASS71 Input Summary"><a name="avYAg245lmm"></a><h3>MASS71 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>TEMP</p></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>CON1, A1, A2, A3, A4, A5</td></tr><tr><td>A6</td></tr><tr><td>See <a class="xref" href="Hlp_E_MASS71.html#mass71realconstants" title="Table&nbsp;71.1:&nbsp;&nbsp;MASS71 Real Constants">Table&nbsp;71.1:&nbsp;MASS71 Real Constants</a> for a description
+of the real constants</td></tr></table></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p>
+<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: QRATE, DENS, C, ENTH
+if KEYOPT(3) = 0 or QRATE if KEYOPT(3) = 1</p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><p>None (heat generation may be defined as a function
+of temperature by using real constants A1, A2, ... or by the QRATE
+material property definition.)</p></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth
+and death</a>
+</td></tr><tr><td>
+<a href="../ans_str/Hlp_G_STRnlbasin.html" class="olink">Nonlinearity</a> if heat generation is defined as a function
+of temperature</td></tr></table></dd><dt><span><b class="term">KEYOPT(3)</b></span></dt><dd><p>Interpretation of real constant CON1:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Interpret CON1 as volume
+(with either DENS and C or ENTH supplied as material properties)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Interpret CON1 as thermal
+capacitance (DENS*C*volume)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(4)</b></span></dt><dd><p>Temperature dependent heat generation:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>No temperature-dependent
+heat generation (required if all real constants A2-A6 are zero)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Include temperature-dependent
+heat generation (required if any real constants A2-A6 are nonzero)</p></dd></dl></div></div></dd></dl></div></div><div class="table"><a name="mass71realconstants"></a><p class="title"><b>Table&nbsp;71.1:&nbsp;&nbsp;MASS71 Real Constants</b></p><div class="table-contents"><table summary="MASS71 Real Constants" border="1" width="95%"><colgroup><col width="12%" class="col1"><col width="17%" class="col2"><col width="71%" class="col3"></colgroup><thead><tr><th align="center" valign="top">No.</th><th align="center" valign="top">Name</th><th align="center" valign="top">Description</th></tr></thead><tbody><tr><td align="center">1</td><td>CON1</td><td>Volume or thermal
+capacitance (see KEYOPT(3))</td></tr><tr><td align="center">2</td><td>A1</td><td>Constant for temperature function</td></tr><tr><td align="center">3</td><td>A2</td><td>Constant for temperature function</td></tr><tr><td align="center">4</td><td>A3</td><td>Constant for temperature
+function</td></tr><tr><td align="center">5</td><td>A4</td><td>Constant for
+temperature function</td></tr><tr><td align="center">6</td><td>A5</td><td>Constant for temperature function</td></tr><tr><td align="center">7</td><td>A6</td><td>Constant for temperature function</td></tr></tbody></table></div></div><br class="table-break"></div></div><div class="refsect1" title="MASS71 Output Data"><a name="acqNxq32fmcm"></a><h2>MASS71 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal temperatures included in the overall nodal solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_MASS71.html#afa1r158jla" title="Table&nbsp;71.2:&nbsp;&nbsp;MASS71 Element Output Definitions">Table&nbsp;71.2:&nbsp;MASS71 Element Output Definitions</a>
+</p></li></ul></div><p>
+</p><p>The heat generation is in units of Heat/Time and is positive
+into the node.  A general description of solution output is given
+in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a>.  See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways to view
+results.</p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="afa1r158jla"></a><p class="title"><b>Table&nbsp;71.2:&nbsp;&nbsp;MASS71 Element Output Definitions</b></p><div class="table-contents"><table summary="MASS71 Element Output Definitions" border="1" width="95%"><colgroup><col width="120" class="col1"><col width="312" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th align="center">Name</th><th align="center">Definition</th><th align="center">O</th><th align="center">R</th></tr></thead><tbody><tr><td>EL</td><td>Element Number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NODE</td><td>Node I</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>XC,
+YC, ZC</td><td>Location where results are reported</td><td align="center">Y</td><td align="center">
+<a class="xref" href="Hlp_E_MASS71.html#mass71.tab.2.ft.1">1</a>
+</td></tr><tr><td>TEMP</td><td>Element (node) temperature</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>HEAT</td><td>Heat generation rate into node</td><td align="center">Y</td><td align="center">Y</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="mass71.tab.2.ft.1"></a>Available only at centroid
+as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item.</p></li></ol></div><p>
+<a class="xref" href="Hlp_E_MASS71.html#asIK8g2b7lmm" title="Table&nbsp;71.3:&nbsp;&nbsp;MASS71 Item and Sequence Numbers">Table&nbsp;71.3:&nbsp;MASS71 Item and Sequence Numbers</a> lists output available through
+the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method.
+ See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General Postprocessor
+(POST1)</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in
+this reference for more information.  The following notation is used
+in <a class="xref" href="Hlp_E_MASS71.html#asIK8g2b7lmm" title="Table&nbsp;71.3:&nbsp;&nbsp;MASS71 Item and Sequence Numbers">Table&nbsp;71.3:&nbsp;MASS71 Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="Hlp_E_MASS71.html#afa1r158jla" title="Table&nbsp;71.2:&nbsp;&nbsp;MASS71 Element Output Definitions">Table&nbsp;71.2:&nbsp;MASS71 Element Output Definitions</a>
+</p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element
+data</p></dd></dl></div></div><p>
+</p><div class="table"><a name="asIK8g2b7lmm"></a><p class="title"><b>Table&nbsp;71.3:&nbsp;&nbsp;MASS71 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="MASS71 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="72" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"></colgroup><thead><tr><th rowspan="2" align="center" valign="middle">Output Quantity
+Name</th><th colspan="2" align="center">
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th align="center">Item</th><th align="center">E</th></tr></thead><tbody><tr><td align="center">HEAT</td><td align="center">SMISC</td><td align="center">1</td></tr><tr><td align="center">TEMP</td><td align="center">SMISC</td><td align="center">2</td></tr></tbody></table></div></div><br class="table-break"></div><div class="refsect1" title="MASS71 Assumptions and Restrictions"><a name="acqNxq39dmcm"></a><h2>MASS71 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>When using the element with a temperature-dependent
+heat generation in a steady-state solution, an iterative solution
+is required. </p></li><li class="listitem"><p>The heat generation is calculated at the uniform temperature
+for the first substep.</p></li></ul></div></div><div class="refsect1" title="MASS71 Product Restrictions"><a name="adqNxq20mcm"></a><h2>MASS71 Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific
+restrictions apply to this element in addition to the general assumptions
+and restrictions given in the previous section.</p><p title="ANSYS Mechanical Pro"><b>ANSYS Mechanical Pro&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li></ul></div><p title="ANSYS Mechanical Pro">
+   </p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+   </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

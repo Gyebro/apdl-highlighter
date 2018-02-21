@@ -1,0 +1,125 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:14-04:00"><title>COMBIN40</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_COMBIN39.html" title="COMBIN39"><link rel="next" href="Hlp_E_INFIN47.html" title="INFIN47"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="COMBIN40"><a name="COMBIN40"></a><div class="titlepage"></div><a class="indexterm" name="d0e31717"></a><span class="refentrytitle"><span class="structname">COMBIN40</span> </span><div class="refnamediv"><p><br><b class="refpurpose">Combination</b><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  DesSpc | &#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_E_COMBIN40.html#aZZ6vq247mcm" title="COMBIN40 Product Restrictions">Product Restrictions</a></span></div></div></div></p></div><div class="refsect1" title="COMBIN40 Element Description"><a name="ELEMcombin40descfdb"></a><h2>COMBIN40 Element Description</h2><p>COMBIN40 is a combination of a spring-slider and damper in parallel,
+coupled to a gap in series.  A mass can be associated with one or
+both nodal points.  The element has one degree of freedom at each
+node, either a nodal translation, rotation, pressure, or temperature.
+ The mass, springs, slider, damper, and/or the gap may be removed
+from the element.  The element may be used in any analysis.  See <a href="../ans_thry/thy_el40.html" class="olink">COMBIN40</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for
+more details about this element.  Other elements having damper, slider,
+or gap capabilities are <a class="link" href="Hlp_E_COMBIN14.html" title="COMBIN14"><span class="structname">COMBIN14</span></a>, <a class="link" href="Hlp_E_MATRIX27.html" title="MATRIX27"><span class="structname">MATRIX27</span></a>, <a class="link" href="Hlp_E_COMBIN37.html" title="COMBIN37"><span class="structname">COMBIN37</span></a>, <span>and <a class="link" href="Hlp_E_COMBIN39.html" title="COMBIN39"><span class="structname">COMBIN39</span></a></span>.</p><div class="figure"><a name="atQXf27clmm"></a><p class="title"><b>Figure&nbsp;40.1:&nbsp;&nbsp;COMBIN40 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM40-1.svg" alt="COMBIN40 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="COMBIN40 Input Data"><a name="aZZ6vqf3mcm"></a><h2>COMBIN40 Input Data</h2><p>The combination element is shown in <a class="xref" href="Hlp_E_COMBIN40.html#atQXf27clmm" title="Figure&nbsp;40.1:&nbsp;&nbsp;COMBIN40 Geometry">Figure&nbsp;40.1:&nbsp;COMBIN40 Geometry</a>.  The element is defined by two nodes, two spring constants K1
+and K2 (Force/Length), a damping coefficient C (Force*Time/Length),
+a mass M (Force*Time<sup>2</sup>/Length), a gap size
+GAP (Length), and a limiting sliding force FSLIDE (Force). (Units
+listed here apply only to KEYOPT(3) = 0, 1, 2, or 3.)</p><p>If the element is used in an axisymmetric analysis, these values
+(except GAP) should be on a full 360&deg; basis.  A spring constant
+of 0.0 (for either K1 or K2, but not both) or a damping coefficient
+of 0.0 will remove these capabilities from the element.  The mass,
+if any, may be applied at node I or node J or it may be equally distributed
+between the nodes.</p><p>The gap size is defined by the fourth element real constant.
+ If positive, a gap of this size exists.  If negative, an initial
+interference of this amount exists.  If GAP = 0.0, the gap capability
+is removed from the element.  The FSLIDE value represents the absolute
+value of the spring force that must be exceeded before sliding occurs.
+ If FSLIDE is 0.0, the sliding capability of the element is removed,
+that is, a rigid connection is assumed.</p><p>A <span class="quote">"<span class="quote">breakaway</span>"</span> feature is available to allow the
+element stiffness (K1) to drop to zero once a limiting force |FSLIDE|
+has been reached.  The limit is input as -|FSLIDE| and is applicable
+to both tensile breaking and compressive crushing.  A <span class="quote">"<span class="quote">lockup</span>"</span> feature may be selected with KEYOPT(1).  This feature removes the
+gap opening capability once the gap has closed.</p><p>The force-deflection relationship for the combination element
+is as shown in <a class="xref" href="Hlp_E_COMBIN40.html#aKRXfblmm" title="Figure&nbsp;40.2:&nbsp;&nbsp;COMBIN40 Behavior">Figure&nbsp;40.2:&nbsp;COMBIN40 Behavior</a> (for no damping).  If the
+initial gap is identically zero, the element responds as a spring-damper-slider
+element having both tension and compression capability.  If the gap
+is not initially zero, the element responds as follows:  when the
+spring force (F1+F2) is negative (compression), the gap remains closed
+and the element responds as a spring-damper parallel combination.
+ As the spring force (F1) increases beyond the FSLIDE value, the element
+slides and the F1 component of the spring force remains constant.
+ If FSLIDE is input with a negative sign, the stiffness drops to zero
+and the element moves with no resisting F1 spring force.  If the spring
+force becomes positive (tension), the gap opens and no force is transmitted.
+ In a thermal analysis, the temperature or pressure degree of freedom
+acts in a manner analogous to the displacement.</p><p>The element has only the degrees of freedom selected with KEYOPT(3).
+ The KEYOPT(3) = 7 and 8 options (pressure and temperature DOFs) allow
+the element to be used in a thermal analysis (with thermal equivalent
+real constants).</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_COMBIN40.html#aoRXf26dlmm" title="COMBIN40 Input Summary">"COMBIN40 Input Summary"</a>.  A general description of element input is
+given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>.</p><div class="refsect2" title="COMBIN40 Input Summary"><a name="aoRXf26dlmm"></a><h3>COMBIN40 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>UX, UY, UZ, ROTX, ROTY, ROTZ, PRES, or TEMP  (depending
+on KEYOPT(3) below)</p></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><p>Units for real constants will depend on the KEYOPT(3)
+setting.</p><table border="0" summary="Simple list" class="simplelist"><tr><td>K1 - Spring constant</td></tr><tr><td>C - Damping coefficient</td></tr><tr><td>M - Mass</td></tr><tr><td>GAP - Gap size</td></tr><tr><td>FSLIDE - Limiting sliding force</td></tr><tr><td>K2 - Spring constant (par to slide)</td></tr></table><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;If GAP is exactly zero, the interface cannot open.  If
+GAP is negative, there is an initial interference.  If FSLIDE is exactly
+zero, the sliding capability is removed.  If FSLIDE is negative, the <span class="quote">"<span class="quote">breakaway</span>"</span> feature is used.</p><hr></div></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p><a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: ALPD, BETD, <span>DMPR</span></p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td><a href="../ans_thry/thy_tool10.html#eltadaptive" class="olink">Adaptive
+descent</a></td></tr><tr><td><a href="../ans_str/Hlp_G_STRnlbasin.html" class="olink">Nonlinearity</a> (unless both GAP and FSLIDE equal zero)</td></tr></table></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Gap behavior:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Standard gap capability</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Gap remains closed after
+initial contact (<span class="quote">"<span class="quote">lockup</span>"</span>)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(3)</b></span></dt><dd><p>Element degrees of freedom:</p><div><div class="variablelist"><dl><dt><span><b class="term">0, 1 --&nbsp;</b></span></dt><dd><p>UX  (Displacement along
+nodal X axes)</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>UY  (Displacement along
+nodal Y axes)</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>UZ  (Displacement along
+nodal Z axes)</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>ROTX  (Rotation about
+nodal X axes)</p></dd><dt><span><b class="term">5&nbsp;--&nbsp;</b></span></dt><dd><p>ROTY  (Rotation about
+nodal Y axes)</p></dd><dt><span><b class="term">6&nbsp;--&nbsp;</b></span></dt><dd><p>ROTZ  (Rotation about
+nodal Z axes)</p></dd><dt><span><b class="term">7&nbsp;--&nbsp;</b></span></dt><dd><p>PRES</p></dd><dt><span><b class="term">8&nbsp;--&nbsp;</b></span></dt><dd><p>TEMP</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(4)</b></span></dt><dd><p>Element output:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Produce element printout
+for all status conditions</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Suppress element printout
+if gap is open (STAT = 3)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(6)</b></span></dt><dd><p>Mass location:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Mass at node I</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Mass equally distributed
+between nodes I and J</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Mass at node J</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(7)</b></span></dt><dd><p>Element level time increment control:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>No control</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Predictions are made to
+achieve a reasonable time (or load) increment</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="COMBIN40 Output Data"><a name="aZZ6vq165mcm"></a><h2>COMBIN40 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal degree of freedom results included in the overall
+nodal solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_COMBIN40.html#aKRXfblmm" title="Figure&nbsp;40.2:&nbsp;&nbsp;COMBIN40 Behavior">Figure&nbsp;40.2:&nbsp;COMBIN40 Behavior</a></p></li></ul></div><p>Several items are illustrated in <a class="xref" href="Hlp_E_COMBIN40.html#aKRXfblmm" title="Figure&nbsp;40.2:&nbsp;&nbsp;COMBIN40 Behavior">Figure&nbsp;40.2:&nbsp;COMBIN40 Behavior</a>.
+ The displacement direction corresponds to the nodal coordinate direction
+selected with KEYOPT(3).  The value STR is the spring displacement
+at the end of this substep, STR = U(J)-U(I)+GAP-SLIDE.  This value
+is used in determining the spring force.  For an axisymmetric analysis,
+the element forces are expressed on a full 360&deg; basis.  The value
+SLIDE is the accumulated amount of sliding at the end of this substep
+relative to the starting location.</p><p>STAT describes the status of the element at the end of this
+substep for use in the next substep.  If STAT = 1, the gap is closed
+and no sliding occurs.  If STAT = 3, the gap is open.  If STAT = 3
+at the end of a substep, an element stiffness of zero is being used.
+ A value of STAT = +2 indicates that node J moves to the right of
+node I.  STAT = -2 indicates a negative slide.  A general description
+of solution output is given in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a>.  See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for
+ways to view results.</p><div class="figure"><a name="aKRXfblmm"></a><p class="title"><b>Figure&nbsp;40.2:&nbsp;&nbsp;COMBIN40 Behavior</b></p><div class="figure-contents"><div><img src="graphics/gELEM40-2.svg" alt="COMBIN40 Behavior"></div></div></div><p><br class="figure-break"></p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="alPQ2k31cepc3"></a><p class="title"><b>Table&nbsp;40.1:&nbsp;&nbsp;COMBIN40 Element Output Definitions</b></p><div class="table-contents"><table summary="COMBIN40 Element Output Definitions" border="1" width="95%"><colgroup><col width="96" class="col1"><col width="264" class="col2"><col width="72" align="center" class="col3"><col width="72" align="center" class="col4"></colgroup><thead><tr><th align="center">Name</th><th align="center">Definition</th><th align="center">O</th><th align="center">R</th></tr></thead><tbody><tr><td>EL</td><td>Element Number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Nodes - I, J</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>XC, YC,
+ZC</td><td>Location where results are reported</td><td align="center">Y</td><td align="center"><a class="xref" href="Hlp_E_COMBIN40.html#combin40.tab.2.ft.2">2</a></td></tr><tr><td>SLIDE</td><td>Amount of sliding</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>F1</td><td>Force in spring 1</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>STR1</td><td>Relative displacement of spring 1</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>STAT</td><td>Element status</td><td align="center"><a class="xref" href="Hlp_E_COMBIN40.html#combin40.tab.2.ft.1">1</a></td><td align="center"><a class="xref" href="Hlp_E_COMBIN40.html#combin40.tab.2.ft.1">1</a></td></tr><tr><td>OLDST</td><td>STAT value of the previous time step</td><td align="center"><a class="xref" href="Hlp_E_COMBIN40.html#combin40.tab.2.ft.1">1</a></td><td align="center"><a class="xref" href="Hlp_E_COMBIN40.html#combin40.tab.2.ft.1">1</a></td></tr><tr><td>UI</td><td>Displacement of node I</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>UJ</td><td>Displacement of node J</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>F2</td><td>Force in
+spring 2</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>STR2</td><td>Relative displacement
+of spring 2</td><td align="center">Y</td><td align="center">Y</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="combin40.tab.2.ft.1"></a>If the value of STAT is:</p><p> 1 - Gap closed (no sliding)</p><p> 2 - Sliding right
+(node J moving to right of node I)</p><p>-2 - Sliding left (node
+J moving to left of node I)</p><p> 3 - Gap open</p></li><li class="listitem"><p><a name="combin40.tab.2.ft.2"></a>Available only at centroid
+as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item.</p></li></ol></div><p><a class="xref" href="Hlp_E_COMBIN40.html#anb18g2edlmm" title="Table&nbsp;40.2:&nbsp;&nbsp;COMBIN40 Item and Sequence Numbers">Table&nbsp;40.2:&nbsp;COMBIN40 Item and Sequence Numbers</a> lists output available through
+the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method.
+ See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General Postprocessor
+(POST1)</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in
+this reference for more information.  The following notation is used
+in <a class="xref" href="Hlp_E_COMBIN40.html#anb18g2edlmm" title="Table&nbsp;40.2:&nbsp;&nbsp;COMBIN40 Item and Sequence Numbers">Table&nbsp;40.2:&nbsp;COMBIN40 Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="Hlp_E_COMBIN40.html#alPQ2k31cepc3" title="Table&nbsp;40.1:&nbsp;&nbsp;COMBIN40 Element Output Definitions">Table&nbsp;40.1:&nbsp;COMBIN40 Element Output Definitions</a></p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item  label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element
+data</p></dd></dl></div></div><div class="table"><a name="anb18g2edlmm"></a><p class="title"><b>Table&nbsp;40.2:&nbsp;&nbsp;COMBIN40 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="COMBIN40 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="72" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"></colgroup><thead><tr><th rowspan="2" align="center" valign="middle">Output Quantity
+Name</th><th colspan="2" align="center"><a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th align="center">Item</th><th align="center">E</th></tr></thead><tbody><tr><td align="center">F1</td><td align="center">SMISC</td><td align="center">1</td></tr><tr><td align="center">F2</td><td align="center">SMISC</td><td align="center">2</td></tr><tr><td align="center">STAT</td><td align="center">NMISC</td><td align="center">1</td></tr><tr><td align="center">OLDST</td><td align="center">NMISC</td><td align="center">2</td></tr><tr><td align="center">STR1</td><td align="center">NMISC</td><td align="center">3</td></tr><tr><td align="center">STR2</td><td align="center">NMISC</td><td align="center">4</td></tr><tr><td align="center">UI</td><td align="center">NMISC</td><td align="center">5</td></tr><tr><td align="center">UJ</td><td align="center">NMISC</td><td align="center">6</td></tr><tr><td align="center">SLIDE</td><td align="center">NMISC</td><td align="center">7</td></tr></tbody></table></div></div><br class="table-break"></div><div class="refsect1" title="COMBIN40 Assumptions and Restrictions"><a name="aZZ6vq1d6mcm"></a><h2>COMBIN40 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The element has only one degree of freedom per node
+which is specified in the nodal coordinate system (see <a class="xref" href="Hlp_E_CH2_3.html#aOVqq14atlm" title="3.3.2.&nbsp;Elements That Operate in the Nodal Coordinate System">Elements That Operate in the Nodal Coordinate System</a>).</p></li><li class="listitem"><p>The element assumes only a 1-D action. </p></li><li class="listitem"><p>Nodes I and J may be anywhere in space (preferably
+coincident).</p></li><li class="listitem"><p>The element is defined such that a positive displacement
+of node J relative to node I tends to open the gap.  If, for a given
+set of conditions, nodes I and J are interchanged, the gap element
+acts as a hook element, i.e., the gap closes as the nodes separate.</p></li><li class="listitem"><p>The real constants for this element can not be changed
+from their initial values.</p></li><li class="listitem"><p>The element can not be deactivated with the <a href="../ans_cmd/Hlp_C_EKILL.html" class="olink"><span class="command"><strong>EKILL</strong></span></a> command.</p></li><li class="listitem"><p>The nonlinear options of the element operate only
+in static and nonlinear transient dynamic (<a href="../ans_cmd/Hlp_C_TRNOPT.html" class="olink"><span class="command"><strong>TRNOPT</strong></span></a>,FULL) analyses.  </p></li><li class="listitem"><p>If used in other analysis types, the element maintains
+its initial status throughout the analysis.</p></li><li class="listitem"><p>A 0.0 value for GAP or FSLIDE removes the gap or sliding
+capability, respectively, from the element.</p></li><li class="listitem"><p>The mass, if any, is 1-D. </p></li><li class="listitem"><p>The element requires an iterative solution if GAP
+and/or FSLIDE are nonzero.</p></li><li class="listitem"><p>A stiffness (K1 or K2) must be defined if the gap
+capability is used.  Unreasonably high stiffness values should be
+avoided. </p></li><li class="listitem"><p>The rate of convergence may decrease as the stiffness
+increases.  If FSLIDE is not equal to zero, the element is nonconservative
+as well as nonlinear.  Nonconservative elements require that the load
+be applied very gradually, along the actual load history path, and
+in the proper sequence (if multiple loadings exist).  </p></li><li class="listitem"><p>Only the lumped mass matrix is available.</p></li></ul></div></div><div class="refsect1" title="COMBIN40 Product Restrictions"><a name="aZZ6vq247mcm"></a><h2>COMBIN40 Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific
+restrictions apply to this element in addition to the general assumptions
+and restrictions given in the previous section.</p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The PRES DOF (KEYOPT(3) = 7) is not available.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+   </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

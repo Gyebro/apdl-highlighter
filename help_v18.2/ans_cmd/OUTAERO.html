@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:05-04:00"><title>OUTAERO</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_O_TOC.html" title="O Commands"><link rel="prev" href="Hlp_C_OPNCONTROL.html" title="OPNCONTROL"><link rel="next" href="Hlp_C_OUTOPT.html" title="OUTOPT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="OUTAERO"><a name="OUTAERO"></a><div class="titlepage"></div><a class="indexterm" name="d0e191442"></a><span class="refentrytitle"><span class="command"><strong>OUTAERO</strong></span></span><div class="refnamediv"><p><span class="command"><strong>OUTAERO</strong></span>, <em class="replaceable"><code>SENAME</code></em>, <em class="replaceable"><code>TIMEB</code></em>, <em class="replaceable"><code>DTIME</code></em><br><b class="refpurpose">Outputs the superelement matrices and load vectors to formatted
+files for aeroelastic analysis.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="OUTAERO.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>SENAME</code></em></b></span></dt><dd><p>Name of the superelement that models the wind turbine supporting
+structure. Defaults to the current Jobname.</p></dd><dt><span><b class="term"><em class="replaceable"><code>TIMEB</code></em></b></span></dt><dd><p>First time at which the load vector is formed (defaults to
+be read from <span class="filename"><strong>SENAME.sub</strong></span>).</p></dd><dt><span><b class="term"><em class="replaceable"><code>DTIME</code></em></b></span></dt><dd><p>Time step size of the load vectors (defaults to be read from <span class="filename"><strong>SENAME.sub</strong></span>).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="OUTAERO.notes"></a><h2>Notes</h2><p>Both TIMEB and DTIME must be blank if the time data is to be read from
+the <span class="filename"><strong>SENAME.sub</strong></span> file.</p><p>The matrix file (<span class="filename"><strong>SENAME.SUB</strong></span>) must be available
+from the substructure generation run before issuing this command. This superelement
+that models the wind turbine supporting structure must contain only one master
+node with six freedoms per node: UX, UY, UZ, ROTX, ROTY, ROTZ. The master
+node represents the connection point between the turbine and the supporting
+structure. </p><p>This command will generate four files that are exported to the aeroelastic
+code for integrated wind turbine analysis. The four files are <span class="filename"><strong>Jobname.GNK</strong></span> for
+the generalized stiffness matrix, <span class="filename"><strong>Jobname.GNC</strong></span> for the
+generalized damping matrix, <span class="filename"><strong>Jobname.GNM</strong></span> for the generalized
+mass matrix and <span class="filename"><strong>Jobname.GNF</strong></span> for the generalized load
+vectors.</p><p>For detailed information on how to perform a wind coupling analysis,
+see <a href="../ans_adv/advaeroelastic.html" class="olink">Coupling to External Aeroelastic Analysis of Wind Turbines in the <span class="olinkdocname">Mechanical APDL Advanced Analysis Guide</span></a>. </p></div><div class="refsect1" title="Menu Paths"><a name="OUTAERO.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

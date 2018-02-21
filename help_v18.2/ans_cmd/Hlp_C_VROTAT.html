@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:42:01-04:00"><title>VROTAT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_V_TOC.html" title="V Commands"><link rel="prev" href="Hlp_C_VREAD.html" title="*VREAD"><link rel="next" href="Hlp_C_VSBA.html" title="VSBA"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="VROTAT"><a name="VROTAT"></a><div class="titlepage"></div><a class="indexterm" name="d0e299315"></a><span class="refentrytitle"><span class="command"><strong>VROTAT</strong></span></span><div class="refnamediv"><p><span class="command"><strong>VROTAT</strong></span>, <em class="replaceable"><code>NA1</code></em>, <em class="replaceable"><code>NA2</code></em>, <em class="replaceable"><code>NA3</code></em>, <em class="replaceable"><code>NA4</code></em>, <em class="replaceable"><code>NA5</code></em>, <em class="replaceable"><code>NA6</code></em>, <em class="replaceable"><code>PAX1</code></em>, <em class="replaceable"><code>PAX2</code></em>, <em class="replaceable"><code>ARC</code></em>, <em class="replaceable"><code>NSEG</code></em><br><b class="refpurpose">Generates cylindrical volumes by rotating an area pattern about
+an axis.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7volumesldm061600" title="Table&nbsp;2.34:&nbsp;&nbsp;Volumes"><span class="type">Volumes</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="VROTAT.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NA1</code></em>, <em class="replaceable"><code>NA2</code></em>, <em class="replaceable"><code>NA3</code></em>,
+. . . , <em class="replaceable"><code>NA6</code></em></b></span></dt><dd><p>List of areas in the pattern to be rotated (6 maximum if using
+keyboard entry).  Areas must lie to one side of, and in the plane of, the
+axis of rotation.  If <em class="replaceable"><code>NA1</code></em> = P, graphical picking
+is enabled and all remaining command fields are ignored (valid only in the
+GUI).  If <em class="replaceable"><code>NA1</code></em> = ALL, all selected areas will define
+the pattern to be rotated.  A component name may also be substituted for <em class="replaceable"><code>NA1</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>PAX1</code></em>, <em class="replaceable"><code>PAX2</code></em></b></span></dt><dd><p>Keypoints defining the axis about which the area pattern is
+to be rotated.</p></dd><dt><span><b class="term"><em class="replaceable"><code>ARC</code></em></b></span></dt><dd><p>Arc length (in degrees).  Positive follows right-hand rule
+about <em class="replaceable"><code>PAX1</code></em>-<em class="replaceable"><code>PAX2 </code></em>vector.
+ Defaults to 360.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NSEG</code></em></b></span></dt><dd><p>Number of volumes (8 maximum) around circumference.  Defaults
+to minimum required for 90&deg; (maximum) arcs, i.e., 4 for 360&deg;, 3 for
+270&deg;, etc.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="VROTAT.notes"></a><h2>Notes</h2><p>Generates cylindrical volumes (and their corresponding keypoints, lines,
+and areas) by rotating an area pattern (and its associated line and keypoint
+patterns) about an axis.  Keypoint patterns are generated at regular angular
+locations (based on a maximum spacing of 90&deg;).  Line patterns are generated
+at the keypoint patterns.  Arc lines are also generated to connect the keypoints
+circumferentially.  Keypoint, line, area, and volume numbers are automatically
+assigned (beginning with the lowest available values).  Adjacent lines use
+a common keypoint, adjacent areas use a common line, and adjacent volumes
+use a common area.</p><p>To generate a single volume with an arc greater than 180&deg;, <em class="replaceable"><code>NSEG</code></em> must
+be greater than or equal to 2.</p><p>If element attributes have been associated with the input area via the <a class="link" href="Hlp_C_AATT.html" title="AATT"><span class="command"><strong>AATT</strong></span></a> command,
+the opposite area generated by the <span class="command"><strong>VROTAT</strong></span> operation will
+also have those attributes (i.e., the element attributes from the input area
+are copied to the opposite area).  Note that only the area opposite the input
+area will have the same attributes as the input area; the areas adjacent to
+the input area will not.</p><p>If the given areas are meshed or belong to meshed volumes, the 2-D mesh
+can be rotated (extruded) to a 3-D mesh. See the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a> for more information.
+ Note that the <em class="replaceable"><code>NDIV</code></em> argument on the <a class="link" href="Hlp_C_ESIZE.html" title="ESIZE"><span class="command"><strong>ESIZE</strong></span></a> command
+should be set before extruding the meshed areas.</p></div><div class="refsect1" title="Menu Paths"><a name="VROTAT.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Operate&gt;Extrude&gt;Areas&gt;About Axis</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

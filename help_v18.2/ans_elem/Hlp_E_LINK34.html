@@ -1,0 +1,106 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:12-04:00"><title>LINK34</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_LINK33.html" title="LINK33"><link rel="next" href="Hlp_E_PLANE35.html" title="PLANE35"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="LINK34"><a name="LINK34"></a><div class="titlepage"></div><a class="indexterm" name="d0e27905"></a><span class="refentrytitle">
+<span class="structname">LINK34</span>   </span><div class="refnamediv"><p><br><b class="refpurpose">Convection
+Link</b><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+<div class=""><div class="application"><span class="application">
+<a class="link" href="Hlp_E_LINK34.html#apX6vqcbmcm" title="LINK34 Product Restrictions">Product Restrictions</a>
+</span></div></div>
+</div></p></div><div class="refsect1" title="LINK34 Element Description"><a name="elemdesc34tlm61499"></a><h2>LINK34 Element Description</h2><p>
+<span class="structname">LINK34</span> is a uniaxial element with the
+ability to convect heat between its nodes.  The element has a single
+degree of freedom, temperature, at each node point.  The convection
+element is applicable to a 2-D (plane or axisymmetric) or 3-D, steady-state
+or transient thermal analysis.</p><p>If the model containing the convection element is also to be
+analyzed structurally, the convection element should be replaced by
+an equivalent (or null) structural element.  The element may have
+a nonlinear film coefficient which may also be a function of temperature
+or time.  See <a href="../ans_thry/thy_el34.html" class="olink">LINK34</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for more details about this element.</p><div class="figure"><a name="aciVf21elmm"></a><p class="title"><b>Figure&nbsp;34.1:&nbsp;&nbsp;LINK34 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM31-1.svg" alt="LINK34 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="LINK34 Input Data"><a name="aoX6vq34cmcm"></a><h2>LINK34 Input Data</h2><p>The geometry and node locations for this convection element
+are shown in <a class="xref" href="Hlp_E_LINK34.html#aciVf21elmm" title="Figure&nbsp;34.1:&nbsp;&nbsp;LINK34 Geometry">Figure&nbsp;34.1:&nbsp;LINK34 Geometry</a>.  The element is defined
+by two nodes, a convection surface area, two empirical terms, and
+a film coefficient.  In an axisymmetric analysis the convection area
+must be expressed on a full 360&deg; basis.  The empirical terms n
+(input as EN) and CC determine the form of the convection equation
+in conjunction with KEYOPT(3).</p><p>The convection function is defined as follows:</p><div class="blockquote"><blockquote class="blockquote"><p>q = h<sub>f</sub>*A*E*(T(I) - T(J))</p></blockquote></div><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>q = heat flow rate (Heat/Time)</td></tr><tr><td>h<sub>f</sub> = film coefficient (Heat/Length<sup>2</sup>*Time*Deg)</td></tr><tr><td>A = area (Length<sup>2</sup>)</td></tr><tr><td>T = temperature (this substep) (Deg)</td></tr><tr><td>E = empirical convection term = <span class="inlineequation" style="&#xA;          vertical-align:-16.000000px"><img src="graphics/eqf39c15e4-1e5a-493e-af60-b66f26c274e5.svg"></span>
+    </td></tr><tr><td>T<sub>p</sub> = temperature (previous substep)
+(Deg)</td></tr><tr><td>n = empirical coefficient (EN)</td></tr><tr><td>CC = input constant</td></tr></table><p>
+</p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;E = F if n and CC = 0.0. F = 1.0 unless KEYOPT(3)
+= 2. If KEYOPT(3) = 3, E equals the larger of IT<sub>p</sub>(I) - T<sub>p</sub>(J)I<sup>n</sup> or
+CC/h<sub>f</sub>.</p><hr></div><p>
+</p><p>A special option obtained with KEYOPT(3) = 2 allows an alternate
+input for h<sub>f</sub> and an input scale factor (F).
+ This option uses the <span class="italic"><em>VAL1</em></span> field
+of the <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> command with <span class="italic"><em>KVAL</em></span> = 0 for the h<sub>f </sub>value and <span class="italic"><em>KVAL</em></span> = 2 for the F value.  If the h<sub>f </sub>value is zero (or blank), the HF material property
+is used for h<sub>f</sub>.  If the F value is zero (or
+blank) or negative, a value of 1.0 is assumed for F.  Note, the F
+value input in this field will ramp within a load step if KBC = 0.
+ An <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> command must be included (even if the values
+are left blank) for all <span class="structname">LINK34</span> elements having
+KEYOPT(3) = 2.</p><p>Heat generation rates may be input as element body loads at
+the nodes.  The node J heat generation rate HG(J) defaults to the
+node I heat generation rate HG(I).</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_LINK34.html#ariVf213lmm" title="LINK34 Input Summary">"LINK34 Input Summary"</a>.  A general description of element input is
+given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>.</p><div class="refsect2" title="LINK34 Input Summary"><a name="ariVf213lmm"></a><h3>LINK34 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>TEMP</p></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>AREA - Convection surface area</td></tr><tr><td>EN - Empirical coefficient</td></tr><tr><td>CC - Input constant</td></tr></table></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p>
+<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: HF</p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Convections&nbsp;--&nbsp;</b></span></dt><dd><p>1 - Alternate
+input of HF and F if KEYOPT(3) = 2  (see text above)</p></dd></dl></div></div></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Heat Generation&nbsp;--&nbsp;</b></span></dt><dd><p>HG(I), HG(J)</p></dd></dl></div></div></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth
+and death</a>
+</td></tr><tr><td>
+<a href="../ans_str/Hlp_G_STRnlbasin.html" class="olink">Nonlinearity</a> if real constant EN is not equal to zero or
+if KEYOPT(3) = 3</td></tr></table></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Evaluation of film coefficient:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Use average of T(I) and
+T(J) to evaluate HF</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Use greater of T(I) or
+T(J) to evaluate HF</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Use lesser of T(I) or
+T(J) to evaluate HF</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Use differential |T(I)
+- T(J)| to evaluate HF</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(3)</b></span></dt><dd><p>Film coefficient and scale factor:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Standard element input
+and empirical term</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Use alternate input for
+HF and F  (input with <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> command)</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Use discontinuous empirical
+term</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="LINK34 Output Data"><a name="aoX6vq3bemcm"></a><h2>LINK34 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal temperatures included in the overall nodal solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_LINK34.html#a2jVff9lmm" title="Table&nbsp;34.1:&nbsp;&nbsp;LINK34 Element Output Definitions">Table&nbsp;34.1:&nbsp;LINK34 Element Output Definitions</a>
+</p></li></ul></div><p>
+</p><p>The heat flow rate is in units of Heat/Time and is positive
+from node I to node J.  In an axisymmetric analysis, the heat flow
+is on a full 360&deg; basis.  A general description of solution output
+is given in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a>.  See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways
+to view results.</p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="a2jVff9lmm"></a><p class="title"><b>Table&nbsp;34.1:&nbsp;&nbsp;LINK34 Element Output Definitions</b></p><div class="table-contents"><table summary="LINK34 Element Output Definitions" border="1" width="95%"><colgroup><col width="120" class="col1"><col width="312" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th align="center">Name</th><th align="center">Definition</th><th align="center">O</th><th align="center">R</th></tr></thead><tbody><tr><td>EL</td><td>Element Number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Nodes - I, J</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>XC, YC</td><td>Location where
+results are reported</td><td align="center">Y</td><td align="center">
+<a class="xref" href="Hlp_E_LINK34.html#link34.tab.2.ft.1">1</a>
+</td></tr><tr><td>H</td><td>Film coefficient (includes empirical term)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>AREA</td><td>Input area</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>TEMP</td><td>Temperature at node I and node J</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>HEAT RATE</td><td>Heat flow rate from node I to node J</td><td align="center">Y</td><td align="center">Y</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="link34.tab.2.ft.1"></a>Available only at centroid
+as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item.</p></li></ol></div><p>
+<a class="xref" href="Hlp_E_LINK34.html#auO18g386lmm" title="Table&nbsp;34.2:&nbsp;&nbsp;LINK34 Item and Sequence Numbers">Table&nbsp;34.2:&nbsp;LINK34 Item and Sequence Numbers</a> lists output available through
+the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method.
+ See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General Postprocessor
+(POST1)</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in
+this reference for more information.   The following notation is used
+in <a class="xref" href="Hlp_E_LINK34.html#auO18g386lmm" title="Table&nbsp;34.2:&nbsp;&nbsp;LINK34 Item and Sequence Numbers">Table&nbsp;34.2:&nbsp;LINK34 Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="Hlp_E_LINK34.html#a2jVff9lmm" title="Table&nbsp;34.1:&nbsp;&nbsp;LINK34 Element Output Definitions">Table&nbsp;34.1:&nbsp;LINK34 Element Output Definitions</a>
+</p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item  label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element
+data</p></dd><dt><span><b class="term">I,J</b></span></dt><dd><p>sequence number for data at nodes I and J</p></dd></dl></div></div><p>
+</p><div class="table"><a name="auO18g386lmm"></a><p class="title"><b>Table&nbsp;34.2:&nbsp;&nbsp;LINK34 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="LINK34 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="96" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"><col width="48" align="center" class="col5"></colgroup><thead><tr><th rowspan="2" align="center" valign="middle">Output Quantity
+Name</th><th colspan="4" align="center">
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th align="center">Item</th><th align="center">E</th><th align="center">I</th><th align="center">J</th></tr></thead><tbody><tr><td align="center">HEAT RATE</td><td align="center">SMISC</td><td align="center">1</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">TEMP</td><td align="center">SMISC</td><td align="center">-</td><td align="center">2</td><td align="center">3</td></tr><tr><td align="center">H</td><td align="center">NMISC</td><td align="center">1</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">AREA</td><td align="center">NMISC</td><td align="center">2</td><td align="center">-</td><td align="center">-</td></tr></tbody></table></div></div><br class="table-break"></div><div class="refsect1" title="LINK34 Assumptions and Restrictions"><a name="apX6vq5bmcm"></a><h2>LINK34 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>If T<sub>p</sub>(I) = T<sub>p</sub>(J) and n are nonzero, the first term of E is defined to be zero. </p></li><li class="listitem"><p>Since all unspecified nodal temperatures are initially
+set to the uniform temperature, a nonzero value of n may result in
+no heat flowing through the element in the first substep of a thermal
+solution.</p></li><li class="listitem"><p>Nodes may or may not be coincident.</p></li><li class="listitem"><p>The element is nonlinear if n is nonzero or KEYOPT(3)
+= 3.  However, the solver always assumes the element is nonlinear
+and, therefore, always performs an iterative solution.  (Only 2 iterations
+are performed if the element is linear.)</p></li></ul></div></div><div class="refsect1" title="LINK34 Product Restrictions"><a name="apX6vqcbmcm"></a><h2>LINK34 Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific restrictions apply to
+   this element in addition to the general assumptions and restrictions given in the previous
+   section.</p><p title="ANSYS Mechanical Pro"><b>ANSYS Mechanical Pro&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li><li class="listitem"><p>Nonlinearity is not available (real constant EN can not equal 0 and KEYOPT(3) can not
+       equal 3).</p></li></ul></div><p title="ANSYS Mechanical Pro">
+   </p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+   </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

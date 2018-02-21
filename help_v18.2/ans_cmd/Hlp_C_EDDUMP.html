@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:45-04:00"><title>EDDUMP</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_EDDRELAX.html" title="EDDRELAX"><link rel="next" href="Hlp_C_EDELE.html" title="EDELE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="EDDUMP"><a name="EDDUMP"></a><div class="titlepage"></div><a class="indexterm" name="d0e81772"></a><span class="refentrytitle"><span class="command"><strong>EDDUMP</strong></span></span><div class="refnamediv"><p><span class="command"><strong>EDDUMP</strong></span>, <em class="replaceable"><code>NUM</code></em>, <em class="replaceable"><code>DT</code></em> <br><b class="refpurpose">Specifies output frequency for the explicit dynamic restart file
+(d3dump).</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluexpdyjla070199" title="Table&nbsp;2.72:&nbsp;&nbsp;Explicit Dynamics"><span class="type">Explicit Dynamics</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="EDDUMP.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NUM</code></em></b></span></dt><dd><p>Number of d3dump (restart) files written during the analysis
+(defaults to 1). When you specify <em class="replaceable"><code>NUM</code></em>, the time
+interval between restart files is <em class="replaceable"><code>TIME</code></em> / <em class="replaceable"><code>NUM</code></em>,
+where <em class="replaceable"><code>TIME</code></em> is the analysis end-time specified on
+the <a class="link" href="Hlp_C_TIME.html" title="TIME"><span class="command"><strong>TIME</strong></span></a> command. </p></dd><dt><span><b class="term"><em class="replaceable"><code>DT</code></em></b></span></dt><dd><p>Time interval at which the d3dump (restart) files are written.
+If <em class="replaceable"><code>NUM</code></em> is input, <em class="replaceable"><code>DT</code></em> is
+ignored.</p></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="EDDUMP.default"></a><h3>Command Default</h3><p>One restart file is written at the end of the analysis.</p></div></div><div class="refsect1" title="Notes"><a name="EDDUMP.notes"></a><h2>Notes</h2><p>You can use <em class="replaceable"><code>NUM</code></em> or <em class="replaceable"><code>DT</code></em> to
+specify the time interval at which d3dump restart files will be written. You
+should not specify both quantities; if both are input, <em class="replaceable"><code>NUM</code></em> will
+be used. The restart files are written sequentially as d3dump01, d3dump02,
+etc.</p><p>In LS-DYNA, the restart file output is specified in terms of number
+of time steps. Because the total number of time steps is not known until the
+LS-DYNA solution finishes, Mechanical APDL calculates an approximate number of time
+steps for the solution, and then uses <em class="replaceable"><code>NUM</code></em> or <em class="replaceable"><code>DT</code></em> to
+calculate the required LS-DYNA input. This approximated number of time steps
+may be different from the total number reached in LS-DYNA after the solution
+finishes. Therefore, the number of restart dump files or the output interval
+may differ slightly from what you requested using <em class="replaceable"><code>NUM</code></em> or <em class="replaceable"><code>DT</code></em>.</p><p>In an explicit dynamic small restart (<a class="link" href="Hlp_C_EDSTART.html" title="EDSTART"><span class="command"><strong>EDSTART</strong></span></a>,2)
+or full restart analysis (<a class="link" href="Hlp_C_EDSTART.html" title="EDSTART"><span class="command"><strong>EDSTART</strong></span></a>,3), the <span class="command"><strong>EDDUMP</strong></span> setting
+will default to the <em class="replaceable"><code>NUM</code></em> or <em class="replaceable"><code>DT</code></em> value
+used in the original analysis. You can issue <span class="command"><strong>EDDUMP</strong></span> in
+the restart to change this setting.</p><p>This command is also valid in PREP7.</p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p></div><div class="refsect1" title="Menu Paths"><a name="EDDUMP.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Output Controls&gt;File Output Freq&gt;Number of Steps</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Output Controls&gt;File Output Freq&gt;Time Step Size</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

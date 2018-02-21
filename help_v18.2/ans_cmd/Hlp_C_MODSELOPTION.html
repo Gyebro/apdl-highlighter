@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:45-04:00"><title>MODSELOPTION</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_M_TOC.html" title="M Commands"><link rel="prev" href="Hlp_C_MODMSH.html" title="MODMSH"><link rel="next" href="Hlp_C_MODOPT.html" title="MODOPT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="MODSELOPTION"><a name="MODSELOPTION"></a><div class="titlepage"></div><a class="indexterm" name="d0e167544"></a><span class="refentrytitle"><span class="command"><strong>MODSELOPTION</strong></span></span><div class="refnamediv"><p><span class="command"><strong>MODSELOPTION</strong></span>, <em class="replaceable"><code>dir1</code></em>, <em class="replaceable"><code>dir2</code></em>, <em class="replaceable"><code>dir3</code></em>, <em class="replaceable"><code>dir4</code></em>, <em class="replaceable"><code>dir5</code></em>, <em class="replaceable"><code>dir6 </code></em><br><b class="refpurpose">Specifies the criteria for selecting the modes to be expanded.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoludynoptjla070199" title="Table&nbsp;2.51:&nbsp;&nbsp;Dynamic Options"><span class="type">Dynamic Options</span></a></span></div></div> <div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolunonlinjla070199" title="Table&nbsp;2.50:&nbsp;&nbsp;Nonlinear Options"><span class="type">Nonlinear Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="MODSELOPTION.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>dir1, dir2, &#8230;, dir6</code></em></b></span></dt><dd><p>Selection of the direction to be expanded. </p><p>For <em class="replaceable"><code>ModeSelMethod</code></em>=MODM on the <a class="link" href="Hlp_C_MXPAND.html" title="MXPAND"><span class="command"><strong>MXPAND</strong></span></a> command, the directions correspond to the global
+Cartesian directions, i.e. 1=X, 2=Y, 3=Z, 4=ROTX, 5=ROTY, and 6=ROTZ.
+If <em class="replaceable"><code>dir1</code></em>=YES, then any mode in this direction
+is expanded if its modal mass divided by the total mass (modal mass
+ratio) is greater than <em class="replaceable"><code>SIGNIF</code></em> on the <a class="link" href="Hlp_C_MXPAND.html" title="MXPAND"><span class="command"><strong>MXPAND</strong></span></a> command. If <em class="replaceable"><code>dir1</code></em>=NO,
+then the specified direction is not considered as a criterion for
+expansion. If <em class="replaceable"><code>dir1</code></em> is given a numerical
+decimal value, modes in that direction are selected (starting from
+the ones with the largest modal mass ratios to the smallest) until
+the sum of their modal mass ratio equals this requested threshold. </p><p>For <em class="replaceable"><code>ModeSelMethod</code></em>=MODC on the <a class="link" href="Hlp_C_MXPAND.html" title="MXPAND"><span class="command"><strong>MXPAND</strong></span></a> command, <em class="replaceable"><code>dir1</code></em> corresponds
+to the first input spectrum, <em class="replaceable"><code>dir2</code></em> to the
+second, etc. (i.e. for multiple spectrum inputs; the actual directions
+correspond to their respective SED directions). If <em class="replaceable"><code>dir1</code></em>=YES, then any mode in this spectrum is expanded if its mode coefficient
+divided by the largest mode coefficient is greater than SIGNIF on
+the <a class="link" href="Hlp_C_MXPAND.html" title="MXPAND"><span class="command"><strong>MXPAND</strong></span></a> command. If <em class="replaceable"><code>dir1</code></em>=NO, then the specified direction is not considered as a criterion
+for expansion.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="MODSELOPTION.notes"></a><h2>Notes</h2><p>This command is only applicable when a mode selection method
+is defined (<em class="replaceable"><code>ModeSelMethod</code></em> on the <a class="link" href="Hlp_C_MXPAND.html" title="MXPAND"><span class="command"><strong>MXPAND</strong></span></a> command). See <a href="../ans_str/Hlp_G_STR_SMSUP.html#strUseModSel" class="olink">Using Mode Selection in the <span class="olinkdocname">Mechanical APDL Structural Analysis Guide</span></a> for more
+details.</p><p>If a numerical value is specified for a direction, the significance
+threshold (SIGNIF on the <a class="link" href="Hlp_C_MXPAND.html" title="MXPAND"><span class="command"><strong>MXPAND</strong></span></a> command) is ignored
+for the selection of the modes in this direction.</p><p>If a mode is determined to be expanded
+in <span class="bold"><strong>any</strong></span> of the 6 directions, it will
+be expanded in the <span class="filename"><strong>.MODE</strong></span> file. &nbsp;Otherwise,
+the mode will not be expanded.</p><p>The default behavior is to consider all
+directions for expansion.</p></div><div class="refsect1" title="Menu Paths"><a name="MODSELOPTION.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

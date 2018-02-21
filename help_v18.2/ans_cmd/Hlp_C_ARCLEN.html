@@ -1,0 +1,38 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:23-04:00"><title>ARCLEN</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_A_TOC.html" title="A Commands"><link rel="prev" href="Hlp_C_APTN.html" title="APTN"><link rel="next" href="Hlp_C_ARCTRM.html" title="ARCTRM"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="ARCLEN"><a name="ARCLEN"></a><div class="titlepage"></div><a class="indexterm" name="d0e26794"></a><span class="refentrytitle"><span class="command"><strong>ARCLEN</strong></span></span><div class="refnamediv"><p><span class="command"><strong>ARCLEN</strong></span>, <em class="replaceable"><code>Key</code></em>, <em class="replaceable"><code>MAXARC</code></em>, <em class="replaceable"><code>MINARC</code></em><br><b class="refpurpose">Activates the arc-length method.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolunonlinjla070199" title="Table&nbsp;2.50:&nbsp;&nbsp;Nonlinear Options"><span class="type">Nonlinear Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="ARCLEN.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Key</code></em></b></span></dt><dd><p>Arc-length key:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Do not use the arc-length method (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ON</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use the arc-length method.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>MAXARC</code></em></b></span></dt><dd><p>Maximum multiplier of the reference arc-length radius
+(default = 25).</p></dd><dt><span><b class="term"><em class="replaceable"><code>MINARC</code></em></b></span></dt><dd><p>Minimum multiplier of the reference arc-length radius
+(default = 1/1000).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="ARCLEN.notes"></a><h2>Notes</h2><p>Activates the arc-length method and sets the minimum and maximum
+multipliers for controlling the arc-length radius based on the initial
+arc-length radius.</p><p>The initial arc-length radius, t<sub>0</sub>, is
+proportional (in absolute value) to the initial load factor. The initial
+load factor is given by:</p><p>Initial Load Factor = <em class="replaceable"><code>TIME</code></em> / <em class="replaceable"><code>NSBSTP</code></em></p><p>where <em class="replaceable"><code>TIME</code></em> is the time specified
+by the <a class="link" href="Hlp_C_TIME.html" title="TIME"><span class="command"><strong>TIME</strong></span></a> command for the arc-length load step,
+and <em class="replaceable"><code>NSBSTP</code></em> is the number of substeps specified
+by the <a class="link" href="Hlp_C_NSUBST.html" title="NSUBST"><span class="command"><strong>NSUBST</strong></span></a> command.</p><p>The factors <em class="replaceable"><code>MAXARC</code></em> and <em class="replaceable"><code>MINARC</code></em> are used to define the range for the arc-length
+radius to expand and shrink during the substep solution:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>t<sub>MAX</sub> = <em class="replaceable"><code>MAXARC</code></em> * t<sub>0</sub></td></tr><tr><td>t<sub>MIN</sub> = <em class="replaceable"><code>MINARC</code></em> * t<sub>0</sub></td></tr></table><p>In each substep, the arc-length radius is kept constant throughout
+the equilibrium iterations. After each converged substep, the arc-length
+radius for the next substep is modified depending on the convergence
+behavior. If the substep converges and the program heuristic predicts
+an easy convergence, the arc-length radius is enlarged. If the enlarged
+value is greater than t<sub>MAX</sub>, the arc-length
+radius is reset to t<sub>MAX</sub>. If the substep does
+not converge, bisection will take place until the arc-length radius
+is reduced to t<sub>MIN</sub>. If further nonconvergence
+is encountered, the solution terminates.</p><p>The arc-length method predicts the next time increment (that
+is, load factor increment). Therefore, the <a class="link" href="Hlp_C_AUTOTS.html" title="AUTOTS"><span class="command"><strong>AUTOTS</strong></span></a> and <a class="link" href="Hlp_C_PRED.html" title="PRED"><span class="command"><strong>PRED</strong></span></a> commands are ignored when the arc-length
+method is used.</p><p>The <a class="link" href="Hlp_C_STABILIZE.html" title="STABILIZE"><span class="command"><strong>STABILIZE</strong></span></a> and <a class="link" href="Hlp_C_LNSRCH.html" title="LNSRCH"><span class="command"><strong>LNSRCH</strong></span></a> commands are also ignored.</p><p>The arc-length method cannot be used in a multiframe restart.</p><p>For difficult problems, one suggestion is to increase the initial
+number of substeps (<a class="link" href="Hlp_C_NSUBST.html" title="NSUBST"><span class="command"><strong>NSUBST</strong></span></a>), and to prevent the
+arc-length radius from increasing too rapidly (<em class="replaceable"><code>MAXARC</code></em> = 1).</p><p><span class="command"><strong>ARCLEN</strong></span> cannot be used for any load step that
+has no applied load or displacement.</p><p>The arc-length method does not support
+tabular loads. In order to use the arc-length method, you must replace
+tabular loads by other load types and then run the analysis again.</p></div><div class="refsect1" title="Menu Paths"><a name="ARCLEN.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Analysis Type&gt;Sol'n Controls&gt;Advanced NL</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Load Step Opts&gt;Nonlinear&gt;Arc-Length Opts</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Analysis Type&gt;Sol'n Controls&gt;Advanced NL</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Load Step Opts&gt;Nonlinear&gt;Arc-Length Opts</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

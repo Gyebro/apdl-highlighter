@@ -1,0 +1,25 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:21-04:00"><title>ANIM</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_A_TOC.html" title="A Commands"><link rel="prev" href="Hlp_C_ANHARM.html" title="ANHARM"><link rel="next" href="Hlp_C_ANISOS.html" title="ANISOS"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="ANIM"><a name="ANIM"></a><div class="titlepage"></div><a class="indexterm" name="d0e22144"></a><span class="refentrytitle"><span class="command"><strong>ANIM</strong></span></span><div class="refnamediv"><p><span class="command"><strong>ANIM</strong></span>, <em class="replaceable"><code>NCYCL</code></em>, <em class="replaceable"><code>KCYCL</code></em>, <em class="replaceable"><code>DELAY</code></em><br><b class="refpurpose">Displays animated graphics data for linear problems.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1animajla070199" title="Table&nbsp;2.85:&nbsp;&nbsp;Animation"><span class="type">Animation</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="ANIM.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NCYCL</code></em></b></span></dt><dd><p>Number of cycles associated with the animation (defaults
+to 5 in non-GUI mode only)</p></dd><dt><span><b class="term"><em class="replaceable"><code>KCYCL</code></em></b></span></dt><dd><p>Animation mode:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Continuous animation cycle
+(forward-reverse-forward-etc.) (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Discontinuous animation
+cycle (forward-reset-forward-etc.).</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>DELAY</code></em></b></span></dt><dd><p>Time delay (seconds) between animation frames (defaults
+to 0.1 seconds).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="ANIM.notes"></a><h2>Notes</h2><p>Use the <span class="command"><strong>ANIM</strong></span> command to create animations
+for linear problems only. The command uses the currently displayed
+picture based on one particular data set from the results file, and
+linearly interpolates that data into different sets, displaying pictures
+of each interpolated data set in sequence to create animation.  For
+information about creating animations for nonlinear problems, see
+the <a class="link" href="Hlp_C_ANDATA.html" title="ANDATA"><span class="command"><strong>ANDATA</strong></span></a> command.</p><p>This command is device-dependent.</p><p>Do not resize the graphic while animation is in progress; doing
+so can result in distorted plots.</p><p>For more information, see the <a href="Hlp_C_SEG.html" class="olink"><span class="command"><strong>/SEG</strong></span></a> command
+for details about segment storage, and the <a class="link" href="Hlp_C_ANCNTR.html" title="ANCNTR"><span class="command"><strong>ANCNTR</strong></span></a> macro for a convenient method of storing graphics frames in terminal
+memory segments.  </p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="ANIM.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;Animate&gt;Replay Animation</strong></span></td></tr><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;Animate&gt;Restore Animation</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

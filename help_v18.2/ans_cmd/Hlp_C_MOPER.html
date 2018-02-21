@@ -1,0 +1,163 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:46-04:00"><title>*MOPER</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_M_TOC.html" title="M Commands"><link rel="prev" href="Hlp_C_MONITOR.html" title="MONITOR"><link rel="next" href="Hlp_C_MOPT.html" title="MOPT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="*MOPER"><a name="a-MOPER"></a><div class="titlepage"></div><a class="indexterm" name="d0e168421"></a><span class="refentrytitle"><a href="Hlp_C_MOPER.html" class="olink"><span class="command"><strong>*MOPER</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>*MOPER</strong></span>,
+        <em class="replaceable"><code>ParR</code></em>, <em class="replaceable"><code>Par1</code></em>,
+        <em class="replaceable"><code>Oper</code></em>, <em class="replaceable"><code>Val1</code></em>,
+        <em class="replaceable"><code>Val2</code></em>, <em class="replaceable"><code>Val3</code></em>,
+        <em class="replaceable"><code>Val4</code></em>, <em class="replaceable"><code>Val5</code></em>,
+        <em class="replaceable"><code>Val6</code></em><br><b class="refpurpose"> Performs matrix operations on array parameter matrices.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_4.html" title="2.4.&nbsp;APDL Commands"><code class="classname">APDL</code></a>: <a class="link" href="Hlp_C_CH2_4.html#cmdapdlarrayparajla070199" title="Table&nbsp;2.21:&nbsp;&nbsp;Array Parameters"><span class="type">Array Parameters</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsect1" title="Argument Descriptions"><a name="a-MOPER.argdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>ParR</code></em></b></span></dt><dd><p>The name of the resulting array parameter matrix.  See <a href="Hlp_C_SET_st.html" class="olink"><span class="command"><strong>*SET</strong></span></a> for
+name restrictions.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Par1</code></em></b></span></dt><dd><p>First array parameter matrix input to the operation.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Oper</code></em></b></span></dt><dd><p><span>Matrix operations. Usage of the <em class="replaceable"><code>Val1</code></em>
+              through <em class="replaceable"><code>Val6</code></em> arguments varies for each operation, as
+              described below:</span></p><div><div class="variablelist"><dl><dt><span><b class="term">INVERT&nbsp;--&nbsp;</b></span></dt><dd><p>(<a href="Hlp_C_MOPER.html" class="olink"><span class="command"><strong>*MOPER</strong></span></a>, <em class="replaceable"><code>ParR</code></em>,
+                      <em class="replaceable"><code>Par1</code></em>, INVERT)</p><p>Square matrix invert: Inverts the <span class="italic"><em>n</em></span> x
+                      <span class="italic"><em>n</em></span> matrix in <span class="italic"><em>Par1</em></span> into <span class="italic"><em>ParR</em></span>. The matrix must
+                    be well conditioned.</p><div class="warning" title="Warning" style="background-color:#E3E3E3;margin-left: 0.5in; margin-right: 0.5in;"><p><span class="admontitle"><b><font color="red">Warning:</font></b></span>&nbsp;&nbsp;Non-independent or ill-conditioned equations can cause erroneous
+                      results.</p></div><p>For large matrices, use the APDL Math operation <a href="Hlp_C_LSFACTOR.html" class="olink"><span class="command"><strong>*LSFACTOR</strong></span></a>
+                    for efficiency (see <a href="../ans_apdl/apdl_math.html" class="olink">APDL Math</a>).</p></dd><dt><span><b class="term">MULT&nbsp;--&nbsp;</b></span></dt><dd><p>(<a href="Hlp_C_MOPER.html" class="olink"><span class="command"><strong>*MOPER</strong></span></a>, <em class="replaceable"><code>ParR</code></em>,
+                      <em class="replaceable"><code>Par1</code></em>, MULT, <em class="replaceable"><code>Par2</code></em>)</p><p>Matrix multiply: Multiplies <em class="replaceable"><code>Par1</code></em> by
+                      <em class="replaceable"><code>Par2</code></em>. The number of rows of
+                      <em class="replaceable"><code>Par2</code></em> must equal the number of columns of
+                      <em class="replaceable"><code>Par1</code></em> for the operation. If
+                      <em class="replaceable"><code>Par2</code></em> is input with a number of rows greater than
+                    the number of columns of <em class="replaceable"><code>Par1</code></em>, matrices are still
+                    multiplied. However, the operation only uses a number of rows of
+                      <em class="replaceable"><code>Par2</code></em> equal to the number of columns of
+                      <em class="replaceable"><code>Par1</code></em>.</p></dd><dt><span><b class="term">COVAR&nbsp;--&nbsp;</b></span></dt><dd><p>(<a href="Hlp_C_MOPER.html" class="olink"><span class="command"><strong>*MOPER</strong></span></a>, <em class="replaceable"><code>ParR</code></em>,
+                      <em class="replaceable"><code>Par1</code></em>, COVAR,
+                    <em class="replaceable"><code>Par2</code></em>)</p><p>Covariance: The measure of association between
+                    columns of the <em class="replaceable"><code>Par1</code></em> input matrix.
+                      <em class="replaceable"><code>Par1</code></em> of size <span class="emphasis"><em>m</em></span> runs (rows) by
+                      <span class="emphasis"><em>n</em></span> data (columns) is first processed to produce a row
+                    vector containing the mean of each column, which is transposed to the output
+                    column vector <em class="replaceable"><code>Par2</code></em> of <span class="emphasis"><em>n</em></span> array
+                    elements. The <em class="replaceable"><code>Par1</code></em> and
+                      <em class="replaceable"><code>Par2</code></em> operation then produces
+                      <em class="replaceable"><code>ParR</code></em>, a resulting <span class="emphasis"><em>n</em></span> x
+                      <span class="emphasis"><em>n</em></span> matrix of covariances (with the variances as the
+                    diagonal terms).</p></dd><dt><span><b class="term">CORR&nbsp;--&nbsp;</b></span></dt><dd><p>(<a href="Hlp_C_MOPER.html" class="olink"><span class="command"><strong>*MOPER</strong></span></a>, <em class="replaceable"><code>ParR</code></em>,
+                      <em class="replaceable"><code>Par1</code></em>, CORR, <em class="replaceable"><code>Par2</code></em>)</p><p>Correlation: The correlation coefficient between
+                    columns of the <em class="replaceable"><code>Par1</code></em> input matrix.
+                      <em class="replaceable"><code>Par1</code></em> of size <span class="emphasis"><em>m</em></span> runs (rows) by
+                      <span class="emphasis"><em>n</em></span> data (columns) is first processed to produce a row
+                    vector containing the mean of each column, which is then transposed to the
+                    output column vector <em class="replaceable"><code>Par2</code></em> of <span class="emphasis"><em>n</em></span>
+                    array elements. The <em class="replaceable"><code>Par1</code></em> and
+                      <em class="replaceable"><code>Par2</code></em> operation then produces
+                      <em class="replaceable"><code>ParR</code></em>, a resulting <span class="italic"><em>n</em></span> x <span class="emphasis"><em>n</em></span> matrix of correlation coefficients
+                    (with a value of 1.0 for the diagonal terms).</p></dd><dt><span><b class="term">SOLV&nbsp;--&nbsp;</b></span></dt><dd><p>(<a href="Hlp_C_MOPER.html" class="olink"><span class="command"><strong>*MOPER</strong></span></a>, <em class="replaceable"><code>ParR</code></em>,
+                      <em class="replaceable"><code>Par1</code></em>, SOLV, <em class="replaceable"><code>Par2</code></em>)</p><p>Solution of simultaneous equations: Solves the set of <em class="replaceable"><code>n</code></em> equations of <em class="replaceable"><code>n</code></em> terms of the form
+                      a<sub>n1</sub>x<sub>1</sub> +
+                      a<sub>n2</sub>x<sub>2</sub> +
+                      <sup>...</sup> + a<sub>nn</sub>x<sub>n
+                    </sub>= b<sub>n</sub> where <em class="replaceable"><code>Par1</code></em>
+                    contains the matrix of a-coefficients, <em class="replaceable"><code>Par2</code></em> contains
+                    the vector(s) of b-values, and <em class="replaceable"><code>ParR</code></em> contains the
+                    vector(s) of x-results. <em class="replaceable"><code>Par1</code></em> must be a square matrix.
+                    The equations must be linear, independent, and well conditioned. </p><div class="warning" title="Warning" style="background-color:#E3E3E3;margin-left: 0.5in; margin-right: 0.5in;"><p><span class="admontitle"><b><font color="red">Warning:</font></b></span>&nbsp;&nbsp;Non-independent or ill-conditioned equations can cause erroneous
+                      results.</p></div><p>For large matrices, use the APDL Math operation <a href="Hlp_C_LSFACTOR.html" class="olink"><span class="command"><strong>*LSFACTOR</strong></span></a>
+                    for efficiency (see <a href="../ans_apdl/apdl_math.html" class="olink">APDL Math</a>).</p></dd><dt><span><b class="term">SORT&nbsp;--&nbsp;</b></span></dt><dd><p>(<a href="Hlp_C_MOPER.html" class="olink"><span class="command"><strong>*MOPER</strong></span></a>, <em class="replaceable"><code>ParR</code></em>,
+                      <em class="replaceable"><code>Par1</code></em>, SORT, <em class="replaceable"><code>Par2</code></em>,
+                      <em class="replaceable"><code>n1</code></em>, <em class="replaceable"><code>n2</code></em>,
+                      <em class="replaceable"><code>n3</code></em>)</p><p>Matrix sort: Sorts the columns of matrix
+                      <em class="replaceable"><code>Par1</code></em> according to sort vector
+                      <em class="replaceable"><code>Par2</code></em> and places the result back into
+                      <em class="replaceable"><code>Par1</code></em>. Rows of <em class="replaceable"><code>Par1</code></em> are
+                    moved to the corresponding positions indicated by the values of
+                      <em class="replaceable"><code>Par2</code></em>. <em class="replaceable"><code>Par2</code></em> may be a
+                    column of <em class="replaceable"><code>Par1</code></em> (in which case it will also be
+                    reordered). Alternatively, you may specify the column of
+                      <em class="replaceable"><code>Par1</code></em> to sort using <em class="replaceable"><code>n1</code></em>
+                    (leaving <em class="replaceable"><code>Par2</code></em> blank). A secondary sort can be
+                    specified by column <em class="replaceable"><code>n2</code></em>, and a third sort using column
+                      <em class="replaceable"><code>n3</code></em>. <em class="replaceable"><code>ParR</code></em> is the vector
+                    of initial row positions (the permutation vector). Sorting
+                      <em class="replaceable"><code>Par1</code></em> according to <em class="replaceable"><code>ParR</code></em>
+                    should reproduce the initial ordering.</p></dd><dt><span><b class="term">NNEAR &nbsp;--&nbsp;</b></span></dt><dd><p>(<a href="Hlp_C_MOPER.html" class="olink"><span class="command"><strong>*MOPER</strong></span></a>, <em class="replaceable"><code>ParR</code></em>,
+                      <em class="replaceable"><code>Par1</code></em>, NNEAR,
+                    <em class="replaceable"><code>Toler</code></em>)</p><p>Nearest Node: Finds the nodes nearest to the given
+                    set of points in <em class="replaceable"><code>Par1</code></em>, where
+                      <em class="replaceable"><code>Par1</code></em> is an <span class="italic"><em>n</em></span> x 3
+                    array of coordinate locations. <em class="replaceable"><code>ParR</code></em> is a vector of
+                    the nearest selected nodes, or 0 if no nodes are nearer than
+                      <em class="replaceable"><code>Toler</code></em>. <em class="replaceable"><code>Toler</code></em> defaults to
+                    1 and is limited to the maximum model size.</p></dd><dt><span><b class="term">ENEAR &nbsp;--&nbsp;</b></span></dt><dd><p>(<a href="Hlp_C_MOPER.html" class="olink"><span class="command"><strong>*MOPER</strong></span></a>, <em class="replaceable"><code>ParR</code></em>,
+                      <em class="replaceable"><code>Par1</code></em>, ENEAR,
+                    <em class="replaceable"><code>Toler</code></em>)</p><p>Nearest Element: Finds the elements nearest to the
+                    given set of points in <em class="replaceable"><code>Par1</code></em>, where
+                      <em class="replaceable"><code>Par1</code></em> is an <span class="italic"><em>n</em></span> x 3
+                    array of coordinate locations. <em class="replaceable"><code>ParR</code></em> is a vector of
+                    the nearest selected elements, or 0 if no element centroids are nearer than
+                      <em class="replaceable"><code>Toler</code></em>. <em class="replaceable"><code>Toler</code></em> defaults to
+                    1 and is limited to the maximum model size.</p></dd><dt><span><b class="term">MAP &nbsp;--&nbsp;</b></span></dt><dd><p>(<a href="Hlp_C_MOPER.html" class="olink"><span class="command"><strong>*MOPER</strong></span></a>, <em class="replaceable"><code>ParR</code></em>,
+                      <em class="replaceable"><code>Par1</code></em>, MAP, <em class="replaceable"><code>Par2</code></em>,
+                      <em class="replaceable"><code>Par3</code></em>, <em class="replaceable"><code>kDim</code></em>,
+                      <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>kOut</code></em>,
+                      <em class="replaceable"><code>LIMIT</code></em>)</p><p>Maps the results from one set of points to another. For example, you can map
+                    pressures from a CFD analysis onto your model for a structural analysis. </p><p><em class="replaceable"><code>Par1</code></em> is the <span class="italic"><em>Nout</em></span> x 3 array of points that will be mapped to.
+                      <em class="replaceable"><code>Par2</code></em> is the <span class="italic"><em>Nin</em></span>
+                    x <span class="emphasis"><em>M</em></span> array that contains <span class="emphasis"><em>M</em></span> values of
+                    data to be interpolated at each point and corresponds to the
+                      <span class="emphasis"><em>Nin</em></span> x 3 points in <em class="replaceable"><code>Par3</code></em>. The
+                    resulting <em class="replaceable"><code>ParR</code></em> is the <span class="emphasis"><em>Nout</em></span> x
+                      <span class="emphasis"><em>M</em></span> array of mapped data points.</p><p>For each point in the destination mesh, all possible triangles in the source
+                    mesh are searched to find the best triangle containing each point. It then does
+                    a linear interpolation inside this triangle. You should carefully specify your
+                    interpolation method and search criteria in order to provide faster and more
+                    accurate results (see <em class="replaceable"><code>LIMIT</code></em>, below). </p><p><em class="replaceable"><code>kDim</code></em> is the interpolation criteria. If
+                      <em class="replaceable"><code>kDim</code></em> = 2 or 0, two dimensional interpolation is
+                    applied (interpolate on a surface). If <em class="replaceable"><code>kDim</code></em> = 3,
+                    three dimensional interpolation is applied (interpolate on a volume). </p><p><em class="replaceable"><code>kOut</code></em> specified how points outside of the domain
+                    are handled. If <em class="replaceable"><code>kOut</code></em> = 0, use the value(s) of the
+                    nearest region point for points outside of the region. If
+                      <em class="replaceable"><code>kOut</code></em> = 1, set results outside of the region to
+                    zero.</p><p><em class="replaceable"><code>LIMIT</code></em> specifies the number of nearby points
+                    considered for interpolation. The default is 20, and the minimum is 5. Lower
+                    values will reduce processing time; however, some distorted or irregular sets of
+                    points will require a higher <em class="replaceable"><code>LIMIT</code></em> value to encounter
+                    three nodes for triangulation. </p><p>Output points are incorrect if they are not within the domain (area or
+                    volume) defined by the specified input points. Also, calculations for
+                    out-of-bound points require much more processing time than do points that are
+                    within bounds. Results mapping is available from the command line only.</p></dd><dt><span><b class="term">INTP &nbsp;--&nbsp;</b></span></dt><dd><p>(<a href="Hlp_C_MOPER.html" class="olink"><span class="command"><strong>*MOPER</strong></span></a>, <em class="replaceable"><code>ParR</code></em>,
+                      <em class="replaceable"><code>Par1</code></em>, INTP, <em class="replaceable"><code>Par2</code></em>)</p><p>Finds the elements that contain each point in the array of
+                      <span class="emphasis"><em>n</em></span> x 3 points in <em class="replaceable"><code>Par1</code></em>.
+                      <em class="replaceable"><code>Par2</code></em> will contain the set of element ID numbers and
+                      <em class="replaceable"><code>ParR</code></em> will contain their <span class="emphasis"><em>n</em></span> x 3
+                    set of natural element coordinates (values between -1 and 1).
+                      <em class="replaceable"><code>Par1</code></em> must be in global Cartesian
+                    coordinates.</p></dd><dt><span><b class="term">SGET&nbsp;--&nbsp;</b></span></dt><dd><p>(<a href="Hlp_C_MOPER.html" class="olink"><span class="command"><strong>*MOPER</strong></span></a>, <em class="replaceable"><code>ParR</code></em>,
+                      <em class="replaceable"><code>Par1</code></em>, SGET, <em class="replaceable"><code>Par2</code></em>,
+                      <em class="replaceable"><code>Label</code></em>, <em class="replaceable"><code>Comp</code></em>)</p><p>Gets the nodal solution item corresponding to
+                      <em class="replaceable"><code>Label</code></em> and <em class="replaceable"><code>Comp</code></em> (see the
+                      <a class="link" href="Hlp_C_PLNSOL.html" title="PLNSOL"><span class="command"><strong>PLNSOL</strong></span></a> command) and interpolates it to the given element
+                    locations. <em class="replaceable"><code>Par1</code></em> contains the <span class="emphasis"><em>n</em></span> x
+                    3 array of natural element coordinates (values between -1 and 1) of the
+                      <span class="emphasis"><em>n</em></span> element ID numbers in <em class="replaceable"><code>Par2</code></em>.
+                      <em class="replaceable"><code>Par1</code></em> and <em class="replaceable"><code>Par2</code></em> are
+                    usually the output of the <a href="Hlp_C_MOPER.html" class="olink"><span class="command"><strong>*MOPER</strong></span></a>,,,INTP operation.
+                      <em class="replaceable"><code>ParR</code></em> contains the <span class="emphasis"><em>n</em></span>
+                    interpolated results.</p></dd></dl></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Val1</code></em>, <em class="replaceable"><code>Val2</code></em>,
+            <em class="replaceable"><code>...</code></em>, <em class="replaceable"><code>Val6</code></em></b></span></dt><dd><p>Additional input used in the operation. The meanings of
+              <em class="replaceable"><code>Val1</code></em> through <em class="replaceable"><code>Val6</code></em> vary depending
+            on the specified matrix operation. See the description of
+              <em class="replaceable"><code>Oper</code></em> for details.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="a-MOPER.notes"></a><h2>Notes</h2><p>Each starting array element number must be defined for each array parameter
+matrix if it does not start at the first location. For example, <a href="Hlp_C_MOPER.html" class="olink"><span class="command"><strong>*MOPER</strong></span></a>,A(2,3),B(1,4),MULT,C(1,5)
+multiplies submatrix B (starting at element (1,4)) by submatrix C (starting
+at element (1,5)) and puts the result in matrix A (starting at element (2,3)).</p><p>The diagonal corner elements for each submatrix must be defined: the
+upper left corner by the array starting element (on this command), the lower
+right corner by the current values from the <a href="Hlp_C_VCOL.html" class="olink"><span class="command"><strong>*VCOL</strong></span></a> and <a href="Hlp_C_VLEN.html" class="olink"><span class="command"><strong>*VLEN</strong></span></a> commands.
+ The default values are the (1,1) element and the last element in the matrix.
+ No operations progress across matrix planes (in the 3rd dimension).  Absolute
+values and scale factors may be applied to all parameters [<a href="Hlp_C_VABS.html" class="olink"><span class="command"><strong>*VABS</strong></span></a>,
+ <a href="Hlp_C_VFACT.html" class="olink"><span class="command"><strong>*VFACT</strong></span></a>].  Results may be cumulative [<a href="Hlp_C_VCUM.html" class="olink"><span class="command"><strong>*VCUM</strong></span></a>].
+ Array elements should not be skipped with the <a href="Hlp_C_VMASK.html" class="olink"><span class="command"><strong>*VMASK</strong></span></a> and
+the  <em class="replaceable"><code>NINC</code></em> value of the <a href="Hlp_C_VLEN.html" class="olink"><span class="command"><strong>*VLEN</strong></span></a> specifications.
+ See the <a href="Hlp_C_VOPER.html" class="olink"><span class="command"><strong>*VOPER</strong></span></a> command for details.</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e169214"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;Parameters&gt;Array Operations&gt;Matrix Operations</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

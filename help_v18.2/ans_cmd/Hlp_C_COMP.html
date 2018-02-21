@@ -1,0 +1,52 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:33-04:00"><title>*COMP</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_C_CTOC.html" title="C Commands"><link rel="prev" href="Hlp_C_COM.html" title="/COM"><link rel="next" href="Hlp_C_COMBINE.html" title="COMBINE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="*COMP"><a name="a-COMP"></a><div class="titlepage"></div><a class="indexterm" name="d0e53873"></a><span class="refentrytitle">
+<a href="Hlp_C_COMP.html" class="olink"><span class="command"><strong>*COMP</strong></span></a>
+</span><div class="refnamediv"><p>
+         <span class="command"><strong>*COMP</strong></span>, <em class="replaceable"><code>Matrix</code></em>,
+            <em class="replaceable"><code>Algorithm</code></em>, <em class="replaceable"><code>THRESHOLD</code></em>,
+            <em class="replaceable"><code>Val1</code></em>, <em class="replaceable"><code>Val2</code></em>
+      <br><b class="refpurpose">Compresses a matrix using a specified
+algorithm.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_4.html" title="2.4.&nbsp;APDL Commands"><code class="classname">APDL</code></a>: <a class="link" href="Hlp_C_CH2_4.html#cmdapdlmatrix" title="Table&nbsp;2.23:&nbsp;&nbsp;Matrix Operations (APDL Math)"><span class="type">Matrix Operations</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div>
+</div></p></div><div class="refsect1" title="Argument Descriptions"><a name="a-COMP.argdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Matrix</code></em>
+</b></span></dt><dd><p>Name of the matrix to compress.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Algorithm</code></em>
+</b></span></dt><dd><p>Algorithm <span>or method</span> to
+use:</p><div><div class="variablelist"><dl><dt><span><b class="term">SVD --&nbsp;</b></span></dt><dd><p>Singular value decomposition
+algorithm (default).</p></dd><dt><span><b class="term">MGS --&nbsp;</b></span></dt><dd><p>Modified Gram-Schmidt
+algorithm.</p></dd><dt><span><b class="term">SPARSE --&nbsp;</b></span></dt><dd><p>Compress a sparse
+matrix based on the threshold value.</p></dd></dl></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>THRESHOLD</code></em>
+</b></span></dt><dd><p>Numerical threshold value used to manage the compression. The default value depends on the
+                  method of compression: 1E-7 for SVD; 1E-14 for MGS; 1E-16 for SPARSE.</p></dd></dl></div></div><p>
+<em class="replaceable"><code>Val1</code></em> and <em class="replaceable"><code>Val2</code></em>
+         are additional input used only for the SVD algorithm:</p><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Val1</code></em>
+</b></span></dt><dd><p>Name of the vector used to store the <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq1ca194fe-89a0-40c8-aadc-c66fcd0c651a.svg"></span> values (see <a class="xref" href="Hlp_C_COMP.html#a-COMP.notes" title="Notes">"Notes"</a> below). This argument
+                  is optional.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Val2</code></em>
+</b></span></dt><dd><p>Name of the dense matrix used to store the <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqa1825cd9-e8c3-44b4-b6aa-9fc8f37124b8.svg"></span> output matrix (see <a class="xref" href="Hlp_C_COMP.html#a-COMP.notes" title="Notes">"Notes"</a> below). This
+                  argument is optional.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="a-COMP.notes"></a><h2>Notes</h2><p>The SVD and MGS algorithms are only applicable to dense matrices that were created using the
+            <a href="Hlp_C_DMAT.html" class="olink"><span class="command"><strong>*DMAT</strong></span></a> command. Columns that are linearly dependent on others are
+         removed, leaving the independent or basis vectors. The matrix is resized according to the
+         new size determined by the algorithm.</p><p>For the SVD algorithm, the singular value decomposition of an input
+         matrix <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq78c3d5aa-94b5-44b0-8cb2-c73ddfea76ae.svg"></span> is a factorization of the form:</p><div class="informalequation"><a name="eqe94617f7-17d7-429f-9720-d689661db6dd"></a><div><img src="graphics/eqe94617f7-17d7-429f-9720-d689661db6dd.svg"></div></div><p>Here, the <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq120aa42d-136a-41d6-99ca-eb6793a51864.svg"></span> matrix is replaced by the <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq11850956-35ca-43ce-a803-b83b50b4d2af.svg"></span> matrix, according to the specified threshold.</p><p>The SPARSE compression method is only applicable
+to sparse matrices that    were created using the <a href="Hlp_C_SMAT.html" class="olink"><span class="command"><strong>*SMAT</strong></span></a> command.
+All terms that have an absolute value    below the specified threshold,
+relative to the maximum value in the matrix, are removed from the
+   original matrix. For example, given a sparse matrix having 100
+as the largest term and     <em class="replaceable"><code>THRESHOLD</code></em> =
+0.5, all terms having an absolute value below 0.5*100 =    50 are
+removed. </p></div><div class="refsect1" title="Menu Paths"><a name="d0e54045"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

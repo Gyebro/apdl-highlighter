@@ -1,0 +1,25 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:43-04:00"><title>ECPCHG</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_EALIVE.html" title="EALIVE"><link rel="next" href="Hlp_C_EDADAPT.html" title="EDADAPT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="ECPCHG"><a name="ECPCHG"></a><div class="titlepage"></div><a class="indexterm" name="d0e77089"></a><span class="refentrytitle"><span class="command"><strong>ECPCHG</strong></span></span><div class="refnamediv"><p><span class="command"><strong>ECPCHG</strong></span><br><b class="refpurpose">Optimizes degree-of-freedom usage in a coupled acoustic
+model.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7elementsldm061600" title="Table&nbsp;2.38:&nbsp;&nbsp;Elements"><span class="type">Elements</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsect1" title="Notes"><a name="ECPCHG.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>ECPCHG</strong></span> command converts uncoupled acoustic element types to coupled
+      acoustic element types that are attached to the fluid-structure interaction interface. Or it
+      converts coupled acoustic element types to uncoupled acoustic element types that are not
+      attached to the fluid-structure interaction interface. Issuing <span class="command"><strong>ECPCHG</strong></span> can
+      dramatically reduce the size of the <span class="filename"><strong>Jobname.EMAT</strong></span> file, compared to the
+      model fully meshed with the coupled acoustic elements. </p><p>Performing the <span class="command"><strong>ECPCHG</strong></span> conversion on meshed volumes can create circumstances
+      in which more than one element type is defined for a single volume.</p><p>If the acoustic elements are coupled with shell elements (<a href="../ans_elem/Hlp_E_SHELL181.html" class="olink"><span class="structname">SHELL181</span></a> or
+        <a href="../ans_elem/Hlp_E_SHELL281.html" class="olink"><span class="structname">SHELL281</span></a>), you must set the fluid-structure interaction (FSI) flag
+      by issuing the <a class="link" href="Hlp_C_SF.html" title="SF"><span class="command"><strong>SF</strong></span></a>,,FSI command before the <span class="command"><strong>ECPCHG</strong></span>
+      command.</p><p><span class="command"><strong>ECPCHG</strong></span> may add new element types to your model, or it may change the
+      element type for existing acoustic elements. You should verify the defined element types with
+        <a class="link" href="Hlp_C_ETLIST.html" title="ETLIST"><span class="command"><strong>ETLIST</strong></span></a> and the element attributes with <a class="link" href="Hlp_C_ELIST.html" title="ELIST"><span class="command"><strong>ELIST</strong></span></a> after
+      using this command.</p></div><div class="refsect1" title="Menu Paths"><a name="ECPCHG.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

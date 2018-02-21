@@ -1,0 +1,67 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:25-04:00"><title>IC</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_I_TOC.html" title="I Commands"><link rel="prev" href="Hlp_I_TOC.html" title="I Commands"><link rel="next" href="Hlp_C_ICDELE.html" title="ICDELE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="IC"><a name="IC"></a><div class="titlepage"></div><a class="indexterm" name="d0e134783"></a><span class="refentrytitle"><span class="command"><strong>IC</strong></span></span><div class="refnamediv"><p><span class="command"><strong>IC</strong></span>, <em class="replaceable"><code>NODE</code></em>,
+    <em class="replaceable"><code>Lab</code></em>, <em class="replaceable"><code>VALUE</code></em>,
+    <em class="replaceable"><code>VALUE2</code></em>,<em class="replaceable"><code>NEND</code></em>,
+    <em class="replaceable"><code>NINC</code></em><br><b class="refpurpose">Specifies initial conditions at nodes.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolumiscldsjla070199" title="Table&nbsp;2.59:&nbsp;&nbsp;Miscellaneous Loads"><span class="type">Misc Loads</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="IC.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NODE</code></em></b></span></dt><dd><p>Node at which initial condition is to be specified.
+ If ALL, apply to all selected nodes (<a class="link" href="Hlp_C_NSEL.html" title="NSEL"><span class="command"><strong>NSEL</strong></span></a>).  If <em class="replaceable"><code>NODE</code></em> = P, graphical picking is enabled and all remaining
+command fields are ignored (valid only in the GUI). A component name
+may be substituted for <em class="replaceable"><code>NODE</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><p>Degree-of-freedom label for which the initial condition
+is to be specified.  If ALL, use all appropriate labels.  </p><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="bold"><strong>Structural labels</strong></span>: UX, UY, or UZ
+       (displacements); ROTX, ROTY, or ROTZ (rotations); HDSP (hydrostatic pressure); PRES (pore
+       pressure)</td></tr><tr><td>For structural static and transient analyses, specify translational and rotational
+       velocities as initial conditions using these labels: VELX, VELY, VELZ (translational
+       velocities); OMGX, OMGY, OMGZ (rotational velocities).</td></tr><tr><td>For structural transient analysis, specify translational and rotational accelerations
+       as initial conditions using these labels: ACCX, ACCY, ACCZ (translational accelerations);
+       DMGX, DMGY, DMGZ (rotational accelerations).</td></tr><tr><td>The velocity and acceleration initial conditions are <span class="italic"><em>not</em></span> included with <em class="replaceable"><code>Lab</code></em> = ALL.</td></tr><tr><td><span class="bold"><strong>Thermal labels</strong></span>: TEMP, TBOT, TE2, TE3, . . ., TTOP
+       (temperature)</td></tr><tr><td><span class="bold"><strong>Magnetic labels</strong></span>: MAG (scalar magnetic potential); AZ (vector magnetic potential)</td></tr><tr><td><span class="bold"><strong>Diffusion label</strong></span>: CONC (concentration)</td></tr></table></dd><dt><span><b class="term"><em class="replaceable"><code>VALUE</code></em></b></span></dt><dd><p>Initial value of the degree
+of freedom.  Defaults to the program default for that degree of freedom
+(0.0 for structural analysis, <a class="link" href="Hlp_C_TUNIF.html" title="TUNIF"><span class="command"><strong>TUNIF</strong></span></a> for thermal
+analysis, etc.). Values are in the nodal coordinate system and in
+radians for rotational degrees of freedom.</p></dd><dt><span><b class="term"><em class="replaceable"><code>VALUE2</code></em></b></span></dt><dd><p>Second-order degree of freedom value, mainly used for non-structural DOF where VELX can't
+      be used. Defaults to the program default for that degree of freedom (0.0 for structural
+      analysis). Values are in the nodal coordinate system and in radians/time for rotational
+      degrees of freedom.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NEND</code></em>, <em class="replaceable"><code>NINC</code></em></b></span></dt><dd><p>Specifies the same initial condition values at the
+range of nodes from <em class="replaceable"><code>NODE</code></em> to <em class="replaceable"><code>NEND</code></em> (defaults to <em class="replaceable"><code>NODE</code></em>),
+in steps of <em class="replaceable"><code>NINC</code></em> (defaults to 1).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="IC.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>IC</strong></span> command specifies initial conditions,
+which are the initial values of the specified degrees of freedom.
+It is valid only for a static analysis and full method transient analysis
+(<a class="link" href="Hlp_C_TIMINT.html" title="TIMINT"><span class="command"><strong>TIMINT</strong></span></a>,ON and <a class="link" href="Hlp_C_TRNOPT.html" title="TRNOPT"><span class="command"><strong>TRNOPT</strong></span></a>,FULL).
+For the transient, the initial value is specified at the beginning
+of the first load step, that is, at time = 0.0.</p><p>Initial conditions should always be step applied (<a class="link" href="Hlp_C_KBC.html" title="KBC"><span class="command"><strong>KBC</strong></span></a>,1) and not ramped. </p><p>If constraints (<a class="link" href="Hlp_C_D.html" title="D"><span class="command"><strong>D</strong></span></a>, <a class="link" href="Hlp_C_DSYM.html" title="DSYM"><span class="command"><strong>DSYM</strong></span></a>, etc.) and initial conditions are applied at the same node, the
+constraint specification overrides. Exercise caution when specifying
+constraints. The degree-of-freedom values start from zero, or the
+first value given in the table when table name is specified. To match
+the nonzero initial condition value with the initial value for degree-of-freedom
+constraint, use a table for the degree-of-freedom constraint. </p><p>For thermal analyses, any <a class="link" href="Hlp_C_TUNIF.html" title="TUNIF"><span class="command"><strong>TUNIF</strong></span></a> specification
+should be applied before the <span class="command"><strong>IC</strong></span> command; otherwise,
+the <a class="link" href="Hlp_C_TUNIF.html" title="TUNIF"><span class="command"><strong>TUNIF</strong></span></a> specification is ignored.  If the <span class="command"><strong>IC</strong></span> command is input before any <a class="link" href="Hlp_C_TUNIF.html" title="TUNIF"><span class="command"><strong>TUNIF</strong></span></a> specification, use the <a class="link" href="Hlp_C_ICDELE.html" title="ICDELE"><span class="command"><strong>ICDELE</strong></span></a> command and then
+reissue any <a class="link" href="Hlp_C_TUNIF.html" title="TUNIF"><span class="command"><strong>TUNIF</strong></span></a> specification and then follow
+with the <span class="command"><strong>IC</strong></span> command.</p><p>When issuing the <span class="command"><strong>IC</strong></span> command for elements <a href="../ans_elem/Hlp_E_SOLID278.html" class="olink"><span class="structname">SOLID278</span></a> <a href="../ans_elem/Hlp_E_SOLID278.html#SOLID278L.description" class="olink">Layered Thermal Solid</a> and <a href="../ans_elem/Hlp_E_SOLID279.html" class="olink"><span class="structname">SOLID279</span></a> <a href="../ans_elem/Hlp_E_SOLID279.html#SOLID279L.description" class="olink">Layered Thermal Solid</a> with
+through-the-thickness degrees of freedom (KEYOPT(3) = 2), layers are
+always interpolated linearly based on the location of the degrees
+of freedom.</p><p>Define consistent initial conditions. For example, if you define
+an initial velocity at a single degree of freedom, the initial velocity
+at every other degree of freedom will be 0.0, potentially leading
+to conflicting initial conditions. In most cases, you should define
+initial conditions at every unconstrained degree of freedom in your
+model. If you define an initial condition for any degree of freedom
+at the pilot node of a rigid body (see <a href="../ans_ctec/ctecrigidbodies.html" class="olink">Modeling Rigid Bodies</a> in the <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a> for
+the definition of rigid body), then the same initial condition must
+also be defined for the same degree of freedom on all other nodes
+of the rigid body.</p><p>After a solution has been performed, the specified initial conditions
+are overwritten by the actual solution and are no longer available.
+You must respecify them if you want to perform a subsequent analysis.
+You may want to keep a database file saved prior to the first solution
+for subsequent reuse.</p><p>If you use the <a class="link" href="Hlp_C_CDWRITE.html" title="CDWRITE"><span class="command"><strong>CDWRITE</strong></span></a> command to archive your
+   model, initial displacements, temperatures, etc. specified via the <span class="command"><strong>IC</strong></span> command
+   are not written to the archive file; initial velocities and accelerations <span class="italic"><em>are</em></span> written.</p><p>This command is also valid in PREP7.</p></div><div class="refsect1" title="Menu Paths"><a name="IC.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Define Loads&gt;Apply&gt;Initial Condit'n&gt;Define</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Define Loads&gt;Apply&gt;Initial Condit'n&gt;Define</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

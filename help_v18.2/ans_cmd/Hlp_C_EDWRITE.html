@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:48-04:00"><title>EDWRITE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_EDWELD.html" title="EDWELD"><link rel="next" href="Hlp_C_EEXTRUDE.html" title="EEXTRUDE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="EDWRITE"><a name="EDWRITE"></a><div class="titlepage"></div><a class="indexterm" name="d0e90300"></a><span class="refentrytitle"><span class="command"><strong>EDWRITE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>EDWRITE</strong></span>, <em class="replaceable"><code>Option</code></em>, <em class="replaceable"><code>Fname</code></em>, <em class="replaceable"><code>Ext</code></em>, <em class="replaceable"><code>--</code></em><br><b class="refpurpose">Writes explicit dynamics input to an LS-DYNA input file.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluexpdyjla070199" title="Table&nbsp;2.72:&nbsp;&nbsp;Explicit Dynamics"><span class="type">Explicit Dynamics</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="EDWRITE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Option</code></em></b></span></dt><dd><p>Sets a flag in the LS-DYNA input file (<span class="filename"><strong><em class="replaceable"><code>Fname.Ext</code></em></strong></span>) to produce desired output.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ANSYS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Set a flag to write results files for the
+ANSYS postprocessors (default).  The files that will be written are <span class="filename"><strong>Jobname.RST</strong></span> and <span class="filename"><strong>Jobname.HIS</strong></span> (see
+Notes below).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LSDYNA</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Set a flag to write results files for the
+LS-DYNA postprocessor (LS-POST).  The files that will be written are <span class="filename"><strong>D3PLOT</strong></span>,
+and files specified by <a class="link" href="Hlp_C_EDOUT.html" title="EDOUT"><span class="command"><strong>EDOUT</strong></span></a> and <a class="link" href="Hlp_C_EDHIST.html" title="EDHIST"><span class="command"><strong>EDHIST</strong></span></a> (see
+Notes below).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BOTH</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Set a flag to write results files for both
+ANSYS and LS-DYNA postprocessors.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Fname</code></em></b></span></dt><dd><p>File name and directory path (80 characters maximum, including
+directory; this limit is due to an LS-DYNA program limitation). If you do
+not specify a directory path, it will default to your working directory. The
+file name defaults to <span class="filename"><strong>Jobname</strong></span>. Previous data on this
+file, if any, are overwritten.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Ext</code></em></b></span></dt><dd><p>Filename extension (eight-character maximum).</p><p>The extension defaults to K in a new analysis and
+in a full restart analysis, and to R in a small restart analysis.</p></dd><dt><span><b class="term"><em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused field.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="EDWRITE.notes"></a><h2>Notes</h2><p>This command writes an LS-DYNA input file for the LS-DYNA solver. <span class="command"><strong>EDWRITE</strong></span> is
+only valid if explicit dynamic elements have been specified. This command
+is not necessary if the LS-DYNA solver is invoked from within ANSYS, in which
+case <span class="filename"><strong>Jobname.K</strong></span> (or <span class="filename"><strong>Jobname.R</strong></span>) is
+written automatically when the solution is initiated. (If LS-DYNA is invoked
+from within ANSYS, use <a class="link" href="Hlp_C_EDOPT.html" title="EDOPT"><span class="command"><strong>EDOPT</strong></span></a> to specify desired output.)</p><p>If the analysis is a small restart (<a class="link" href="Hlp_C_EDSTART.html" title="EDSTART"><span class="command"><strong>EDSTART</strong></span></a>,2), the
+file that is written will have the name <span class="filename"><strong>Jobname.R</strong></span> (by
+default) and will only contain changes from the original analysis.</p><p>If the analysis is a full restart (<a class="link" href="Hlp_C_EDSTART.html" title="EDSTART"><span class="command"><strong>EDSTART</strong></span></a>,3), the
+file that is written will have the name <span class="filename"><strong>Jobname_<em class="replaceable"><code>nn</code></em>.K</strong></span> (by
+default) and will contain all the information from the database. In a full
+restart, the jobname is changed to <span class="filename"><strong>Jobname_<em class="replaceable"><code>nn</code></em></strong></span> (<em class="replaceable"><code>nn</code></em> =
+01 initially, and is incremented for each subsequent full restart.)</p><p>A command is included in the LS-DYNA input file to instruct the LS-DYNA
+solver to write the results files indicated by <em class="replaceable"><code>Option</code></em>.
+ By default, LS-DYNA will write the ANSYS results file <span class="filename"><strong>Jobname.RST</strong></span> (see
+the <a class="link" href="Hlp_C_EDRST.html" title="EDRST"><span class="command"><strong>EDRST</strong></span></a> command).  If <span class="filename"><strong>Jobname.HIS</strong></span> is
+desired, you must also issue <a class="link" href="Hlp_C_EDHIST.html" title="EDHIST"><span class="command"><strong>EDHIST</strong></span></a>.</p><p><em class="replaceable"><code>Option</code></em> = LSDYNA or BOTH will cause LS-DYNA
+to write results files for the LS-POST postprocessor. The <span class="filename"><strong>D3PLOT</strong></span> file
+is always written for these two options. If other LS-POST files are desired,
+you must issue the appropriate <a class="link" href="Hlp_C_EDHIST.html" title="EDHIST"><span class="command"><strong>EDHIST</strong></span></a> and <a class="link" href="Hlp_C_EDOUT.html" title="EDOUT"><span class="command"><strong>EDOUT</strong></span></a> commands.</p><p>This command is also valid in PREP7.</p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p></div><div class="refsect1" title="Menu Paths"><a name="EDWRITE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Write Jobname.k</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

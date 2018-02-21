@@ -1,0 +1,57 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:36-04:00"><title>PRVECT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_P_TOC.html" title="P Commands"><link rel="prev" href="Hlp_C_PRVAR.html" title="PRVAR"><link rel="next" href="Hlp_C_PSCONTROL.html" title="PSCONTROL"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="PRVECT"><a name="PRVECT"></a><div class="titlepage"></div><a class="indexterm" name="d0e216112"></a><span class="refentrytitle"><span class="command"><strong>PRVECT</strong></span></span><div class="refnamediv"><p><span class="command"><strong>PRVECT</strong></span>, <em class="replaceable"><code>Item</code></em>, <em class="replaceable"><code>Lab2</code></em>, <em class="replaceable"><code>Lab3</code></em>, <em class="replaceable"><code>LabP</code></em><br><b class="refpurpose">Prints results as vector magnitude and direction cosines.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1resultjla070199" title="Table&nbsp;2.82:&nbsp;&nbsp;Results"><span class="type">Results</span></a></span></div></div>   <div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1elemtbljla070199" title="Table&nbsp;2.83:&nbsp;&nbsp;Element Table"><span class="type">Element Table</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="PRVECT.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Item</code></em></b></span></dt><dd><p>Predefined vector item (from <a class="xref" href="Hlp_C_PRVECT.html#prvect.tab.1" title="Table&nbsp;216:&nbsp;&nbsp;PRVECT - Valid Item and Component Labels">Table&nbsp;216:&nbsp;PRVECT - Valid Item and Component Labels</a> below) or a label identifying the i-component of a user-defined
+vector.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Lab2</code></em></b></span></dt><dd><p>Label identifying the j-component of a user-defined
+vector. In most cases, this value must be blank if <em class="replaceable"><code>Item</code></em> is selected from <a class="xref" href="Hlp_C_PRVECT.html#prvect.tab.1" title="Table&nbsp;216:&nbsp;&nbsp;PRVECT - Valid Item and Component Labels">Table&nbsp;216:&nbsp;PRVECT - Valid Item and Component Labels</a>. Individual principal
+stresses (<em class="replaceable"><code>Item</code></em> = S) or principal strains
+(<em class="replaceable"><code>Item</code></em> = EP<em class="replaceable"><code>xx</code></em>) may be printed by specifying the value as 1, 2, or 3. </p></dd><dt><span><b class="term"><em class="replaceable"><code>Lab3</code></em></b></span></dt><dd><p>Label identifying the k-component of a user-defined
+vector.  Must be blank if <em class="replaceable"><code>Item</code></em> is selected
+from list below or for 2-D user defined vector.</p></dd><dt><span><b class="term"><em class="replaceable"><code>LabP</code></em></b></span></dt><dd><p>Label assigned to resultant vector for printout labeling
+(defaults to <em class="replaceable"><code>Item</code></em>).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="PRVECT.notes"></a><h2>Notes</h2><p>Prints various solution results as vector magnitude and direction
+cosines for the selected nodes and/or elements.  For example, <span class="command"><strong>PRVECT</strong></span>,U prints the displacement magnitude and its direction
+cosines for all selected nodes.  For nodal degree of freedom vector
+results, direction cosines are with respect to the results coordinate
+system RSYS. For element results, direction cosines are with respect
+to the global Cartesian system. Item components may be printed with
+the <a class="link" href="Hlp_C_PRNSOL.html" title="PRNSOL"><span class="command"><strong>PRNSOL</strong></span></a> command.  Various results also depend
+upon the recalculation method and the selected results location [<a class="link" href="Hlp_C_LAYER.html" title="LAYER"><span class="command"><strong>LAYER</strong></span></a>, <a class="link" href="Hlp_C_SHELL.html" title="SHELL"><span class="command"><strong>SHELL</strong></span></a>, <a class="link" href="Hlp_C_NSEL.html" title="NSEL"><span class="command"><strong>NSEL</strong></span></a>, and <a class="link" href="Hlp_C_ESEL.html" title="ESEL"><span class="command"><strong>ESEL</strong></span></a>].  Items may be selected from a set
+of recognized vector labels (<em class="replaceable"><code>Item</code></em>) or a
+vector may be defined from up to three scalar labels (<em class="replaceable"><code>Item</code></em>,<em class="replaceable"><code>Lab2</code></em>,<em class="replaceable"><code>Lab3</code></em>).  Scalar labels may be user-defined with the <a class="link" href="Hlp_C_ETABLE.html" title="ETABLE"><span class="command"><strong>ETABLE</strong></span></a> command.</p><p>Portions of this command are not supported by PowerGraphics
+[<a href="Hlp_C_GRAPHICS.html" class="olink"><span class="command"><strong>/GRAPHICS</strong></span></a>,POWER].</p><div class="table"><a name="prvect.tab.1"></a><p class="title"><b>Table&nbsp;216:&nbsp;&nbsp;PRVECT - Valid Item and Component Labels</b></p><div class="table-contents"><table summary="PRVECT - Valid Item and Component Labels" border="0" width="95%"><colgroup><col width="76" class="col1"><col width="124" class="col2"><col width="374" class="col3"></colgroup><thead><tr><th align="center">Item</th><th align="center">Comp</th><th align="center">Description</th></tr></thead><tbody><tr><td colspan="3" align="center">Valid
+item labels for nodal degree of freedom vector results are:</td></tr><tr><td align="center">U</td><td>&nbsp;</td><td>Structural
+displacement vector magnitude and direction cosines.</td></tr><tr><td align="center">ROT</td><td>&nbsp;</td><td>Structural
+rotation vector magnitude and direction cosines.</td></tr><tr><td align="center">V</td><td>&nbsp;</td><td>Velocity vector
+magnitude and direction cosines.</td></tr><tr><td align="center">A</td><td>&nbsp;</td><td>Magnetic vector potential vector magnitude
+and direction cosines.</td></tr><tr><td colspan="3" align="center">Valid item labels for element results
+are:</td></tr><tr><td align="center">S</td><td>&nbsp;</td><td>Principal stresses and direction cosines.</td></tr><tr><td align="center">EPTO</td><td>&nbsp;</td><td>Principal
+ total strains (EPEL + EPPL + EPCR) and direction cosines.</td></tr><tr><td align="center">EPEL</td><td>&nbsp;</td><td>Principal
+elastic strains and direction cosines.</td></tr><tr><td align="center">EPPL</td><td>&nbsp;</td><td>Principal plastic
+strains and direction cosines.</td></tr><tr><td align="center">EPCR</td><td>&nbsp;</td><td>Principal creep strains and direction
+cosines.</td></tr><tr><td align="center">EPTH</td><td>&nbsp;</td><td>Principal thermal strains and direction cosines.</td></tr><tr><td align="center">EPDI</td><td>&nbsp;</td><td>Principal diffusion strains and direction cosines.</td></tr><tr><td align="center">TG</td><td>&nbsp;</td><td>Thermal
+gradient vector sum and direction cosines.</td></tr><tr><td align="center">TF</td><td>&nbsp;</td><td>Thermal flux vector
+sum and direction cosines.</td></tr><tr><td align="center">PG</td><td>&nbsp;</td><td>Pressure gradient vector sum and
+direction cosines.</td></tr><tr><td align="center">EF</td><td>&nbsp;</td><td>Electric field vector sum and direction cosines.</td></tr><tr><td align="center">D</td><td>&nbsp;</td><td>Electric
+flux density vector sum and direction cosines.</td></tr><tr><td align="center">H</td><td>&nbsp;</td><td>Magnetic field intensity
+vector sum and direction cosines. If <em class="replaceable"><code>Lab2</code></em> is blank, then Item is interpreted as one of the predefined labels.
+Otherwise, Item is interpreted as a user-defined <a class="link" href="Hlp_C_ET.html" title="ET"><span class="command"><strong>ET</strong></span></a> label and ANSYS will request a non-blank <em class="replaceable"><code>Lab2</code></em>/<em class="replaceable"><code>Lab3</code></em> according to the dimension of the
+problem.</td></tr><tr><td align="center">B</td><td>&nbsp;</td><td>Magnetic flux density vector sum and direction cosines.</td></tr><tr><td align="center">CG</td><td>&nbsp;</td><td>Concentration
+gradient vector sum and direction cosines.</td></tr><tr><td align="center">DF</td><td>&nbsp;</td><td>Diffusion flux density
+vector sum and direction cosines.</td></tr><tr><td align="center">FMAG</td><td>&nbsp;</td><td>Electromagnetic force vector sum
+and direction cosines.</td></tr><tr><td align="center">P</td><td>&nbsp;</td><td>Poynting vector sum and direction cosines.</td></tr><tr><td align="center">JS</td><td>&nbsp;</td><td>Source
+current density vector sum and direction cosines for low-frequency
+magnetic analyses. Total current density vector sum and direction
+cosines (sum of conduction and displacement current densities) in
+low frequency electric analyses. </td></tr><tr><td align="center">JT</td><td>&nbsp;</td><td>Total measurable current density
+vector sum and direction cosines in low-frequency electromagnetic
+analyses. (Conduction current density vector sum and direction cosines
+in a low-frequency electric analysis.)</td></tr><tr><td align="center">JC</td><td>&nbsp;</td><td>Conduction current density vector sum and direction
+cosines for elements that support conduction current calculation. </td></tr></tbody></table></div></div><br class="table-break"></div><div class="refsect1" title="Menu Paths"><a name="PRVECT.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;List Results&gt;Vector Data</strong></span></td></tr><tr><td><span class="guimenu"><strong>Utility Menu&gt;List&gt;Results&gt;Vector Data</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

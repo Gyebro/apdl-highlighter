@@ -1,0 +1,166 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:06-04:00"><title>5.9.&nbsp;Elements Under Linear Perturbation</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_StressAnalysisElems.html" title="Chapter&nbsp;5:&nbsp;Elements for Stress Analysis"><link rel="prev" href="Hlp_E_AutoSelectElems.html" title="5.8.&nbsp;Automatic Selection of Element Technologies and Formulations"><link rel="next" href="elem_chmultiphys.html" title="Chapter&nbsp;6:&nbsp;Elements for Multiphysics Analysis"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="5.9.&nbsp;Elements Under Linear Perturbation"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="ELlinearpert"></a>5.9.&nbsp;Elements Under Linear Perturbation</h2></div></div></div><a class="indexterm" name="d0e15777"></a><a class="indexterm" name="d0e15782"></a><p>Most current-technology elements support <a href="../ans_thry/thylinpert.html" class="olink">linear perturbation</a> analysis.</p><p>Because linear perturbation is based on a solution at a particular time from a linear
+            or nonlinear analysis, known as the base (or prior) analysis, the element behaviors are
+            based on the properties and behavior of the base analysis, but are different from the
+            base analysis.</p><p>The following elements can be used in a linear perturbation analysis as well as any
+            downstream analyses: </p><div class="table"><a name="ELlinperelem"></a><p class="title"><b>Table&nbsp;5.6:&nbsp;&nbsp;Elements Supporting Linear Perturbation Analysis</b></p><div class="table-contents"><table summary="Elements Supporting Linear Perturbation Analysis" border="1" width="95%"><colgroup><col width="144" class="col1"><col width="479" class="col3"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center">
+                            
+                            Category</th><th bgcolor="#E3E3E3" align="center">
+                            
+                            Element Name(s)</th></tr></thead><tbody><tr><td valign="top">Spars</td><td valign="top">
+                            <a class="link" href="Hlp_E_LINK180.html" title="LINK180"><span class="structname">LINK180</span></a>
+                        </td></tr><tr><td valign="top">Beams</td><td valign="top">
+                            <a class="link" href="Hlp_E_BEAM188.html" title="BEAM188"><span class="structname">BEAM188</span></a>, <a class="link" href="Hlp_E_BEAM189.html" title="BEAM189"><span class="structname">BEAM189</span></a>
+                                [<a class="xref" href="Hlp_E_LinearPerturbElems.html#elemlinpertftnt1">1</a>]</td></tr><tr><td>Pipes</td><td>
+                            <a class="link" href="Hlp_E_PIPE288.html" title="PIPE288"><span class="structname">PIPE288</span></a>, <a class="link" href="Hlp_E_PIPE289.html" title="PIPE289"><span class="structname">PIPE289</span></a>
+                        </td></tr><tr><td valign="top">2-D Solids</td><td valign="top">
+                            <a class="link" href="Hlp_E_FLUID29.html" title="FLUID29"><span class="structname">FLUID29</span></a>, <a class="link" href="Hlp_E_PLANE121.html" title="PLANE121"><span class="structname">PLANE121</span></a>,
+                                <a class="link" href="Hlp_E_PLANE182.html" title="PLANE182"><span class="structname">PLANE182</span></a>,
+                            <a class="link" href="Hlp_E_PLANE183.html" title="PLANE183"><span class="structname">PLANE183</span></a>, <a class="link" href="Hlp_E_PLANE223.html" title="PLANE223"><span class="structname">PLANE223</span></a>,
+                                <a class="link" href="Hlp_E_PLANE233.html" title="PLANE233"><span class="structname">PLANE233</span></a>
+                        </td></tr><tr><td valign="top">3-D Solids</td><td valign="top">
+                            <a class="link" href="Hlp_E_SOLID185.html" title="SOLID185"><span class="structname">SOLID185</span></a>, <a class="link" href="Hlp_E_SOLID186.html" title="SOLID186"><span class="structname">SOLID186</span></a>,
+                                <a class="link" href="Hlp_E_SOLID187.html" title="SOLID187"><span class="structname">SOLID187</span></a>,
+                            <a class="link" href="Hlp_E_SOLID285.html" title="SOLID285"><span class="structname">SOLID285</span></a>, <a class="link" href="Hlp_E_SOLID226.html" title="SOLID226"><span class="structname">SOLID226</span></a>,
+                                <a class="link" href="Hlp_E_SOLID227.html" title="SOLID227"><span class="structname">SOLID227</span></a>,
+                            <a class="link" href="Hlp_E_SOLID237.html" title="SOLID237"><span class="structname">SOLID237</span></a>, <a class="link" href="Hlp_E_FLUID30.html" title="FLUID30"><span class="structname">FLUID30</span></a>,
+                                <a class="link" href="Hlp_E_FLUID220.html" title="FLUID220"><span class="structname">FLUID220</span></a>, <a class="link" href="Hlp_E_FLUID221.html" title="FLUID221"><span class="structname">FLUID221</span></a>
+                        </td></tr><tr><td valign="top">Shells</td><td valign="top">
+                            <a class="link" href="Hlp_E_SHELL181.html" title="SHELL181"><span class="structname">SHELL181</span></a>, <a class="link" href="Hlp_E_SHELL208.html" title="SHELL208"><span class="structname">SHELL208</span></a>,
+                                <a class="link" href="Hlp_E_SHELL209.html" title="SHELL209"><span class="structname">SHELL209</span></a>, <a class="link" href="Hlp_E_SHELL281.html" title="SHELL281"><span class="structname">SHELL281</span></a>
+                        </td></tr><tr><td>Solid-Shell</td><td>
+                            <a class="link" href="Hlp_E_SOLSH190.html" title="SOLSH190"><span class="structname">SOLSH190</span></a>
+                        </td></tr><tr><td>Interface</td><td>
+                            <a class="link" href="Hlp_E_INTER192.html" title="INTER192"><span class="structname">INTER192</span></a>, <a class="link" href="Hlp_E_INTER193.html" title="INTER193"><span class="structname">INTER193</span></a>,
+                                <a class="link" href="Hlp_E_INTER194.html" title="INTER194"><span class="structname">INTER194</span></a>, <a class="link" href="Hlp_E_INTER195.html" title="INTER195"><span class="structname">INTER195</span></a>
+                        </td></tr><tr><td valign="top">Contact</td><td valign="top">
+                            <a class="link" href="Hlp_E_TARGE169.html" title="TARGE169"><span class="structname">TARGE169</span></a>, <a class="link" href="Hlp_E_TARGE170.html" title="TARGE170"><span class="structname">TARGE170</span></a>,
+                                <a class="link" href="Hlp_E_CONTA171.html" title="CONTA171"><span class="structname">CONTA171</span></a>,
+                            <a class="link" href="Hlp_E_CONTA172.html" title="CONTA172"><span class="structname">CONTA172</span></a>, <a class="link" href="Hlp_E_CONTA173.html" title="CONTA173"><span class="structname">CONTA173</span></a>,
+                                <a class="link" href="Hlp_E_CONTA174.html" title="CONTA174"><span class="structname">CONTA174</span></a>,
+                            <a class="link" href="Hlp_E_CONTA175.html" title="CONTA175"><span class="structname">CONTA175</span></a>, <a class="link" href="Hlp_E_CONTA176.html" title="CONTA176"><span class="structname">CONTA176</span></a>,
+                                <a class="link" href="Hlp_E_CONTA177.html" title="CONTA177"><span class="structname">CONTA177</span></a>, <a class="link" href="Hlp_E_CONTA178.html" title="CONTA178"><span class="structname">CONTA178</span></a>
+                        </td></tr><tr><td valign="top">Surface</td><td valign="top"><a class="link" href="Hlp_E_SURF153.html" title="SURF153"><span class="structname">SURF153</span></a>,
+                                <a class="link" href="Hlp_E_SURF154.html" title="SURF154"><span class="structname">SURF154</span></a>,
+                            <a class="link" href="Hlp_E_SURF156.html" title="SURF156"><span class="structname">SURF156</span></a></td></tr><tr><td valign="top">Spring/Damper</td><td valign="top"><a class="link" href="Hlp_E_COMBIN14.html" title="COMBIN14"><span class="structname">COMBIN14</span></a>,
+                                <a class="link" href="Hlp_E_COMBIN39.html" title="COMBIN39"><span class="structname">COMBIN39</span></a>,
+                            <a class="link" href="Hlp_E_COMBI214.html" title="COMBI214"><span class="structname">COMBI214</span></a>, </td></tr><tr><td valign="top">Specialty</td><td valign="top"><a class="link" href="Hlp_E_MASS21.html" title="MASS21"><span class="structname">MASS21</span></a>,
+                                <a class="link" href="Hlp_E_MATRIX27.html" title="MATRIX27"><span class="structname">MATRIX27</span></a>,
+                            <a class="link" href="Hlp_E_TRANS126.html" title="TRANS126"><span class="structname">TRANS126</span></a>, <a class="link" href="Hlp_E_PRETS179.html" title="PRETS179"><span class="structname">PRETS179</span></a>,
+                                <a class="link" href="Hlp_E_MPC184.html" title="MPC184"><span class="structname">MPC184</span></a>, <a class="link" href="Hlp_E_MESH200.html" title="MESH200"><span class="structname">MESH200</span></a>,
+                                <a class="link" href="Hlp_E_FOLLW201.html" title="FOLLW201"><span class="structname">FOLLW201</span></a></td></tr><tr><td valign="top">Hydrostatic Fluid</td><td valign="top"><a class="link" href="Hlp_E_HSFLD241.html" title="HSFLD241"><span class="structname">HSFLD241</span></a>,
+                                <a class="link" href="Hlp_E_HSFLD242.html" title="HSFLD242"><span class="structname">HSFLD242</span></a>
+                        </td></tr><tr><td>CMS Superelement (or substructure)</td><td>
+                            <a class="link" href="Hlp_E_MATRIX50.html" title="MATRIX50"><span class="structname">MATRIX50</span></a> [<a class="xref" href="Hlp_E_LinearPerturbElems.html#elemlinpertftnt2">2</a>]</td></tr><tr><td>Circuit</td><td>
+                            <a class="link" href="Hlp_E_CIRCU94.html" title="CIRCU94"><span class="structname">CIRCU94</span></a>, <a class="link" href="Hlp_E_CIRCU124.html" title="CIRCU124"><span class="structname">CIRCU124</span></a>
+                        </td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="elemlinpertftnt1"></a>Not supported for <a href="../ans_str/Hlp_G_STRNGBS.html" class="olink">nonlinear
+                        general beam sections</a> (<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,GENB).</p></li><li class="listitem"><p><a name="elemlinpertftnt2"></a>
+                    <a class="link" href="Hlp_E_MATRIX50.html" title="MATRIX50"><span class="structname">MATRIX50</span></a> can be used in a linear perturbation analysis
+                    the same way it is used in a typical substructure use pass. However,
+                        <a class="link" href="Hlp_E_MATRIX50.html" title="MATRIX50"><span class="structname">MATRIX50</span></a> is treated as a linear element in the
+                    linear perturbation analysis and is not prestressed.</p></li></ol></div><div class="sect2" title="5.9.1.&nbsp;Material Properties of Structural Elements in Linear Perturbation"><div class="titlepage"><div><div><h3 class="title"><a name="ELmatlinpert"></a>5.9.1.&nbsp;Material Properties of Structural Elements in Linear Perturbation</h3></div></div></div><a class="indexterm" name="d0e16147"></a><p>The base analysis of the linear perturbation can be a nonlinear analysis with
+                nonlinear materials, geometric nonlinearity, or contact elements included in the
+                model. In the linear perturbation analysis, the geometric nonlinearity at the
+                substep where linear perturbation is initiated is completely inherited in
+                    <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqaf2ebea2-f41f-4ce0-a985-811fb0eaecfd.svg"></span> of <a href="../ans_thry/thylinpert.html#thyeqlinpert2" class="olink">Equation&nbsp;15&#8211;240</a> in the
+                <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>. This includes large deformation, large rotation, and contact effects.
+                The linear perturbation analysis can be understood as an iteration in the nonlinear
+                base analysis. In the linear perturbation analysis, all of the nonlinear effects are
+                taken into consideration and &#8220;frozen&#8221; so that the loading and
+                deformation is linear. The nonlinear effects are also carried to the stress
+                expansion pass and the following downstream analysis, if any. </p><div class="sect3" title="5.9.1.1.&nbsp;Specifying Material Behavior in Linear Perturbation"><div class="titlepage"><div><div><h4 class="title"><a name="ELlinpertmatbehavior"></a>5.9.1.1.&nbsp;Specifying Material Behavior in Linear Perturbation</h4></div></div></div><p>Any nonlinear material must behave linearly in the linear perturbation
+                    analysis. For all materials, the same material properties used in the linear
+                    perturbation are also used in the stress-expansion pass and in all subsequent
+                    downstream analyses, if any.</p><p>
+                    <span class="bold"><strong>Linear Materials</strong></span>
+                </p><p>For pure linear elastic materials used in the base analysis, the same
+                    properties are used in the linear perturbation. Because the material
+                    constitutive curve is a line, the tangent is the same as the line. The
+                    material-handling key (<em class="replaceable"><code>MatKey</code></em>) specified via the
+                        <a href="../ans_cmd/Hlp_C_PERTURB.html" class="olink"><span class="command"><strong>PERTURB</strong></span></a> command is ignored.</p><p>
+                    <span class="bold"><strong>Hyperelastic Materials</strong></span>
+                </p><p>For hyperelastic materials used in the base analysis, the material properties
+                    are assumed to be linear elastic. The program obtains the material property data
+                    (material Jacobian) based on the tangent of the hyperelastic material's
+                    constitutive law at the point where restart or linear perturbation occurs. The
+                    material-handling key (<em class="replaceable"><code>MatKey</code></em>) specified via the
+                        <a href="../ans_cmd/Hlp_C_PERTURB.html" class="olink"><span class="command"><strong>PERTURB</strong></span></a> command is ignored.</p><p>
+                    <span class="bold"><strong>Nonlinear Materials Other Than Hyperelastic
+                        Materials</strong></span>
+                </p><p>For any nonlinear materials other than hyperelastic materials used in the base
+                    analysis, the material properties are assumed to be linear elastic. The program
+                    determines the material properties based on the material-handling key
+                        (<em class="replaceable"><code>MatKey</code></em>) specified via the
+                        <a href="../ans_cmd/Hlp_C_PERTURB.html" class="olink"><span class="command"><strong>PERTURB</strong></span></a> command, as follows: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>If the default automatic material-handling behavior
+                                (<em class="replaceable"><code>MatKey</code></em> = AUTO) is in effect, the program
+                            uses the linear portion of the nonlinear materials (that is, the parts
+                            defined via <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> commands) for the linear
+                            perturbation.</p></li><li class="listitem"><p>If the tangent option (<em class="replaceable"><code>MatKey</code></em> = TANGENT) is
+                            in effect, the program uses the consistent tangent on the material
+                            constitutive curve for the linear perturbation. The program obtains the
+                            consistent tangent at the point where restart or linear perturbation
+                            occurs.</p></li></ul></div><p>For most materials, the tangent option gives different material properties
+                    than those given by the automatic option. It is possible, however, that they
+                    could be identical or very similar if a.) the material is elasto-plastic
+                    rate-independent and is unloading (or has neutral loading) at the restart point,
+                    or b.) the material is rate-dependent, depending on the material properties and
+                    loading conditions. </p></div></div><div class="sect2" title="5.9.2.&nbsp;Interpretation of Structural Element Results After a Linear Perturbation Analysis"><div class="titlepage"><div><div><h3 class="title"><a name="ELresultlinper"></a>5.9.2.&nbsp;Interpretation of Structural Element Results After a Linear Perturbation
+                Analysis</h3></div></div></div><p>After a linear perturbation analysis, the reported stress, elastic strain, and
+                thermal strains are the values due to the linear perturbation analysis; for example,
+                for linear perturbation modal analysis, the stress and elastic strain are the values
+                due to the mode shapes. The effects of any geometric nonlinearity are taken into
+                consideration in the stress expansion.</p><p>Because a linear perturbation analysis can be understood as an extra iteration of
+                a base analysis, all history-dependent results of the base analysis are inherited in
+                the results of the linear perturbation analysis. Therefore, any plastic strains,
+                creep strains, swelling strains, and contact results from the base analysis are
+                available in the results data of the linear perturbation analysis. </p><p>The total strain is the sum of <span class="italic"><em>all</em></span> strains (for
+                example, <a href="../ans_cmd/Hlp_C_PLNSOL.html" class="olink"><span class="command"><strong>PLNSOL</strong></span></a>,EPTO). The nonlinear solution quantities such as
+                equivalent stress, stress state ratio, and plastic state variable (for example,
+                    <a href="../ans_cmd/Hlp_C_PLESOL.html" class="olink"><span class="command"><strong>PLESOL</strong></span></a>,NL,...) are also available. The one exception is that
+                hydrostatic pressure is the value from the linear perturbation analysis instead of
+                from the base analysis. </p><p>For hyperelastic materials, the strain after the linear perturbation analysis is
+                the elastic strain due to the linear perturbation analysis, and the total strain is
+                the same as the elastic strain. For plane stress cases, the direct strain in the Z
+                direction is calculated with the incompressible condition for hyperelastic
+                materials, and with linear elastic material properties for any material other than
+                hyperelastic materials.</p><p>The energy densities (for example, <a href="../ans_cmd/Hlp_C_PLESOL.html" class="olink"><span class="command"><strong>PLESOL</strong></span></a>,SEND,...) are
+                inherited from the base analysis, except for the elastic energy density which is
+                energy density calculated in the linear perturbation analysis. However, the reported
+                strain energy (for example, <a href="../ans_cmd/Hlp_C_PRESOL.html" class="olink"><span class="command"><strong>PRESOL</strong></span></a>,SENE) includes the elastic
+                part due to linear perturbation and others inherited from the base analysis (if
+                any).</p><p>If the base analysis includes geometric nonlinearity, the Euler angles or the
+                geometric nonlinear effects of the base analysis are available in the results file.
+                Thus, all the output quantities of the linear perturbation analysis are reported
+                consistently in global, local, and rotated local coordinate systems, as in the base
+                analysis.</p><p>Temperatures saved in the linear perturbation results
+                    (<span class="filename"><strong>Jobname.rstp</strong></span>) are the temperatures which have been
+                modified during the second phase of the linear perturbation procedure (that is, as
+                the perturbation load). This is only applicable to linear perturbation eigenvalue
+                buckling analysis.</p></div><div class="sect2" title="5.9.3.&nbsp;Loads, Initial Conditions, and Other Limitations in Linear Perturbation"><div class="titlepage"><div><div><h3 class="title"><a name="ELloadslinpert"></a>5.9.3.&nbsp;Loads, Initial Conditions, and Other Limitations in Linear Perturbation</h3></div></div></div><p>The following restrictions apply to linear perturbation analysis:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Perturbation loads cannot be non-mechanical loading such as initial
+                        conditions (<a href="../ans_cmd/Hlp_C_INISTATE.html" class="olink"><span class="command"><strong>INISTATE</strong></span></a> command) or swelling effects. These
+                        loads cannot be modified or deleted during the linear perturbation
+                        analysis.</p></li><li class="listitem"><p>For a linear perturbation static or eigenvalue buckling analysis, a
+                        thermal load can be modified by specifying a new temperature in the second
+                        phase of the linear perturbation procedure. In a linear perturbation static
+                        or buckling analysis, assuming that the base analysis is nonlinear, the
+                        reference temperature is the temperature from which the linear perturbation
+                        analysis is restarted (and not the reference temperature
+                            [<a href="../ans_cmd/Hlp_C_TREF.html" class="olink"><span class="command"><strong>TREF</strong></span></a>] from the base analysis). </p></li><li class="listitem"><p>If the base analysis is linear, then the reference temperature used in the
+                        linear perturbation is the <a href="../ans_cmd/Hlp_C_TREF.html" class="olink"><span class="command"><strong>TREF</strong></span></a> temperature from the base
+                        analysis. </p></li><li class="listitem"><p>Thermal loads from the base analysis are ignored in a linear perturbation
+                        modal or full harmonic analysis. In addition, you cannot apply thermal loads
+                        in the second phase of a linear perturbation modal or full harmonic
+                        analysis.</p></li><li class="listitem"><p>No element can be activated or deactivated using the birth and death
+                        feature during the second phase of a linear perturbation analysis; however,
+                        this is allowed in the first phase of linear perturbation.</p></li><li class="listitem"><p>Linear perturbation analyses do not support user-defined materials (user
+                        subroutine <code class="function">UserMat</code>).</p></li></ul></div></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

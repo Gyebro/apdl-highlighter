@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:40-04:00"><title>TIFF</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_T_TOC.html" title="T Commands"><link rel="prev" href="Hlp_C_THOPT.html" title="THOPT"><link rel="next" href="Hlp_C_TIME.html" title="TIME"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="TIFF"><a name="TIFF"></a><div class="titlepage"></div><a class="indexterm" name="d0e279800"></a><span class="refentrytitle"><span class="command"><strong>TIFF</strong></span>  </span><div class="refnamediv"><p><span class="command"><strong>TIFF</strong></span>, <em class="replaceable"><code>Kywrd</code></em>, <em class="replaceable"><code>OPT</code></em><br><b class="refpurpose">Provides TIFF file Export for ANSYS Displays.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_3.html" title="2.3.&nbsp;GRAPHICS Commands"><code class="classname">GRAPHICS</code></a>: <a class="link" href="Hlp_C_CH2_3.html#cmdgraphicsetupjla070199" title="Table&nbsp;2.11:&nbsp;&nbsp;Setup"><span class="type">Set Up</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="TIFF.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Kywrd</code></em></b></span></dt><dd><p>Specifies various TIFF file export options.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">COMP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If <em class="replaceable"><code>Kywrd </code></em>= COMP,
+then <em class="replaceable"><code>OPT</code></em> controls data compression for the output
+file. If COMP = 0, then compression is off. If COMP = 1 (default), then compression
+is on.  </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ORIENT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If <em class="replaceable"><code>Kywrd</code></em> = ORIENT,
+then <em class="replaceable"><code>OPT</code></em> will determine the orientation of the
+entire plot. <em class="replaceable"><code>OPT</code></em> can be either Horizontal (default)
+or Vertical. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">COLOR</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If <em class="replaceable"><code>Kywrd</code></em> = COLOR,
+then <em class="replaceable"><code>OPT</code></em> will determine the color attribute of
+the saved file. <em class="replaceable"><code>OPT</code></em> can be 0, 1, or 2, corresponding
+to Black and White, Grayscale, and Color (default), respectively. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TMOD</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If <em class="replaceable"><code>Kywrd</code></em> = TMOD,
+then <em class="replaceable"><code>OPT</code></em> will determine the text method. <em class="replaceable"><code>OPT</code></em> can
+be either 1 or 0, corresponding to bitmap text (default) or line stroke text,
+respectively. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DEFAULT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If <em class="replaceable"><code>Kywrd</code></em> =
+DEFAULT, then all of the default values, for all of the Kywrd parameters listed
+above, are active.  </p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>OPT</code></em></b></span></dt><dd><p><em class="replaceable"><code>OPT</code></em> can have the following names
+or values, depending on the value for <em class="replaceable"><code>Kywrd</code></em> (see
+above).</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1 or 0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If <em class="replaceable"><code>Kywrd</code></em> = COMP,
+a value or 1 (on) or 0 (off) will control compression for the TIFF file. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">Horizontal, Vertical</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If <em class="replaceable"><code>Kywrd</code></em> =
+ORIENT, the terms Horizontal or Vertical determine the orientation of the
+plot. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0, 1, 2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If <em class="replaceable"><code>Kywrd</code></em> =
+COLOR, the numbers 0, 1, and 2 correspond to Black and White , Grayscale and
+Color, respectively. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1, 0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If <em class="replaceable"><code>Kywrd</code></em> = TMOD,
+the values 1 and 0 determine whether bitmap (1) or stroke text (0) fonts will
+be used </p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Menu Paths"><a name="TIFF.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;HardCopy&gt;ToFile</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

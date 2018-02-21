@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:34-04:00"><title>LDIV</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_L_TOC.html" title="L Commands"><link rel="prev" href="Hlp_C_LDELE.html" title="LDELE"><link rel="next" href="Hlp_C_LDRAG.html" title="LDRAG"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="LDIV"><a name="LDIV"></a><div class="titlepage"></div><a class="indexterm" name="d0e149891"></a><span class="refentrytitle"><span class="command"><strong>LDIV</strong></span></span><div class="refnamediv"><p><span class="command"><strong>LDIV</strong></span>, <em class="replaceable"><code>NL1</code></em>, <em class="replaceable"><code>RATIO</code></em>, <em class="replaceable"><code>PDIV</code></em>, <em class="replaceable"><code>NDIV</code></em>, <em class="replaceable"><code>KEEP</code></em><br><b class="refpurpose">Divides a single line into two or more lines.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7linesldm061600" title="Table&nbsp;2.32:&nbsp;&nbsp;Lines"><span class="type">Lines</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="LDIV.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NL1</code></em></b></span></dt><dd><p>Number of the line to be divided.  If negative, assume <em class="replaceable"><code>P1</code></em> (see below) is the second keypoint of the line
+instead of the first for <em class="replaceable"><code>RATIO</code></em>.  If ALL, divide
+all selected lines [<a class="link" href="Hlp_C_LSEL.html" title="LSEL"><span class="command"><strong>LSEL</strong></span></a>].  If <em class="replaceable"><code>NL1</code></em> =
+P, graphical picking is enabled and all remaining command fields are ignored
+(valid only in the GUI).  A component name may also be substituted for <em class="replaceable"><code>NL1</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>RATIO</code></em></b></span></dt><dd><p>Ratio of line length <em class="replaceable"><code>P1</code></em>-<em class="replaceable"><code>PDIV</code></em> to
+line length <em class="replaceable"><code>P1</code></em>-<em class="replaceable"><code>P2</code></em>.
+ Must be between 0.0 and 1.0. Input ignored if <em class="replaceable"><code>NDIV</code></em> &gt;
+2.</p></dd><dt><span><b class="term"><em class="replaceable"><code>PDIV</code></em></b></span></dt><dd><p>Number to be assigned to keypoint generated at division location
+(defaults to lowest available keypoint number [<a class="link" href="Hlp_C_NUMSTR.html" title="NUMSTR"><span class="command"><strong>NUMSTR</strong></span></a>]).
+ Input ignored if <em class="replaceable"><code>NL1</code></em> = ALL or <em class="replaceable"><code>NDIV</code></em> &gt;
+2.  If <em class="replaceable"><code>PDIV</code></em> already exists and lies on line <em class="replaceable"><code>NL1</code></em>,
+divide line at <em class="replaceable"><code>PDIV</code></em> (<em class="replaceable"><code>RATIO</code></em> must
+also be 0.0).  If <em class="replaceable"><code>PDIV</code></em> already exists and does
+not lie on line <em class="replaceable"><code>NL1</code></em>, <em class="replaceable"><code>PDIV</code></em> is
+projected and moved to the nearest point on line <em class="replaceable"><code>NL1</code></em> (if
+possible). <em class="replaceable"><code>PDIV</code></em> cannot be attached to another line,
+area, or volume.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NDIV</code></em></b></span></dt><dd><p>The number of new lines to be generated from old line (defaults
+to 2).</p></dd><dt><span><b class="term"><em class="replaceable"><code>KEEP</code></em></b></span></dt><dd><p>Specifies whether to keep the input entities:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Modify old line to use new keypoints
+and slopes.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Do not modify old line.  New lines
+will overlay old line and have unique keypoints.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="LDIV.notes"></a><h2>Notes</h2><p>Divides a single line <em class="replaceable"><code>NL1</code></em> (defined from keypoint <em class="replaceable"><code>P1</code></em> to keypoint <em class="replaceable"><code>P2</code></em>)
+into two or more lines.  Line <em class="replaceable"><code>NL1</code></em> becomes the new
+line beginning with keypoint <em class="replaceable"><code>P1</code></em> and
+new lines are generated ending at keypoint <em class="replaceable"><code>P2</code></em>.
+ If the line is attached to an area, the area will also be updated.  Line
+divisions are set to zero (use <a class="link" href="Hlp_C_LESIZE.html" title="LESIZE"><span class="command"><strong>LESIZE</strong></span></a>, etc. to modify).</p></div><div class="refsect1" title="Menu Paths"><a name="LDIV.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Operate&gt;Booleans&gt;Divide&gt;Line into 2 Ln's</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Operate&gt;Booleans&gt;Divide&gt;Line into N Ln's</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Operate&gt;Booleans&gt;Divide&gt;Lines w/ Options</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

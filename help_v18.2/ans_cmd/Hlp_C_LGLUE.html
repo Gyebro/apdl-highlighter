@@ -1,0 +1,28 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:35-04:00"><title>LGLUE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_L_TOC.html" title="L Commands"><link rel="prev" href="Hlp_C_LGEN.html" title="LGEN"><link rel="next" href="Hlp_C_LGWRITE.html" title="LGWRITE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="LGLUE"><a name="LGLUE"></a><div class="titlepage"></div><a class="indexterm" name="d0e151853"></a><span class="refentrytitle"><span class="command"><strong>LGLUE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>LGLUE</strong></span>, <em class="replaceable"><code>NL1</code></em>, <em class="replaceable"><code>NL2</code></em>, <em class="replaceable"><code>NL3</code></em>, <em class="replaceable"><code>NL4</code></em>, <em class="replaceable"><code>NL5</code></em>, <em class="replaceable"><code>NL6</code></em>, <em class="replaceable"><code>NL7</code></em>, <em class="replaceable"><code>NL8</code></em>, <em class="replaceable"><code>NL9</code></em><br><b class="refpurpose">Generates new lines by "gluing" lines.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7booleansldm061600" title="Table&nbsp;2.35:&nbsp;&nbsp;Booleans"><span class="type">Booleans</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="LGLUE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NL1</code></em>, <em class="replaceable"><code>NL2</code></em>, <em class="replaceable"><code>NL3</code></em>,
+. . . , <em class="replaceable"><code>NL9</code></em></b></span></dt><dd><p>Numbers of the lines to be glued.  If <em class="replaceable"><code>NL1</code></em> =
+ALL, all selected lines will be glued (<em class="replaceable"><code>NL2</code></em> to <em class="replaceable"><code>NL9</code></em> will
+be ignored).  If <em class="replaceable"><code>NL1</code></em> = P, graphical picking is
+enabled and all remaining command fields are ignored (valid only in the GUI).
+ A component name may also be substituted for <em class="replaceable"><code>NL1</code></em>.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="LGLUE.notes"></a><h2>Notes</h2><p>Use of the <span class="command"><strong>LGLUE</strong></span> command generates new lines by "gluing"
+input lines.  The glue operation redefines the input lines so that they share
+keypoints at their common ends.  The new lines encompass the same geometry
+as the original lines.  This operation is only valid if the intersections
+of the input lines are keypoints at the ends of those lines.  See the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a> for
+an illustration.  See the <a class="link" href="Hlp_C_BOPTN.html" title="BOPTN"><span class="command"><strong>BOPTN</strong></span></a> command for an explanation
+of the options available to Boolean operations.  Element attributes and solid
+model boundary conditions assigned to the original entities will not be transferred
+to the new entities generated.</p><p>The <span class="command"><strong>LGLUE</strong></span> command results in the merging of keypoints
+at the common end of the lines. The keypoints of the lower numbered line will
+be kept. This means one must be aware of line numbering when multiple <span class="command"><strong>LGLUE</strong></span> commands
+are applied to avoid any &#8220;ungluing&#8221; of geometry.</p></div><div class="refsect1" title="Menu Paths"><a name="LGLUE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Operate&gt;Booleans&gt;Glue&gt;Lines</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

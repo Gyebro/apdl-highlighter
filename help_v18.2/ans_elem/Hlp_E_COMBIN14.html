@@ -1,0 +1,172 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:11-04:00"><title>COMBIN14</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_PLANE13.html" title="PLANE13"><link rel="next" href="Hlp_E_MASS21.html" title="MASS21"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="COMBIN14"><a name="COMBIN14"></a><div class="titlepage"></div><a class="indexterm" name="d0e23731"></a><span class="refentrytitle">
+<span class="structname">COMBIN14</span> </span><div class="refnamediv"><p><br><b class="refpurpose">Spring-Damper</b><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+<div class=""><div class="application"><span class="application">
+<a class="link" href="Hlp_E_COMBIN14.html#aJS6vq1edmcm" title="COMBIN14 Product Restrictions">Product Restrictions</a>
+</span></div></div> </div></p></div><div class="refsect1" title="COMBIN14 Element Description"><a name="elemdesc14tlm61499"></a><h2>COMBIN14 Element Description</h2><p>
+<span class="structname">COMBIN14</span> has longitudinal or torsional
+capability in 1-D, 2-D, or 3-D applications.  The longitudinal spring-damper
+option is a uniaxial tension-compression element with up to three
+degrees of freedom at each node:  translations in the nodal x, y,
+and z directions.  No bending or torsion is considered.  The torsional
+spring-damper option is a purely rotational element with three degrees
+of freedom at each node: rotations about the nodal x, y, and z axes.
+ No bending or axial loads are considered.</p><p>The spring-damper element has no mass.  Masses can be added
+by using the appropriate mass element (see <a class="link" href="Hlp_E_MASS21.html" title="MASS21"><span class="structname">MASS21</span></a>).  The spring or the damping capability may be removed from the
+element.  See <a href="../ans_thry/thy_el14.html" class="olink">
+<span class="structname">COMBIN14</span>
+</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for more
+details about this element.  A general spring or damper is also available
+in the stiffness matrix element (<a class="link" href="Hlp_E_MATRIX27.html" title="MATRIX27"><span class="structname">MATRIX27</span></a>).  Another spring-damper element (having its direction of action
+determined by the nodal coordinate directions) is <a class="link" href="Hlp_E_COMBIN40.html" title="COMBIN40"><span class="structname">COMBIN40</span></a>.</p><div class="figure"><a name="avC8flmm"></a><p class="title"><b>Figure&nbsp;14.1:&nbsp;&nbsp;COMBIN14 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM14-1.svg" alt="COMBIN14 Geometry"></div><div class="blockquote"><blockquote class="blockquote"><p>2-D elements must lie in a z = constant plane</p></blockquote></div></div></div><br class="figure-break"></div><div class="refsect1" title="COMBIN14 Input Data"><a name="aJS6vqa8mcm"></a><h2>COMBIN14 Input Data</h2><p>The geometry, node locations, and the coordinate system for
+this element are shown in <a class="xref" href="Hlp_E_COMBIN14.html#avC8flmm" title="Figure&nbsp;14.1:&nbsp;&nbsp;COMBIN14 Geometry">Figure&nbsp;14.1:&nbsp;COMBIN14 Geometry</a>.  The element
+is defined by two nodes, a spring constant (k) and damping coefficients
+(c<sub>v</sub>)<sub>1 </sub>and (c<sub>v</sub>)<sub>2</sub>.  The damping capability is
+not used for static or undamped modal analyses.  The longitudinal
+spring constant should have units of Force / Length, the damping coefficient
+units are Force * Time / Length.  The torsional spring constant and
+damping coefficient have units of Force * Length / Radian and Force
+* Length * Time / Radian, respectively.  For a 2-D axisymmetric analysis,
+these values should be on a full 360&deg; basis.</p><p>The damping portion of the element contributes only damping
+coefficients to the structural damping matrix.  The damping force
+(F) or torque (T) is computed as:</p><div class="informalequation"><a name="eq3fb37db9-5213-4bbe-a9d8-64a696c31418"></a><div><img src="graphics/eq3fb37db9-5213-4bbe-a9d8-64a696c31418.svg"></div></div><p>where c<sub>v</sub> is the damping coefficient given
+by <span class="inlineequation" style="&#xA;          vertical-align:-9.000000px"><img src="graphics/eqc8668fbc-2bba-44e1-a9cc-c0f1c9168d55.svg"></span>.</p><p>v is the velocity calculated in the previous substep.  The second
+damping coefficient (c<sub>v</sub>)<sub>2</sub> is available to produce a nonlinear damping effect characteristic
+of some fluid environments.  If (c<sub>v</sub>)<sub>2</sub> is input (as real constant CV2), KEYOPT(1) must be
+set to 1.</p><p>The imaginary part of the stiffness constant
+(k<sub>imag</sub>) contributes to the structural damping
+matrix. The imaginary force (F*) or torque (T*) is computed as:</p><div class="informalequation"><a name="eqdf7ede4b-a89f-4a8b-b997-e6afaa4f7eaf"></a><div><img src="graphics/eqdf7ede4b-a89f-4a8b-b997-e6afaa4f7eaf.svg"></div></div><p>KEYOPT(2) = 1 through 6 is used for defining the element as
+a one-dimensional element.  With these options, the element operates
+in the nodal coordinate system (see <a class="xref" href="Hlp_E_CH2_3.html#aOVqq14atlm" title="3.3.2.&nbsp;Elements That Operate in the Nodal Coordinate System">Elements That Operate in the Nodal Coordinate System</a>).
+ The KEYOPT(2) = 7 and 8 options allow the element to be used in a
+thermal or pressure analysis.</p><p>A preload in the spring may be specified in one of two ways,
+either through an initial (force-free) length (ILENGTH) or an initial
+force (IFORCE) input. Only one of the input options may be used to
+define the preload. If the initial length is different than the input
+length defined by the nodal coordinates, a preload is presumed to
+exist. If an initial force is given, a negative value indicates the
+spring is initially in compression and a positive value indicates
+tension. For the 3-D torsional spring option (KEYOPT(3) = 1), ILENGTH
+is interpreted as the initial number of turns (rotations) in the spring
+(the spring is pre-wound) and IFORCE is the torque preload in the
+spring.  The right-hand rule from node I to node J is used to define
+positive and negative turns as well as positive and negative torque.
+In a nonlinear analysis, the preload is ramped in the first load step
+if <a href="../ans_cmd/Hlp_C_KBC.html" class="olink"><span class="command"><strong>KBC</strong></span></a>,0 is set.</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_COMBIN14.html#aFD8f39dlmm" title="COMBIN14 Input Summary">"COMBIN14 Input Summary"</a>.  A general description of element input is
+given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>.</p><div class="refsect2" title="COMBIN14 Input Summary"><a name="aFD8f39dlmm"></a><h3>COMBIN14 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>UX, UY, UZ if KEYOPT (3) = 0</td></tr><tr><td>ROTX, ROTY, ROTZ if KEYOPT (3) = 1</td></tr><tr><td>UX, UY if KEYOPT (3) = 2</td></tr><tr><td>see list below if KEYOPT(2) &gt; 0</td></tr></table></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><p>K, CV1, CV2, (Blank), (Blank), ILENGTH, IFORCE, KIMAG</p><p>See <a class="xref" href="Hlp_E_COMBIN14.html#c14_real_con" title="Table&nbsp;14.1:&nbsp;&nbsp;COMBIN14 Real Constants">Table&nbsp;14.1:&nbsp;COMBIN14 Real Constants</a> for a description of the real constants.</p><p>In a full harmonic analysis, real constants K, CV1, and KIMAG can be defined as table
+              parameters using the frequency as primary variable (<em class="replaceable"><code>Var1</code></em> =
+              FREQ on the <a href="../ans_cmd/Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a> command).</p><p>In a full transient analysis, real constants K and CV1can be
+              defined as table parameters using time as the primary variable
+                (<em class="replaceable"><code>Var1</code></em> = TIME on the <a href="../ans_cmd/Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a>
+              command).</p><p>In a static analysis, real constant K can be defined as table
+              parameters using time as the primary variable (<em class="replaceable"><code>Var1</code></em> = TIME
+              on the <a href="../ans_cmd/Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a> command).</p></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p>
+<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: BETD, <span>DMPR</span>
+</p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth
+and death</a>
+</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink">Large deflection</a>
+</td></tr><tr><td>
+<a href="../ans_str/strlinperturb.html" class="olink">Linear
+perturbation</a>
+</td></tr><tr><td>
+<a href="../ans_str/Hlp_G_STRnlbasin.html" class="olink">Nonlinearity</a> (if CV2 is not zero)</td></tr><tr><td>
+<a href="../ans_str/Hlp_G_STR8_2.html#strstrstiftlm61199434" class="olink">Stress stiffening</a>
+</td></tr></table></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Solution type:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Linear Solution (default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Nonlinear solution (required
+if CV2 is nonzero)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Degree-of-freedom selection for 1-D behavior:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Use KEYOPT(3) options</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>1-D longitudinal spring-damper
+(UX degree of freedom)</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>1-D longitudinal spring-damper
+(UY degree of freedom)</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>1-D longitudinal spring-damper
+(UZ degree of freedom)</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>1-D Torsional spring-damper
+(ROTX degree of freedom)</p></dd><dt><span><b class="term">5&nbsp;--&nbsp;</b></span></dt><dd><p>1-D Torsional spring-damper
+(ROTY degree of freedom)</p></dd><dt><span><b class="term">6&nbsp;--&nbsp;</b></span></dt><dd><p>1-D Torsional spring-damper
+(ROTZ degree of freedom)</p></dd><dt><span><b class="term">7&nbsp;--&nbsp;</b></span></dt><dd><p>Pressure degree of freedom
+element</p></dd><dt><span><b class="term">8&nbsp;--&nbsp;</b></span></dt><dd><p>Temperature degree of
+freedom element</p></dd></dl></div></div><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;KEYOPT(2) overrides KEYOPT(3)</p><hr></div></dd><dt><span><b class="term">KEYOPT(3)</b></span></dt><dd><p>Degree-of-freedom selection for 2-D and 3-D behavior:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>3-D longitudinal spring-damper</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>3-D torsional spring-damper</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>2-D longitudinal spring-damper
+(2-D elements must lie in an X-Y plane)</p></dd></dl></div></div></dd></dl></div></div><div class="table"><a name="c14_real_con"></a><p class="title"><b>Table&nbsp;14.1:&nbsp;&nbsp;COMBIN14 Real Constants</b></p><div class="table-contents"><table summary="COMBIN14 Real Constants" border="1" width="95%"><colgroup><col width="48" class="col1"><col width="72" class="col2"><col width="384" class="col3"></colgroup><thead><tr><th valign="top">No.</th><th valign="top">Name</th><th valign="top">Description</th></tr></thead><tbody><tr><td>1</td><td>K</td><td>Spring constant</td></tr><tr><td>2</td><td>CV1</td><td>Damping coefficient</td></tr><tr><td>3</td><td>CV2</td><td>Damping coefficient
+(KEYOPT(1) must be set to 1)</td></tr><tr><td>4, 5</td><td>(Blank)</td><td>- -</td></tr><tr><td>6</td><td>ILENGTH</td><td>Initial force-free length (Initial number
+of turns if torsional spring (KEYOPT(3) = 1))</td></tr><tr><td>7</td><td>IFORCE</td><td>Initial force (or torque if
+torsional spring (KEYOPT(3) = 1))</td></tr><tr><td>
+<p>8</p>
+</td><td>
+<p>KIMAG</p>
+</td><td>
+<p>Imaginary part
+of the spring constant</p>
+</td></tr></tbody></table></div></div><br class="table-break"></div></div><div class="refsect1" title="COMBIN14 Output Data"><a name="aJS6vq114mcm"></a><h2>COMBIN14 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal displacements included in the overall nodal
+solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_COMBIN14.html#a5E8f52lmm" title="Table&nbsp;14.2:&nbsp;&nbsp;COMBIN14 Element Output Definitions">Table&nbsp;14.2:&nbsp;COMBIN14 Element Output Definitions</a>.</p></li></ul></div><p>
+</p><p>Several items are illustrated in <a class="xref" href="Hlp_E_COMBIN14.html#aME8fd2lmm" title="Figure&nbsp;14.2:&nbsp;&nbsp;COMBIN14 Stress Output">Figure&nbsp;14.2:&nbsp;COMBIN14 Stress Output</a>. A general description of solution output is given in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a>.  See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways to view results. </p><div class="figure"><a name="aME8fd2lmm"></a><p class="title"><b>Figure&nbsp;14.2:&nbsp;&nbsp;COMBIN14 Stress Output</b></p><div class="figure-contents"><div><img src="graphics/gELEM14-2.svg" alt="COMBIN14 Stress Output"></div></div></div><p><br class="figure-break">
+</p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="a5E8f52lmm"></a><p class="title"><b>Table&nbsp;14.2:&nbsp;&nbsp;COMBIN14 Element Output Definitions</b></p><div class="table-contents"><table summary="COMBIN14 Element Output Definitions" border="1" width="95%"><colgroup><col width="120" class="col1"><col width="312" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th align="center">Name</th><th align="center">Definition</th><th align="center">O</th><th align="center">R</th></tr></thead><tbody><tr><td>EL</td><td>Element Number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Nodes - I, J</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>XC, YC, ZC</td><td>Location where
+results are reported</td><td align="center">Y</td><td align="center">
+<a class="xref" href="Hlp_E_COMBIN14.html#cmb14.tab.1.ft.1">1</a>
+</td></tr><tr><td>FORC or TORQ</td><td>Spring force or moment (for imaginary
+result set, this is the force contribution from CV1 and KIMAG)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>STRETCH or TWIST</td><td>Stretch of spring or twist
+of spring (radians)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>RATE</td><td>Spring
+constant</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>VELOCITY</td><td>Velocity (available
+for <a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,STATIC or <a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,TRANS)</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>DAMPING FORCE or TORQUE</td><td>Damping force or
+moment (zero unless <a href="../ans_cmd/Hlp_C_ANTYPE.html" class="olink"><span class="command"><strong>ANTYPE</strong></span></a>,TRANS and damping present)</td><td align="center">Y</td><td align="center">Y</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="cmb14.tab.1.ft.1"></a>Available only at centroid as
+a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item. </p></li></ol></div><p>
+<a class="xref" href="Hlp_E_COMBIN14.html#asT7g12clmm" title="Table&nbsp;14.3:&nbsp;&nbsp;COMBIN14 Item and Sequence Numbers">Table&nbsp;14.3:&nbsp;COMBIN14 Item and Sequence Numbers</a> lists output available through
+the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method.
+ See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General Postprocessor
+(POST1)</a> of the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in
+this reference for more information.   The following notation is used
+in <a class="xref" href="Hlp_E_COMBIN14.html#asT7g12clmm" title="Table&nbsp;14.3:&nbsp;&nbsp;COMBIN14 Item and Sequence Numbers">Table&nbsp;14.3:&nbsp;COMBIN14 Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="Hlp_E_COMBIN14.html#a5E8f52lmm" title="Table&nbsp;14.2:&nbsp;&nbsp;COMBIN14 Element Output Definitions">Table&nbsp;14.2:&nbsp;COMBIN14 Element Output Definitions</a>
+</p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item  label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element
+data</p></dd></dl></div></div><p>
+</p><div class="table"><a name="asT7g12clmm"></a><p class="title"><b>Table&nbsp;14.3:&nbsp;&nbsp;COMBIN14 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="COMBIN14 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="105" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"></colgroup><thead><tr><th rowspan="2" align="center" valign="middle">Output Quantity
+Name</th><th colspan="2" align="center">
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th align="center">Item</th><th align="center">E</th></tr></thead><tbody><tr><td align="center">FORC</td><td align="center">SMISC</td><td align="center">1</td></tr><tr><td align="center">STRETCH</td><td align="center">NMISC</td><td align="center">1</td></tr><tr><td align="center">VELOCITY</td><td align="center">NMISC</td><td align="center">2</td></tr><tr><td align="center">DAMPING FORCE</td><td align="center">NMISC</td><td align="center">3</td></tr></tbody></table></div></div><br class="table-break"></div><div class="refsect1" title="COMBIN14 Assumptions and Restrictions"><a name="aJS6vq182mcm"></a><h2>COMBIN14 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>If KEYOPT(2) is zero, the length of the spring-damper
+element must not be zero (that is, nodes I and J should not be coincident,
+since the node locations determine the spring orientation).</p></li><li class="listitem"><p>The longitudinal spring element stiffness acts only
+along its length.  The torsion spring element stiffness acts only
+about its length, as in a torsion bar. </p></li><li class="listitem"><p>The element allows only a uniform stress in the spring.</p></li><li class="listitem"><p>In a thermal analysis, the temperature or pressure
+degree of freedom acts in a manner analogous to the displacement.
+ </p></li><li class="listitem"><p>Only the KEYOPT(2) = 0 option supports stress stiffening
+or large deflection.  Also, if KEYOPT(3) = 1 (torsion) is used with
+large deflection, the coordinates will not be updated.</p></li><li class="listitem"><p>The spring or the damping capability may be deleted from the element by setting the spring
+          constant (K) or damping coefficients (CV1 and CV2) equal to zero, respectively.</p></li><li class="listitem"><p>If CV2 is not zero, the element is nonlinear and requires
+an iterative solution (KEYOPT(1) = 1).</p></li><li class="listitem"><p>The preload may not change after the first load step.
+Any changes are ignored.</p></li><li class="listitem"><p>The preload is ignored in modal and harmonic analyses.</p></li><li class="listitem"><p>KIMAG is only supported in modal and full harmonic analyses.  In a linear perturbation
+          modal analysis, KIMAG must be defined using <a href="../ans_cmd/Hlp_C_RMODIF.html" class="olink"><span class="command"><strong>RMODIF</strong></span></a> in the first phase
+          of the analysis (before the <a href="../ans_cmd/Hlp_C_SOLVE.html" class="olink"><span class="command"><strong>SOLVE</strong></span></a>,ELFORM command).  For more
+          information, see <a href="../ans_str/strlinpertproc.html" class="olink">General Procedure for Linear Perturbation Analysis</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p></li><li class="listitem"><p>Tabular input of real constants (K, CV1, and KIMAG) is not supported in modal
+          analysis.</p></li><li class="listitem"><p>The real constants (K, CV1, and KIMAG) cannot be defined as tabular parameters with
+          respect to frequency in linear perturbation analyses.</p></li><li class="listitem"><p>Tabular input of real constants (K, CV1, and KIMAG) with respect to time is not supported
+          in the second phase of linear perturbation analyses. Their values are frozen at the end of
+          the base analysis.</p></li></ul></div><p>The restrictions described below only apply if KEYOPT(2) is
+greater than zero.</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>If KEYOPT(2) is greater than zero, the element has
+only one degree of freedom.  This degree of freedom is specified in
+the nodal coordinate system and is the same for both nodes (see <a class="xref" href="Hlp_E_CH2_3.html#aOVqq14atlm" title="3.3.2.&nbsp;Elements That Operate in the Nodal Coordinate System">Elements That Operate in the Nodal Coordinate System</a>).  If the nodal coordinate systems are rotated
+relative to each other, the same degree of freedom may be in different
+directions (thereby giving possibly unexpected results).  The element,
+however, assumes only a 1-D action.  Nodes I and J, then, may be anywhere
+in space (preferably coincident).</p></li><li class="listitem"><p>For noncoincident nodes and KEYOPT(2) = 1, 2, or 3,
+no moment effects are included.  That is, if the nodes are offset
+from the line of action, moment equilibrium may not be satisfied. </p></li><li class="listitem"><p>The element is defined such that a positive displacement
+of node J relative to node I tends to stretch the spring.  If, for
+a given set of conditions, nodes I and J are interchanged, a positive
+displacement of node J relative to node I tends to compress the spring.</p></li></ul></div></div><div class="refsect1" title="COMBIN14 Product Restrictions"><a name="aJS6vq1edmcm"></a><h2>COMBIN14 Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific
+restrictions apply to this element in addition to the general assumptions
+and restrictions given in the previous section.</p><p title="ANSYS Mechanical Pro"><b>ANSYS Mechanical Pro&nbsp;</b>
+        </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li><li class="listitem"><p>Linear perturbation is not available.</p></li><li class="listitem"><p>No damping capability (CV1, CV2, and KIMAG are not allowed).</p></li><li class="listitem"><p>The PRES degree of freedom (KEYOPT(2) = 7) is not allowed.</p></li></ul></div><p title="ANSYS Mechanical Pro">
+      </p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+        </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li><li class="listitem"><p>The PRES degree of freedom (KEYOPT(2) = 7) is not allowed.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+      </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

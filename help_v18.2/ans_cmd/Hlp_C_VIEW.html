@@ -1,0 +1,26 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:57-04:00"><title>/VIEW</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_V_TOC.html" title="V Commands"><link rel="prev" href="Hlp_C_VGLUE.html" title="VGLUE"><link rel="next" href="Hlp_C_VIMP.html" title="VIMP"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="/VIEW"><a name="s-VIEW"></a><div class="titlepage"></div><a class="indexterm" name="d0e295534"></a><span class="refentrytitle"><a href="Hlp_C_VIEW.html" class="olink"><span class="command"><strong>/VIEW</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>/VIEW</strong></span>, <em class="replaceable"><code>WN</code></em>, <em class="replaceable"><code>XV</code></em>, <em class="replaceable"><code>YV</code></em>, <em class="replaceable"><code>ZV</code></em><br><b class="refpurpose">Defines the viewing direction for the display.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_3.html" title="2.3.&nbsp;GRAPHICS Commands"><code class="classname">GRAPHICS</code></a>: <a class="link" href="Hlp_C_CH2_3.html#cmdgraphicviewsjla070199" title="Table&nbsp;2.12:&nbsp;&nbsp;Views"><span class="type">Views</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="s-VIEW.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>WN</code></em></b></span></dt><dd><p>Window number (or ALL) to which command applies (defaults
+to 1).</p></dd><dt><span><b class="term"><em class="replaceable"><code>XV</code></em>, <em class="replaceable"><code>YV</code></em>, <em class="replaceable"><code>ZV</code></em></b></span></dt><dd><p>The object is viewed along the line from point <em class="replaceable"><code>XV</code></em>,<em class="replaceable"><code>YV</code></em>,<em class="replaceable"><code>ZV</code></em> (in the global coordinate system) to the global coordinate system origin.
+ For section displays, the cutting plane is assumed to be perpendicular to
+this line.  If <em class="replaceable"><code>XV</code></em> = WP, modify view to be normal
+to the currently defined working plane.  Defaults to (0,0,1).</p></dd></dl></div></div></div><div class="refsect1" title="Command Default"><a name="s-VIEW.default"></a><h2>Command Default</h2><p>0,0,1 view.  The default reference orientation is X-axis horizontal
+to the right, Y-axis vertical upward, and Z-axis out from the screen (normal).
+ See <a href="Hlp_C_VUP.html" class="olink"><span class="command"><strong>/VUP</strong></span></a> command to change reference orientation.</p></div><div class="refsect1" title="Notes"><a name="s-VIEW.notes"></a><h2>Notes</h2><p>The view line is always normal to the screen.  The view is selected
+by defining a point (in the global Cartesian coordinate system) representing
+a point along the viewing line.  This point, and the global Cartesian coordinate
+system origin, define the line along which the object is viewed while looking
+toward the origin.  Any point along the view line may be used, i.e., (1,1,1)
+and (2,2,2) give the same view.  The display orientation may be changed as
+desired [<a href="Hlp_C_ANGLE.html" class="olink"><span class="command"><strong>/ANGLE</strong></span></a>].  The display coordinate system type may
+be changed (from Cartesian to cylindrical, spherical, toroidal, etc.) with
+the <a class="link" href="Hlp_C_DSYS.html" title="DSYS"><span class="command"><strong>DSYS</strong></span></a> command.</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="s-VIEW.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Path Operations&gt;Define Path&gt;On Working Plane</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Path Operations&gt;Define Path&gt;On Working Plane</strong></span></td></tr><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;Pan, Zoom, Rotate</strong></span></td></tr><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;View Settings&gt;Viewing Direction</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

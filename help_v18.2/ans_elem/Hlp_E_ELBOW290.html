@@ -1,0 +1,795 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:05-04:00"><title>ELBOW290</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_PIPE289.html" title="PIPE289"><link rel="next" href="Hlp_E_USER300.html" title="USER300"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="ELBOW290"><a name="ELBOW290"></a><div class="titlepage"></div><a class="indexterm" name="d0e210408"></a><span class="refentrytitle">
+            <span class="structname">ELBOW290</span>
+        </span><div class="refnamediv"><p><br><b class="refpurpose">3-D 3-Node Elbow</b><div class="refclass">
+            <div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+            <div class=""><div class="application"><span class="application">
+                <a class="link" href="Hlp_E_ELBOW290.html#elbow290a_prodrestr" title="ELBOW290 Product Restrictions">Product Restrictions</a>
+            </span></div></div>
+        </div></p></div><div class="refsect1" title="ELBOW290 Element Description"><a name="elbow290_elemdescr"></a><h2>ELBOW290 Element Description</h2><p>The <span class="structname">ELBOW290</span> element is suitable for analyzing tubular
+            structures with thin to moderately thick walls. The element accounts for cross-section
+            distortion, which can be commonly observed in curved pipe structures under
+            loading.</p><p>
+            <span class="structname">ELBOW290</span> is a quadratic (three-node) pipe element in 3-D. The
+            element has six degrees of freedom at each node (the translations in the x, y, and z
+            directions and rotations about the x, y, and z directions). The element is well-suited
+            for linear, large rotation, and/or large strain nonlinear applications. Change in pipe
+            thickness is accounted for in geometrically nonlinear analyses. The element accounts for
+            follower (load stiffness) effects of distributed pressures. </p><p>The element can be used in layered applications for modeling laminated composite
+            pipes. The accuracy in modeling composite pipes is governed by the first-order
+            shear-deformation theory (generally referred to as Mindlin-Reissner shell
+            theory).</p><p>The element supports the pipe cross-section defined via <a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,
+                <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a>, and <a href="../ans_cmd/Hlp_C_SECOFFSET.html" class="olink"><span class="command"><strong>SECOFFSET</strong></span></a> commands. </p><p>
+            <span class="structname">ELBOW290</span> is available in two forms:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Structural Elbow -- See <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a_elemdescr" title="ELBOW290 Structural Elbow Description">"ELBOW290 Structural Elbow Description"</a>.</p></li><li class="listitem"><p>Generalized Structural Tube -- <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b_elemdescr" title="ELBOW290 Generalized Tube Description">"ELBOW290 Generalized Tube Description"</a>
+                    </p></li></ul></div><p>
+        </p><p>For more detailed information about this element, see <a href="../ans_thry/thy_el290.html" class="olink">ELBOW290 - 3-D 3-Node Elbow</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>.</p></div><div class="refsect1" title="ELBOW290 Structural Elbow Description"><a name="elbow290a_elemdescr"></a><h2>ELBOW290 Structural Elbow Description</h2><p>The <span class="structname">ELBOW290</span> Structural Elbow is suitable for modeling pipe
+            bends (elbows) or straight pipes that may undergo large deformation. The pipes being
+            modeled must have round cross-sections. Pipe wall thickness and outside diameter cannot
+            vary within each element</p><div class="figure"><a name="elbow290a_fig1"></a><p class="title"><b>Figure&nbsp;290.1:&nbsp;&nbsp;ELBOW290 Structural Elbow Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM290-1.svg" alt="ELBOW290 Structural Elbow Geometry"></div></div></div><br class="figure-break"><p>A general description of the element coordinate system is available in <a class="xref" href="Hlp_E_CH2_3.html" title="3.3.&nbsp;Coordinate Systems">Coordinate Systems</a>. Following is information about specific coordinate systems
+            as they apply to <span class="structname">ELBOW290</span> Structural Elbow.</p><div class="refsect2" title="Beam Coordinate Systems"><a name="d0e210511"></a><h3>Beam Coordinate Systems</h3><p>The beam coordinate systems (x-y-z) are used for defining beam offsets and
+                diametral temperature gradients. </p><div class="informaltable"><table border="0" width="95%"><colgroup><col width="288" class="col1"><col width="288" class="col2"></colgroup><tbody><tr><td>
+                                <div><img src="graphics/gELEM290-2.png"></div>
+                                <p>No orientation node (default)</p>
+                            </td><td>
+                                <div><img src="graphics/gELEM290-3.png"></div>
+                                <p>Using orientation node L</p>
+                            </td></tr></tbody></table></div><p>The x axis is always the axial direction pointing from node I to node J. The
+                optional orientation node L, if used, defines a plane containing the x and z axes at
+                node K. If this element is used in a large-deflection analysis, the location of the
+                orientation node L is used only to <span class="italic"><em>initially</em></span>
+                orient the element.</p><p>When no orientation node is used, z is perpendicular to the curvature plane,
+                uniquely determined by the I, J, and K nodes. If I, J, and K are co-linear, the y
+                axis is automatically calculated to be parallel to the global X-Y plane. In cases
+                where the element is parallel to the global Z axis (or within a 0.01 percent slope
+                of the axis), the element y axis is oriented parallel to the global Y axis. </p><p>For information about orientation nodes and beam meshing, see <a href="../ans_mod/Hlp_G_MOD7_5.html#aeDruq1fclcd" class="olink">Generating a Beam Mesh With Orientation Nodes</a> in the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a>. See <a href="../ans_mod/Hlp_G_MOD2_4.html#aQXQxq1ecmcm" class="olink">Quadratic Elements (Midside Nodes)</a> in the same document for
+                information about midside nodes. For details about generating the optional
+                orientation node L automatically, see the <a href="../ans_cmd/Hlp_C_LMESH.html" class="olink"><span class="command"><strong>LMESH</strong></span></a> and
+                    <a href="../ans_cmd/Hlp_C_LATT.html" class="olink"><span class="command"><strong>LATT</strong></span></a> command descriptions.</p></div><div class="refsect2" title="Local Cylindrical Coordinate Systems"><a name="d0e210562"></a><h3>Local Cylindrical Coordinate Systems</h3><p>The cylindrical coordinate systems (A-R-T) are used for defining internal section
+                motions (that is, axial-A, radial-R, and hoop-T displacements and rotations). </p><div><img src="graphics/gELEM290-4.png"></div><p>The cylindrical systems are always created from the default beam coordinate
+                systems (beam system without orientation node L), with A being the same as beam axis
+                x, and an angle <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font> (0 &lt; <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font> &lt; 360 degrees) from R to the beam
+                axis y.</p></div><div class="refsect2" title="Element and Layer Coordinate Systems"><a name="elem290coordsys"></a><h3>Element and Layer Coordinate Systems</h3><p>The element coordinate systems (e1-e2-e3) are defined at the mid-surfaces of the
+                pipe wall. The e1, e2, and e3 axes are parallel respectively to cylindrical axes A,
+                T, and R in the undeformed configuration. Each element coordinate system is updated
+                independently to account for large material rotation during a geometrically
+                nonlinear analysis. Support is not available for user-defined element coordinate
+                systems.</p><div><img src="graphics/gELEM290-5.svg"></div><p>The layer coordinate systems (L1-L2-L3) are identical to the element coordinate
+                system if no layer orientation angles are specified; otherwise, the layer coordinate
+                system can be generated by rotating the corresponding element coordinate system
+                about the shell normal (axis e3). Material properties are defined in the layer
+                systems; therefore, the layer system is also called the material coordinate
+                system.</p></div></div><div class="refsect1" title="ELBOW290 Structural Elbow Input Data"><a name="elbow290a_inputdata"></a><h2>ELBOW290 Structural Elbow Input Data</h2><p>The geometry and node locations for <span class="structname">ELBOW290</span> Structural Elbow
+            are shown in <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a_fig1" title="Figure&nbsp;290.1:&nbsp;&nbsp;ELBOW290 Structural Elbow Geometry">Figure&nbsp;290.1:&nbsp;ELBOW290 Structural Elbow Geometry</a>. The element is defined by nodes I, J, and
+            K in the global coordinate system.</p><div><img src="graphics/gELEM290-12.png"></div><p>When using <span class="structname">ELBOW290</span> Structural Elbow, the subtended angle
+                <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq9ec31013-29ec-473d-8fb5-d5fb58265e23.svg"></span> should not exceed 45 degrees.</p><div class="refsect2" title="ELBOW290 Structural Elbow Cross Sections"><a name="d0e210603"></a><h3>ELBOW290 Structural Elbow Cross Sections</h3><p>The element is a one-dimensional line element in space. The cross-section details
+                are provided separately (via the <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> command). A section is
+                associated with the element by specifying the section ID number
+                    (<a href="../ans_cmd/Hlp_C_SECNUM.html" class="olink"><span class="command"><strong>SECNUM</strong></span></a>). A section number is an independent element
+                attribute. </p><p>
+                <span class="structname">ELBOW290</span> Structural Elbow can only be associated with the
+                pipe cross section (<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,,PIPE). For elements with homogeneous
+                materials, the material of the pipe is defined as an element attribute (MAT).</p><p>The layup of a composite pipe can be defined with a shell section
+                    (<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>). Shell section commands provide the input options
+                for specifying the thickness, material, orientation and number of integration points
+                through the thickness of the layers. The program obtains the actual layer
+                thicknesses used for <span class="structname">ELBOW290</span> Structural Elbow element
+                calculations (by scaling the input layer thickness) so that they are consistent with
+                the total wall thickness given by the pipe section. A single-layer shell section
+                definition is possible, allowing flexibility with regard to the number of
+                integration points used and other options. </p><p>For shell section input, you can designate the number of integration points (1, 3,
+                5, 7, or 9) located through the thickness of each layer. When only one integration
+                point is specified, the point is always located midway between the top and bottom
+                surfaces. If three or more points are specified, one point is located on the top
+                surface, one point is located on the bottom surface, and the remaining points are
+                distributed at equal distances between the top and bottom points. The default number
+                of integration points for each layer is 3. When a single layer is defined and
+                plasticity is present, however, the number of integration points is changed to a
+                minimum of five during solution.</p><p>In <a class="xref" href="Hlp_E_ELBOW290.html#elem290coordsys" title="Element and Layer Coordinate Systems">"Element and Layer Coordinate Systems"</a>, the layer coordinate system can be obtained
+                by rotating the corresponding element coordinate system about the shell normal (axis
+                e3) by angle &#952; (in degrees). The value of &#952; for each layer is given by
+                the <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> command input for the shell section.</p><p>For details about associating a shell section with a pipe section, see the
+                    <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> command documentation.</p><div class="refsect3" title="Cross-Section Deformation"><a name="d0e210650"></a><h4>Cross-Section Deformation</h4><p>The level of accuracy in elbow cross-sectional deformation is given by the
+                    number of Fourier terms around the circumference of the cross section. The
+                    accuracy can be adjusted via KEYOPT(2) = <em class="replaceable"><code>n</code></em>, where
+                        <em class="replaceable"><code>n</code></em> is an integer value from 0 through 8, as
+                    follows:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>KEYOPT(2) = 0 -- Only uniform radial expansion and transverse shears
+                        through the pipe wall are allowed. Suitable for simulating straight pipes
+                        without undergoing bending. </td></tr><tr><td>KEYOPT(2) = 1 -- Radial expansion and transverse shears are allowed to
+                        vary along the circumference to account for bending. Suitable for straight
+                        pipes in small-deformation analysis. </td></tr><tr><td>KEYOPT(2) = 2 through 8 -- Allow general section deformation, including
+                        radial expansion, ovalization, and warping. Suitable for curved pipes or
+                        straight pipes in large-deformation analysis. The default is KEYOPT(2) = 2.
+                        Higher values for KEYOPT(2) may be necessary for pipes with thinner walls,
+                        as they are more susceptible to complex cross-section deformation than are
+                        pipes with thicker walls.</td></tr></table><p>Element computation becomes more intensive as the value of KEYOPT(2)
+                    increases. Use a KEYOPT(2) value that offers an optimal balance between accuracy
+                    and computational cost. </p></div><div class="refsect3" title="Cross-Section Constraints"><a name="d0e210670"></a><h4>Cross-Section Constraints</h4><p>The constraints on the elbow cross-section can be applied at the element nodes
+                    I, J, and K with the following section degrees of freedom labels: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>SE &#8211; section radial motion (as occurs during expansion or
+                        ovalization, for example)</td></tr><tr><td>SO &#8211; section tangential motion (as occurs during ovalization, for
+                        example)</td></tr><tr><td>SW &#8211; section axial motion (as occurs during warping, for
+                        example)</td></tr><tr><td>SRA &#8211; local shell normal rotation about cylindrical axis A </td></tr><tr><td>SRT &#8211; local shell normal rotation about cylindrical axis
+                        T</td></tr><tr><td>SECT &#8211; all section deformation </td></tr></table><div><img src="graphics/gELEM290-6.svg"></div><p>Only fixed cross-section constraints are allowed via the <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a>
+                    command. Delete section constraints via the <a href="../ans_cmd/Hlp_C_DDELE.html" class="olink"><span class="command"><strong>DDELE</strong></span></a> command.
+                    For example, to constrain the warping and ovalization of the cross-section at
+                    node <em class="replaceable"><code>n</code></em>, issue this command: </p><div class="blockquote"><blockquote class="blockquote"><table border="0" summary="Simple list" class="simplelist"><tr><td>
+                            <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a>,<em class="replaceable"><code>n</code></em>,SW,,,,,SO</td></tr></table></blockquote></div><p>To allow only the radial expansion of the cross-section, use the following
+                    commands:</p><div class="blockquote"><blockquote class="blockquote"><table border="0" summary="Simple list" class="simplelist"><tr><td>
+                            <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a>,<em class="replaceable"><code>n</code></em>,SECT</td></tr><tr><td>
+                            <a href="../ans_cmd/Hlp_C_DDELE.html" class="olink"><span class="command"><strong>DDELE</strong></span></a>,<em class="replaceable"><code>n</code></em>,SE</td></tr></table></blockquote></div><p>It is not practical to maintain the continuity of cross-section deformation
+                    between two adjacent elements joined at a sharp angle. For such cases,
+                    ANSYS, Inc. recommends coupling the nodal displacements and rotations but leaving
+                    the cross-section deformation uncoupled. The <a href="../ans_cmd/Hlp_C_ELBOW.html" class="olink"><span class="command"><strong>ELBOW</strong></span></a> command
+                    can automate the process by uncoupling the cross-section deformation for any
+                    adjacent elements with cross-sections intersecting at an angle greater than 20
+                    degrees.</p></div></div><div class="refsect2" title="ELBOW290 Structural Elbow Transverse Shear Stiffness"><a name="d0e210741"></a><h3>ELBOW290 Structural Elbow Transverse Shear Stiffness</h3><p>
+                <span class="structname">ELBOW290</span> Structural Elbow includes the effects of
+                transverse shear deformation through the pipe wall. The transverse shear stiffness
+                of the element is a 2 x 2 matrix, as shown:</p><div class="informalequation"><a name="eq33ada0a3-9358-4e8a-b1bb-4cdc52d57706"></a><div><img src="graphics/eq33ada0a3-9358-4e8a-b1bb-4cdc52d57706.svg"></div></div><p>For a single-layer elbow with isotropic material, default transverse shear
+                stiffnesses are as follows:</p><div class="informalequation"><a name="eq24e4cd6d-e35e-4adf-9448-31411025ab76"></a><div><img src="graphics/eq24e4cd6d-e35e-4adf-9448-31411025ab76.svg"></div></div><p>where k = 5/6, G = shear modulus, and h = pipe wall thickness. </p><p>You can override the default transverse shear stiffness values by assigning
+                different values via the <a href="../ans_cmd/Hlp_C_SECCONTROL.html" class="olink"><span class="command"><strong>SECCONTROL</strong></span></a> command for the shell
+                section. </p></div><div class="refsect2" title="ELBOW290 Structural Elbow Loads"><a name="d0e210763"></a><h3>ELBOW290 Structural Elbow Loads</h3><p>Element loads are described in <a class="xref" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">Nodal Loading</a>. Forces are applied
+                at the nodes. By default, <span class="structname">ELBOW290</span> Structural Elbowelement
+                nodes are located at the center of the cross-section. Use the
+                    <a href="../ans_cmd/Hlp_C_SECOFFSET.html" class="olink"><span class="command"><strong>SECOFFSET</strong></span></a> command's OFFSETY and OFFSETZ arguments for the
+                pipe section to define locations other than the centroid for force application. </p><div class="refsect3" title="Pressure Input"><a name="d0e210777"></a><h4>Pressure Input</h4><p>Internal and external pressures are input on an average basis over the
+                    element. Lateral pressures are input as force per unit length. End "pressures"
+                    are input as forces.</p><p>To input surface-load information on the element faces, issue the
+                        <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> command </p><p>On faces 1 and 2, internal and external pressures are input, respectively, on
+                    an average basis over the element.</p><p>On face 3, the input (<em class="replaceable"><code>VAL1</code></em>) is the global Z
+                    coordinate of the free surface of the internal fluid of the pipe. Specify this
+                    value with <a href="../ans_cmd/Hlp_C_ACEL.html" class="olink"><span class="command"><strong>ACEL</strong></span></a>,0,0,<em class="replaceable"><code>ACEL_Z</code></em>, where
+                        <em class="replaceable"><code>ACEL_Z</code></em> is a positive number. The free surface
+                    coordinate is used for the internal mass and pressure effects. If
+                        <em class="replaceable"><code>VAL1</code></em> on the <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> command is
+                    zero, no fluid inside of the pipe is considered. If the internal fluid free
+                    surface should be at Z = 0, use a very small number instead. The pressure
+                    calculation presumes that the fluid density above an element to the free surface
+                    is constant. For cases where the internal fluid consists of more than one type
+                    of fluid (such as oil over water), the free surface coordinate of the elements
+                    in the fluids below the top fluid need to be adjusted (lowered) to account for
+                    the less dense fluid(s) above them. </p><p>The internal fluid mass is assumed to be lumped along the centerline of the
+                    pipe, so as the centerline of a horizontal pipe moves across the free surface,
+                    the mass changes in step-function fashion. The free surface location is stepped,
+                    even if you specify ramped loading (<a href="../ans_cmd/Hlp_C_KBC.html" class="olink"><span class="command"><strong>KBC</strong></span></a>,0).</p><p>Pressures may be input as surface loads on the element faces as shown by the
+                    circled numbers in the following illustration. Positive pressures act into the
+                    pipe wall. </p><div><img src="graphics/gELEM290-7.svg"></div><p>The end-cap pressure effect is included by default. The end-cap effect on one
+                    or both ends of the element can be deactivated via KEYOPT(6). When subjected to
+                    internal and external pressures, <span class="structname">ELBOW290</span> Structural
+                    Elbow with end caps (KEYOPT(6) = 0) is always in equilibrium; that is, no net
+                    forces are produced. Without end caps (KEYOPT(6) = 1), the element is also in
+                    equilibrium except for the case when the element is curved. With end caps only
+                    at one end (KEYOPT(6) = 2 or 3), the element is obviously not in
+                    equilibrium.</p></div><div class="refsect3" title="Pressure Load Stiffness"><a name="d0e210826"></a><h4>Pressure Load Stiffness</h4><p>The effects of pressure load stiffness are included by default for this
+                    element. If an unsymmetric matrix is needed for pressure load stiffness effects,
+                    issue an <a href="../ans_cmd/Hlp_C_NROPT.html" class="olink"><span class="command"><strong>NROPT</strong></span></a>,UNSYM command.</p></div><div class="refsect3" title="Temperatures"><a name="d0e210835"></a><h4>Temperatures</h4><p>When KEYOPT(1) = 0, a layer-wise pattern is used. T1 and T2 are temperatures
+                    at inner wall, T3 and T4 and the interface temperatures between layer 1 and
+                    layer 2, ending with temperatures at the exterior of the pipe. All undefined
+                    temperatures are default to TUNIF. If exactly (<em class="replaceable"><code>NL</code></em> +
+                    1) temperatures are given (where <em class="replaceable"><code>NL</code></em> is the number of
+                    layers), then one temperature is taken as the uniform temperature at the bottom
+                    of each layer, with the last temperature for the exterior of the pipe. </p><div><img src="graphics/gELEM290-8.svg"></div><p>When KEYOPT(1) = 1, temperatures can be input as element body loads at three
+                    locations at both end nodes of the element so that the temperature varies
+                    linearly in the beam y axis and z axis directions. At both ends, the element
+                    temperatures are input at the section centroid (TAVG), at the outer radius from
+                    the centroid in the element y direction (Ty), and at the outer radius from the
+                    centroid in the element z direction (Tz). The first coordinate temperature TAVG
+                    defaults to TUNIF. If all temperatures after the first are unspecified, they
+                    default to the first. If all temperatures at node I are input, and all
+                    temperatures at node J are unspecified, the node J temperatures default to the
+                    corresponding node I temperatures. For any other input pattern, unspecified
+                    temperatures default to TUNIF. The following graphic illustrates temperature
+                    input when KEYOPT(1) = 1:</p><div><img src="graphics/gELEM290-9.svg"></div></div></div><div class="refsect2" title="ELBOW290 Structural Elbow Input Summary"><a name="elbow290a_inputsum"></a><h3>ELBOW290 Structural Elbow Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J, K, and L (the optional orientation node)</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>UX, UY, UZ, ROTX, ROTY, ROTZ </td></tr></table></dd><dt><span><b class="term">Section Information</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>Accessed via <a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,,PIPE and
+                                    <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> commands. </td></tr></table></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+                                <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command: See <a class="xref" href="elem_matsupp.html" title="Chapter&nbsp;4:&nbsp;Element Support for Material Models">Element Support for Material Models</a>
+                                for this element.</td></tr><tr><td>
+                                <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: EX, EY, EZ, (PRXY, PRYZ, PRXZ,
+                                    <span class="italic"><em>or</em></span> NUXY, NUYZ, NUXZ), ALPX,
+                                ALPY, ALPZ (or CTEX, CTEY, CTEZ <span class="italic"><em>or</em></span> THSX, THSY, THSZ), DENS, GXY, GYZ, GXZ,
+                                ALPD</td></tr><tr><td>Specify BETD <span>and DMPR</span> only once for the
+                                element. (Issue the <a href="../ans_cmd/Hlp_C_MAT.html" class="olink"><span class="command"><strong>MAT</strong></span></a> command to assign the
+                                material property set.) REFT may be specified once for the element,
+                                or it may be assigned on a per-layer basis. </td></tr></table></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Pressure&nbsp;--&nbsp;</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>face 1- Internal pressure</td></tr><tr><td>face 2 - External pressure</td></tr><tr><td>face 3 - Z coordinate of free surface of fluid on
+                                            inside of pipe</td></tr></table></dd></dl></div></div></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Temperatures&nbsp;--&nbsp;</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>For KEYOPT(1) = 0 -- T1, T2 (at bottom of layer 1),
+                                            T3, T4 (between layers 1-2); similarly for between next
+                                            layers, ending with temperatures at top of layer
+                                                <em class="replaceable"><code>NL</code></em> (2 *
+                                                (<em class="replaceable"><code>NL</code></em> + 1) maximum). </td></tr><tr><td>For KEYOPT(1) = 1 -- TAVG(I), Ty(I), Tz(I), TAVG(J),
+                                            Ty(J), Tz(J)</td></tr></table></dd></dl></div></div></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+                                <a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth and
+                                    death</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink">Large
+                                    deflection</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_thry/thy_geo1.html" class="olink">Large
+                                    strain</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_str/Hlp_G_STRUNST.html#strnonlinstab" class="olink">Nonlinear
+                                    stabilization</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_str/Hlp_G_STR8_2.html#strstrstiftlm61199434" class="olink">Stress
+                                    stiffening</a>
+                            </td></tr></table></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Temperature input:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Layerwise input</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Diametral gradient</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Number of Fourier terms (used for cross-sectional flexibility):</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Uniform radial expansion</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Nonuniform radial expansion to account for bending</p></dd><dt><span><b class="term">2 through 8 -- </b></span></dt><dd><p>General section deformation (default = 2)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(6)</b></span></dt><dd><p>End cap loads:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Internal and external pressures cause loads on end
+                                        caps</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Internal and external pressures do not cause loads on end
+                                        caps</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Internal and external pressures cause loads on element
+                                        node I </p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Internal and external pressures cause loads on element
+                                        node J </p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(8)</b></span></dt><dd><p>Specify layer data storage:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>For multi-layer elements, store data for bottom of bottom
+                                        layer and top of top layer. For single-layer elements, store
+                                        data for TOP and BOTTOM. (Default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Store data for TOP and BOTTOM, for all layers (multilayer
+                                        elements)</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Store data for TOP, BOTTOM, and MID for all layers;
+                                        applies to single-layer and multilayer elements. (The volume
+                                        of data may be considerable.)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(10)</b></span></dt><dd><p>Thickness normal stress (Sz) output option:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Sz not modified (default, Sz = 0)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Recover and output Sz from applied pressure load </p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="ELBOW290 Structural Elbow Output Data"><a name="elbow290a_outputdata"></a><h2>ELBOW290 Structural Elbow Output Data</h2><p>The solution output associated with these elements is in two forms:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal displacements and reactions included in the overall nodal
+                        solution</p></li><li class="listitem"><p>Additional element output as described in <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a_output" title="Table&nbsp;290.1:&nbsp;&nbsp;ELBOW290 Structural Elbow Output Definitions">Table&nbsp;290.1:&nbsp;ELBOW290 Structural Elbow Output Definitions</a>
+                    </p></li></ul></div><p>
+        </p><div class="refsect2" title="Integration Stations"><a name="d0e211117"></a><h3>Integration Stations</h3><p>Integration stations along the length and within the cross-section of the elbow
+                are shown in <a class="xref" href="Hlp_E_ELBOW290.html#elem290intstat" title="Figure&nbsp;290.2:&nbsp;&nbsp;ELBOW290 Structural Elbow Element Integration Stations">Figure&nbsp;290.2:&nbsp;ELBOW290 Structural Elbow Element Integration Stations</a>. </p><div class="figure"><a name="elem290intstat"></a><p class="title"><b>Figure&nbsp;290.2:&nbsp;&nbsp;ELBOW290 Structural Elbow Element Integration Stations</b></p><div class="figure-contents"><div><img src="graphics/gELEM290-10.svg" alt="ELBOW290 Structural Elbow Element Integration Stations"></div></div></div><br class="figure-break"><p>Element solution is available at all integration points through element printout
+                    (<a href="../ans_cmd/Hlp_C_OUTPR.html" class="olink"><span class="command"><strong>OUTPR</strong></span></a>). Solution via the POST1 postprocessor is available at
+                element nodes and selected section integration locations (see KEYOPT(8) settings for
+                more details).</p></div><div class="refsect2" title="Stress Output"><a name="d0e211134"></a><h3>Stress Output</h3><p>Several items are illustrated in <a class="xref" href="Hlp_E_ELBOW290.html#elem290stressout" title="Figure&nbsp;290.3:&nbsp;&nbsp;ELBOW290 Structural Elbow Stress Output">Figure&nbsp;290.3:&nbsp;ELBOW290 Structural Elbow Stress Output</a>:</p><div class="figure"><a name="elem290stressout"></a><p class="title"><b>Figure&nbsp;290.3:&nbsp;&nbsp;ELBOW290 Structural Elbow Stress Output</b></p><div class="figure-contents"><div><img src="graphics/gELEM290-11.svg" alt="ELBOW290 Structural Elbow Stress Output"></div></div></div><br class="figure-break"><p>KEYOPT(8) controls the amount of data output to the results file for processing
+                with the LAYER command. Interlaminar shear stress is available at the layer
+                interfaces. KEYOPT(8) must be set to either 1 or 2 to output these stresses in the
+                POST1 postprocessor. A general description of solution output is given in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a>. See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways to review results. </p><p>KEYOPT(10) = 1 outputs normal stress component Sz, where z is shell normal
+                direction. The element uses a plane-stress formulation that always leads to zero
+                thickness normal stress. With KEYOPT(10) = 1, Sz is independently recovered during
+                the element solution output from the applied pressure load.</p><p>The element shell stress resultants (N11, M11, Q13, etc.) are parallel to the
+                element coordinate system (e1-e2-e3), as are the shell membrane strains and
+                curvatures (&#949;<sub>11</sub>, &#954;<sub>11</sub>,
+                    &#947;<sub>13</sub>, etc.) of the element. Shell stress resultants
+                and generalized shell strains are available via the SMISC option at the element end
+                nodes I and J only. </p><p>
+                <span class="structname">ELBOW290</span> Structural Elbow also outputs beam-related stress
+                resultants (Fx, My, TQ, etc) and linearized stresses (SDIR, SByT, SByB, etc) at two
+                element end nodes I and J to SMISC records. Beam stress resultants and linearized
+                stresses are parallel to the beam coordinate system (x-y-z). </p></div><div class="refsect2" title="Linearized Stress"><a name="d0e211171"></a><h3>Linearized Stress</h3><p>It is customary in pipe design to employ components of axial stress that
+                contribute to axial loads and bending in each direction separately. Therefore,
+                    <span class="structname">ELBOW290</span> Structural Elbow provides a linearized stress
+                output as part of its SMISC output record, as indicated in the following
+                definitions: </p><p>SDIR is the stress component due to axial load.</p><p>SDIR = Fx/A, where Fx is the axial load (SMISC quantities 1 and 36) and A is the
+                area of the cross section (SMISC quantities 7 and 42). </p><p>SByT and SByB are bending stress components.</p><table border="0" summary="Simple list" class="simplelist"><tr><td>SByT = -Mz * y<sub>max</sub> / Izz</td></tr><tr><td>SByB = -Mz * y<sub>min</sub> / Izz</td></tr><tr><td>SBzT = My * z<sub>max</sub> / Iyy</td></tr><tr><td>SBzB = My * z<sub>min</sub> / Iyy</td></tr></table><p>where My, Mz are bending moments (SMISC quantities 2,37,3,38). Coordinates
+                    y<sub>max</sub>, y<sub>min</sub>,
+                    z<sub>max</sub>, and z<sub>min</sub> are the maximum and
+                minimum y, z coordinates in the cross section measured from the centroid. Values Iyy
+                and Izz are moments of inertia of the cross section. </p><p>The reported stresses are strictly valid only for elastic behavior of members.
+                    <span class="structname">ELBOW290</span> Structural Elbow always employs combined
+                stresses in order to support nonlinear material behavior. When the elements are
+                associated with nonlinear materials, the component stresses can at best be regarded
+                as linearized approximations and should be interpreted with caution.</p><p>
+                <span class="structname">ELBOW290</span> does not provide extensive element printout.
+                Because the POST1 postprocessor provides more comprehensive output processing tools,
+                ANSYS, Inc. suggests issuing the <a href="../ans_cmd/Hlp_C_OUTRES.html" class="olink"><span class="command"><strong>OUTRES</strong></span></a> command to ensure that
+                the required results are stored in the database. To view 3-D deformed shapes for
+                    <span class="structname">ELBOW290</span>, issue an <a href="../ans_cmd/Hlp_C_OUTRES.html" class="olink"><span class="command"><strong>OUTRES</strong></span></a>,MISC or
+                    <a href="../ans_cmd/Hlp_C_OUTRES.html" class="olink"><span class="command"><strong>OUTRES</strong></span></a>,ALL command for static or transient analyses. To view
+                3-D mode shapes for a modal or eigenvalue buckling analysis, expand the modes with
+                element results calculation active via the <a href="../ans_cmd/Hlp_C_MXPAND.html" class="olink"><span class="command"><strong>MXPAND</strong></span></a> command's
+                    <em class="replaceable"><code>Elcalc</code></em> = YES option. </p></div><div class="refsect2" title="ELBOW290 Structural Elbow Output Definitions"><a name="d0e211252"></a><h3>ELBOW290 Structural Elbow Output Definitions</h3><p>In the table below, the O column indicates the availability of the items in the
+                file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+                the items in the results file.</p><p>In either the O or R columns, &#8220;Y&#8221; indicates that the item is
+                    <span class="italic"><em>always</em></span> available, a number refers to a table
+                footnote that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the
+                item is <span class="italic"><em>not</em></span> available.</p><p>For the stress and strain components, X refers to axial, Y refers to hoop, and Z
+                refers to radial. </p><div class="table"><a name="elbow290a_output"></a><p class="title"><b>Table&nbsp;290.1:&nbsp;&nbsp;ELBOW290 Structural Elbow Output Definitions</b></p><div class="table-contents"><table summary="ELBOW290 Structural Elbow Output Definitions" border="1" width="95%"><colgroup><col width="120" class="col1"><col width="312" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center">
+                                
+                                Name</th><th bgcolor="#E3E3E3" align="center">
+                                
+                                Definition</th><th bgcolor="#E3E3E3" align="center">
+                                
+                                O</th><th bgcolor="#E3E3E3" align="center">
+                                
+                                R</th></tr></thead><tbody><tr><td>EL</td><td>Element number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Element connectivity</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>MAT</td><td>Material number</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>THICK</td><td>Average wall thickness</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>AREA</td><td>Area of cross-section</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>XC, YC, ZC</td><td>Location where results are reported</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.4">1</a>
+                            </td></tr><tr><td>LOCI:X, Y, Z</td><td>Integration point locations</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.5">2</a>
+                            </td></tr><tr><td>TEMP</td><td>T1, T2 at bottom of layer 1, T3, T4 between layers 1-2, similarly
+                                for between next layers, ending with temperatures at top of layer
+                                    <em class="replaceable"><code>NL</code></em> (2 *
+                                    (<em class="replaceable"><code>NL</code></em> + 1) maximum)</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>LOC</td><td>TOP, MID, BOT, or integration point location</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.1">3</a>
+                            </td></tr><tr><td>S:X, Y, Z, XY, YZ, XZ</td><td>Stresses</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.3">5</a>
+                            </td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.1">3</a>
+                            </td></tr><tr><td>S:INT</td><td>Stress intensity</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.1">3</a>
+                            </td></tr><tr><td>S:EQV</td><td>Equivalent stress</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.1">3</a>
+                            </td></tr><tr><td>EPEL:X, Y, Z, XY</td><td>Elastic strains</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.3">5</a>
+                            </td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.1">3</a>
+                            </td></tr><tr><td>EPEL:EQV</td><td>Equivalent elastic strains [<a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.7">4</a>]</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.1">3</a>
+                            </td></tr><tr><td>EPTH:X, Y, Z, XY</td><td>Thermal strains</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.3">5</a>
+                            </td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.1">3</a>
+                            </td></tr><tr><td>EPTH:EQV</td><td>Equivalent thermal strains [<a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.7">4</a>]</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.1">3</a>
+                            </td></tr><tr><td>EPPL:X, Y, Z, XY</td><td>Average plastic strains</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.3">5</a>
+                            </td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.2">6</a>
+                            </td></tr><tr><td>EPPL:EQV</td><td>Equivalent plastic strains [<a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.7">4</a>]</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.2">6</a>
+                            </td></tr><tr><td>EPCR:X, Y, Z, XY</td><td>Average creep strains</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.3">5</a>
+                            </td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.2">6</a>
+                            </td></tr><tr><td>EPCR:EQV</td><td>Equivalent creep strains [<a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.7">4</a>]</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.2">6</a>
+                            </td></tr><tr><td>EPTO:X, Y, Z, XY</td><td>Total mechanical strains (EPEL + EPPL +
+                                EPCR)</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.3">5</a>
+                            </td><td align="center">-</td></tr><tr><td>EPTO:EQV</td><td>Total equivalent mechanical strains (EPEL + EPPL +
+                                EPCR)</td><td align="center">-</td><td align="center">-</td></tr><tr><td>NL:SEPL</td><td>Plastic yield stress</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.2">6</a>
+                            </td></tr><tr><td>NL:SRAT</td><td>Plastic yielding (1 = actively yielding, 0 = not
+                                yielding)</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.2">6</a>
+                            </td></tr><tr><td>NL:HPRES</td><td>Hydrostatic pressure</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.2">6</a>
+                            </td></tr><tr><td>NL:EPEQ</td><td>Accumulated equivalent plastic strain</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.2">6</a>
+                            </td></tr><tr><td>NL:CREQ</td><td>Accumulated equivalent creep strain</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.2">6</a>
+                            </td></tr><tr><td>NL:PLWK</td><td>Plastic work/volume</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.2">6</a>
+                            </td></tr><tr><td>SEND:ELASTIC, PLASTIC, CREEP</td><td>Strain energy densities</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.2">6</a>
+                            </td></tr><tr><td>Fx</td><td>Section axial force</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>My, Mz</td><td>Section bending moments</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>TQ</td><td>Section torsional moment</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>SFy, SFz</td><td>Section shear forces </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>INT PRESS</td><td>Internal pressure at integration point</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>EXT PRESS</td><td>External pressure at integration point</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>EFFECTIVE TENS</td><td>
+                                <a href="../ans_thry/pipe288_hydrostatic.html#thyhydrostatbuck" class="olink">Effective
+                                    tension</a> at integration point</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>MAX HOOP STRESS</td><td>Maximum hoop stress at integration point</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>SDIR</td><td>Axial direct stress </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>SByT</td><td>Bending stress on the element +y side of the pipe </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>SByB</td><td>Bending stress on the element -y side of the pipe </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>SBzT</td><td>Bending stress on the element +z side of the pipe </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>SBzB</td><td>Bending stress on the element -z side of the pipe </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>N11, N22, N12</td><td>Wall in-plane forces (per unit length)</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>M11, M22, M12 </td><td>Wall out-of-plane moments (per unit length) </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>Q13, Q23 </td><td>Wall transverse shear forces (per unit length) </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>&#949;<sub>11</sub>,
+                                    &#949;<sub>22</sub>,
+                                    &#949;<sub>12</sub>
+                            </td><td>Wall membrane strains </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>&#954;<sub>11</sub>,
+                                    &#954;<sub>22</sub>,
+                                    &#954;<sub>12</sub>
+                            </td><td>Wall curvatures </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>&#947;<sub>13</sub>,
+                                    &#947;<sub>23</sub>
+                            </td><td>Wall transverse shear strains </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>SVAR:1, 2, ... , <em class="replaceable"><code>N</code></em>
+                            </td><td>State variables </td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a.tab.2.ft.6">7</a>
+                            </td></tr><tr><td>OVAL</td><td>Ovalization (D<sub>max</sub> -
+                                    D<sub>min</sub>) / D (where D = diameter)</td><td align="center">-</td><td align="center">Y</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="elbow290a.tab.2.ft.4"></a>Available only at the centroid as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item. </p></li><li class="listitem"><p><a name="elbow290a.tab.2.ft.5"></a>Available via an <a href="../ans_cmd/Hlp_C_OUTRES.html" class="olink"><span class="command"><strong>OUTRES</strong></span></a>,LOCI command only.</p></li><li class="listitem"><p><a name="elbow290a.tab.2.ft.1"></a>The subsequent stress solution repeats for top, middle, and bottom
+                        surfaces.</p></li><li class="listitem"><p><a name="elbow290a.tab.2.ft.7"></a>The equivalent strains use an effective Poisson's ratio. For elastic and
+                        thermal, you set the value (<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,PRXY). For plastic and
+                        creep, the program sets the value at 0.5.</p></li><li class="listitem"><p><a name="elbow290a.tab.2.ft.3"></a>Stresses, total strains, plastic strains, elastic strains, creep strains,
+                        and thermal strains in the element coordinate system are available for
+                        output (at all section points through thickness). If layers are in use, the
+                        results are in the layer coordinate system.</p></li><li class="listitem"><p><a name="elbow290a.tab.2.ft.2"></a>Nonlinear solution output for top, middle, and bottom surfaces, if the
+                        element has a nonlinear material, or if large-deflection effects are enabled
+                            (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON) for SEND.</p></li><li class="listitem"><p><a name="elbow290a.tab.2.ft.6"></a>Available only if the <a href="../ans_mat/matcustommatmods.html#user" class="olink">
+                            <code class="function">UserMat</code> subroutine</a> and
+                            <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,STATE command are used.</p></li></ol></div><p>More output is described via the <a href="../ans_cmd/Hlp_C_PRESOL.html" class="olink"><span class="command"><strong>PRESOL</strong></span></a> and <a href="../ans_cmd/Hlp_C_GET.html#get.post.secr" class="olink">
+                    <span class="bold"><strong>*GET</strong></span>,,SECR</a> commands in POST1.</p></div><div class="refsect2" title="ELBOW290 Structural Elbow Item and Sequence Numbers"><a name="d0e211925"></a><h3>ELBOW290 Structural Elbow Item and Sequence Numbers</h3><p>
+                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a_itseqtbl" title="Table&nbsp;290.2:&nbsp;&nbsp;ELBOW290 Structural Elbow Item and Sequence Numbers">Table&nbsp;290.2:&nbsp;ELBOW290 Structural Elbow Item and Sequence Numbers</a> lists output available for the
+                    <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> commands using the
+                Sequence Number method. See <a href="../ans_bas/Hlp_G_BAS5_2.html#abOBsq267ldm" class="olink">Creating an Element Table</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in this reference for more information. The table uses
+                the following notation:</p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a_output" title="Table&nbsp;290.1:&nbsp;&nbsp;ELBOW290 Structural Elbow Output Definitions">Table&nbsp;290.1:&nbsp;ELBOW290 Structural Elbow Output Definitions</a>
+                            </p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>
+                            </p></dd><dt><span><b class="term">I,J</b></span></dt><dd><p>sequence number for data at nodes I and J</p></dd></dl></div></div><p>
+            </p><div class="table"><a name="elbow290a_itseqtbl"></a><p class="title"><b>Table&nbsp;290.2:&nbsp;&nbsp;ELBOW290 Structural Elbow Item and Sequence Numbers</b></p><div class="table-contents"><table summary="ELBOW290 Structural Elbow Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="144" align="center" class="col1"><col width="120" align="center" class="col2"><col width="119" align="center" class="col3"><col width="120" align="center" class="col4"></colgroup><thead><tr><th bgcolor="#C0C0C0" rowspan="2" align="center" valign="middle">
+                                
+                                Output Quantity Name</th><th bgcolor="#C0C0C0" colspan="3" align="center">
+                                
+                                
+                                <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command
+                                Input</th></tr><tr><th bgcolor="#E3E3E3" align="center">
+                                
+                                Item</th><th bgcolor="#E3E3E3" align="center">
+                                
+                                I</th><th bgcolor="#E3E3E3" align="center">
+                                
+                                J</th></tr></thead><tbody><tr><td align="center">Fx</td><td align="center">SMISC</td><td align="center">1</td><td align="center">36</td></tr><tr><td align="center">My</td><td align="center">SMISC</td><td align="center">2</td><td align="center">37</td></tr><tr><td align="center">Mz</td><td align="center">SMISC</td><td align="center">3</td><td align="center">38</td></tr><tr><td align="center">TQ</td><td align="center">SMISC</td><td align="center">4</td><td align="center">39</td></tr><tr><td align="center">SFz</td><td align="center">SMISC</td><td align="center">5</td><td align="center">40</td></tr><tr><td align="center">SFy</td><td align="center">SMISC</td><td align="center">6</td><td align="center">41</td></tr><tr><td align="center">SDIR</td><td align="center">SMISC</td><td align="center">8</td><td align="center">43</td></tr><tr><td align="center">SByT</td><td align="center">SMISC</td><td align="center">9</td><td align="center">44</td></tr><tr><td align="center">SByB</td><td align="center">SMISC</td><td align="center">10</td><td align="center">45</td></tr><tr><td align="center">SBzT</td><td align="center">SMISC</td><td align="center">11</td><td align="center">46</td></tr><tr><td align="center" valign="top">SBzB</td><td align="center">SMISC</td><td align="center" valign="top">12</td><td align="center" valign="top" charoff="50">47</td></tr><tr><td align="center" valign="top">N11</td><td align="center" valign="top" charoff="50">SMISC</td><td align="center" valign="top" charoff="50">14</td><td align="center" valign="top">49</td></tr><tr><td align="center">N22</td><td align="center">SMISC</td><td align="center">15</td><td align="center">50</td></tr><tr><td align="center">N12</td><td align="center">SMISC</td><td align="center">16</td><td align="center">51</td></tr><tr><td align="center">M11</td><td align="center">SMISC</td><td align="center">17</td><td align="center">52</td></tr><tr><td align="center">M22</td><td align="center">SMISC</td><td align="center">18</td><td align="center">53</td></tr><tr><td align="center">M12</td><td align="center">SMISC</td><td align="center">19</td><td align="center">54</td></tr><tr><td align="center">Q13</td><td align="center">SMISC</td><td align="center">20</td><td align="center">55</td></tr><tr><td align="center">Q23</td><td align="center">SMISC</td><td align="center">21</td><td align="center">56</td></tr><tr><td align="center">&#949;<sub>11</sub>
+                            </td><td align="center">SMISC</td><td align="center">22</td><td align="center">57</td></tr><tr><td align="center">&#949;<sub>22</sub>
+                            </td><td align="center">SMISC</td><td align="center">23</td><td align="center">58</td></tr><tr><td align="center">&#949;<sub>12</sub>
+                            </td><td align="center">SMISC</td><td align="center">24</td><td align="center">59</td></tr><tr><td align="center">&#954;<sub>11</sub>
+                            </td><td align="center">SMISC</td><td align="center">25</td><td align="center">60</td></tr><tr><td align="center">&#954;<sub>22</sub>
+                            </td><td align="center">SMISC</td><td align="center">26</td><td align="center">61</td></tr><tr><td align="center">&#954;<sub>12</sub>
+                            </td><td align="center">SMISC</td><td align="center">27</td><td align="center">62</td></tr><tr><td align="center">&#947;<sub>13</sub>
+                            </td><td align="center">SMISC</td><td align="center">28</td><td align="center">63</td></tr><tr><td align="center">&#947;<sub>23</sub>
+                            </td><td align="center">SMISC</td><td align="center">29</td><td align="center">64</td></tr><tr><td align="center">INT PRESS</td><td align="center">SMISC</td><td align="center">71</td><td align="center">75</td></tr><tr><td align="center">EXT PRESS</td><td align="center">SMISC</td><td align="center">72</td><td align="center">76</td></tr><tr><td align="center">EFFECTIVE TENS</td><td align="center">SMISC</td><td align="center">73</td><td align="center">77</td></tr><tr><td align="center">MAX HOOP STRESS</td><td align="center">SMISC</td><td align="center">74</td><td align="center">78</td></tr><tr><td align="center">AREA</td><td align="center">NMISC</td><td align="center">1</td><td align="center">6</td></tr><tr><td align="center">THICK</td><td align="center">NMISC</td><td align="center">2</td><td align="center">7</td></tr><tr><td align="center">OVAL</td><td align="center">NMISC</td><td align="center">3</td><td align="center">8</td></tr></tbody></table></div></div><br class="table-break"></div></div><div class="refsect1" title="ELBOW290 Structural Elbow Assumptions and Restrictions"><a name="elbow290a_assump"></a><h2>ELBOW290 Structural Elbow Assumptions and Restrictions</h2><p>
+            </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The element cannot have zero length.</p></li><li class="listitem"><p>Cross-sections must be round initially.</p></li><li class="listitem"><p>Wall thickness and outside diameter must be uniform within the
+                        element.</p></li><li class="listitem"><p>Zero wall thickness is not allowed. (Zero thickness <span class="italic"><em>layers</em></span> are allowed.) </p></li><li class="listitem"><p>In a nonlinear analysis, the solution is terminated if the thickness at
+                        any integration point vanishes (within a small numerical tolerance). </p></li><li class="listitem"><p>This element works best with the full Newton-Raphson solution scheme (the
+                        default behavior in solution control).</p></li><li class="listitem"><p>No slippage is assumed between the element layers. Shear deflections are
+                        included in the element; however, normals to the center wall surface before
+                        deformation are assumed to remain straight after deformation. </p></li><li class="listitem"><p>If multiple load steps are used, the number of layers must remain
+                        unchanged between load steps. </p></li><li class="listitem"><p>If the layer material is hyperelastic, the layer orientation angle has no
+                        effect. </p></li><li class="listitem"><p>Stress stiffening is always included in geometrically nonlinear analyses
+                            (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON). Apply prestress effects via a
+                            <a href="../ans_cmd/Hlp_C_PSTRES.html" class="olink"><span class="command"><strong>PSTRES</strong></span></a> command. </p></li><li class="listitem"><p>The through-thickness stress SZ is always zero. </p></li><li class="listitem"><p>The effects of fluid motion inside the pipe are ignored.</p></li></ul></div><p>
+        </p></div><div class="refsect1" title="ELBOW290 Generalized Tube Description"><a name="elbow290b_elemdescr"></a><h2>ELBOW290 Generalized Tube Description</h2><p>The <span class="structname">ELBOW290</span> Generalized Tube is suitable for modeling thin
+            to moderately thick-walled tubular structures with arbitrary cross sections. The wall
+            can be either homogenous or a layered composite. The cross-sectional geometry, including
+            the wall thickness, can vary along the element length. Wall thickness must be uniform
+            within the cross section, however.</p><div class="figure"><a name="elbow290b_fig1"></a><p class="title"><b>Figure&nbsp;290.4:&nbsp;&nbsp;ELBOW290 Generalized Tube Geometry</b></p><div class="figure-contents"><div><img src="graphics/gnoncircelbow1.png" alt="ELBOW290 Generalized Tube Geometry"></div></div></div><br class="figure-break"><p>A general description of the element coordinate system is available in <a class="xref" href="Hlp_E_CH2_3.html" title="3.3.&nbsp;Coordinate Systems">Coordinate Systems</a>. Following is information about specific coordinate systems
+            as they apply to <span class="structname">ELBOW290</span> Generalized Tube .</p><div class="refsect2" title="Beam Coordinate Systems"><a name="d0e212429"></a><h3>Beam Coordinate Systems</h3><p>The beam coordinate systems (x-y-z) are used for orienting the generalized tube
+                section. The beam coordinate systems are used also for defining beam offsets (see
+                SECOFFSET command) and diametral temperature gradients. </p><div class="informaltable"><table border="0" width="95%"><colgroup><col width="288" class="col1"><col width="288" class="col2"></colgroup><tbody><tr><td>
+                                <div><img src="graphics/gnoncircelbow2.png"></div>
+                                <p>No orientation node (default)</p>
+                            </td><td>
+                                <div><img src="graphics/gnoncircelbow3.png"></div>
+                                <p>Using orientation node L</p>
+                            </td></tr></tbody></table></div><p>The x axis is always the axial direction pointing from node I to node J. The
+                optional orientation node L, if used, defines a plane containing the x and z axes at
+                node K. If this element is used in a large-deflection analysis, the location of the
+                orientation node L is used only to <span class="italic"><em>initially</em></span>
+                orient the element.</p><p>When no orientation node is used, z is perpendicular to the curvature plane,
+                uniquely determined by the I, J, and K nodes. If I, J, and K are co-linear, the y
+                axis is automatically calculated to be parallel to the global X-Y plane. In cases
+                where the element is parallel to the global Z axis (or within a 0.01 percent slope
+                of the axis), the element y axis is oriented parallel to the global Y axis. </p><p>For information about orientation nodes and beam meshing, see <a href="../ans_mod/Hlp_G_MOD7_5.html#aeDruq1fclcd" class="olink">Generating a Beam Mesh With Orientation Nodes</a> in the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a>. See <a href="../ans_mod/Hlp_G_MOD2_4.html#aQXQxq1ecmcm" class="olink">Quadratic Elements (Midside Nodes)</a> in the same document for
+                information about midside nodes. For details about generating the optional
+                orientation node L automatically, see the <a href="../ans_cmd/Hlp_C_LMESH.html" class="olink"><span class="command"><strong>LMESH</strong></span></a> and
+                    <a href="../ans_cmd/Hlp_C_LATT.html" class="olink"><span class="command"><strong>LATT</strong></span></a> command descriptions.</p></div><div class="refsect2" title="Local Cylindrical Coordinate Systems"><a name="d0e212480"></a><h3>Local Cylindrical Coordinate Systems</h3><p>The cylindrical coordinate systems (A-R-T) are used for defining internal section
+                motions (that is, axial-A, radial-R, and hoop-T displacements and rotations). </p><div><img src="graphics/gnoncircelbow4.png"></div><p>The cylindrical systems are always created from the default beam coordinate
+                systems (beam system without orientation node L), with A being the same as beam axis
+                x, and an angle <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font> (0 &lt; <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font> &lt; 360 degrees) from R to the beam
+                axis y.</p></div><div class="refsect2" title="Element and Layer Coordinate Systems"><a name="elem290bcoordsys"></a><h3>Element and Layer Coordinate Systems</h3><p>The element coordinate systems (e1-e2-e3) are defined at the mid-surfaces of the
+                pipe wall. The e1, e2, and e3 axes are parallel respectively to cylindrical axes A,
+                T, and R in the undeformed configuration. Each element coordinate system is updated
+                independently to account for large material rotation during a geometrically
+                nonlinear analysis. Support is not available for user-defined element coordinate
+                systems.</p><div><img src="graphics/gnoncircelbow5.png"></div><p>The layer coordinate systems (L1-L2-L3) are identical to the element coordinate
+                system if no layer orientation angles are specified; otherwise, the layer coordinate
+                system can be generated by rotating the corresponding element coordinate system
+                about the shell normal (axis e3). Material properties are defined in the layer
+                systems; therefore, the layer system is also called the material coordinate
+                system.</p></div></div><div class="refsect1" title="ELBOW290 Generalized Tube Input Data"><a name="elbow290b_inputdata"></a><h2>ELBOW290 Generalized Tube Input Data</h2><p>The geometry and node locations for <span class="structname">ELBOW290</span> Generalized Tube
+            are shown in <a class="xref" href="Hlp_E_ELBOW290.html#elbow290a_fig1" title="Figure&nbsp;290.1:&nbsp;&nbsp;ELBOW290 Structural Elbow Geometry">Figure&nbsp;290.1:&nbsp;ELBOW290 Structural Elbow Geometry</a>. The element is defined by nodes I, J, and
+            K in the global coordinate system.</p><div><img src="graphics/gELEM290-12.png"></div><p>When using <span class="structname">ELBOW290</span> Generalized Tube, the subtended angle
+                <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq0305fd9d-bb62-4260-a6ca-5cc94ce4945d.svg"></span> should not exceed 45 degrees.</p><div class="refsect2" title="ELBOW290 Generalized Tube Cross Sections"><a name="d0e212521"></a><h3>ELBOW290 Generalized Tube Cross Sections</h3><p>The element is a one-dimensional line element in space. The cross-section details
+                are provided separately (via the <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> command). A section is
+                associated with the element by specifying the section ID number
+                    (<a href="../ans_cmd/Hlp_C_SECNUM.html" class="olink"><span class="command"><strong>SECNUM</strong></span></a>). A section number is an independent element
+                attribute. </p><p>
+                <span class="structname">ELBOW290</span> Generalized Tube can be associated with the pipe
+                cross section (<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,,PIPE) or tapered pipe cross section
+                    (<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,,TAPER). For details about creating generalized tube
+                sections, see <a href="../ans_str/Hlp_G_STR15_4.html#taperbeam" class="olink">Defining a Tapered Beam or Pipe</a> and <a href="../ans_str/Hlp_G_STR15_4.html#strnoncircpipedef" class="olink">Defining a Noncircular Pipe</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>.</p><p>The layup of a composite pipe can be defined with a shell section
+                    (<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>). Shell section commands provide the input options
+                for specifying the thickness, material, orientation and number of integration points
+                through the thickness of the layers. The program obtains the actual layer
+                thicknesses used for <span class="structname">ELBOW290</span> Generalized Tube element
+                calculations (by scaling the input layer thickness) so that they are consistent with
+                the total wall thickness given by the pipe section. A single-layer shell section
+                definition is possible, allowing flexibility with regard to the number of
+                integration points used and other options. </p><p>For shell section input, you can designate the number of integration points (1, 3,
+                5, 7, or 9) located through the thickness of each layer. When only one integration
+                point is specified, the point is always located midway between the top and bottom
+                surfaces. If three or more points are specified, one point is located on the top
+                surface, one point is located on the bottom surface, and the remaining points are
+                distributed at equal distances between the top and bottom points. The default number
+                of integration points for each layer is 3. When a single layer is defined and
+                plasticity is present, however, the number of integration points is changed to a
+                minimum of five during solution.</p><p>In <a class="xref" href="Hlp_E_ELBOW290.html#elem290bcoordsys" title="Element and Layer Coordinate Systems">"Element and Layer Coordinate Systems"</a>, the layer coordinate system can be obtained
+                by rotating the corresponding element coordinate system about the shell normal (axis
+                e3) by angle &#952; (in degrees). The value of &#952; for each layer is given by
+                the <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> command input for the shell section.</p><p>For details about associating a shell section with a pipe section, see the
+                    <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> command documentation.</p><p>For elements with homogeneous materials, the material of the pipe is defined as an
+                element attribute (MAT).</p><div class="refsect3" title="Cross-Section Deformation"><a name="d0e212582"></a><h4>Cross-Section Deformation</h4><p>The level of accuracy in elbow cross-sectional deformation is given by the
+                    number of Fourier terms around the circumference of the cross section. The
+                    accuracy can be adjusted via KEYOPT(2) = <em class="replaceable"><code>n</code></em>, where
+                        <em class="replaceable"><code>n</code></em> is an integer value from 0 through 8, as
+                    follows:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>KEYOPT(2) = 0 -- Only uniform radial expansion and transverse shears
+                        through the pipe wall are allowed. Suitable for simulating straight pipes
+                        without undergoing bending. </td></tr><tr><td>KEYOPT(2) = 1 -- Radial expansion and transverse shears are allowed to
+                        vary along the circumference to account for bending. Suitable for straight
+                        pipes in small-deformation analysis. </td></tr><tr><td>KEYOPT(2) = 2 through 8 -- Allow general section deformation, including
+                        radial expansion, ovalization, and warping. Suitable for curved pipes or
+                        straight pipes in large-deformation analysis. The default is KEYOPT(2) = 2.
+                        Higher values for KEYOPT(2) may be necessary for pipes with thinner walls,
+                        as they are more susceptible to complex cross-section deformation than are
+                        pipes with thicker walls.</td></tr></table><p>Element computation becomes more intensive as the value of KEYOPT(2)
+                    increases. Use a KEYOPT(2) value that offers an optimal balance between accuracy
+                    and computational cost. </p></div><div class="refsect3" title="Cross-Section Constraints"><a name="d0e212602"></a><h4>Cross-Section Constraints</h4><p>The constraints on the elbow cross-section can be applied at the element nodes
+                    I, J, and K with the following section degrees of freedom labels: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>SE &#8211; section radial motion (as occurs during expansion or
+                        ovalization, for example)</td></tr><tr><td>SO &#8211; section tangential motion (as occurs during ovalization, for
+                        example)</td></tr><tr><td>SW &#8211; section axial motion (as occurs during warping, for
+                        example)</td></tr><tr><td>SRA &#8211; local shell normal rotation about cylindrical axis A </td></tr><tr><td>SRT &#8211; local shell normal rotation about cylindrical axis
+                        T</td></tr><tr><td>SECT &#8211; all section deformation </td></tr></table><div><img src="graphics/gELEM290-6.svg"></div><p>Only fixed cross-section constraints are allowed via the <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a>
+                    command. Delete section constraints via the <a href="../ans_cmd/Hlp_C_DDELE.html" class="olink"><span class="command"><strong>DDELE</strong></span></a> command.
+                    For example, to constrain the warping and ovalization of the cross-section at
+                    node <em class="replaceable"><code>n</code></em>, issue this command: </p><div class="blockquote"><blockquote class="blockquote"><table border="0" summary="Simple list" class="simplelist"><tr><td>
+                            <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a>,<em class="replaceable"><code>n</code></em>,SW,,,,,SO</td></tr></table></blockquote></div><p>To allow only the radial expansion of the cross-section, use the following
+                    commands:</p><div class="blockquote"><blockquote class="blockquote"><table border="0" summary="Simple list" class="simplelist"><tr><td>
+                            <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a>,<em class="replaceable"><code>n</code></em>,SECT</td></tr><tr><td>
+                            <a href="../ans_cmd/Hlp_C_DDELE.html" class="olink"><span class="command"><strong>DDELE</strong></span></a>,<em class="replaceable"><code>n</code></em>,SE</td></tr></table></blockquote></div><p>It is not practical to maintain the continuity of cross-section deformation
+                    between two adjacent elements joined at a sharp angle. For such cases,
+                    ANSYS, Inc. recommends coupling the nodal displacements and rotations but leaving
+                    the cross-section deformation uncoupled. The <a href="../ans_cmd/Hlp_C_ELBOW.html" class="olink"><span class="command"><strong>ELBOW</strong></span></a> command
+                    can automate the process by uncoupling the cross-section deformation for any
+                    adjacent elements with cross-sections intersecting at an angle greater than 20
+                    degrees.</p></div></div><div class="refsect2" title="ELBOW290 Generalized Tube Transverse Shear Stiffness"><a name="d0e212673"></a><h3>ELBOW290 Generalized Tube Transverse Shear Stiffness</h3><p>
+                <span class="structname">ELBOW290</span> Generalized Tube includes the effects of
+                transverse shear deformation through the pipe wall. The transverse shear stiffness
+                of the element is a 2 x 2 matrix, as shown:</p><div class="informalequation"><a name="eqa6000bec-8947-4aae-8520-ba5d5220df37"></a><div><img src="graphics/eqa6000bec-8947-4aae-8520-ba5d5220df37.svg"></div></div><p>For a single-layer elbow with isotropic material, default transverse shear
+                stiffnesses are as follows: </p><div class="informalequation"><a name="eq60c8a550-59ec-41b8-80ae-31362ae402dc"></a><div><img src="graphics/eq60c8a550-59ec-41b8-80ae-31362ae402dc.svg"></div></div><p>where k = 5/6, G = shear modulus, and h = pipe wall thickness. </p><p>You can override the default transverse shear stiffness values by assigning
+                different values via the <a href="../ans_cmd/Hlp_C_SECCONTROL.html" class="olink"><span class="command"><strong>SECCONTROL</strong></span></a> command for the shell
+                section. </p></div><div class="refsect2" title="ELBOW290 Generalized Tube Loads"><a name="d0e212695"></a><h3>ELBOW290 Generalized Tube Loads</h3><p>Element loads are described in <a class="xref" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">Nodal Loading</a>. Forces are applied
+                at the nodes. By default, <span class="structname">ELBOW290</span> Generalized Tube element
+                nodes are located at the center of the cross-section. Use the
+                    <a href="../ans_cmd/Hlp_C_SECOFFSET.html" class="olink"><span class="command"><strong>SECOFFSET</strong></span></a> command's OFFSETY and OFFSETZ arguments for the
+                pipe section to define locations other than the centroid for force application. </p><div class="refsect3" title="Pressure Input"><a name="d0e212709"></a><h4>Pressure Input</h4><p>Internal and external pressures are input on an average basis over the
+                    element. Lateral pressures are input as force per unit length. End "pressures"
+                    are input as forces.</p><p>To input surface-load information on the element faces, issue the
+                        <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> command </p><p>On faces 1 and 2, internal and external pressures are input, respectively, on
+                    an average basis over the element.</p><p>On face 3, the input (<em class="replaceable"><code>VAL1</code></em>) is the global Z
+                    coordinate of the free surface of the internal fluid of the pipe. Specify this
+                    value with <a href="../ans_cmd/Hlp_C_ACEL.html" class="olink"><span class="command"><strong>ACEL</strong></span></a>,0,0,<em class="replaceable"><code>ACEL_Z</code></em>, where
+                        <em class="replaceable"><code>ACEL_Z</code></em> is a positive number. The free surface
+                    coordinate is used for the internal mass and pressure effects. If
+                        <em class="replaceable"><code>VAL1</code></em> on the <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> command is
+                    zero, no fluid inside of the pipe is considered. If the internal fluid free
+                    surface should be at Z = 0, use a very small number instead. The pressure
+                    calculation presumes that the fluid density above an element to the free surface
+                    is constant. For cases where the internal fluid consists of more than one type
+                    of fluid (such as oil over water), the free surface coordinate of the elements
+                    in the fluids below the top fluid need to be adjusted (lowered) to account for
+                    the less dense fluid(s) above them. </p><p>The internal fluid mass is assumed to be lumped along the centerline of the
+                    pipe, so as the centerline of a horizontal pipe moves across the free surface,
+                    the mass changes in step-function fashion. The free surface location is stepped,
+                    even if you specify ramped loading (<a href="../ans_cmd/Hlp_C_KBC.html" class="olink"><span class="command"><strong>KBC</strong></span></a>,0).</p><p>Pressures may be input as surface loads on the element faces as shown by the
+                    circled numbers in the following illustration. Positive pressures act into the
+                    pipe wall. </p><div><img src="graphics/gELEM290-7.svg"></div><p>The end-cap pressure effect is included by default. The end-cap effect on one
+                    or both ends of the element can be deactivated via KEYOPT(6). When subjected to
+                    internal and external pressures, <span class="structname">ELBOW290</span> Generalized
+                    Tube with end caps (KEYOPT(6) = 0) is always in equilibrium; that is, no net
+                    forces are produced. Without end caps (KEYOPT(6) = 1), the element is also in
+                    equilibrium except for the case when the element is curved. With end caps only
+                    at one end (KEYOPT(6) = 2 or 3), the element is obviously not in
+                    equilibrium.</p></div><div class="refsect3" title="Pressure Load Stiffness"><a name="d0e212758"></a><h4>Pressure Load Stiffness</h4><p>The effects of pressure load stiffness are included by default for this
+                    element. If an unsymmetric matrix is needed for pressure load stiffness effects,
+                    issue an <a href="../ans_cmd/Hlp_C_NROPT.html" class="olink"><span class="command"><strong>NROPT</strong></span></a>,UNSYM command.</p></div><div class="refsect3" title="Temperatures"><a name="d0e212767"></a><h4>Temperatures</h4><p>When KEYOPT(1) = 0, a layer-wise pattern is used. T1 and T2 are temperatures
+                    at inner wall, T3 and T4 and the interface temperatures between layer 1 and
+                    layer 2, ending with temperatures at the exterior of the pipe. All undefined
+                    temperatures are default to TUNIF. If exactly (<em class="replaceable"><code>NL</code></em> +
+                    1) temperatures are given (where <em class="replaceable"><code>NL</code></em> is the number of
+                    layers), then one temperature is taken as the uniform temperature at the bottom
+                    of each layer, with the last temperature for the exterior of the pipe. </p><div><img src="graphics/gnoncircelbow6.png"></div><p>When KEYOPT(1) = 1, temperatures can be input as element body loads at three
+                    locations at both end nodes of the element so that the temperature varies
+                    linearly in the beam y axis and z axis directions. At both ends, the element
+                    temperatures are input at the section centroid (TAVG), at the outer radius from
+                    the centroid in the element y direction (Ty), and at the outer radius from the
+                    centroid in the element z direction (Tz). The first coordinate temperature TAVG
+                    defaults to TUNIF. If all temperatures after the first are unspecified, they
+                    default to the first. If all temperatures at node I are input, and all
+                    temperatures at node J are unspecified, the node J temperatures default to the
+                    corresponding node I temperatures. For any other input pattern, unspecified
+                    temperatures default to TUNIF. The following graphic illustrates temperature
+                    input when KEYOPT(1) = 1:</p><div><img src="graphics/gnoncircelbow7.png"></div></div></div><div class="refsect2" title="ELBOW290 Generalized Tube Input Summary"><a name="elbow290b_inputsum"></a><h3>ELBOW290 Generalized Tube Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J, K, and L (the optional orientation node)</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>UX, UY, UZ, ROTX, ROTY, ROTZ </td></tr></table></dd><dt><span><b class="term">Section Information</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>Accessed via <a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,,PIPE or
+                                    <a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,,TAPER, and
+                                    <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> commands.</td></tr></table></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+                                <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command: See <a class="xref" href="elem_matsupp.html" title="Chapter&nbsp;4:&nbsp;Element Support for Material Models">Element Support for Material Models</a>
+                                for this element.</td></tr><tr><td>
+                                <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: EX, EY, EZ, (PRXY, PRYZ, PRXZ,
+                                    <span class="italic"><em>or</em></span> NUXY, NUYZ, NUXZ), ALPX,
+                                ALPY, ALPZ (or CTEX, CTEY, CTEZ <span class="italic"><em>or</em></span> THSX, THSY, THSZ), DENS, GXY, GYZ, GXZ,
+                                ALPD</td></tr><tr><td>Specify BETD only once for the element. (Issue the
+                                    <a href="../ans_cmd/Hlp_C_MAT.html" class="olink"><span class="command"><strong>MAT</strong></span></a> command to assign the material property
+                                set.) REFT may be specified once for the element, or it may be
+                                assigned on a per-layer basis. </td></tr></table></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Pressure&nbsp;--&nbsp;</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>face 1- Internal pressure</td></tr><tr><td>face 2 - External pressure</td></tr><tr><td>face 3 - Z coordinate of free surface of fluid on
+                                            inside of pipe</td></tr></table></dd></dl></div></div></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Temperatures&nbsp;--&nbsp;</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>For KEYOPT(1) = 0 -- T1, T2 (at bottom of layer 1),
+                                            T3, T4 (between layers 1-2); similarly for between next
+                                            layers, ending with temperatures at top of layer
+                                                <em class="replaceable"><code>NL</code></em> (2 *
+                                                (<em class="replaceable"><code>NL</code></em> + 1) maximum). </td></tr><tr><td>For KEYOPT(1) = 1 -- TAVG(I), Ty(I), Tz(I), TAVG(J),
+                                            Ty(J), Tz(J)</td></tr></table></dd></dl></div></div></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+                                <a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth and
+                                    death</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink">Large
+                                    deflection</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_thry/thy_geo1.html" class="olink">Large
+                                    strain</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_str/Hlp_G_STRUNST.html#strnonlinstab" class="olink">Nonlinear
+                                    stabilization</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_str/Hlp_G_STR8_2.html#strstrstiftlm61199434" class="olink">Stress
+                                    stiffening</a>
+                            </td></tr></table></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Temperature input:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Layerwise input</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Diametral gradient</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Number of Fourier terms (used for cross-sectional flexibility)</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Uniform radial expansion</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Nonuniform radial expansion to account for bending</p></dd><dt><span><b class="term">2 through 8 -- </b></span></dt><dd><p>General section deformation (default = 2)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(6)</b></span></dt><dd><p>End cap loads:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Internal and external pressures cause loads on end
+                                        caps</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Internal and external pressures do not cause loads on end
+                                        caps</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Internal and external pressures cause loads on element
+                                        node I </p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Internal and external pressures cause loads on element
+                                        node J </p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(8)</b></span></dt><dd><p>Specify layer data storage:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Store data for bottom of bottom layer and top of top layer
+                                        (multilayer elements) (default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Store data for TOP and BOTTOM, for all layers (multilayer
+                                        elements)</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Store data for TOP, BOTTOM, and MID for all layers;
+                                        applies to single-layer and multilayer elements. (The volume
+                                        of data may be considerable.)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(10)</b></span></dt><dd><p>Thickness normal stress (Sz) output option:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Sz not modified (default Sz = 0)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Recover and output Sz from applied pressure load </p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="ELBOW290 Generalized Tube Output Data"><a name="elbow290b_outputdata"></a><h2>ELBOW290 Generalized Tube Output Data</h2><p>The solution output associated with these elements is in two forms:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal displacements and reactions included in the overall nodal
+                        solution</p></li><li class="listitem"><p>Additional element output as described in <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b_output" title="Table&nbsp;290.3:&nbsp;&nbsp;ELBOW290 Generalized Tube Output Definitions">Table&nbsp;290.3:&nbsp;ELBOW290 Generalized Tube Output Definitions</a>.</p></li></ul></div><p>
+        </p><div class="refsect2" title="Integration Stations"><a name="d0e213050"></a><h3>Integration Stations</h3><p>Integration stations along the length and within the cross-section of the elbow
+                are shown in <a class="xref" href="Hlp_E_ELBOW290.html#elem290bintstat" title="Figure&nbsp;290.5:&nbsp;&nbsp;ELBOW290 Generalized Tube Element Integration Stations">Figure&nbsp;290.5:&nbsp;ELBOW290 Generalized Tube Element Integration Stations</a>. </p><div class="figure"><a name="elem290bintstat"></a><p class="title"><b>Figure&nbsp;290.5:&nbsp;&nbsp;ELBOW290 Generalized Tube Element Integration Stations</b></p><div class="figure-contents"><div><img src="graphics/gELEM290-10.svg" alt="ELBOW290 Generalized Tube Element Integration Stations"></div></div></div><br class="figure-break"><p>Element solution is available at all integration points through element printout
+                    (<a href="../ans_cmd/Hlp_C_OUTPR.html" class="olink"><span class="command"><strong>OUTPR</strong></span></a>). Solution via the POST1 postprocessor is available at
+                element nodes and selected section integration locations (see KEYOPT(8) settings for
+                more details).</p></div><div class="refsect2" title="Stress Output"><a name="d0e213067"></a><h3>Stress Output</h3><p>Several items are illustrated in <a class="xref" href="Hlp_E_ELBOW290.html#elem290bstressout" title="Figure&nbsp;290.6:&nbsp;&nbsp;ELBOW290 Generalized Tube Stress Output">Figure&nbsp;290.6:&nbsp;ELBOW290 Generalized Tube Stress Output</a>:</p><div class="figure"><a name="elem290bstressout"></a><p class="title"><b>Figure&nbsp;290.6:&nbsp;&nbsp;ELBOW290 Generalized Tube Stress Output</b></p><div class="figure-contents"><div><img src="graphics/gELEM290-11.svg" alt="ELBOW290 Generalized Tube Stress Output"></div></div></div><br class="figure-break"><p>KEYOPT(8) controls the amount of data output to the results file for processing
+                with the LAYER command. Interlaminar shear stress is available at the layer
+                interfaces. KEYOPT(8) must be set to either 1 or 2 to output these stresses in the
+                POST1 postprocessor. A general description of solution output is given in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a>. See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways to review results. </p><p>KEYOPT(10) = 1 outputs normal stress component Sz, where z is shell normal
+                direction. The element uses a plane-stress formulation that always leads to zero
+                thickness normal stress. With KEYOPT(10) = 1, Sz is independently recovered during
+                the element solution output from the applied pressure load.</p><p>The element shell stress resultants (N11, M11, Q13, etc.) are parallel to the
+                element coordinate system (e1-e2-e3), as are the shell membrane strains and
+                curvatures (&#949;<sub>11</sub>, &#954;<sub>11</sub>,
+                    &#947;<sub>13</sub>, etc.) of the element. Shell stress resultants
+                and generalized shell strains are available via the SMISC option at the element end
+                nodes I and J only. </p><p>
+                <span class="structname">ELBOW290</span> Generalized Tube also outputs beam-related stress
+                resultants (Fx, My, TQ, etc) and linearized stresses (SDIR, SByT, SByB, etc) at two
+                element end nodes I and J to SMISC records. Beam stress resultants and linearized
+                stresses are parallel to the beam coordinate system (x-y-z). </p></div><div class="refsect2" title="Linearized Stress"><a name="d0e213104"></a><h3>Linearized Stress</h3><p>It is customary in pipe design to employ components of axial stress that
+                contribute to axial loads and bending in each direction separately. Therefore,
+                    <span class="structname">ELBOW290</span> Generalized Tube provides a linearized stress
+                output as part of its SMISC output record, as indicated in the following
+                definitions: </p><p>SDIR is the stress component due to axial load.</p><p>SDIR = Fx/A, where Fx is the axial load (SMISC quantities 1 and 36) and A is the
+                area of the cross section (SMISC quantities 7 and 42). </p><p>SByT and SByB are bending stress components.</p><table border="0" summary="Simple list" class="simplelist"><tr><td>SByT = -Mz * y<sub>max</sub> / Izz</td></tr><tr><td>SByB = -Mz * y<sub>min</sub> / Izz</td></tr><tr><td>SBzT = My * z<sub>max</sub> / Iyy</td></tr><tr><td>SBzB = My * z<sub>min</sub> / Iyy</td></tr></table><p>where My, Mz are bending moments (SMISC quantities 2,37,3,38). Coordinates
+                    y<sub>max</sub>, y<sub>min</sub>,
+                    z<sub>max</sub>, and z<sub>min</sub> are the maximum and
+                minimum y, z coordinates in the cross section measured from the centroid. Values Iyy
+                and Izz are moments of inertia of the cross section. </p><p>The reported stresses are strictly valid only for elastic behavior of members.
+                    <span class="structname">ELBOW290</span> Generalized Tube always employs combined
+                stresses in order to support nonlinear material behavior. When the elements are
+                associated with nonlinear materials, the component stresses can at best be regarded
+                as linearized approximations and should be interpreted with caution.</p><p>
+                <span class="structname">ELBOW290</span> Generalized Tube does not provide extensive
+                element printout. Because the POST1 postprocessor provides more comprehensive output
+                processing tools, ANSYS, Inc. suggests issuing the <a href="../ans_cmd/Hlp_C_OUTRES.html" class="olink"><span class="command"><strong>OUTRES</strong></span></a> command
+                to ensure that the required results are stored in the database. To view 3-D deformed
+                shapes for <span class="structname">ELBOW290</span> Generalized Tube, issue an
+                    <a href="../ans_cmd/Hlp_C_OUTRES.html" class="olink"><span class="command"><strong>OUTRES</strong></span></a>,MISC or <a href="../ans_cmd/Hlp_C_OUTRES.html" class="olink"><span class="command"><strong>OUTRES</strong></span></a>,ALL command for
+                static or transient analyses. To view 3-D mode shapes for a modal or eigenvalue
+                buckling analysis, expand the modes with element results calculation active via the
+                    <a href="../ans_cmd/Hlp_C_MXPAND.html" class="olink"><span class="command"><strong>MXPAND</strong></span></a> command's <em class="replaceable"><code>Elcalc</code></em> = YES
+                option. </p></div><div class="refsect2" title="ELBOW290 Generalized Tube Output Definitions"><a name="d0e213185"></a><h3>ELBOW290 Generalized Tube Output Definitions</h3><p>The Element Output Definitions table uses the following notation:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The O column indicates the availability of the items in the file
+                                <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the
+                            availability of the items in the results file.</p></li><li class="listitem"><p>In either the O or R columns, &#8220;Y&#8221; indicates that the
+                            item is <span class="italic"><em>always</em></span> available, a number
+                            refers to a table footnote that describes when the item is <span class="italic"><em>conditionally</em></span> available, and
+                            &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p></li></ul></div><p>
+            </p><div class="table"><a name="elbow290b_output"></a><p class="title"><b>Table&nbsp;290.3:&nbsp;&nbsp;ELBOW290 Generalized Tube Output Definitions</b></p><div class="table-contents"><table summary="ELBOW290 Generalized Tube Output Definitions" border="1" width="95%"><colgroup><col width="120" class="col1"><col width="312" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center">
+                                
+                                Name</th><th bgcolor="#E3E3E3" align="center">
+                                
+                                Definition</th><th bgcolor="#E3E3E3" align="center">
+                                
+                                O</th><th bgcolor="#E3E3E3" align="center">
+                                
+                                R</th></tr></thead><tbody><tr><td>EL</td><td>Element number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Element connectivity</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>MAT</td><td>Material number</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>THICK</td><td>Average wall thickness</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>AREA</td><td>Area of cross-section</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>XC, YC, ZC</td><td>Location where results are reported</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.4">1</a>
+                            </td></tr><tr><td>LOCI:X, Y, Z</td><td>Integration point locations</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.5">2</a>
+                            </td></tr><tr><td>TEMP</td><td>T1, T2 at bottom of layer 1, T3, T4 between layers 1-2, similarly
+                                for between next layers, ending with temperatures at top of layer
+                                    <em class="replaceable"><code>NL</code></em> (2 *
+                                    (<em class="replaceable"><code>NL</code></em> + 1) maximum)</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>LOC</td><td>TOP, MID, BOT, or integration point location</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.1">3</a>
+                            </td></tr><tr><td>S:X, Y, Z, XY, YZ, XZ</td><td>Stresses</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.3">5</a>
+                            </td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.1">3</a>
+                            </td></tr><tr><td>S:INT</td><td>Stress intensity</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.1">3</a>
+                            </td></tr><tr><td>S:EQV</td><td>Equivalent stress</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.1">3</a>
+                            </td></tr><tr><td>EPEL:X, Y, Z, XY</td><td>Elastic strains</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.3">5</a>
+                            </td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.1">3</a>
+                            </td></tr><tr><td>EPEL:EQV</td><td>Equivalent elastic strains [<a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.7">4</a>]</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.1">3</a>
+                            </td></tr><tr><td>EPTH:X, Y, Z, XY</td><td>Thermal strains</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.3">5</a>
+                            </td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.1">3</a>
+                            </td></tr><tr><td>EPTH:EQV</td><td>Equivalent thermal strains [<a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.7">4</a>]</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.1">3</a>
+                            </td></tr><tr><td>EPPL:X, Y, Z, XY</td><td>Average plastic strains</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.3">5</a>
+                            </td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.2">6</a>
+                            </td></tr><tr><td>EPPL:EQV</td><td>Equivalent plastic strains [<a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.7">4</a>]</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.2">6</a>
+                            </td></tr><tr><td>EPCR:X, Y, Z, XY</td><td>Average creep strains</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.3">5</a>
+                            </td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.2">6</a>
+                            </td></tr><tr><td>EPCR:EQV</td><td>Equivalent creep strains [<a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.7">4</a>]</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.2">6</a>
+                            </td></tr><tr><td>EPTO:X, Y, Z, XY</td><td>Total mechanical strains (EPEL + EPPL +
+                                EPCR)</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.3">5</a>
+                            </td><td align="center">-</td></tr><tr><td>EPTO:EQV</td><td>Total equivalent mechanical strains (EPEL + EPPL +
+                                EPCR)</td><td align="center">-</td><td align="center">-</td></tr><tr><td>NL:EPEQ</td><td>Accumulated equivalent plastic strain</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.2">6</a>
+                            </td></tr><tr><td>NL:CREQ</td><td>Accumulated equivalent creep strain</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.2">6</a>
+                            </td></tr><tr><td>NL:SRAT</td><td>Plastic yielding (1 = actively yielding, 0 = not
+                                yielding)</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.2">6</a>
+                            </td></tr><tr><td>NL:PLWK</td><td>Plastic work/volume</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.2">6</a>
+                            </td></tr><tr><td>NL:HPRES</td><td>Hydrostatic pressure</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.2">6</a>
+                            </td></tr><tr><td>SEND:ELASTIC, PLASTIC, CREEP</td><td>Strain energy densities</td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.2">6</a>
+                            </td></tr><tr><td>Fx</td><td>Section axial force</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>My, Mz</td><td>Section bending moments</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>TQ</td><td>Section torsional moment</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>SFy, SFz</td><td>Section shear forces </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>INT PRESS</td><td>Internal pressure at integration point</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>EXT PRESS</td><td>External pressure at integration point</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>EFFECTIVE TENS</td><td>
+                                <a href="../ans_thry/pipe288_hydrostatic.html#thyhydrostatbuck" class="olink">Effective
+                                    tension</a> on pipe</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>MAX HOOP STRESS</td><td>Maximum hoop stress at integration point</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>SDIR</td><td>Axial direct stress </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>SByT</td><td>Bending stress on the element +y side of the pipe </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>SByB</td><td>Bending stress on the element -y side of the pipe </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>SBzT</td><td>Bending stress on the element +z side of the pipe </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>SBzB</td><td>Bending stress on the element -z side of the pipe </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>N11, N22, N12</td><td>Wall in-plane forces (per unit length)</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>M11, M22, M12 </td><td>Wall out-of-plane moments (per unit length) </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>Q13, Q23 </td><td>Wall transverse shear forces (per unit length) </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>&#949;<sub>11</sub>,
+                                    &#949;<sub>22</sub>,
+                                    &#949;<sub>12</sub>
+                            </td><td>Wall membrane strains </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>&#954;<sub>11</sub>,
+                                    &#954;<sub>22</sub>,
+                                    &#954;<sub>12</sub>
+                            </td><td>Wall curvatures </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>&#947;<sub>13</sub>,
+                                    &#947;<sub>23</sub>
+                            </td><td>Wall transverse shear strains </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>SVAR:1, 2, ... , <em class="replaceable"><code>N</code></em>
+                            </td><td>State variables </td><td align="center">-</td><td align="center">
+                                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b.tab.2.ft.6">7</a>
+                            </td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="elbow290b.tab.2.ft.4"></a>Available only at the centroid as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item. </p></li><li class="listitem"><p><a name="elbow290b.tab.2.ft.5"></a>Available via an <a href="../ans_cmd/Hlp_C_OUTRES.html" class="olink"><span class="command"><strong>OUTRES</strong></span></a>,LOCI command only.</p></li><li class="listitem"><p><a name="elbow290b.tab.2.ft.1"></a>The subsequent stress solution repeats for top, middle, and bottom
+                        surfaces.</p></li><li class="listitem"><p><a name="elbow290b.tab.2.ft.7"></a>The equivalent strains use an effective Poisson's ratio. For elastic and
+                        thermal, you set the value (<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,PRXY). For plastic and
+                        creep, the program sets the value at 0.5.</p></li><li class="listitem"><p><a name="elbow290b.tab.2.ft.3"></a>Stresses, total strains, plastic strains, elastic strains, creep strains,
+                        and thermal strains in the element coordinate system are available for
+                        output (at all section points through thickness). If layers are in use, the
+                        results are in the layer coordinate system.</p></li><li class="listitem"><p><a name="elbow290b.tab.2.ft.2"></a>Nonlinear solution output for top, middle, and bottom surfaces, if the
+                        element has a nonlinear material, or if large-deflection effects are enabled
+                            (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON) for SEND.</p></li><li class="listitem"><p><a name="elbow290b.tab.2.ft.6"></a>Available only if the <a href="../ans_mat/matcustommatmods.html#user" class="olink">
+                            <code class="function">UserMat</code> subroutine</a> and
+                            <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,STATE command are used.</p></li></ol></div><p>More output is described via the <a href="../ans_cmd/Hlp_C_PRESOL.html" class="olink"><span class="command"><strong>PRESOL</strong></span></a> and <a href="../ans_cmd/Hlp_C_GET.html#get.post.secr" class="olink">
+                    <span class="bold"><strong>*GET</strong></span>,,SECR</a> commands in POST1.</p></div><div class="refsect2" title="ELBOW290 Generalized Tube Item and Sequence Numbers"><a name="d0e213836"></a><h3>ELBOW290 Generalized Tube Item and Sequence Numbers</h3><p>
+                <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b_itseqtbl" title="Table&nbsp;290.4:&nbsp;&nbsp;ELBOW290 Generalized Tube Item and Sequence Numbers">Table&nbsp;290.4:&nbsp;ELBOW290 Generalized Tube Item and Sequence Numbers</a> lists output available for the
+                    <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method. See <a href="../ans_bas/Hlp_G_BAS5_2.html#abOBsq267ldm" class="olink">Creating an Element Table</a>
+                in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in this document for more
+                information. The output tables use the following notation:</p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in <a class="xref" href="Hlp_E_ELBOW290.html#elbow290b_output" title="Table&nbsp;290.3:&nbsp;&nbsp;ELBOW290 Generalized Tube Output Definitions">Table&nbsp;290.3:&nbsp;ELBOW290 Generalized Tube Output Definitions</a>
+                            </p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>
+                            </p></dd><dt><span><b class="term">I,J</b></span></dt><dd><p>sequence number for data at nodes I and J</p></dd></dl></div></div><p>
+            </p><div class="table"><a name="elbow290b_itseqtbl"></a><p class="title"><b>Table&nbsp;290.4:&nbsp;&nbsp;ELBOW290 Generalized Tube Item and Sequence Numbers</b></p><div class="table-contents"><table summary="ELBOW290 Generalized Tube Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="144" align="center" class="col1"><col width="120" align="center" class="col2"><col width="119" align="center" class="col3"><col width="120" align="center" class="col4"></colgroup><thead><tr><th bgcolor="#C0C0C0" rowspan="2" align="center" valign="middle">
+                                
+                                Output Quantity Name</th><th bgcolor="#C0C0C0" colspan="3" align="center">
+                                
+                                
+                                <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command
+                                Input</th></tr><tr><th bgcolor="#E3E3E3" align="center">
+                                
+                                Item</th><th bgcolor="#E3E3E3" align="center">
+                                
+                                I</th><th bgcolor="#E3E3E3" align="center">
+                                
+                                J</th></tr></thead><tbody><tr><td align="center">Fx</td><td align="center">SMISC</td><td align="center">1</td><td align="center">36</td></tr><tr><td align="center">My</td><td align="center">SMISC</td><td align="center">2</td><td align="center">37</td></tr><tr><td align="center">Mz</td><td align="center">SMISC</td><td align="center">3</td><td align="center">38</td></tr><tr><td align="center">TQ</td><td align="center">SMISC</td><td align="center">4</td><td align="center">39</td></tr><tr><td align="center">SFz</td><td align="center">SMISC</td><td align="center">5</td><td align="center">40</td></tr><tr><td align="center">SFy</td><td align="center">SMISC</td><td align="center">6</td><td align="center">41</td></tr><tr><td align="center">SDIR</td><td align="center">SMISC</td><td align="center">8</td><td align="center">43</td></tr><tr><td align="center">SByT</td><td align="center">SMISC</td><td align="center">9</td><td align="center">44</td></tr><tr><td align="center">SByB</td><td align="center">SMISC</td><td align="center">10</td><td align="center">45</td></tr><tr><td align="center">SBzT</td><td align="center">SMISC</td><td align="center">11</td><td align="center">46</td></tr><tr><td align="center" valign="top">SBzB</td><td align="center">SMISC</td><td align="center" valign="top">12</td><td align="center" valign="top" charoff="50">47</td></tr><tr><td align="center" valign="top">N11</td><td align="center" valign="top" charoff="50">SMISC</td><td align="center" valign="top" charoff="50">14</td><td align="center" valign="top">49</td></tr><tr><td align="center">N22</td><td align="center">SMISC</td><td align="center">15</td><td align="center">50</td></tr><tr><td align="center">N12</td><td align="center">SMISC</td><td align="center">16</td><td align="center">51</td></tr><tr><td align="center">M11</td><td align="center">SMISC</td><td align="center">17</td><td align="center">52</td></tr><tr><td align="center">M22</td><td align="center">SMISC</td><td align="center">18</td><td align="center">53</td></tr><tr><td align="center">M12</td><td align="center">SMISC</td><td align="center">19</td><td align="center">54</td></tr><tr><td align="center">Q13</td><td align="center">SMISC</td><td align="center">20</td><td align="center">55</td></tr><tr><td align="center">Q23</td><td align="center">SMISC</td><td align="center">21</td><td align="center">56</td></tr><tr><td align="center">&#949;<sub>11</sub>
+                            </td><td align="center">SMISC</td><td align="center">22</td><td align="center">57</td></tr><tr><td align="center">&#949;<sub>22</sub>
+                            </td><td align="center">SMISC</td><td align="center">23</td><td align="center">58</td></tr><tr><td align="center">&#949;<sub>12</sub>
+                            </td><td align="center">SMISC</td><td align="center">24</td><td align="center">59</td></tr><tr><td align="center">&#954;<sub>11</sub>
+                            </td><td align="center">SMISC</td><td align="center">25</td><td align="center">60</td></tr><tr><td align="center">&#954;<sub>22</sub>
+                            </td><td align="center">SMISC</td><td align="center">26</td><td align="center">61</td></tr><tr><td align="center">&#954;<sub>12</sub>
+                            </td><td align="center">SMISC</td><td align="center">27</td><td align="center">62</td></tr><tr><td align="center">&#947;<sub>13</sub>
+                            </td><td align="center">SMISC</td><td align="center">28</td><td align="center">63</td></tr><tr><td align="center">&#947;<sub>23</sub>
+                            </td><td align="center">SMISC</td><td align="center">29</td><td align="center">64</td></tr><tr><td align="center">INT PRESS</td><td align="center">SMISC</td><td align="center">71</td><td align="center">75</td></tr><tr><td align="center">EXT PRESS</td><td align="center">SMISC</td><td align="center">72</td><td align="center">76</td></tr><tr><td align="center">EFFECTIVE TENS</td><td align="center">SMISC</td><td align="center">73</td><td align="center">77</td></tr><tr><td align="center">MAX HOOP STRESS</td><td align="center">SMISC</td><td align="center">74</td><td align="center">78</td></tr><tr><td align="center">AREA</td><td align="center">NMISC</td><td align="center">1</td><td align="center">6</td></tr><tr><td align="center">THICK</td><td align="center">NMISC</td><td align="center">2</td><td align="center">7</td></tr></tbody></table></div></div><br class="table-break"></div></div><div class="refsect1" title="ELBOW290 Generalized Tube Assumptions and Restrictions"><a name="elbow290b_assump"></a><h2>ELBOW290 Generalized Tube Assumptions and Restrictions</h2><p>
+            </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The element cannot have zero length.</p></li><li class="listitem"><p>Wall thickness must be uniform within the cross section.</p></li><li class="listitem"><p>Zero wall thickness is not allowed. (Zero thickness <span class="italic"><em>layers</em></span> are allowed.) </p></li><li class="listitem"><p>In a nonlinear analysis, the solution is terminated if the thickness at
+                        any integration point vanishes (within a small numerical tolerance). </p></li><li class="listitem"><p>This element works best with the full Newton-Raphson solution scheme (the
+                        default behavior in solution control).</p></li><li class="listitem"><p>No slippage is assumed between the element layers. Shear deflections are
+                        included in the element; however, normals to the center wall surface before
+                        deformation are assumed to remain straight after deformation. </p></li><li class="listitem"><p>If multiple load steps are used, the number of layers must remain
+                        unchanged between load steps. </p></li><li class="listitem"><p>If the layer material is hyperelastic, the layer orientation angle has no
+                        effect. </p></li><li class="listitem"><p>Stress stiffening is always included in geometrically nonlinear analyses
+                            (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON). Apply prestress effects via a
+                            <a href="../ans_cmd/Hlp_C_PSTRES.html" class="olink"><span class="command"><strong>PSTRES</strong></span></a> command. </p></li><li class="listitem"><p>The through-thickness stress SZ is always zero.</p></li><li class="listitem"><p>The effects of fluid motion inside the pipe are ignored.</p></li></ul></div><p>
+        </p></div><div class="refsect1" title="ELBOW290 Product Restrictions"><a name="elbow290a_prodrestr"></a><h2>ELBOW290 Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific restrictions
+            apply to this element in addition to the general assumptions and restrictions given in
+            the previous section.</p><p title="ANSYS Mechanical Pro"><b>ANSYS Mechanical Pro&nbsp;</b>
+                </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li></ul></div><p title="ANSYS Mechanical Pro">
+            </p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+                </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+            </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

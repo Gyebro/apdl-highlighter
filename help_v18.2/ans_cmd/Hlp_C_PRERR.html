@@ -1,0 +1,49 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:28-04:00"><title>PRERR</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_P_TOC.html" title="P Commands"><link rel="prev" href="Hlp_C_PREP7.html" title="/PREP7"><link rel="next" href="Hlp_C_PRESOL.html" title="PRESOL"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="PRERR"><a name="PRERR"></a><div class="titlepage"></div><a class="indexterm" name="d0e211022"></a><span class="refentrytitle"><span class="command"><strong>PRERR</strong></span></span><div class="refnamediv"><p><span class="command"><strong>PRERR</strong></span><br><b class="refpurpose">Prints SEPC and TEPC.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1lstjla070199" title="Table&nbsp;2.84:&nbsp;&nbsp;Listing"><span class="type">Listing</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsect1" title="Notes"><a name="PRERR.notes"></a><h2>Notes</h2><p>Prints the percent error in structural energy norm (SEPC) and
+the thermal energy norm percent error (TEPC).  Approximations of mesh
+discretization error associated with a solution are calculated for
+analyses having structural or thermal degrees of freedom.</p><p>The structural approximation is based
+on the energy error (which is similar in concept to the strain energy)
+and represents the error associated with the discrepancy between the
+calculated stress field and the globally continuous stress field (see <a href="../ans_thry/thy_post7.html" class="olink">POST1 - Error Approximation
+Technique</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>).  This discrepancy is due to
+the assumption in the elements that only the displacements are continuous
+at the nodes.  The stress field is calculated from the displacements
+and should also be continuous, but generally is not.</p><p>Thermal analyses may use any solid and shell thermal element
+having only temperature degrees of freedom.  The thermal approximation
+is based on the total heat flow dissipation and represents the error
+associated with the discrepancy between the calculated nodal thermal
+flux within an element and a continuous global thermal flux.  This
+continuous thermal flux is calculated with the normal nodal averaging
+procedure.</p><p>The volume (result label VOLU) is used to calculate the energy
+error per element (result label SERR for the structural energy error
+and TERR for the thermal energy error).  These energy errors, along
+with the appropriate energy, are then used to calculate the percent
+error in energy norm (SEPC for structural and TEPC for thermal). These
+percentages can be listed by the <span class="command"><strong>PRERR</strong></span> command,
+retrieved by the <a href="Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> command (with labels SEPC
+and TEPC) for further calculations, and shown on the displacement
+display (<a class="link" href="Hlp_C_PLDISP.html" title="PLDISP"><span class="command"><strong>PLDISP</strong></span></a>), as applicable.</p><p>For structural analyses, the maximum absolute value of nodal
+stress variation of any stress component for any node of an element
+(result item SDSG) is also calculated.  Similarly, for thermal gradient
+components, TDSG is calculated.  Minimum and maximum result bounds
+considering the possible effect of discretization error will be shown
+on contour displays (<a class="link" href="Hlp_C_PLNSOL.html" title="PLNSOL"><span class="command"><strong>PLNSOL</strong></span></a>).  For shell elements,
+the top surface location is used to produce a meaningful percentage
+value.  SERR, TERR, SEPC, TEPC, SDSG, and TDSG will be updated whenever
+the nodal stresses or fluxes are recalculated.</p><p>If the energy error is a significant portion of the total energy, then the analysis should be
+   repeated using a finer mesh to obtain a more accurate solution. The energy error is relative from
+   problem to problem but will converge to a zero energy error as the mesh is refined.</p><p><span class="bold"><strong>The following element- and material-type limitations
+    apply:</strong></span></p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Valid with most 2-D solid, 3-D solid, axisymmetric solid, or 3-D shell elements.</p></li><li class="listitem"><p>The following element types is <span class="italic"><em>not</em></span> supported:
+       <a href="../ans_elem/Hlp_E_SOLID65.html" class="olink"><span class="structname">SOLID65</span></a>.</p></li><li class="listitem"><p>The model should have only structural or thermal degrees of freedom.</p></li><li class="listitem"><p>The analysis must be linear (for both material and geometry). </p></li><li class="listitem"><p>Multi-material (for example, composite) elements are not valid. </p></li><li class="listitem"><p>Transition regions from one material to another are not valid (that is, the entire model
+      should consist of one material). </p></li><li class="listitem"><p>Anisotropic materials (<a class="link" href="Hlp_C_TB.html" title="TB"><span class="command"><strong>TB</strong></span></a>,ANEL) are not considered. </p></li></ul></div></div><div class="refsect1" title="Menu Paths"><a name="PRERR.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;List Results&gt;Percent Error</strong></span></td></tr><tr><td><span class="guimenu"><strong>Utility Menu&gt;List&gt;Results&gt;Percent Error</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

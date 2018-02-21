@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:06-04:00"><title>SFELIST</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_S_TOC.html" title="S Commands"><link rel="prev" href="Hlp_C_SFEDELE.html" title="SFEDELE"><link rel="next" href="Hlp_C_SFFUN.html" title="SFFUN"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SFELIST"><a name="SFELIST"></a><div class="titlepage"></div><a class="indexterm" name="d0e249240"></a><span class="refentrytitle"><span class="command"><strong>SFELIST</strong></span></span><div class="refnamediv"><p><span class="command"><strong>SFELIST</strong></span>, <em class="replaceable"><code>ELEM</code></em>, <em class="replaceable"><code>Lab</code></em><br><b class="refpurpose">Lists the surface loads for elements.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolufesurfldsjla070199" title="Table&nbsp;2.68:&nbsp;&nbsp;FE Surface Loads"><span class="type">FE Surface Loads</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="SFELIST.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>ELEM</code></em></b></span></dt><dd><p>Element at which surface load is to be listed.  If
+ALL (or blank), list loads for all selected elements [<a class="link" href="Hlp_C_ESEL.html" title="ESEL"><span class="command"><strong>ESEL</strong></span></a>].  If <em class="replaceable"><code>ELEM</code></em> = P, graphical picking is
+enabled and all remaining command fields are ignored (valid only in
+the GUI).  A component name may be substituted for <em class="replaceable"><code>ELEM</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><p>Valid surface load label. If ALL (or blank), use all appropriate labels. See the
+       <a class="link" href="Hlp_C_SFE.html" title="SFE"><span class="command"><strong>SFE</strong></span></a> command for labels.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="SFELIST.notes"></a><h2>Notes</h2><p>The surface loads listed correspond to the current database
+values. The database is not updated for surface loads in POST1. Surface
+loads specified in tabular form, however, do list their values corresponding
+to the current results set in POST1.</p><p>For <a href="../ans_elem/Hlp_E_SURF151.html" class="olink"><span class="structname">SURF151</span></a> or <a href="../ans_elem/Hlp_E_SURF152.html" class="olink"><span class="structname">SURF152</span></a> elements with an extra node for radiation and/or convection calculations
+(KEYOPT(5) = 1), the bulk temperature listed is the temperature of
+the extra node. If the thermal solution does not converge, the extra
+node temperature is not available for listing.</p><p>Film effectiveness and free stream temperatures specified by
+the <a class="link" href="Hlp_C_SFE.html" title="SFE"><span class="command"><strong>SFE</strong></span></a> command (<em class="replaceable"><code>Lab</code></em> = CONV) can only be listed by this command. The command lists film
+coefficients and bulk temperatures first and then film effectiveness
+and free stream temperatures below those values.</p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>In Distributed ANSYS within
+the SOLUTION processor, <span class="command"><strong>SFELIST</strong></span> support is not
+available for elements <a href="../ans_elem/Hlp_E_SURF151.html" class="olink"><span class="structname">SURF151</span></a> and <a href="../ans_elem/Hlp_E_SURF152.html" class="olink"><span class="structname">SURF152</span></a> when surface loading is applied via extra nodes
+(KEYOPT(5 &gt; 0). If the command is issued under these circumstances,
+the resulting surface loads shown are not reliable.</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="SFELIST.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;List&gt;Loads&gt;Surface Loads&gt;On All Elements</strong></span></td></tr><tr><td><span class="guimenu"><strong>Utility Menu&gt;List&gt;Loads&gt;Surface Loads&gt;On Picked Elems</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

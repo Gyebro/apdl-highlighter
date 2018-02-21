@@ -1,0 +1,67 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:29-04:00"><title>CE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_C_CTOC.html" title="C Commands"><link rel="prev" href="Hlp_C_CDWRITE.html" title="CDWRITE"><link rel="next" href="Hlp_C_CECHECK.html" title="CECHECK"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="CE"><a name="CE"></a><div class="titlepage"></div><a class="indexterm" name="d0e42609"></a><span class="refentrytitle">
+<span class="command"><strong>CE</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>CE</strong></span>, <em class="replaceable"><code>NEQN</code></em>, <em class="replaceable"><code>CONST</code></em>, <em class="replaceable"><code>NODE1</code></em>, <em class="replaceable"><code>Lab1</code></em>, <em class="replaceable"><code>C1</code></em>, <em class="replaceable"><code>NODE2</code></em>, <em class="replaceable"><code>Lab2</code></em>, <em class="replaceable"><code>C2</code></em>, <em class="replaceable"><code>NODE3</code></em>, <em class="replaceable"><code>Lab3</code></em>, <em class="replaceable"><code>C3</code></em>
+<br><b class="refpurpose">Defines a constraint equation relating degrees of freedom.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7constrainteqldm061600" title="Table&nbsp;2.42:&nbsp;&nbsp;Constraint Equations"><span class="type">Constraint Equations</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="CE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NEQN</code></em>
+</b></span></dt><dd><p>Set equation reference number:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">n</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Arbitrary set number.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">HIGH</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The highest defined constraint equation
+number. This option is especially useful when adding nodes to an existing
+set.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NEXT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The highest defined constraint equation
+number plus one. This option automatically numbers coupled sets so
+that existing sets are not modified.</p></td></tr></tbody></table></div></div><p>The default value is HIGH.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>CONST</code></em>
+</b></span></dt><dd><p>Constant term of equation.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NODE1</code></em>
+</b></span></dt><dd><p>Node for first term of equation.  If -<em class="replaceable"><code>NODE1</code></em>, this term is deleted from the equation.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Lab1</code></em>
+</b></span></dt><dd><p>Degree of freedom label for first term of equation.
+ Structural labels:  UX, UY, or UZ (displacements); ROTX, ROTY, or
+ROTZ (rotations, in radians).  Thermal labels: TEMP, TBOT, TE2, TE3,
+. . ., TTOP (temperature).  Electric labels:  VOLT (voltage).  Magnetic
+labels:  MAG (scalar magnetic potential); AZ (vector magnetic
+potential). Diffusion label: CONC (concentration).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>C1</code></em>
+</b></span></dt><dd><p>Coefficient for first node term of equation.  If zero,
+this term is ignored.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NODE2</code></em>, <em class="replaceable"><code>Lab2</code></em>, <em class="replaceable"><code>C2</code></em>
+</b></span></dt><dd><p>Node, label, and coefficient for second term.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NODE3</code></em>, <em class="replaceable"><code>Lab3</code></em>, <em class="replaceable"><code>C3</code></em>
+</b></span></dt><dd><p>Node, label, and coefficient for third term.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="CE.notes"></a><h2>Notes</h2><p>Repeat the <span class="command"><strong>CE</strong></span> command to add additional terms
+to the same equation.  To change only the constant term, repeat the
+command with no node terms specified.  Only the constant term can
+be changed during solution, and only with the <a class="link" href="Hlp_C_CECMOD.html" title="CECMOD"><span class="command"><strong>CECMOD</strong></span></a> command.</p><p>Linear constraint equations may be used to relate the degrees
+of freedom of selected nodes in a more general manner than described
+for nodal coupling [<a class="link" href="Hlp_C_CP.html" title="CP"><span class="command"><strong>CP</strong></span></a>].  The constraint equation
+is of the form:</p><div class="informalequation"><a name="eq8c38bf25-1c8e-48ba-a081-2ec4fdb50e36"></a><div><img src="graphics/eq8c38bf25-1c8e-48ba-a081-2ec4fdb50e36.svg"></div></div><p>where U(I) is the degree of freedom (displacement, temperature,
+etc.) of term (I).  The following example is a set of two constraint
+equations, each containing three terms:</p><div class="blockquote"><blockquote class="blockquote"><p>0.0 = 3.0* (1 UX) + 3.0* (4 UX) + (-2.0)* (4 ROTY)</p><p>2.0 = 6.0* (2 UX) + 10.0* (4 UY) + 1.0* (3 UZ)</p></blockquote></div><p>
+</p><p>The first unique degree of freedom in the equation is eliminated
+in terms of all other degrees of freedom in the equation.  A unique
+degree of freedom is one which is not specified in any other constraint
+equation, coupled node set, specified displacement set, or master
+degree of freedom set.  It is recommended that the first term of the
+equation be the degree of freedom to be eliminated.  The first term
+of the equation cannot contain a master degree of freedom, and no
+term can contain coupled degrees of freedom.  The same degree of freedom
+may be specified in more than one equation but care must be taken
+to avoid over-specification (over-constraint).</p><p>The degrees of freedom specified in the equation (i.e., UX,
+UY, ROTZ, etc.) must also be included in the model (as determined
+from the element types [<a class="link" href="Hlp_C_ET.html" title="ET"><span class="command"><strong>ET</strong></span></a>]).  Also, each node
+in the equation must be defined on an element (any element type containing
+that degree of freedom will do).</p><p>For buckling and modal analyses, the constant term of the equation
+will not be taken into account (that is, <em class="replaceable"><code>CONST</code></em> is always zero).</p><p>Note that under certain circumstances a
+constraint equation generated by <span class="command"><strong>CE</strong></span> may be modified
+during the solution. See <a href="../ans_mod/Hlp_G_MOD12_6.html#progmodces" class="olink">Program Modification of Constraint Equations</a> for more information.</p></div><div class="refsect1" title="Menu Paths"><a name="CE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Coupling / Ceqn&gt;Constraint Eqn</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

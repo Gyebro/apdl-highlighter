@@ -1,0 +1,67 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:40-04:00"><title>DMPOPTION</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_D_TOC.html" title="D Commands"><link rel="prev" href="Hlp_C_DMPEXT.html" title="DMPEXT"><link rel="next" href="Hlp_C_DMPRAT.html" title="DMPRAT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="DMPOPTION"><a name="DMPOPTION"></a><div class="titlepage"></div><a class="indexterm" name="d0e72838"></a><span class="refentrytitle"><span class="command"><strong>DMPOPTION</strong></span></span><div class="refnamediv"><p><span class="command"><strong>DMPOPTION</strong></span>, <em class="replaceable"><code>FileType</code></em>, <em class="replaceable"><code>Combine</code></em> <br><b class="refpurpose">Specifies distributed memory parallel (Distributed ANSYS) file
+combination options.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="DMPOPTION.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>FileType</code></em></b></span></dt><dd><p>Type of solution file to combine after a distributed
+memory parallel solution.<span> There is no default; if (blank),
+the command is ignored.</span></p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">RST</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Results files (<span class="filename"><strong>.RST</strong></span>, <span class="filename"><strong>.RTH</strong></span>, <span class="filename"><strong>.RMG</strong></span>, <span class="filename"><strong>.RSTP</strong></span>)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">EMAT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Element matrix files (<span class="filename"><strong>.EMAT</strong></span>).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ESAV</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Element saved data files (<span class="filename"><strong>.ESAV</strong></span>)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MODE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Modal results files (<span class="filename"><strong>.MODE</strong></span>)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MLV</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Modal load vector file (<span class="filename"><strong>.MLV</strong></span>)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">IST</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Initial state file (<span class="filename"><strong>.IST</strong></span>)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">FULL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Full matrix file (<span class="filename"><strong>.FULL</strong></span>)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">RFRQ</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Reduced complex displacement file
+(<span class="filename"><strong>.RFRQ</strong></span>)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">RDSP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Reduced displacement file (<span class="filename"><strong>.RDSP</strong></span>)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">RNNN</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Multiframe restart files
+          (<span class="filename"><strong>.R<em class="replaceable"><code>nnn</code></em></strong></span>)</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Combine</code></em></b></span></dt><dd><p>Option to combine solution files.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">Yes</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Combine solution files (default for all files except the
+            <span class="filename"><strong>.R<em class="replaceable"><code>nnn</code></em></strong></span> files).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">No</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Do not combine solution files (default for the
+            <span class="filename"><strong>.R<em class="replaceable"><code>nnn</code></em></strong></span> files only).</p></td></tr></tbody></table></div></div></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="DMPOPTION.default"></a><h3>Command Default</h3><p>Local solution files are automatically combined into a single global
+    file (for example, <span class="filename"><strong>Jobname<em class="replaceable"><code>N</code></em>.RST</strong></span> files are
+    combined into one <span class="filename"><strong>Jobname.RST</strong></span> file). This is true for all files except the
+      <span class="filename"><strong>.R<em class="replaceable"><code>nnn</code></em></strong></span> files.</p></div></div><div class="refsect1" title="Notes"><a name="DMPOPTION.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>DMPOPTION</strong></span> command controls how solution
+files are written during a distributed memory parallel (Distributed ANSYS)
+solution. This command is most useful for controlling how results
+files (<span class="filename"><strong>.RST</strong></span>,<span class="filename"><strong>.RTH</strong></span>, etc.)
+are written.</p><p>In a distributed memory parallel solution, a local results file is written by each process
+     (<span class="filename"><strong>Jobname<em class="replaceable"><code>N</code></em>.ext</strong></span>, where
+    <em class="replaceable"><code>N</code></em> is the process number). By default, the program automatically
+   combines the local results files (for example,
+    <span class="filename"><strong>Jobname<em class="replaceable"><code>N</code></em>.RST</strong></span>) upon leaving the solution
+   processor (for example, upon the <a class="link" href="Hlp_C_FINISH.html" title="FINISH"><span class="command"><strong>FINISH</strong></span></a> command) into a single global results
+   file (<span class="filename"><strong>Jobname.RST</strong></span>) which can be used in ANSYS postprocessing. To reduce the
+   amount of communication and I/O performed by this operation, you can issue the command
+    <span class="command"><strong>DMPOPTION</strong></span>,RST,NO to bypass this step of combining the local results files;
+   the local files will remain on the local disks in the current working directory. You can then use
+   the <a class="link" href="Hlp_C_RESCOMBINE.html" title="RESCOMBINE"><span class="command"><strong>RESCOMBINE</strong></span></a> command macro in the POST1 general postprocessor
+    (<a href="Hlp_C_POST1.html" class="olink"><span class="command"><strong>/POST1</strong></span></a>) to read all results into the database for postprocessing.</p><p>The <a class="link" href="Hlp_C_RESCOMBINE.html" title="RESCOMBINE"><span class="command"><strong>RESCOMBINE</strong></span></a> command macro is intended
+for use with POST1. If you want to postprocess distributed parallel
+solution results using the POST26 time-history postprocessor (<a href="Hlp_C_POST26.html" class="olink"><span class="command"><strong>/POST26</strong></span></a>), it is recommended that you combine your local
+results files into one global results file (<span class="command"><strong>DMPOPTION</strong></span>,RST,YES or <a class="link" href="Hlp_C_COMBINE.html" title="COMBINE"><span class="command"><strong>COMBINE</strong></span></a>).</p><p>Local <span class="filename"><strong>.EMAT</strong></span>, <span class="filename"><strong>.ESAV</strong></span>,
+    <span class="filename"><strong>.MODE</strong></span>, <span class="filename"><strong>.MLV</strong></span>, <span class="filename"><strong>.IST</strong></span>,
+    <span class="filename"><strong>.RFRQ</strong></span>, <span class="filename"><strong>.RDSP</strong></span>, and <span class="filename"><strong>.FULL</strong></span> files are
+   also written (when applicable) by each process in a distributed memory parallel solution. If
+   these files are not needed for a downstream solution or operation, you can issue the command
+    <span class="command"><strong>DMPOPTION</strong></span>,<em class="replaceable"><code>FileType</code></em>,NO for each file type to bypass
+   the file combination step and thereby improve performance.</p><p>If <span class="command"><strong>DMPOPTION</strong></span>,MODE,NO
+or <span class="command"><strong>DMPOPTION</strong></span>,RST,NO is specified in a modal analysis,
+element results cannot be written to the combined mode file (<span class="filename"><strong>Jobname.MODE</strong></span>). In this case, if Distributed ANSYS is used in a
+downstream harmonic or transient analysis that uses the mode-superposition
+method, the <em class="replaceable"><code>MSUPkey</code></em> on the <a class="link" href="Hlp_C_MXPAND.html" title="MXPAND"><span class="command"><strong>MXPAND</strong></span></a> command can retain its value. However, if shared memory parallel
+processing is used in the downstream harmonic or transient analysis,
+the <em class="replaceable"><code>MSUPkey</code></em> is effectively set to NO.</p><p>If <span class="command"><strong>DMPOPTION</strong></span>,RNNN,YES is specified, all of the
+   multiframe restart files named <span class="filename"><strong>Jobname.R001</strong></span> to
+    <span class="filename"><strong>Jobname.R999</strong></span> will automatically be combined upon leaving the solution
+   processor. This can be very ineffecient. To manually combine a single set of
+     <span class="filename"><strong>.R<em class="replaceable"><code>nnn</code></em></strong></span> restart files, use the
+    <a class="link" href="Hlp_C_COMBINE.html" title="COMBINE"><span class="command"><strong>COMBINE</strong></span></a> command. </p><p>The <span class="command"><strong>DMPOPTION</strong></span> command can be changed between
+load steps; however, doing so will not affect which set of solution
+files are combined. Only the last values of <em class="replaceable"><code>FileType</code></em> and <em class="replaceable"><code>Combine</code></em> upon leaving the solution
+processor will be used to determine whether the solution files are
+combined. For example, given a two load step solution and <em class="replaceable"><code>FileType</code></em> = RST, setting <em class="replaceable"><code>Combine</code></em> = NO for the first load step and YES for the second load step will
+cause all sets on the local results files to be combined. If the opposite
+is true (<em class="replaceable"><code>Combine</code></em> = YES for the first load
+step and NO for the second load step), no results will be combined.</p><p>After using <span class="command"><strong>DMPOPTION</strong></span> to suppress file combination,
+you may find it necessary to combine the local files for a specific <em class="replaceable"><code>FileType</code></em> for use in a subsequent analysis. In this
+case, use the <a class="link" href="Hlp_C_COMBINE.html" title="COMBINE"><span class="command"><strong>COMBINE</strong></span></a> command to combine local
+solution files into a single, global file.</p></div><div class="refsect1" title="Menu Paths"><a name="DMPOPTION.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

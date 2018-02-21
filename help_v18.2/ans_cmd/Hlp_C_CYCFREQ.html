@@ -1,0 +1,112 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:35-04:00"><title>CYCFREQ</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_C_CTOC.html" title="C Commands"><link rel="prev" href="Hlp_C_CYCFILES.html" title="CYCFILES"><link rel="next" href="Hlp_C_CYCLE.html" title="*CYCLE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="CYCFREQ"><a name="CYCFREQ"></a><div class="titlepage"></div><a class="indexterm" name="d0e60267"></a><span class="refentrytitle">
+<span class="command"><strong>CYCFREQ</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>CYCFREQ</strong></span>, <em class="replaceable"><code>Option</code></em>, <em class="replaceable"><code>Value1</code></em>, <em class="replaceable"><code>Value2</code></em>, <em class="replaceable"><code>Value3</code></em>, <em class="replaceable"><code>Value4</code></em>, <em class="replaceable"><code>Value5</code></em>
+<br><b class="refpurpose">Specifies solution options for a cyclic symmetry mode-superposition
+harmonic analysis.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7specpurpldm061600" title="Table&nbsp;2.48:&nbsp;&nbsp;Special Purpose"><span class="type">Special Purpose</span></a></span></div></div>  <div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoludynoptjla070199" title="Table&nbsp;2.51:&nbsp;&nbsp;Dynamic Options"><span class="type">Dynamic Options</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="CYCFREQ.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Option</code></em>
+</b></span></dt><dd><p>One of the following options:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">AERO</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Specify the array containing the
+aerodynamic damping coefficients.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>Value1</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The name of the array containing the aerodynamic stiffness
+damping coefficients.</p></td></tr></tbody></table></div></div></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BLADE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Blade information required for a
+mistuning analysis.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>Value1</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The name of the nodal component containing the blade
+boundary nodes at the blade-to-disk interface. Also include boundary
+nodes at any shroud interfaces.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>Value2</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The name of the element component containing the blade
+elements.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>Value3</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The number of blade modes to include in the CMS reduction.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>Value4</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The lower bound of the frequency range of interest.
+This value is optional.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>Value5</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The upper bound of the frequency range of interest.
+This value is optional.</p></td></tr></tbody></table></div></div></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DEFAULT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Set the default cyclic harmonic
+solution settings.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">EO</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Excitation engine order.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>Value1</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The value of the excitation order, which must be an
+integer. The loadings on the other sectors will be related to the
+loading on the basic sector based on the engine order phase shift.</p></td></tr></tbody></table></div></div></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MIST</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Mistuning parameters.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>Value1</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The type of mistuning:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">K</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Stiffness (frequency) mistuning</p></td></tr></tbody></table></div></div></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>Value2</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The name of the array containing the stiffness mistuning
+parameters.</p></td></tr></tbody></table></div></div></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MODAL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Specifies if a damped modal analysis
+should be performed on the reduced system.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>Value1</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>On/Off key.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0 (OFF or NO)</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>No modal solution. Perform the harmonic solution.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1 (ON or YES)</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Perform a damped modal analysis of the reduced system
+in order to obtain the complex frequencies. The harmonic solution
+is not performed.</p></td></tr></tbody></table></div></div></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>Value2</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Number of modes for the damped modal analysis.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>Value3</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The beginning, or lower end, of the frequency range
+of interest (in Hz).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>Value4</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The ending, or upper end, of the frequency range of
+interest (in Hz).</p></td></tr></tbody></table></div></div></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">RESTART</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Defines the point at which to
+restart the harmonic analysis.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>Value1</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The restart point:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>No restart (default)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SWEEP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Restart for a new frequency sweep range (<a class="link" href="Hlp_C_HARFRQ.html" title="HARFRQ"><span class="command"><strong>HARFRQ</strong></span></a>)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MIST</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Restart for new mistuning parameters (new mistuning
+arrays)</p></td></tr></tbody></table></div></div></td></tr></tbody></table></div></div></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">USER</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Causes the program to call for a
+user-defined solution.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">
+<em class="replaceable"><code>Value1-5</code></em>
+</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Values passed down to the user-defined solution.</p></td></tr></tbody></table></div></div></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">STATUS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>List the harmonic solution option
+settings active for the cyclic model.</p></td></tr></tbody></table></div></div></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="CYCFREQ.default"></a><h3>Command Default</h3><p>No defaults are available for the <span class="command"><strong>CYCFREQ</strong></span> command. You must specify an <em class="replaceable"><code>Option</code></em> label
+when issuing this command. Other values which may be necessary depend
+upon which <em class="replaceable"><code>Option</code></em> label you specify.</p></div></div><div class="refsect1" title="Notes"><a name="CYCFREQ.notes"></a><h2>Notes</h2><p>The program solves a cyclically symmetric model (set up via
+the <a class="link" href="Hlp_C_CYCLIC.html" title="CYCLIC"><span class="command"><strong>CYCLIC</strong></span></a> command during preprocessing) at the
+harmonic indices specified via the <a class="link" href="Hlp_C_CYCOPT.html" title="CYCOPT"><span class="command"><strong>CYCOPT</strong></span></a> command. </p><p><span>When <em class="replaceable"><code>Option</code></em> = AERO, </span>the
+      aerodynamic coefficients are specified in a 5&times;(N&times;r) array (<a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a>),
+      where N is the number of blades and r can be any positive integer. Each column has the
+      structure:</p><div class="informalequation"><a name="eq5aaf2fd6-6ed1-46fa-8ec2-2cde62fb78d3"></a><div><img src="graphics/eq5aaf2fd6-6ed1-46fa-8ec2-2cde62fb78d3.svg"></div></div><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq0e10b12f-0eea-4bf4-b922-16f6b209e295.svg"></span> = the i<sup>th</sup> interblade phase angle (IBPA)</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq9e210f6f-3c2e-4287-809a-03fc1e4ff9ff.svg"></span> = the m<sup>th</sup> vibrating blade mode</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqa5740669-3c54-4000-867f-cb0a8beb54e4.svg"></span> = the n<sup>th</sup> blade mode generating the pressure oscillations</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqb98031bc-f656-481c-9756-b074b5f7e781.svg"></span> and <span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq4380ea21-c005-4c26-bd3b-d0c1b058a240.svg"></span> = the real and imaginary coefficients.</td></tr></table><p>One aerodynamic damping coefficient must be specified
+for each IBPA (equal to the number of blades) while keeping m and
+n constant.</p><p>The following table shows how the IBPA index (<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq0e10b12f-0eea-4bf4-b922-16f6b209e295.svg"></span>) relates to other quantities for a system with 22 blades:</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="33%"><col width="33%"><col width="34%"></colgroup><thead><tr><th>IBPA Index (<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq0e10b12f-0eea-4bf4-b922-16f6b209e295.svg"></span>)</th><th>Nodal Diameter</th><th>IBPA (degrees)</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>16.36</td></tr><tr><td>
+              <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq36fccb99-9c05-4f19-a694-81ab0ab8b25c.svg"></span>
+            </td><td>
+              <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq90b98aa5-008f-4060-b60c-d64c04ff42cc.svg"></span>
+            </td><td>
+              <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq6a13d94c-f6f5-429a-80fd-cdf1012334bf.svg"></span>
+            </td></tr><tr><td>20</td><td>-2</td><td>-32.73</td></tr><tr><td>21</td><td>-1</td><td>-16.36</td></tr></tbody></table></div><p>The <span class="command"><strong>CYCFREQ</strong></span>,AERO command is only valid if
+    <span class="command"><strong>CYCFREQ</strong></span>,BLADE is also specified.  The blade mode numbers, m and n, are
+   relative to the values kept in the <span class="command"><strong>CYCFREQ</strong></span>,BLADE command.</p><p>For constant (frequency-independent) mistuning,
+the stiffness parameters are specified in an N&times;1 array (<a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a>) where N is the number of blades.</p><p>For stiffness mistuning, each row entry
+represents the deviation of Young&#8217;s modulus from nominal, <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq9ada43fd-d15f-40f2-b035-c202d864cbb7.svg"></span> (or equivalently, the ratio of the frequency deviation
+squared). Each frequency can also be independently mistuned, in which
+case the array is N&times;M, where M is the number of blade frequencies
+(<em class="replaceable"><code>Value3</code></em> of <span class="command"><strong>CYCFREQ</strong></span>,BLADE).
+The entries in each row therefore correspond to the ratio of the mistuned
+frequency to the tuned frequency squared minus one:</p><div class="informalequation"><a name="eq27cac067-98ac-4927-93bd-e198fa8bd407"></a><div><img src="graphics/eq27cac067-98ac-4927-93bd-e198fa8bd407.svg"></div></div><p>The USER option activates the solution
+macro <span class="filename"><strong>CYCMSUPUSERSOLVE.MAC</strong></span>. The normal solution
+is skipped. You may implement your own mistuning solution using APDL
+and APDL Math operations, or call your own program for the solution.</p><p>The <span class="command"><strong>CYCFREQ</strong></span> command is valid in the preprocessing
+and solution stages of an analysis.</p><p>The <span class="command"><strong>CYCFREQ</strong></span>,MODAL,ON
+command writes modal frequencies to the output file. No other postprocessing
+is available for this modal solve.</p><p>When using <span class="command"><strong>CYCFREQ</strong></span>,RESTART, only mistuning parameters or frequency range
+   may be changed. All other changes in parameters are ignored. <span>This
+    type of restart can only be performed by exiting the current mistuning solution using
+     <a class="link" href="Hlp_C_FINISH.html" title="FINISH"><span class="command"><strong>FINISH</strong></span></a> and re-entering the solution phase using <a href="Hlp_C_SOLU_sl.html" class="olink"><span class="command"><strong>/SOLU</strong></span></a> and
+    then calling the desired <span class="command"><strong>CYCFREQ</strong></span>,RESTART command.</span>
+</p><p>To learn more about analyzing a cyclically symmetric structure,
+see the <a href="../ans_cycsym/ans_cycsym.html" class="olink"><em class="citetitle">Cyclic Symmetry Analysis Guide</em></a>.</p></div><div class="refsect1" title="Menu Paths"><a name="CYCFREQ.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

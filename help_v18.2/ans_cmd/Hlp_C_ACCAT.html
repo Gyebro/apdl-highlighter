@@ -1,0 +1,42 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:20-04:00"><title>ACCAT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_A_TOC.html" title="A Commands"><link rel="prev" href="Hlp_C_ABS.html" title="ABS"><link rel="next" href="Hlp_C_ACCOPTION.html" title="ACCOPTION"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="ACCAT"><a name="ACCAT"></a><div class="titlepage"></div><a class="indexterm" name="d0e16736"></a><span class="refentrytitle"><span class="command"><strong>ACCAT</strong></span></span><div class="refnamediv"><p><span class="command"><strong>ACCAT</strong></span>, <em class="replaceable"><code>NA1</code></em>, <em class="replaceable"><code>NA2</code></em><br><b class="refpurpose">Concatenates multiple areas in preparation for mapped meshing.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7meshingldm061600" title="Table&nbsp;2.36:&nbsp;&nbsp;Meshing"><span class="type">Meshing</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="ACCAT.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NA1</code></em>, <em class="replaceable"><code>NA2</code></em></b></span></dt><dd><p>Areas to be concatenated.  If <em class="replaceable"><code>NA1</code></em> =
+ALL, <em class="replaceable"><code>NA2</code></em> will be ignored and all selected areas
+[<a class="link" href="Hlp_C_ASEL.html" title="ASEL"><span class="command"><strong>ASEL</strong></span></a>] will be concatenated.  If <em class="replaceable"><code>NA1</code></em> =
+P, graphical picking is enabled and all remaining arguments are ignored (valid
+only in the GUI).  A component name may also be substituted for <em class="replaceable"><code>NA1</code></em> (<em class="replaceable"><code>NA2</code></em> is
+ignored).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="ACCAT.notes"></a><h2>Notes</h2><p>Concatenates multiple, adjacent areas (the input areas) into one area
+(the output area) in preparation for mapped meshing.  A volume that contains
+too many areas for mapped meshing can still be mapped meshed if some of the
+areas in that volume are first concatenated (see <a href="../ans_mod/Hlp_G_MOD7_5.html" class="olink">Meshing Your Solid Model</a> in the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a> for
+details on mapped meshing restrictions).</p><p>Because of modeling restrictions that result from its use, <span class="command"><strong>ACCAT</strong></span> is
+meant to be used solely for meshing.  Specifically, (a) the output area and
+any volumes that have the output area on their area list [<a class="link" href="Hlp_C_VLIST.html" title="VLIST"><span class="command"><strong>VLIST</strong></span></a>]
+cannot be used as input to any other solid modeling operation (not even another <span class="command"><strong>ACCAT</strong></span> command);
+and (b) the output area cannot accept solid model boundary conditions [<a class="link" href="Hlp_C_DA.html" title="DA"><span class="command"><strong>DA</strong></span></a>, <a class="link" href="Hlp_C_SFA.html" title="SFA"><span class="command"><strong>SFA</strong></span></a>].</p><p>The output area (or volumes which contain it) will be meshed [<a class="link" href="Hlp_C_AMESH.html" title="AMESH"><span class="command"><strong>AMESH</strong></span></a>, <a class="link" href="Hlp_C_VMESH.html" title="VMESH"><span class="command"><strong>VMESH</strong></span></a>]
+by meshing the input areas, which themselves must be meshable.  The output
+area from the <span class="command"><strong>ACCAT</strong></span> operation will be coincident with the
+input areas and the input areas will be retained.  Consider the <a class="link" href="Hlp_C_AADD.html" title="AADD"><span class="command"><strong>AADD</strong></span></a> command
+instead of <span class="command"><strong>ACCAT</strong></span> if you wish to delete the input areas.
+ When an <span class="command"><strong>ACCAT</strong></span> command is issued, volume area lists [<a class="link" href="Hlp_C_VLIST.html" title="VLIST"><span class="command"><strong>VLIST</strong></span></a>]
+that contain <span class="italic"><em>all </em></span>of the input areas will
+be updated so that the volume area lists refer to the output area instead
+of the input area.  Deletion of the output area [<a class="link" href="Hlp_C_ADELE.html" title="ADELE"><span class="command"><strong>ADELE</strong></span></a>]
+effectively reverses the <span class="command"><strong>ACCAT</strong></span> operation and restores volume
+area lists to their original condition.  <span class="command"><strong>ACCAT</strong></span> operations
+on pairs of adjacent four-sided areas automatically concatenate appropriate
+lines [<a class="link" href="Hlp_C_LCCAT.html" title="LCCAT"><span class="command"><strong>LCCAT</strong></span></a>]; in all other situations, line concatenations
+must be addressed by the user.</p><p>You can use the <a class="link" href="Hlp_C_ASEL.html" title="ASEL"><span class="command"><strong>ASEL</strong></span></a> command to select areas that
+were created by concatenation, and then follow it with an <a class="link" href="Hlp_C_ADELE.html" title="ADELE"><span class="command"><strong>ADELE</strong></span></a>,ALL
+command to delete them.  See <a href="../ans_mod/Hlp_G_MOD7_5.html" class="olink">Meshing
+Your Solid Model</a> in the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a> for a discussion on
+how to easily select and delete concatenated areas in one step.</p></div><div class="refsect1" title="Menu Paths"><a name="ACCAT.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Mesh&gt;Volumes&gt;Mapped&gt;Concatenate&gt;Areas</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:47-04:00"><title>MOVE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_M_TOC.html" title="M Commands"><link rel="prev" href="Hlp_C_MORPH.html" title="MORPH"><link rel="next" href="Hlp_C_MP.html" title="MP"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="MOVE"><a name="MOVE"></a><div class="titlepage"></div><a class="indexterm" name="d0e170022"></a><span class="refentrytitle"><span class="command"><strong>MOVE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>MOVE</strong></span>, <em class="replaceable"><code>NODE</code></em>, <em class="replaceable"><code>KC1</code></em>, <em class="replaceable"><code>X1</code></em>, <em class="replaceable"><code>Y1</code></em>, <em class="replaceable"><code>Z1</code></em>, <em class="replaceable"><code>KC2</code></em>, <em class="replaceable"><code>X2</code></em>, <em class="replaceable"><code>Y2</code></em>, <em class="replaceable"><code>Z2</code></em><br><b class="refpurpose">Calculates and moves a node to an intersection.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7nodesldm061600" title="Table&nbsp;2.37:&nbsp;&nbsp;Nodes"><span class="type">Nodes</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="MOVE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NODE</code></em></b></span></dt><dd><p>Move this node.  If <em class="replaceable"><code>NODE</code></em> = P, graphical picking is enabled and all remaining command fields
+are ignored (valid only in the GUI).  A component name may also be
+substituted for <em class="replaceable"><code>NODE</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>KC1</code></em></b></span></dt><dd><p>First coordinate system number.  Defaults to 0 (global
+Cartesian).</p></dd><dt><span><b class="term"><em class="replaceable"><code>X1</code></em>, <em class="replaceable"><code>Y1</code></em>, <em class="replaceable"><code>Z1</code></em></b></span></dt><dd><p>Input one or two values defining the location of the
+node in this coordinate system.  Input "U" for unknown value(s) to
+be calculated and input "E" to use an existing coordinate value. 
+Fields are R1, &#952;1, Z1 for cylindrical, or R1, &#952;1,&nbsp;&#934;1
+for spherical or toroidal.</p></dd><dt><span><b class="term"><em class="replaceable"><code>KC2</code></em></b></span></dt><dd><p>Second coordinate system number.</p></dd><dt><span><b class="term"><em class="replaceable"><code>X2</code></em>, <em class="replaceable"><code>Y2</code></em>, <em class="replaceable"><code>Z2</code></em></b></span></dt><dd><p>Input two or one value(s) defining the location of
+the node in this coordinate system.  Input "U" for unknown value(s)
+to be calculated and input "E" to use an existing coordinate value.
+ Fields are R2,&nbsp; &#952;2, Z2 for cylindrical, or R2,&nbsp; &#952;2, &#934;2
+for spherical or toroidal.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="MOVE.notes"></a><h2>Notes</h2><p>Calculates and moves a node to an intersection location.  The
+node may have been previously defined (at an approximate location)
+or left undefined (in which case it is internally defined at the <a class="link" href="Hlp_C_SOURCE.html" title="SOURCE"><span class="command"><strong>SOURCE</strong></span></a> location).  The actual location is calculated from
+the intersection of three surfaces (implied from three coordinate
+constants in two different coordinate systems).  The three (of six)
+constants easiest to define should be used.  The program will calculate
+the remaining three coordinate constants.  All arguments, except <em class="replaceable"><code>KC1</code></em>, must be input.  Use the repeat command [<a href="Hlp_C_REPEAT.html" class="olink"><span class="command"><strong>*REPEAT</strong></span></a>] after the <span class="command"><strong>MOVE</strong></span> command to define
+a line of intersection by repeating the move operation on all nodes
+of the line.</p><p>Surfaces of constant value are implied by some commands by specifying
+a single coordinate value.  Implied surfaces are used with various
+commands [<span class="command"><strong>MOVE</strong></span>, <a class="link" href="Hlp_C_KMOVE.html" title="KMOVE"><span class="command"><strong>KMOVE</strong></span></a>, <a class="link" href="Hlp_C_NSEL.html" title="NSEL"><span class="command"><strong>NSEL</strong></span></a>, etc.].  Three surfaces are available with each of
+the four coordinate system types.  Values or X, Y, or Z may be constant
+for the Cartesian coordinate system; values of R,&nbsp;&#952;, or
+Z for the cylindrical system; and values of R, &#952;,&nbsp;&#934;
+for the spherical and toroidal systems.  For example, an X value of
+3 represents the Y-Z plane (or surface) at X=3.  In addition, the
+parameters for the cylindrical and spherical coordinate systems may
+be adjusted [<a class="link" href="Hlp_C_CS.html" title="CS"><span class="command"><strong>CS</strong></span></a>, <a class="link" href="Hlp_C_LOCAL.html" title="LOCAL"><span class="command"><strong>LOCAL</strong></span></a>] to form
+elliptical surfaces.  For surfaces in elliptical coordinate systems,
+a surface of "constant" radius is defined by the radius value at the
+X-axis.  Surfaces of constant value may be located in local coordinate
+systems [<a class="link" href="Hlp_C_LOCAL.html" title="LOCAL"><span class="command"><strong>LOCAL</strong></span></a>, <a class="link" href="Hlp_C_CLOCAL.html" title="CLOCAL"><span class="command"><strong>CLOCAL</strong></span></a>, <a class="link" href="Hlp_C_CS.html" title="CS"><span class="command"><strong>CS</strong></span></a>, or <a class="link" href="Hlp_C_CSKP.html" title="CSKP"><span class="command"><strong>CSKP</strong></span></a>] to allow for any orientation.</p><p>The intersection calculation is based on an iterative procedure
+(250 iterations maximum) and a tolerance of 1.0E-4.  The approximate
+location of a node should be sufficient to determine a unique intersection
+if more than one intersection point is possible.  Tangent "intersections"
+should be avoided.  If an intersection is not found, the node is placed
+at the last iteration location.</p><p>This command is also valid in the <a href="Hlp_C_MAP_s.html" class="olink"><span class="command"><strong>/MAP</strong></span></a> processor.</p></div><div class="refsect1" title="Menu Paths"><a name="MOVE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Move / Modify&gt;Nodes&gt;To Intersect</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

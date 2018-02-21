@@ -1,0 +1,37 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:20-04:00"><title>ADRAG</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_A_TOC.html" title="A Commands"><link rel="prev" href="Hlp_C_ADGL.html" title="ADGL"><link rel="next" href="Hlp_C_AEROCOEFF.html" title="AEROCOEFF"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="ADRAG"><a name="ADRAG"></a><div class="titlepage"></div><a class="indexterm" name="d0e18052"></a><span class="refentrytitle"><span class="command"><strong>ADRAG</strong></span></span><div class="refnamediv"><p><span class="command"><strong>ADRAG</strong></span>, <em class="replaceable"><code>NL1</code></em>, <em class="replaceable"><code>NL2</code></em>, <em class="replaceable"><code>NL3</code></em>, <em class="replaceable"><code>NL4</code></em>, <em class="replaceable"><code>NL5</code></em>, <em class="replaceable"><code>NL6</code></em>, <em class="replaceable"><code>NLP1</code></em>, <em class="replaceable"><code>NLP2</code></em>, <em class="replaceable"><code>NLP3</code></em>, <em class="replaceable"><code>NLP4</code></em>, <em class="replaceable"><code>NLP5</code></em>, <em class="replaceable"><code>NLP6</code></em><br><b class="refpurpose">Generates areas by dragging a line pattern along a path.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7areasldm061600" title="Table&nbsp;2.33:&nbsp;&nbsp;Areas"><span class="type">Areas</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="ADRAG.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NL1</code></em>, <em class="replaceable"><code>NL2</code></em>, <em class="replaceable"><code>NL3</code></em>,
+. . . , <em class="replaceable"><code>NL6</code></em></b></span></dt><dd><p>List of lines in the pattern to be dragged (6 maximum if using
+keyboard entry).  Lines should form a continuous pattern (no more than two
+lines connected to any one keypoint.  If <em class="replaceable"><code>NL1</code></em> =
+P, graphical picking is enabled and all remaining arguments are ignored (valid
+only in the GUI).  If <em class="replaceable"><code>NL1</code></em> = ALL, all selected lines
+(except those that define the drag path) will be swept along the path.  A
+component name may also be substituted for <em class="replaceable"><code>NL1</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NLP1</code></em>, <em class="replaceable"><code>NLP2</code></em>, <em class="replaceable"><code>NLP3</code></em>,
+. . . , <em class="replaceable"><code>NLP6</code></em></b></span></dt><dd><p>List of lines defining the path along which the pattern is
+to be dragged (6 maximum if using keyboard entry).  Must be a continuous set
+of lines.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="ADRAG.notes"></a><h2>Notes</h2><p>Generates areas (and their corresponding keypoints and lines) by sweeping
+a given line pattern along a characteristic drag path.  If the drag path consists
+of multiple lines, the drag direction is determined by the sequence in which
+the path lines are input (<em class="replaceable"><code>NLP1</code></em>, <em class="replaceable"><code>NLP2</code></em>,
+etc.).  If the drag path is a single line (<em class="replaceable"><code>NLP1</code></em>),
+the drag direction is  from the keypoint on the drag line that is closest
+to the first keypoint of the given line pattern to the other end of the drag
+line.</p><p>The magnitude of the vector between the keypoints of the given pattern
+and the first path keypoint remains constant for all generated keypoint patterns
+and the path keypoints.  The direction of the vector relative to the path
+slope also remains constant so that patterns may be swept around curves.</p><p>Keypoint, line, and area numbers are automatically assigned (beginning
+with the lowest available values [<a class="link" href="Hlp_C_NUMSTR.html" title="NUMSTR"><span class="command"><strong>NUMSTR</strong></span></a>]).  Adjacent lines
+use a common keypoint.  Adjacent areas use a common line.  For best results,
+the entities to be dragged should be orthogonal to the start of the drag path.
+ Drag operations that produce an error message may create some of the desired
+entities prior to terminating.</p></div><div class="refsect1" title="Menu Paths"><a name="ADRAG.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Operate&gt;Extrude&gt;Lines&gt;Along Lines</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

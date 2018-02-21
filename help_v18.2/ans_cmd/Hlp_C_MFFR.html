@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:43-04:00"><title>MFFR</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_M_TOC.html" title="M Commands"><link rel="prev" href="Hlp_C_MFFNAME.html" title="MFFNAME"><link rel="next" href="Hlp_C_MFIMPORT.html" title="MFIMPORT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="MFFR"><a name="MFFR"></a><div class="titlepage"></div><a class="indexterm" name="d0e163080"></a><span class="refentrytitle"><span class="command"><strong>MFFR</strong></span></span><div class="refnamediv"><p><span class="command"><strong>MFFR</strong></span>, <em class="replaceable"><code>Fname</code></em>, <em class="replaceable"><code>Lab</code></em>, <em class="replaceable"><code>RFINI</code></em>, <em class="replaceable"><code>RFMIN</code></em>, <em class="replaceable"><code>RFMAX</code></em><br><b class="refpurpose">Setup Multi-Field relaxation factors for field solutions.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolumfglobal" title="Table&nbsp;2.75:&nbsp;&nbsp;ANSYS Multi-field solver Global Controls"><span class="type">Multi-field Global Controls</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_MFFR.html#mffrprodrestrict" title="Product Restrictions">Product Restrictions</a></span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Fname </code></em></b></span></dt><dd><p> Field name (MFX) or number
+(MFS). Must be the ANSYS field (cannot be a CFX field).</p></dd><dt><span><b class="term"><em class="replaceable"><code>Lab </code></em></b></span></dt><dd><p>Label name. Valid values are DISP and TEMP.</p></dd><dt><span><b class="term"><em class="replaceable"><code>RFINI</code></em></b></span></dt><dd><p>Initial relaxation factor. Defaults to 0.75.</p></dd><dt><span><b class="term"><em class="replaceable"><code>RFMIN </code></em></b></span></dt><dd><p>Minimum relaxation factor. Defaults to <em class="replaceable"><code>RFINI</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>RFMAX </code></em></b></span></dt><dd><p>Maximum relaxation factor. Defaults to <em class="replaceable"><code>RFINI</code></em>.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="d0e163169"></a><h2>Notes</h2><p>Use this command to relax the field solutions in fluid-solid
+interaction analyses and thermal-thermal analyses for a better convergence
+rate in coupled problems, especially cases that need dynamic relaxation.
+The ANSYS field that has the MFFR command applied will do only one
+nonlinear stagger iteration within each multi-field stagger; the convergence
+of the ANSYS field solver will be satisfied through multiple multi-field
+staggers. Note that the CFX field solver can have multiple iterations
+within the field solver; see the CFX documentation for more details.
+ANSYS will not terminate the nonlinear field solution until the ANSYS
+field solver converges or reaches the maximum number of multi-field
+staggers as specified on <a class="link" href="Hlp_C_MFITER.html" title="MFITER"><span class="command"><strong>MFITER</strong></span></a>. </p><p>The interface load relaxation (<a class="link" href="Hlp_C_MFRELAX.html" title="MFRELAX"><span class="command"><strong>MFRELAX</strong></span></a>) will
+be automatically turned off for the corresponding surface loads that
+have <span class="command"><strong>MFFR</strong></span> applied. The automatic change of the
+relaxation factor for accelerating the nonlinear convergence of the
+coupled field solution is based on Aitken's acceleration scheme.</p><p>This command is valid only with coupled problems involving surface
+load transfer only. No subcycling is allowed for the field solver
+if using this command.</p></div><div class="refsect1" title="Product Restrictions"><a name="mffrprodrestrict"></a><h2>Product Restrictions</h2><p>ANSYS Mechanical allows MFX analyses but not MFS analyses. ANSYS Multiphysics allows both MFS and MFX analyses.</p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e163199"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

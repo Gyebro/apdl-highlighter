@@ -1,0 +1,46 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:33-04:00"><title>/CONTOUR</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_C_CTOC.html" title="C Commands"><link rel="prev" href="Hlp_C_CONJUG.html" title="CONJUG"><link rel="next" href="Hlp_C_COPY.html" title="/COPY"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="/CONTOUR"><a name="s-CONTOUR"></a><div class="titlepage"></div><a class="indexterm" name="d0e55016"></a><span class="refentrytitle"><a href="Hlp_C_CONTOUR.html" class="olink"><span class="command"><strong>/CONTOUR</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>/CONTOUR</strong></span>, <em class="replaceable"><code>WN</code></em>, <em class="replaceable"><code>NCONT</code></em>, <em class="replaceable"><code>VMIN</code></em>, <em class="replaceable"><code>VINC</code></em>, <em class="replaceable"><code>VMAX</code></em><br><b class="refpurpose">Specifies the uniform contour values on stress displays.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_3.html" title="2.3.&nbsp;GRAPHICS Commands"><code class="classname">GRAPHICS</code></a>: <a class="link" href="Hlp_C_CH2_3.html#cmdgraphiclabjla070199" title="Table&nbsp;2.15:&nbsp;&nbsp;Labeling"><span class="type">Labeling</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="s-CONTOUR.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>WN</code></em></b></span></dt><dd><p>Window number (or ALL) to which command applies (defaults
+to 1).</p></dd><dt><span><b class="term"><em class="replaceable"><code>NCONT</code></em></b></span></dt><dd><p>Number of contour values. <em class="replaceable"><code>NCONT</code></em> defaults
+to 9 for X11 or WIN32 and to 128 for X11c or WIN32C.  The default graphics
+window display for 3-D devices is a smooth continuous shading effect that
+spans the maximum of 128 contours available. Use the <a href="Hlp_C_DV3D.html" class="olink"><span class="command"><strong>/DV3D</strong></span></a> command
+to create defined banding for your contour values (values of 9 and 128 are
+displayed in smooth shading only). The legend, however, will
+display only nine color boxes, which span the full range of colors displayed
+in the graphics window. </p></dd><dt><span><b class="term"><em class="replaceable"><code>VMIN</code></em></b></span></dt><dd><p>Minimum contour value.  If <em class="replaceable"><code>VMIN</code></em> =
+AUTO, automatically calculate contour values based upon <em class="replaceable"><code>NCONT</code></em> uniformly
+spaced values over the min-max extreme range.  Or, if <em class="replaceable"><code>VMIN</code></em> =
+USER, set contour values to those of the last display (useful when last display
+automatically calculated contours).</p></dd><dt><span><b class="term"><em class="replaceable"><code>VINC</code></em></b></span></dt><dd><p>Value increment (positive) between contour values.  Defaults
+to (<em class="replaceable"><code>VMAX</code></em>-<em class="replaceable"><code>VMIN</code></em>)<em class="replaceable"><code>/NCONT</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>VMAX</code></em></b></span></dt><dd><p>Maximum contour value.  Ignored if both <em class="replaceable"><code>VMIN</code></em> and <em class="replaceable"><code>VINC</code></em> are
+specified.</p></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="s-CONTOUR.default"></a><h3>Command Default</h3><p>Nine contour values uniformly spaced between the extreme values, or
+no contours if the ratio of range to minimum value (or range to maximum if
+minimum = 0) is less than 0.001.</p></div></div><div class="refsect1" title="Notes"><a name="s-CONTOUR.notes"></a><h2>Notes</h2><p>See the <a href="Hlp_C_CVAL.html" class="olink"><span class="command"><strong>/CVAL</strong></span></a> command for alternate specifications.
+ Values represent contour lines in vector mode, and the algebraic maximum
+of contour bands in raster mode.</p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;No matter how many contours (<em class="replaceable"><code>NCONT</code></em>)
+are specified by <a href="Hlp_C_CONTOUR.html" class="olink"><span class="command"><strong>/CONTOUR</strong></span></a>, the actual number of contours
+that appear on your display depends also on the device name, whether the display
+is directed to the screen or to a file, the display mode (vector or raster),
+and the number of color planes.  (All these items are controlled by <a href="Hlp_C_SHOW.html" class="olink"><span class="command"><strong>/SHOW</strong></span></a> settings.)
+In any case, regardless of whether they are smoothed or banded, only 128 contours
+can be displayed. See <a href="../ans_bas/Hlp_G_BAS12.html" class="olink">Creating
+Geometric Results Displays</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for more information on
+changing the number of contours.</p><hr></div><p>If the current ANSYS graphics are <span class="italic"><em>not</em></span> displayed
+as Multi-Plots, then the following is true:  If the current device is a 3-D
+device [<a href="Hlp_C_SHOW.html" class="olink"><span class="command"><strong>/SHOW</strong></span></a>,3D], the model contours in all active windows
+will be the same, even if separate <a href="Hlp_C_CONTOUR.html" class="olink"><span class="command"><strong>/CONTOUR</strong></span></a> commands are
+issued for each active window.  For efficiency, ANSYS 3-D graphics logic maintains
+a single data structure (segment), which contains precisely one set of contours.
+ The program displays the same segment in all windows.  The view settings
+of each window constitute the only differences in the contour plots in the
+active windows.</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="s-CONTOUR.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;Style&gt;Contours&gt;Uniform Contours</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

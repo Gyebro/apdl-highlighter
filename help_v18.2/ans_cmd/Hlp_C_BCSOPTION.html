@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:24-04:00"><title>BCSOPTION</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_B_TOC.html" title="B Commands"><link rel="prev" href="Hlp_C_BATCH.html" title="/BATCH"><link rel="next" href="Hlp_C_BETAD.html" title="BETAD"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="BCSOPTION"><a name="BCSOPTION"></a><div class="titlepage"></div><a class="indexterm" name="d0e32721"></a><span class="refentrytitle"><span class="command"><strong>BCSOPTION</strong></span></span><div class="refnamediv"><p><span class="command"><strong>BCSOPTION</strong></span>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>Memory_Option</code></em>, <em class="replaceable"><code>Memory_Size</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>Solve_Info</code></em><br><b class="refpurpose"> Sets memory option for the sparse solver.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="BCSOPTION.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused field</p></dd><dt><span><b class="term"><em class="replaceable"><code> Memory_Option</code></em></b></span></dt><dd><p>Memory allocation option:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DEFAULT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use the default memory allocation
+strategy for the sparse solver. The default strategy attempts to run
+in the INCORE memory mode. If there is not enough available physical
+memory when the solver starts to run in the INCORE memory mode, the
+solver will then attempt to run in the <span>OUTOFCORE</span> memory mode.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">INCORE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p> Use a memory
+allocation strategy in the sparse solver that will attempt to obtain
+enough memory to run with the entire factorized matrix in memory.
+This option uses the most amount of memory and should avoid doing
+any I/O. By avoiding I/O, this option achieves optimal solver performance.
+However, a significant amount of memory is required to run in this
+mode, and it is only recommended on machines with a large amount of
+memory. If the allocation for in-core memory fails, the solver will
+automatically revert to out-of-core memory mode.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OUTOFCORE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use a memory allocation strategy
+in the sparse solver that will attempt to allocate only enough work
+space to factor each individual frontal matrix in memory, but will
+store the entire factorized matrix on disk. Typically, this memory
+mode results in poor performance due to the potential bottleneck caused
+by the I/O to the various files written by the solver.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">FORCE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>This option, when used in conjunction
+with the <em class="replaceable"><code>Memory_Size</code></em> option, allows you
+to force the sparse solver to run with a specific amount of memory.
+This option is only recommended for the advanced user who understands
+sparse solver memory requirements for the problem being solved, understands
+the physical memory on the system, and wants to control the sparse
+solver memory usage.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Memory_Size</code></em></b></span></dt><dd><p>Initial memory size allocation for the sparse solver
+in MB. This argument allows you to tune the sparse solver memory and
+is not generally required. Although there is no upper limit for <em class="replaceable"><code>Memory_Size</code></em>, the <em class="replaceable"><code>Memory_Size</code></em> setting should always be well within the physical memory available,
+but not so small as to cause the sparse solver to run out of memory.
+Warnings and/or errors from the sparse solver will appear if this
+value is set too low. If the FORCE memory option is used, this value
+is the amount of memory allocated for the entire duration of the sparse
+solver solution.</p></dd><dt><span><b class="term"><em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused fields</p></dd><dt><span><b class="term"><em class="replaceable"><code>Solve_Info</code></em></b></span></dt><dd><p>Solver output option:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Turns off additional output printing
+from the sparse solver (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">PERFORMANCE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Turns on additional output
+printing from the sparse solver, including a performance summary and
+a summary of file I/O for the sparse solver. Information on memory
+usage during assembly of the global matrix (that is, creation of the <span class="filename"><strong>Jobname.FULL</strong></span> file) is also printed with this option. </p></td></tr></tbody></table></div></div></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="BCSOPTION.default"></a><h3>Command Default</h3><p> Automatic memory allocation is used.</p></div></div><div class="refsect1" title="Notes"><a name="BCSOPTION.notes"></a><h2>Notes</h2><p>This command controls options related to the sparse solver in
+all analysis types where the sparse solver can be used. It also controls
+the Block Lanczos eigensolver in a modal or buckling analysis.</p><p>The sparse solver runs from one large
+work space (that is, one large memory allocation). The amount of memory
+required for the sparse solver is unknown until the matrix structure
+is preprocessed, including equation reordering. The amount of memory
+allocated for the sparse solver is then dynamically adjusted to supply
+the solver what it needs to compute the solution. </p><p>If you have a very large memory system,
+you may want to try selecting the INCORE memory mode for larger jobs
+to improve performance. When running the sparse solver on a machine
+with very slow I/O performance (for example, slow hard drive speed),
+you may want to try using the INCORE memory mode to achieve better
+performance. However, doing so may require much more memory compared
+to running in the OUTOFCORE memory mode.</p><p>Running with the INCORE memory mode is
+best for jobs which comfortably fit within the limits of the physical
+memory on a given system. If the sparse solver work space exceeds
+physical memory size, the system will be forced to use virtual memory
+(or the system page/swap file). In this case, it is typically more
+efficient to run with the OUTOFCORE memory mode. Assuming the job
+fits comfortably within the limits of the machine, running with the
+INCORE memory mode is often ideal for jobs where repeated solves are
+performed for a single matrix factorization. This occurs in a modal
+or buckling analysis or when doing multiple load steps in a linear,
+static analysis.</p><p>For repeated runs with the sparse solver, you may set the initial
+sparse solver memory allocation to the amount required for factorization.
+This strategy reduces the frequency of allocation and reallocation
+in the run to make the INCORE option fully effective. If you have
+a very large memory system, you may use the <em class="replaceable"><code>Memory_Size</code></em> argument to increase the maximum size attempted for in-core runs.</p></div><div class="refsect1" title="Menu Paths"><a name="BCSOPTION.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

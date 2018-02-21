@@ -1,0 +1,189 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:13-04:00"><title>COMBIN37</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_SOURC36.html" title="SOURC36"><link rel="next" href="Hlp_E_FLUID38.html" title="FLUID38"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="COMBIN37"><a name="COMBIN37"></a><div class="titlepage"></div><a class="indexterm" name="d0e29484"></a><span class="refentrytitle">
+            <span class="structname">COMBIN37</span>
+        </span><div class="refnamediv"><p><br><b class="refpurpose">Control</b><div class="refclass">
+            <div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+            <div class=""><div class="application"><span class="application">
+                <a class="link" href="Hlp_E_COMBIN37.html#afY6vq26fmcm" title="COMBIN37 Product Restrictions">Product Restrictions</a>
+            </span></div></div>
+        </div></p></div><div class="refsect1" title="COMBIN37 Element Description"><a name="elemdesc37tlm61499"></a><h2>COMBIN37 Element Description</h2><p>
+            <span class="structname">COMBIN37</span> is a unidirectional element with the capability of
+            turning on and off during an analysis. The element has one degree of freedom at each
+            node, either a translation in a nodal coordinate direction, rotation about a nodal
+            coordinate axis, pressure, or temperature. Similar unidirectional elements (without
+            remote control capability) are <a class="link" href="Hlp_E_COMBIN14.html" title="COMBIN14"><span class="structname">COMBIN14</span></a>,
+                <a class="link" href="Hlp_E_COMBIN39.html" title="COMBIN39"><span class="structname">COMBIN39</span></a>, and <a class="link" href="Hlp_E_COMBIN40.html" title="COMBIN40"><span class="structname">COMBIN40</span></a>. The
+            element has many applications, such as controlling heat flow as a function of
+            temperature (thermostat), controlling damping as a function of velocity (mechanical
+            snubber), controlling flow resistance as a function of pressure (relief valve),
+            controlling friction as a function of displacement (friction clutch), etc. See <a href="../ans_thry/thy_el37.html" class="olink">COMBIN37</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for
+            more details about this element.</p><div class="figure"><a name="agdWf328lmm"></a><p class="title"><b>Figure&nbsp;37.1:&nbsp;&nbsp;COMBIN37 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM37-1.svg" alt="COMBIN37 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="COMBIN37 Input Data"><a name="afY6vq108mcm"></a><h2>COMBIN37 Input Data</h2><p>The functioning of this element is shown in <a class="xref" href="Hlp_E_COMBIN37.html#agdWf328lmm" title="Figure&nbsp;37.1:&nbsp;&nbsp;COMBIN37 Geometry">Figure&nbsp;37.1:&nbsp;COMBIN37 Geometry</a>. The element
+            is defined by two pairs of nodes, these being active nodes (I, J) and optional control
+            nodes (K, L). Generally in the cases using UX, UY, or UZ as the active degrees of
+            freedom, the active nodes should be coincident as this eliminates the possibility of
+            moment disequilibrium. However, for visualization purposes, it may be useful to give
+            node J a slightly greater coordinate value than node I. The element is defined such that
+            a positive displacement of node J relative to node I will stretch the spring. Thus, if
+            nodes I and J are interchanged, the same nodal motions will compress the spring.</p><p>Certain parameters associated with the control nodes are used to determine whether the
+            control element is part of the structure (on) or not (off) and, therefore, can be used
+            to disconnect regions of the model during time dependent or iterative analyses. Other
+            input values are stiffness (STIF), damping coefficient (DAMP), concentrated nodal masses
+            (MASI, MASJ), on/off control values (ONVAL, OFFVAL), element load (AFORCE: positive
+            pulls node I in the positive nodal coordinate direction, and pulls node J in the
+            negative nodal coordinate direction), initial on/off element status (START: -1 if
+            explicitly off, 0 if determined from starting value of control parameter, 1 if
+            explicitly on), several nonlinear constants (C1, C2, C3, C4), and a limiting sliding
+            force (FSLIDE).</p><p>The FSLIDE value represents the absolute value of the spring force that must be
+            exceeded before sliding occurs. If FSLIDE is 0.0, the sliding capability of the element
+            is removed, that is, a rigid connection is assumed. For structural analyses, units are
+            force/length or moment/rotation for stiffness, force*time/length or moment*time/rotation
+            for damping, force*time<sup>2</sup>/length or
+                moment*time<sup>2</sup>/rotation for mass, and force or moment for
+            element load. For thermal analyses with temperature degrees of freedom, stiffness
+            represents conductance and has units of heat/time*degrees, mass represents thermal
+            capacitance with units of heat/degrees, and element load represents heat flow with units
+            of heat/time. Also, in analyses with pressure degrees of freedom, stiffness represents
+            flow conductance with units of length<sup>2</sup>/time. Stiffness,
+            damping, mass, and element load should be defined on a full 360&deg; basis for
+            axisymmetric analyses.</p><p>The active nodes (I, J) have only one degree of freedom each, selected with the
+            KEYOPT(3) option. The control nodes (K, L) can have the same, or a different, degree of
+            freedom as specified with KEYOPT(2). The KEYOPT(1) option assigns to the parameters of
+            the control nodes either the value of the degree of freedom, the first or second
+            derivative of the value, the integral of the value, or time, for example:</p><div class="informalequation"><a name="eq812d26e5-05dd-4ea8-a803-37b792c31cd0"></a><div><img src="graphics/eq812d26e5-05dd-4ea8-a803-37b792c31cd0.svg"></div></div><p>Control nodes need not be connected to any other element. If node L is not defined,
+            the control parameter is based only upon node K. If time is the control parameter
+            (KEYOPT(1)), control nodes K and L need not be defined.</p><p>When the element is active and used in structural analyses, the element acts like any
+            other spring/damper/mass element (such as <a class="link" href="Hlp_E_COMBIN14.html" title="COMBIN14"><span class="structname">COMBIN14</span></a>,
+                <a class="link" href="Hlp_E_MASS21.html" title="MASS21"><span class="structname">MASS21</span></a>, and <a class="link" href="Hlp_E_COMBIN40.html" title="COMBIN40"><span class="structname">COMBIN40</span></a>). In
+            addition, the element can exhibit nonlinear behavior according to the function: RVMOD =
+            RVAL + C1|CPAR|<sup>C2</sup> + C3|CPAR|<sup>C4</sup>,
+            where RVMOD is the modified value of an input real constant value RVAL (identified by
+            KEYOPT(6)), C1 through C4 are other real constants, and CPAR is the control parameter
+            (see KEYOPT(1)). RVMOD may also be defined by user subroutine USERRC and is accessed by
+            KEYOPT(9) = 1. Note, FSLIDE modified to a negative value is set to zero. In a field
+            analysis, the temperature or pressure degree of freedom acts in a manner analogous to
+            the displacement.</p><p>As illustrated in <a class="xref" href="Hlp_E_COMBIN37.html#aCfWf61lmm" title="Figure&nbsp;37.2:&nbsp;&nbsp;COMBIN37 Behavior as a Function of Control Parameter">Figure&nbsp;37.2:&nbsp;COMBIN37 Behavior as a Function of Control Parameter</a>, the KEYOPT(4) and KEYOPT(5) options,
+            when used in combination with ONVAL and OFFVAL, set the control behavior of the element.
+            The element is either on or off depending on the position of the control parameter with
+            respect to the values of ONVAL and OFFVAL. Also, note that when KEYOPT(4) = 0 and the
+            control parameter (CPAR) is within the ONVAL/OFFVAL interval, the element's status
+            depends on the direction of the CPAR (i.e., on going from on to off, and vice-versa). If
+            ONVAL = OFFVAL = 0.0 (or blank), the on/off capability is ignored and the element is
+            always active.</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_COMBIN37.html#aVeWf3d4lmm" title="COMBIN37 Input Summary">"COMBIN37 Input Summary"</a>. A general
+            description of element input is given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>.</p><div class="refsect2" title="COMBIN37 Input Summary"><a name="aVeWf3d4lmm"></a><h3>COMBIN37 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J, K, L (or I, J, K or I, J)</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>UX, UY, UZ, ROTX, ROTY, ROTZ, PRESS, or TEMP (depending on KEYOPT(2)
+                            and KEYOPT (3) below)</p></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>STIF, DAMP, MASJ, ONVAL, OFFVAL, AFORCE,</td></tr><tr><td>MASI, START, C1, C2, C3, C4, </td></tr><tr><td>FSLIDE</td></tr><tr><td>See <a class="xref" href="Hlp_E_COMBIN37.html#combin37realconstants" title="Table&nbsp;37.1:&nbsp;&nbsp;COMBIN37 Real Constants">Table&nbsp;37.1:&nbsp;COMBIN37 Real Constants</a> for a description of
+                                the real constants</td></tr></table></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p>
+                            <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: ALPD, BETD, <span>DMPR</span>
+                        </p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+                                <a href="../ans_thry/thy_tool10.html#eltadaptive" class="olink">Adaptive
+                                    descent</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_str/Hlp_G_STRnlbasin.html" class="olink">Nonlinearity</a>
+                            </td></tr></table></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Control parameter:</p><div><div class="variablelist"><dl><dt><span><b class="term">0, 1&nbsp;--&nbsp;</b></span></dt><dd><p>Control on value (UK-UL) (or UK if L not defined)</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Control on first derivative of value with respect to
+                                        time</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Control on second derivative of value with respect to
+                                        time</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>Control on integral of value with respect to time (zero
+                                        initial condition assumed)</p></dd><dt><span><b class="term">5&nbsp;--&nbsp;</b></span></dt><dd><p>Control on time value (KEYOPT(2) and nodes K and L
+                                        ignored)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Degree of freedom for control nodes (K and L):</p><div><div class="variablelist"><dl><dt><span><b class="term">N&nbsp;--&nbsp;</b></span></dt><dd><p>Use degree of freedom N as listed for KEYOPT(3) (defaults
+                                        to KEYOPT(3))</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(3)</b></span></dt><dd><p>Degree of freedom for active nodes (I and J):</p><div><div class="variablelist"><dl><dt><span><b class="term">0, 1&nbsp;--&nbsp;</b></span></dt><dd><p>UX (Displacement along nodal X axes)</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>UY (along nodal Y)</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>UZ (along nodal Z)</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>ROTX (rotation about nodal X axes)</p></dd><dt><span><b class="term">5&nbsp;--&nbsp;</b></span></dt><dd><p>ROTY (about nodal Y)</p></dd><dt><span><b class="term">6&nbsp;--&nbsp;</b></span></dt><dd><p>ROTZ (about nodal Z)</p></dd><dt><span><b class="term">7&nbsp;--&nbsp;</b></span></dt><dd><p>PRESS</p></dd><dt><span><b class="term">8&nbsp;--&nbsp;</b></span></dt><dd><p>TEMP</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(4)</b></span></dt><dd><p>ON-OFF range behavior (see <a class="xref" href="Hlp_E_COMBIN37.html#aCfWf61lmm" title="Figure&nbsp;37.2:&nbsp;&nbsp;COMBIN37 Behavior as a Function of Control Parameter">Figure&nbsp;37.2:&nbsp;COMBIN37 Behavior as a Function of Control Parameter</a>):</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Overlapping ranges</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Unique ranges</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(5)</b></span></dt><dd><p>ON-OFF position behavior (see <a class="xref" href="Hlp_E_COMBIN37.html#aCfWf61lmm" title="Figure&nbsp;37.2:&nbsp;&nbsp;COMBIN37 Behavior as a Function of Control Parameter">Figure&nbsp;37.2:&nbsp;COMBIN37 Behavior as a Function of Control Parameter</a>):</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>OFF-either-ON (or OFF-ON-OFF if unique)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>ON-either-OFF (or ON-OFF-ON if unique)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(6)</b></span></dt><dd><p>Real constants used for RVMOD function (used if C1 or C3 is not equal
+                            to zero; see <a class="xref" href="Hlp_E_COMBIN37.html#afY6vq108mcm" title="COMBIN37 Input Data">"COMBIN37 Input Data"</a>):</p><div><div class="variablelist"><dl><dt><span><b class="term">0, 1&nbsp;--&nbsp;</b></span></dt><dd><p>Use STIF for nonlinear function. (Both STIF and FSLIDE
+                                        cannot be zero).</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Use DAMP</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Use MASJ</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>Use ONVAL</p></dd><dt><span><b class="term">5&nbsp;--&nbsp;</b></span></dt><dd><p>Use OFFVAL</p></dd><dt><span><b class="term">6&nbsp;--&nbsp;</b></span></dt><dd><p>Use AFORCE</p></dd><dt><span><b class="term">7&nbsp;--&nbsp;</b></span></dt><dd><p>Use MASI</p></dd><dt><span><b class="term">8&nbsp;--&nbsp;</b></span></dt><dd><p>Use FSLIDE</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(7)</b></span></dt><dd><p>Element level time increment control:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>No control</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Predictions are made to achieve a reasonable time (or
+                                        load) increment</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(9)</b></span></dt><dd><p>Method to define nonlinear behavior:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Use RVMOD expression for real constant
+                                        modifications</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Real constants modified by user subroutine USERRC</p></dd></dl></div></div><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;See the <a href="../ans_prog/Hlp_P_UPFTOC.html" class="olink">Guide to User-Programmable Features in the <span class="olinkdocname">Mechanical APDL Programmer's Reference</span></a> for information about user-written
+                                subroutines.</p><hr></div></dd></dl></div></div><div class="table"><a name="combin37realconstants"></a><p class="title"><b>Table&nbsp;37.1:&nbsp;&nbsp;COMBIN37 Real Constants</b></p><div class="table-contents"><table summary="COMBIN37 Real Constants" border="1" width="95%"><colgroup><col width="72" class="col1"><col width="96" class="col2"><col width="432" class="col3"></colgroup><thead><tr><th align="center" valign="top">No.</th><th align="center" valign="top">Name</th><th align="center" valign="top">Description</th></tr></thead><tbody><tr><td align="center">1</td><td>STIF</td><td>Spring stiffness</td></tr><tr><td align="center">2</td><td>DAMP</td><td>Damping coefficient</td></tr><tr><td align="center">3</td><td>MASJ</td><td>Nodal mass at node J</td></tr><tr><td align="center">4</td><td>ONVAL</td><td>
+                                <span class="quote">"<span class="quote">ON</span>"</span> control value</td></tr><tr><td align="center">5</td><td>OFFVAL</td><td>
+                                <span class="quote">"<span class="quote">OFF</span>"</span> control value</td></tr><tr><td align="center">6</td><td>AFORCE</td><td>Element load</td></tr><tr><td align="center">7</td><td>MASI</td><td>Nodal mass at node I</td></tr><tr><td align="center">8</td><td>START</td><td>Initial on/off element status</td></tr><tr><td align="center">9</td><td>C1</td><td>First scalar in RVMOD equation</td></tr><tr><td align="center">10</td><td>C2</td><td>First exponent in RVMOD equation</td></tr><tr><td align="center">11</td><td>C3</td><td>Second scalar in RVMOD equation</td></tr><tr><td align="center">12</td><td>C4</td><td>Second exponent in RVMOD equation</td></tr><tr><td align="center">13</td><td>FSLIDE</td><td>Limiting sliding force</td></tr></tbody></table></div></div><br class="table-break"></div></div><div class="refsect1" title="COMBIN37 Output Data"><a name="afY6vq17cmcm"></a><h2>COMBIN37 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal degree of freedom results included in the overall nodal
+                        solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_COMBIN37.html#awfWf1b1lmm" title="Table&nbsp;37.2:&nbsp;&nbsp;COMBIN37 Element Output Definitions">Table&nbsp;37.2:&nbsp;COMBIN37 Element Output Definitions</a>.</p></li></ul></div><p>
+        </p><p>The active nodal displacements and forces correspond to the degree of freedom selected
+            with the KEYOPT(3) option. For axisymmetric analysis, the element forces are expressed
+            on a full 360&deg; basis.</p><p>The element value STRETCH is the relative deflection at the end of the substep less
+            the amount of sliding (e.g., UJ-UI-SLIDE). STATUS and OLDST indicate if the element is
+            on or off at the end of the current and previous substeps, respectively. A general
+            description of solution output is given in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a>. See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a>
+            for ways to view results.</p><div class="figure"><a name="aCfWf61lmm"></a><p class="title"><b>Figure&nbsp;37.2:&nbsp;&nbsp;COMBIN37 Behavior as a Function of Control Parameter</b></p><div class="figure-contents"><div><img src="graphics/gELEM37-2.svg" alt="COMBIN37 Behavior as a Function of Control Parameter"></div></div></div><br class="figure-break"><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="awfWf1b1lmm"></a><p class="title"><b>Table&nbsp;37.2:&nbsp;&nbsp;COMBIN37 Element Output Definitions</b></p><div class="table-contents"><table summary="COMBIN37 Element Output Definitions" border="1" width="95%"><colgroup><col width="120" class="col1"><col width="312" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th align="center">Name</th><th align="center">Definition</th><th align="center">O</th><th align="center">R</th></tr></thead><tbody><tr><td>EL</td><td>Element Number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>ACTIVE NODES</td><td>Nodes - I, J</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>CONTROL NODES</td><td>Nodes - K, L</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>XC, YC, ZC</td><td>Location where results are reported</td><td class="bold" align="center">Y</td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.5">5</a>
+                        </td></tr><tr><td>CONTROL PARAM</td><td>CPAR value (see KEYOPT(1)) of the control nodes</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>STAT</td><td>Element status</td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.1">1</a>
+                        </td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.1">1</a>
+                        </td></tr><tr><td>OLDST</td><td>STAT value of the previous time step</td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.1">1</a>
+                        </td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.1">1</a>
+                        </td></tr><tr><td>UI</td><td>Displacement of node I</td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.2">2</a>
+                        </td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.2">2</a>
+                        </td></tr><tr><td>UJ</td><td>Displacement of node J</td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.2">2</a>
+                        </td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.2">2</a>
+                        </td></tr><tr><td>UK</td><td>Displacement of node K</td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.2">2</a>
+                        </td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.2">2</a>
+                        </td></tr><tr><td>UL</td><td>Displacement of node L</td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.2">2</a>
+                        </td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.2">2</a>
+                        </td></tr><tr><td>STRETCH</td><td>Relative displacement</td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.2">2</a>
+                        </td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.2">2</a>
+                        </td></tr><tr><td>SFORCE</td><td>Spring force in element</td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.2">2</a>
+                        </td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.2">2</a>
+                        </td></tr><tr><td>AFORCE</td><td>Applied force in the element</td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.2">2</a>
+                        </td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.2">2</a>
+                        </td></tr><tr><td>SLSTAT</td><td>Sliding status</td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.3">3</a>
+                        </td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.3">3</a>
+                        </td></tr><tr><td>OLDSLS</td><td>Sliding status value of the previous time step</td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.3">3</a>
+                        </td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.3">3</a>
+                        </td></tr><tr><td>SLIDE</td><td>Amount of sliding</td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.4">4</a>
+                        </td><td align="center">
+                            <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.4">4</a>
+                        </td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="combin37.tab.2.ft.1"></a>If the value of the element status is:</p><p>0 - OFF</p><p>1 - ON</p></li><li class="listitem"><p><a name="combin37.tab.2.ft.2"></a>For the thermal and fluid options, analogous items are output. Thermal option
+                    output items TEMPI, TEMPJ, TEMPK, TEMPL, DELTEMP, SHEAT, and AHEAT and fluid
+                    option output items PRESI, PRESJ, PRESK, PRESL, DELPRES, SFLOW, and AFLOW are
+                    respectively analogous to output items UI, UJ, UK, UL, STRETCH, SFORCE, and
+                    AFORCE.</p></li><li class="listitem"><p><a name="combin37.tab.2.ft.3"></a>Output only if FSLIDE is greater than zero. If the value of the sliding status
+                    is:</p><p> 0 - No sliding</p><p> 1 - Sliding right (node J moving to right of node I)</p><p>-1- Sliding left (node J moving to left of node I)</p></li><li class="listitem"><p><a name="combin37.tab.2.ft.4"></a>If FSLIDE is greater than zero</p></li><li class="listitem"><p><a name="combin37.tab.2.ft.5"></a>Available only at centroid as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item.</p></li></ol></div><p>
+            <a class="xref" href="Hlp_E_COMBIN37.html#azU18g315lmm" title="Table&nbsp;37.3:&nbsp;&nbsp;COMBIN37 Item and Sequence Numbers">Table&nbsp;37.3:&nbsp;COMBIN37 Item and Sequence Numbers</a> lists output available through the
+                <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method. See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General Postprocessor (POST1)</a> in
+            the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in this reference for more information.
+            The following notation is used in <a class="xref" href="Hlp_E_COMBIN37.html#azU18g315lmm" title="Table&nbsp;37.3:&nbsp;&nbsp;COMBIN37 Item and Sequence Numbers">Table&nbsp;37.3:&nbsp;COMBIN37 Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="Hlp_E_COMBIN37.html#awfWf1b1lmm" title="Table&nbsp;37.2:&nbsp;&nbsp;COMBIN37 Element Output Definitions">Table&nbsp;37.2:&nbsp;COMBIN37 Element Output Definitions</a>
+                        </p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element data</p></dd></dl></div></div><p>
+        </p><div class="table"><a name="azU18g315lmm"></a><p class="title"><b>Table&nbsp;37.3:&nbsp;&nbsp;COMBIN37 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="COMBIN37 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="72" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"></colgroup><thead><tr><th rowspan="2" align="center" valign="middle">Output Quantity
+                            Name</th><th colspan="2" align="center">
+                            <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command
+                            Input</th></tr><tr><th align="center">Item</th><th align="center">E</th></tr></thead><tbody><tr><td align="center">SFORCE</td><td align="center">SMISC</td><td align="center">1</td></tr><tr><td align="center">AFORCE</td><td align="center">SMISC</td><td align="center">2</td></tr><tr><td align="center">STAT</td><td align="center">NMISC</td><td align="center">1</td></tr><tr><td align="center">OLDST</td><td align="center">NMISC</td><td align="center">2</td></tr><tr><td align="center">SLSTAT</td><td align="center">NMISC</td><td align="center">3</td></tr><tr><td align="center">OLDSLS</td><td align="center">NMISC</td><td align="center">4</td></tr><tr><td align="center">STRETCH</td><td align="center">NMISC</td><td align="center">5</td></tr><tr><td align="center">UI</td><td align="center">NMISC</td><td align="center">6</td></tr><tr><td align="center">UJ</td><td align="center">NMISC</td><td align="center">7</td></tr><tr><td align="center">UK</td><td align="center">NMISC</td><td align="center">8</td></tr><tr><td align="center">UL</td><td align="center">NMISC</td><td align="center">9</td></tr><tr><td align="center">CPAR</td><td align="center">NMISC</td><td align="center">10</td></tr><tr><td align="center">SLIDE</td><td align="center">NMISC</td><td align="center">11</td></tr></tbody></table></div></div><br class="table-break"><p>Analogous thermal and fluid option output items use the same item and sequence
+            numbers. See footnote <a class="xref" href="Hlp_E_COMBIN37.html#combin37.tab.2.ft.2">2</a> of <a class="xref" href="Hlp_E_COMBIN37.html#awfWf1b1lmm" title="Table&nbsp;37.2:&nbsp;&nbsp;COMBIN37 Element Output Definitions">Table&nbsp;37.2:&nbsp;COMBIN37 Element Output Definitions</a>.</p></div><div class="refsect1" title="COMBIN37 Assumptions and Restrictions"><a name="afY6vq1femcm"></a><h2>COMBIN37 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The element may have only one degree of freedom per node which is specified in
+                    the nodal coordinate system (see <a class="xref" href="Hlp_E_CH2_3.html#aOVqq14atlm" title="3.3.2.&nbsp;Elements That Operate in the Nodal Coordinate System">Elements That Operate in the Nodal Coordinate System</a>). </p></li><li class="listitem"><p>The element assumes only a one-dimensional action.</p></li><li class="listitem"><p>Nodes I and J may be anywhere in space (preferably coincident).</p></li><li class="listitem"><p>No moment effects are included due to noncoincident nodes. That is, if the
+                    nodes are offset from the line of action, moment equilibrium may not be
+                    satisfied.</p></li><li class="listitem"><p>The nonlinear capabilities of the element operate only in static and nonlinear
+                    transient dynamic analyses.</p></li><li class="listitem"><p>If used in other analysis types, the element maintains its initial status (on
+                    or off), throughout the analysis.</p></li><li class="listitem"><p>The real constants for this element are not allowed to be changed from their
+                    initial values.</p></li><li class="listitem"><p>The element can not be deactivated with the <a href="../ans_cmd/Hlp_C_EKILL.html" class="olink"><span class="command"><strong>EKILL</strong></span></a> command.
+                </p></li><li class="listitem"><p>Only the lumped mass matrix is available.</p></li></ul></div></div><div class="refsect1" title="COMBIN37 Product Restrictions"><a name="afY6vq26fmcm"></a><h2>COMBIN37 Product Restrictions</h2><p>There are no product-specific restrictions for this element.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

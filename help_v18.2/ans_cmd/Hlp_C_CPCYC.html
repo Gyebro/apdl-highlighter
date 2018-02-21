@@ -1,0 +1,31 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:34-04:00"><title>CPCYC</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_C_CTOC.html" title="C Commands"><link rel="prev" href="Hlp_C_CP.html" title="CP"><link rel="next" href="Hlp_C_CPDELE.html" title="CPDELE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="CPCYC"><a name="CPCYC"></a><div class="titlepage"></div><a class="indexterm" name="d0e56254"></a><span class="refentrytitle"><span class="command"><strong>CPCYC</strong></span></span><div class="refnamediv"><p><span class="command"><strong>CPCYC</strong></span>, <em class="replaceable"><code>Lab</code></em>, <em class="replaceable"><code>TOLER</code></em>, <em class="replaceable"><code>KCN</code></em>, <em class="replaceable"><code>DX</code></em>, <em class="replaceable"><code>DY</code></em>, <em class="replaceable"><code>DZ</code></em>, <em class="replaceable"><code>KNONROT</code></em><br><b class="refpurpose">Couples the two side faces of a cyclically symmetric model for
+loadings that are the same on every segment.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7meshingldm061600" title="Table&nbsp;2.36:&nbsp;&nbsp;Meshing"><span class="type">Meshing</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div> </div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="CPCYC.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><p>Degree of freedom label for coupled nodes (in the nodal coordinate
+system). If ALL, use all appropriate labels.  Valid labels are: Structural
+labels:  UX, UY, or UZ (displacements); ROTX, ROTY, or ROTZ (rotations, in
+radians). </p></dd><dt><span><b class="term"><em class="replaceable"><code>TOLER</code></em></b></span></dt><dd><p>Tolerance for coincidence (based on maximum coordinate difference
+in each global Cartesian direction for node locations and on angle differences
+for node orientations).  Defaults to 0.0001. Only nodes within the tolerance
+are considered to be coincident for coupling.</p></dd><dt><span><b class="term"><em class="replaceable"><code>KCN</code></em></b></span></dt><dd><p> In coordinate system <em class="replaceable"><code>KCN</code></em>, node
+1 of CP + dx dy dz = node 2 of CP.</p></dd><dt><span><b class="term"><em class="replaceable"><code>DX</code></em>, <em class="replaceable"><code>DY</code></em>, <em class="replaceable"><code>DZ</code></em></b></span></dt><dd><p>Node location increments in the active coordinate system (DR,
+D&#952;, DZ for cylindrical, DR, D&nbsp;&#952;, D&#934; for spherical or
+toroidal).</p></dd><dt><span><b class="term"><em class="replaceable"><code>KNONROT</code></em></b></span></dt><dd><p>When <em class="replaceable"><code>KNONROT</code></em> = 0, the nodes on
+coupled sets are rotated into coordinate system <em class="replaceable"><code>KCN</code></em> (see <a class="link" href="Hlp_C_NROTAT.html" title="NROTAT"><span class="command"><strong>NROTAT</strong></span></a> command
+description). When <em class="replaceable"><code>KNONROT</code></em> = 1, the nodes are not
+rotated, and you should make sure that coupled nodal DOF directions are correct.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="CPCYC.notes"></a><h2>Notes</h2><p> Cyclic coupling requires identical node and element patterns on the
+low and high sector boundaries. The MSHCOPY operation allows convenient generation
+of identical node and element patterns. See <a href="../ans_mod/Hlp_G_MOD7_8.html" class="olink">Using
+CPCYC and MSHCOPY Commands</a> in the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a> for more
+information.</p><p>Although developed primarily for use with cyclically symmetric models,
+your use of the <span class="command"><strong>CPCYC</strong></span> command is not limited to cyclic
+symmetry analyses.</p></div><div class="refsect1" title="Menu Paths"><a name="CPCYC.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Coupling / Ceqn&gt;Offset Nodes</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

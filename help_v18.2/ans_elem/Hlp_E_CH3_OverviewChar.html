@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:34:57-04:00"><title>2.1.&nbsp;Overview of Element Characteristics</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_CLASS.html" title="Chapter&nbsp;2:&nbsp;Element Classifications"><link rel="prev" href="Hlp_E_CLASS.html" title="Chapter&nbsp;2:&nbsp;Element Classifications"><link rel="next" href="Hlp_E_CH3_2.html" title="2.2.&nbsp;Summary of Element Types"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="2.1.&nbsp;Overview of Element Characteristics"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="elem_overviewchar"></a>2.1.&nbsp;Overview of Element Characteristics</h2></div></div></div><div class="highlights"><p>The following element overview topics are available:</p><ul><li><a href="Hlp_E_CH3_OverviewChar.html#elem_identifyingtypes" title="2.1.1.&nbsp;Identifying Element Types">Identifying Element Types</a></li><li><a href="Hlp_E_CH3_OverviewChar.html#aC39sqaldm" title="2.1.2.&nbsp;2-D vs. 3-D Elements">2-D vs. 3-D Elements</a></li><li><a href="Hlp_E_CH3_OverviewChar.html#aO39sq3d1ldm" title="2.1.3.&nbsp;Element Shape Characteristics">Element Shape Characteristics</a></li><li><a href="Hlp_E_CH3_OverviewChar.html#ai39sq292ldm" title="2.1.4.&nbsp;Element Degrees of Freedom and Discipline">Element Degrees of Freedom and Discipline</a></li><li><a href="Hlp_E_CH3_OverviewChar.html#aw39sq1c0ldm" title="2.1.5.&nbsp;User-Defined Elements">User-Defined Elements</a></li></ul></div><div class="sect2" title="2.1.1.&nbsp;Identifying Element Types"><div class="titlepage"><div><div><h3 class="title"><a name="elem_identifyingtypes"></a>2.1.1.&nbsp;Identifying Element Types</h3></div></div></div><p>An element type is identified by a name (eight characters maximum), such as
+                    <a class="link" href="Hlp_E_PIPE288.html" title="PIPE288"><span class="structname">PIPE288</span></a>, consisting of a group label (PIPE) and a
+                unique identifying number (288). </p><p> The element descriptions in <a class="xref" href="Hlp_E_LIBRARY.html" title="Chapter&nbsp;7:&nbsp;Element Library">Element Library</a> are arranged in order
+                of these identification numbers. The element is selected from the library for use in
+                the analysis by inputting its name on the element type command
+                    (<a href="../ans_cmd/Hlp_C_ET.html" class="olink"><span class="command"><strong>ET</strong></span></a>).</p></div><div class="sect2" title="2.1.2.&nbsp;2-D vs. 3-D Elements"><div class="titlepage"><div><div><h3 class="title"><a name="aC39sqaldm"></a>2.1.2.&nbsp;2-D vs. 3-D Elements</h3></div></div></div><p>Models may be either 2-D or 3-D depending upon the element types used. </p><p>A 2-D model must be defined in an X-Y plane. They are easier to set up, and run
+                faster than equivalent 3-D models. Axisymmetric models are also considered to be
+                2-D.</p><p>If any 3-D element type is included in the element type (<a href="../ans_cmd/Hlp_C_ET.html" class="olink"><span class="command"><strong>ET</strong></span></a> )
+                set, the model becomes 3-D. Some element types (such as
+                    <a class="link" href="Hlp_E_COMBIN14.html" title="COMBIN14"><span class="structname">COMBIN14</span></a>) may be 2-D or 3-D, depending upon the KEYOPT
+                value selected. Other element types (such as <a class="link" href="Hlp_E_COMBIN40.html" title="COMBIN40"><span class="structname">COMBIN40</span></a>) have
+                no influence in determining the model dimensions. A 2-D element type may be used
+                (with caution) in 3-D models.</p></div><div class="sect2" title="2.1.3.&nbsp;Element Shape Characteristics"><div class="titlepage"><div><div><h3 class="title"><a name="aO39sq3d1ldm"></a>2.1.3.&nbsp;Element Shape Characteristics</h3></div></div></div><p>In general, four shapes are possible: point, line, area, or volume. </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>A <span class="italic"><em>point</em></span> element is typically defined by
+                        one node, such as a mass element. </p></li><li class="listitem"><p>A <span class="italic"><em>line</em></span> element is typically represented
+                        by a line or arc connecting two or three nodes. Examples are beams, spars,
+                        pipes, and axisymmetric shells. </p></li><li class="listitem"><p>An <span class="italic"><em>area</em></span> element has a triangular or
+                        quadrilateral shape and may be a 2-D solid element or a shell element.
+                    </p></li><li class="listitem"><p>A <span class="italic"><em>volume</em></span> element has a tetrahedral or
+                        brick shape and is usually a 3-D solid element.</p></li></ul></div></div><div class="sect2" title="2.1.4.&nbsp;Element Degrees of Freedom and Discipline"><div class="titlepage"><div><div><h3 class="title"><a name="ai39sq292ldm"></a>2.1.4.&nbsp;Element Degrees of Freedom and Discipline</h3></div></div></div><p>The degrees of freedom of the element determine the discipline for which the
+                element is applicable: structural, thermal, fluid, electric, magnetic, or
+                coupled-field. </p><p>Select an element type with the necessary degrees of freedom characterize the
+                model's response. </p><p>Including unnecessary degrees of freedom increases the solution memory
+                requirements and running time. Similarly, selecting element types with unnecessary
+                features--for example, using an element type with plastic capability in an elastic
+                solution--also increases the analysis run time.</p></div><div class="sect2" title="2.1.5.&nbsp;User-Defined Elements"><div class="titlepage"><div><div><h3 class="title"><a name="aw39sq1c0ldm"></a>2.1.5.&nbsp;User-Defined Elements</h3></div></div></div><p>You can create your own element type and use it in an analysis as a <span class="italic"><em>user-defined element</em></span>. </p><p>User-defined elements are described in <a href="../ans_prog/Hlp_P_UPFNEWEL.html" class="olink">Creating a New Element</a> in the <a href="../ans_prog/ans_prog.html" class="olink"><em class="citetitle">Programmer's Reference</em></a>. </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

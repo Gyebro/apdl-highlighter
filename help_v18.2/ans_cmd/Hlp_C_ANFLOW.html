@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:21-04:00"><title>ANFLOW</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_A_TOC.html" title="A Commands"><link rel="prev" href="Hlp_C_ANFILE.html" title="/ANFILE"><link rel="next" href="Hlp_C_ANGLE.html" title="/ANGLE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="ANFLOW"><a name="ANFLOW"></a><div class="titlepage"></div><a class="indexterm" name="d0e21658"></a><span class="refentrytitle"><span class="command"><strong>ANFLOW</strong></span></span><div class="refnamediv"><p><span class="command"><strong>ANFLOW</strong></span>, <em class="replaceable"><code>NFRAM</code></em>, <em class="replaceable"><code>DELAY</code></em>, <em class="replaceable"><code>NCYCL</code></em>, <em class="replaceable"><code>TIME</code></em>, <em class="replaceable"><code>SPACING</code></em>, <em class="replaceable"><code>SIZE</code></em>, <em class="replaceable"><code>LENGTH</code></em><br><b class="refpurpose">Produces an animated sequence of particle flow in a flowing fluid
+or a charged particle traveling in an electric or magnetic field.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1animajla070199" title="Table&nbsp;2.85:&nbsp;&nbsp;Animation"><span class="type">Animation</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="ANFLOW.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NFRAM</code></em></b></span></dt><dd><p>Number of frames captured (defaults to 5).</p></dd><dt><span><b class="term"><em class="replaceable"><code>DELAY</code></em></b></span></dt><dd><p>Time delay during animation (defaults to 0.1 seconds).</p></dd><dt><span><b class="term"><em class="replaceable"><code>NCYCL</code></em></b></span></dt><dd><p>Number of animation cycles (defaults to 5).  Non-UI mode only.</p></dd><dt><span><b class="term"><em class="replaceable"><code>TIME</code></em></b></span></dt><dd><p>Total Trace Time (seconds) (defaults to 0, which is the full
+flow trace).</p></dd><dt><span><b class="term"><em class="replaceable"><code>SPACING</code></em></b></span></dt><dd><p>Particle spacing in seconds (defaults to 0).</p></dd><dt><span><b class="term"><em class="replaceable"><code>SIZE</code></em></b></span></dt><dd><p>Particle size (defaults to 0, which is a line).</p></dd><dt><span><b class="term"><em class="replaceable"><code>LENGTH</code></em></b></span></dt><dd><p>Particle length fraction (defaults to .1).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="ANFLOW.notes"></a><h2>Notes</h2><p><span class="command"><strong>ANFLOW</strong></span> invokes an ANSYS macro which produces an animation
+of particle flow in a flowing fluid or charged particle motion in an electric
+or magnetic field by the last plot action command (i.e., <a class="link" href="Hlp_C_PLTRAC.html" title="PLTRAC"><span class="command"><strong>PLTRAC</strong></span></a>).
+ This command is only operational on graphic display platforms supporting
+the <a href="Hlp_C_SEG.html" class="olink"><span class="command"><strong>/SEG</strong></span></a> command.  After executing <span class="command"><strong>ANFLOW</strong></span>,
+you can replay the animated sequence by issuing the <a class="link" href="Hlp_C_ANIM.html" title="ANIM"><span class="command"><strong>ANIM</strong></span></a> command.
+ This command is functional only in the Postprocessor.</p><p>The <em class="replaceable"><code>TIME</code></em> option lets you set the time interval
+of forward travel for the trace.  The <em class="replaceable"><code>SPACING</code></em> option
+is used to define the particle spacing in seconds from adjacent particles
+in the stream line.  The <em class="replaceable"><code>SIZE</code></em> variable sets the
+radius of the particle.  The <em class="replaceable"><code>LENGTH</code></em> variable is
+used to define the particle length fraction.  By default, the <em class="replaceable"><code>LENGTH</code></em> is
+set to .1, which means the particle occupies 10% of the flow region and the
+other 90% is a color-code line.  The <em class="replaceable"><code>SPACING</code></em> and <em class="replaceable"><code>LENGTH</code></em> variables
+only make sense when the <em class="replaceable"><code>SIZE</code></em> variable is nonzero
+(i.e., the particle is bigger than the line).</p></div><div class="refsect1" title="Menu Paths"><a name="ANFLOW.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;Animate&gt;Particle Flow</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

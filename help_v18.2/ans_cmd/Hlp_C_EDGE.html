@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:45-04:00"><title>/EDGE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_EDGCALE.html" title="EDGCALE"><link rel="next" href="Hlp_C_EDHGLS.html" title="EDHGLS"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="/EDGE"><a name="s-EDGE"></a><div class="titlepage"></div><a class="indexterm" name="d0e82386"></a><span class="refentrytitle"><a href="Hlp_C_EDGE.html" class="olink"><span class="command"><strong>/EDGE</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>/EDGE</strong></span>, <em class="replaceable"><code>WN</code></em>, <em class="replaceable"><code>KEY</code></em>, <em class="replaceable"><code>ANGLE</code></em><br><b class="refpurpose">Displays only the common lines (&#8220;edges&#8221;)
+of an object.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_3.html" title="2.3.&nbsp;GRAPHICS Commands"><code class="classname">GRAPHICS</code></a>: <a class="link" href="Hlp_C_CH2_3.html#cmdgraphicstylejla070199" title="Table&nbsp;2.14:&nbsp;&nbsp;Style"><span class="type">Style</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="s-EDGE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>WN</code></em></b></span></dt><dd><p>Window number (or ALL) to which command applies. The
+default window is 1.</p></dd><dt><span><b class="term"><em class="replaceable"><code>KEY</code></em></b></span></dt><dd><p>Edge key:</p><p><span class="bold"><strong>Elements
+Plots</strong></span></p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Display common lines between all adjacent
+element faces.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Display only the common lines between
+non-coplanar faces (that is, show only the edges).</p></td></tr></tbody></table></div></div><p><span class="bold"><strong>Contour Plots</strong></span></p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Display only the common lines between
+non-coplanar faces.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Display common lines between all element
+faces.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>ANGLE</code></em></b></span></dt><dd><p>Largest angle between two faces for which the faces
+are considered to be coplanar (0&deg; to 180&deg;). Defaults to 45&deg;.
+A smaller angle produces more edges, a larger angle produces fewer
+edges.</p></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="s-EDGE.default"></a><h3>Command Default</h3><p>For element plots, display common lines between all adjacent
+element faces. For contour plots, display only the common lines between
+non-coplanar faces.</p></div></div><div class="refsect1" title="Notes"><a name="s-EDGE.notes"></a><h2>Notes</h2><p>The <em class="replaceable"><code>ANGLE</code></em> field
+is used in PowerGraphics to determine geometric discontinuities. It
+is a tolerance measure for the differences between the normals of
+the surfaces being considered. Values within the tolerance are accepted
+as coplanar (geometrically continuous). In postprocessing displays,
+results are not averaged across discontinuous surfaces. </p><p>A surface can be displayed as an edge outline without interior
+detail. This is useful for both geometry and postprocessing displays.
+Element outlines are normally shown as solid lines for geometry and
+displacement displays. Lines common to adjacent "coplanar" element
+faces are removed from the display.  Midside nodes of elements are
+ignored. </p><p>The <a href="Hlp_C_SHRINK.html" class="olink"><span class="command"><strong>/SHRINK</strong></span></a> option is ignored with the edge
+option. </p><p><a href="Hlp_C_EDGE.html" class="olink"><span class="command"><strong>/EDGE</strong></span></a> is not supported for <a class="link" href="Hlp_C_PLESOL.html" title="PLESOL"><span class="command"><strong>PLESOL</strong></span></a> and <a href="Hlp_C_ESHAPE.html" class="olink"><span class="command"><strong>/ESHAPE</strong></span></a> displays when in PowerGraphics mode
+(<a href="Hlp_C_GRAPHICS.html" class="olink"><span class="command"><strong>/GRAPHICS</strong></span></a>,POWER).</p><p>The <a href="Hlp_C_EDGE.html" class="olink"><span class="command"><strong>/EDGE</strong></span></a> command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="s-EDGE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;Style&gt;Edge Options</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:10-04:00"><title>PCGOPT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_P_TOC.html" title="P Commands"><link rel="prev" href="Hlp_C_PCALC.html" title="PCALC"><link rel="next" href="Hlp_C_PCIRC.html" title="PCIRC"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="PCGOPT"><a name="PCGOPT"></a><div class="titlepage"></div><a class="indexterm" name="d0e196255"></a><span class="refentrytitle"><span class="command"><strong>PCGOPT</strong></span></span><div class="refnamediv"><p><span class="command"><strong>PCGOPT</strong></span>, <em class="replaceable"><code>Lev_Diff </code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>ReduceIO</code></em>, <em class="replaceable"><code>StrmCk</code></em>, <em class="replaceable"><code>Wrtfull</code></em>, <em class="replaceable"><code>Memory</code></em>, <em class="replaceable"><code>LM_Key</code></em><br><b class="refpurpose">Controls PCG solver options.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  DesSpc | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code> Lev_Diff</code></em></b></span></dt><dd><p>Indicates the level of difficulty of the analysis.
+Valid settings are AUTO or 0 (default), 1, 2, 3, 4, or 5. This option
+applies to both the PCG solver when used in static and full transient
+analyses and to the PCG Lanczos method in modal analyses. Use AUTO
+to let ANSYS automatically choose the proper level of difficulty for
+the model. Lower values (1 or 2) generally provide the best performance
+for well-conditioned problems. Values of 3 or 4 generally provide
+the best performance for ill-conditioned problems; however, higher
+values may increase the solution time for well-conditioned problems.
+Higher level-of-difficulty values typically require more memory. Using
+the highest value of 5 essentially performs a factorization of the
+global matrix (similar to the sparse solver) and may require a very
+large amount of memory. If necessary, use <em class="replaceable"><code>Memory</code></em> to reduce the memory usage when using <em class="replaceable"><code> Lev_Diff</code></em> = 5. <em class="replaceable"><code> Lev_Diff</code></em> = 5 is generally recommended
+for small- to medium-sized problems when using the PCG Lanczos mode
+extraction method.</p><p>For example, models containing elongated
+elements (i.e., elements with high aspect ratios) and models containing
+contact elements can lead to ill-conditioned problems. To determine
+if your problem is ill-conditioned, view the <span class="filename"><strong>Jobname.PCS</strong></span> file to see the number of PCG iterations needed to reach a converged
+solution. Generally, static or full transient solutions that require
+more than 1500 iterations are considered to be ill-conditioned for
+the PCG solver. </p></dd><dt><span><b class="term"><em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused field.</p></dd><dt><span><b class="term"><em class="replaceable"><code>ReduceIO  </code></em></b></span></dt><dd><p> Controls whether the PCG solver will attempt to reduce
+I/O performed during equation solution:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">AUTO </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Automatically chooses whether to
+reduce I/O or not (default). </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">YES </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Reduces I/O performed during equation
+solution in order to reduce total solver time. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NO </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Does NOT reduce I/O performed during
+equation solution.</p></td></tr></tbody></table></div></div><p>This option applies to both the PCG solver when used in static
+and full transient analyses and to the PCG Lanczos method in modal
+analyses. </p></dd><dt><span><b class="term"><em class="replaceable"><code>StrmCk  </code></em></b></span></dt><dd><p> Controls whether or not a Sturm sequence check is
+performed:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Does NOT perform Sturm sequence check
+(default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ON </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Performs Sturm sequence check</p></td></tr></tbody></table></div></div><p>This option applies only when using the PCG Lanczos method in
+modal analyses. When using this option, a factorization must be performed
+and will require a very large amount of memory for extra computations.
+This option is generally recommended for small- to medium-sized problems.
+If the Sturm sequence check takes a large amount of computing time,
+use the <span class="filename"><strong>Jobname.ABT</strong></span> file to abort the Sturm check,
+or press the <span class="guibutton"><strong>STOP</strong></span> button if in interactive
+mode.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Wrtfull</code></em></b></span></dt><dd><p>Controls whether or not the <span class="filename"><strong>.FULL</strong></span> file is written.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ON </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Write <span class="filename"><strong>.FULL</strong></span> file
+(default)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Do not write <span class="filename"><strong>.FULL</strong></span> file.</p></td></tr></tbody></table></div></div><p>This option applies only when using the PCG Lanczos method in modal analyses because the
+       <span class="filename"><strong>.FULL</strong></span> file is never written when using the PCG solver in static or full
+      transient analyses. </p><p>If using <a class="link" href="Hlp_C_MSAVE.html" title="MSAVE"><span class="command"><strong>MSAVE</strong></span></a>,ON and conditions for the <a class="link" href="Hlp_C_MSAVE.html" title="MSAVE"><span class="command"><strong>MSAVE</strong></span></a>
+      command are met, a complete <span class="filename"><strong>.FULL</strong></span> file is never written regardless of
+      this option.</p><p>If constraint equations are present in the model, a
+       <span class="filename"><strong>.FULL</strong></span> file is always written regardless of this option.</p><p>This option is useful in Distributed ANSYS because assembling the global
+stiffness and mass matrices on the master machine before writing the <span class="filename"><strong>.FULL</strong></span> file can take a considerable amount of memory. By
+setting <em class="replaceable"><code>Wrtfull</code></em> = OFF, this assembly process
+is skipped on the master machine, decreasing the amount of memory
+required to compute the modes and mode shapes. <em class="replaceable"><code>Wrtfull</code></em> = OFF does not affect the results for the modes and mode shapes.
+However, without a <span class="filename"><strong>.FULL</strong></span> file, the participation
+factor table computations do not occur.</p><p>To generate the <span class="filename"><strong>.FULL</strong></span> file, such as for
+a harmonic, transient mode-superposition, or spectrum analysis, rerun
+the modal analysis with <em class="replaceable"><code>Wrtfull</code></em> = ON, or
+use the <a class="link" href="Hlp_C_WRFULL.html" title="WRFULL"><span class="command"><strong>WRFULL</strong></span></a> command.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Memory  </code></em></b></span></dt><dd><p> Controls whether to run using in-core or out-of-core
+mode when using <em class="replaceable"><code>Lev_Diff</code></em> = 5.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">AUTO </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Automatically chooses which mode
+to use (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">INCORE </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Run using in-core mode.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OOC </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Run using out-of-core mode.</p></td></tr></tbody></table></div></div><p>This option applies to both the PCG solver when used in static
+and full transient analyses and to the PCG Lanczos method in modal
+analyses. However, this option only applies when using <em class="replaceable"><code> Lev_Diff</code></em> = 5 and does not apply to Distributed ANSYS. Forcing
+the INCORE option will require a large amount of memory and is only
+recommended for small-to-medium sized problems. Using the OOC option
+will make the PCG solver use the least amount of memory (relative
+only to <em class="replaceable"><code> Lev_Diff</code></em> = 5) at the cost of additional
+I/O, which will likely decrease performance as compared to an in-core
+run.</p></dd><dt><span><b class="term"><em class="replaceable"><code>LM_Key</code></em></b></span></dt><dd><p> Controls use of the PCG solver for <a href="../ans_elem/Hlp_E_MPC184.html" class="olink"><span class="structname">MPC184</span></a> Lagrange multiplier method elements. This option applies only to
+the PCG solver when used in static and full transient analyses.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Do not use the PCG solver for the <a href="../ans_elem/Hlp_E_MPC184.html" class="olink"><span class="structname">MPC184</span></a> Lagrange multiplier method (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ON </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Allow use of the PCG solver for the <a href="../ans_elem/Hlp_E_MPC184.html" class="olink"><span class="structname">MPC184</span></a> Lagrange multiplier method.</p></td></tr></tbody></table></div></div><p>The Lagrange multiplier method used by <a href="../ans_elem/Hlp_E_MPC184.html" class="olink"><span class="structname">MPC184</span></a> elements transfers into multiple point constraints
+and, hence, can be solved by the PCG solver. For Lagrange-formulation
+contact methods, incompressible u-P formulations, and the <a href="../ans_elem/Hlp_E_MPC184scr.html" class="olink">MPC184 screw joint element</a>, the PCG solver cannot be used and the sparse solver is required. Distributed ANSYS does
+not support the <em class="replaceable"><code>LM_Key</code></em> = ON option. The
+MSAVE command does not support the <em class="replaceable"><code>LM_Key</code></em> = ON option.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="d0e196552"></a><h2>Notes</h2><p><em class="replaceable"><code>ReduceIO</code></em> works independently of the <a class="link" href="Hlp_C_MSAVE.html" title="MSAVE"><span class="command"><strong>MSAVE</strong></span></a> command in the PCG solver.  Setting <em class="replaceable"><code>ReduceIO</code></em> to YES can significantly increase the memory
+usage in the PCG solver.  </p><p>To minimize the memory used by the PCG solver with respect to
+the <em class="replaceable"><code> Lev_Diff</code></em> option only, set <em class="replaceable"><code> Lev_Diff</code></em> = 1 if you do not have sufficient memory
+to run the PCG solver with <em class="replaceable"><code> Lev_Diff</code></em> =
+AUTO.</p><p>The <a class="link" href="Hlp_C_MSAVE.html" title="MSAVE"><span class="command"><strong>MSAVE</strong></span></a>,ON command is not valid when using <em class="replaceable"><code> Lev_Diff</code></em> = 5. In this case, the <em class="replaceable"><code> Lev_Diff</code></em> value will automatically be reset to 2. The <a class="link" href="Hlp_C_MSAVE.html" title="MSAVE"><span class="command"><strong>MSAVE</strong></span></a>,ON command is also not valid with the <em class="replaceable"><code>StrmCk  </code></em> option. In this case, <em class="replaceable"><code>StrmCk  </code></em> will be
+set to OFF.</p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>The <em class="replaceable"><code>Memory</code></em> option and the <em class="replaceable"><code>LM_Key</code></em> option are not supported in Distributed ANSYS. </p></div><div class="refsect1" title="Menu Paths"><a name="d0e196610"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Analysis Type&gt;Analysis Options</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Analysis Type&gt;Analysis Options</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

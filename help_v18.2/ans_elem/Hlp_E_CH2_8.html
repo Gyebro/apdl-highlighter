@@ -1,0 +1,52 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:00-04:00"><title>2.5.&nbsp;Degenerated Shape Elements</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_CLASS.html" title="Chapter&nbsp;2:&nbsp;Element Classifications"><link rel="prev" href="Hlp_E_CH2_OLDNEW.html" title="2.4.&nbsp;Current-Technology Elements"><link rel="next" href="ans_elem_spcprp.html" title="2.6.&nbsp;Special-Purpose Elements"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="2.5.&nbsp;Degenerated Shape Elements"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="aM9sq19dldm"></a>2.5.&nbsp;Degenerated Shape Elements</h2></div></div></div><a class="indexterm" name="d0e7926"></a><a class="indexterm" name="d0e7929"></a><a class="indexterm" name="d0e7932"></a><a class="indexterm" name="d0e7935"></a><p>A degenerated element is an element whose characteristic face shape is quadrilateral,
+            but is modeled with at least one triangular face. </p><p>Degenerated elements are often used for modeling transition regions between fine and
+            coarse meshes, or for modeling irregular and warped surfaces. </p><div class="highlights"><p>The following topics concerning degenerated shape elements are available:</p><ul><li><a href="Hlp_E_CH2_8.html#d0e7945" title="2.5.1.&nbsp;Obtaining the Best Results from Degenerated Shape Elements">Obtaining the Best Results from Degenerated Shape Elements</a></li><li><a href="Hlp_E_CH2_8.html#d0e7959" title="2.5.2.&nbsp;Degenerated Triangular 2-D Solid and Shell Elements">Degenerated Triangular 2-D Solid and Shell Elements</a></li><li><a href="Hlp_E_CH2_8.html#d0e7988" title="2.5.3.&nbsp;Degenerated Triangular Prism Elements">Degenerated Triangular Prism Elements</a></li><li><a href="Hlp_E_CH2_8.html#d0e8001" title="2.5.4.&nbsp;Degenerated Tetrahedral Elements">Degenerated Tetrahedral Elements</a></li><li><a href="Hlp_E_CH2_8.html#d0e8008" title="2.5.5.&nbsp;Surface Stresses on Condensed Element Faces">Surface Stresses on Condensed Element Faces</a></li></ul></div><div class="sect2" title="2.5.1.&nbsp;Obtaining the Best Results from Degenerated Shape Elements"><div class="titlepage"><div><div><h3 class="title"><a name="d0e7945"></a>2.5.1.&nbsp;Obtaining the Best Results from Degenerated Shape Elements</h3></div></div></div><p>Use degenerated shape elements with caution. </p><p>Degenerated elements formed from quadrilateral and brick elements <span class="italic"><em>without midside nodes</em></span> are much less accurate than those
+                formed from elements with midside nodes and should not be used in high-stress
+                gradient regions. </p><p>When using triangular elements in a rectangular array of nodes, best results are
+                obtained from an element pattern having alternating diagonal directions. </p><p>For shell elements, because the element coordinate system is relative to the I-J
+                line, the stress results are most easily interpreted if the I-J lines of the
+                elements are all parallel.</p></div><div class="sect2" title="2.5.2.&nbsp;Degenerated Triangular 2-D Solid and Shell Elements"><div class="titlepage"><div><div><h3 class="title"><a name="d0e7959"></a>2.5.2.&nbsp;Degenerated Triangular 2-D Solid and Shell Elements</h3></div></div></div><p>Degenerated triangular 2-D solid and shell elements may be formed from 4-node
+                quadrilateral elements by defining duplicate node numbers for the third and fourth
+                (K and L) node locations. </p><p>The node pattern then becomes I, J, K, K. If the L node is not input, it defaults
+                to node K. If extra shape functions are included in the element, they are
+                automatically suppressed (degenerating the element to a lower order). Element loads
+                specified on a nodal basis should have the same loads specified at the duplicate
+                node locations. </p><p>When forming a degenerated triangular element by repeating node numbers, the face
+                numbering remains the same. Face 3, however, condenses to a point. The centroid
+                location printed for a degenerated triangular element is usually at the geometric
+                centroid of the element. </p><p>Elements should be oriented with alternating diagonals, if possible.</p><div class="sect3" title="2.5.2.1.&nbsp;Triangular Shell Elements Are Preferred in Some Cases"><div class="titlepage"><div><div><h4 class="title"><a name="d0e7970"></a>2.5.2.1.&nbsp;Triangular Shell Elements Are Preferred in Some Cases</h4></div></div></div><p>Triangular shell elements are <span class="italic"><em>preferred</em></span> for
+                    severely skewed or warped elements.</p><p>Quadrilateral shaped elements should not be skewed such that the included
+                    angle between two adjacent faces is outside the range of 90&deg; &plusmn;
+                    45&deg; for non-midside-node elements or 90&deg; &plusmn; 60&deg; for
+                    midside-node elements. </p><p>Warping occurs when the four nodes of a quadrilateral shell element (or solid
+                    element face) are not in the same plane, either at input or during large
+                    deflection. Warping is measured by the relative angle between the normals to the
+                    face at the nodes. A flat face (no warping) has all normals parallel (zero
+                    relative angle). A warning message is output if warping is beyond a small, but
+                    tolerable value. If warping is excessive, the analysis terminates. </p><p>See the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for element warping details and other element checking
+                    details. Triangular (or prism) elements should be used in place of a
+                    quadrilateral (or brick) element with large warping.</p></div></div><div class="sect2" title="2.5.3.&nbsp;Degenerated Triangular Prism Elements"><div class="titlepage"><div><div><h3 class="title"><a name="d0e7988"></a>2.5.3.&nbsp;Degenerated Triangular Prism Elements</h3></div></div></div><p>Degenerated triangular prism elements may be formed from 8-node 3-D solid elements
+                by defining duplicate node numbers for the third and fourth (K and L) and the
+                seventh and eighth (O and P) node locations. </p><p>The node pattern then becomes I, J, K, K, M, N, O, O. When forming a degenerated
+                prism element by repeating node numbers, the face numbering remains the same. Face
+                4, however, condenses to a line. </p><p>The centroid location printed for a degenerated element is not at the geometric
+                centroid but is at an average nodal location. The integration points are
+                proportionately rearranged within the element. </p><p>Elements should be oriented with alternating diagonals, if possible. If extra
+                shape functions are included in the element, they are partially suppressed. </p><p>Element loads should have the same loads specified at the duplicate node
+                locations.</p></div><div class="sect2" title="2.5.4.&nbsp;Degenerated Tetrahedral Elements"><div class="titlepage"><div><div><h3 class="title"><a name="d0e8001"></a>2.5.4.&nbsp;Degenerated Tetrahedral Elements</h3></div></div></div><p>A degenerated tetrahedral element may be formed from a triangular prism element by
+                a further condensation of face 6 to a point. </p><p>The input node pattern should be I, J, K, K, M, M, M, M. If extra shape functions
+                are included in the element, they are automatically suppressed. Element nodal loads
+                should have the same loads specified at the duplicate node locations.</p></div><div class="sect2" title="2.5.5.&nbsp;Surface Stresses on Condensed Element Faces"><div class="titlepage"><div><div><h3 class="title"><a name="d0e8008"></a>2.5.5.&nbsp;Surface Stresses on Condensed Element Faces</h3></div></div></div><p>Surface stress (or convection heat flow) printout should not be requested on a
+                condensed face. </p><p>Pressures (or convection conditions) should not be defined on a condensed
+                face.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

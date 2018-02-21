@@ -1,0 +1,516 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:36:33-04:00"><title>SHELL181</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_LINK180.html" title="LINK180"><link rel="next" href="Hlp_E_PLANE182.html" title="PLANE182"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SHELL181"><a name="SHELL181"></a><div class="titlepage"></div><a class="indexterm" name="d0e115456"></a><span class="refentrytitle">
+<span class="structname">SHELL181</span>  </span><div class="refnamediv"><p><br><b class="refpurpose">4-Node
+Structural Shell</b><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  DesSpc | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+<div class=""><div class="application"><span class="application">
+<a class="link" href="Hlp_E_SHELL181.html#ab7Oxq1ecmcm" title="SHELL181 Product Restrictions">Product Restrictions</a>
+</span></div></div>
+</div></p></div><div class="refsect1" title="SHELL181 Element Description"><a name="ELEMshell181descfdb"></a><h2>SHELL181 Element Description</h2><p>
+<span class="structname">SHELL181</span> is suitable for analyzing
+thin to moderately-thick shell structures. It is a four-node element
+with six degrees of freedom at each node: translations in the x, y,
+and z directions, and rotations about the x, y, and z-axes. (If the
+membrane option is used, the element has translational degrees of
+freedom only). The degenerate triangular option should only be used
+as filler elements in mesh generation.</p><p>
+<span class="structname">SHELL181</span> is well-suited for linear,
+large rotation, and/or large strain nonlinear applications. Change
+in shell thickness is accounted for in nonlinear analyses.  In the
+element domain, both full and reduced integration schemes are supported. <span class="structname">SHELL181</span> accounts for follower (load stiffness) effects
+of distributed pressures.</p><p>
+<span class="structname">SHELL181</span> can be used for layered applications
+for modeling composite shells or sandwich construction. The accuracy
+in modeling composite shells is governed by the first-order shear-deformation
+theory (usually referred to as Mindlin-Reissner shell theory).</p><p>The element formulation is based on logarithmic strain and true
+stress measures. The element kinematics allow for finite membrane
+strains (stretching). However, the curvature changes within a time
+increment are assumed to be small. </p><p>See <a href="../ans_thry/thy_el181.html" class="olink">
+SHELL181
+</a> for more details about
+this element.</p></div><div class="refsect1" title="SHELL181 Input Data"><a name="ab7Oxq8fmcm"></a><h2>SHELL181 Input Data</h2><p>The following figure shows the geometry, node locations, and
+the element coordinate system for this element. The element is defined
+by shell section information and by four nodes (I, J, K, and L).  </p><div class="figure"><a name="ai9bXn58ctg"></a><p class="title"><b>Figure&nbsp;181.1:&nbsp;&nbsp;
+    <span class="structname">SHELL181</span> Geometry</b></p><div class="figure-contents"><div class="mediaobject"><span class="imagedata"><img src="graphics/gELEM181-1.png" alt="SHELL181 Geometry"></span></div><div class="blockquote"><blockquote class="blockquote"><p>x<sub>0</sub> = Element x axis if element orientation
+     (<a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a>) is not specified.</p><p> x = Element x axis if element orientation is specified.</p></blockquote></div></div></div><br class="figure-break"><p>
+<span class="bold"><strong>Single-Layer Definition</strong></span>
+</p><p>To define the thickness (and other information), use section
+definition, as follows: </p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,,SHELL</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a>,<em class="replaceable"><code>THICKNESS</code></em>, ... </td></tr></table><p>
+</p><p>A single-layer shell section definition provides flexible options.
+For example, you can specify the number of integration points used
+and the material orientation. </p><p>
+<span class="bold"><strong>Multilayer Definition </strong></span>
+</p><p>The shell section commands allow for layered shell definition.
+Options are available for specifying the thickness, material, orientation,
+and number of integration points through the thickness of the layers. </p><p>You can designate the number of integration points (1, 3, 5,
+7, or 9) located through the thickness of each layer when using section
+input. When only one, the point is always located midway between the
+top and bottom surfaces. If three or more points, two points are located
+on the top and bottom surfaces respectively and the remaining points
+are distributed equal distance between the two points. The default
+number of integration points for each layer is three; however, when
+a single layer is defined and plasticity is present, the number of
+integration points is changed to a minimum of five during solution. </p><p>The following additional capabilities are available when defining
+shell layers:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+<span class="structname">SHELL181</span> accepts the <a href="../ans_str/Hlp_G_PRESHELL_5.html" class="olink">preintegrated shell section
+type</a> (<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,,GENS). </p><p>When
+the element is associated with the GENS section type, thickness or
+material definitions are not required. </p></li><li class="listitem"><p>You can use the <a href="../ans_bas/Hlp_G_BASFUNCTOOL.html" class="olink">function tool</a> to define thickness as a
+function of global/local coordinates or node numbers (<a href="../ans_cmd/Hlp_C_SECFUNCTION.html" class="olink"><span class="command"><strong>SECFUNCTION</strong></span></a>).</p></li><li class="listitem"><p>You can specify offsets (<a href="../ans_cmd/Hlp_C_SECOFFSET.html" class="olink"><span class="command"><strong>SECOFFSET</strong></span></a>).</p></li></ul></div><p>
+</p><p>
+<span class="bold"><strong>Other Input</strong></span>
+</p><p>When KEYOPT(11) = 0, the default orientation for this element has the
+    S<sub>1</sub> (shell surface coordinate) axis aligned with the first parametric
+   direction of the element at the center of the element, which connects the midsides of edges LI
+   and JK and is shown as x<sub>o</sub> in <a class="xref" href="Hlp_E_SHELL181.html#ai9bXn58ctg" title="Figure&nbsp;181.1:&nbsp;&nbsp; SHELL181 Geometry">Figure&nbsp;181.1:&nbsp;
+    <span class="structname">SHELL181</span> Geometry</a>. In the most
+   general case, the axis can be defined as:</p><div class="informalequation"><a name="eqed244201-fc25-4c6f-a192-86bb5ff40e75"></a><div><img src="graphics/eqed244201-fc25-4c6f-a192-86bb5ff40e75.svg"></div></div><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-19.000000px"><img src="graphics/eq4878ce5a-c205-4793-8eb2-5c76ef079ab7.svg"></span>
+</td></tr><tr><td>{x}<sup>I</sup>, {x}<sup>J</sup>, {x}<sup>K</sup>, {x}<sup>L</sup> = global nodal coordinates</td></tr></table><p>
+</p><p>If edges IJ and KL are parallel (rectangular or trapezoidal
+   elements), the default orientation is the same as described in <a class="xref" href="Hlp_E_CH2_3.html" title="3.3.&nbsp;Coordinate Systems">Coordinate Systems</a>
+   (the first surface direction is aligned with the IJ side). For elements with nonparallel edges IJ
+   and JK, the default orientation represents the stress state better because the element uses a
+   single point of quadrature (by default) in the element domain.</p><p>With KEYOPT(11) = 1, the default element coordinate
+    x<sub>0</sub> axis is directed from node I to node J. The z<sub>0</sub>
+   axis is normal to the shell surface, and the y<sub>0</sub> axis is perpendicular to
+   the x<sub>0</sub> and z<sub>0</sub> axes.</p><p>The default element orientation can be rotated by angle &#952; (in
+   degrees) for the layer (<a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a>). For an element, you can specify a single
+   value of orientation in the plane of the element. Layer-wise orientation is supported.</p><p>You can also define element orientation via the <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a> command.  See <a class="xref" href="Hlp_E_CH2_3.html" title="3.3.&nbsp;Coordinate Systems">Coordinate Systems</a>.</p><p>The element supports degeneration into a triangular form; however,
+use of the triangular form is <span class="italic"><em>not</em></span> recommended, except when used as mesh filler elements or with the
+membrane option (KEYOPT(1) = 1). The triangle form is generally more
+robust when using the membrane option with large deflections.</p><p>To evaluate stresses and strains on exterior surfaces, use KEYOPT(1)
+= 2.  When used as overlaid elements on the faces of 3-D elements,
+this option is similar to the <a href="../ans_thry/thy_str3.html#strucsurface" class="olink">surface stress</a> option (described
+in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>), but is more general and applicable to nonlinear
+analysis. The element used with this option does not provide any stiffness,
+mass, or load contributions.  This option should only be used in single-layer
+shells. Irrespective of other settings, <span class="structname">SHELL181</span> provides stress and strain output at the center of the layer.</p><p>
+<span class="structname">SHELL181</span> uses a penalty method to relate
+the independent rotational degrees of freedom about the normal (to
+the shell surface) with the in-plane components of displacements.
+ The program chooses an appropriate penalty stiffness by default.
+A drill stiffness factor can be specified via the <a href="../ans_cmd/Hlp_C_SECCONTROL.html" class="olink"><span class="command"><strong>SECCONTROL</strong></span></a> command.</p><p>Element loads are described in <a class="xref" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">Nodal Loading</a>.
+ Pressures can be input as surface loads on the element faces as shown
+by the circled numbers on <a class="xref" href="Hlp_E_SHELL181.html#ai9bXn58ctg" title="Figure&nbsp;181.1:&nbsp;&nbsp; SHELL181 Geometry">Figure&nbsp;181.1:&nbsp;
+    <span class="structname">SHELL181</span> Geometry</a>.  Positive
+pressures act into the element.  Because shell edge pressures are
+input on a per-unit-length basis, per-unit-area quantities must be
+multiplied by the shell thickness. </p><p>Temperatures can be input as element body loads at the corners
+of the outside faces of the element and at the corners of the interfaces
+between layers. The first corner temperature T1 defaults to TUNIF.
+If all other temperatures are unspecified, they default to T1. If
+KEYOPT(1) = 0 and if exactly NL+1 temperatures are input, one temperature
+is used for the four bottom corners of each layer, and the last temperature
+is used for the four top corner temperatures of the top layer. If
+KEYOPT(1) = 1 and if exactly NL temperatures are input, one temperature
+is used for the four corners of each layer. That is, T1 is used for
+T1, T2, T3, and T4; T2 (as input) is used for T5, T6, T7, and T8,
+etc. For any other input pattern, unspecified temperatures default
+to TUNIF.</p><p>Using KEYOPT(3), <span class="structname">SHELL181</span> supports
+uniform reduced integration and full integration with incompatible
+modes.  By default, this element uses the uniform reduced integration
+for performance reasons in nonlinear applications. </p><p>Using reduced integration with hourglass control creates some
+usage restrictions, although minimal.  For example, to capture the
+in-plane bending of a cantilever or a stiffener (see <a class="xref" href="Hlp_E_SHELL181.html#ax9tXn1d7tlm" title="Figure&nbsp;181.2:&nbsp;&nbsp;SHELL181 Typical Bending Applications">Figure&nbsp;181.2:&nbsp;SHELL181 Typical Bending Applications</a>), a number of elements through the thickness
+direction is necessary.  The performance gains achieved by using uniform
+reduced integration are significant enough to offset the need to use
+more elements.  In relatively well-refined meshes, hourglassing issues
+are largely irrelevant.</p><p>When the reduced integration option is used, you can check the
+accuracy of the solution by comparing the total energy (SENE label
+in <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>) and the artificial energy (AENE label
+in <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>) introduced by hourglass control.  If
+the ratio of artificial energy to total energy is less than 5%, the
+solution is generally acceptable.  The total energy and artificial
+energy can also be monitored by using <a href="../ans_cmd/Hlp_C_OUTPR.html" class="olink"><span class="command"><strong>OUTPR</strong></span></a>,VENG
+in the solution phase.</p><p>Bilinear elements, when fully integrated, are too stiff in in-plane
+bending.<span class="structname">SHELL181</span> uses the method of incompatible
+modes to enhance the accuracy in bending-dominated problems.  This
+approach is also called "extra shapes" or "bubble" modes approach. <span class="structname">SHELL181</span> uses the formulation that ensures satisfaction
+of the patch test (J. C. Simo and F. Armero, "Geometrically nonlinear
+enhanced strain mixed methods and the method of incompatible modes," <span class="italic"><em>IJNME</em></span>, Vol. 33, pp. 1413-1449, 1992).</p><p>When including incompatible modes in the analysis, you must
+use full integration.  KEYOPT(3) = 2 implies the inclusion of incompatible
+modes and the use of full (2x2) quadrature.</p><p>
+<span class="structname">SHELL181</span>, with KEYOPT(3) = 2 specified,
+does not have any spurious energy mechanisms. This specific form of <span class="structname">SHELL181</span> is highly accurate, even with coarse meshes.
+Use KEYOPT(3) = 2 if you encounter any hourglass-related difficulties
+with the default options.  KEYOPT(3) = 2 is also necessary if the
+mesh is coarse and in-plane bending of the elements dominate the response.
+We recommend this option with all layered applications.</p><p>KEYOPT(3) = 2 imposes the fewest usage restrictions.  You can
+always choose this option.  However, you can improve element performance
+by choosing the best option for your problem.  Consider the problems
+illustrated in <a class="xref" href="Hlp_E_SHELL181.html#ax9tXn1d7tlm" title="Figure&nbsp;181.2:&nbsp;&nbsp;SHELL181 Typical Bending Applications">Figure&nbsp;181.2:&nbsp;SHELL181 Typical Bending Applications</a>
+</p><div class="figure"><a name="ax9tXn1d7tlm"></a><p class="title"><b>Figure&nbsp;181.2:&nbsp;&nbsp;SHELL181 Typical Bending Applications</b></p><div class="figure-contents"><div class="blockquote"><blockquote class="blockquote"><p>
+<img src="graphics/gELEM181-2.svg" alt="SHELL181 Typical Bending Applications">&nbsp;
+</p><p>
+<img src="graphics/gELEM181-3.svg" alt="SHELL181 Typical Bending Applications">&nbsp;
+</p></blockquote></div></div></div><br class="figure-break"><p>The cantilever beam and the beam cross-section to be modeled
+with shells are typical examples of in-plane bending-dominated problems.
+ The use of KEYOPT(3) = 2 is the most effective choice in these circumstances.
+ Reduced integration would require refined meshes.  For example, reduced
+integration for the cantilever beam problem requires four elements
+through the thickness, whereas the full integration with incompatible
+modes only requires one element through the thickness.</p><p>For the stiffened shell, the most effective choice is to use
+KEYOPT(3) = 0 for the shell and KEYOPT(3) = 2 for the stiffener.</p><p>When KEYOPT(3) = 0 is specified, <span class="structname">SHELL181</span> uses an hourglass control method for membrane and bending modes.
+ By default, <span class="structname">SHELL181</span> calculates the hourglass
+parameters for both metal and hyperelastic applications. To specify
+the hourglass stiffness scaling factors, use the <a href="../ans_cmd/Hlp_C_SECCONTROL.html" class="olink"><span class="command"><strong>SECCONTROL</strong></span></a> command.</p><p>When KEYOPT(5) = 1, the element uses an advanced formulation that
+   incorporates initial curvature effects. The calculation for effective shell curvature change
+   accounts for both shell-membrane and thickness strains. The formulation generally offers improved
+   accuracy in curved shell structure simulations, especially when thickness strain is significant
+   or the material anisotropy in the thickness direction cannot be ignored, or in thick shell
+   structures with unbalanced laminate construction or with shell offsets. The initial curvature of
+   each element is calculated from the nodal shell normals. The shell normal at each node is
+   obtained by averaging the shell normals from the surrounding <span class="structname">SHELL181</span>
+   elements. A coarse or highly distorted shell mesh can lead to significant error in the recovered
+   element curvature; therefore, this option should be used with a smooth, adequately refined mesh
+   only. To ensure proper representation of the original mesh, a nodal normal is replaced by the
+   element shell normal in the curvature calculation if the subtended angle between these two is
+   greater than 25 degrees.</p><p>When KEYOPT(5) = 2, a simplified curved-shell formulation is adopted.
+   Unlike the advanced curved-shell formulation (KEYOPT(5) =1), the curvature effects in the shell
+   offset handling are ignored. The simplified formulation generally leads to more robust nonlinear
+   convergence.</p><p>
+<span class="structname">SHELL181</span> includes the linear effects
+of transverse shear deformation.  An assumed shear strain formulation
+of Bathe-Dvorkin is used to alleviate shear locking.  The transverse
+shear stiffness of the element is a 2x2 matrix as shown below:</p><div class="informalequation"><a name="eq58bfbc95-6164-4509-b27a-fa727c4bfacc"></a><div><img src="graphics/eq58bfbc95-6164-4509-b27a-fa727c4bfacc.svg"></div></div><p>Transverse shear effects are not included in the normal material
+   constitutive modeling for this element.</p><p>To define transverse shear stiffness values, issue the <a href="../ans_cmd/Hlp_C_SECCONTROL.html" class="olink"><span class="command"><strong>SECCONTROL</strong></span></a>
+   command.</p><p>Transverse shear-correction factors k are calculated once at
+the start of the analysis for each section. The material properties
+used to evaluate the transverse shear correction factors are at the
+current reference temperature during solution. User-field variables
+and frequency are all set to zero when evaluating the material properties
+used to calculate the transverse shear correction factors.</p><p>For a single-layer shell with isotropic material, default transverse
+shear stiffnesses are:</p><div class="informalequation"><a name="eqf868cca2-8ddf-4a15-a291-9c6e6b61eb04"></a><div><img src="graphics/eqf868cca2-8ddf-4a15-a291-9c6e6b61eb04.svg"></div></div><p>In the above matrix, shear-correction factor k = 5/6, G = shear
+modulus, and h = thickness of the shell.</p><p>
+<span class="structname">SHELL181</span> can be associated with linear
+   elastic, elastoplastic, creep, or hyperelastic material properties. Only isotropic, anisotropic,
+   and orthotropic linear elastic properties can be input for elasticity. The von Mises isotropic
+   hardening plasticity models can be invoked with BISO (bilinear isotropic hardening), and NLISO
+   (nonlinear isotropic hardening) options. The kinematic hardening plasticity models can be invoked
+   with BKIN (bilinear kinematic hardening), and CHABOCHE (nonlinear kinematic hardening). Invoking
+   plasticity assumes that the elastic properties are isotropic (that is, if orthotropic elasticity
+   is used with plasticity, the program assumes the isotropic elastic modulus = EX and Poisson's
+   ratio = NUXY).</p><p>Hyperelastic material properties (2, 3, 5, or 9 parameter Mooney-Rivlin
+material model, Neo-Hookean model, Polynomial form model, Arruda-Boyce
+model, and user-defined model) can be used with this element.  Poisson's
+ratio is used to specify the compressibility of the material.  If
+less than 0, Poisson's ratio is set to 0; if greater than or equal
+to 0.5, Poisson's ratio is set to 0.5 (fully incompressible).</p><p>Both isotropic and orthotropic thermal expansion coefficients
+can be input using <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,ALPX.  When used with hyperelasticity,
+isotropic expansion is assumed.</p><p>Use the <a href="../ans_cmd/Hlp_C_TREF.html" class="olink"><span class="command"><strong>TREF</strong></span></a> command to specify the global
+value of reference temperature. If <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,REFT is defined
+for the material number of the element, it is used for the element
+instead of the value from the <a href="../ans_cmd/Hlp_C_TREF.html" class="olink"><span class="command"><strong>TREF</strong></span></a> command. But
+if <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,REFT is defined for the material number of
+the layer, it is used instead of either the global or element value.</p><p>With reduced integration and hourglass control (KEYOPT(3) =
+0), low frequency spurious modes can appear if the mass matrix employed
+is not consistent with the quadrature rule. <span class="structname">SHELL181</span> uses a projection scheme that effectively filters out the inertia
+contributions to the hourglass modes of the element.  To be effective,
+a consistent mass matrix must be used.  We recommend setting <a href="../ans_cmd/Hlp_C_LUMPM.html" class="olink"><span class="command"><strong>LUMPM</strong></span></a>,OFF  for a modal analysis using this element type.
+ The lumped mass option can, however, be used with the full integration
+options (KEYOPT(3) = 2).</p><p>KEYOPT(8) = 2 stores midsurface results in the results file
+for single or multi-layer shell elements. If you use <a href="../ans_cmd/Hlp_C_SHELL.html" class="olink"><span class="command"><strong>SHELL</strong></span></a>,MID, you will see these calculated values, rather than the average
+of the TOP and BOTTOM results. You should use this option to access
+these correct midsurface results (membrane results) for those analyses
+where averaging TOP and BOTTOM results is inappropriate; examples
+include midsurface stresses and strains with nonlinear material behavior,
+and midsurface results after mode combinations that involve squaring
+operations such as in spectrum analyses.</p><p>KEYOPT(9) = 1 reads initial thickness data from a user subroutine. </p><p>KEYOPT(10) = 1 outputs normal stress component Sz, where z is shell
+   normal direction. The element uses a plane-stress formulation that always leads to zero thickness
+   normal stress. With KEYOPT(10) = 1, Sz is independently recovered during the element solution
+   output from the applied pressure load. The pressure must be applied directly to the shell, and
+   not via surface elements (SURF<em class="replaceable"><code>nnn</code></em>).</p><p>You can apply an initial stress state to this element via the <a href="../ans_cmd/Hlp_C_INISTATE.html" class="olink"><span class="command"><strong>INISTATE</strong></span></a> command. For more information, see <a href="../ans_adv/Hlp_G_INSTINTRO.html" class="olink">Initial State in the <span class="olinkdocname">Mechanical APDL Advanced Analysis Guide</span></a>. </p><p>The effects of pressure load stiffness are automatically included
+for this element. If an unsymmetric matrix is needed for pressure
+load stiffness effects, use <a href="../ans_cmd/Hlp_C_NROPT.html" class="olink"><span class="command"><strong>NROPT</strong></span></a>,UNSYM.</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_SHELL181.html#aFCtXn319tlm" title="SHELL181 Input Summary">"SHELL181 Input Summary"</a>.  A general description of element input
+is given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>.</p><div class="refsect2" title="SHELL181 Input Summary"><a name="aFCtXn319tlm"></a><h3>SHELL181 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J, K, L</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>UX, UY, UZ, ROTX, ROTY, ROTZ if KEYOPT(1) = 0</p><p>UX, UY, UZ if KEYOPT(1) = 1</p></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command: See <a class="xref" href="elem_matsupp.html" title="Chapter&nbsp;4:&nbsp;Element Support for Material Models">Element Support for Material Models</a> for this element.</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: EX, EY, EZ, (PRXY, PRYZ, PRXZ,
+or NUXY, NUYZ, NUXZ), </td></tr><tr><td>ALPX, ALPY, ALPZ (or CTEX, CTEY, CTEZ <span class="italic"><em>or</em></span> THSX, THSY, THSZ), </td></tr><tr><td>DENS, GXY, GYZ, GXZ, ALPD</td></tr><tr><td>Specify BETD, ALPD, and DMPR for the element (all layers)
+by issuing the <a href="../ans_cmd/Hlp_C_MAT.html" class="olink"><span class="command"><strong>MAT</strong></span></a> command to assign the material
+property set. </td></tr><tr><td>REFT can be specified once for the element, or it can be assigned
+on a per-layer basis. See the discussion in <a class="xref" href="Hlp_E_SHELL181.html#aFCtXn319tlm" title="SHELL181 Input Summary">"SHELL181 Input Summary"</a> for more information.</td></tr></table></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Pressures&nbsp;--&nbsp;</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>face 1 (I-J-K-L) (bottom, in +N direction),</td></tr><tr><td>face 2 (I-J-K-L) (top, in -N direction),</td></tr><tr><td>face 3 (J-I), face 4 (K-J), face 5 (L-K), face 6 (I-L)</td></tr></table></dd><dt><span><b class="term">Equivalent source surface flag&nbsp;--&nbsp;</b></span></dt><dd><p>MXWF (input on the <a href="../ans_cmd/Hlp_C_SF.html" class="olink"><span class="command"><strong>SF</strong></span></a> command)</p></dd></dl></div></div></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Temperatures&nbsp;--&nbsp;</b></span></dt><dd><p>
+<span class="bold"><strong>For KEYOPT(1) = 0 (Bending and membrane stiffness):</strong></span>
+</p><p>T1, T2, T3, T4 (at bottom of layer 1), T5, T6, T7, T8
+(between layers 1-2); similarly for between next layers, ending with
+temperatures at top of layer NL(4*(NL+1) maximum). Hence, for one-layer
+elements, 8 temperatures are used.</p><p>
+<span class="bold"><strong>For KEYOPT(1) = 1 (Membrane stiffness
+only):</strong></span>
+</p><p>T1, T2, T3, T4 for layer 1, T5, T6, T7, T8 for layer 2, similarly
+for all layers (4*NL maximum). Hence, for one-layer elements, 4 temperatures
+are used.</p></dd></dl></div></div></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+        <a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth and death</a></td></tr><tr><td><a href="../ans_cmd/Hlp_C_CORIOLIS.html" class="olink">Coriolis effect</a></td></tr><tr><td>
+<a href="Hlp_E_AutoSelectElems.html" class="olink">Element
+technology autoselect</a>
+</td></tr><tr><td>
+<a href="../ans_adv/Hlp_G_INSTINTRO.html" class="olink">Initial state</a>
+</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink">Large deflection</a>
+</td></tr><tr><td>
+<a href="../ans_thry/thy_geo1.html" class="olink">Large
+strain</a>
+</td></tr><tr><td>
+<a href="../ans_str/strlinperturb.html" class="olink">Linear
+perturbation</a>
+</td></tr><tr><td>
+<a href="../ans_str/Hlp_G_STRUNST.html#strnonlinstab" class="olink">Nonlinear
+stabilization</a>
+</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink">Section definition</a> for layered shells and <a href="../ans_str/Hlp_G_PRESHELL_5.html" class="olink">preintegrated general shell sections</a> for input of homogeneous section stiffnesses</td></tr><tr><td>
+<a href="../ans_str/Hlp_G_STR8_2.html#strstrstiftlm61199434" class="olink">Stress stiffening</a>
+</td></tr></table></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Element stiffness:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Bending and membrane stiffness
+(default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Membrane stiffness only</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Stress/strain evaluation
+only</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(3)</b></span></dt><dd><p>Integration option:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Reduced integration with
+hourglass control (default)</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Full integration with
+incompatible modes</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(5)</b></span></dt><dd><p>Curved shell formulation:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Standard shell formulation (default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Advanced curved-shell formation</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Simplified curved-shell formation</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(8)</b></span></dt><dd><p>Specify layer data storage:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>For multi-layer elements, store data for bottom of bottom layer and top of top layer.
+          For single-layer elements, store data for TOP and BOTTOM.  (Default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Store data for TOP and
+BOTTOM, for all layers (multi-layer elements)</p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;Volume of data may be excessive.</p><hr></div></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Store data for TOP, BOTTOM,
+and MID for all layers; applies to single- and multi-layer elements</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(9)</b></span></dt><dd><p>User thickness option:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>No user subroutine to
+provide initial thickness (default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Read initial thickness
+data from user-defined subroutine <code class="function">UTHICK</code> </p><p>See the <a href="../ans_prog/Hlp_P_UPFTOC.html" class="olink">Guide to User-Programmable Features in the <span class="olinkdocname">Mechanical APDL Programmer's Reference</span></a> for user-defined
+          subroutines</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(10)</b></span></dt><dd><p>Thickness normal stress (Sz) output option:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Sz not modified (default, Sz = 0)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Recover and output Sz from applied pressure load </p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(11)</b></span></dt><dd><p>Default element x axis (x<sub>0</sub>) orientation:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>First parametric direction at the element centroid (default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Pointing from element node I to element node J</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="SHELL181 Output Data"><a name="ab7Oxq109mcm"></a><h2>SHELL181 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal displacements included in the overall nodal
+solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_SHELL181.html#aCHtXn380tlm" title="Table&nbsp;181.1:&nbsp;&nbsp;SHELL181 Element Output Definitions">Table&nbsp;181.1:&nbsp;SHELL181 Element Output Definitions</a>
+</p></li></ul></div><p>
+</p><p>Several items are illustrated in <a class="xref" href="Hlp_E_SHELL181.html#agHtXn241tlm" title="Figure&nbsp;181.3:&nbsp;&nbsp; SHELL181 Stress Output">Figure&nbsp;181.3:&nbsp;
+<span class="structname">SHELL181</span> Stress Output</a>.</p><p>KEYOPT(8) controls the amount of data output to the results
+file for processing with the <a href="../ans_cmd/Hlp_C_LAYER.html" class="olink"><span class="command"><strong>LAYER</strong></span></a> command.  Interlaminar
+shear stress is available as SYZ and SXZ evaluated at the layer interfaces.
+KEYOPT(8) must be set to either 1 or 2 to output these stresses in
+POST1. A general description of solution output is given in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a>.  See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways to review results.</p><p>The element stress resultants (N11, M11, Q13, etc.) are parallel
+to the element coordinate system, as are the membrane strains and
+curvatures of the element.  Such generalized strains are available
+through the SMISC option at the element centroid only. The transverse
+shear forces Q13, Q23 are available only in resultant form: that is,
+use SMISC,7 (or 8). Likewise, the transverse shear strains, &#947;<sub>13</sub> and &#947;<sub>23</sub>, are constant through
+the thickness and are only available as SMISC items (SMISC,15 and
+SMISC,16, respectively).</p><p>The program calculates moments (M11, M22, M12) with respect
+to the shell reference plane. By default, ANSYS adopts the shell midplane
+as the reference plane. To offset the reference plane to any other
+specified location, issue the <a href="../ans_cmd/Hlp_C_SECOFFSET.html" class="olink"><span class="command"><strong>SECOFFSET</strong></span></a> command.
+When there is a nonzero offset (L) from the reference plane to the
+midplane, moments with respect to the midplane (<span class="inlineequation" style="&#xA;          vertical-align:-3.000000px"><img src="graphics/eq94c2bee6-fa6f-4638-99c3-eac5d5f39f56.svg"></span>) can be
+recovered from stress resultants with respect to the reference plane
+as follows:</p><div class="informalequation"><a name="eqc5f58b4e-e30f-4cd1-8a80-00f73e2e4082"></a><div><img src="graphics/eqc5f58b4e-e30f-4cd1-8a80-00f73e2e4082.svg"></div></div><p>
+<span class="structname">SHELL181</span> does not support extensive
+basic element printout.  POST1 provides more comprehensive output
+processing tools; therefore, ANSYS suggests using the <a href="../ans_cmd/Hlp_C_OUTRES.html" class="olink"><span class="command"><strong>OUTRES</strong></span></a> command to ensure that the required results are stored in the database.</p><div class="figure"><a name="agHtXn241tlm"></a><p class="title"><b>Figure&nbsp;181.3:&nbsp;&nbsp;
+<span class="structname">SHELL181</span> Stress Output</b></p><div class="figure-contents"><div><img src="graphics/gELEM181-4.svg" alt="SHELL181 Stress Output"></div><div class="blockquote"><blockquote class="blockquote"><table border="0" summary="Simple list" class="simplelist"><tr><td>x<sub>0</sub> = Element x axis if element orientation
+        (<a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a>) is not specified. (See KEYOPT(11).)</td></tr><tr><td> x = Element x axis if element orientation is specified.</td></tr></table></blockquote></div></div></div><p><br class="figure-break">
+</p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="aCHtXn380tlm"></a><p class="title"><b>Table&nbsp;181.1:&nbsp;&nbsp;SHELL181 Element Output Definitions</b></p><div class="table-contents"><table summary="SHELL181 Element Output Definitions" border="1" width="95%"><colgroup><col width="139" class="col1"><col width="340" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th align="center">Name</th><th align="center">Definition</th><th align="center">O</th><th align="center">R</th></tr></thead><tbody><tr><td>EL</td><td>Element number and name</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Nodes - I, J, K, L</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>MAT</td><td>Material number</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>THICK</td><td>Average thickness</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>VOLU:</td><td>Volume</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>XC, YC, ZC</td><td>Location where
+results are reported</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.4">4</a>
+</td></tr><tr><td>PRES</td><td>Pressures  P1 at nodes I, J, K, L;  P2 at
+I, J, K, L; P3 at J,I; P4 at K,J;  P5 at L,K;  P6 at I,L</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>TEMP</td><td>T1, T2, T3, T4 at bottom of layer 1, T5,
+T6, T7, T8 between layers 1-2, similarly for between next layers,
+ending with temperatures at top of layer NL(4*(NL+1) maximum)</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>LOC</td><td>TOP, MID, BOT, or integration point
+location</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.1">1</a>
+</td></tr><tr><td>S:X, Y, Z, XY, YZ, XZ</td><td>Stresses</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.3">3</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.1">1</a>
+</td></tr><tr><td>S:1, 2, 3</td><td>Principal stresses</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.1">1</a>
+</td></tr><tr><td>S:INT</td><td>Stress intensity</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.1">1</a>
+</td></tr><tr><td>S:EQV</td><td>Equivalent stress</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.1">1</a>
+</td></tr><tr><td>EPEL:X, Y,
+Z, XY</td><td>Elastic strains</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.3">3</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.1">1</a>
+</td></tr><tr><td>EPEL:EQV</td><td>Equivalent elastic strains
+[<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.2.ft.7">7</a>]</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.1">1</a>
+</td></tr><tr><td>EPTH:X, Y, Z,  XY</td><td>Thermal strains</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.3">3</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.1">1</a>
+</td></tr><tr><td>EPTH:EQV</td><td>Equivalent thermal
+strains [<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.2.ft.7">7</a>]</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.1">1</a>
+</td></tr><tr><td>EPPL:X, Y,
+Z,  XY</td><td>Average plastic strains</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.3">3</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.2">2</a>
+</td></tr><tr><td>EPPL:EQV</td><td>Equivalent plastic strains
+[<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.2.ft.7">7</a>]</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.2">2</a>
+</td></tr><tr><td>EPCR:X, Y, Z, XY</td><td>Average creep strains</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.3">3</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.2">2</a>
+</td></tr><tr><td>EPCR:EQV</td><td>Equivalent creep
+strains [<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.2.ft.7">7</a>]</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.2">2</a>
+</td></tr><tr><td>EPTO:X, Y, Z, XY</td><td>Total mechanical strains
+(EPEL + EPPL + EPCR)</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.3">3</a>
+</td><td align="center">-</td></tr><tr><td>EPTO:EQV</td><td>Total equivalent mechanical strains (EPEL + EPPL + EPCR)</td><td align="center">-</td><td align="center">-</td></tr><tr><td>NL:SEPL</td><td>Plastic yield stress</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.2">2</a>
+</td></tr><tr><td>NL:EPEQ</td><td>Accumulated equivalent plastic strain</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.2">2</a>
+</td></tr><tr><td>NL:CREQ</td><td>Accumulated equivalent creep
+strain</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.2">2</a>
+</td></tr><tr><td>NL:SRAT</td><td>Plastic yielding (1 = actively yielding, 0 = not yielding)</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.2">2</a>
+</td></tr><tr><td>NL:PLWK</td><td>Plastic work/volume</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.2">2</a>
+</td></tr><tr><td>NL:HPRES</td><td>Hydrostatic pressure</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.2">2</a>
+</td></tr><tr><td>SEND:ELASTIC, PLASTIC, CREEP, ENTO</td><td>Strain energy densities</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.2">2</a>
+</td></tr><tr><td>N11, N22, N12</td><td>In-plane forces (per unit length)</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>M11, M22, M12</td><td>Out-of-plane moments (per
+unit length)</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.2.ft.8">8</a>
+</td></tr><tr><td>Q13,
+Q23</td><td>Transverse shear forces (per unit length)</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.2.ft.8">8</a>
+</td></tr><tr><td>&#949;<sub>11</sub>, &#949;<sub>22</sub>, &#949;<sub>12</sub>
+</td><td>Membrane strains</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>k<sub>11</sub>, k<sub>22</sub>, k<sub>12</sub>
+</td><td>Curvatures</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.2.ft.8">8</a>
+</td></tr><tr><td>&#947;<sub>13</sub>,  &#947;<sub>23</sub>
+</td><td>Transverse shear strains</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.2.ft.8">8</a>
+</td></tr><tr><td>LOCI:X, Y, Z</td><td>Integration point locations</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.5">5</a>
+</td></tr><tr><td>SVAR:1, 2, ... , N</td><td>State variables</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SHELL181.html#shell181.tab.3.ft.6">6</a>
+</td></tr><tr><td>ILSXZ </td><td>SXZ interlaminar shear stress </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>ILSYZ </td><td>SYZ interlaminar
+shear stress </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>ILSUM </td><td>Magnitude of the interlaminar shear stress vector </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>ILANG </td><td>Angle of interlaminar shear stress vector (measured from the element x axis toward the
+       element y axis in degrees) </td><td align="center">-</td><td align="center">Y</td></tr><tr><td>Sm: 11, 22, 12</td><td>Membrane
+stresses</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>Sb: 11, 22, 12</td><td>Bending stresses</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>Sp: 11, 22, 12</td><td>Peak
+stresses</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>St: 13, 23</td><td>Averaged transverse shear stresses</td><td align="center">-</td><td align="center">Y</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="shell181.tab.3.ft.1"></a>The following stress solution
+repeats for top, middle, and bottom surfaces.</p></li><li class="listitem"><p><a name="shell181.tab.3.ft.2"></a>Nonlinear solution output
+for top, middle, and bottom surfaces, if the element has a nonlinear
+material, or if large-deflection effects are enabled (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON) for SEND.</p></li><li class="listitem"><p><a name="shell181.tab.3.ft.3"></a>Stresses, total strains,
+plastic strains, elastic strains, creep strains, and thermal strains
+in the element coordinate system are available for output (at all
+section points through thickness). If layers are in use, the results
+are in the layer coordinate system.</p></li><li class="listitem"><p><a name="shell181.tab.3.ft.4"></a>Available only at centroid
+as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item. </p></li><li class="listitem"><p><a name="shell181.tab.3.ft.5"></a>Available only if <a href="../ans_cmd/Hlp_C_OUTRES.html" class="olink"><span class="command"><strong>OUTRES</strong></span></a>,LOCI is used. </p></li><li class="listitem"><p><a name="shell181.tab.3.ft.6"></a>Available only if the <a href="../ans_mat/matcustommatmods.html#user" class="olink">
+<code class="function">UserMat</code> subroutine</a> and <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,STATE command are used. </p></li><li class="listitem"><p><a name="shell181.tab.2.ft.7"></a>The equivalent strains use
+an effective Poisson's ratio: for elastic and thermal this value is
+set by the user (<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,PRXY); for plastic and creep
+this value is set at 0.5.</p></li><li class="listitem"><p><a name="shell181.tab.2.ft.8"></a>Not available if the membrane
+element option is used (KEYOPT(1) = 1).</p></li></ol></div><p>
+<a class="xref" href="Hlp_E_SHELL181.html#ayItXn29ftlm" title="Table&nbsp;181.2:&nbsp;&nbsp;SHELL181 Item and Sequence Numbers">Table&nbsp;181.2:&nbsp;SHELL181 Item and Sequence Numbers</a> lists output available through <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> using the Sequence Number method. See <a href="../ans_bas/Hlp_G_BAS5_2.html#abOBsq267ldm" class="olink">Creating an Element
+Table</a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in this reference
+for more information. The following notation is used in <a class="xref" href="Hlp_E_SHELL181.html#ayItXn29ftlm" title="Table&nbsp;181.2:&nbsp;&nbsp;SHELL181 Item and Sequence Numbers">Table&nbsp;181.2:&nbsp;SHELL181 Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="Hlp_E_SHELL181.html#aCHtXn380tlm" title="Table&nbsp;181.1:&nbsp;&nbsp;SHELL181 Element Output Definitions">Table&nbsp;181.1:&nbsp;SHELL181 Element Output Definitions</a>
+</p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>
+</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element
+data</p></dd><dt><span><b class="term">I,J,K,L</b></span></dt><dd><p>sequence number for data at nodes I, J, K, L</p></dd></dl></div></div><p>
+</p><div class="table"><a name="ayItXn29ftlm"></a><p class="title"><b>Table&nbsp;181.2:&nbsp;&nbsp;SHELL181 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="SHELL181 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="72" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"><col width="48" align="center" class="col5"><col width="48" align="center" class="col6"><col width="48" align="center" class="col7"></colgroup><thead><tr><th bgcolor="#E3E3E3" rowspan="2" align="center" valign="middle">
+
+Output
+Quantity Name</th><th bgcolor="#E3E3E3" colspan="6" align="center">
+
+
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th bgcolor="#E3E3E3" align="center">
+
+Item</th><th bgcolor="#E3E3E3" align="center">
+
+E</th><th bgcolor="#E3E3E3" align="center">
+
+I</th><th bgcolor="#E3E3E3" align="center">
+
+J</th><th bgcolor="#E3E3E3" align="center">
+
+K</th><th bgcolor="#E3E3E3" align="center">
+
+L</th></tr></thead><tbody><tr><td align="center">N11</td><td align="center">SMISC</td><td align="center">1</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">N22</td><td align="center">SMISC</td><td align="center">2</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">N12</td><td align="center">SMISC</td><td align="center">3</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">M11</td><td align="center">SMISC</td><td align="center">4</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">M22</td><td align="center">SMISC</td><td align="center">5</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">M12</td><td align="center">SMISC</td><td align="center">6</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Q13</td><td align="center">SMISC</td><td align="center">7</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Q23</td><td align="center">SMISC</td><td align="center">8</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">&#949;<sub>11</sub>
+</td><td align="center">SMISC</td><td align="center">9</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">&#949;<sub>22</sub>
+</td><td align="center">SMISC</td><td align="center">10</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">&#949;<sub>12</sub>
+</td><td align="center">SMISC</td><td align="center">11</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">k<sub>11</sub>
+</td><td align="center">SMISC</td><td align="center">12</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">k<sub>22</sub>
+</td><td align="center">SMISC</td><td align="center">13</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">k<sub>12</sub>
+</td><td align="center">SMISC</td><td align="center">14</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">&#947;<sub>13</sub>
+</td><td align="center">SMISC</td><td align="center">15</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">&#947;<sub>23</sub>
+</td><td align="center">SMISC</td><td align="center">16</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">THICK</td><td align="center">SMISC</td><td align="center">17</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">P1</td><td align="center">SMISC</td><td align="center">-</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td></tr><tr><td align="center">P2</td><td align="center">SMISC</td><td align="center">-</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td></tr><tr><td align="center">P3</td><td align="center">SMISC</td><td align="center">-</td><td align="center">27</td><td align="center">26</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">P4</td><td align="center">SMISC</td><td align="center">-</td><td align="center">-</td><td align="center">29</td><td align="center">28</td><td align="center">-</td></tr><tr><td align="center">P5</td><td align="center">SMISC</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">31</td><td align="center">30</td></tr><tr><td align="center">P6</td><td align="center">SMISC</td><td align="center">-</td><td align="center">32</td><td align="center">-</td><td align="center">-</td><td align="center">33</td></tr><tr><td align="center">Sm: 11</td><td align="center">SMISC</td><td align="center">34</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sm: 22</td><td align="center">SMISC</td><td align="center">35</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sm: 12</td><td align="center">SMISC</td><td align="center">36</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sb: 11</td><td align="center">SMISC</td><td align="center">37</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sb: 22</td><td align="center">SMISC</td><td align="center">38</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sb: 12</td><td align="center">SMISC</td><td align="center">39</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sp: 11 (at shell bottom)</td><td align="center">SMISC</td><td align="center">40</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sp: 22 (at shell bottom)</td><td align="center">SMISC</td><td align="center">41</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sp: 12 (at shell
+bottom)</td><td align="center">SMISC</td><td align="center">42</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sp: 11 (at shell top)</td><td align="center">SMISC</td><td align="center">43</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sp: 22 (at shell top)</td><td align="center">SMISC</td><td align="center">44</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">Sp: 12 (at shell top)</td><td align="center">SMISC</td><td align="center">45</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">St: 13</td><td align="center">SMISC</td><td align="center">46</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">St: 23</td><td align="center">SMISC</td><td align="center">47</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr></tbody></table></div></div><br class="table-break"><div class="informaltable"><table border="1" width="95%"><colgroup><col width="72" class="col1"><col width="72" class="col2"><col width="120" class="col3"><col width="120" class="col4"></colgroup><thead><tr><th bgcolor="#E3E3E3" rowspan="2" align="center" valign="top">
+
+Output
+Quantity Name</th><th bgcolor="#E3E3E3" colspan="3" align="center" valign="top">
+
+
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th bgcolor="#E3E3E3" align="center" valign="top">
+
+Item</th><th bgcolor="#E3E3E3" align="center" valign="top">
+
+Bottom
+of Layer i </th><th bgcolor="#E3E3E3" align="center" valign="top">
+
+Top
+of Layer NL</th></tr></thead><tbody><tr><td align="center">ILSXZ </td><td align="center">SMISC</td><td align="center">8 * (i - 1) + 51</td><td align="center">8 * (NL - 1) + 52 </td></tr><tr><td align="center">ILSYZ</td><td align="center">SMISC</td><td align="center">8 * (i - 1) + 53</td><td align="center">8 * (NL
+- 1) + 54 </td></tr><tr><td align="center">ILSUM</td><td align="center">SMISC</td><td align="center">8 * (i - 1) + 55</td><td align="center">8 * (NL - 1) + 56</td></tr><tr><td align="center">ILANG</td><td align="center">SMISC</td><td align="center">8 * (i - 1) + 57</td><td align="center">8 * (NL
+- 1) + 58</td></tr></tbody></table></div></div><div class="refsect1" title="SHELL181 Assumptions and Restrictions"><a name="ab7Oxq180mcm"></a><h2>SHELL181 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>ANSYS, Inc. recommends against using this element in
+triangular form, except as a filler element. Avoid triangular form
+especially in areas with high stress gradients.</p></li><li class="listitem"><p>Zero-area elements are not allowed. (Zero-area elements
+occur most often whenever the elements are numbered improperly.)</p></li><li class="listitem"><p>Zero thickness elements or elements tapering down
+to a zero thickness at any corner are not allowed (but zero thickness
+layers are allowed).</p></li><li class="listitem"><p>If multiple load steps are used, the number of layers
+cannot change between load steps.</p></li><li class="listitem"><p>When the element is associated with <a href="../ans_str/Hlp_G_PRESHELL_5.html" class="olink">preintegrated shell sections</a> (<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,,GENS), additional restrictions apply.
+For more information, see <a href="../ans_str/Hlp_G_PRESHELL_5.html#strpreshcons" class="olink">Considerations for Using Preintegrated Shell Sections in the <span class="olinkdocname">Mechanical APDL Structural Analysis Guide</span></a>.</p></li><li class="listitem"><p>If reduced integration is used (KEYOPT(3) = 0) <span class="structname">SHELL181</span> ignores rotary inertia effects when an unbalanced
+laminate construction is used, and all inertial effects are assumed
+to be in the nodal plane (that is, an unbalanced laminate construction
+and offsets have no effect on the mass properties of the element).</p></li><li class="listitem"><p>For most composite analyses, ANSYS, Inc. recommends
+setting KEYOPT(3) = 2 (necessary to capture the stress gradients).</p></li><li class="listitem"><p>No slippage is assumed between the element layers.
+Shear deflections are included in the element; however, normals to
+the center plane before deformation are assumed to remain straight
+after deformation.</p></li><li class="listitem"><p>Transverse shear stiffness of the shell section is
+estimated by an energy equivalence procedure (of the generalized section
+forces and strains vs. the material point stresses and strains). The
+accuracy of this calculation may be adversely affected if the ratio
+of material stiffnesses (Young's moduli) between adjacent layers is
+very high.</p></li><li class="listitem"><p>The calculation of interlaminar shear stresses is
+based on simplifying assumptions of unidirectional, uncoupled bending
+in each direction. If accurate edge interlaminar shear stresses are
+required, shell-to-solid submodeling should be used.</p></li><li class="listitem"><p>The section definition permits use of hyperelastic
+material models and elastoplastic material models in laminate definition;
+however, the accuracy of the solution is primarily governed by fundamental
+assumptions of shell theory. The applicability of shell theory in
+such cases is best understood by using a comparable solid model.</p></li><li class="listitem"><p>The layer orientation angle has no effect if the material
+of the layer is hyperelastic.</p></li><li class="listitem"><p>Before using this element in a simulation containing
+curved thick shell structures with unbalanced laminate construction
+or shell offsets, validate the usage via full 3-D modeling with a
+solid element in a simpler representative model. The element may underestimate
+the curved thick shell stiffness, particularly when the offset is
+large and the structure is under torsional load. Consider using curved-shell
+formulation (KEYOPT(5) = 1). </p></li><li class="listitem"><p>The through-thickness stress, SZ, is always zero.</p></li><li class="listitem"><p>This element works best with the full Newton-Raphson
+solution scheme (<a href="../ans_cmd/Hlp_C_NROPT.html" class="olink"><span class="command"><strong>NROPT</strong></span></a>,FULL,,ON).</p></li><li class="listitem"><p>Stress stiffening is always included in geometrically
+nonlinear analyses (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON). Prestress effects
+can be activated by the <a href="../ans_cmd/Hlp_C_PSTRES.html" class="olink"><span class="command"><strong>PSTRES</strong></span></a> command.</p></li><li class="listitem"><p>In a nonlinear analysis, the solution process terminates
+if the thickness at any integration point that was defined with a
+nonzero thickness vanishes (within a small numerical tolerance).</p></li><li class="listitem"><p>If a shell section has only one layer and the number
+of section integration points is equal to one, or if KEYOPT(1) = 1,
+then the shell has no bending stiffness, a condition that can result
+in solver and convergence problems.</p></li></ul></div></div><div class="refsect1" title="SHELL181 Product Restrictions"><a name="ab7Oxq1ecmcm"></a><h2>SHELL181 Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific
+   restrictions apply to this element in addition to the general assumptions and restrictions given
+   in the previous section.</p><p title="ANSYS Mechanical Pro"><b>ANSYS Mechanical Pro&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li><li class="listitem"><p>Initial state is not available.</p></li><li class="listitem"><p>Linear perturbation is not available.</p></li><li class="listitem"><p>Section definition for layered shells in not available.</p></li></ul></div><p title="ANSYS Mechanical Pro">
+   </p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+   </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

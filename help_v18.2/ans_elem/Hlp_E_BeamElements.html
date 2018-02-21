@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:06-04:00"><title>5.3.&nbsp;Beam and Link (Truss) Elements</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_StressAnalysisElems.html" title="Chapter&nbsp;5:&nbsp;Elements for Stress Analysis"><link rel="prev" href="Hlp_E_ShellElements.html" title="5.2.&nbsp;Shell Elements"><link rel="next" href="Hlp_E_PipeElements.html" title="5.4.&nbsp;Pipe Elements"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="5.3.&nbsp;Beam and Link (Truss) Elements"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="elem_beamelems"></a>5.3.&nbsp;Beam and Link (Truss) Elements</h2></div></div></div><a class="indexterm" name="d0e14645"></a><p>Use beam or link (truss) elements to represent relatively long, thin pieces of
+            structural continua (where two dimensions are much smaller than the other
+            dimension).</p><p>Beam elements assume the direct stresses in the nonaxial direction to be zero, and
+            ignore the deformations in the nonaxial directions (although cross sections can be
+            scaled in a nonlinear analysis). For link elements, shear stress, stress gradients, and
+            deformation are also ignored. </p><p>Simulating beam/truss structures is relatively simple, as elements can be created by
+            meshing lines or curves representing the position and shape of the structure (rather
+            than by meshing the volumes). The elements are associated with section data to represent
+            the beam or truss cross sections. </p><p>Although beams can be used in cases where link/truss elements suffice, they are not as
+            computationally efficient as link elements.</p><p>The available beam element types are: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                    <a class="link" href="Hlp_E_BEAM188.html" title="BEAM188"><span class="structname">BEAM188</span></a>, a 3-D two-node beam </p></li><li class="listitem"><p>
+                    <a class="link" href="Hlp_E_BEAM189.html" title="BEAM189"><span class="structname">BEAM189</span></a>, a 3-D three-node beam </p></li></ul></div><p>Both elements are based on Timoshenko beam theory which includes shear-deformation
+            effects. The elements can account for unrestrained warping and restrained warping of
+            cross-sections.</p><p>Because bending resistances, element loads, or both are normally different in the y
+            and z directions, a beam element must be oriented about its own axis. Typically, the
+            orientation is accomplished via an <span class="italic"><em>orientation node</em></span>,
+            a node not lying on its own axis. </p><p>If bending resistance is negligible, consider using <a class="link" href="Hlp_E_LINK180.html" title="LINK180"><span class="structname">LINK180</span></a>,
+            a 3-D spar (or truss). </p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:35-04:00"><title>CUTCONTROL</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_C_CTOC.html" title="C Commands"><link rel="prev" href="Hlp_C_CURR2D.html" title="CURR2D"><link rel="next" href="Hlp_C_CVAL.html" title="/CVAL"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="CUTCONTROL"><a name="CUTCONTROL"></a><div class="titlepage"></div><a class="indexterm" name="d0e58966"></a><span class="refentrytitle"><span class="command"><strong>CUTCONTROL</strong></span></span><div class="refnamediv"><p><span class="command"><strong>CUTCONTROL</strong></span>, <em class="replaceable"><code>Lab</code></em>, <em class="replaceable"><code>VALUE</code></em>, <em class="replaceable"><code>Option</code></em><br><b class="refpurpose">Controls time-step cutback during a nonlinear solution.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><p>Specifies the criteria for causing a cutback. Valid labels are: </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">PLSLIMIT&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Maximum equivalent plastic strain allowed within a time-step (substep). If
+                    the calculated value exceeds <em class="replaceable"><code>VALUE</code></em>, the program
+                    performs a cutback (bisection). Default: <em class="replaceable"><code>VALUE</code></em> = 0.15
+                    (15 percent)</p><p>If <span class="command"><strong>CUTCONTROL</strong></span> with <em class="replaceable"><code>Lab</code></em> =
+                    PLSLIMIT is not issued, the minimum time step specified is reached, and the
+                    maximum plastic limit calculated from the solution exceeds 15 percent, the
+                    program generates a warning and continues the Newton iterations.</p><p>If <span class="command"><strong>CUTCONTROL</strong></span> with <em class="replaceable"><code>Lab</code></em> =
+                    PLSLIMIT is issued, the minimum time step specified is reached, and the maximum
+                    plastic limit calculated exceeds the specified limit, the program generates an
+                    error and stops the Newton iterations.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CRPLIMIT&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Set values for calculating the maximum equivalent creep ratio allowed within
+                    a time step. If the calculated maximum creep ratio exceeds the defined creep
+                    ratio limit, the program performs a cutback.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">VSLIMIT&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>For <a href="../ans_mat/evis.html" class="olink">viscoelastic</a> materials, the <a href="../ans_mat/evis.html#matviscodissip" class="olink">maximum equivalent viscous strain increment</a>
+                    allowed within a time step. If the calculated value exceeds
+                      <em class="replaceable"><code>VALUE</code></em>, the program performs a cutback (bisection).
+                    If <em class="replaceable"><code>VALUE</code></em> is unspecified, the program does not check
+                    the equivalent viscous strain increment.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DPPLMT&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Set the maximum pore-pressure increment allowed within a time step. If the
+                    calculated maximum increment exceeds the specified limit, the program performs a
+                    cutback. This option has no default and is valid for coupled <a href="../ans_cou/Hlp_G_COU_porefluiddiffstruct.html" class="olink">structural-pore-fluid-diffusion
+                      Analysis</a> analysis only.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DSPLIMIT&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Maximum incremental displacement within the solution field in a time step
+                    (substep). If the maximum calculated value exceeds
+                      <em class="replaceable"><code>VALUE</code></em>, the program performs a cutback (bisection).
+                    Default: <em class="replaceable"><code>VALUE</code></em> = 1.0 x
+                    10<sup>7</sup></p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NPOINT&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Number of points in a cycle for a second order dynamic equation, used to
+                    control automatic time stepping. If the number of solution points per cycle is
+                    less than <em class="replaceable"><code>VALUE</code></em>, the program performs a cutback in
+                    time step size. Default: <em class="replaceable"><code>VALUE</code></em> = 13 (linear analysis)
+                    or 5 (nonlinear analysis). A larger number of points yields a more accurate
+                    solution but also increases the solution run time.</p><p>This option works well for linear problems. For nonlinear analyses, other
+                    factors such as contact status changes and solution convergence rate can
+                    overwrite NPOINT. (See <a href="../ans_thry/thy_tool6.html" class="olink">Automatic Time Stepping in the <span class="olinkdocname">Mechanical APDL Theory Reference</span></a> for more information about automatic time stepping.)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NOITERPREDICT&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If <em class="replaceable"><code>VALUE</code></em> = 0 (default), the program predicts the
+                    number of iterations for nonlinear convergence and performs a cutback earlier
+                    than the number of iterations specified via the <a class="link" href="Hlp_C_NEQIT.html" title="NEQIT"><span class="command"><strong>NEQIT</strong></span></a>
+                    command. This is the recommended option. </p><p>If <em class="replaceable"><code>VALUE</code></em> = 1, the solution iterates (if
+                    nonconvergent) to <a class="link" href="Hlp_C_NEQIT.html" title="NEQIT"><span class="command"><strong>NEQIT</strong></span></a> number of iterations before a cutback
+                    is invoked. It is sometimes useful for poorly-convergent problems, but rarely
+                    needed in general.</p><p>Bisection is also controlled by contact status change, plasticity or creep
+                    strain limit, and other factors. If any of these factors occur, bisection still
+                    occurs, regardless of the NOITERPREDICT setting.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CUTBACKFACTOR&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Changes the cutback value for bisection. Default = 0.5, where 0 &lt;
+                      <em class="replaceable"><code>VALUE</code></em> &lt; 1. This option is active only when
+                      <a class="link" href="Hlp_C_AUTOTS.html" title="AUTOTS"><span class="command"><strong>AUTOTS</strong></span></a>,ON.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>VALUE</code></em></b></span></dt><dd><p>Numeric value for the specified cutback criterion. For
+              <em class="replaceable"><code>Lab</code></em> = CRPLIMIT, <em class="replaceable"><code>VALUE</code></em> is the
+            creep criteria for the creep ratio limit.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Option</code></em></b></span></dt><dd><p>Type of creep analysis. Valid for <em class="replaceable"><code>Lab</code></em> = CRPLIMIT only.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">IMPRATIO&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Set the <a href="../ans_str/Hlp_G_STR8_3.html#strimpcrplcd032400" class="olink">maximum creep ratio</a>
+                    value for implicit creep. Default = 0.0 (no creep limit control). Any positive
+                    value is valid.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">EXPRATIO &nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Set the <a href="../ans_str/Hlp_G_STR8_3.html#strexpcrplcd032400" class="olink">maximum creep ratio</a>
+                    value for explicit creep. Default = 0.1. Any positive value up to 0.25 is
+                    valid.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">STSLIMIT &nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Stress threshold for calculating the creep ratio. For integration points
+                    with effective stress below this threshold, the creep ratio does not cause
+                    cutback. Default = 0.0. Any positive value is valid.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">STNLIMIT &nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Elastic strain threshold for calculating the creep ratio. For integration
+                    points with effective elastic strain below this threshold, the creep ratio does
+                    not cause cutback. Default = 0.0. Any positive value is valid.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="d0e59193"></a><h2>Notes</h2><p>A cutback is a method for automatically reducing the step size when either the solution
+      error is too large or the solution encounters convergence difficulties during a nonlinear
+      analysis. </p><p>If a convergence failure occurs, the program reduces the time step interval to a fraction
+      of its previous size and automatically continues the solution from the last successfully
+      converged time step. If the reduced time step again fails to converge, the program again
+      reduces the time step size and proceeds with the solution. This process continues until
+      convergence is achieved or the minimum specified time step value is reached.</p><p>For creep analysis, the cutback procedure is similar; the process continues until the
+      minimum specified time step size is reached. However, if the creep ratio limit is exceeded,
+      the program issues a warning but continues the substep until the analysis is complete. In this
+      case, convergence is achieved but the creep ratio criteria is not satisfied.</p><p>The <a class="link" href="Hlp_C_CRPLIM.html" title="CRPLIM"><span class="command"><strong>CRPLIM</strong></span></a> command is functionally equivalent to
+        <em class="replaceable"><code>Lab</code></em> = CRPLIMIT with options IMPRATIO and EXPRATIO</p></div><div class="refsect1" title="Menu Paths"><a name="CUTCONTROL.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Analysis Type&gt;Sol'n Controls&gt;Nonlinear</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Load Step Opts&gt;Nonlinear&gt;Cutback Control</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Analysis Type&gt;Sol'n Controls&gt;Nonlinear</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Load Step Opts&gt;Nonlinear&gt;Cutback Control</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:14-04:00"><title>FLUID38</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_COMBIN37.html" title="COMBIN37"><link rel="next" href="Hlp_E_COMBIN39.html" title="COMBIN39"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="FLUID38"><a name="FLUID38"></a><div class="titlepage"></div><a class="indexterm" name="d0e30558"></a><span class="refentrytitle"><span class="structname">FLUID38</span> </span><div class="refnamediv"><p><br><b class="refpurpose">Dynamic
+Fluid Coupling</b><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_E_FLUID38.html#aY6vq67mcm" title="FLUID38 Product Restrictions">Product Restrictions</a></span></div></div></div></p></div><div class="refsect1" title="FLUID38 Element Description"><a name="elemdesc38tlm61499"></a><h2>FLUID38 Element Description</h2><p><span class="structname">FLUID38</span> is used to represent a dynamic
+coupling between two points of a structure.  The coupling is based
+on the dynamic response of two points connected by a constrained mass
+of fluid.  The points represent the centerlines of concentric cylinders.
+ The fluid is contained in the annular space between the cylinders.
+ The cylinders may be circular or have an arbitrary cross-section.
+ The element has two degrees of freedom per node:  for example, translations
+in the nodal x and z directions.  The axes of the cylinders are then
+assumed to be in the nodal y directions.  The element may be used
+in any structural dynamic analysis. See <a href="../ans_thry/thy_el38.html" class="olink">FLUID38</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for more
+details about this element.</p><div class="figure"><a name="aWf32lmm"></a><p class="title"><b>Figure&nbsp;38.1:&nbsp;&nbsp;FLUID38 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM38-1.svg" alt="FLUID38 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="FLUID38 Input Data"><a name="azY6vq2fdmcm"></a><h2>FLUID38 Input Data</h2><p>The node locations and the coordinate system for this element
+are shown in <a class="xref" href="Hlp_E_FLUID38.html#aWf32lmm" title="Figure&nbsp;38.1:&nbsp;&nbsp;FLUID38 Geometry">Figure&nbsp;38.1:&nbsp;FLUID38 Geometry</a>.  The element is defined by
+two nodes and several real constants.  The real constants are defined
+in <a class="xref" href="Hlp_E_FLUID38.html#fluid38realconstants" title="Table&nbsp;38.1:&nbsp;&nbsp;FLUID38 Real Constants">Table&nbsp;38.1:&nbsp;FLUID38 Real Constants</a>.</p><p>KEYOPT(3) is used to select the form of the fluid coupling element.
+ The form of the element determines the real constants required, the
+material properties (if any), and the matrices calculated.  The density
+is input as material property DENS and is evaluated at the average
+of the two node temperatures.  The damping matrix is calculated only
+if F is nonzero.  KEYOPT(6) is used to select the direction of operation
+for the element.  If KEYOPT(6) = 1, the X and Y labels used in this
+description should be interchanged.  Similarly, if KEYOPT(6) = 3,
+interchange the Z and Y labels.</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_FLUID38.html#aJf1bdlmm" title="FLUID38 Input Summary">"FLUID38 Input Summary"</a>.  A general description of element input is
+given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>.</p><div class="refsect2" title="FLUID38 Input Summary"><a name="aJf1bdlmm"></a><h3>FLUID38 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>UX, UZ   if KEYOPT(6) = 0 or 2, or</td></tr><tr><td>UY, UZ   if KEYOPT(6) = 1, or</td></tr><tr><td>UX, UY   if KEYOPT(6) = 3</td></tr></table></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><p>If KEYOPT(3) = 0:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>R2, R1, L, F, DX, DZ, </td></tr><tr><td>WX, WZ   </td></tr></table><p>If KEYOPT(3) =
+2:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>M2, M1, MHX, MHZ, DX, DZ,</td></tr><tr><td> WX, WZ, CX, CZ </td></tr><tr><td>See <a class="xref" href="Hlp_E_FLUID38.html#fluid38realconstants" title="Table&nbsp;38.1:&nbsp;&nbsp;FLUID38 Real Constants">Table&nbsp;38.1:&nbsp;FLUID38 Real Constants</a> for a description
+of the real constants</td></tr></table></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td><a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: DENS if KEYOPT (3) = 0</td></tr><tr><td>None if KEYOPT (3) = 2</td></tr></table></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Temperature&nbsp;--&nbsp;</b></span></dt><dd><p>T(I), T(J)</p></dd></dl></div></div></dd><dt><span><b class="term">Special Features</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">KEYOPT(3)</b></span></dt><dd><p>Cross-section of cylinders:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Concentric circular cylinders</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Concentric arbitrary cylinders</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(6)</b></span></dt><dd><p>Flow axis parallel to:</p><div><div class="variablelist"><dl><dt><span><b class="term">0, 2 &nbsp;--&nbsp;</b></span></dt><dd><p>Nodal Y axis (UX,
+UZ degrees of freedom)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Nodal X axis (UY, UZ degrees
+of freedom)</p></dd><dt><span><b class="term">3 &nbsp;--&nbsp;</b></span></dt><dd><p> Flow axis parallel to
+nodal Z axis (UX, UY degrees of freedom)</p></dd></dl></div></div></dd></dl></div></div><div class="table"><a name="fluid38realconstants"></a><p class="title"><b>Table&nbsp;38.1:&nbsp;&nbsp;FLUID38 Real Constants</b></p><div class="table-contents"><table summary="FLUID38 Real Constants" border="1" width="95%"><colgroup><col width="72" class="col1"><col width="96" class="col2"><col width="432" class="col3"></colgroup><thead><tr><th align="center" valign="top">No.</th><th align="center" valign="top">Name</th><th align="center" valign="top">Description</th></tr></thead><tbody><tr><td colspan="3"><span class="bold"><strong>Concentric Circular Cylinders: KEYOPT(3) = 0 </strong></span></td></tr><tr><td align="center">1</td><td>R2</td><td>Radius of outer cylinder (length);
+node J refers to outer boundary</td></tr><tr><td align="center">2</td><td>R1</td><td>Radius of inner cylinder (length); node I refers to
+inner boundary</td></tr><tr><td align="center">3</td><td>L</td><td>Length
+of cylinders</td></tr><tr><td align="center">4</td><td>F</td><td>Darcy
+friction factor for turbulent flow</td></tr><tr><td align="center">5</td><td>DX</td><td>Estimate of maximum relative amplitude DX</td></tr><tr><td align="center">6</td><td>DZ</td><td>Estimate of maximum
+relative amplitude DZ</td></tr><tr><td align="center">7</td><td>WX</td><td>Estimate of resonant X frequency (Rad/Time)</td></tr><tr><td align="center">8</td><td>WZ</td><td>Estimate of resonant Z frequency
+(Rad/Time)</td></tr><tr><td colspan="3"><span class="bold"><strong>Concentric Arbitrary Cylinders: KEYOPT(3) = 2</strong></span></td></tr><tr><td align="center">1</td><td>M2</td><td>Mass of fluid
+that could be contained within the outer boundary (Boundary 2) in
+absence of inner boundary.</td></tr><tr><td align="center">2</td><td>M1</td><td>Mass of fluid displaced by the inner boundary (Boundary
+1)</td></tr><tr><td align="center">3</td><td>MHX</td><td>Hydrodynamic
+mass in X direction</td></tr><tr><td align="center">4</td><td>MHZ</td><td>Hydrodynamic mass in Z direction</td></tr><tr><td align="center">5</td><td>DX</td><td>Estimate of maximum relative amplitude
+DX</td></tr><tr><td align="center">6</td><td>DZ</td><td>Estimate of
+maximum relative amplitude DZ</td></tr><tr><td align="center">7</td><td>WX</td><td>Estimate of resonant X frequency (Rad/Time)</td></tr><tr><td align="center">8</td><td>WZ</td><td>Estimate of resonant Z frequency
+(Rad/Time)</td></tr><tr><td align="center">9</td><td>CX</td><td>Flow
+and geometry constant for X motion (mass/lenght)</td></tr><tr><td align="center">10</td><td>CZ</td><td>Flow and geometry constant for Z
+motion (mass/length)</td></tr></tbody></table></div></div><br class="table-break"></div></div><div class="refsect1" title="FLUID38 Output Data"><a name="azY6vq376mcm"></a><h2>FLUID38 Output Data</h2><p>There is no element solution output associated with the element
+unless element reaction forces and/or energies are requested.</p></div><div class="refsect1" title="FLUID38 Assumptions and Restrictions"><a name="azY6vq3e3mcm"></a><h2>FLUID38 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The element operates in the nodal coordinate system
+(see <a class="xref" href="Hlp_E_CH2_3.html#aOVqq14atlm" title="3.3.2.&nbsp;Elements That Operate in the Nodal Coordinate System">Elements That Operate in the Nodal Coordinate System</a>). </p></li><li class="listitem"><p>No fluid coupling exists in the flow axis direction.</p></li><li class="listitem"><p>The element has no nodal coordinate system transformation
+to account for nonparallel nodal coordinate systems.</p></li><li class="listitem"><p>Nodes I and J may be located anywhere in space (preferably
+coincident).</p></li><li class="listitem"><p>The lumped mass option [<a href="../ans_cmd/Hlp_C_LUMPM.html" class="olink"><span class="command"><strong>LUMPM</strong></span></a>]
+is not available with this element.</p></li></ul></div></div><div class="refsect1" title="FLUID38 Product Restrictions"><a name="aY6vq67mcm"></a><h2>FLUID38 Product Restrictions</h2><p>There are no product-specific restrictions for this element.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:58-04:00"><title>*VMASK</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_V_TOC.html" title="V Commands"><link rel="prev" href="Hlp_C_VLSCALE.html" title="VLSCALE"><link rel="next" href="Hlp_C_VMESH.html" title="VMESH"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="*VMASK"><a name="a-VMASK"></a><div class="titlepage"></div><a class="indexterm" name="d0e296699"></a><span class="refentrytitle"><a href="Hlp_C_VMASK.html" class="olink"><span class="command"><strong>*VMASK</strong></span></a> </span><div class="refnamediv"><p><span class="command"><strong>*VMASK</strong></span>, <em class="replaceable"><code>Par</code></em><br><b class="refpurpose">Specifies an array parameter as a masking vector.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_4.html" title="2.4.&nbsp;APDL Commands"><code class="classname">APDL</code></a>: <a class="link" href="Hlp_C_CH2_4.html#cmdapdlarrayparajla070199" title="Table&nbsp;2.21:&nbsp;&nbsp;Array Parameters"><span class="type">Array Parameters</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsect1" title="Argument Descriptions"><a name="a-VMASK.argdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Par</code></em></b></span></dt><dd><p>Name of the mask parameter.  The starting subscript must also
+be specified.</p></dd></dl></div></div></div><div class="refsect1" title="Command Default"><a name="a-VMASK.default"></a><h2>Command Default</h2><p>No mask parameter specified (use true for all operations).</p></div><div class="refsect1" title="Notes"><a name="a-VMASK.notes"></a><h2>Notes</h2><p>Specifies the name of the parameter whose values are to be checked for
+each resulting row operation.  The mask vector usually contains only 0 (for
+false) and 1 (for true) values.  For each row operation the corresponding
+mask vector value is checked.  A true value allows the operation to be done.
+ A false value skips the operation (and retains the previous results).  A
+mask vector can be created from direct input, such as M(1) = 1,0,0,1,1,0,1;
+or from the DATA function of the <a href="Hlp_C_VFILL.html" class="olink"><span class="command"><strong>*VFILL</strong></span></a> command.  The NOT
+function of the <a href="Hlp_C_VFUN.html" class="olink"><span class="command"><strong>*VFUN</strong></span></a> command can be used to reverse the
+logical sense of the mask vector.  The logical compare operations (LT, LE,
+EQ, NE, GE, and GT) of the <a href="Hlp_C_VOPER.html" class="olink"><span class="command"><strong>*VOPER</strong></span></a> command also produce
+a mask vector by operating on two other vectors.  Any numeric vector can be
+used as a mask vector since the actual interpretation assumes values less
+than 0.0 are 0.0 (false) and values greater than 0.0 are 1.0 (true).  If the
+mask vector is not specified (or has fewer values than the result vector),
+true (1.0) values are assumed for the unspecified values.  Another skip control
+may be input with <em class="replaceable"><code>NINC</code></em> on the <a href="Hlp_C_VLEN.html" class="olink"><span class="command"><strong>*VLEN</strong></span></a> command.
+ If both are present, operations occur only when both are true.  The mask
+setting is <span class="italic"><em>reset</em></span> to the default (no mask)
+after each <span class="bold"><strong>*V<em class="replaceable"><code>XX</code></em></strong></span> or <span class="bold"><strong>*M<em class="replaceable"><code>XX</code></em></strong></span> operation.
+ Use <a href="Hlp_C_VSTAT.html" class="olink"><span class="command"><strong>*VSTAT</strong></span></a> to list settings.</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e296789"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;Parameters&gt;Array Operations&gt;Operation Settings</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

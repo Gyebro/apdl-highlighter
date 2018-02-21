@@ -1,0 +1,44 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:29-04:00"><title>CEINTF</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_C_CTOC.html" title="C Commands"><link rel="prev" href="Hlp_C_CEDELE.html" title="CEDELE"><link rel="next" href="Hlp_C_CELIST.html" title="CELIST"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="CEINTF"><a name="CEINTF"></a><div class="titlepage"></div><a class="indexterm" name="d0e43268"></a><span class="refentrytitle"><span class="command"><strong>CEINTF</strong></span></span><div class="refnamediv"><p><span class="command"><strong>CEINTF</strong></span>, <em class="replaceable"><code>TOLER</code></em>, <em class="replaceable"><code>DOF1</code></em>, <em class="replaceable"><code>DOF2</code></em>, <em class="replaceable"><code>DOF3</code></em>, <em class="replaceable"><code>DOF4</code></em>, <em class="replaceable"><code>DOF5</code></em>, <em class="replaceable"><code>DOF6</code></em>, <em class="replaceable"><code>MoveTol</code></em><br><b class="refpurpose">Generates constraint equations at an interface.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7constrainteqldm061600" title="Table&nbsp;2.42:&nbsp;&nbsp;Constraint Equations"><span class="type">Constraint Equations</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="CEINTF.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>TOLER</code></em></b></span></dt><dd><p>Tolerance about selected elements, based on a fraction of
+the element dimension (defaults to 0.25 (25%)).  Nodes outside the element
+by more than the tolerance are not accepted as being on the interface.</p></dd><dt><span><b class="term"><em class="replaceable"><code>DOF1</code></em>, <em class="replaceable"><code>DOF2</code></em>, <em class="replaceable"><code>DOF3</code></em>,
+. . . , <em class="replaceable"><code>DOF6</code></em></b></span></dt><dd><p>Degrees of freedom for which constraint equations are written.
+ Defaults to all applicable DOFs.  <em class="replaceable"><code>DOF1</code></em> accepts
+ALL as a valid label, in which case the rest are ignored (all DOFs are applied).</p></dd><dt><span><b class="term"><em class="replaceable"><code>MoveTol</code></em></b></span></dt><dd><p>The allowed "motion" of a node (see Note below).  This distance
+is in terms of the element coordinates (-1.0 to 1.0).  A typical value is
+0.05.  Defaults to 0 (do not move).  <em class="replaceable"><code>MoveTol</code></em> must
+be less than or equal to <em class="replaceable"><code>TOLER</code></em>.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="CEINTF.notes"></a><h2>Notes</h2><p>This command can be used to "tie" together two regions with dissimilar
+mesh patterns by generating constraint equations that connect the selected
+nodes of one region to the selected elements of the other region.  At the
+interface between regions, nodes should be selected from the more dense mesh
+region, A, and the elements selected from the less dense mesh region, B. 
+The degrees of freedom of region A nodes are interpolated with the corresponding
+degrees of freedom of the nodes on the region B elements, using the shape
+functions of the region B elements.  Constraint equations are then written
+that relate region A and B nodes at the interface.</p><p>The <em class="replaceable"><code>MoveTol</code></em> field lets the nodes in the previously
+mentioned region A change coordinates when slightly inside or outside the
+elements of region B.  The change in coordinates causes the nodes of region
+A to assume the same surface as the nodes associated with the elements of
+region B.   The constraint equations that relate the nodes at both regions
+of the interface are then written.</p><p>Solid elements with six degrees of freedom should only be interfaced
+with other six degree-of-freedom elements.  The region A nodes should be near
+the region B elements.   A location tolerance based on the smallest region
+B element length may be input.  Stresses across the interface are not necessarily
+continuous.  Nodes in the interface region should not have specified constraints.</p><p>Use the <a class="link" href="Hlp_C_CPINTF.html" title="CPINTF"><span class="command"><strong>CPINTF</strong></span></a> command to connect nodes by coupling
+instead of constraint equations.  Use the <a class="link" href="Hlp_C_EINTF.html" title="EINTF"><span class="command"><strong>EINTF</strong></span></a> command
+to connect nodes by line elements.  See also the <a class="link" href="Hlp_C_NSEL.html" title="NSEL"><span class="command"><strong>NSEL</strong></span></a> and <a class="link" href="Hlp_C_ESEL.html" title="ESEL"><span class="command"><strong>ESEL</strong></span></a> commands
+for selecting nodes and elements.  See the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for a description of
+3-D space used to determine if a node will be considered by this command.</p><p>As an alternative to the <span class="command"><strong>CEINTF</strong></span> command, you can
+use contact elements and the internal multipoint constraint (MPC) algorithm
+to tie together two regions having dissimilar meshes. See <a href="../ans_ctec/Hlp_ctec_solsol.html" class="olink">Solid-Solid and Shell-Shell Assemblies</a> for
+more information.</p></div><div class="refsect1" title="Menu Paths"><a name="CEINTF.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Coupling / Ceqn&gt;Adjacent Regions</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

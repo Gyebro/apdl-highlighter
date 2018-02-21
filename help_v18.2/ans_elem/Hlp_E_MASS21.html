@@ -1,0 +1,59 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:11-04:00"><title>MASS21</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_COMBIN14.html" title="COMBIN14"><link rel="next" href="Hlp_E_PLANE25.html" title="PLANE25"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="MASS21"><a name="MASS21"></a><div class="titlepage"></div><a class="indexterm" name="d0e24548"></a><span class="refentrytitle"><span class="structname">MASS21</span> </span><div class="refnamediv"><p><br><b class="refpurpose">Structural
+Mass</b><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  DesSpc | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_E_MASS21.html#a8U6vq16mcm" title="MASS21 Product Restrictions">Product Restrictions</a></span></div></div></div></p></div><div class="refsect1" title="MASS21 Element Description"><a name="elemdesc21tlm61499"></a><h2>MASS21 Element Description</h2><p><span class="structname">MASS21</span> is a point element having up
+to six degrees of freedom:  translations in the nodal x, y, and z
+directions and rotations about the nodal x, y, and z axes.  A different
+mass and rotary inertia may be assigned to each coordinate direction.
+ See <a href="../ans_thry/thy_el21.html" class="olink"><span class="structname">MASS21</span></a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for more details about
+this element.</p><p>Another element with a full mass matrix capability (off-diagonal
+terms) is <a class="link" href="Hlp_E_MATRIX27.html" title="MATRIX27"><span class="structname">MATRIX27</span></a>.</p><div class="figure"><a name="aFtBf22almm"></a><p class="title"><b>Figure&nbsp;21.1:&nbsp;&nbsp;MASS21 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM21-1.svg" alt="MASS21 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="MASS21 Input Data"><a name="a7U6vq2b5mcm"></a><h2>MASS21 Input Data</h2><p>The mass element is defined by a single node, concentrated mass
+components (Force*Time<sup>2</sup>/Length) in the
+element coordinate directions, and rotary inertias (Force*Length*Time<sup>2</sup>) about the element coordinate axes.  The element
+coordinate system may be initially parallel to the global Cartesian
+coordinate system or to the nodal coordinate system (KEYOPT(2)). The
+element coordinate system rotates with the nodal coordinate rotations
+during a large deflection analysis.  Options are available to exclude
+the rotary inertia effects and to reduce the element to a 2-D capability
+(KEYOPT(3)).  If the element requires only one mass input, it is assumed
+to act in all appropriate coordinate directions.  The coordinate system
+for this element is shown in <a class="xref" href="Hlp_E_MASS21.html#aFtBf22almm" title="Figure&nbsp;21.1:&nbsp;&nbsp;MASS21 Geometry">Figure&nbsp;21.1:&nbsp;MASS21 Geometry</a>.</p><p>KEYOPT(1) = 1 defines the mass in volume*density form, which
+allows plotting of the mass using <a href="../ans_cmd/Hlp_C_ESHAPE.html" class="olink"><span class="command"><strong>/ESHAPE</strong></span></a>, as well
+as the use of a temperature-dependent density.</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_MASS21.html#aZtBf17lmm" title="MASS21 Input Summary">"MASS21 Input Summary"</a>.  <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a> gives a general
+description of element input.</p><div class="refsect2" title="MASS21 Input Summary"><a name="aZtBf17lmm"></a><h3>MASS21 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>UX, UY, UZ, ROTX, ROTY, ROTZ if KEYOPT (3) = 0</td></tr><tr><td>UX, UY, UZ if KEYOPT (3) = 2</td></tr><tr><td>UX, UY, ROTZ if KEYOPT (3) = 3</td></tr><tr><td>UX, UY if KEYOPT (3) = 4</td></tr><tr><td>(degrees of freedom are in the nodal coordinate system)</td></tr></table></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>MASSX, MASSY, MASSZ, IXX, IYY, IZZ, if KEYOPT (3) = 0</td></tr><tr><td>MASS, if KEYOPT (3) = 2</td></tr><tr><td>MASS, IZZ, if KEYOPT (3) = 3</td></tr><tr><td>MASS, if KEYOPT (3) = 4</td></tr><tr><td>(MASSX, MASSY, and MASSZ are concentrated mass components
+in the element coordinate directions. IXX, IYY, and IZZ are rotary
+inertias about the element coordinate axes. See also KEYOPT(2)).</td></tr></table></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p><a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: DENS (if KEYOPT(1)
+= 1), ALPD</p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td><a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth
+and death</a></td></tr><tr><td><a href="../ans_cmd/Hlp_C_CORIOLIS.html" class="olink">Coriolis effect</a></td></tr><tr><td><a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink">Large deflection</a></td></tr><tr><td><a href="../ans_str/strlinperturb.html" class="olink">Linear
+perturbation</a></td></tr></table></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Real constant interpretation (mass/volume or rotary
+inertia/density):</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Interpret real constants
+as masses and rotary inertias</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Interpret real constants
+as volumes and rotary inertias/density (Density must be input as a
+material property)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Initial element coordinate system:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Element coordinate system
+is initially parallel to the global Cartesian coordinate system</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Element coordinate system
+is initially parallel to the nodal coordinate system</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(3)</b></span></dt><dd><p>Rotary inertia options:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>3-D mass with rotary inertia</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>3-D mass without rotary
+inertia</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>2-D mass with rotary inertia</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>2-D mass without rotary
+inertia</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="MASS21 Output Data"><a name="a7U6vq325mcm"></a><h2>MASS21 Output Data</h2><p>Nodal displacements are included in the overall displacement
+solution.  There is no element solution output associated with the
+element unless element reaction forces and/or energies are requested.</p></div><div class="refsect1" title="MASS21 Assumptions and Restrictions"><a name="a7U6vq390mcm"></a><h2>MASS21 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>2-D elements are assumed to be in a global Cartesian
+Z = constant plane.</p></li><li class="listitem"><p>The mass element has no effect on the static analysis
+solution unless acceleration or rotation is present, or inertial relief
+is selected [<a href="../ans_cmd/Hlp_C_IRLF.html" class="olink"><span class="command"><strong>IRLF</strong></span></a>].</p></li><li class="listitem"><p>The standard mass summary printout
+is based on the average of MASSX, MASSY, and MASSZ if (KEYOPT(3) =
+0).  Only the precise mass summary includes the directional masses.</p></li><li class="listitem"><p>In an inertial relief analysis, the full matrix is
+used.  All terms are used during the analysis.</p></li></ul></div></div><div class="refsect1" title="MASS21 Product Restrictions"><a name="a8U6vq16mcm"></a><h2>MASS21 Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific
+restrictions apply to this element in addition to the general assumptions
+and restrictions given in the previous section.</p><p title="ANSYS Mechanical Pro"><b>ANSYS Mechanical Pro&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li><li class="listitem"><p>Linear perturbation is not available.</p></li></ul></div><p title="ANSYS Mechanical Pro">
+   </p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+   </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

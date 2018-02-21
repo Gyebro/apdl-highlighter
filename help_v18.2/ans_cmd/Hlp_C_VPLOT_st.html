@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:59-04:00"><title>*VPLOT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_V_TOC.html" title="V Commands"><link rel="prev" href="Hlp_C_VOVLAP.html" title="VOVLAP"><link rel="next" href="Hlp_C_VPLOT.html" title="VPLOT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="*VPLOT"><a name="a-VPLOT"></a><div class="titlepage"></div><a class="indexterm" name="d0e297836"></a><span class="refentrytitle"><a href="Hlp_C_VPLOT_st.html" class="olink"><span class="command"><strong>*VPLOT</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>*VPLOT</strong></span>, <em class="replaceable"><code>ParX</code></em>, <em class="replaceable"><code>ParY</code></em>, <em class="replaceable"><code>Y2</code></em>, <em class="replaceable"><code>Y3</code></em>, <em class="replaceable"><code>Y4</code></em>, <em class="replaceable"><code>Y5</code></em>, <em class="replaceable"><code>Y6</code></em>, <em class="replaceable"><code>Y7</code></em>, <em class="replaceable"><code>Y8</code></em><br><b class="refpurpose">Graphs columns (vectors) of array parameters.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_4.html" title="2.4.&nbsp;APDL Commands"><code class="classname">APDL</code></a>: <a class="link" href="Hlp_C_CH2_4.html#cmdapdlarrayparajla070199" title="Table&nbsp;2.21:&nbsp;&nbsp;Array Parameters"><span class="type">Array Parameters</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsect1" title="Argument Descriptions"><a name="a-VPLOT.argdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>ParX</code></em></b></span></dt><dd><p>Name of the array parameter whose column vector values
+will be the abscissa of the graph.  If blank, row subscript numbers
+are used instead.  <em class="replaceable"><code>ParX</code></em> is not sorted by
+the program.</p></dd><dt><span><b class="term"><em class="replaceable"><code>ParY</code></em></b></span></dt><dd><p>Name of the array parameter whose column vector values
+will be graphed against the <em class="replaceable"><code>ParX</code></em> values.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Y2</code></em>, <em class="replaceable"><code>Y3</code></em>, <em class="replaceable"><code>Y4</code></em>, . . . , <em class="replaceable"><code>Y8</code></em></b></span></dt><dd><p>Additional column subscript of the <em class="replaceable"><code>ParY</code></em> array parameter whose values are to be graphed against the <em class="replaceable"><code>ParX</code></em> values.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="a-VPLOT.notes"></a><h2>Notes</h2><p>The column to be graphed and the starting row for each array
+parameter must be specified as subscripts.  Additional columns of
+the <em class="replaceable"><code>ParY</code></em> array parameter may be graphed
+by specifying column numbers for <em class="replaceable"><code>Y2</code></em>,  <em class="replaceable"><code>Y3</code></em>, ...,<em class="replaceable"><code>Y8</code></em>.  For example, <a href="Hlp_C_VPLOT_st.html" class="olink"><span class="command"><strong>*VPLOT</strong></span></a>,TIME (4,6), DISP (8,1),2,3 specifies that the 1st,
+2nd, and 3rd columns of array parameter DISP (all starting at row
+8) are to be graphed against the 6th column of array parameter TIME
+(starting at row 4).  The columns are graphed from the starting row
+to their maximum extent.  See the <a href="Hlp_C_VLEN.html" class="olink"><span class="command"><strong>*VLEN</strong></span></a> and  <a href="Hlp_C_VMASK.html" class="olink"><span class="command"><strong>*VMASK</strong></span></a> commands to limit or skip data to be graphed.  The
+array parameters specified on the <a href="Hlp_C_VPLOT_st.html" class="olink"><span class="command"><strong>*VPLOT</strong></span></a> command
+must be of the same type (type ARRAY or TABLE; [<a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a>].   Arrays of type TABLE are graphed as continuous curves.  Arrays
+of type ARRAY is displayed in bar chart fashion.</p><p>The normal curve labeling scheme for <a href="Hlp_C_VPLOT_st.html" class="olink"><span class="command"><strong>*VPLOT</strong></span></a> is to label curve 1 &#8220;COL 1&#8221;, curve 2 &#8220;COL 2&#8221;
+and so on. You can use the <a href="Hlp_C_GCOLUMN.html" class="olink"><span class="command"><strong>/GCOLUMN</strong></span></a> command to
+apply user-specified labels (8 characters maximum) to your curves.
+See <a href="../ans_apdl/Hlp_P_APDL3_11.html#ansys.guide.apdl.ch3.s11.9" class="olink">Modifying Curve Labels</a> in the <a href="../ans_apdl/Hlp_P_APDLTOC.html" class="olink"><em class="citetitle">ANSYS Parametric Design Language Guide</em></a> for more information
+on using <a href="Hlp_C_GCOLUMN.html" class="olink"><span class="command"><strong>/GCOLUMN</strong></span></a>. </p><p>When a graph plot reaches minimum or maximum y-axis limits,
+the program indicates the condition by clipping the graph. The clip
+appears as a horizontal magenta line. Mechanical APDL calculates y-axis limits
+automatically; however, you can modify the (YMIN and YMAX) limits
+via the <a href="Hlp_C_YRANGE.html" class="olink"><span class="command"><strong>/YRANGE</strong></span></a> command.</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e298002"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;Plot&gt;Array Parameters</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

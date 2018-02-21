@@ -1,0 +1,107 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:35-04:00"><title>CYCLIC</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_C_CTOC.html" title="C Commands"><link rel="prev" href="Hlp_C_CYCLE.html" title="*CYCLE"><link rel="next" href="Hlp_C_CYCOPT.html" title="CYCOPT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="CYCLIC"><a name="CYCLIC"></a><div class="titlepage"></div><a class="indexterm" name="d0e60856"></a><span class="refentrytitle"><span class="command"><strong>CYCLIC</strong></span></span><div class="refnamediv"><p><span class="command"><strong>CYCLIC</strong></span>, <em class="replaceable"><code>
+NSECTOR</code></em>, <em class="replaceable"><code>ANGLE</code></em>, <em class="replaceable"><code>KCN
+</code></em>, <em class="replaceable"><code>Name</code></em>, <em class="replaceable"><code>USRCOMP</code></em>, <em class="replaceable"><code>
+USRNMAP</code></em><br><b class="refpurpose">Specifies a cyclic symmetry analysis.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7specpurpldm061600" title="Table&nbsp;2.48:&nbsp;&nbsp;Special Purpose"><span class="type">Special Purpose</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="CYCLIC.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NSECTOR</code></em></b></span></dt><dd><p>The number of sectors in the full 360 degrees, <span class="italic"><em>or</em></span> one of the following options:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">STATUS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Indicates the current cyclic status.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Resets model to normal (non-cyclic)
+status and removes the <a href="../ans_cycsym/advcycsolarch.html#advcycdupsect" class="olink">duplicate sector</a> if it exists. This
+option also deletes automatically detected edge components (generated
+when <em class="replaceable"><code>USRCOMP</code></em> = 0).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">UNDOUBLE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Removes the <a href="../ans_cycsym/advcycsolarch.html#advcycdupsect" class="olink">duplicate sector</a> if
+it exists. The duplicate sector is created during the solution (<a class="link" href="Hlp_C_SOLVE.html" title="SOLVE"><span class="command"><strong>
+SOLVE</strong></span></a>) stage of a modal cyclic symmetry analysis. </p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;The duplicate sector is necessary for displaying cyclic
+symmetry analysis results during postprocessing (<a href="Hlp_C_POST1.html" class="olink"><span class="command"><strong>/POST1</strong></span></a>).
+</p><hr></div></td></tr></tbody></table></div></div><p>If you specify a value of STATUS, OFF or UNDOUBLE, the command
+ignores all remaining arguments. </p></dd><dt><span><b class="term"><em class="replaceable"><code>ANGLE</code></em></b></span></dt><dd><p>The sector angle in degrees.</p></dd><dt><span><b class="term"><em class="replaceable"><code>KCN</code></em></b></span></dt><dd><p>An arbitrary reference number assigned to the cyclic
+coordinate system.  The default value of 0 specifies automatic detection.
+</p></dd><dt><span><b class="term"><em class="replaceable"><code>Name</code></em></b></span></dt><dd><p>The root name of sector low- and high-edge components
+(line, area, or node components). The default root name (when <em class="replaceable"><code>
+USRCOMP</code></em> = 0) is <span class="quote">"<span class="quote">CYCLIC</span>"</span>. A root name that
+you specify can contain up to 11 characters.</p><p>The naming
+convention for each low- and high-edge component pair is either of
+the following:</p><table border="0" summary="Simple list" class="simplelist"><tr><td><em class="replaceable"><code>Name</code></em>_m<em class="replaceable"><code>xx</code></em>l, <em class="replaceable"><code>
+Name</code></em>_m<em class="replaceable"><code>xx</code></em>h &nbsp;(potentially
+matched node patterns)</td></tr><tr><td><em class="replaceable"><code>Name</code></em>_u<em class="replaceable"><code>xx</code></em>l, <em class="replaceable"><code>
+Name</code></em>_u<em class="replaceable"><code>xx</code></em>h &nbsp;(potentially
+unmatched node patterns)</td></tr></table><p>The <em class="replaceable"><code>Name</code></em> value is the default (<span class="quote">"<span class="quote">CYCLIC
+</span>"</span>) or specified root name and <em class="replaceable"><code>xx</code></em> is
+the component pair ID number (sequential, starting at 01).       
+                                         </p></dd><dt><span><b class="term"><em class="replaceable"><code>USRCOMP</code></em></b></span></dt><dd><p>The number of pairs of user-defined low- and high-edge
+components on the cyclic sector (if any). The default value of 0 specifies
+automatic detection of sector edges; however, the automatic setting
+is not valid in all cases. (For more information, see the Notes section
+below.) If the value is greater than 0, no verification of user-defined
+components occurs.</p></dd><dt><span><b class="term"><em class="replaceable"><code>USRNMAP</code></em></b></span></dt><dd><p>The name of a user-defined array specifying the matching
+node pairs between the sector low and high edges. Valid only when <em class="replaceable"><code>
+USRCOMP</code></em> = 0. Skips the automatic detection of sector
+edges. Node pairs may be input in any order, but the low edge node
+must be the first entry in each pair.</p><pre class="programlisting">*DIM,MYMAP,ARRAY,2,14	! specifying 14 low-high edge node pairs
+*set,mymap(1, 1), 107, 108	! low node 107 &lt;&gt; high node 108
+*set,mymap(1, 2), 147, 211	! low node 147 &lt;&gt; high node 211
+*set,mymap(1, 3), 110, 109	! low node 110 &lt;&gt; high node 109
+        ! etc for node pairs 4 through 14
+cyclic,12,,1,,,MYMAP		! use array MYMAP to generate cyclic CEs</pre></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="CYCLIC.default"></a><h3>Command Default</h3><p>The default <span class="command"><strong>CYCLIC</strong></span> command (issuing the command
+with no arguments) detects the number of sectors (<em class="replaceable"><code>NSECTOR</code></em>),
+the sector angle (<em class="replaceable"><code>ANGLE</code></em>), and the coordinate
+system (<em class="replaceable"><code>KCN</code></em>) based upon the existing solid
+or finite-element model. The command also detects sector low- and
+high-edge components in most cases and assigns the default root name <span class="quote">"<span class="quote">
+CYCLIC</span>"</span> to the components.</p></div></div><div class="refsect1" title="Notes"><a name="CYCLIC.notes"></a><h2>Notes</h2><p>You can input your own value for <em class="replaceable"><code>NSECTOR</code></em>, <em class="replaceable"><code>
+ANGLE</code></em> or <em class="replaceable"><code>KCN</code></em>; if you do so,
+the command verifies argument values before executing.</p><p>When <em class="replaceable"><code>USRCOMP</code></em> = 0 and <em class="replaceable"><code>USRNMAP
+</code></em> = blank (default), the <span class="command"><strong>CYCLIC</strong></span> command
+automatically detects <a href="../ans_cycsym/advcycedgecomp.html" class="olink">low- and high-edge components</a> for
+models that consist of any combination of line, area, or volume elements.
+If a solid model exists, however, the  command uses only the lines,
+areas, and/or volumes to determine the  low- and high-edge components;
+the elements, if any, are ignored.</p><p>Nodes will be automatically rotated unless <a class="link" href="Hlp_C_CYCOPT.html" title="CYCOPT"><span class="command"><strong>CYCOPT</strong></span></a>,USERROT,YES
+has been specified.</p><p>If you issue a <a class="link" href="Hlp_C_CYCOPT.html" title="CYCOPT"><span class="command"><strong>CYCOPT</strong></span></a>,TOLER command to set
+a tolerance for edge-component pairing <span class="italic"><em>before</em></span> issuing
+the <span class="command"><strong>CYCLIC</strong></span> command, the <span class="command"><strong>CYCLIC</strong></span> command
+uses the specified tolerance when performing automatic edge-component
+detection.</p><p>For 2-D models, autodetection does not consider the <a class="link" href="Hlp_C_CSYS.html" title="CSYS"><span class="command"><strong>CSYS</strong></span></a>,5
+or <a class="link" href="Hlp_C_CSYS.html" title="CSYS"><span class="command"><strong>CSYS</strong></span></a>,6 coordinate system specification.  Autodetection
+for 180 degree (two-sector) models is not possible unless a central
+hole exists.</p><p>The <span class="command"><strong>CYCLIC</strong></span> command sets values and keys so
+that, if possible, the area-mesh (<a class="link" href="Hlp_C_AMESH.html" title="AMESH"><span class="command"><strong>AMESH</strong></span></a>) or volume-mesh
+(<a class="link" href="Hlp_C_VMESH.html" title="VMESH"><span class="command"><strong>VMESH</strong></span></a>) command meshes the sector with matching
+node and element face patterns on the low and high edges. (The command
+has no effect on any other element-creation command.) </p><p>Issue the <span class="command"><strong>CYCLIC</strong></span> command <span class="italic"><em>prior</em></span> to the meshing command to, if possible,
+produce a mesh with identical node and element patterns on the low
+and high sector edges. Only the <a class="link" href="Hlp_C_AMESH.html" title="AMESH"><span class="command"><strong>AMESH</strong></span></a> or <a class="link" href="Hlp_C_VMESH.html" title="VMESH"><span class="command"><strong>VMESH
+</strong></span></a> commands can perform automated matching. (Other meshing
+operation commands such as <a class="link" href="Hlp_C_VSWEEP.html" title="VSWEEP"><span class="command"><strong>VSWEEP</strong></span></a> cannot.) If you
+employ a meshing operation other than <a class="link" href="Hlp_C_AMESH.html" title="AMESH"><span class="command"><strong>AMESH</strong></span></a> or <a class="link" href="Hlp_C_VMESH.html" title="VMESH"><span class="command"><strong>
+VMESH</strong></span></a>, you should ensure that node and element face patterns
+match, if desired. The <span class="command"><strong>CYCLIC</strong></span> command output indicates
+whether each edge-component pair has or can produce a matching node
+pair.</p><p>A cyclic solution (via the <a class="link" href="Hlp_C_SOLVE.html" title="SOLVE"><span class="command"><strong>SOLVE</strong></span></a> command)
+allows dissimilar mesh patterns on the extreme boundaries of a cyclically
+symmetric model. The allowance for dissimilar patterns is useful when
+you have only finite-element meshes for your model but not the geometry
+data necessary to remesh it to obtain identical node patterns. In
+such cases, it is possible to obtain solution results, although perhaps
+at the expense of accuracy. A warning message appears because results
+may be degraded near the sector edges.</p><p>The constraint equations (CEs) that tie together the low and
+high edges of your model are generated at the solution stage of the
+analysis from the low- and high-edge components (and nowhere else).
+You should verify that automatically detected components are in the
+correct  locations and that you can account for all components; to
+do so, you can list (<a class="link" href="Hlp_C_CMLIST.html" title="CMLIST"><span class="command"><strong>CMLIST</strong></span></a>) or plot (<a class="link" href="Hlp_C_CMPLOT.html" title="CMPLOT"><span class="command"><strong>CMPLOT</strong></span></a>)
+the components.</p><p>If you issue the <span class="command"><strong>CYCLIC</strong></span> command after meshing
+and have defined element types with rotational degrees of freedom
+(DOFs), ANSYS generates cyclic CEs for rotational DOFs that may not
+exist on the sector boundaries. Issue the <a class="link" href="Hlp_C_CYCOPT.html" title="CYCOPT"><span class="command"><strong>CYCOPT</strong></span></a>,DOF
+command to prevent unused rotational terms from being generated.</p><p>Modal cyclic symmetry analysis is supported by the following
+eigensolvers: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Block Lanczos (<a class="link" href="Hlp_C_MODOPT.html" title="MODOPT"><span class="command"><strong>MODOPT</strong></span></a>,LANB)</p></li><li class="listitem"><p>PCG Lanczos (<a class="link" href="Hlp_C_MODOPT.html" title="MODOPT"><span class="command"><strong>MODOPT</strong></span></a>,LANPCG)</p></li><li class="listitem"><p>Super Node (<a class="link" href="Hlp_C_MODOPT.html" title="MODOPT"><span class="command"><strong>MODOPT</strong></span></a>,SNODE)</p></li><li class="listitem"><p>Subspace (<a class="link" href="Hlp_C_MODOPT.html" title="MODOPT"><span class="command"><strong>MODOPT</strong></span></a>,SUBSP)</p></li></ul></div><p>To learn more about analyzing a cyclically symmetric structure,
+see the <a href="../ans_cycsym/ans_cycsym.html" class="olink"><em class="citetitle">Cyclic Symmetry Analysis Guide</em></a>.</p><p>When using the <span class="command"><strong>CYCLIC</strong></span> command to automatically detect the sector, if an
+                        area is defined with the <a class="link" href="Hlp_C_AL.html" title="AL"><span class="command"><strong>AL</strong></span></a> command, the lines need to be
+                        oriented to form the closed curve. </p></div><div class="refsect1" title="Menu Paths"><a name="CYCLIC.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Cyclic Sector&gt;Cyclic Model&gt;Auto Defined</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Cyclic Sector&gt;Cyclic Model&gt;Status</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Cyclic Sector&gt;Cyclic Model&gt;User Defined</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Cyclic Sector&gt;Del Dupl Sector</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Cyclic Sector&gt;Reset (OFF)</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

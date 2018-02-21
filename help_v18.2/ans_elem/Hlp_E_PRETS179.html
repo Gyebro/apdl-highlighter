@@ -1,0 +1,88 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:36:28-04:00"><title>PRETS179</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_CONTA178.html" title="CONTA178"><link rel="next" href="Hlp_E_LINK180.html" title="LINK180"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="PRETS179"><a name="PRETS179"></a><div class="titlepage"></div><a class="indexterm" name="d0e113925"></a><span class="refentrytitle">
+            <span class="structname">PRETS179</span>
+        </span><div class="refnamediv"><p><br><b class="refpurpose">Pretension</b><div class="refclass">
+            <div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  DesSpc | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+            <div class=""><div class="application"><span class="application">
+                <a class="link" href="Hlp_E_PRETS179.html#elem179prodmap071499" title="PRETS179 Product Restrictions">Product Restrictions</a>
+            </span></div></div>
+        </div></p></div><div class="refsect1" title="PRETS179 Element Description"><a name="PRETS179.description"></a><h2>PRETS179 Element Description</h2><p><span class="structname">PRETS179</span> is used to define a 2-D or 3-D pretension section
+            within a meshed structure. The structure can be built from any 2-D or 3-D structural
+            elements (solid, beam, shell, pipe, or link). The <span class="structname">PRETS179</span>
+            element has one translation degree of freedom, UX. (UX represents the defined pretension
+            direction. ANSYS transforms the geometry of the problem so that, internally, the
+            pretension force is applied in the specified pretension load direction, regardless of
+            how the model is defined.) Loads can be applied using the <a href="../ans_cmd/Hlp_C_SLOAD.html" class="olink"><span class="command"><strong>SLOAD</strong></span></a>
+            command. These loads will overwrite any F or D command specifications on the same nodes
+            at solution time. Only tension loads can be applied; bending or torsion loads are
+            ignored. See <a href="../ans_thry/thy_el179.html" class="olink">PRETS179</a> in the
+            <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for more details about the element. See <a href="../ans_bas/Hlp_G_BAS2_9.html" class="olink">Defining Pretension in a Joint Fastener</a> in
+            the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for a discussion of how to generate <span class="structname">PRETS179</span>
+            elements automatically using the <a href="../ans_cmd/Hlp_C_PSMESH.html" class="olink"><span class="command"><strong>PSMESH</strong></span></a> command. When creating the
+                <span class="structname">PRETS179</span> elements, the pretension load direction is
+            specified relative to surface A. (For backward compatibility, it is also possible to
+            generate such elements using the <a href="../ans_cmd/Hlp_C_EINTF.html" class="olink"><span class="command"><strong>EINTF</strong></span></a> command.)</p><div class="figure"><a name="elem179fig1map071499"></a><p class="title"><b>Figure&nbsp;179.1:&nbsp;&nbsp;PRETS179 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM179-1.svg" alt="PRETS179 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="PRETS179 Input Data"><a name="PRETS179.input"></a><h2>PRETS179 Input Data</h2><p>The pretension section is modeled by a set of pretension elements. The geometry, node
+            locations, and the coordinate system for the pretension element are shown in <a class="xref" href="Hlp_E_PRETS179.html#elem179fig1map071499" title="Figure&nbsp;179.1:&nbsp;&nbsp;PRETS179 Geometry">Figure&nbsp;179.1:&nbsp;PRETS179 Geometry</a>. The pretension element is defined by three nodes
+            I, J, K and the section data NX, NY, NZ which define the pretension load direction
+            relative to surface A. The pretension load direction is constant and is not updated for
+            large displacements. Although it is not recommended, the pretension load direction can
+            be changed between load steps by changing the section data. For large-deflection
+            problems, you could track the deflection and change the pretension load direction
+            accordingly.</p><p>Nodes I and J are initially coincident and they should be defined in the same nodal
+            coordinate system. No boundary conditions apply on node J. For each pretension section,
+            the node ordering of the pretension elements is critical. The I and J nodes must be
+            ordered so that all nodes I are on surface A and all nodes J are on surface B.</p><p>Node K is the pretension node. This pretension node provides a convenient way to
+            assign boundary conditions on an entire pretension section. Node K can be anywhere in
+            space; however, its nodal coordinate system must be global Cartesian. Each pretension
+            section has only one pretension node associated with it. Node K should only connect to
+            pretension elements that use the same section number.</p><p>The pretension node K has only one translation degree of freedom UX, which defines the
+            relative displacement between the two sections A and B in the pretension load direction.
+            Sliding motion is prevented automatically. If the pretension node and the bolted
+            structure are not well constrained, rigid body motion can occur. Therefore, in the
+            beginning of each load step, you should verify the boundary conditions for bolt
+            structures carefully.</p><p>The following table summarizes the element input. <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a> gives
+            a general description of element input.</p><div class="refsect2" title="PRETS179 Input Summary"><a name="PRETS179.tab.1"></a><h3>PRETS179 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J, K</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>UX (tightening adjustment of the pretension section)</p></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p><a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: BETD, <span>DMPR</span></p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+                                <a href="../ans_str/strlinperturb.html" class="olink">Linear
+                                    perturbation</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_str/Hlp_G_STRnlbasin.html" class="olink">Nonlinearity</a>
+                            </td></tr></table></dd><dt><span><b class="term">KEYOPTs</b></span></dt><dd><p>None</p></dd></dl></div></div></div></div><div class="refsect1" title="PRETS179 Output Data"><a name="PRETS179.output"></a><h2>PRETS179 Output Data</h2><p>Nodal displacements are included in the overall displacement solution. There is no
+            printed or post element data output for the pretension element. ANSYS automatically
+            determines the deformations of the bolt structure. The underlying elements connected to
+            both sides of cutting surfaces appear overlap under the pretension load. The
+            displacement of the pretension node gives the adjustment of the pretension. Use
+                <a href="../ans_cmd/Hlp_C_PRNSOL.html" class="olink"><span class="command"><strong>PRNSOL</strong></span></a> to list the adjustment. The reaction force on the
+            pretension node provides the total normal force across the pretension section. Use
+                <a href="../ans_cmd/Hlp_C_PRRSOL.html" class="olink"><span class="command"><strong>PRRSOL</strong></span></a> or <a href="../ans_cmd/Hlp_C_PRRFOR.html" class="olink"><span class="command"><strong>PRRFOR</strong></span></a> command to list the tension
+            force. The stress distribution of underlying elements provides a good estimation of the
+            stress across the pretension section.</p></div><div class="refsect1" title="PRETS179 Assumptions and Restrictions"><a name="ELEM179assumpmap071499"></a><h2>PRETS179 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The nodal coordinate system of the pretension node K must be global Cartesian.
+                </p></li><li class="listitem"><p>You cannot apply any constraint equations (or coupling) on any pretension
+                    element nodes.</p></li><li class="listitem"><p>The <a href="../ans_cmd/Hlp_C_NROTAT.html" class="olink"><span class="command"><strong>NROTAT</strong></span></a> command can not be applied on pretension node K.
+                        <a href="../ans_cmd/Hlp_C_NROTAT.html" class="olink"><span class="command"><strong>NROTAT</strong></span></a> can be applied to the other nodes I and J in such
+                    way that they are rotated into the same nodal coordinate system. If K has been
+                    mistakenly rotated into another coordinate system, ANSYS will issue a warning
+                    and will automatically rotate it back into the global Cartesian system.
+                    Similarly, if I and J are rotated into different coordinate systems, ANSYS will
+                    issue a warning and will automatically rotate J to be consistent with I.</p></li><li class="listitem"><p>The pretension normal NX, NY, NZ must be specified through section data. You
+                    should not change section data either between load steps or during restart
+                    stages; otherwise ANSYS assumes the pretension normal varies between the load
+                    steps.</p></li><li class="listitem"><p>The pretension force is actually applied in the direction of the pretension
+                    section normal. However, the pretension force is always specified and displayed
+                    in the global X direction since the element has only one degree of freedom,
+                    UX.</p></li><li class="listitem"><p>The structure can be composed of superelements. However, all the pretension
+                    nodes must remain as the master nodes. </p></li><li class="listitem"><p>The element may not be deactivated with the <a href="../ans_cmd/Hlp_C_EKILL.html" class="olink"><span class="command"><strong>EKILL</strong></span></a> command.
+                </p></li><li class="listitem"><p>Use of this element is limited to structural analyses only.</p></li></ul></div></div><div class="refsect1" title="PRETS179 Product Restrictions"><a name="elem179prodmap071499"></a><h2>PRETS179 Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific restrictions
+            apply to this element in addition to the general assumptions and restrictions given in
+            the previous section.</p><p title="ANSYS Mechanical Pro"><b>ANSYS Mechanical Pro&nbsp;</b>
+                </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Linear perturbation is not available.</p></li></ul></div><p title="ANSYS Mechanical Pro">
+            </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

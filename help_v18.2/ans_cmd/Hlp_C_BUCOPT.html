@@ -1,0 +1,62 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:28-04:00"><title>BUCOPT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_B_TOC.html" title="B Commands"><link rel="prev" href="Hlp_C_BTOL.html" title="BTOL"><link rel="next" href="Hlp_C_CTOC.html" title="C Commands"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="BUCOPT"><a name="BUCOPT"></a><div class="titlepage"></div><a class="indexterm" name="d0e40538"></a><span class="refentrytitle">
+<span class="command"><strong>BUCOPT</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>BUCOPT</strong></span>, <em class="replaceable"><code>Method</code></em>, <em class="replaceable"><code>NMODE</code></em>, <em class="replaceable"><code>SHIFT</code></em>, <em class="replaceable"><code>LDMULTE</code></em>, <em class="replaceable"><code>RangeKey</code></em>
+<br><b class="refpurpose">Specifies buckling analysis options.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolunonlinjla070199" title="Table&nbsp;2.50:&nbsp;&nbsp;Nonlinear Options"><span class="type">Nonlinear Options</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  DesSpc | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="BUCOPT.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Method</code></em>
+</b></span></dt><dd><p>Mode extraction method to be used for the buckling
+analysis:        </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LANB</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Block Lanczos</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SUBSP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Subspace iteration</p></td></tr></tbody></table></div></div><p>
+</p><p>See <a href="../ans_thry/thy_tool13.html" class="olink">Eigenvalue and Eigenvector Extraction</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for more information
+on these two methods.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NMODE</code></em>
+</b></span></dt><dd><p>Number of buckling modes (i.e., eigenvalues or load
+multipliers) to extract (defaults to 1).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>SHIFT</code></em>
+</b></span></dt><dd><p>By default, this value acts as the initial shift point
+about which the buckling modes are calculated (defaults to 0.0). </p><p>When <em class="replaceable"><code>RangeKey</code></em> = RANGE, this value
+acts as the lower bound of the load multiplier range of interest (<em class="replaceable"><code>LDMULTE</code></em> is the upper bound).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>LDMULTE</code></em>
+</b></span></dt><dd><p>Boundary for the load multiplier range of interest
+(defaults to 
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqaff4ad3b-250a-4dac-9d6f-dc3889458d7f.svg"></span>).</p><p>When <em class="replaceable"><code>RangeKey</code></em> = CENTER, the <em class="replaceable"><code>LDMULTE</code></em> value determines the lower and upper bounds of the load multiplier
+range of interest (-<em class="replaceable"><code>LDMULTE</code></em>, +<em class="replaceable"><code>LDMULTE</code></em>).</p><p>When <em class="replaceable"><code>RangeKey</code></em> = RANGE, the <em class="replaceable"><code>LDMULTE</code></em> value is the upper bound for the load multiplier
+range of interest (<em class="replaceable"><code>SHIFT</code></em> is the lower bound).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>RangeKey</code></em>
+</b></span></dt><dd><p>Key used to control the behavior of the eigenvalue
+extraction method (defaults to CENTER):</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CENTER</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use the CENTER option control (default);
+the program computes <em class="replaceable"><code>NMODE</code></em> buckling modes
+centered around <em class="replaceable"><code>SHIFT</code></em> in the range of (-<em class="replaceable"><code>LDMULTE</code></em>, +<em class="replaceable"><code>LDMULTE</code></em>).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">RANGE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Use the RANGE option control; the
+program computes <em class="replaceable"><code>NMODE</code></em> buckling modes in
+the range of (<em class="replaceable"><code>SHIFT</code></em>, <em class="replaceable"><code>LDMULTE</code></em>).</p></td></tr></tbody></table></div></div><p>
+</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="BUCOPT.notes"></a><h2>Notes</h2><p>Eigenvalues from a buckling analysis
+can be negative and/or positive. The program sorts the eigenvalues
+from the most negative to the most positive values. The minimum buckling
+load factor may correspond to the smallest eigenvalue in absolute
+value, or to an eigenvalue within the range, depending on your application
+(i.e., linear perturbation buckling analysis or purely linear buckling
+analysis).</p><p>It is recommended that you request an additional few buckling
+modes beyond what is needed in order to enhance the accuracy of the
+final solution. It is also recommended that you input a non zero <em class="replaceable"><code>SHIFT</code></em> value and a reasonable <em class="replaceable"><code>LDMULTE</code></em> value (i.e., a smaller <em class="replaceable"><code>LDMULTE</code></em> that is
+closer to the last buckling mode of interest) when numerical problems
+are encountered.</p><p>When using the RANGE option, defining a range that spans zero
+is not recommended. If you are seeking both negative and positive
+eigenvalues, it is recommended that you use the CENTER option.</p><p>This command is also valid in PREP7.  If used in SOLUTION, this
+command is valid only within the first load step. </p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>Both extraction methods (LANB and SUBSP) are supported within Distributed ANSYS.
+    However, the subspace iteration eigensolver (SUBSP) is the only distributed eigensolver that
+    will run a fully distributed solution. In a buckling analysis, the Block Lanczos eigensolver
+    (LANB) runs only in the shared-memory parallel mode; therefore, you will not see the full
+    performance improvements with this method that you would with a fully distributed
+    solution.</p></div><div class="refsect1" title="Menu Paths"><a name="BUCOPT.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Analysis Type&gt;Analysis Options</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Analysis Type&gt;Analysis Options</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

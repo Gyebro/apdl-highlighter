@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:43-04:00"><title>*REPEAT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_R_TOC.html" title="R Commands"><link rel="prev" href="Hlp_C_RENAME.html" title="/RENAME"><link rel="next" href="Hlp_C_REPLOT.html" title="/REPLOT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="*REPEAT"><a name="a-REPEAT"></a><div class="titlepage"></div><a class="indexterm" name="d0e224776"></a><span class="refentrytitle"><a href="Hlp_C_REPEAT.html" class="olink"><span class="command"><strong>*REPEAT</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>*REPEAT</strong></span>, <em class="replaceable"><code>NTOT</code></em>, <em class="replaceable"><code>VINC1</code></em>, <em class="replaceable"><code>VINC2</code></em>, <em class="replaceable"><code>VINC3</code></em>, <em class="replaceable"><code>VINC4</code></em>, <em class="replaceable"><code>VINC5</code></em>, <em class="replaceable"><code>VINC6</code></em>, <em class="replaceable"><code>VINC7</code></em>, <em class="replaceable"><code>VINC8</code></em>, <em class="replaceable"><code>VINC9</code></em>, <em class="replaceable"><code>VINC10</code></em>, <em class="replaceable"><code>VINC11</code></em><br><b class="refpurpose">Repeats the previous command. </b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_4.html" title="2.4.&nbsp;APDL Commands"><code class="classname">APDL</code></a>: <a class="link" href="Hlp_C_CH2_4.html#cmdapdlproctlsjla070199" title="Table&nbsp;2.22:&nbsp;&nbsp;Process Controls"><span class="type">Process Controls</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsect1" title="Argument Descriptions"><a name="a-REPEAT.argdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NTOT</code></em></b></span></dt><dd><p>Number of times the preceding command is executed (including
+the initial execution).  Must be 2 or greater.  <em class="replaceable"><code>NTOT</code></em> of
+2 causes one repeat (for a total of 2 executions).</p></dd><dt><span><b class="term"><em class="replaceable"><code>VINC1</code></em>, <em class="replaceable"><code>VINC2</code></em>,
+ <em class="replaceable"><code>VINC3</code></em>, . . . , <em class="replaceable"><code>VINC11</code></em></b></span></dt><dd><p>Value increments applied to first through eleventh data fields
+of the preceding command.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="a-REPEAT.notes"></a><h2>Notes</h2><p><a href="Hlp_C_REPEAT.html" class="olink"><span class="command"><strong>*REPEAT</strong></span></a> must immediately follow the command that
+is to be repeated.  The numeric arguments of the initial command may be incremented
+in the generated commands.  The numeric increment values may be integer or
+real, positive or negative, zero or blank.  Alphanumeric arguments cannot
+be incremented.  For large values of <em class="replaceable"><code>NTOT</code></em>, consider
+printout suppression (<a href="Hlp_C_NOPR.html" class="olink"><span class="command"><strong>/NOPR</strong></span></a> command) first.</p><p>Most commands beginning with slash (/), star (*), as well as "unknown
+command" macros, cannot be repeated.  For these commands, or if more than
+one command is to be repeated, include them within a do-loop. File switching
+commands (those reading additional commands) cannot be repeated.  If a <a href="Hlp_C_REPEAT.html" class="olink"><span class="command"><strong>*REPEAT</strong></span></a> command
+ immediately follows another <a href="Hlp_C_REPEAT.html" class="olink"><span class="command"><strong>*REPEAT</strong></span></a> command, the repeat
+action only applies to the last non-<a href="Hlp_C_REPEAT.html" class="olink"><span class="command"><strong>*REPEAT</strong></span></a> command.  Also, <a href="Hlp_C_REPEAT.html" class="olink"><span class="command"><strong>*REPEAT</strong></span></a> should
+not  be used in interactive mode immediately after a) a command (or its log
+file equivalent) that uses picking, or b) a command that requires a response
+from the user.</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e224904"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

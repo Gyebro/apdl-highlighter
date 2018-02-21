@@ -1,0 +1,53 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:42:01-04:00"><title>*VREAD</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_V_TOC.html" title="V Commands"><link rel="prev" href="Hlp_C_VPUT.html" title="VPUT"><link rel="next" href="Hlp_C_VROTAT.html" title="VROTAT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="*VREAD"><a name="a-VREAD"></a><div class="titlepage"></div><a class="indexterm" name="d0e299081"></a><span class="refentrytitle"><a href="Hlp_C_VREAD.html" class="olink"><span class="command"><strong>*VREAD</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>*VREAD</strong></span>, <em class="replaceable"><code>ParR</code></em>, <em class="replaceable"><code>Fname</code></em>, <em class="replaceable"><code>Ext</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>Label</code></em>, <em class="replaceable"><code>n1</code></em>, <em class="replaceable"><code>n2</code></em>, <em class="replaceable"><code>n3</code></em>, <em class="replaceable"><code>NSKIP</code></em><br><b class="refpurpose">Reads data and produces an array parameter vector or matrix.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_4.html" title="2.4.&nbsp;APDL Commands"><code class="classname">APDL</code></a>: <a class="link" href="Hlp_C_CH2_4.html#cmdapdlparadefjla070199" title="Table&nbsp;2.18:&nbsp;&nbsp;Parameter Definition"><span class="type">Parameters</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsect1" title="Argument Descriptions"><a name="a-VREAD.argdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>ParR</code></em></b></span></dt><dd><p>The name of the resulting array parameter vector.  See <a href="Hlp_C_SET_st.html" class="olink"><span class="command"><strong>*SET</strong></span></a> for
+name restrictions.  The parameter must exist as a dimensioned array [<a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a>].
+String arrays are limited to a maximum of 8 characters.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Fname</code></em></b></span></dt><dd><p>File name and directory path (248 characters maximum, including the characters needed for the directory path).  An unspecified directory path defaults to the working directory; in this case, you can use all 248 characters for the file name. </p><p>If the <em class="replaceable"><code>Fname</code></em> field
+is left blank, reading continues from the current input device, such as the
+terminal.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Ext</code></em></b></span></dt><dd><p>Filename extension (eight-character maximum).</p></dd><dt><span><b class="term"><em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused field.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Label</code></em></b></span></dt><dd><p>Can take a value of IJK, IKJ, JIK, JKI, KIJ, KJI, or blank
+(IJK).</p></dd><dt><span><b class="term"><em class="replaceable"><code>n1</code></em>, <em class="replaceable"><code>n2</code></em>, <em class="replaceable"><code>n3</code></em></b></span></dt><dd><p>Read as (((<em class="replaceable"><code>ParR</code></em> (i,j,k), k = 1,n1),
+i = 1, n2), j = 1, n3) for <em class="replaceable"><code>Label</code></em> = KIJ. <em class="replaceable"><code>n2</code></em> and <em class="replaceable"><code>n3</code></em> default
+to 1.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NSKIP</code></em></b></span></dt><dd><p>Number of lines at the beginning of the file being read that
+will be skipped during the reading.  Default = 0.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="a-VREAD.notes"></a><h2>Notes</h2><p>Reads data from a file and fills in an array
+parameter vector or matrix.  Data are read from a formatted file or, if the
+menu is off [<a href="Hlp_C_MENU.html" class="olink"><span class="command"><strong>/MENU</strong></span></a>,OFF] and <em class="replaceable"><code>Fname</code></em> is
+blank, from the next input lines.  The format of the data to be read must
+be input immediately following the <a href="Hlp_C_VREAD.html" class="olink"><span class="command"><strong>*VREAD</strong></span></a> command.  The
+format specifies the number of fields to be read per record, the field width,
+and the placement of the decimal point (if none specified in the value). 
+The read operation follows the available FORTRAN FORMAT conventions of the
+system (see your system FORTRAN manual).  Any standard FORTRAN <span class="italic"><em>real</em></span> format
+(such as (4F6.0), (E10.3,2X,D8.2), etc.) or alphanumeric format (A) may be
+used.  Alphanumeric strings are limited to a maximum of 8 characters for any
+field (A8). For storage of string arrays greater than 8 characters, the *SREAD
+command can be used. Integer (I) and list-directed (*) descriptors
+may <span class="italic"><em>not</em></span> be used.  <span class="italic"><em>The
+parentheses must be included in the format</em></span> and the format must
+not exceed 80 characters (including parentheses).  The input line length is
+limited to 128 characters.</p><p>A starting array element number must be defined for the result array
+parameter vector (numeric or character).  For example, entering these two
+lines:</p><pre class="programlisting">*VREAD,A(1),ARRAYVAL
+(2F6.0)</pre><p>will read two values from each line of file ARRAYVAL and assign the
+values to A(1), A(2), A(3), etc.  Reading continues until successive row elements
+[<a href="Hlp_C_VLEN.html" class="olink"><span class="command"><strong>*VLEN</strong></span></a>, <a href="Hlp_C_VMASK.html" class="olink"><span class="command"><strong>*VMASK</strong></span></a>, <a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a>]
+are filled.</p><p>For an array parameter matrix, a starting array element row and column
+number must be defined.  For example, entering these two lines:</p><pre class="programlisting">VREAD,A(1,1),ARRAYVAL,,,IJK,10,2
+(2F6.0)</pre><p>will read two values from each line of file ARRAYVAL and assign the
+values to A(1,1), A(2,1), A(3,1), etc.  Reading continues until <em class="replaceable"><code>n1</code></em> (10)
+successive row elements are filled.  Once the maximum row number is reached,
+subsequent data will be read into the next column (e.g., A(1,2), A(2,2), A(3,2),
+etc.)</p><p>For numerical parameters, absolute values and scale factors may be applied
+to the result parameter [<a href="Hlp_C_VABS.html" class="olink"><span class="command"><strong>*VABS</strong></span></a>, <a href="Hlp_C_VFACT.html" class="olink"><span class="command"><strong>*VFACT</strong></span></a>].
+ Results may be cumulative [<a href="Hlp_C_VCUM.html" class="olink"><span class="command"><strong>*VCUM</strong></span></a>].  See the <a href="Hlp_C_VOPER.html" class="olink"><span class="command"><strong>*VOPER</strong></span></a> command
+for details.  If you are in the GUI the <a href="Hlp_C_VREAD.html" class="olink"><span class="command"><strong>*VREAD</strong></span></a> command
+must be contained in an externally prepared file read into the ANSYS program
+(i.e., <a href="Hlp_C_USE.html" class="olink"><span class="command"><strong>*USE</strong></span></a>, <a href="Hlp_C_INPUT.html" class="olink"><span class="command"><strong>/INPUT</strong></span></a>, etc.).</p><p>This command is not applicable to 4- or 5-D arrays.</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e299305"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;Parameters&gt;Array Parameters&gt;Read from File</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

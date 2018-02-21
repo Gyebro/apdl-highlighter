@@ -1,0 +1,165 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:32-04:00"><title>CNCHECK</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_C_CTOC.html" title="C Commands"><link rel="prev" href="Hlp_C_CMWRITE.html" title="CMWRITE"><link rel="next" href="Hlp_C_CNKMOD.html" title="CNKMOD"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="CNCHECK"><a name="CNCHECK"></a><div class="titlepage"></div><a class="indexterm" name="d0e51417"></a><span class="refentrytitle"><span class="command"><strong>CNCHECK</strong></span></span><div class="refnamediv"><p><span class="command"><strong>CNCHECK</strong></span>, <em class="replaceable"><code>Option</code></em>, <em class="replaceable"><code>RID1</code></em>, <em class="replaceable"><code>RID2</code></em>, <em class="replaceable"><code>RINC</code></em>, <em class="replaceable"><code>InterType</code></em>, <em class="replaceable"><code>TRlevel</code></em>, <em class="replaceable"><code>CGAP</code></em>, <em class="replaceable"><code>CPEN</code></em>, <em class="replaceable"><code>IOFF</code></em><br><b class="refpurpose">Provides and/or adjusts the initial status of contact
+pairs.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7databaseldm061600" title="Table&nbsp;2.24:&nbsp;&nbsp;Database"><span class="type">Database</span></a></span></div></div>   <div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a> 
+    DesSpc | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="CNCHECK.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Option</code></em></b></span></dt><dd><p>Option to be performed:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DETAIL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>List all contact pair properties
+(default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SUMMARY</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>List only the open/closed status
+for each contact pair. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">POST</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Execute a partial solution to write
+the initial contact configuration to the <span class="filename"><strong>Jobname.RCN</strong></span> file.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ADJUST</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Physically move contact nodes to
+the target in order to close a gap or reduce penetration. The initial
+adjustment is converted to structural displacement values (UX, UY,
+UZ) and stored in the <span class="filename"><strong>Jobname.RCN</strong></span> file.  </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MORPH</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Physically move contact nodes to
+the target in order to close a gap or reduce penetration, and also
+morph the underlying solid mesh. The initial adjustment of contact
+nodes and repositioning of solid element nodes due to mesh morphing
+are converted to structural displacement values (UX, UY, UZ) and stored
+in the <span class="filename"><strong>Jobname.RCN</strong></span> file.  </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">RESET</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Reset target element and contact
+element key options and real constants to their default values. This
+option is not valid for general contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">AUTO</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Automatically sets certain real constants
+and key options to recommended values or settings in order to achieve
+better convergence based on overall contact pair behaviors. This option
+is not valid for general contact.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TRIM</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Trim contact pair (remove certain
+contact and target elements).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">UNSE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Unselect certain contact and target
+elements.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>RID1</code></em>, <em class="replaceable"><code>RID2</code></em>, <em class="replaceable"><code>RINC</code></em></b></span></dt><dd><p>For pair-based contact, the range of real constant
+pair ID's for which <em class="replaceable"><code>Option</code></em> will be performed.
+If <em class="replaceable"><code>RID2</code></em> is not specified, it defaults to <em class="replaceable"><code>RID1</code></em>. If no value is specified, all contact pairs in
+the selected set of elements are considered. </p><p>For general
+contact (<em class="replaceable"><code>InterType</code></em> = GCN), <em class="replaceable"><code>RID1</code></em> and <em class="replaceable"><code>RID2</code></em> are section
+IDs associated with general contact surfaces instead of real constant
+IDs. If <em class="replaceable"><code>RINC</code></em> = 0, the <em class="replaceable"><code>Option</code></em> is performed between the two sections, <em class="replaceable"><code>RID1</code></em> and <em class="replaceable"><code>RID2</code></em>. If <em class="replaceable"><code>RINC &gt;</code></em> 0, the <em class="replaceable"><code>Option</code></em> is performed among all
+specified sections (<em class="replaceable"><code>RID1</code></em> to <em class="replaceable"><code>RID2</code></em> with increment of <em class="replaceable"><code>RINC</code></em>).</p></dd><dt><span><b class="term"><em class="replaceable"><code>InterType</code></em></b></span></dt><dd><p>The type of contact interface (<a href="../ans_ctec/ctec_comppairgen.html" class="olink">pair-based versus general
+       contact</a>) to be considered; or the type of contact pair to be
+      trimmed/unselected/auto-set.</p><p>The following
+labels specify the type of contact interface:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">(blank)</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Include all contact definitions
+(pair-based and general contact).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">GCN</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Include general contact definitions
+only (not valid when <em class="replaceable"><code>Option</code></em> = RESET or
+AUTO).</p></td></tr></tbody></table></div></div><p><span>The following labels specify the type of contact pairs
+to be trimmed/unselected/auto-set (used only when <em class="replaceable"><code>Option</code></em> = TRIM, UNSE, or AUTO, and only for pair-based contact definitions):</span></p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ANY</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>All types (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MPC</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>MPC-based contact pairs (KEYOPT(2)
+= 2).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BOND</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Bonded contact pairs (KEYOPT(12)
+= 3, 5, 6).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NOSP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>No separation contact pairs (KEYOPT(12)
+= 2, 4).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">INAC</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Inactive contact pairs (symmetric
+contact pairs for MPC contact or KEYOPT(8) = 2).</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>TRlevel</code></em></b></span></dt><dd><p>Trimming level (used only when <em class="replaceable"><code>Option</code></em> = TRIM, UNSE, <span>or MORPH</span>):</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">(blank)</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Normal trimming (default): remove/unselect contact and target elements which are in
+          far-field.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">AGGRE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Aggressive trimming: remove/unselect contact and target elements which are in
+          far-field, and certain elements in near-field.</p></td></tr></tbody></table></div></div></dd></dl></div></div><div><div class="variablelist"><p>The remaining arguments, <em class="replaceable"><code>CGAP</code></em>, <em class="replaceable"><code>CPEN</code></em>, and <em class="replaceable"><code>IOFF</code></em>, are parameters that control initial contact adjustment.
+They are only valid when <em class="replaceable"><code>Option</code></em> = ADJUST
+or MORPH.</p><dl><dt><span><b class="term"><em class="replaceable"><code>CGAP</code></em></b></span></dt><dd><p>Control parameter for opening gap. Close the opening
+gap if the absolute value of the gap is smaller than the <em class="replaceable"><code>CGAP</code></em> value. <em class="replaceable"><code>CGAP</code></em> defaults
+to 0.25*PINB (where PINB is the pinball radius) for bonded and no-separation
+contact; otherwise it defaults to the value of real constant ICONT.</p></dd><dt><span><b class="term"><em class="replaceable"><code>CPEN</code></em></b></span></dt><dd><p>Control parameter for initial penetration. Close the
+initial penetration if the absolute value of the penetration is smaller
+than the <em class="replaceable"><code>CPEN</code></em> value. <em class="replaceable"><code>CPEN</code></em> defaults to 0.25*PINB (where PINB is the pinball radius) for any
+type of interface behavior (either bonded or standard contact). </p></dd><dt><span><b class="term"><em class="replaceable"><code>IOFF</code></em></b></span></dt><dd><p>Control parameter for initial adjustment. Input a
+positive value to adjust the contact nodes towards the target surface
+with a constant interference distance equal to <em class="replaceable"><code>IOFF</code></em>. Input a negative value to adjust the contact node towards the target
+surface with a uniform gap distance equal to the absolute value of <em class="replaceable"><code>IOFF</code></em>.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="CNCHECK.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>CNCHECK</strong></span> command provides information
+for surface-to-surface, node-to-surface, and line-to-line contact
+pairs (element types <a href="../ans_elem/Hlp_E_TARGE169.html" class="olink"><span class="structname">TARGE169</span></a>, <a href="../ans_elem/Hlp_E_TARGE170.html" class="olink"><span class="structname">TARGE170</span></a>, <a href="../ans_elem/Hlp_E_CONTA171.html" class="olink"><span class="structname">CONTA171</span></a>, <a href="../ans_elem/Hlp_E_CONTA172.html" class="olink"><span class="structname">CONTA172</span></a>, <a href="../ans_elem/Hlp_E_CONTA173.html" class="olink"><span class="structname">CONTA173</span></a>, <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a>, <a href="../ans_elem/Hlp_E_CONTA175.html" class="olink"><span class="structname">CONTA175</span></a>, <a href="../ans_elem/Hlp_E_CONTA176.html" class="olink"><span class="structname">CONTA176</span></a>, <a href="../ans_elem/Hlp_E_CONTA177.html" class="olink"><span class="structname">CONTA177</span></a>). All contact
+and target elements of interest, along with the solid elements and
+nodes attached to them, must be selected for the command to function
+properly. For performance reasons, the program uses a subset of nodes
+and elements based on the specified contact regions (<em class="replaceable"><code>RID1</code></em>, <em class="replaceable"><code>RID2</code></em>, <em class="replaceable"><code>RINC</code></em>) when executing the <span class="command"><strong>CNCHECK</strong></span> command.</p><p><span class="command"><strong>CNCHECK</strong></span> is available in both the PREP7 and
+SOLUTION processors, but only before the first solve operation (that
+is, only before the first load step or the first substep). </p><p>If the contact and target elements were generated through mesh
+commands (<a class="link" href="Hlp_C_AMESH.html" title="AMESH"><span class="command"><strong>AMESH</strong></span></a>, <a class="link" href="Hlp_C_LMESH.html" title="LMESH"><span class="command"><strong>LMESH</strong></span></a>, etc.)
+instead of the <a class="link" href="Hlp_C_ESURF.html" title="ESURF"><span class="command"><strong>ESURF</strong></span></a> command, you must issue <a class="link" href="Hlp_C_MODMSH.html" title="MODMSH"><span class="command"><strong>MODMSH</strong></span></a>,DETACH before <span class="command"><strong>CNCHECK</strong></span>. Otherwise, <span class="command"><strong>CNCHECK</strong></span> will not work correctly.</p><div class="highlights"><p>The following additional notes are available:</p><ul><li><a href="Hlp_C_CNCHECK.html#d0e51844" title="Option = POST">"<em class="replaceable"><code>Option</code></em> = POST"</a></li><li><a href="Hlp_C_CNCHECK.html#d0e51893" title="Option = ADJUST or MORPH">"<em class="replaceable"><code>Option</code></em> = ADJUST or MORPH"</a></li><li><a href="Hlp_C_CNCHECK.html#d0e51964" title="Option = RESET">"<em class="replaceable"><code>Option</code></em> = RESET"</a></li><li><a href="Hlp_C_CNCHECK.html#d0e52058" title="Option = AUTO">"<em class="replaceable"><code>Option</code></em> = AUTO"</a></li><li><a href="Hlp_C_CNCHECK.html#d0e52339" title="Removing or Unselecting Contact and Target Elements (Option = TRIM/UNSEL)">"Removing or Unselecting Contact and Target Elements (<em class="replaceable"><code>Option</code></em> = TRIM/UNSEL)"</a></li></ul></div><div class="refsect2" title="Option = POST"><a name="d0e51844"></a><h3><em class="replaceable"><code>Option</code></em> = POST</h3><p>The command <span class="command"><strong>CNCHECK</strong></span>,POST solves the initial
+contact configuration in one substep. After issuing this command,
+you can postprocess the contact result items as you would for any
+other converged load step; however, only the contact status, contact
+penetration or gap, and contact pressure will have meaningful values.
+Other contact quantities (friction stress, sliding distance, chattering)
+will be available but are not useful.</p><p>Because <em class="replaceable"><code>Option</code></em> = POST forces a solve
+operation, the <a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">PrepPost (PP) license</a> does not work with <span class="command"><strong>CNCHECK</strong></span>,POST.</p><p>If <span class="command"><strong>CNCHECK</strong></span>,POST is issued within the solution
+processor, the <a class="link" href="Hlp_C_SOLVE.html" title="SOLVE"><span class="command"><strong>SOLVE</strong></span></a> command that solves the first
+load step of your analysis should appear in a different step, as shown
+in the following example:</p><pre class="programlisting">/SOLU
+CNCHECK,POST
+FINISH
+. . .
+
+/SOLU
+SOLVE
+FINISH
+. . .</pre><p><span class="command"><strong>CNCHECK</strong></span>,POST writes initial contact results
+to a file named <span class="filename"><strong>Jobname.RCN</strong></span>.  When postprocessing
+the initial contact state, you need to explicitly read results from
+this file using the <a class="link" href="Hlp_C_FILE.html" title="FILE"><span class="command"><strong>FILE</strong></span></a> and <a class="link" href="Hlp_C_SET.html" title="SET"><span class="command"><strong>SET</strong></span></a>,FIRST commands in POST1 to properly read the corresponding contact
+data. Otherwise, the results may be read improperly. The following
+example shows a valid command sequence for plotting the initial contact
+gap:</p><pre class="programlisting">/SOLU
+CNCHECK,POST
+FINISH
+/POST1
+FILE,Jobname,RCN
+SET,FIRST
+PLNSOL,CONT,GAP,0,1
+FINISH
+. . .</pre></div><div class="refsect2" title="Option = ADJUST or MORPH"><a name="d0e51893"></a><h3><em class="replaceable"><code>Option</code></em> = ADJUST or MORPH</h3><p>You can issue <span class="command"><strong>CNCHECK</strong></span>,ADJUST to physically move contact nodes to the target surface. You
+can also issue <span class="command"><strong>CNCHECK</strong></span>,MORPH to physically move
+contact nodes to the target surface and then morph the underlying
+mesh to improve the mesh quality. See <a href="../ans_ctec/Hlp_ctec_realkey.html#strphymov72402" class="olink">Physically Moving Contact Nodes Towards the Target Surface</a> in the <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a> for more information.
+Similar to the POST option, if <span class="command"><strong>CNCHECK</strong></span>,ADJUST or <span class="command"><strong>CNCHECK</strong></span>,MORPH is issued within the solution processor,
+the <a class="link" href="Hlp_C_SOLVE.html" title="SOLVE"><span class="command"><strong>SOLVE</strong></span></a> command that solves the first load step
+of your analysis should appear in a different step:</p><pre class="programlisting">/SOLU
+CNCHECK,ADJUST
+FINISH
+. . .
+
+/SOLU
+SOLVE
+FINISH
+. . .</pre><p>After issuing the <span class="command"><strong>CNCHECK</strong></span>,ADJUST command, the initial adjustment is converted to structural
+displacement values (UX, UY, UZ) and stored in a file named <span class="filename"><strong>Jobname.RCN</strong></span>. Similarly, the <span class="command"><strong>CNCHECK</strong></span>,MORPH command converts the initial adjustment of contact nodes as
+well as the morphing adjustment of solid element nodes to structural
+displacement values (UX, UY, UZ) and stores them in the <span class="filename"><strong>Jobname.RCN</strong></span> file. You can use this file to plot or list
+nodal adjustment vectors or create a contour plot of the adjustment
+magnitudes via the displacements. When postprocessing the nodal adjustment
+values, you need to explicitly read results from this file using the <a class="link" href="Hlp_C_FILE.html" title="FILE"><span class="command"><strong>FILE</strong></span></a> and <a class="link" href="Hlp_C_SET.html" title="SET"><span class="command"><strong>SET</strong></span></a>,FIRST commands in POST1
+to properly read the corresponding contact data. Otherwise, the results
+may be read improperly.</p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;The <span class="filename"><strong>Jobname.RCN</strong></span> file contains information generated from the <span class="command"><strong>CNCHECK</strong></span>,POST, <span class="command"><strong>CNCHECK</strong></span>,ADJUST, or <span class="command"><strong>CNCHECK</strong></span>,MORPH command. If multiple commands are issued in the same analysis,
+the file is overwritten by the last <span class="command"><strong>CNCHECK</strong></span> command.</p><hr></div></div><div class="refsect2" title="Option = RESET"><a name="d0e51964"></a><h3><em class="replaceable"><code>Option</code></em> = RESET</h3><p>The command <span class="command"><strong>CNCHECK</strong></span>,RESET allows you to reset
+all but a few key options and real constants associated with the specified
+contact pairs (<em class="replaceable"><code>RID1</code></em>, <em class="replaceable"><code>RID2</code></em>, <em class="replaceable"><code>RINC</code></em>) to their default values. This
+option is only valid for pair-based contact definitions.</p><p>The following key options and real constants remain unchanged
+when this command is issued:</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="33%" class="col1"><col width="33%" class="col2"><col width="34%" class="col3"></colgroup><tbody><tr><td bgcolor="#E3E3E3"><span class="bold"><strong>Element type</strong></span></td><td bgcolor="#E3E3E3"><span class="bold"><strong>Key options not affected by RESET</strong></span></td><td bgcolor="#E3E3E3"><span class="bold"><strong>Real constants not affected by RESET</strong></span></td></tr><tr><td><a href="../ans_elem/Hlp_E_TARGE169.html" class="olink"><span class="structname">TARGE169</span></a>, <a href="../ans_elem/Hlp_E_TARGE170.html" class="olink"><span class="structname">TARGE170</span></a></td><td>KEYOPT(2), KEYOPT(3)</td><td>R1, R2</td></tr><tr><td><a href="../ans_elem/Hlp_E_CONTA171.html" class="olink"><span class="structname">CONTA171</span></a>, <a href="../ans_elem/Hlp_E_CONTA172.html" class="olink"><span class="structname">CONTA172</span></a></td><td>KEYOPT(1), KEYOPT(3)</td><td>R1, R2</td></tr><tr><td><a href="../ans_elem/Hlp_E_CONTA173.html" class="olink"><span class="structname">CONTA173</span></a>, <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a>, <a href="../ans_elem/Hlp_E_CONTA175.html" class="olink"><span class="structname">CONTA175</span></a>, <a href="../ans_elem/Hlp_E_CONTA176.html" class="olink"><span class="structname">CONTA176</span></a>, <a href="../ans_elem/Hlp_E_CONTA177.html" class="olink"><span class="structname">CONTA177</span></a></td><td>KEYOPT(1)</td><td>R1, R2</td></tr></tbody></table></div></div><div class="refsect2" title="Option = AUTO"><a name="d0e52058"></a><h3><em class="replaceable"><code>Option</code></em> = AUTO</h3><p>The command <span class="command"><strong>CNCHECK</strong></span>,AUTO automatically changes
+certain default or undefined key options and real constants to optimized
+settings or values. The changes are based on overall contact pair
+behaviors. In general, this command improves convergence for nonlinear
+contact analysis. This option is only valid for pair-based contact
+definitions.</p><p>The tables below list typical KEYOPT and real constant settings
+implemented by <span class="command"><strong>CNCHECK</strong></span>,AUTO. The actual settings
+implemented for your specific model may vary from what is described
+here. You should always verify the modified settings by issuing <span class="command"><strong>CNCHECK</strong></span>,DETAIL to list current contact pair properties.</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="11%" class="col1"><col width="30%" class="col2"><col width="18%" class="col3"><col class="col4" width="41%"></colgroup><tbody><tr><td bgcolor="#E3E3E3" align="center"><span class="bold"><strong>KEYOPT</strong></span></td><td bgcolor="#E3E3E3" align="center"><span class="bold"><strong>Description</strong></span></td><td bgcolor="#E3E3E3" align="center"><span class="bold"><strong>Default (0 or blank)</strong></span></td><td bgcolor="#E3E3E3" align="center"><span class="bold"><strong>CNCHECK,AUTO</strong></span></td></tr><tr><td>1</td><td>Selects DOF set</td><td>Structural DOFs</td><td>Automatic selection based on DOFs of underlying elements.</td></tr><tr><td>2</td><td>Contact algorithm</td><td>Augmented
+Lagrange</td><td>1- Penalty for rigid-rigid contact [<a class="xref" href="Hlp_C_CNCHECK.html#AUTO.keyopts.ft.1">1</a>].</td></tr><tr><td>4</td><td>Location of contact detection point</td><td>Gauss point</td><td>2 - Normal to target surface if KEYOPT(2) &gt; 1.</td></tr><tr><td>5</td><td>CNOF/ICONT adjustment</td><td>No
+adjustment</td><td>1 - Auto CNOF if tiny gap exists.</td></tr><tr><td>6</td><td>Contact stiffness variation</td><td>Use default range</td><td><table border="0" summary="Simple list" class="simplelist"><tr><td>1 - Nominal refinement for opening contact or underlying elements
+having <a class="link" href="Hlp_C_TB.html" title="TB"><span class="command"><strong>TB</strong></span></a> plasticity.</td></tr><tr><td><span class="italic"><em>or</em></span></td></tr><tr><td>2 - Aggressive refinement for opening contact and underlying
+elements having <a class="link" href="Hlp_C_TB.html" title="TB"><span class="command"><strong>TB</strong></span></a> plasticity.</td></tr></table></td></tr><tr><td>7</td><td>Element level
+time increment control</td><td>No control</td><td><table border="0" summary="Simple list" class="simplelist"><tr><td>1 - Automatic bisection for self contact.</td></tr><tr><td><span class="italic"><em>or</em></span></td></tr><tr><td>4 - Impact constraint for opening contact and transient analyses.</td></tr></table></td></tr><tr><td>8</td><td>Assymetric
+contact selection</td><td>No action</td><td>2 - Auto selection
+if KEYOPT(2) &gt; 1.</td></tr><tr><td>9</td><td>Effect
+of initial penetration or gap</td><td>Include all</td><td>1 - Exclude if KEYOPT(5) = 1, or if ICONT was previously specified.</td></tr><tr><td>10</td><td>Contact stiffness update</td><td>Between load steps</td><td>2 - Between iterations except
+when underlying elements are superelements. [<a class="xref" href="Hlp_C_CNCHECK.html#AUTO.keyopts.ft.2">2</a>]</td></tr></tbody></table></div><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="AUTO.keyopts.ft.1"></a>Set to 0 if KEYOPT(2) &gt;
+1 for debonding.</p></li><li class="listitem"><p><a name="AUTO.keyopts.ft.2"></a>Set to 0 if underlying elements
+are superelements, or if KEYOPT(9) = 2 was previously specified.</p></li></ol></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="8%" class="col1"><col width="8%" class="col2"><col width="25%" class="col3"><col width="8%" class="col4"><col class="col5" width="51%"></colgroup><tbody><tr><td bgcolor="#E3E3E3" colspan="2" align="center"><span class="bold"><strong>Real Constants</strong></span></td><td bgcolor="#E3E3E3" rowspan="2" align="center"><span class="bold"><strong>Description</strong></span></td><td bgcolor="#E3E3E3" rowspan="2" align="center"><span class="bold"><strong>Default</strong></span></td><td bgcolor="#E3E3E3" rowspan="2" align="center"><span class="bold"><strong>CNCHECK,AUTO</strong></span></td></tr><tr><td bgcolor="#E3E3E3"><span class="bold"><strong>No.</strong></span></td><td bgcolor="#E3E3E3"><span class="bold"><strong>Name</strong></span></td></tr><tr><td>3</td><td>FKN</td><td>Normal penalty stiffness factor</td><td>1</td><td>Set to 5 if KEYOPT(9) = 2 (ramp initial penetration) and KEYOPT(10) &gt;
+0.</td></tr><tr><td>6</td><td>PINB</td><td>Pinball
+region</td><td>see [<a class="xref" href="Hlp_C_CNCHECK.html#AUTO.real.ft.1">1</a>]</td><td>Cut in half if spurious contact is detected or contact searching
+is slow.</td></tr><tr><td>14</td><td>TCC</td><td>Thermal contact conductance</td><td>0</td><td>Calculated
+as a function of highest conductivity of underlying element and overall
+model size.</td></tr><tr><td>19</td><td>ECC</td><td>Electric contact conductance</td><td>0</td><td>Calculated
+as a function of highest permitivity or lowest resistivity of underlying
+element and overall model size.</td></tr><tr><td>26</td><td>MCC</td><td>Magnetic contact permeance</td><td>0</td><td>Calculated as a function of highest emissivity of
+underlying element and overall model size.</td></tr></tbody></table></div><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="AUTO.real.ft.1"></a>PINB default depends on contact
+behavior (rigid vs. flexible target), <a class="link" href="Hlp_C_NLGEOM.html" title="NLGEOM"><span class="command"><strong>NLGEOM</strong></span></a>,ON
+or OFF, KEYOPT(9) setting, KEYOPT(12) setting, and the value of real
+constant CNOF (see <a href="../ans_ctec/Hlp_ctec_realkey.html#usePINB" class="olink">Defining the Pinball Region (PINB)</a>). </p></li></ol></div><p><span class="command"><strong>CNCHECK</strong></span>,AUTO also sets <a class="link" href="Hlp_C_PRED.html" title="PRED"><span class="command"><strong>PRED</strong></span></a>,OFF for the case of a <a href="../ans_ctec/Hlp_ctec_surfcon.html" class="olink">force-distributed constraint</a> defined
+via <a href="../ans_ctec/Hlp_ctec_mpcassm.html" class="olink">MPC contact</a>. </p></div><div class="refsect2" title="Removing or Unselecting Contact and Target Elements (Option = TRIM/UNSEL)"><a name="d0e52339"></a><h3>Removing or Unselecting Contact and Target Elements (<em class="replaceable"><code>Option</code></em> = TRIM/UNSEL)</h3><p>You can issue <span class="command"><strong>CNCHECK</strong></span>,TRIM or <span class="command"><strong>CNCHECK</strong></span>,UNSEL to remove or unselect contact and target elements which are
+in far-field (that is, open and not near contact), or even in near-field
+if aggressive trimming logic is used (<em class="replaceable"><code>TRlevel</code></em> = AGGRE). </p></div></div><div class="refsect1" title="Menu Paths"><a name="CNCHECK.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt; Preprocessor&gt; Modeling&gt; Create&gt; Contact Pair</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

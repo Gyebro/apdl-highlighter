@@ -1,0 +1,78 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:46-04:00"><title>MONITOR</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_M_TOC.html" title="M Commands"><link rel="prev" href="Hlp_C_MODOPT.html" title="MODOPT"><link rel="next" href="Hlp_C_MOPER.html" title="*MOPER"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="MONITOR"><a name="MONITOR"></a><div class="titlepage"></div><a class="indexterm" name="d0e168233"></a><span class="refentrytitle"><span class="command"><strong>MONITOR</strong></span></span><div class="refnamediv"><p><span class="command"><strong>MONITOR</strong></span>, <em class="replaceable"><code>VAR</code></em>, <em class="replaceable"><code>Node</code></em>, <em class="replaceable"><code>Lab</code></em><br><b class="refpurpose">Controls contents of three variable fields in nonlinear
+solution monitor file.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="MONITOR.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>VAR</code></em></b></span></dt><dd><p>One of three variable field numbers in the monitor
+file whose contents can be specified by the Lab field.  Valid arguments
+are integers 1, 2, or 3. See Notes section for default values.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Node</code></em></b></span></dt><dd><p>The node number for which information is monitored
+in the specified <em class="replaceable"><code>VAR</code></em> field.  In the GUI,
+if <em class="replaceable"><code>Node</code></em> = P, graphical picking is enabled.
+If blank, the monitor file lists the maximum value of the specified
+quantity (Lab field) for the entire structure.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><p>The solution quantity to be monitored in the specified <em class="replaceable"><code>VAR</code></em> field.  Valid labels for solution quantities are
+UX, UY, and UZ (displacements); ROTX, ROTY, and ROTZ (rotations);
+and TEMP (temperature).  Valid labels for reaction force are FX, FY,
+and FZ (structural force) and MX, MY, and MZ (structural moment).
+ Valid label for heat flow rate is HEAT. For defaults see the Notes
+section.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="MONITOR.notes"></a><h2>Notes</h2><p>The monitor file always has an extension of <span class="bold"><strong>.mntr</strong></span>, and takes its file name from the specified <span class="filename"><strong>Jobname</strong></span>.  If no <span class="filename"><strong>Jobname</strong></span> is specified,
+the file name defaults to <span class="filename"><strong>file</strong></span>.</p><p>You must issue this command once for each solution quantity
+you want to monitor at a specified node at each load step. You cannot
+monitor a reaction force during a linear analysis. The variable field
+contents can be redefined at each load step by reissuing the command.
+The monitored quantities are appended to the file for each load step.</p><p>Reaction forces reported in the monitor file may be incorrect
+if the degree of freedom of the specified node is involved in externally
+defined coupling (<a class="link" href="Hlp_C_CP.html" title="CP"><span class="command"><strong>CP</strong></span></a> command) or constraint equations
+(<a class="link" href="Hlp_C_CE.html" title="CE"><span class="command"><strong>CE</strong></span></a> command), or if the program has applied constraint
+equations internally to the node.</p><p>The following example shows the format of a monitor file.  Note
+that the file only records the solution substep history when a substep
+is convergent.</p><pre class="programlisting">
+SOLUTION HISTORY INFORMATION FOR JOB: file.mntr
+
+LOAD SUB- NO.   NO.  TOTL INCREMENT    TOTAL       VARIAB 1  VARIAB 2    VARIAB 3
+STEP STEP ATTMP ITER ITER TIME/LFACT   TIME/LFACT  MONITOR   MONITOR     MONITOR
+                                                      UZ        MZ         MxPl
+
+ 1    1    1     3     3   0.25000      0.25000    1.4145    0.19076E-06 0.78886E-30
+ 1    2    1     2     5   0.25000      0.50000    2.8283    0.92989E-06 0.78886E-30
+ 1    3    1     2     7   0.37500      0.87500    4.9467    0.33342E-05 0.78886E-30
+ 1    4    1     2     9   0.12500      1.0000     5.6519    0.16826E-05 0.78886E-30
+ 2    1    1     6    15   0.20000E-03  1.0002     4.2198  515.23        0.78886E-30
+ 2    2    2     6    26   0.10000E-03  1.0003     4.4849  593.03        0.78886E-30
+ 2    3    1     3    29   0.10000E-03  1.0004     4.7531  611.45        0.78886E-30
+ 2    4    1     3    32   0.15000E-03  1.0006     5.0696  621.83        0.78886E-30
+ 2    5    1     4    36   0.22500E-03  1.0008     5.4428  628.42        0.78886E-30
+ 2    6    1     4    40   0.33750E-03  1.0011     5.8928  632.78        0.78886E-30
+ 2    7    1     5    45   0.50625E-03  1.0016     6.4454  635.62        0.78886E-30
+ 2    8    1     7    52   0.75938E-03  1.0024     7.1375  637.22        0.78886E-30
+ 2    9    1     5    57   0.75938E-03  1.0031     7.7422  637.66        0.78886E-30
+ 2   10    1     6    63   0.11391E-02  1.0043     8.5588  637.42        0.78886E-30
+ 2   11    2     3    72   0.76887E-03  1.0050     9.0721  636.96        0.78886E-30
+ 2   12    1     3    75   0.76887E-03  1.0058     9.5648  636.35        0.78886E-30
+ 2   13    1     3    78   0.11533E-02  1.0070    10.277   635.25        0.78886E-30
+ 2   14    1     4    82   0.17300E-02  1.0087    11.306   633.37        0.78886E-30
+ 2   15    1     6    88   0.25949E-02  1.0113    12.802   630.21        0.78886E-30
+ 2   16    1     5    93   0.25949E-02  1.0139    14.273   626.81        0.78886E-30
+ 2   17    1     7   100   0.38924E-02  1.0178    16.477   621.42        0.78886E-30
+ 2   18    1     6   106   0.38924E-02  1.0217    18.704   615.77        0.78886E-30
+ 2   19    2     4   116   0.26274E-02  1.0243    20.229   611.83        0.78886E-30
+ 2   20    1     4   120   0.26274E-02  1.0269    21.777   607.80        0.78886E-30
+</pre><p>The following details the contents of the various fields in
+the monitor file:</p><div><div class="variablelist"><dl><dt><span><b class="term">LOAD STEP</b></span></dt><dd><p>The current load step number.</p></dd><dt><span><b class="term">SUBSTEP</b></span></dt><dd><p>The current substep (time step) number.</p></dd><dt><span><b class="term">NO. ATTEMPT</b></span></dt><dd><p>The number of attempts made in solving the current
+substep.  This number is equal to the number of failed attempts (bisections)
+plus one (the successful attempt).</p></dd><dt><span><b class="term">NO. ITER</b></span></dt><dd><p>The number of iterations used by the last successful
+attempt.</p></dd><dt><span><b class="term">TOTL. ITER</b></span></dt><dd><p>Total cumulative number of iterations (including each
+iteration used by a bisection).</p></dd><dt><span><b class="term">INCREMENT</b></span></dt><dd><p>&nbsp;</p></dd><dt><span><b class="term">TIME/LFACT</b></span></dt><dd><p>Time or load factor increments for the current substep.</p></dd><dt><span><b class="term">TOTAL TIME/LFACT</b></span></dt><dd><p>Total time (or load factor) for the last successful
+attempt in the current substep.</p></dd><dt><span><b class="term">VARIAB 1</b></span></dt><dd><p>Variable field 1.  In this example, the field is reporting
+the UZ value.  By default, this field lists <span>the elapsed (or wall clock) time</span> used
+up to (but not including) the current substep.</p></dd><dt><span><b class="term">VARIAB 2</b></span></dt><dd><p>Variable field 2.  In this example, the field is reporting
+the MZ value.  By default, this field lists the maximum displacement
+in the entire structure.</p></dd><dt><span><b class="term">VARIAB 3</b></span></dt><dd><p>Variable field 3.  By default (and in the example),
+this field reports the maximum equivalent plastic strain increment
+in the entire structure.</p></dd></dl></div></div></div><div class="refsect1" title="Menu Paths"><a name="MONITOR.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Load Step Opts&gt;Nonlinear&gt;Monitor</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Load Step Opts&gt;Nonlinear&gt;Monitor</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:48-04:00"><title>/VCONE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_V_TOC.html" title="V Commands"><link rel="prev" href="Hlp_C_VCOL.html" title="*VCOL"><link rel="next" href="Hlp_C_VCROSS.html" title="VCROSS"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="/VCONE"><a name="s-VCONE"></a><div class="titlepage"></div><a class="indexterm" name="d0e289329"></a><span class="refentrytitle">
+<a href="Hlp_C_VCONE.html" class="olink"><span class="command"><strong>/VCONE</strong></span></a>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>/VCONE</strong></span>, <em class="replaceable"><code>WN</code></em>, <em class="replaceable"><code>PHI</code></em>
+<br><b class="refpurpose">Defines the view cone angle for perspective displays.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_3.html" title="2.3.&nbsp;GRAPHICS Commands"><code class="classname">GRAPHICS</code></a>: <a class="link" href="Hlp_C_CH2_3.html#cmdgraphicviewsjla070199" title="Table&nbsp;2.12:&nbsp;&nbsp;Views"><span class="type">Views</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="s-VCONE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>WN</code></em>
+</b></span></dt><dd><p>Window number (or ALL) to which command applies (defaults
+to 1).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>PHI</code></em>
+</b></span></dt><dd><p>View cone angle (0.0 to 85.&deg;) to define perspective. 
+Use <em class="replaceable"><code>PHI</code></em> = 45.0&deg; for typical perspective.  
+Increase angle for more perspective, decrease angle for less.  If the distance
+[<a href="Hlp_C_DIST.html" class="olink"><span class="command"><strong>/DIST</strong></span></a>] is not specified, it will be automatically calculated
+to give full window magnification.  If the distance is also specified, <em class="replaceable"><code>PHI</code></em> controls
+both the perspective and the magnification.  The larger the angle, the more
+the perspective and the less the magnification.  Defaults to 0.0 (no perspective).</p></dd></dl></div></div></div><div class="refsect1" title="Command Default"><a name="s-VCONE.default"></a><h2>Command Default</h2><p>0.0 degrees (no perspective (parallel projection)).</p></div><div class="refsect1" title="Notes"><a name="s-VCONE.notes"></a><h2>Notes</h2><p>Perspective shows the true depth of the object in the display.  A variable
+magnification results since the back plane of the object is further from the
+observer than the front plane.  The largest magnification occurs at the front
+plane.  With perspective, the magnification factor (MAGF) is not only a function
+of the distance from the object, but also the window shape and the perspective
+(or view cone) angle&nbsp;&#934; as follows:</p><div class="informalequation"><a name="eq29fda01e-8186-4896-8267-de40bb7a2d7e"></a><div><img src="graphics/eq29fda01e-8186-4896-8267-de40bb7a2d7e.svg"></div></div><p>where 
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq816a9429-b8ae-44e0-8d91-db9b1f99131b.svg"></span>, for square windows, is the
+largest in-plane vertical or horizontal dimension, d is the distance from
+the observer to the plane of&nbsp;
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqafaf8a8a-3534-4a32-b4ac-137102021a23.svg"></span> (usually
+the front plane of the object), and&nbsp;&#934; is the view cone angle (defined
+with the <a href="Hlp_C_VCONE.html" class="olink"><span class="command"><strong>/VCONE</strong></span></a> command).  The bigger the cone angle, the
+more the perspective.  The magnification factor proportionally decreases with
+increasing&nbsp;&#934;.  The distance can be defined with the <a href="Hlp_C_DIST.html" class="olink"><span class="command"><strong>/DIST</strong></span></a> or
+the <a href="Hlp_C_FOCUS.html" class="olink"><span class="command"><strong>/FOCUS</strong></span></a> command.  Note, the distance input on the <a href="Hlp_C_DIST.html" class="olink"><span class="command"><strong>/DIST</strong></span></a> command
+is equal to d only if the focus point is located on the plane of &nbsp;
+<span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eqd51046fa-fb53-468d-9ca7-995af3fb5cb0.svg"></span>.  It is recommended that if a general perspective is desired
+(i.e., not any specific cone angle), use &#934; = 45.0 (since TAN(45.0) = 1.0)
+and let the d value be automatically calculated for full window magnification.</p><p>Note that any number of <a href="Hlp_C_DIST.html" class="olink"><span class="command"><strong>/DIST</strong></span></a>, <a href="Hlp_C_FOCUS.html" class="olink"><span class="command"><strong>/FOCUS</strong></span></a>,
+and <a href="Hlp_C_VCONE.html" class="olink"><span class="command"><strong>/VCONE</strong></span></a> combinations can be used to produce the same
+magnification.  Distances less than the object depth will produce views from
+within the object.</p><p>A magnification factor of 1.0 just fills the window.  If the automatic
+scaling option is used [<a href="Hlp_C_AUTO.html" class="olink"><span class="command"><strong>/AUTO</strong></span></a>], the magnification factor
+is fixed at 0.91 (to allow a 10% margin around the object) and d is automatically
+calculated for the given <a href="Hlp_C_VCONE.html" class="olink"><span class="command"><strong>/VCONE</strong></span></a> and <a href="Hlp_C_FOCUS.html" class="olink"><span class="command"><strong>/FOCUS</strong></span></a> values.
+ Any value of &#934; between 0.0 and 85.0 (usually 45.0) may be used to activate
+the perspective.  Views from inside the object are not possible when d is
+automatically calculated (use manual scaling [<a href="Hlp_C_USER.html" class="olink"><span class="command"><strong>/USER</strong></span></a>] along
+with <a href="Hlp_C_DIST.html" class="olink"><span class="command"><strong>/DIST</strong></span></a> specification).</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="s-VCONE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;View Settings&gt;Perspective View</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

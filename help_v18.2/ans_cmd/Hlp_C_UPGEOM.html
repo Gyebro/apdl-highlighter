@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:46-04:00"><title>UPGEOM</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_U_TOC.html" title="U Commands"><link rel="prev" href="Hlp_C_UPCOORD.html" title="UPCOORD"><link rel="next" href="Hlp_C_USE.html" title="*USE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="UPGEOM"><a name="UPGEOM"></a><div class="titlepage"></div><a class="indexterm" name="d0e286809"></a><span class="refentrytitle"><span class="command"><strong>UPGEOM</strong></span></span><div class="refnamediv"><p><span class="command"><strong>UPGEOM</strong></span>, <em class="replaceable"><code>FACTOR</code></em>, <em class="replaceable"><code>LSTEP</code></em>, <em class="replaceable"><code>SBSTEP</code></em>, <em class="replaceable"><code>Fname</code></em>, <em class="replaceable"><code>Ext</code></em>, <em class="replaceable"><code>--</code></em><br><b class="refpurpose">Adds displacements from a previous analysis and updates
+the geometry of the finite element model to the deformed configuration.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7elementsldm061600" title="Table&nbsp;2.38:&nbsp;&nbsp;Elements"><span class="type">Elements</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="UPGEOM.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>FACTOR</code></em></b></span></dt><dd><p>Multiplier for displacements being added to coordinates.
+ The value 1.0 will add the full value of the displacements to the
+geometry of the finite element model.  Defaults to 1.0.</p></dd><dt><span><b class="term"><em class="replaceable"><code>LSTEP</code></em></b></span></dt><dd><p>Load step number of data to be imported.  Defaults
+to the last load step.</p></dd><dt><span><b class="term"><em class="replaceable"><code>SBSTEP</code></em></b></span></dt><dd><p>Substep number of data to be imported.  Defaults to
+the last substep.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Fname</code></em></b></span></dt><dd><p>File name and directory path (248 characters maximum, including the characters needed for the directory path).  An unspecified directory path defaults to the working directory; in this case, you can use all 248 characters for the file name. </p><p>The field must be input (no default).</p></dd><dt><span><b class="term"><em class="replaceable"><code>Ext</code></em></b></span></dt><dd><p>Filename extension (eight-character maximum).</p><p>The extension must be an RST extension.</p></dd><dt><span><b class="term"><em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused field.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="UPGEOM.notes"></a><h2>Notes</h2><p>This command updates the geometry of the finite element model
+according to the displacement results of the previous analysis and
+creates a revised geometry at the deformed configuration.  This command
+works on all nodes (default) or on a selected set of nodes.  If this
+command is issued repeatedly, it creates a revised geometry of the
+finite element model in a cumulative fashion, i.e., it adds displacement
+results on the previously generated deformed geometry. The solid model
+geometry is not updated by this command.</p><p>When <span class="command"><strong>UPGEOM</strong></span> is issued,
+the current finite element model is overwritten by finite element
+information from the results file. For this reason, it is important
+that the finite element information in the results file matches the
+finite element model in which the nodal coordinates are being updated.
+No changes should be made to the model before the <span class="command"><strong>UPGEOM</strong></span> command is issued.</p></div><div class="refsect1" title="Menu Paths"><a name="UPGEOM.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Update Geom</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

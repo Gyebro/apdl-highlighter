@@ -1,0 +1,66 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:10-04:00"><title>SHSD</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_S_TOC.html" title="S Commands"><link rel="prev" href="Hlp_C_SHPP.html" title="SHPP"><link rel="next" href="Hlp_C_SHRINK.html" title="/SHRINK"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SHSD"><a name="SHSD"></a><div class="titlepage"></div><a class="indexterm" name="d0e252439"></a><span class="refentrytitle"><span class="command"><strong>SHSD</strong></span></span><div class="refnamediv"><p><span class="command"><strong>SHSD</strong></span>, <em class="replaceable"><code>RID</code></em>,
+    <em class="replaceable"><code>Action</code></em><br><b class="refpurpose">Creates or deletes a shell-solid interface to be used in shell-to-solid
+   assemblies.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7elementsldm061600" title="Table&nbsp;2.38:&nbsp;&nbsp;Elements"><span class="type">Elements</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;
+   Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="SHSD.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>RID</code></em></b></span></dt><dd><p>The real constant set ID that identifies the contact pair on which a shell-to-solid
+      assembly is defined. If ALL, all selected contact pairs will be considered for
+      assembly.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Action</code></em></b></span></dt><dd><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term"><code class="literal">CREATE</code></b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Builds new shell and contact elements to be used in shell-to-solid assemblies
+         (default). New elements are stored as internally-created components.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term"><code class="literal">DELETE</code></b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Deletes the nodes and elements created during a previous execution of
+          <span class="command"><strong>SHSD</strong></span>,<em class="replaceable"><code>RID</code></em>,CREATE for the real constant set
+         identified by <em class="replaceable"><code>RID</code></em>.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="SHSD.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>SHSD</strong></span> command creates a shell-solid interface to be used in
+   shell-to-solid assemblies, or deletes a previously-created shell-solid interface.
+   &#8220;Virtual&#8221; shell elements and additional <a href="../ans_elem/Hlp_E_CONTA175.html" class="olink"><span class="structname">CONTA175</span></a> elements
+   are created at the contact pair identified by <em class="replaceable"><code>RID</code></em> when
+    <em class="replaceable"><code>Action</code></em> = CREATE. Set <em class="replaceable"><code>Action</code></em> = DELETE to
+   remove the generated nodes and elements at the contact pair identified by
+    <em class="replaceable"><code>RID</code></em>.</p><p>The <span class="command"><strong>SHSD</strong></span> command is active only when the following element KEYOPTs of
+   associated <a href="../ans_elem/Hlp_E_CONTA175.html" class="olink"><span class="structname">CONTA175</span></a> and <a href="../ans_elem/Hlp_E_TARGE170.html" class="olink"><span class="structname">TARGE170</span></a> element types
+   are predefined:</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="96" class="col1"><col width="144" class="col2"><col width="336" class="COLSPEC0"></colgroup><thead><tr><th align="center" valign="top">Element</th><th align="center" valign="top">KEYOPT</th><th align="center" valign="top">Detail</th></tr></thead><tbody><tr><td rowspan="3" valign="middle"><a href="../ans_elem/Hlp_E_CONTA175.html" class="olink"><span class="structname">CONTA175</span></a>
+      </td><td>KEYOPT(2) = 2</td><td>MPC algorithm</td></tr><tr><td>KEYOPT(12) = 5, 6</td><td>bonded contact</td></tr><tr><td>KEYOPT(4) = 0</td><td>contact normal perpendicular to target surface</td></tr><tr><td><a href="../ans_elem/Hlp_E_TARGE170.html" class="olink"><span class="structname">TARGE170</span></a></td><td>KEYOPT(5) = 1, 2</td><td>types of constraints (1 = translational DOFs only, 2 = translational
+       and rotational DOFs)</td></tr></tbody></table></div><p>The method used to build shell and contact elements depends on the KEYOPT(5) setting of the
+   target element type associated with the real constant set identified by the
+    <em class="replaceable"><code>RID</code></em> argument. If KEYOPT(5) = 1 (projected constraint with
+   translational degrees of freedom only), the virtual shell elements are built perpendicular to the
+   pre-existing shell elements attached to the contact elements. They geometrically follow the
+   contact interface edge and are built on both sides of this interface in such a way that each new
+   shell element (<a href="../ans_elem/Hlp_E_SHELL181.html" class="olink"><span class="structname">SHELL181</span></a>) has two nodes that belong to the associated
+   pre-existing shell element in the shell edge. (See <a class="xref" href="Hlp_C_SHSD.html#shsdcontact" title="Figure&nbsp;15:&nbsp;&nbsp;Virtual Shell Elements Following the Contact Interface Edge">Figure&nbsp;15:&nbsp;Virtual Shell Elements Following the Contact Interface Edge</a>.) The width of
+   the new shell elements is half the thickness of the pre-existing shell element. The
+    <a href="../ans_elem/Hlp_E_CONTA175.html" class="olink"><span class="structname">CONTA175</span></a> elements are then created at each node of the virtual shell
+   elements where no <a href="../ans_elem/Hlp_E_CONTA175.html" class="olink"><span class="structname">CONTA175</span></a> element exists. The new contact elements are
+   identified by the same contact pair ID as the pre-existing contact elements.</p><div class="figure"><a name="shsdcontact"></a><p class="title"><b>Figure&nbsp;15:&nbsp;&nbsp;Virtual Shell Elements Following the Contact Interface Edge</b></p><div class="figure-contents"><div><img src="graphics/gSHSDcontact.png" alt="Virtual Shell Elements Following the Contact Interface Edge"></div></div></div><br class="figure-break"><p>If KEYOPT(5) = 2 (projected constraint with uncoupled translational and rotational degrees
+   of freedom), the virtual shell elements (<a href="../ans_elem/Hlp_E_SHELL181.html" class="olink"><span class="structname">SHELL181</span></a> - low order;
+    <a href="../ans_elem/Hlp_E_SHELL281.html" class="olink"><span class="structname">SHELL281</span></a> - high order) overlap the existing high or low order target
+   elements identified with the <em class="replaceable"><code>RID</code></em> argument, and share their nodes. Only
+   those target elements close enough to the contact interface (identified using the PINB real
+   constant) are overlapped. The program uses the FTOLN real constant (defaults to half the shell
+   element thickness) to define an influence distance. The associated virtual shell elements are
+   created only for target elements that lie partially inside the influence distance region (see
+    <a class="xref" href="Hlp_C_SHSD.html#shsdoverlap" title="Figure&nbsp;16:&nbsp;&nbsp;Virtual Shell Elements Overlapping Target Elements">Figure&nbsp;16:&nbsp;Virtual Shell Elements Overlapping Target Elements</a>).</p><div class="figure"><a name="shsdoverlap"></a><p class="title"><b>Figure&nbsp;16:&nbsp;&nbsp;Virtual Shell Elements Overlapping Target Elements</b></p><div class="figure-contents"><div><img src="graphics/gSHSDoverlap.png" alt="Virtual Shell Elements Overlapping Target Elements"></div></div></div><br class="figure-break"><p>For the bonded always option (KEYOPT(12) = 5), any contact node inside the pinball region
+   (gap &lt; PINB) is included in the KEYOPT(5) = 2 process. A relatively small PINB value may be
+   used to prevent false contact. PINB defaults to 25% of the contact depth for small deformation
+   analyses.</p><p>For the bonded initial option (KEYOPT(12) = 6), only those contact nodes which initially lie
+   inside the adjustment zone (gap &lt; ICONT) are always included in the KEYOPT(5) = 2 process.
+   ICONT defaults to 5% of the contact depth.</p><p>For both processes, the new nodes and elements are stored in internally-named components.
+   The internal naming convention is based on the real constant set ID specified by
+    <em class="replaceable"><code>RID</code></em>, as illustrated in the following table.</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="144" class="col1"><col width="144" class="col2"></colgroup><tbody><tr><td>Nodes</td><td>SHSD_ND_<em class="replaceable"><code>RID</code></em></td></tr><tr><td>Contact Elements</td><td>SHSD_CN_<em class="replaceable"><code>RID</code></em></td></tr><tr><td>Shell Elements</td><td>SHSD_SH_<em class="replaceable"><code>RID</code></em></td></tr></tbody></table></div><p>Issuing <span class="command"><strong>SHSD</strong></span>,<em class="replaceable"><code>RID</code></em>,DELETE deletes components
+   based on their generated names. <span class="emphasis"><em>Only components whose names match the internal naming
+    convention will be deleted.</em></span></p><div class="caution" title="Caution" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b><font color="red">Caution:</font></b></span>&nbsp;&nbsp;Do not rename or manually delete generated components. Use the <span class="command"><strong>SHSD</strong></span>
+     command to delete generated components.</p><p>Renaming or manually deleting generated components will cause these components to be
+     ignored when <span class="command"><strong>SHSD</strong></span>,<em class="replaceable"><code>RID</code></em>,DELETE is executed and when
+     ANSYS searches for these components to verify if
+      <span class="command"><strong>SHSD</strong></span>,<em class="replaceable"><code>RID</code></em>,CREATE can be safely executed. Manually
+     renaming or deleting generated components and reissuing
+      <span class="command"><strong>SHSD</strong></span>,<em class="replaceable"><code>RID</code></em>,CREATE may result in erroneous
+     generation of virtual shell or contact elements.</p><hr></div><p>See <a href="../ans_ctec/Hlp_ctec_solshel.html" class="olink">Modeling a Shell-Solid Assembly</a> in the <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a> for more
+   information.</p></div><div class="refsect1" title="Menu Paths"><a name="SHSD.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

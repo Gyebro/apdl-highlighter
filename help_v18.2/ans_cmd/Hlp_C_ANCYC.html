@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:21-04:00"><title>ANCYC</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_A_TOC.html" title="A Commands"><link rel="prev" href="Hlp_C_ANCUT.html" title="ANCUT"><link rel="next" href="Hlp_C_ANDATA.html" title="ANDATA"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="ANCYC"><a name="ANCYC"></a><div class="titlepage"></div><a class="indexterm" name="d0e20988"></a><span class="refentrytitle"><span class="command"><strong>ANCYC</strong></span></span><div class="refnamediv"><p><span class="command"><strong>ANCYC</strong></span>, <em class="replaceable"><code>NUMFRAMES</code></em>, <em class="replaceable"><code>KCYCL</code></em>, <em class="replaceable"><code>DELAY</code></em><br><b class="refpurpose">Applies a traveling wave animation to graphics data in
+a modal cyclic symmetry analysis.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1animajla070199" title="Table&nbsp;2.85:&nbsp;&nbsp;Animation"><span class="type">Animation</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="ANCYC.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NUMFRAMES</code></em></b></span></dt><dd><p>The number of plot frames for the animation. Valid
+values range from 5 through 36. The default is 18. A low value (because
+it specifies fewer graphical frames) produces a rougher animation
+but loads faster. A high value produces a smoother animation but requires
+more time to load.</p></dd><dt><span><b class="term"><em class="replaceable"><code>KCYCL</code></em></b></span></dt><dd><p>The animation mode:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Continuous animation cycle (forward-reverse-forward).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Discontinuous animation cycle (forward-reset-forward).
+This option is the default. </p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>DELAY</code></em></b></span></dt><dd><p>The time delay (in seconds) between animation frames.
+Valid values range from 0.1 through 1.0. The default is 0.1 seconds,
+which produces a seemingly real-time animation. A higher value produces
+a slower animation. </p></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="ANCYC.default"></a><h3>Command Default</h3><p>The default <span class="command"><strong>ANCYC</strong></span> command (issuing the command
+with no arguments) specifies these implicit argument values: <span class="command"><strong>ANCYC</strong></span>, 18, 0, 0.1</p></div></div><div class="refsect1" title="Notes"><a name="ANCYC.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>ANCYC</strong></span> command is valid in a <a href="../ans_cycsym/advcycmodalans.html" class="olink">modal cyclic symmetry
+analysis</a> only.</p><p>The command animates the cyclic symmetry mode shape plot in
+the General Post Processor (<a href="Hlp_C_POST1.html" class="olink"><span class="command"><strong>/POST1</strong></span></a>). When you issue
+a nodal- or element-results plot command (for example, <a class="link" href="Hlp_C_PLNSOL.html" title="PLNSOL"><span class="command"><strong>PLNSOL</strong></span></a>, <a class="link" href="Hlp_C_PLESOL.html" title="PLESOL"><span class="command"><strong>PLESOL</strong></span></a>, or <a class="link" href="Hlp_C_PLDISP.html" title="PLDISP"><span class="command"><strong>PLDISP</strong></span></a>) and then
+issue the <span class="command"><strong>ANCYC</strong></span> command, ANSYS applies a traveling
+wave animation to the mode shape plot.</p><p>Each frame of the animation is created by expanding the cyclic
+symmetry mode shape at increasing phase angles (via the <a href="Hlp_C_CYCEXPAND_sl.html" class="olink"><span class="command"><strong>/CYCEXPAND</strong></span></a> command) starting at zero in equal increments over 360&deg;. The
+phase-angle increment is 360 / <em class="replaceable"><code>NUMFRAMES</code></em>.</p><p>The animation display shows the traveling wave of the result
+quantity being plotted. The traveling wave animation is applicable
+only to nodal diameters (harmonic indices) greater than 0 and less
+than<em class="replaceable"><code> N </code></em>/ 2 (where <em class="replaceable"><code>N</code></em> is the number of cyclic sectors in the model).</p><p>For more information, see <a href="../ans_cycsym/advcycmodalans.html#advcyctravwav" class="olink">Applying a Traveling Wave Animation to the
+Cyclic Model</a> in the <a href="../ans_cycsym/ans_cycsym.html" class="olink"><em class="citetitle">Cyclic Symmetry Analysis Guide</em></a>.</p></div><div class="refsect1" title="Menu Paths"><a name="ANCYC.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt; PlotCtrls&gt; Animate&gt; Cyc Traveling Wave</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

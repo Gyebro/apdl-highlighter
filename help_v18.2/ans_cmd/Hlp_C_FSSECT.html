@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:03-04:00"><title>FSSECT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_F_TOC.html" title="F Commands"><link rel="prev" href="Hlp_C_FSCALE.html" title="FSCALE"><link rel="next" href="Hlp_C_FSSPARM.html" title="FSSPARM"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="FSSECT"><a name="FSSECT"></a><div class="titlepage"></div><a class="indexterm" name="d0e113068"></a><span class="refentrytitle"><span class="command"><strong>FSSECT</strong></span></span><div class="refnamediv"><p><span class="command"><strong>FSSECT</strong></span>, <em class="replaceable"><code>RHO</code></em>, <em class="replaceable"><code>NEV</code></em>, <em class="replaceable"><code>NLOD</code></em>, <em class="replaceable"><code>KBR</code></em><br><b class="refpurpose">Calculates and stores total linearized stress components.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1pathopjla070199" title="Table&nbsp;2.86:&nbsp;&nbsp;Path Operations"><span class="type">Path Operations</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="FSSECT.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>RHO</code></em></b></span></dt><dd><p>In-plane (X-Y) average radius of curvature of the
+inside and outside surfaces of an axisymmetric section.  If zero (or
+blank), a plane or 3-D structure is assumed.  If nonzero, an axisymmetric
+structure is assumed.  Use a suitably large number (see the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a>)
+or use -1 for an axisymmetric straight section.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NEV</code></em></b></span></dt><dd><p>Event number to be associated with these stresses
+(defaults to 1).</p></dd><dt><span><b class="term"><em class="replaceable"><code>NLOD</code></em></b></span></dt><dd><p>Loading number to be associated with these stresses
+(defaults to 1).</p></dd><dt><span><b class="term"><em class="replaceable"><code>KBR</code></em></b></span></dt><dd><p>For an axisymmetric analysis (<em class="replaceable"><code>RHO</code></em> &#8800; 0):</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Include the thickness-direction bending
+stresses</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Ignore the thickness-direction bending
+stresses</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Include the thickness-direction bending
+stress using the same formula as the Y (axial direction ) bending
+stress. Also use the same formula for the shear stress.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="FSSECT.notes"></a><h2>Notes</h2><p>Calculates and stores the total linearized stress components at the ends of a section path
+    [<a class="link" href="Hlp_C_PATH.html" title="PATH"><span class="command"><strong>PATH</strong></span></a>] (as defined by the first two nodes with the <a class="link" href="Hlp_C_PPATH.html" title="PPATH"><span class="command"><strong>PPATH</strong></span></a>
+   command). The path must be entirely within the selected elements (that is, there must not be any
+   element gaps along the path). Stresses are stored according to the fatigue event number and
+   loading number specified. Locations (one for each node) are associated with those previously
+   defined for these nodes (FL) or else they are automatically defined. Stresses are separated into
+   six total components (SX through SXZ) and six membrane-plus-bending (SX through SXZ) components.
+   The temperature at each end point and the current time are also stored along with the total
+   stress components. Calculations are made from the stresses currently in the database (last
+    <a class="link" href="Hlp_C_SET.html" title="SET"><span class="command"><strong>SET</strong></span></a> or <a class="link" href="Hlp_C_LCASE.html" title="LCASE"><span class="command"><strong>LCASE</strong></span></a> command). Stresses are stored as section
+   coordinate components if axisymmetric or as global Cartesian coordinate components otherwise,
+   regardless of the active results coordinate system [<a class="link" href="Hlp_C_RSYS.html" title="RSYS"><span class="command"><strong>RSYS</strong></span></a>]. The FSLIST command
+   may be used to list stresses. The FS command can be used to modify stored stresses. See also the
+    <a class="link" href="Hlp_C_PRSECT.html" title="PRSECT"><span class="command"><strong>PRSECT</strong></span></a> and <a class="link" href="Hlp_C_PLSECT.html" title="PLSECT"><span class="command"><strong>PLSECT</strong></span></a> commands for similar
+   calculations.</p></div><div class="refsect1" title="Menu Paths"><a name="FSSECT.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Fatigue&gt;Store Stresses&gt;At Cross Sect</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

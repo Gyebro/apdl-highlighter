@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:42-04:00"><title>MFCI</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_M_TOC.html" title="M Commands"><link rel="prev" href="Hlp_C_MFCALC.html" title="MFCALC"><link rel="next" href="Hlp_C_MFCLEAR.html" title="MFCLEAR"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="MFCI"><a name="MFCI"></a><div class="titlepage"></div><a class="indexterm" name="d0e161846"></a><span class="refentrytitle"><span class="command"><strong>MFCI</strong></span></span><div class="refnamediv"><p><span class="command"><strong>MFCI</strong></span>, <em class="replaceable"><code>VAL1</code></em>, <em class="replaceable"><code>VAL2</code></em><br><b class="refpurpose">Sets the control parameters used by the conservative (CPP)
+interpolation scheme.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolumfintmap" title="Table&nbsp;2.79:&nbsp;&nbsp;ANSYS Multi-field solver Interface Mapping"><span class="type">Multi-field Interface Mapping</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>VAL1</code></em></b></span></dt><dd><p>Controls the pixel resolution. The higher the resolution,
+the more accurate and more expensive the conservative (CPP) interpolation
+will be. Valid values are 10 to 256; defaults to 100.</p></dd><dt><span><b class="term"><em class="replaceable"><code>VAL2</code></em></b></span></dt><dd><p>The separation factor to handle any gap between the
+two surfaces. It is a relative measure of the gap, normalized by the
+averaged element face sizes from both sides of the interface. Defaults
+to 0.1.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="MFCI.notes"></a><h2>Notes</h2><p>In a conservative (CPP) interpolation scheme as specified on
+the <a class="link" href="Hlp_C_MFLCOMM.html" title="MFLCOMM"><span class="command"><strong>MFLCOMM</strong></span></a> command, each element face is first
+divided into <em class="replaceable"><code>n</code></em> number of faces, where <em class="replaceable"><code>n</code></em> is the number of nodes on the face. The three-dimensional
+faces are then converted onto a two-dimensional polygon made up of
+rows and columns of dots called pixels. By default, these pixels have
+a resolution of 100 x 100; use <em class="replaceable"><code>VAL1</code></em> to
+increase the resolution and improve the accuracy of the algorithm.
+See <a href="../ans_cou/Hlp_G_COUsocket._WHAT.html#mfx_loadinter" class="olink">Load Interpolation</a> in the <a href="../ans_cou/Hlp_G_CouTOC.html" class="olink"><em class="citetitle">Coupled-Field Analysis Guide</em></a> for more information on interpolation schemes and
+adjusting the pixel resolution for the conservative interpolation
+scheme.</p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p></div><div class="refsect1" title="Menu Paths"><a name="MFCI.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Multi-field Set Up&gt;MFX-ANSYS/CFX&gt;Advanced Set Up&gt;Mapping</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Multi-field Set Up&gt;MFX-ANSYS/CFX&gt;Advanced Set Up&gt;Mapping</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

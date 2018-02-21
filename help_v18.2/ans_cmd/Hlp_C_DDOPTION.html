@@ -1,0 +1,56 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:37-04:00"><title>DDOPTION</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_D_TOC.html" title="D Commands"><link rel="prev" href="Hlp_C_DDELE.html" title="DDELE"><link rel="next" href="Hlp_C_DEACT.html" title="DEACT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="DDOPTION"><a name="DDOPTION"></a><div class="titlepage"></div><a class="indexterm" name="d0e65881"></a><span class="refentrytitle"><span class="command"><strong>DDOPTION</strong></span></span><div class="refnamediv"><p><span class="command"><strong>DDOPTION</strong></span>,
+        <em class="replaceable"><code>Decomp</code></em>, <em class="replaceable"><code>NProcPerSol</code></em><br><b class="refpurpose"> Sets domain decomposer option for Distributed ANSYS.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="DDOPTION.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Decomp</code></em></b></span></dt><dd><p>Controls which domain decomposition algorithm to use.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MESH</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Decompose the FEA mesh (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">FREQ</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Decompose the frequency domain for harmonic analyses.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CYCHI</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Decompose the harmonic indices for cyclic symmetry modal analyses.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>NProcPerSol</code></em></b></span></dt><dd><p>Number of processes to be used for mesh-based decomposition in conjunction with each
+            frequency solution (<em class="replaceable"><code>Decomp</code></em> = FREQ) or harmonic index solution
+              (<em class="replaceable"><code>Decomp</code></em> = CYCHI). Defaults to 1. This field is ignored when
+              <em class="replaceable"><code>Decomp</code></em> = MESH.</p></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="DDOPTION.default"></a><h3>Command Default</h3><p>The mesh algorithm for domain decomposition is automatically chosen.</p></div></div><div class="refsect1" title="Notes"><a name="DDOPTION.notes"></a><h2>Notes</h2><p>This command controls options related to the domain decomposition algorithm used by Distributed ANSYS
+      to split the analysis calculations into domains, with each domain being solved on a different
+      process.</p><p>The "mesh" algorithm (<em class="replaceable"><code>Decomp</code></em> = MESH) divides the finite element
+      mesh into domains. In this case, domains are effectively groups of elements, with one domain
+      being solved on each process. This algorithm seeks to create evenly sized domains (that is,
+      domains with equal numbers of elements) as well as to minimize the size of interfaces between
+      the newly created domains. This algorithm can be used for all analysis types.</p><p>The "frequency" algorithm (<em class="replaceable"><code>Decomp</code></em> = FREQ)
+      divides the specified frequency range for a harmonic analysis into domains. In this case,
+      domains are effectively groups of frequency solutions, with one domain being solved on
+        <em class="replaceable"><code>NProcPerSol</code></em> processes. If there are more processes than frequency
+      points, some processes will remain idle during the harmonic analysis solution. This algorithm
+      seeks to create evenly sized domains. However, if the number of processes does not divide
+      evenly into the number of frequency solutions, the efficiency of the parallel solution will be
+      reduced. This algorithm can only be used for harmonic analyses using the auto
+        (<a class="link" href="Hlp_C_HROPT.html" title="HROPT"><span class="command"><strong>HROPT</strong></span></a>,AUTO) or full (<a class="link" href="Hlp_C_HROPT.html" title="HROPT"><span class="command"><strong>HROPT</strong></span></a>,FULL) method.</p><p>The "cyclic" algorithm (<em class="replaceable"><code>Decomp</code></em> = CYCHI)
+      divides the specified list of harmonic indices for a cyclic symmetry modal analysis into
+      domains. In this case, domains are effectively groups of cyclic harmonic indices, with one
+      domain being solved on <em class="replaceable"><code>NProcPerSol</code></em> processes. If there are more
+      processes than harmonic indices, some processes will remain idle during the cyclic model
+      solution. This algorithm seeks to create evenly sized domains. However, if the number of
+      processes does not divide evenly into the number of harmonic indices, the efficiency of the
+      parallel solution will be reduced.</p><p>For the mesh algorithm (MESH), all available processes are used. This
+      is not necessarily the case for the frequency and cyclic algorithms (FREQ and CYCHI).</p><p><em class="replaceable"><code>NProcPerSol</code></em> is only used when
+        <em class="replaceable"><code>Decomp</code></em> = FREQ or CYCHI. It defaults to 1, which essentially means
+      that no mesh-based domain decomposition occurs. When <em class="replaceable"><code>NProcPerSol</code></em> is
+      defined to be greater than 1, a combination of FREQ or CYCHI decomposition and MESH
+      decomposition is employed. As an example, consider a harmonic analysis with 50 requested
+      frequency points (<a class="link" href="Hlp_C_NSUBST.html" title="NSUBST"><span class="command"><strong>NSUBST</strong></span></a>,50) that uses distributed processing with 100 CPU
+      cores (<code class="option">-dis</code>
+      <code class="option">-np</code> 100). Specifying <span class="command"><strong>DDOPTION</strong></span>,FREQ,2 would lead to 50
+      parallel sets of calculations, each working on a different frequency point and using 2 cores
+      for mesh-based domain decomposition (that is, 2 groups of elements per frequency).</p><p>This command must be issued prior to solving the first load step. Once the first load step
+      is completed, this command cannot be used to change the domain decomposition method. The only
+      exception is for analyses which use the linear perturbation procedure. For this case, the
+        <span class="command"><strong>DDOPTION</strong></span> command must be entered prior to the
+      <a class="link" href="Hlp_C_SOLVE.html" title="SOLVE"><span class="command"><strong>SOLVE</strong></span></a>,ELFORM command. For more information, see <a href="../ans_str/strlinperturb.html" class="olink">Linear Perturbation Analysis in the <span class="olinkdocname">Mechanical APDL Structural Analysis Guide</span></a></p><p>For more information and recommendations on how to choose the domain decomposition method,
+      see <a href="../ans_dan/dan_principles.html#dandiffsolu" class="olink">Differences in Solution Processing in the <span class="olinkdocname">Mechanical APDL Parallel Processing Guide</span></a>.</p><p>For the frequency and the cyclic algorithms, solution information for the harmonic
+      frequencies (<em class="replaceable"><code>Decomp</code></em> = FREQ) or cyclic harmonic indices
+        (<em class="replaceable"><code>Decomp</code></em> = CYCHI) solved by the slave processes is only written to
+      the output files for those processes
+        (<span class="filename"><strong>Jobname<em class="replaceable"><code>n</code></em>.OUT</strong></span>). See <a href="../ans_dan/dan_principles.html#dandiffgen" class="olink">Differences in General Behavior  in the <span class="olinkdocname">Mechanical APDL Parallel Processing Guide</span></a> for more information.</p></div><div class="refsect1" title="Menu Paths"><a name="DDOPTION.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

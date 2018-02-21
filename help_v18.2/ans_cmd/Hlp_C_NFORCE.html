@@ -1,0 +1,50 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:52-04:00"><title>NFORCE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_N_TOC.html" title="N Commands"><link rel="prev" href="Hlp_C_NERR.html" title="/NERR"><link rel="next" href="Hlp_C_NGEN.html" title="NGEN"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="NFORCE"><a name="NFORCE"></a><div class="titlepage"></div><a class="indexterm" name="d0e177190"></a><span class="refentrytitle"><span class="command"><strong>NFORCE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>NFORCE</strong></span>, <em class="replaceable"><code>ITEM</code></em><br><b class="refpurpose">Sums the nodal forces and moments of elements attached
+to nodes.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1sppurpjla070199" title="Table&nbsp;2.91:&nbsp;&nbsp;Special Purpose"><span class="type">Special Purpose</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="NFORCE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>ITEM</code></em></b></span></dt><dd><p>Specifies the selected set of nodes for summing forces
+and moments for contact elements.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">(blank)</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Sums the nodal forces of elements
+for all selected nodes and excludes contact elements (elements 169-177).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CONT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Sums the nodal forces of elements
+for contact nodes only.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BOTH</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Sums the nodal forces of elements
+for all selected nodes, including contact elements.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="NFORCE.notes"></a><h2>Notes</h2><p>Sums and prints, in each component direction for each selected
+node, the nodal force and moment contributions of the selected elements
+attached to the node.  If all elements are selected, the sums are
+usually zero except where constraints or loads are applied.  The nodal
+forces and moments may be displayed [<a href="Hlp_C_PBC.html" class="olink"><span class="command"><strong>/PBC</strong></span></a>,FORC
+and <a href="Hlp_C_PBC.html" class="olink"><span class="command"><strong>/PBC</strong></span></a>,MOME].  Use <a class="link" href="Hlp_C_PRESOL.html" title="PRESOL"><span class="command"><strong>PRESOL</strong></span></a> to
+print nodal forces and moments on an element-by-element basis.  You
+can use the <a class="link" href="Hlp_C_FORCE.html" title="FORCE"><span class="command"><strong>FORCE</strong></span></a> command to specify which component
+(static, damping, inertia, or total) of the nodal load is to be used.
+ Nodal forces associated with surface loads are not included.</p><p>This vector sum is printed in the global Cartesian system. Moment
+summations are about the global origin unless another point is specified
+with the <a class="link" href="Hlp_C_SPOINT.html" title="SPOINT"><span class="command"><strong>SPOINT</strong></span></a> command.  The summations for each
+node are printed in the global Cartesian system unless transformed
+[<a class="link" href="Hlp_C_RSYS.html" title="RSYS"><span class="command"><strong>RSYS</strong></span></a>].  This command is generally not applicable
+to axisymmetric models because moment information from the NFORCE
+command is not correct for axisymmetric elements.</p><p>Selecting a subset of elements [<a class="link" href="Hlp_C_ESEL.html" title="ESEL"><span class="command"><strong>ESEL</strong></span></a>] and
+then issuing this command will give the forces and moments required
+to maintain equilibrium of that set of elements.  The effects of nodal
+coupling and constraint equations are ignored. The option <em class="replaceable"><code>ITEM</code></em> = CONT provides the forces and moments for the
+contact elements (<a href="../ans_elem/Hlp_E_CONTA171.html" class="olink"><span class="structname">CONTA171</span></a>, <a href="../ans_elem/Hlp_E_CONTA172.html" class="olink"><span class="structname">CONTA172</span></a>, <a href="../ans_elem/Hlp_E_CONTA173.html" class="olink"><span class="structname">CONTA173</span></a>, <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a>, <a href="../ans_elem/Hlp_E_CONTA175.html" class="olink"><span class="structname">CONTA175</span></a>, <a href="../ans_elem/Hlp_E_CONTA176.html" class="olink"><span class="structname">CONTA176</span></a>, and <a href="../ans_elem/Hlp_E_CONTA177.html" class="olink"><span class="structname">CONTA177</span></a>). Setting <em class="replaceable"><code>ITEM</code></em> = BOTH provides the forces and moments for all selected nodes, including
+contact elements.</p><p>This command also includes the <a class="link" href="Hlp_C_FSUM.html" title="FSUM"><span class="command"><strong>FSUM</strong></span></a> command
+function which vectorially sums and prints, in each component direction
+for the total selected node set, the nodal force and moment contributions
+of the selected elements attached to the selected node set.</p></div><div class="refsect1" title="Using NFORCE in a Spectrum or PSD Analysis (ANTYPE, SPECTR)"><a name="d0e177324"></a><h2>Using <span class="command"><strong>NFORCE</strong></span> in a Spectrum or PSD Analysis
+(<a class="link" href="Hlp_C_ANTYPE.html" title="ANTYPE"><span class="command"><strong>ANTYPE</strong></span></a>, SPECTR)</h2><p>When using <span class="command"><strong>NFORCE</strong></span> in a spectrum analysis
+after the combination file has been input (<a href="Hlp_C_INPUT.html" class="olink"><span class="command"><strong>/INPUT</strong></span></a>,,MCOM), or in a PSD analysis when postprocessing 1-sigma results
+(loadstep 3, 4, or 5), the following message will display in the printout
+header:</p><pre class="screen">(Spectrum analysis summation is used)</pre><p>This message means that the summation of the element nodal forces
+is performed prior to the combination of those forces. In this case, <a class="link" href="Hlp_C_RSYS.html" title="RSYS"><span class="command"><strong>RSYS</strong></span></a> does not apply. The forces are in the nodal coordinate
+systems, and the vector sum is always printed in the global coordinate
+system. </p><p>The spectrum analysis summation is available
+when the element results are written to the mode file, <span class="filename"><strong>Jobname.MODE</strong></span> (<em class="replaceable"><code>MSUPkey</code></em> = Yes on the <a class="link" href="Hlp_C_MXPAND.html" title="MXPAND"><span class="command"><strong>MXPAND</strong></span></a> command).</p><p>Because modal displacements cannot be used to calculate contact
+element nodal forces, <em class="replaceable"><code>ITEM</code></em> does not apply
+to spectrum and PSD analyses.</p></div><div class="refsect1" title="Menu Paths"><a name="NFORCE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Nodal Calcs&gt;Sum @ Each Node</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

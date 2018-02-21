@@ -1,0 +1,65 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:42-04:00"><title>RADOPT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_R_TOC.html" title="R Commands"><link rel="prev" href="Hlp_C_RACE.html" title="RACE"><link rel="next" href="Hlp_C_RAPPND.html" title="RAPPND"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="RADOPT"><a name="RADOPT"></a><div class="titlepage"></div><a class="indexterm" name="d0e222286"></a><span class="refentrytitle">
+<span class="command"><strong>RADOPT</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>RADOPT</strong></span>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>FLUXTOL</code></em>, <em class="replaceable"><code>SOLVER</code></em>, <em class="replaceable"><code>MAXITER</code></em>, <em class="replaceable"><code>TOLER</code></em>, <em class="replaceable"><code>OVERRLEX</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>MAXFLUXITER</code></em>
+<br><b class="refpurpose">Specifies Radiosity Solver options.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolradiosity" title="Table&nbsp;2.73:&nbsp;&nbsp;Radiosity"><span class="type">Radiosity</span></a></span></div></div><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_10.html" title="2.11.&nbsp;AUX12 Commands"><code class="classname">AUX12</code></a>: <a class="link" href="Hlp_C_CH2_10.html#cmdaux12radsolver" title="Table&nbsp;2.106:&nbsp;&nbsp;Radiosity Solver"><span class="type">Radiosity Solver</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="RADOPT.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused field.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>FLUXTOL</code></em>
+</b></span></dt><dd><p>Convergence tolerance for radiation flux. Defaults
+to 0.0001. This value is a relative tolerance.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>SOLVER</code></em>
+</b></span></dt><dd><p>Choice of solver for radiosity calculation:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Gauss-Seidel iterative solver (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Direct solver.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Jacobi solver.</p></td></tr></tbody></table></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>MAXITER</code></em>
+</b></span></dt><dd><p>Maximum number of iterations for iterative solver
+(<em class="replaceable"><code>SOLVER</code></em> = 0 or 2). Defaults to 1000.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TOLER</code></em>
+</b></span></dt><dd><p>Convergence tolerance for the iterative solver (<em class="replaceable"><code>SOLVER</code></em> = 0 or 2). Defaults to 0.1. </p><p>If <em class="replaceable"><code>TOLER</code></em> &#8805; 0, the value is interpreted as an absolute
+tolerance. If <em class="replaceable"><code>TOLER</code></em> &lt; 0, it is interpreted
+as a relative tolerance.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>OVERRLEX</code></em>
+</b></span></dt><dd><p>Over-relaxation factor applied to the iterative solver
+(<em class="replaceable"><code>SOLVER</code></em> = 0 or 2). Defaults to 0.1.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>--</code></em>
+</b></span></dt><dd><p>Unused fields</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>MAXFLUXITER</code></em>
+</b></span></dt><dd><p>Maximum number of flux iterations to be performed
+according to the specified solver type:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If the FULL solver is specified (<a class="link" href="Hlp_C_THOPT.html" title="THOPT"><span class="command"><strong>THOPT</strong></span></a>,FULL), convergence criteria are monitored and iterations
+are performed until convergence occurs. If the QUASI solver is specified
+(<a class="link" href="Hlp_C_THOPT.html" title="THOPT"><span class="command"><strong>THOPT</strong></span></a>,QUASI), convergence criteria are ignored
+and one iteration is performed. This value is the default.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1, 2, 3, ...N </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If the FULL solver is specified
+(<a class="link" href="Hlp_C_THOPT.html" title="THOPT"><span class="command"><strong>THOPT</strong></span></a>,FULL), convergence criteria are monitored
+and iterations are performed until convergence occurs, or until the
+specified number of iterations has been completed, whichever comes
+first. If the QUASI solver is specified (<a class="link" href="Hlp_C_THOPT.html" title="THOPT"><span class="command"><strong>THOPT</strong></span></a>,QUASI),
+convergence criteria are ignored and the specified number of iterations
+are completed.</p></td></tr></tbody></table></div></div><p>
+</p><p>To view <em class="replaceable"><code>MAXFLUXITER</code></em> usage illustrations, see <a href="../ans_the/thermsolualgors.html#the_trans_fullmethfig" class="olink">Figure&nbsp;3.5:&nbsp;FULL Solution Method When Radiosity Is Present</a> and <a href="../ans_the/thermsolualgors.html#the_trans_quasimethfig" class="olink">Figure&nbsp;3.6:&nbsp;QUASI Solution Method When Radiosity Is Present</a>.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="RADOPT.notes"></a><h2>Notes</h2><p>The radiation heat flux is linearized, resulting in robust convergence.</p><p>The radiation flux norm for <em class="replaceable"><code>FLUXTOL</code></em> is expressed as:</p><div class="blockquote"><blockquote class="blockquote"><div class="informalequation"><a name="eq51bca7e6-b49a-4173-81e7-cc8bb24ac20a"></a><div><img src="graphics/eq51bca7e6-b49a-4173-81e7-cc8bb24ac20a.svg"></div></div><p>where i is the pass or iteration number and j is the surface
+facet for radiation.</p></blockquote></div><p>
+</p><p>For a sufficiently small absolute tolerance
+value, relative tolerance converges in fewer iterations than absolute
+tolerance. For a sufficiently large absolute tolerance value, relative
+tolerance may cause convergence difficulties.</p><p>For more information about <em class="replaceable"><code>FLUXTOL</code></em> and <em class="replaceable"><code>MAXFLUXITER</code></em> usage, see <a href="../ans_the/thermsolualgors.html#the_trans_fullmethfig" class="olink">Figure&nbsp;3.5:&nbsp;FULL Solution Method When Radiosity Is Present</a> and <a href="../ans_the/thermsolualgors.html#the_trans_quasimethfig" class="olink">Figure&nbsp;3.6:&nbsp;QUASI Solution Method When Radiosity Is Present</a> in
+the <a href="../ans_the/Hlp_G_TheTOC.html" class="olink"><em class="citetitle">Thermal Analysis Guide</em></a>. </p><p>In <a href="../ans_the/thermsolualgors.html#the_trans_fullmethfig" class="olink">Figure&nbsp;3.5:&nbsp;FULL Solution Method When Radiosity Is Present</a> and <a href="../ans_the/thermsolualgors.html#the_trans_quasimethfig" class="olink">Figure&nbsp;3.6:&nbsp;QUASI Solution Method When Radiosity Is Present</a> (under <a href="../ans_the/thermsolualgors.html#therm_fullquasirad" class="olink">Solving for Temperature and Radiosity</a> in the <a href="../ans_the/Hlp_G_TheTOC.html" class="olink"><em class="citetitle">Thermal Analysis Guide</em></a>),
+refer to the K<sub>Q</sub>Q = F<sub>Q</sub> equation system via the iterative method: </p><div class="blockquote"><blockquote class="blockquote"><p>If <em class="replaceable"><code>TOLER</code></em> &#8805; 0, the iterative
+solver is converged for maximum value over a different <em class="replaceable"><code>j</code></em> as shown: </p><div class="informalequation"><a name="eq44be62f5-579d-41a8-8c5a-f77a6cdd3524"></a><div><img src="graphics/eq44be62f5-579d-41a8-8c5a-f77a6cdd3524.svg"></div></div><p>
+</p><p>If <em class="replaceable"><code>TOLER</code></em> &lt; 0, the iterative solver
+is converged for maximum value over a different <em class="replaceable"><code>j</code></em> as shown:</p><div class="informalequation"><a name="eqe3b0f588-021a-4bf0-b3ac-13187bb4eaa6"></a><div><img src="graphics/eqe3b0f588-021a-4bf0-b3ac-13187bb4eaa6.svg"></div></div><p>
+</p><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<em class="replaceable"><code>j</code></em> = number of radiation facets</td></tr><tr><td>
+<em class="replaceable"><code>k</code></em> = number of iterations (<em class="replaceable"><code>k</code></em> = 1 to <em class="replaceable"><code>MAXITER</code></em>)</td></tr></table></blockquote></div><p>The Jacobi solver (<em class="replaceable"><code>SOLVER</code></em> = 2) is
+suitable when using Distributed ANSYS. This option is only available
+for 3-D models; if <em class="replaceable"><code>SOLVER</code></em> is set to 2 for
+a 2-D analysis, the Gauss-Seidel iterative solver (<em class="replaceable"><code>SOLVER</code></em> = 0) is used.</p></div><div class="refsect1" title="Menu Paths"><a name="RADOPT.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Radiation Opts&gt;Solution Opt</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Radiation Opt&gt;Radiosity Meth&gt;Solution Opt</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Radiation Opts&gt;Solution Opt</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

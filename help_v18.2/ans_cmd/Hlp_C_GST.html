@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:23-04:00"><title>/GST</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_G_TOC.html" title="G Commands"><link rel="prev" href="Hlp_C_GSSOL.html" title="GSSOL"><link rel="next" href="Hlp_C_GSUM.html" title="GSUM"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="/GST"><a name="s-GST"></a><div class="titlepage"></div><a class="indexterm" name="d0e131418"></a><span class="refentrytitle"><a href="Hlp_C_GST.html" class="olink"><span class="command"><strong>/GST</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>/GST</strong></span>, <em class="replaceable"><code>Lab</code></em>, <em class="replaceable"><code>Lab2</code></em><br><b class="refpurpose">Turns Graphical Solution Tracking (GST) on or off.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolunonlinjla070199" title="Table&nbsp;2.50:&nbsp;&nbsp;Nonlinear Options"><span class="type">Nonlinear Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="s-GST.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><p>Determines whether the Graphical Solution Tracking
+feature is active.  Specify ON to activate GST, or OFF to deactivate
+the feature.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Lab2</code></em></b></span></dt><dd><p>Activates generation of interface and field convergence
+files (ANSYS MFX analyses only).  </p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="s-GST.notes"></a><h2>Notes</h2><p>For interactive runs using GUI [<a href="Hlp_C_MENU.html" class="olink"><span class="command"><strong>/MENU</strong></span></a>,ON]
+or graphics [<a href="Hlp_C_MENU.html" class="olink"><span class="command"><strong>/MENU</strong></span></a>,GRPH] mode, ANSYS directs GST
+graphics to the screen.  For interactive sessions not using GUI or
+graphics mode, or for batch sessions, GST graphics are saved in the
+ANSYS graphics file <span class="filename"><strong>Jobname.GST</strong></span> when Lab2 is
+unspecified. The file <span class="filename"><strong>Jobname.GST</strong></span> can be viewed
+with the DISPLAY program in this case. You must select <span class="guimenuitem"><strong>All File Types</strong></span> to access it. For more information on
+the DISPLAY program see <a href="../ans_bas/Hlp_G_BAS16_3.html#abissq384ldm" class="olink">Getting Started with the DISPLAY Program</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a>. For MFX runs (when Lab2=ON), the <span class="filename"><strong>Jobname.GST</strong></span> file is in XML format, and it can be viewed with the <span class="guilabel"><strong>Results
+Tracker Utility</strong></span>, accessed from within the <span class="guimenu"><strong>Tools</strong></span> menu of the Mechanical APDL Product Launcher.</p><p>The GST feature is available only for nonlinear structural,
+thermal, electric, magnetic, fluid, or CFD simulations. For more information
+about this feature and illustrations of the GST graphics for each
+analysis type, see the <span class="italic"><em>ANSYS Analysis Guide</em></span> for the appropriate discipline.  See also the <a class="link" href="Hlp_C_CNVTOL.html" title="CNVTOL"><span class="command"><strong>CNVTOL</strong></span></a> command description.</p><p>When running an <a href="../ans_cou/Hlp_G_COUsocket.html" class="olink">ANSYS MFX analysis</a>, specify <a href="Hlp_C_GST.html" class="olink"><span class="command"><strong>/GST</strong></span></a>,ON,ON
+to generate both the interface (<span class="filename"><strong>Jobname.NLH</strong></span>)
+and field convergence (<span class="filename"><strong>Fieldname.GST</strong></span>) files for
+monitoring the analysis. This field is not available on the GUI.</p></div><div class="refsect1" title="Menu Paths"><a name="s-GST.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Load Step Opts&gt;Output Ctrls&gt;Grph Solu Track</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Load Step Opts&gt;Output Ctrls&gt;Grph Solu Track</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:20-04:00"><title>AEROCOEFF</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_A_TOC.html" title="A Commands"><link rel="prev" href="Hlp_C_ADRAG.html" title="ADRAG"><link rel="next" href="Hlp_C_AESIZE.html" title="AESIZE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="AEROCOEFF"><a name="AEROCOEFF"></a><div class="titlepage"></div><a class="indexterm" name="d0e18189"></a><span class="refentrytitle">
+      <span class="command"><strong>AEROCOEFF</strong></span>
+    </span><div class="refnamediv"><p>
+      <span class="command"><strong>AEROCOEFF</strong></span>, <em class="replaceable"><code>AeroModeType</code></em>,
+        <em class="replaceable"><code>AeroMappedFileNames</code></em>, <em class="replaceable"><code>AeroSpecs</code></em>,
+        <em class="replaceable"><code>AeroScalar</code></em>, <em class="replaceable"><code>nBlades</code></em>
+    <br><b class="refpurpose">Computes the aero-damping and stiffness coefficients and writes them to an APDL
+      array.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7specpurpldm061600" title="Table&nbsp;2.48:&nbsp;&nbsp;Special Purpose"><span class="type">Special Purpose</span></a></span></div></div> <div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoludynoptjla070199" title="Table&nbsp;2.51:&nbsp;&nbsp;Dynamic Options"><span class="type">Dynamic Options</span></a></span></div></div></div><div class="refclass">
+      <div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+    </div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="AEROCOEFF.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>AeroModeType</code></em>
+</b></span></dt><dd><p>Mode type to be used.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BLADE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Non-cyclic cantilevered blade mode (default)</p></td></tr></tbody></table></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>AeroMappedFiles</code></em>
+</b></span></dt><dd><p>Name of string array containing file names of mapped pressures from CFD. The file
+            names should be ordered to correspond to the <em class="replaceable"><code>AeroSpecs</code></em>
+            array.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>AeroSpecs</code></em>
+</b></span></dt><dd><p>Name of numerical array containing data organized to correspond to the
+              <em class="replaceable"><code>AeroMappedFiles</code></em> array. See the <a class="xref" href="Hlp_C_AEROCOEFF.html#AEROCOEFF.notes" title="Notes">"Notes"</a> section for specific information that must be in the
+            array.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>AeroScalar</code></em>
+</b></span></dt><dd><p>Scaling value(s) to handle any modal scaling difference between structural and CFD
+            modes. The values can be entered as a scalar or 1-dimensional array. (each scaling value
+            defaults to 1)</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>nBlades</code></em>
+</b></span></dt><dd><p>Number of blades.</p></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="AEROCOEFF.default"></a><h3>Command Default</h3><p>No defaults are available for the <span class="command"><strong>AEROCOEFF</strong></span> command.</p></div></div><div class="refsect1" title="Notes"><a name="AEROCOEFF.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>AEROCOEFF</strong></span> command is designed to <a href="../ans_cycsym/cycsym_aero_coupling.html" class="olink">generate an array of aerodynamic coefficients</a> that
+      can be used in a cyclic mode-superposition harmonic response analysis using the
+        <a class="link" href="Hlp_C_CYCFREQ.html" title="CYCFREQ"><span class="command"><strong>CYCFREQ</strong></span></a>,AERO command to represent aerodynamic stiffness and damping.
+      These aerodynamic coefficients can also be used in a damped modal analysis phase
+        (<a class="link" href="Hlp_C_CYCFREQ.html" title="CYCFREQ"><span class="command"><strong>CYCFREQ</strong></span></a>,MODAL) of a cyclic mode-superposition harmonic solve. An APDL
+      array called <em class="replaceable"><code>Jobname</code></em>AeroArray is generated using the
+        <span class="command"><strong>AEROCOEFF</strong></span> command. This array is compatible with the array needed for the
+        <a class="link" href="Hlp_C_CYCFREQ.html" title="CYCFREQ"><span class="command"><strong>CYCFREQ</strong></span></a>,AERO command.</p><p>The format of the written array follows that of the <a class="link" href="Hlp_C_CYCFREQ.html" title="CYCFREQ"><span class="command"><strong>CYCFREQ</strong></span></a>,AERO
+      command. The array is formatted as follows:</p><div class="informalequation"><a name="eq847302bb-0229-4058-9e96-b903c67b7b5d"></a><div><img src="graphics/eq847302bb-0229-4058-9e96-b903c67b7b5d.svg"></div></div><p>where</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqb012225c-1810-4af3-a6f7-7372c0edaf15.svg"></span> = the i<sup>th</sup> interblade phase angle
+          (IBPA)</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqc37b618b-efb0-455e-8419-b8ea5b4b7f70.svg"></span> = the m<sup>th</sup> vibrating blade mode</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq483ba954-f1e7-458f-8147-a545fd2b3095.svg"></span> = the n<sup>th</sup> blade mode generating the pressure
+          oscillations</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq291ddca9-5530-4834-be54-00b0564e321f.svg"></span> and <span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eq92c839bc-8bf4-406e-be6c-f666a1e16b60.svg"></span> = the real and imaginary coefficients.</td></tr></table><p>
+</p><p>Prior to issuing the <span class="command"><strong>AEROCOEFF</strong></span> command, a non-cyclic cantilevered blade
+      modal analysis must be run, either stress-free or prestressed using linear perturbation. For
+      more information, see <a href="../ans_str/Hlp_G_STR3.html" class="olink">Modal Analysis</a> in the <a href="../ans_str/Hlp_G_StrTOC.html" class="olink"><em class="citetitle">Structural Analysis Guide</em></a>. The file requirements
+      for the <span class="command"><strong>AEROCOEFF</strong></span> command are the same as those needed for modal restart as
+      described in <a href="../ans_bas/Hlp_G_BAS3_12.html#bassolumodres" class="olink">Modal Analysis Restart</a>.</p><p>The <em class="replaceable"><code>AeroSpecs</code></em> values are specified in a 3&times;r array
+        (<a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a>), where r is a positive integer equal to the number of interblade
+      phase angles and the pressure modes solved for in the CFD analysis. Each row has the
+      structure:</p><div class="informalequation"><a name="eq09e27e78-f9a8-41d6-a83f-73d81902c95c"></a><div><img src="graphics/eq09e27e78-f9a8-41d6-a83f-73d81902c95c.svg"></div></div><p>where</p><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq23854b2e-461a-4881-b469-49e080ba4431.svg"></span> = the i<sup>th</sup> interblade phase angle
+          (IBPA)</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqff813aea-92a1-4794-8770-2919d8cf4141.svg"></span> = the m<sup>th</sup> vibrating blade mode</td></tr><tr><td>
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqbdbba5aa-9c10-45f4-9d92-43c816832c21.svg"></span> = the n<sup>th</sup> blade mode generating the pressure
+          oscillations</td></tr></table><p>At least one aerodynamic damping coefficient must be specified for each IBPA
+      (equal to the number of blades) while keeping <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq92adda71-9d7f-47d6-9a99-4629191db9b6.svg"></span> and <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq10554521-2305-40bf-b51e-2706c9fd8eb3.svg"></span> constant. If a value is not specified, the program writes an array value of
+      zero for both <span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq9c8aed31-8374-4418-8158-59c8f2f7b838.svg"></span> and <span class="inlineequation" style="&#xA;          vertical-align:-7.000000px"><img src="graphics/eqd2ea4719-40ad-4255-8451-17af3eb8e848.svg"></span>. The values of <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq2fe1a6a2-be35-4dba-9011-6090062ea888.svg"></span> and <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqa1ff6204-73f0-4fcc-9e59-b8d2b71e7d79.svg"></span> are relative to the modes computed in the required modal analysis.</p><p>The number of <em class="replaceable"><code>AeroScalar</code></em> values must be equal to the number of
+      pressure modes (<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq6359240d-b5ee-433d-9f46-81ac4b79003d.svg"></span> from <em class="replaceable"><code>AeroSpecs</code></em>). If the number of
+        <em class="replaceable"><code>AeroScalar</code></em> values is greater than 1, the values must be entered
+      by defining an <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqa9a6f813-34bd-4f85-8d90-03fa1e97fbae.svg"></span> array (<a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a>) and entering the array name in the
+        <em class="replaceable"><code>AeroScalar</code></em> field. For a discussion of how
+        <em class="replaceable"><code>AeroScalar</code></em> values are computed, see <a href="../ans_cycsym/cycsym_aero_coupling.html#cycsym_scaling_aerocoeff" class="olink">Scaling Aerodynamic Coupling Coefficients</a>.</p><p>The value for <em class="replaceable"><code>nBlades</code></em> should be equal to the number of sectors
+      of the system. If there are multiple blades per cyclic sector, then the combination of blades
+      on the single sector will have an aero coefficient value. In this case, each blade will not
+      have a distinct aero coefficient.</p></div><div class="refsect1" title="Menu Paths"><a name="AEROCOEFF.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

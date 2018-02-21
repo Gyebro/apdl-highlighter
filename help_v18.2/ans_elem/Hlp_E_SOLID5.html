@@ -1,0 +1,332 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:09-04:00"><title>SOLID5</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="next" href="Hlp_E_LINK11.html" title="LINK11"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SOLID5"><a name="SOLID5"></a><div class="titlepage"></div><a class="indexterm" name="d0e19809"></a><span class="refentrytitle">
+<span class="structname">SOLID5</span> </span><div class="refnamediv"><p><br><b class="refpurpose">3-D Coupled-Field Solid</b><div class="refclass">
+   <div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; |  &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+   <div class=""><div class="application"><span class="application">
+    <a class="link" href="Hlp_E_SOLID5.html#aAQ6vqadmcm" title="SOLID5 Product Restrictions">Product Restrictions</a>
+   </span></div></div>
+  </div></p></div><div class="refsect1" title="SOLID5 Element Description"><a name="elemdesc5tlm61499"></a><h2>SOLID5 Element Description</h2><div class="informaltable"><table border="1" width="95%"><colgroup><col class="col1" width="100%"></colgroup><tbody><tr><td>Although this <a class="link" href="Hlp_E_CH2_OLDNEW.html#EL2oldnewtable" title="2.4.1.&nbsp;Legacy vs. Current Element Technologies">legacy
+element</a> is available for use in your analysis, ANSYS, Inc. recommends
+using a current-technology element such as <a class="link" href="Hlp_E_SOLID226.html" title="SOLID226"><span class="structname">SOLID226</span></a>.</td></tr></tbody></table></div><p>
+<span class="structname">SOLID5</span> has a 3-D magnetic, thermal,
+electric, piezoelectric, and structural field capability with limited
+coupling between the fields.  The element has eight nodes with up
+to six degrees of freedom at each node.  Scalar potential formulations
+(reduced RSP, difference DSP, or general GSP) are available for modeling
+magnetostatic fields in a static analysis.  When used in structural
+and piezoelectric analyses, <span class="structname">SOLID5</span> has large
+deflection and stress stiffening capabilities. See <a href="../ans_thry/thy_el5.html" class="olink">SOLID5</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for
+more details about this element.  Coupled field elements with similar
+field capabilities are <a class="link" href="Hlp_E_PLANE13.html" title="PLANE13"><span class="structname">PLANE13</span></a>, and <a class="link" href="Hlp_E_SOLID98.html" title="SOLID98"><span class="structname">SOLID98</span></a>.</p><div class="figure"><a name="aGHsf27lmm"></a><p class="title"><b>Figure&nbsp;5.1:&nbsp;&nbsp;SOLID5 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM5-1.svg" alt="SOLID5 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="SOLID5 Input Data"><a name="a9Q6vq32dmcm"></a><h2>SOLID5 Input Data</h2><p>The geometry, node locations, and the coordinate system for
+this element are shown in <a class="xref" href="Hlp_E_SOLID5.html#aGHsf27lmm" title="Figure&nbsp;5.1:&nbsp;&nbsp;SOLID5 Geometry">Figure&nbsp;5.1:&nbsp;SOLID5 Geometry</a>.  The element
+is defined by eight nodes and the material properties.  The type of
+units (MKS or user defined) is specified through the <a href="../ans_cmd/Hlp_C_EMUNIT.html" class="olink"><span class="command"><strong>EMUNIT</strong></span></a> command. <a href="../ans_cmd/Hlp_C_EMUNIT.html" class="olink"><span class="command"><strong>EMUNIT</strong></span></a> also determines the value of
+MUZERO. The <a href="../ans_cmd/Hlp_C_EMUNIT.html" class="olink"><span class="command"><strong>EMUNIT</strong></span></a> defaults are MKS units and MUZERO
+= 4&nbsp;&#960; x 10<sup>-7</sup> Henries/meter.  In
+addition to MUZERO, orthotropic relative permeability is specified
+through the MURX, MURY, and MURZ material property labels.</p><p>MGXX, MGYY, and MGZZ represent vector components of the coercive
+force for permanent magnet materials.  The magnitude of the coercive
+force is the square root of the sum of the squares of the components.
+ The direction of polarization is determined by the components MGXX,
+MGYY, and MGZZ.  Permanent magnet polarization directions correspond
+to the element coordinate directions.  Orthotropic material directions
+correspond to the element coordinate directions.  The element coordinate
+system orientation is as described in <a class="xref" href="Hlp_E_CH2_3.html" title="3.3.&nbsp;Coordinate Systems">Coordinate Systems</a>.  Nonlinear magnetic, piezoelectric, and anisotropic elastic properties
+are entered via the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command. 
+Nonlinear orthotropic magnetic properties can be specified with a
+combination of a B-H curve and linear relative permeability.  The
+B-H curve is used in each element coordinate direction where
+a zero value of relative permeability is specified. Only one B-H
+curve may be specified per material.</p><p>Various combinations of nodal loading are available for this
+element (depending upon the KEYOPT(1) value).  Nodal loads are defined
+with the <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a> and the <a href="../ans_cmd/Hlp_C_F.html" class="olink"><span class="command"><strong>F</strong></span></a> commands.
+ With the <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a> command, the <em class="replaceable"><code>Lab</code></em> variable corresponds to the degree of freedom (UX, UY, UZ, TEMP,
+VOLT, MAG) and <em class="replaceable"><code>VALUE</code></em> corresponds to the
+value (displacements, temperature, voltage, scalar magnetic potential).
+ With the <a href="../ans_cmd/Hlp_C_F.html" class="olink"><span class="command"><strong>F</strong></span></a> command, the <em class="replaceable"><code>Lab</code></em> variable corresponds to the force (FX, FY, FZ, HEAT, AMPS, FLUX)
+and <em class="replaceable"><code>VALUE</code></em> corresponds to the value (force,
+heat flow, current or charge, magnetic flux).</p><p>Element loads are described in <a class="xref" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">Nodal Loading</a>.
+ Pressure, convection or heat flux (but not both), radiation, and
+Maxwell force flags may be input on the element faces indicated by
+the circled numbers in <a class="xref" href="Hlp_E_SOLID5.html#aGHsf27lmm" title="Figure&nbsp;5.1:&nbsp;&nbsp;SOLID5 Geometry">Figure&nbsp;5.1:&nbsp;SOLID5 Geometry</a> using the <a href="../ans_cmd/Hlp_C_SF.html" class="olink"><span class="command"><strong>SF</strong></span></a> and <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> commands.  Positive pressures
+act into the element.  Surfaces at which magnetic forces are to be
+calculated may be identified by using the MXWF label on the surface
+load commands (no value is required.)  A maxwell stress tensor calculation
+is performed at these surfaces to obtain the magnetic forces.  These
+forces are applied in solution as structural loads.  The surface flag
+should be applied to "air" elements adjacent to the body for which
+forces are required.  Deleting the MXWF specification removes the
+flag.</p><p>The body loads, temperature, heat generation rate and magnetic
+virtual displacement may be input based on their value at the element's
+nodes or as a single element value [<a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a> and <a href="../ans_cmd/Hlp_C_BFE.html" class="olink"><span class="command"><strong>BFE</strong></span></a>].  When the temperature degree of freedom is active
+(KEYOPT(1) = 0,1 or 8), applied body force temperatures [<a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a>, <a href="../ans_cmd/Hlp_C_BFE.html" class="olink"><span class="command"><strong>BFE</strong></span></a>] are ignored.  In general, unspecified
+nodal values of temperature and heat generation rate default to the
+uniform value specified with the <a href="../ans_cmd/Hlp_C_BFUNIF.html" class="olink"><span class="command"><strong>BFUNIF</strong></span></a> or <a href="../ans_cmd/Hlp_C_TUNIF.html" class="olink"><span class="command"><strong>TUNIF</strong></span></a> commands.  Calculated Joule heating (JHEAT) is applied
+in subsequent iterations as heat generation rate.</p><p>If the temperature degree of freedom is present, the calculated
+temperatures override any input nodal temperatures.</p><p>Air elements in which Local Jacobian forces are to be calculated
+may be identified by using nodal values of 1 and 0 for the MVDI label
+[<a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a>].  See the <a href="../ans_lof/Hlp_G_EleTOC.html" class="olink"><em class="citetitle">Low-Frequency Electromagnetic Analysis Guide</em></a> for details.  These forces
+are not applied in solution as structural loads.</p><p>Current for the scalar magnetic potential options is defined
+with the <a class="link" href="Hlp_E_SOURC36.html" title="SOURC36"><span class="structname">SOURC36</span></a> element the command macro
+RACE, or through electromagnetic coupling.  The various types of scalar
+magnetic potential solution options are defined with the <a href="../ans_cmd/Hlp_C_MAGOPT.html" class="olink"><span class="command"><strong>MAGOPT</strong></span></a> command.</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_SOLID5.html#abJsf90lmm" title="SOLID5 Input Summary">"SOLID5 Input Summary"</a>.  A general description of element input is
+given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>.</p><div class="refsect2" title="SOLID5 Input Summary"><a name="abJsf90lmm"></a><h3>SOLID5 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J, K, L, M, N, O, P</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>UX, UY, UZ, TEMP, VOLT, MAG if KEYOPT (1) = 0</td></tr><tr><td>TEMP, VOLT, MAG if KEYOPT (1) = 1</td></tr><tr><td>UX, UY, UZ  if KEYOPT (1) = 2</td></tr><tr><td>UX, UY, UZ, VOLT if KEYOPT(1) = 3</td></tr><tr><td>TEMP if KEYOPT (1) = 8</td></tr><tr><td>VOLT if KEYOPT (1) = 9</td></tr><tr><td>MAG if KEYOPT (1) = 10</td></tr></table></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command: See <a class="xref" href="elem_matsupp.html" title="Chapter&nbsp;4:&nbsp;Element Support for Material Models">Element Support for Material Models</a> for this element.</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: EX, EY, EZ, (PRXY, PRYZ, PRXZ
+or NUXY, NUYZ, NUXZ), </td></tr><tr><td>ALPX, ALPY, ALPZ (or CTEX, CTEY, CTEZ <span class="italic"><em>or</em></span> THSX, THSY, THSZ), </td></tr><tr><td>DENS, GXY, GYZ, GXZ, ALPD, BETD, KXX, KYY, KZZ, C, <span>DMPR</span>
+</td></tr><tr><td>ENTH,  MUZERO, MURX, MURY, MURZ, RSVX, RSVY, RSVZ,</td></tr><tr><td>MGXX, MGYY, MGZZ, PERX, PERY, PERZ)</td></tr></table></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Pressure, Convection or Heat Flux (but not both),&nbsp;Radiation
+(using Lab = RDSF), and Maxwell Force Flags --&nbsp;</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>face 1 (J-I-L-K), face 2 (I-J-N-M), face 3 (J-K-O-N),</td></tr><tr><td>face 4 (K-L-P-O), face 5 (L-I-M-P), face 6 (M-N-O-P)</td></tr></table></dd></dl></div></div></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Temperatures&nbsp;--&nbsp;</b></span></dt><dd><p>T(I), T(J),
+T(K), T(L), T(M), T(N), T(O), T(P)</p></dd><dt><span><b class="term">Heat Generations&nbsp;--&nbsp;</b></span></dt><dd><p>HG(I),
+HG(J), HG(K), HG(L), HG(M), HG(N), HG(O), HG(P)</p></dd><dt><span><b class="term">Magnetic Virtual Displacements&nbsp;--&nbsp;</b></span></dt><dd><p>VD(I), VD(J), VD(K), VD(L), VD(M), VD(N), VD(O), VD(P)</p></dd><dt><span><b class="term">Electric Field&nbsp;--&nbsp;</b></span></dt><dd><p>EFX, EFY,
+EFZ. See <a class="xref" href="Hlp_E_SOLID5.html#aAQ6vq3emcm" title="SOLID5 Assumptions and Restrictions">"SOLID5 Assumptions and Restrictions"</a>.</p></dd></dl></div></div></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_thry/thy_tool10.html#eltadaptive" class="olink">Adaptive
+descent</a>
+</td></tr><tr><td>
+<a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth
+and death</a>
+</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink">Large deflection</a>
+</td></tr><tr><td>
+<a href="../ans_str/Hlp_G_STR8_2.html#strstrstiftlm61199434" class="olink">Stress stiffening</a>
+</td></tr></table></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Element degrees of freedom:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>UX, UY, UZ, TEMP, VOLT,
+MAG</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>TEMP, VOLT, MAG</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>UX, UY, UZ</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>UX, UY, UZ, VOLT</p></dd><dt><span><b class="term">8&nbsp;--&nbsp;</b></span></dt><dd><p>TEMP</p></dd><dt><span><b class="term">9&nbsp;--&nbsp;</b></span></dt><dd><p>VOLT</p></dd><dt><span><b class="term">10&nbsp;--&nbsp;</b></span></dt><dd><p>MAG</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(3)</b></span></dt><dd><p>Extra shapes:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Include extra shapes</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Do not include extra shapes</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(5)</b></span></dt><dd><p>Extra element output:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Basic element printout</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Nodal stress or magnetic
+field printout</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="SOLID5 Output Data"><a name="a9Q6vq3a1mcm"></a><h2>SOLID5 Output Data</h2><p>The solution output associated with the element is in two forms </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal degree of freedom results included in the overall
+nodal solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_SOLID5.html#avKsf167lmm" title="Table&nbsp;5.1:&nbsp;&nbsp;SOLID5 Element Output Definitions">Table&nbsp;5.1:&nbsp;SOLID5 Element Output Definitions</a>.</p></li></ul></div><p>
+</p><p>Several items are illustrated in <a class="xref" href="Hlp_E_SOLID5.html#aHKsf382lmm" title="Figure&nbsp;5.2:&nbsp;&nbsp;SOLID5 Element Output">Figure&nbsp;5.2:&nbsp;SOLID5 Element Output</a>.  The element stress directions are parallel to the element coordinate
+system.  The reaction forces, heat flow, current, and magnetic flux
+at the nodes can be printed with the <a href="../ans_cmd/Hlp_C_OUTPR.html" class="olink"><span class="command"><strong>OUTPR</strong></span></a> command.
+ A general description of solution output is given in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a>.  See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways to view results.</p><div class="figure"><a name="aHKsf382lmm"></a><p class="title"><b>Figure&nbsp;5.2:&nbsp;&nbsp;SOLID5 Element Output</b></p><div class="figure-contents"><div><img src="graphics/gELEM5-2.svg" alt="SOLID5 Element Output"></div></div></div><p><br class="figure-break">
+</p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="avKsf167lmm"></a><p class="title"><b>Table&nbsp;5.1:&nbsp;&nbsp;SOLID5 Element Output Definitions</b></p><div class="table-contents"><table summary="SOLID5 Element Output Definitions" border="1" width="95%"><colgroup><col width="139" class="col1"><col width="340" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th align="center">Name</th><th align="center">Definition</th><th align="center">O</th><th align="center">R</th></tr></thead><tbody><tr><td>EL</td><td>Element Number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Element nodes - I, J, K, L, M, N, O, P</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>MAT</td><td>Element material number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>VOLU:</td><td>Element volume</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>XC, YC, ZC</td><td>Location where
+results are reported</td><td align="center">Y</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.3">3</a>
+</td></tr><tr><td>PRES</td><td>P1 at nodes J, I, L, K;  P2 at I, J, N,
+M; P3 at J, K, O, N;  P4 at K, L, P, O; P5 at L, I, M, P;  P6 at M,
+N, O, P</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>TEMP</td><td>Input Temperatures:
+T(I), T(J), T(K), T(L), T(M), T(N), T(O), T(P)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>HGEN</td><td>Input Heat Generations: HG(I), HG(J), HG(K),
+HG(L), HG(M), HG(N), HG(O), HG(P)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>S:X,
+Y, Z, XY, YZ, XZ</td><td>Component stresses</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>S:1, 2, 3</td><td>Principal
+stresses</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>S:INT</td><td>Stress intensity</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>S:EQV</td><td>Equivalent stress</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>EPEL:X, Y, Z, XY, YZ, XZ</td><td>Elastic strains</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>EPEL:1, 2,
+3</td><td>Principal elastic strains</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">-</td></tr><tr><td>EPEL:EQV</td><td>Equivalent elastic
+strains [<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.4">4</a>]</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>EPTH:X, Y, Z, XY, YZ, XZ</td><td>Thermal strains</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>EPTH:EQV</td><td>Equivalent thermal strains
+[<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.4">4</a>]</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>LOC</td><td>Output location (X, Y, Z)</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>MUX, MUY, MUZ</td><td>Magnetic permeability</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>H: X, Y, Z</td><td>Magnetic field intensity components</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>H:SUM</td><td>Vector magnitude of H</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>B:X, Y, Z</td><td>Magnetic flux density components</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>B:SUM</td><td>Vector magnitude of B</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>FJB</td><td>Lorentz magnetic force components (X, Y, Z)</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">-</td></tr><tr><td>FMX</td><td>Maxwell magnetic force components
+(X, Y, Z)</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">-</td></tr><tr><td>FVW</td><td>Virtual work force components (X, Y, Z)</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>FMAG:X, Y,
+Z</td><td>Combined (FJB or FMX) force components</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>EF:X, Y, Z</td><td>Electric field components
+(X, Y, Z)</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>EF:SUM</td><td>Vector magnitude of EF</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>JS:X, Y, Z</td><td>Source current density components</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>JSSUM</td><td>Vector magnitude of JS</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>JHEAT:</td><td>Joule heat generation per unit volume</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>D:X, Y, Z</td><td>Electric flux density components</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>D:SUM</td><td>Vector magnitude of D</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>UE, UD, UM</td><td>Elastic (UE), dielectric (UD), and electromechanical coupled
+(UM) energies </td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>TG:X, Y, Z</td><td>Thermal gradient components</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>TG:SUM</td><td>Vector magnitude of TG</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>TF:X, Y, Z</td><td>Thermal flux components</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>TF:SUM</td><td>Vector magnitude of TF (heat flow rate/unit cross-section area)</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.1">1</a>
+</td></tr><tr><td>FACE</td><td>Face label</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.2">2</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.2">2</a>
+</td></tr><tr><td>AREA</td><td>Face area</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.2">2</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.2">2</a>
+</td></tr><tr><td>NODES</td><td>Face nodes</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.2">2</a>
+</td><td align="center">-</td></tr><tr><td>HFILM</td><td>Film coefficient at each node of face</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.2">2</a>
+</td><td align="center">-</td></tr><tr><td>TBULK</td><td>Bulk temperature at each node
+of face</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.2">2</a>
+</td><td align="center">-</td></tr><tr><td>TAVG</td><td>Average
+face temperature</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.2">2</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.2">2</a>
+</td></tr><tr><td>HEAT RATE</td><td>Heat flow rate across face by convection</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.2">2</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.2">2</a>
+</td></tr><tr><td>HEAT RATE/AREA</td><td>Heat flow rate per unit area across face by convection</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.2">2</a>
+</td><td align="center">-</td></tr><tr><td>HFLUX</td><td>Heat flux at each
+node of face</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.2">2</a>
+</td><td align="center">-</td></tr><tr><td>HFAVG</td><td>Average film coefficient of the face</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.2">2</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.2">2</a>
+</td></tr><tr><td>TBAVG</td><td>Average face bulk temperature</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.2">2</a>
+</td></tr><tr><td>HFLXAVG</td><td>Heat flow rate per unit area across face
+caused by input heat flux</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID5.html#solid5.tab.2.ft.2">2</a>
+</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="solid5.tab.2.ft.1"></a>Element solution at the centroid
+printed out only if calculated (based on input data).</p></li><li class="listitem"><p><a name="solid5.tab.2.ft.2"></a>Nodal stress or magnetic field
+solution (only if KEYOPT(5) = 2).  The solution results are repeated
+at each node and only if a surface load is input.</p></li><li class="listitem"><p><a name="solid5.tab.2.ft.3"></a>Available only at centroid
+as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item.</p></li><li class="listitem"><p><a name="solid5.tab.2.ft.4"></a>The equivalent strains use
+an effective Poisson's ratio: for elastic and thermal this value is
+set by the user (<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a>,PRXY).</p></li></ol></div><p>
+<a class="xref" href="Hlp_E_SOLID5.html#aTZ57g290lmm" title="Table&nbsp;5.2:&nbsp;&nbsp;SOLID5 Item and Sequence Numbers">Table&nbsp;5.2:&nbsp;SOLID5 Item and Sequence Numbers</a> lists output available through
+the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method.
+The following notation is used in <a class="xref" href="Hlp_E_SOLID5.html#aTZ57g290lmm" title="Table&nbsp;5.2:&nbsp;&nbsp;SOLID5 Item and Sequence Numbers">Table&nbsp;5.2:&nbsp;SOLID5 Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="Hlp_E_SOLID5.html#avKsf167lmm" title="Table&nbsp;5.1:&nbsp;&nbsp;SOLID5 Element Output Definitions">Table&nbsp;5.1:&nbsp;SOLID5 Element Output Definitions</a>
+</p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element
+data</p></dd><dt><span><b class="term">I,J,...,P</b></span></dt><dd><p>sequence number for data at nodes I,J,...,P</p></dd><dt><span><b class="term">FC<span class="italic"><em>n </em></span>
+</b></span></dt><dd><p>sequence number for solution items for element Face <span class="italic"><em>n</em></span>
+</p></dd></dl></div></div><p>
+</p><div class="table"><a name="aTZ57g290lmm"></a><p class="title"><b>Table&nbsp;5.2:&nbsp;&nbsp;SOLID5 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="SOLID5 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="72" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"><col width="48" align="center" class="col5"><col width="48" align="center" class="col6"><col width="48" align="center" class="col7"><col width="48" align="center" class="col8"><col width="48" align="center" class="col9"><col width="48" align="center" class="col10"><col width="48" align="center" class="col11"></colgroup><thead><tr><th rowspan="2" align="center" valign="middle">Output Quantity
+Name</th><th colspan="10" align="center">
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th align="center">Item</th><th align="center">E</th><th align="center">I</th><th align="center">J</th><th align="center">K</th><th align="center">L</th><th align="center">M</th><th align="center">N</th><th align="center">O</th><th align="center">P</th></tr></thead><tbody><tr><td align="center">P1</td><td align="center">SMISC</td><td align="center">-</td><td align="center">2</td><td align="center">1</td><td align="center">4</td><td align="center">3</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">P2</td><td align="center">SMISC</td><td align="center">-</td><td align="center">5</td><td align="center">6</td><td align="center">-</td><td align="center">-</td><td align="center">8</td><td align="center">7</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">P3</td><td align="center">SMISC</td><td align="center">-</td><td align="center">-</td><td align="center">9</td><td align="center">10</td><td align="center">-</td><td align="center">-</td><td align="center">12</td><td align="center">11</td><td align="center">-</td></tr><tr><td align="center">P4</td><td align="center">SMISC</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">13</td><td align="center">14</td><td align="center">-</td><td align="center">-</td><td align="center">16</td><td align="center">15</td></tr><tr><td align="center">P5</td><td align="center">SMISC</td><td align="center">-</td><td align="center">18</td><td align="center">-</td><td align="center">-</td><td align="center">17</td><td align="center">19</td><td align="center">-</td><td align="center">-</td><td align="center">20</td></tr><tr><td align="center">P6</td><td align="center">SMISC</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td></tr><tr><td align="center">MUX</td><td align="center">NMISC</td><td align="center">1</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">MUY</td><td align="center">NMISC</td><td align="center">2</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">MUZ</td><td align="center">NMISC</td><td align="center">3</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">FVWX</td><td align="center">NMISC</td><td align="center">4</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">FVWY</td><td align="center">NMISC</td><td align="center">5</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">FVWZ</td><td align="center">NMISC</td><td align="center">6</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">FVWSUM</td><td align="center">NMISC</td><td align="center">7</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">UE</td><td align="center">NMISC</td><td align="center">16</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">UD</td><td align="center">NMISC</td><td align="center">17</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr><tr><td align="center">UM</td><td align="center">NMISC</td><td align="center">18</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td><td align="center">-</td></tr></tbody></table></div></div><br class="table-break"><div class="informaltable"><table border="1" width="95%"><colgroup><col width="96" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"><col width="48" align="center" class="col5"><col width="48" align="center" class="col6"><col width="48" align="center" class="col7"><col width="48" align="center" class="col8"></colgroup><thead><tr><th rowspan="2" align="center" valign="middle">Output Quantity
+Name</th><th colspan="7" align="center">
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th align="center" valign="middle">Item</th><th align="center">FC1</th><th align="center">FC2</th><th align="center">FC3</th><th align="center">FC4</th><th align="center">FC5</th><th align="center">FC6</th></tr></thead><tbody><tr><td align="center">AREA</td><td align="center">NMISC</td><td align="center">19</td><td align="center">25</td><td align="center">31</td><td align="center">37</td><td align="center">43</td><td align="center">49</td></tr><tr><td align="center">HFAVG</td><td align="center">NMISC</td><td align="center">20</td><td align="center">26</td><td align="center">32</td><td align="center">38</td><td align="center">44</td><td align="center">50</td></tr><tr><td align="center">TAVG</td><td align="center">NMISC</td><td align="center">21</td><td align="center">27</td><td align="center">33</td><td align="center">39</td><td align="center">45</td><td align="center">51</td></tr><tr><td align="center">TBAVG</td><td align="center">NMISC</td><td align="center">22</td><td align="center">28</td><td align="center">34</td><td align="center">40</td><td align="center">46</td><td align="center">52</td></tr><tr><td align="center">HEAT RATE</td><td align="center">NMISC</td><td align="center">23</td><td align="center">29</td><td align="center">35</td><td align="center">41</td><td align="center">47</td><td align="center">53</td></tr><tr><td align="center">HFLXAVG</td><td align="center">NMISC</td><td align="center">24</td><td align="center">30</td><td align="center">36</td><td align="center">42</td><td align="center">48</td><td align="center">54</td></tr></tbody></table></div></div><div class="refsect1" title="SOLID5 Assumptions and Restrictions"><a name="aAQ6vq3emcm"></a><h2>SOLID5 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The element requires an iterative solution for field
+coupling (displacement, temperature, electric, magnetic, but not piezoelectric)</p></li><li class="listitem"><p>When using <span class="structname">SOLID5</span> with <a class="link" href="Hlp_E_SOURC36.html" title="SOURC36"><span class="structname">SOURC36</span></a> elements, the source elements must be placed
+so that the resulting Hs field fulfills boundary conditions for the
+total field.</p></li><li class="listitem"><p>The element must not have a zero volume or a zero
+length side.  This occurs most frequently when the element is not
+numbered properly.</p></li><li class="listitem"><p>Elements may be numbered either as shown in <a class="xref" href="Hlp_E_SOLID5.html#aGHsf27lmm" title="Figure&nbsp;5.1:&nbsp;&nbsp;SOLID5 Geometry">Figure&nbsp;5.1:&nbsp;SOLID5 Geometry</a> or may have the planes IJKL and MNOP interchanged.</p></li><li class="listitem"><p>A prism shaped element may be formed by defining duplicate
+node numbers as described in <a class="xref" href="Hlp_E_CH2_8.html" title="2.5.&nbsp;Degenerated Shape Elements">Degenerated Shape Elements</a>.</p></li><li class="listitem"><p>The difference scalar magnetic potential option is
+restricted to singly-connected permeable regions, so that as &nbsp;&#956;<font face="Arial Unicode Ms"><span class="markup"> &#8594; </span></font>&nbsp;<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq82f415c3-3dca-44bf-9973-6d4d461a15d6.svg"></span> in these regions, the resulting field H<font face="Arial Unicode Ms"><span class="markup"> &#8594; </span></font>0.
+ The reduced scalar and general scalar potential options do not have
+this restriction.</p></li><li class="listitem"><p>At a free surface of the element (i.e., not adjacent
+to another element and not subjected to a boundary constraint), the
+normal component of magnetic flux density (B) is assumed to be zero.
+ </p></li><li class="listitem"><p>Temperatures and heat generation rates, if internally
+calculated, include any user defined heat generation rates.</p></li><li class="listitem"><p>The thermal, electrical, magnetic, and structural
+terms are coupled through an iterative procedure.</p></li><li class="listitem"><p>Large deflection capabilities available for KEYOPT(1)
+= 2 and 3 are not available for KEYOPT(1) = 0.</p></li><li class="listitem"><p>Do not constrain all VOLT DOFs to the same value in
+a piezoelectric analysis (KEYOPT(1) = 0 or 3). Perform a pure structural
+analysis instead (KEYOPT(1) = 2).</p></li><li class="listitem"><p>This element may not be compatible with other elements
+with the VOLT degree of freedom. To be compatible, the elements must
+have the same reaction solution for the VOLT DOF. Elements that have
+an electric charge reaction solution must all have the same electric
+charge reaction sign. For more information, see <a href="../ans_lof/Hlp_G_ELE13_3.html" class="olink">Element Compatibility</a> in the <a href="../ans_lof/Hlp_G_EleTOC.html" class="olink"><em class="citetitle">Low-Frequency Electromagnetic Analysis Guide</em></a>. </p></li><li class="listitem"><p>The electric field body load is not used during solution
+and is applicable only to POST1 charged particle tracing.</p></li><li class="listitem"><p>In an MSP analysis, avoid using a closed domain and
+use an open domain, closed with natural flux parallel boundary conditions
+on the MAG degree of freedom, or infinite elements. If you use a closed
+domain, you may see incorrect results when the formulation is applied
+using <span class="structname">SOLID5</span>, <a class="link" href="Hlp_E_SOLID96.html" title="SOLID96"><span class="structname">SOLID96</span></a>,  or <a class="link" href="Hlp_E_SOLID98.html" title="SOLID98"><span class="structname">SOLID98</span></a> elements and the boundary
+conditions are not satisfied by the Hs field load calculated by the
+Biot-Savart procedure based on <a class="link" href="Hlp_E_SOURC36.html" title="SOURC36"><span class="structname">SOURC36</span></a> current
+source primitive input. </p></li><li class="listitem"><p>When KEYOPT(1) = 1, 8, 9, or 10:</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>Stress stiffening is not available.</p></li><li class="listitem"><p>Birth and death is not available.</p></li><li class="listitem"><p>KEYOPT(3) is not applicable.</p></li></ul></div></li></ul></div></div><div class="refsect1" title="SOLID5 Product Restrictions"><a name="aAQ6vqadmcm"></a><h2>SOLID5 Product Restrictions</h2><p>There are no product-specific restrictions for this element.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

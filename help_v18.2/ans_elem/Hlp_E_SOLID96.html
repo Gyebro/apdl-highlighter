@@ -1,0 +1,166 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:27-04:00"><title>SOLID96</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_CIRCU94.html" title="CIRCU94"><link rel="next" href="Hlp_E_SOLID98.html" title="SOLID98"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SOLID96"><a name="SOLID96"></a><div class="titlepage"></div><a class="indexterm" name="d0e49251"></a><span class="refentrytitle">
+<span class="structname">SOLID96</span>  </span><div class="refnamediv"><p><br><b class="refpurpose">3-D Magnetic
+Scalar Solid</b><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+<div class=""><div class="application"><span class="application">
+<a class="link" href="Hlp_E_SOLID96.html#aXwNxq354mcm" title="SOLID96 Product Restrictions">Product Restrictions</a>
+</span></div></div>
+</div></p></div><div class="refsect1" title="SOLID96 Element Description"><a name="ELEMsolid96descfdb"></a><h2>SOLID96 Element Description</h2><p>
+<span class="structname">SOLID96</span> has the capability of modeling
+3-D magnetic fields.  Scalar potential formulations (reduced (RSP),
+difference (DSP), or general (GSP)) are available [<a href="../ans_cmd/Hlp_C_MAGOPT.html" class="olink"><span class="command"><strong>MAGOPT</strong></span></a>] for modeling magnetic fields in a static analysis.  See <a href="../ans_thry/thy_el96.html" class="olink">SOLID96</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for
+more details about this element.</p><div class="figure"><a name="aABQ1g34blmm"></a><p class="title"><b>Figure&nbsp;96.1:&nbsp;&nbsp;SOLID96 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM96-1.svg" alt="SOLID96 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="SOLID96 Input Data"><a name="aXwNxq20fmcm"></a><h2>SOLID96 Input Data</h2><p>The geometry, node locations, and the coordinate system for
+this element are shown in <a class="xref" href="Hlp_E_SOLID96.html#aABQ1g34blmm" title="Figure&nbsp;96.1:&nbsp;&nbsp;SOLID96 Geometry">Figure&nbsp;96.1:&nbsp;SOLID96 Geometry</a>.  The element
+is defined by eight nodes and the material properties.  A tetrahedral-shaped
+element may be formed by defining the same node numbers for nodes
+M, N, O, and P; and nodes K and L.  A wedge-shaped element and a pyramid-shaped
+element may also be formed as shown in <a class="xref" href="Hlp_E_SOLID96.html#aABQ1g34blmm" title="Figure&nbsp;96.1:&nbsp;&nbsp;SOLID96 Geometry">Figure&nbsp;96.1:&nbsp;SOLID96 Geometry</a>.  The type of units (MKS or user defined) is specified through
+the <a href="../ans_cmd/Hlp_C_EMUNIT.html" class="olink"><span class="command"><strong>EMUNIT</strong></span></a> command. <a href="../ans_cmd/Hlp_C_EMUNIT.html" class="olink"><span class="command"><strong>EMUNIT</strong></span></a> also
+determines the value of MUZRO.  The <a href="../ans_cmd/Hlp_C_EMUNIT.html" class="olink"><span class="command"><strong>EMUNIT</strong></span></a> defaults
+are MKS units and MUZRO = 4&#960; x 10<sup>-7</sup> henries/meter.
+ In addition to MUZRO, orthotropic relative permeability is available
+and is specified through the MURX, MURY, and MURZ material options.</p><p>MGXX, MGYY, and MGZZ represent vector components of the coercive
+force for permanent magnet materials.  The magnitude of the coercive
+force is the square root of the sum of the squares of the components.
+ The direction of polarization is determined by the components MGXX,
+MGYY, and MGZZ.  Permanent magnet polarization directions correspond
+to the element coordinate directions.  The element coordinate system
+orientation is as described in <a class="xref" href="Hlp_E_CH2_3.html" title="3.3.&nbsp;Coordinate Systems">Coordinate Systems</a>.  Nonlinear
+magnetic B-H properties are entered via the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command. Nonlinear orthotropic
+magnetic properties can be specified with a combination of a B-H curve
+and linear relative permeability. The B-H curve is used in each
+element coordinate direction where a zero value of relative permeability
+is specified. Only one B-H curve can be specified per material.</p><p>Nodal loads are defined with the <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a> and the <a href="../ans_cmd/Hlp_C_F.html" class="olink"><span class="command"><strong>F</strong></span></a> commands.  With the <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a> command, the <span class="italic"><em>Lab</em></span> variable corresponds to the degree of
+freedom (MAG) and <span class="italic"><em>VALUE</em></span> corresponds
+to the value (magnetic scalar potential).  With the <a href="../ans_cmd/Hlp_C_F.html" class="olink"><span class="command"><strong>F</strong></span></a> command, the <span class="italic"><em>Lab</em></span> variable corresponds
+to the force (FLUX) and <span class="italic"><em>VALUE</em></span> corresponds
+to the value (magnetic flux).</p><p>Element loads are described in <a class="xref" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">Nodal Loading</a>.
+ Maxwell force flags may be input on the element faces indicated by
+the circled numbers in <a class="xref" href="Hlp_E_SOLID96.html#aABQ1g34blmm" title="Figure&nbsp;96.1:&nbsp;&nbsp;SOLID96 Geometry">Figure&nbsp;96.1:&nbsp;SOLID96 Geometry</a> using the <a href="../ans_cmd/Hlp_C_SF.html" class="olink"><span class="command"><strong>SF</strong></span></a> and <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> commands.  Surfaces at which
+magnetic forces are to be calculated may be identified by using the
+MXWF label on the surface load commands (no value is required.)  A
+maxwell stress tensor calculation is performed at these surfaces to
+obtain the magnetic forces.  The surface flag should be applied to
+"air" elements adjacent to the body for which forces are required.
+ Deleting the MXWF specification removes the flag.  Maxwell forces
+may be made available for a subsequent structural analysis with companion
+elements (<a href="../ans_cmd/Hlp_C_LDREAD.html" class="olink"><span class="command"><strong>LDREAD</strong></span></a> command).</p><p>The temperature (for material property evaluation only) and
+magnetic virtual displacement body loads may be input based on their
+value at the element's nodes or as a single element value [<a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a> and <a href="../ans_cmd/Hlp_C_BFE.html" class="olink"><span class="command"><strong>BFE</strong></span></a>].  In general, unspecified
+nodal values of temperature default to the uniform value specified
+with the <a href="../ans_cmd/Hlp_C_BFUNIF.html" class="olink"><span class="command"><strong>BFUNIF</strong></span></a> or <a href="../ans_cmd/Hlp_C_TUNIF.html" class="olink"><span class="command"><strong>TUNIF</strong></span></a> commands.</p><p>Air elements in which Local Jacobian forces are to be calculated
+may be identified by using nodal values of 1 and 0 for the MVDI label
+[<a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a>].  See the <a href="../ans_lof/Hlp_G_EleTOC.html" class="olink"><em class="citetitle">Low-Frequency Electromagnetic Analysis Guide</em></a> for details.</p><p>Current for the magnetic scalar potential options are defined
+with the <a class="link" href="Hlp_E_SOURC36.html" title="SOURC36"><span class="structname">SOURC36</span></a> element, the command macro
+RACE, or through electromagnetic coupling.  The various types of magnetic
+scalar potential solution options are defined with the <a href="../ans_cmd/Hlp_C_MAGOPT.html" class="olink"><span class="command"><strong>MAGOPT</strong></span></a> command.</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_SOLID96.html#a7CQ1g395lmm" title="SOLID96 Input Summary">"SOLID96 Input Summary"</a>.  A general description of element input
+is given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>.</p><div class="refsect2" title="SOLID96 Input Summary"><a name="a7CQ1g395lmm"></a><h3>SOLID96 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J, K, L, M, N, O, P</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>MAG</p></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p>
+<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command: See <a class="xref" href="elem_matsupp.html" title="Chapter&nbsp;4:&nbsp;Element Support for Material Models">Element Support for Material Models</a> for this element.</p><p>
+<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: MUZERO, MURX, MURY, MURZ, MGXX, MGYY, MGZZ</p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Maxwell Force Flags&nbsp;--&nbsp;</b></span></dt><dd><p>face 1 (J-I-L-K), face 2 (I-J-N-M), face 3 (J-K-O-N),
+face 4 (K-L-P-O), face 5 (L-I-M-P), face 6 (M-N-O-P)</p></dd></dl></div></div></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Temperatures&nbsp;--&nbsp;</b></span></dt><dd><p>T(I), T(J),
+T(K), T(L), T (M), T(N), T(O), T(P)</p></dd><dt><span><b class="term">MVDI&nbsp;--&nbsp;</b></span></dt><dd><p>VD(I), VD(J), VD(K),
+VD(L), VD(M), VD(N), VD(O), VD(P)</p></dd><dt><span><b class="term">EF&nbsp;--&nbsp;</b></span></dt><dd><p>EFX, EFY, EFZ. See <a class="xref" href="Hlp_E_SOLID96.html#aXwNxq2ecmcm" title="SOLID96 Assumptions and Restrictions">"SOLID96 Assumptions and Restrictions"</a>.</p></dd></dl></div></div></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_thry/thy_tool10.html#eltadaptive" class="olink">Adaptive
+descent</a>
+</td></tr><tr><td>
+<a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth
+and death</a>
+</td></tr></table></dd><dt><span><b class="term">KEYOPT(5)</b></span></dt><dd><p>Extra element output:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Basic element printout</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Integration point printout</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Nodal magnetic field printout</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="SOLID96 Output Data"><a name="aXwNxq27dmcm"></a><h2>SOLID96 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal potentials included in the overall nodal solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_SOLID96.html#aUCQ1g3a9lmm" title="Table&nbsp;96.1:&nbsp;&nbsp;SOLID96 Element Output Definitions">Table&nbsp;96.1:&nbsp;SOLID96 Element Output Definitions</a>
+</p></li></ul></div><p>
+</p><p>The element output directions are parallel to the element coordinate
+system.  A general description of solution output is given in <a class="xref" href="Hlp_E_CH2_2.html" title="3.2.&nbsp;Solution Output">Solution Output</a>.  See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways to view results.</p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="aUCQ1g3a9lmm"></a><p class="title"><b>Table&nbsp;96.1:&nbsp;&nbsp;SOLID96 Element Output Definitions</b></p><div class="table-contents"><table summary="SOLID96 Element Output Definitions" border="1" width="95%"><colgroup><col width="139" class="col1"><col width="340" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th align="center">Name</th><th align="center">Definition</th><th align="center">O</th><th align="center">R</th></tr></thead><tbody><tr><td>EL</td><td>Element Number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Nodes - I, J, K, L, M, N, O, P</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>MAT</td><td>Material number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>VOLU:</td><td>Volume</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>XC, YC, ZC</td><td>Location where results are reported</td><td align="center">Y</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID96.html#solid96.tab.2.ft.2">2</a>
+</td></tr><tr><td>TEMP</td><td>Temperatures  T(I),
+T(J), T(K), T(L), T(M), T(N), T(O), T(P)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>LOC</td><td>Output location (X, Y, Z)</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID96.html#solid96.tab.2.ft.1">1</a>
+</td><td align="center">-</td></tr><tr><td>MUX, MUY, MUZ</td><td>Magnetic permeability</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID96.html#solid96.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID96.html#solid96.tab.2.ft.1">1</a>
+</td></tr><tr><td>H:X, Y, Z</td><td>Magnetic field intensity components</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID96.html#solid96.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID96.html#solid96.tab.2.ft.1">1</a>
+</td></tr><tr><td>H:SUM</td><td>Vector magnitude of H</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID96.html#solid96.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID96.html#solid96.tab.2.ft.1">1</a>
+</td></tr><tr><td>B:X, Y, Z</td><td>Magnetic flux density components</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID96.html#solid96.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID96.html#solid96.tab.2.ft.1">1</a>
+</td></tr><tr><td>B:SUM</td><td>Vector magnitude of B</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID96.html#solid96.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID96.html#solid96.tab.2.ft.1">1</a>
+</td></tr><tr><td>FMX</td><td>Maxwell magnetic force components (X, Y, Z)</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID96.html#solid96.tab.2.ft.1">1</a>
+</td><td align="center">-</td></tr><tr><td>FVW</td><td>Virtual work force components
+(X, Y, Z)</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID96.html#solid96.tab.2.ft.1">1</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID96.html#solid96.tab.2.ft.1">1</a>
+</td></tr><tr><td>Combined (FJB or FMX) force components</td><td>Combined force
+components</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID96.html#solid96.tab.2.ft.1">1</a>
+</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="solid96.tab.2.ft.1"></a>The solution value is printed
+only if calculated (based upon input data).  The element solution
+is at the centroid.</p></li><li class="listitem"><p><a name="solid96.tab.2.ft.2"></a>Available only at centroid
+as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item.</p></li></ol></div><div class="table"><a name="awQKArd4lcd"></a><p class="title"><b>Table&nbsp;96.2:&nbsp;&nbsp;SOLID96 Miscellaneous Element Output</b></p><div class="table-contents"><table summary="SOLID96 Miscellaneous Element Output" border="1" width="95%"><colgroup><col width="240" class="col1"><col width="240" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th align="center">Description</th><th align="center">Names of Items Output</th><th align="center">O</th><th align="center">R</th></tr></thead><tbody><tr><td>Integration Point Solution</td><td>LOC, MUX,
+MUY, MUZ, H, HSUM, B, BSUM</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID96.html#solid96.tab.3.ft.1">1</a>
+</td><td align="center">-</td></tr><tr><td>Nodal Magnetic Field Solution</td><td>H, HSUM,
+B, BSUM</td><td align="center">
+<a class="xref" href="Hlp_E_SOLID96.html#solid96.tab.3.ft.2">2</a>
+</td><td align="center">-</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="solid96.tab.3.ft.1"></a>Output at each integration
+point, if KEYOPT(5) = 1</p></li><li class="listitem"><p><a name="solid96.tab.3.ft.2"></a>Output at each corner node,
+if KEYOPT(5) = 2</p></li></ol></div><p>
+<a class="xref" href="Hlp_E_SOLID96.html#anRL8g207lmm" title="Table&nbsp;96.3:&nbsp;&nbsp;SOLID96 Item and Sequence Numbers">Table&nbsp;96.3:&nbsp;SOLID96 Item and Sequence Numbers</a> lists output available through
+the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method.
+ See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General Postprocessor
+(POST1)</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in
+this reference for more information.  The following notation is used
+in <a class="xref" href="Hlp_E_SOLID96.html#anRL8g207lmm" title="Table&nbsp;96.3:&nbsp;&nbsp;SOLID96 Item and Sequence Numbers">Table&nbsp;96.3:&nbsp;SOLID96 Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in <a class="xref" href="Hlp_E_SOLID96.html#aUCQ1g3a9lmm" title="Table&nbsp;96.1:&nbsp;&nbsp;SOLID96 Element Output Definitions">Table&nbsp;96.1:&nbsp;SOLID96 Element Output Definitions</a>
+</p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element
+data</p></dd></dl></div></div><p>
+</p><div class="table"><a name="anRL8g207lmm"></a><p class="title"><b>Table&nbsp;96.3:&nbsp;&nbsp;SOLID96 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="SOLID96 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="72" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"></colgroup><thead><tr><th rowspan="2" align="center" valign="middle">Output Quantity
+Name</th><th colspan="2" align="center">
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th align="center">Item</th><th align="center">E</th></tr></thead><tbody><tr><td align="center">MUX</td><td align="center">NMISC</td><td align="center">1</td></tr><tr><td align="center">MUY</td><td align="center">NMISC</td><td align="center">2</td></tr><tr><td align="center">MUZ</td><td align="center">NMISC</td><td align="center">3</td></tr><tr><td align="center">FVWX</td><td align="center">NMISC</td><td align="center">4</td></tr><tr><td align="center">FVWY</td><td align="center">NMISC</td><td align="center">5</td></tr><tr><td align="center">FVWZ</td><td align="center">NMISC</td><td align="center">6</td></tr><tr><td align="center">FVWSUM</td><td align="center">NMISC</td><td align="center">7</td></tr></tbody></table></div></div><br class="table-break"></div><div class="refsect1" title="SOLID96 Assumptions and Restrictions"><a name="aXwNxq2ecmcm"></a><h2>SOLID96 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The element requires an iterative solution if nonlinear
+material properties are defined.</p></li><li class="listitem"><p>When using <span class="structname">SOLID96</span> with <a class="link" href="Hlp_E_SOURC36.html" title="SOURC36"><span class="structname">SOURC36</span></a> elements, the source elements must be placed
+so that the resulting Hs field fulfills boundary conditions for the
+total field.</p></li><li class="listitem"><p>The element must not have a zero volume or a zero
+length side.  This occurs most frequently when the element is not
+numbered properly.  Elements may be numbered either as shown in <a class="xref" href="Hlp_E_SOLID96.html#aABQ1g34blmm" title="Figure&nbsp;96.1:&nbsp;&nbsp;SOLID96 Geometry">Figure&nbsp;96.1:&nbsp;SOLID96 Geometry</a> or may have the planes IJKL and MNOP interchanged.</p></li><li class="listitem"><p>The difference magnetic scalar potential option is
+restricted to singly-connected permeable regions, so that as &nbsp;&#956;<font face="Arial Unicode Ms"><span class="markup"> &#8594; </span></font>&nbsp;
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq883afebd-f664-4ff3-885f-f0a73a19aa2b.svg"></span> in these regions, the resulting
+field H<font face="Arial Unicode Ms"><span class="markup"> &#8594; </span></font>0.  The reduced scalar, and general scalar potential
+options do not have this restriction.</p></li><li class="listitem"><p>Degeneration to the form of pyramid should be used
+with caution.  The element sizes, when degenerated, should be small
+in order to minimize the field gradients.  Pyramid elements are best
+used as filler elements or in meshing transition zones.</p></li><li class="listitem"><p>The solenoidal current density is required for a solution,
+or for any postprocessing operations. </p></li><li class="listitem"><p>The electric field body load is not used during solution
+and is applicable only to POST1 charged particle tracing.</p></li><li class="listitem"><p>In an MSP analysis, avoid using a closed domain and
+use an open domain, closed with natural flux parallel boundary conditions
+on the MAG degree of freedom, or infinite elements. If you use a closed
+domain, you may see incorrect results when the formulation is applied
+using <a class="link" href="Hlp_E_SOLID5.html" title="SOLID5"><span class="structname">SOLID5</span></a>, <span class="structname">SOLID96</span>,  or <a class="link" href="Hlp_E_SOLID98.html" title="SOLID98"><span class="structname">SOLID98</span></a> elements and the boundary
+conditions are not satisfied by the Hs field load calculated by the
+Biot-Savart procedure based on <a class="link" href="Hlp_E_SOURC36.html" title="SOURC36"><span class="structname">SOURC36</span></a> current
+source primitive input. </p></li></ul></div></div><div class="refsect1" title="SOLID96 Product Restrictions"><a name="aXwNxq354mcm"></a><h2>SOLID96 Product Restrictions</h2><p>There are no product-specific restrictions for this element.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:26-04:00"><title>IMAGIN</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_I_TOC.html" title="I Commands"><link rel="prev" href="Hlp_C_IMAGE.html" title="/IMAGE"><link rel="next" href="Hlp_C_IMESH.html" title="IMESH"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="IMAGIN"><a name="IMAGIN"></a><div class="titlepage"></div><a class="indexterm" name="d0e136555"></a><span class="refentrytitle"><span class="command"><strong>IMAGIN</strong></span></span><div class="refnamediv"><p><span class="command"><strong>IMAGIN</strong></span>, <em class="replaceable"><code>IR</code></em>, <em class="replaceable"><code>IA</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>Name</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>FACTA</code></em><br><b class="refpurpose">Forms an imaginary variable from a complex variable.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_8.html" title="2.8.&nbsp;POST26 Commands"><code class="classname">POST26</code></a>: <a class="link" href="Hlp_C_CH2_8.html#cmdpost26operjla070199" title="Table&nbsp;2.96:&nbsp;&nbsp;Operations"><span class="type">Operations</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="IMAGIN.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>IR</code></em></b></span></dt><dd><p>Arbitrary reference number assigned to the resulting variable
+(2 to <em class="replaceable"><code>NV</code></em> [<a class="link" href="Hlp_C_NUMVAR.html" title="NUMVAR"><span class="command"><strong>NUMVAR</strong></span></a>]).  If this
+number is the same as for a previously defined variable, the previously defined
+variable will be overwritten with this result.</p></dd><dt><span><b class="term"><em class="replaceable"><code>IA</code></em></b></span></dt><dd><p>Reference number of the variable to be operated on.</p></dd><dt><span><b class="term"><em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused fields.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Name</code></em></b></span></dt><dd><p>Thirty-two character name for identifying the variable on
+the printout and displays.  Embedded blanks are compressed upon output.</p></dd><dt><span><b class="term"><em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused fields.</p></dd><dt><span><b class="term"><em class="replaceable"><code>FACTA</code></em></b></span></dt><dd><p>Scaling factor (positive or negative) applied to variable <em class="replaceable"><code>IA</code></em> (defaults
+to 1.0).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="IMAGIN.notes"></a><h2>Notes</h2><p>This command forms a new variable from a complex variable by storing
+the imaginary part as the real part.  The imaginary part can then be used
+in other operations.  Used only with harmonic analyses (<a class="link" href="Hlp_C_ANTYPE.html" title="ANTYPE"><span class="command"><strong>ANTYPE</strong></span></a>,HARMIC).</p><p>Complex variables are stored in two-column arrays with the real component
+stored in the first column and the imaginary component stored in the second
+column.  This command extracts the value stored in the second column (i.e.,
+imaginary component).  However, with harmonic analyses, all variables are
+stored in two-column arrays as complex variables.  If the variable is not
+complex, then the same value is stored in both columns.  This command will
+extract the variable in the second column of the array, even if this variable
+is not the imaginary component of a complex variable.</p></div><div class="refsect1" title="Menu Paths"><a name="IMAGIN.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;TimeHist Postpro&gt;Math Operations&gt;Imaginary Part</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:45-04:00"><title>MODIFY</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_M_TOC.html" title="M Commands"><link rel="prev" href="Hlp_C_MODE.html" title="MODE"><link rel="next" href="Hlp_C_MODMSH.html" title="MODMSH"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="MODIFY"><a name="MODIFY"></a><div class="titlepage"></div><a class="indexterm" name="d0e167269"></a><span class="refentrytitle"><span class="command"><strong>MODIFY</strong></span></span><div class="refnamediv"><p><span class="command"><strong>MODIFY</strong></span>, <em class="replaceable"><code>SET</code></em>, <em class="replaceable"><code>LSTEP</code></em>, <em class="replaceable"><code>ITER</code></em>, <em class="replaceable"><code>CUMIT</code></em>, <em class="replaceable"><code>TIME</code></em>, <em class="replaceable"><code>Ktitle</code></em><br><b class="refpurpose">Changes the listed values of the data in a set.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2AUX3.html" title="2.10.&nbsp;AUX3 Commands"><code class="classname">AUX3</code></a>: <a class="link" href="Hlp_C_CH2AUX3.html#cmdaux3resultsfilesldm061600" title="Table&nbsp;2.103:&nbsp;&nbsp;Results Files"><span class="type">Results Files</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="MODIFY.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>SET</code></em></b></span></dt><dd><p>Set of data in results file to be modified.</p></dd><dt><span><b class="term"><em class="replaceable"><code>LSTEP</code></em></b></span></dt><dd><p>The new load step number.</p></dd><dt><span><b class="term"><em class="replaceable"><code>ITER</code></em></b></span></dt><dd><p>The new load substep number.</p></dd><dt><span><b class="term"><em class="replaceable"><code>CUMIT</code></em></b></span></dt><dd><p>The new cumulative iteration.</p></dd><dt><span><b class="term"><em class="replaceable"><code>TIME</code></em></b></span></dt><dd><p>The new time/frequency value.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Ktitle</code></em></b></span></dt><dd><p>Indicates if the set title should be modified.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Keep the original title.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Change the title to the title specified with
+the most current <a href="Hlp_C_TITLE.html" class="olink"><span class="command"><strong>/TITLE</strong></span></a> command.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="MODIFY.notes"></a><h2>Notes</h2><p>Use this command to change the listed values in a data set in a results
+file. Using this command does not change any actual model data; it affects
+only the values listed in the results file.</p><p>For example, if you start with the following results file:</p><pre class="programlisting">SET   TIME/FREQ    LOAD STEP   SUBSTEP  CUMULATIVE
+ 1     1.0000          1          1         1
+ first load set                          
+
+ 2     2.0000           2          1         2
+ second load set                                                        
+
+ 3     3.0000           3          1         3
+ third load set                                                         
+
+ 4     4.0000           4          1         4
+ fourth load set                                                        </pre><p>and you then issue the following commands:</p><pre class="programlisting">/title, modified title for set number 3
+modify,3,5,2,5,4.5,1</pre><p>The modified results file would look like this:</p><pre class="programlisting">SET   TIME/FREQ    LOAD STEP   SUBSTEP  CUMULATIVE
+ 1     1.0000          1          1         1
+ first load set                          
+
+ 2     2.0000           2          1         2
+ second load set                                                        
+
+ 3     4.5000           5          2         5
+ modified title for set number 3                                                         
+
+ 4     4.0000           4          1         4
+ fourth load set                                                   </pre></div><div class="refsect1" title="Menu Paths"><a name="MODIFY.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Other&gt;For Harmonic Ele</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Other&gt;For Harmonic Ele</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:07-04:00"><title>6.1.&nbsp;Elements for Coupled-Physics Analysis</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="elem_chmultiphys.html" title="Chapter&nbsp;6:&nbsp;Elements for Multiphysics Analysis"><link rel="prev" href="elem_chmultiphys.html" title="Chapter&nbsp;6:&nbsp;Elements for Multiphysics Analysis"><link rel="next" href="elem_thermelems.html" title="6.2.&nbsp;Elements for Thermal Analysis"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="6.1.&nbsp;Elements for Coupled-Physics Analysis"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="elem_coupphys"></a>6.1.&nbsp;Elements for Coupled-Physics Analysis</h2></div></div></div><a class="indexterm" name="d0e16318"></a><p>Coupled-field elements are available for combining various types of physics. A
+            coupled-field element has all necessary degrees of freedom necessary for solving a
+            coupled-field problem. When a coupled-field element is used, the multiple physics are
+            solved simultaneously (in a single analysis with a single mesh and model). </p><p>The program handles coupling between the physics by calculating the necessary element
+            matrices or element load vectors. </p><p>Coupled-field elements are recommended for strongly coupled physics such as
+            piezoelectric, thermo-electric, and highly nonlinear coupled-field analyses that include
+            material and geometric nonlinearities, temperature-dependent material properties, and
+            multiphysics contact.</p><div class="highlights"><p>The following additional topics are available:</p><ul><li><a href="elem_coupphys.html#coupledelemsclasses" title="6.1.1.&nbsp;Coupled-Field Element Classifications">Coupled-Field Element Classifications</a></li><li><a href="elem_coupphys.html#selectingcoupledelems" title="6.1.2.&nbsp;Selecting Elements for Coupled-Physics Analysis">Selecting Elements for Coupled-Physics Analysis</a></li></ul></div><p>For more information, see the <a href="../ans_cou/Hlp_G_CouTOC.html" class="olink"><em class="citetitle">Coupled-Field Analysis Guide</em></a>.</p><div class="sect2" title="6.1.1.&nbsp;Coupled-Field Element Classifications"><div class="titlepage"><div><div><h3 class="title"><a name="coupledelemsclasses"></a>6.1.1.&nbsp;Coupled-Field Element Classifications</h3></div></div></div><p>The following types of coupled-field elements are available:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                        <span class="bold"><strong>
+                            <a class="link" href="elem_coupphys.html#elem_coupphyscont">Continuum Elements</a>
+                        </strong></span>
+                    </p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>General purpose coupled-field elements</p></li><li class="listitem"><p>Coupled pore-pressure-thermal mechanical elements</p></li><li class="listitem"><p>Thermal-electric link and shell elements</p></li><li class="listitem"><p>Magneto-structural element</p></li><li class="listitem"><p>Electromagnetic elements</p></li><li class="listitem"><p>Fluid elements</p></li></ul></div></li><li class="listitem"><p>
+                        <span class="bold"><strong>
+                            <a class="link" href="elem_coupphys.html#elem_coupphysredord">Reduced-Order Elements</a>
+                        </strong></span>
+                    </p></li><li class="listitem"><p>
+                        <span class="bold"><strong>
+                            <a class="link" href="elem_coupphys.html#elem_coupphyscontact">Contact Elements</a>
+                        </strong></span>
+                    </p></li></ul></div></div><div class="sect2" title="6.1.2.&nbsp;Selecting Elements for Coupled-Physics Analysis"><div class="titlepage"><div><div><h3 class="title"><a name="selectingcoupledelems"></a>6.1.2.&nbsp;Selecting Elements for Coupled-Physics Analysis</h3></div></div></div><div class="informaltable"><table border="1" width="95%"><colgroup><col width="216" class="col1"><col width="168" class="col2"><col width="240" class="col3"></colgroup><thead><tr><th bgcolor="#C0C0C0" colspan="3" align="center" valign="top">
+                                
+                                
+                                <p><a name="elem_coupphyscont"></a>
+                                    <span class="bold"><strong>Continuum Elements</strong></span>
+                                </p>
+                            </th></tr></thead><tbody><tr><td bgcolor="#E3E3E3">
+                                
+                                
+                                <p>
+                                    <span class="bold"><strong>General-Purpose Coupled-Field</strong></span>
+                                </p>
+                            </td><td bgcolor="#E3E3E3" align="center">
+                                
+                                
+                                <span class="bold"><strong>Degrees of Freedom</strong></span>
+                            </td><td bgcolor="#E3E3E3">
+                                
+                                
+                                <p>
+                                    <span class="bold"><strong>Coupled-Physics</strong></span>
+                                </p>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_PLANE222.html" title="PLANE222"><span class="structname">PLANE222</span></a>&nbsp;-- Lower-order
+                                    quadrilateral</p>
+                            </td><td>
+                                <p>UX, UY, TEMP</p>
+                            </td><td>
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>Structural-thermal</td></tr></table>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_PLANE223.html" title="PLANE223"><span class="structname">PLANE223</span></a>&nbsp;-- Higher-order
+                                    quadrilateral</p>
+                            </td><td>
+                                <p>UX, UY, TEMP, VOLT, AZ, CONC</p>
+                            </td><td rowspan="3">
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>Structural-thermal</td></tr><tr><td>Piezoresistive</td></tr><tr><td>Electrostatic-structural</td></tr><tr><td>Piezoelectric</td></tr><tr><td>Thermal-electric</td></tr><tr><td>Structural-thermoelectric</td></tr><tr><td>Thermal-piezoelectric</td></tr><tr><td>Structural-diffusion</td></tr><tr><td>Thermal-diffusion</td></tr><tr><td>Electric-diffusion</td></tr><tr><td>Thermal-electric-diffusion</td></tr><tr><td>Structural-thermal-diffusion</td></tr><tr><td>Structural-electric-diffusion</td></tr><tr><td>Structural-thermal-electric-diffusion</td></tr><tr><td>Thermomagnetic (<a class="link" href="Hlp_E_PLANE223.html" title="PLANE223"><span class="structname">PLANE223</span></a>
+                                        only)</td></tr><tr><td>Thermo-electromagnetic
+                                            (<a class="link" href="Hlp_E_PLANE223.html" title="PLANE223"><span class="structname">PLANE223</span></a> only)</td></tr></table>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_SOLID226.html" title="SOLID226"><span class="structname">SOLID226</span></a>&nbsp;-- Higher-order
+                                    hexahedral</p>
+                            </td><td rowspan="2">
+                                <p>UX, UY, UZ, TEMP, VOLT, CONC</p>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_SOLID227.html" title="SOLID227"><span class="structname">SOLID227</span></a>&nbsp;-- Higher-order
+                                    tetrahedral</p>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_SOLID5.html" title="SOLID5"><span class="structname">SOLID5</span></a>&nbsp;-- Lower-order
+                                    hexahedral</p>
+                            </td><td>
+                                <p>UX, UY, UZ, TEMP, VOLT, MAG</p>
+                            </td><td>
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>Structural-thermo-electro-magnetic</td></tr><tr><td>Thermo-electro-magnetic</td></tr><tr><td>Piezoelectric</td></tr></table>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_PLANE13.html" title="PLANE13"><span class="structname">PLANE13</span></a>&nbsp;-- Lower-order
+                                    quadrilateral</p>
+                            </td><td>
+                                <p>UX, UY, TEMP, VOLT, AZ</p>
+                            </td><td>
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>Structural-thermo-electro-magnetic</td></tr><tr><td>Piezoelectric</td></tr><tr><td>Electromagnetic</td></tr></table>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_SOLID98.html" title="SOLID98"><span class="structname">SOLID98</span></a>&nbsp;-- Higher-order
+                                    tetrahedral</p>
+                            </td><td>
+                                <p>UX, UY, UZ, TEMP, VOLT, MAG</p>
+                            </td><td>
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>Structural-thermo-electro-magnetic</td></tr><tr><td>Thermo-electro-magnetic</td></tr><tr><td>Piezoelectric</td></tr></table>
+                            </td></tr><tr><td bgcolor="#E3E3E3">
+                                
+                                
+                                <p>
+                                    <span class="bold"><strong>Coupled Pore-Pressure-Thermal
+                                        Mechanical</strong></span>
+                                </p>
+                            </td><td bgcolor="#E3E3E3">
+                                
+                                
+                                <p>
+                                    <span class="bold"><strong>Degrees of Freedom</strong></span>
+                                </p>
+                            </td><td bgcolor="#E3E3E3">
+                                
+                                
+                                <p>
+                                    <span class="bold"><strong>Coupled-Physics</strong></span>
+                                </p>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_CPT212.html" title="CPT212"><span class="structname">CPT212</span></a>&nbsp;--Lower-order
+                                    quadrilateral</p>
+                            </td><td rowspan="2">
+                                <p>UX, UY, PRES,TEMP</p>
+                            </td><td rowspan="5">
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>Structural</td></tr><tr><td>Pore-fluid-diffusion</td></tr><tr><td>Heat-transfer</td></tr></table>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_CPT213.html" title="CPT213"><span class="structname">CPT213</span></a>&nbsp;-- Higher-order
+                                    quadrilateral</p>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_CPT215.html" title="CPT215"><span class="structname">CPT215</span></a>&nbsp;-- Lower-order
+                                    hexahedral</p>
+                            </td><td rowspan="3">
+                                <p>UX, UY, UZ, PRES, TEMP</p>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_CPT216.html" title="CPT216"><span class="structname">CPT216</span></a>&nbsp;-- Higher-order
+                                    hexahedral</p>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_CPT217.html" title="CPT217"><span class="structname">CPT217</span></a>&nbsp;-- Higher-order
+                                    tetrahedral</p>
+                            </td></tr><tr><td bgcolor="#E3E3E3">
+                                
+                                
+                                <p>
+                                    <span class="bold"><strong>Thermal-Electric</strong></span>
+                                </p>
+                            </td><td bgcolor="#E3E3E3">
+                                
+                                
+                                <p>
+                                    <span class="bold"><strong>Degrees of Freedom</strong></span>
+                                </p>
+                            </td><td bgcolor="#E3E3E3">
+                                
+                                
+                                <p>
+                                    <span class="bold"><strong>Coupled-Physics</strong></span>
+                                </p>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_LINK68.html" title="LINK68"><span class="structname">LINK68</span></a>&nbsp;-- Lower-order line</p>
+                            </td><td rowspan="2">
+                                <p>TEMP, VOLT</p>
+                            </td><td rowspan="2">
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>Thermal-electric</td></tr></table>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_SHELL157.html" title="SHELL157"><span class="structname">SHELL157</span></a>&nbsp;-- Lower-order
+                                    shell</p>
+                            </td></tr><tr><td bgcolor="#E3E3E3">
+                                
+                                
+                                <p>
+                                    <span class="bold"><strong>Electromagnetic</strong></span>
+                                </p>
+                            </td><td bgcolor="#E3E3E3">
+                                
+                                
+                                <p>
+                                    <span class="bold"><strong>Degrees of Freedom</strong></span>
+                                </p>
+                            </td><td bgcolor="#E3E3E3">
+                                
+                                
+                                <p>
+                                    <span class="bold"><strong>Coupled-Physics</strong></span>
+                                </p>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_PLANE233.html" title="PLANE233"><span class="structname">PLANE233</span></a>&nbsp;-- Higher-order
+                                    quadrilateral</p>
+                            </td><td rowspan="3">
+                                <p>AZ, VOLT, EMF</p>
+                            </td><td rowspan="3">
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>Electromagnetic</td></tr><tr><td>Stranded coil</td></tr></table>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_SOLID236.html" title="SOLID236"><span class="structname">SOLID236</span></a>&nbsp;-- Edge-based mixed-order
+                                    hexahedral</p>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_SOLID237.html" title="SOLID237"><span class="structname">SOLID237</span></a>&nbsp;-- Edge-based mixed-order
+                                    tetrahedral</p>
+                            </td></tr><tr><td bgcolor="#E3E3E3">
+                                
+                                
+                                <p>
+                                    <span class="bold"><strong>Fluid</strong></span>
+                                </p>
+                            </td><td bgcolor="#E3E3E3">
+                                
+                                
+                                <p>
+                                    <span class="bold"><strong>Degrees of Freedom</strong></span>
+                                </p>
+                            </td><td bgcolor="#E3E3E3">
+                                
+                                
+                                <p>
+                                    <span class="bold"><strong>Coupled-Physics</strong></span>
+                                </p>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_FLUID29.html" title="FLUID29"><span class="structname">FLUID29</span></a>&nbsp;-- Lower-order
+                                    quadrilateral [<a class="xref" href="elem_coupphys.html#eltblacousticftnt">1</a>]</p>
+                            </td><td>
+                                <p>UX, UY, PRES</p>
+                            </td><td rowspan="2">
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>Acoustic fluid-structure interaction</td></tr></table>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_FLUID30.html" title="FLUID30"><span class="structname">FLUID30</span></a>&nbsp;-- Lower-order
+                                    hexahedral</p>
+                            </td><td>
+                                <p>UX, UY, UZ, PRES</p>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_FLUID116.html" title="FLUID116"><span class="structname">FLUID116</span></a>&nbsp;-- Lower-order pipe
+                                        [<a class="xref" href="elem_coupphys.html#eltblthermalftnt">2</a>]</p>
+                            </td><td>
+                                <p>PRES, TEMP</p>
+                            </td><td>
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>Thermal-fluid</td></tr></table>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_FLUID136.html" title="FLUID136"><span class="structname">FLUID136</span></a>&nbsp;-- Low-order and
+                                    high-order quadrilateral</p>
+                            </td><td>
+                                <p>UX, UY, UZ, PRES</p>
+                            </td><td>
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>Squeeze film fluid-structure interaction</td></tr></table>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_FLUID220.html" title="FLUID220"><span class="structname">FLUID220</span></a>&nbsp;-- Higher-order
+                                    hexahedral [<a class="xref" href="elem_coupphys.html#eltblacousticftnt">1</a>]</p>
+                            </td><td rowspan="2">
+                                <p>UX, UY, UZ, PRES</p>
+                            </td><td rowspan="2">
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>Acoustic fluid-structure interaction</td></tr></table>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_FLUID221.html" title="FLUID221"><span class="structname">FLUID221</span></a>&nbsp;-- Higher-order
+                                    tetrahedral [<a class="xref" href="elem_coupphys.html#eltblacousticftnt">1</a>]</p>
+                            </td></tr><tr><td bgcolor="#C0C0C0" colspan="3" align="center">
+                                
+                                
+                                <p><a name="elem_coupphysredord"></a>
+                                    <span class="bold"><strong>Reduced-Order Elements</strong></span>
+                                </p>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_TRANS126.html" title="TRANS126"><span class="structname">TRANS126</span></a>&nbsp;-- Electromechanical
+                                    transducer</p>
+                            </td><td>
+                                <p>UX (UY, UZ), VOLT</p>
+                            </td><td rowspan="2">
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>Reduced-order electrostatic-structural</td></tr></table>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_ROM144.html" title="ROM144"><span class="structname">ROM144</span></a>&nbsp;-- Reduced-order
+                                    electrostatic-structural</p>
+                            </td><td>
+                                <p>EMF, VOLT, UX</p>
+                            </td></tr><tr><td bgcolor="#C0C0C0" colspan="3" align="center">
+                                
+                                
+                                <p><a name="elem_coupphyscontact"></a>
+                                    <span class="bold"><strong>Contact Elements</strong></span>
+                                </p>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_CONTA171.html" title="CONTA171"><span class="structname">CONTA171</span></a>&nbsp;-- 2-D lower-order
+                                    surface-to-surface contact</p>
+                            </td><td rowspan="2">
+                                <p>UX, UY, TEMP, VOLT</p>
+                            </td><td rowspan="5">
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>Structural-thermal</td></tr><tr><td>Structural-thermo-electric</td></tr><tr><td>Thermal-electric</td></tr><tr><td>Structural-electric</td></tr></table>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_CONTA172.html" title="CONTA172"><span class="structname">CONTA172</span></a>&nbsp;-- 2-D higher-order
+                                    surface-to-surface contact</p>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_CONTA173.html" title="CONTA173"><span class="structname">CONTA173</span></a>&nbsp;-- 3-D lower-order
+                                    surface-to-surface contact</p>
+                            </td><td rowspan="2">
+                                <p>UX, UY, UZ, TEMP, VOLT</p>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_CONTA174.html" title="CONTA174"><span class="structname">CONTA174</span></a>&nbsp;-- 3-D higher-order
+                                    surface-to-surface contact</p>
+                            </td></tr><tr><td>
+                                <p>
+                                    <a class="link" href="Hlp_E_CONTA175.html" title="CONTA175"><span class="structname">CONTA175</span></a>&nbsp;-- 2-D / 3-D
+                                    node-to-surface contact</p>
+                            </td><td>
+                                <p>UX, UY, (UZ), TEMP, VOLT</p>
+                            </td></tr></tbody></table></div><p>Use the following table to select coupled-field elements:</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="eltblacousticftnt"></a>See <a class="xref" href="elem_acouselems.html" title="6.3.&nbsp;Elements for Acoustic Analysis">Elements for Acoustic Analysis</a> for more information</p></li><li class="listitem"><p><a name="eltblthermalftnt"></a>See <a class="xref" href="elem_thermelems.html" title="6.2.&nbsp;Elements for Thermal Analysis">Elements for Thermal Analysis</a> for more information</p></li></ol></div><p>For related information, see <a href="Hlp_E_CH3_Classifications.html" class="olink">Selecting Elements for Your Analysis</a>.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

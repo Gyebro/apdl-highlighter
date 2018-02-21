@@ -1,0 +1,64 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:13-04:00"><title>SOURC36</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_PLANE35.html" title="PLANE35"><link rel="next" href="Hlp_E_COMBIN37.html" title="COMBIN37"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SOURC36"><a name="SOURC36"></a><div class="titlepage"></div><a class="indexterm" name="d0e29169"></a><span class="refentrytitle">
+            <span class="structname">SOURC36</span>
+        </span><div class="refnamediv"><p><br><b class="refpurpose">Current Source</b><div class="refclass">
+            <div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+            <div class=""><div class="application"><span class="application">
+                <a class="link" href="Hlp_E_SOURC36.html#aMY6vq283mcm" title="SOURC36 Product Restrictions">Product Restrictions</a>
+            </span></div></div>
+        </div></p></div><div class="refsect1" title="SOURC36 Element Description"><a name="elemdesc36tlm61499"></a><h2>SOURC36 Element Description</h2><p><span class="structname">SOURC36</span> is a primitive (consisting of predefined geometries)
+            used to supply current source data to magnetic field problems. The element represents a
+            distribution of current in a model employing a scalar potential formulation (degree of
+            freedom MAG). The currents are used to calculate a source magnetic field intensity
+                (H<sub>s</sub>) using a numerical integration technique involving the
+            Biot-Savart law. The H<sub>s</sub> term is used in the formulation as a
+            magnetic load on the model. See <a href="../ans_thry/thy_el36.html" class="olink">SOURC36</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for more details about this element.</p><div class="figure"><a name="aBAWf6dlmm"></a><p class="title"><b>Figure&nbsp;36.1:&nbsp;&nbsp;SOURC36 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gthy14-36-1.svg" alt="SOURC36 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="SOURC36 Input Data"><a name="aMY6vq130mcm"></a><h2>SOURC36 Input Data</h2><p>The geometry, node locations, and the coordinate system for this element are shown in
+                <a class="xref" href="Hlp_E_SOURC36.html#aBAWf6dlmm" title="Figure&nbsp;36.1:&nbsp;&nbsp;SOURC36 Geometry">Figure&nbsp;36.1:&nbsp;SOURC36 Geometry</a>. The element input data includes three nodes and the
+            following real constants (see <a class="xref" href="Hlp_E_SOURC36.html#azAWf367lmm" title="SOURC36 Input Summary">"SOURC36 Input Summary"</a>):</p><div><div class="variablelist"><dl><dt><span><b class="term">TYPE</b></span></dt><dd><p>Source type - use 1 for Coil, 2 for Bar, 3 for Arc.</p></dd><dt><span><b class="term">CUR</b></span></dt><dd><p>Total current flowing through source (i.e., number of turns
+                            times current per turn).</p></dd><dt><span><b class="term">DY</b></span></dt><dd><p>Characteristic y dimension for source type.</p></dd><dt><span><b class="term">DZ</b></span></dt><dd><p>Characteristic z dimension for source type.</p></dd><dt><span><b class="term">EPS</b></span></dt><dd><p>Convergence criterion for source field
+                                (H<sub>s</sub>) calculations for arc and coils. Defaults
+                            to 0.001. EPS represents the relative maximum difference in the field
+                                H<sub>s</sub> calculated at any node during the
+                            iterative calculation of the source field. EPS does not apply for bar
+                            sources.</p></dd></dl></div></div><p>Characteristic dimensions described above are in the element coordinate system. In the
+            case of circular sources (coils, arcs) the radius is determined from the first and third
+            nodes (I, K). For bar sources, the length is determined from the first two nodes (I,
+            J).</p><p>As a modeling aid, a magnetic command macro, <a href="../ans_cmd/Hlp_C_RACE.html" class="olink"><span class="command"><strong>RACE</strong></span></a>, is available
+            within the ANSYS command set. This macro enables you to build a racetrack conductor from
+                <span class="structname">SOURC36</span> primitives. The macro is discussed in further
+            detail in the <a href="../ans_cmd/Hlp_C_CmdTOC.html" class="olink"><em class="citetitle">Command Reference</em></a> and in the <a href="../ans_lof/Hlp_G_EleTOC.html" class="olink"><em class="citetitle">Low-Frequency Electromagnetic Analysis Guide</em></a>.</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_SOURC36.html#azAWf367lmm" title="SOURC36 Input Summary">"SOURC36 Input Summary"</a>. A general
+            description of element input is given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>.</p><div class="refsect2" title="SOURC36 Input Summary"><a name="azAWf367lmm"></a><h3>SOURC36 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J, K (nodes I, J and K define the characteristic length, current
+                            flow direction, and orient the source)</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>TYPE, CUR, DY, DZ, (Blank), (Blank),</td></tr><tr><td>(Blank), (Blank), EPS</td></tr><tr><td>See <a class="xref" href="Hlp_E_SOURC36.html#sourc36realconstants" title="Table&nbsp;36.1:&nbsp;&nbsp;SOURC36 Real Constants">Table&nbsp;36.1:&nbsp;SOURC36 Real Constants</a> for a description of
+                                the real constants.</td></tr></table></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Special Features</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">KEYOPTS</b></span></dt><dd><p>None</p></dd></dl></div></div><div class="table"><a name="sourc36realconstants"></a><p class="title"><b>Table&nbsp;36.1:&nbsp;&nbsp;SOURC36 Real Constants</b></p><div class="table-contents"><table summary="SOURC36 Real Constants" border="1" width="95%"><colgroup><col width="72" class="col1"><col width="96" class="col2"><col width="432" class="col3"></colgroup><thead><tr><th align="center" valign="top">No.</th><th align="center" valign="top">Name</th><th align="center" valign="top">Description</th></tr></thead><tbody><tr><td align="center">1</td><td>TYPE</td><td>Source type</td></tr><tr><td align="center">2</td><td>CUR</td><td>Total current through source</td></tr><tr><td align="center">3</td><td>DY</td><td>Characteristic Y dimension</td></tr><tr><td align="center">4</td><td>DZ</td><td>Characteristic Z dimension</td></tr><tr><td align="center">5 ... 8</td><td>(Blank)</td><td>&nbsp;</td></tr><tr><td align="center">9</td><td>EPS</td><td>Convergence criteria for H<sub>s</sub>
+                                calculations</td></tr></tbody></table></div></div><br class="table-break"><p>As a modeling aid, a magnetic command macro, <a href="../ans_cmd/Hlp_C_RACE.html" class="olink"><span class="command"><strong>RACE</strong></span></a>, is available
+                within the ANSYS command set. This macro enables the user to build a racetrack
+                conductor from <span class="structname">SOURC36</span> primitives. The macro is discussed
+                in further detail in the <a href="../ans_cmd/Hlp_C_CmdTOC.html" class="olink"><em class="citetitle">Command Reference</em></a> and in the <a href="../ans_lof/Hlp_G_EleTOC.html" class="olink"><em class="citetitle">Low-Frequency Electromagnetic Analysis Guide</em></a>.</p></div></div><div class="refsect1" title="SOURC36 Output Data"><a name="aMY6vq19fmcm"></a><h2>SOURC36 Output Data</h2><p>The source element has no output of its own since it is used only to supply current
+            source data to magnetic field problems.</p></div><div class="refsect1" title="SOURC36 Assumptions and Restrictions"><a name="aMY6vq214mcm"></a><h2>SOURC36 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The source element must have characteristic DY or DZ values that are greater
+                    than zero.</p></li><li class="listitem"><p>The third node must not be colinear with the first two nodes. </p></li><li class="listitem"><p>The nodes for this element need not be attached to any other elements. </p></li><li class="listitem"><p>For the coil and the arc (types 1 and 3), the K-I line determines the radius
+                    (and the x axis) and the J node orients the x-y plane.</p></li><li class="listitem"><p>For the arc (type 3) the subtended angle must be less than 180&deg;. When you
+                    specify an arc using three points, ANSYS will always use the angle that is less
+                    than 180&deg;. </p></li><li class="listitem"><p>All source element nodes should be located a least 1E-6 units apart. </p></li><li class="listitem"><p>Source element cannot have a zero inside radius (Radius &#8800; DY/2 for types 1
+                    and 3).</p></li><li class="listitem"><p>The EPS convergence criterion is a measure of the relative difference in the
+                    calculated H<sub>s</sub> field used during an iterative numerical
+                    integration procedure for coil and arc source primitives. The default value
+                    (.001) provides for good accuracy in regions outside of the source primitive
+                    location. For highly accurate calculations within the source primitive domain,
+                    the criteria may have to be tightened (i.e., a factor of 20 increase would be
+                    represented by EPS = .00005).</p></li><li class="listitem"><p>Tightening the convergence criteria will significantly increase the solution
+                    run time. </p></li><li class="listitem"><p>Users concerned with accurate calculations within the coil and arc source
+                    primitive domain should experiment with the criteria until satisfied with the
+                    degree of accuracy obtained.</p></li><li class="listitem"><p>All currents for a magnetostatic model employing the scalar potential
+                    formulation must be specified. Whereas symmetry conditions on the finite element
+                    model may be employed, no symmetry may be employed on the current source
+                    elements.</p></li></ul></div></div><div class="refsect1" title="SOURC36 Product Restrictions"><a name="aMY6vq283mcm"></a><h2>SOURC36 Product Restrictions</h2><p>There are no product-specific restrictions for this element.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

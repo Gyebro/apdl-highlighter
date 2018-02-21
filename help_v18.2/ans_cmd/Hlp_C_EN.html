@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:50-04:00"><title>EN</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_EMUNIT.html" title="EMUNIT"><link rel="next" href="Hlp_C_END.html" title="*END"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="EN"><a name="EN"></a><div class="titlepage"></div><a class="indexterm" name="d0e94588"></a><span class="refentrytitle"><span class="command"><strong>EN</strong></span></span><div class="refnamediv"><p><span class="command"><strong>EN</strong></span>, <em class="replaceable"><code>IEL</code></em>, <em class="replaceable"><code>I</code></em>, <em class="replaceable"><code>J</code></em>, <em class="replaceable"><code>K</code></em>, <em class="replaceable"><code>L</code></em>, <em class="replaceable"><code>M</code></em>, <em class="replaceable"><code>N</code></em>, <em class="replaceable"><code>O</code></em>, <em class="replaceable"><code>P</code></em><br><b class="refpurpose">Defines an element by its number and node connectivity.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7elementsldm061600" title="Table&nbsp;2.38:&nbsp;&nbsp;Elements"><span class="type">Elements</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="EN.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>IEL</code></em></b></span></dt><dd><p>Number assigned to element being defined. If <em class="replaceable"><code>IEL</code></em> =
+P, graphical picking is enabled and all remaining command fields are ignored
+(valid only in the GUI).</p></dd><dt><span><b class="term"><em class="replaceable"><code>I</code></em></b></span></dt><dd><p>Number of node assigned to first nodal position (node I).</p></dd><dt><span><b class="term"><em class="replaceable"><code>J</code></em>, <em class="replaceable"><code>K</code></em>, <em class="replaceable"><code>L</code></em>, <em class="replaceable"><code>M</code></em>, <em class="replaceable"><code>N</code></em>, <em class="replaceable"><code>O</code></em>, <em class="replaceable"><code>P</code></em></b></span></dt><dd><p>Number assigned to second (node J) through eighth (node P)
+nodal position, if any.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="EN.notes"></a><h2>Notes</h2><p>Defines an element by its nodes and attribute values. Similar to the <a class="link" href="Hlp_C_E.html" title="E"><span class="command"><strong>E</strong></span></a> command
+except it allows the element number (<em class="replaceable"><code>IEL</code></em>) to be
+defined explicitly.  Element numbers need not be consecutive. Any existing
+element already having this number will be redefined.</p><p>Up to 8 nodes may be specified with the <span class="command"><strong>EN</strong></span> command.
+If more nodes are needed for the element, use the <a class="link" href="Hlp_C_EMORE.html" title="EMORE"><span class="command"><strong>EMORE</strong></span></a> command.
+The number of nodes required and the order in which they should be specified
+are described in the <a href="../ans_elem/Hlp_E_ElemTOC.html" class="olink"><em class="citetitle">Element Reference</em></a> for each element type.  The current (or default)
+MAT, TYPE, REAL, SECNUM, and ESYS attribute values are also assigned to the
+element.</p><p>When creating elements with more than 8 nodes using this command and
+the <a class="link" href="Hlp_C_EMORE.html" title="EMORE"><span class="command"><strong>EMORE</strong></span></a> command, it may be necessary to turn off shape
+checking using the <a class="link" href="Hlp_C_SHPP.html" title="SHPP"><span class="command"><strong>SHPP</strong></span></a> command before issuing this command.
+If a valid element type can be created without using the additional nodes
+on the <a class="link" href="Hlp_C_EMORE.html" title="EMORE"><span class="command"><strong>EMORE</strong></span></a> command, this command will create that element.
+The <a class="link" href="Hlp_C_EMORE.html" title="EMORE"><span class="command"><strong>EMORE</strong></span></a> command will then modify the element to include
+the additional nodes. If shape checking is active, it will be performed before
+the <a class="link" href="Hlp_C_EMORE.html" title="EMORE"><span class="command"><strong>EMORE</strong></span></a> command is issued. Therefore, if the shape checking
+limits are exceeded, element creation may fail before the <a class="link" href="Hlp_C_EMORE.html" title="EMORE"><span class="command"><strong>EMORE</strong></span></a> command
+modifies the element into an acceptable shape.</p></div><div class="refsect1" title="Menu Paths"><a name="EN.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Elements&gt;User Numbered&gt;Thru Nodes</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

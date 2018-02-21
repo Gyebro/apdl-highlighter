@@ -1,0 +1,56 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:49-04:00"><title>VDRAG</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_V_TOC.html" title="V Commands"><link rel="prev" href="Hlp_C_VDOT.html" title="VDOT"><link rel="next" href="Hlp_C_VEC.html" title="*VEC"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="VDRAG"><a name="VDRAG"></a><div class="titlepage"></div><a class="indexterm" name="d0e290244"></a><span class="refentrytitle"><span class="command"><strong>VDRAG</strong></span></span><div class="refnamediv"><p><span class="command"><strong>VDRAG</strong></span>, <em class="replaceable"><code>NA1</code></em>, <em class="replaceable"><code>NA2</code></em>, <em class="replaceable"><code>NA3</code></em>, <em class="replaceable"><code>NA4</code></em>, <em class="replaceable"><code>NA5</code></em>, <em class="replaceable"><code>NA6</code></em>, <em class="replaceable"><code>NLP1</code></em>, <em class="replaceable"><code>NLP2</code></em>, <em class="replaceable"><code>NLP3</code></em>, <em class="replaceable"><code>NLP4</code></em>, <em class="replaceable"><code>NLP5</code></em>, <em class="replaceable"><code>NLP6</code></em><br><b class="refpurpose">Generates volumes by dragging an area pattern along a path.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7volumesldm061600" title="Table&nbsp;2.34:&nbsp;&nbsp;Volumes"><span class="type">Volumes</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="VDRAG.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NA1</code></em>, <em class="replaceable"><code>NA2</code></em>, <em class="replaceable"><code>NA3</code></em>,
+. . . , <em class="replaceable"><code>NA6</code></em></b></span></dt><dd><p>List of areas in the pattern to be dragged (6 maximum if using
+keyboard entry).  If <em class="replaceable"><code>NA1</code></em> = P, graphical picking
+is enabled and all remaining command fields are ignored (valid only in the
+GUI).  If <em class="replaceable"><code>NA1</code></em> = ALL, all selected areas will be
+swept along the path.  A component name may also be substituted for <em class="replaceable"><code>NA1</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NLP1</code></em>, <em class="replaceable"><code>NLP2</code></em>, <em class="replaceable"><code>NLP3</code></em>,
+. . . , <em class="replaceable"><code>NLP6</code></em></b></span></dt><dd><p>List of lines defining the path along which the pattern is
+to  be dragged (6 maximum if using keyboard entry).  Must be a continuous
+set of lines.  To be continuous, adjacent lines must share the connecting
+keypoint (the end keypoint of one line must also be first keypoint of the
+next line).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="VDRAG.notes"></a><h2>Notes</h2><p>Generates volumes (and their corresponding keypoints, lines, and areas)
+by sweeping a given area pattern along a characteristic drag path.  If the
+drag path consists of multiple lines, the drag direction is determined by
+the sequence in which the path lines are input (<em class="replaceable"><code>NLP1</code></em>, <em class="replaceable"><code>NLP2</code></em>,
+etc.).  If the drag path is a single line (<em class="replaceable"><code>NLP1</code></em>),
+the drag direction is from the keypoint on the drag line that is closest to
+the first keypoint of the given area pattern to the other end of the drag
+line.</p><p>The magnitude of the vector between the keypoints of the given pattern
+and the first path keypoint remains constant for all generated keypoint patterns
+and the path keypoints.  The direction of the vector relative to the path
+slope also remains constant so that patterns may be swept around curves. 
+Lines are generated with the same shapes as the given pattern and the path
+lines.</p><p>Keypoint, line, area, and volume numbers are automatically assigned
+(beginning with the lowest available values [<a class="link" href="Hlp_C_NUMSTR.html" title="NUMSTR"><span class="command"><strong>NUMSTR</strong></span></a>]).
+ Adjacent lines use a common keypoint, adjacent areas use a common line, and
+adjacent volumes use a common area.  For best results, the entities to be
+dragged should be orthogonal to the start of the drag path.  Drag operations
+that produce an error message may create some of the desired entities prior
+to terminating.</p><p>If element attributes have been associated with the input area via the <a class="link" href="Hlp_C_AATT.html" title="AATT"><span class="command"><strong>AATT</strong></span></a> command,
+the opposite area generated by the <span class="command"><strong>VDRAG</strong></span> operation will
+also have those attributes (i.e., the element attributes from the input area
+are copied to the opposite area).  Note that only the area opposite the input
+area will have the same attributes as the input area; the areas adjacent to
+the input area will not.</p><p>If the input areas are meshed or belong to a meshed volume, the area(s)
+can be extruded to a 3-D mesh.  Note that the <em class="replaceable"><code>NDIV</code></em> argument
+of the <a class="link" href="Hlp_C_ESIZE.html" title="ESIZE"><span class="command"><strong>ESIZE</strong></span></a> command should be set before extruding the
+meshed areas.  Alternatively, mesh divisions can be specified directly on
+the drag line(s) (<a class="link" href="Hlp_C_LESIZE.html" title="LESIZE"><span class="command"><strong>LESIZE</strong></span></a>).  See the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a> for more information.</p><p>You can use the <span class="command"><strong>VDRAG</strong></span> command to generate 3-D interface
+element meshes for elements <a href="../ans_elem/Hlp_E_INTER194.html" class="olink"><span class="structname">INTER194</span></a> and <a href="../ans_elem/Hlp_E_INTER195.html" class="olink"><span class="structname">INTER195</span></a>.
+When generating interface element meshes using <span class="command"><strong>VDRAG</strong></span>, you
+must specify the line divisions to generate one interface element directly
+on the drag line using the <a class="link" href="Hlp_C_LESIZE.html" title="LESIZE"><span class="command"><strong>LESIZE</strong></span></a> command. The source area
+to be extruded becomes the bottom surface of the interface element. Interface
+elements must be extruded in what will become the element's local x direction,
+that is, bottom to top.</p></div><div class="refsect1" title="Menu Paths"><a name="VDRAG.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Operate&gt;Extrude&gt;Areas&gt;Along Lines</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

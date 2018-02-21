@@ -1,0 +1,187 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:06-04:00"><title>5.8.&nbsp;Automatic Selection of Element Technologies and Formulations</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_StressAnalysisElems.html" title="Chapter&nbsp;5:&nbsp;Elements for Stress Analysis"><link rel="prev" href="elem_infindomain.html" title="5.7.&nbsp;Elements Used to Model the Truncation of an Infinite Structural Domain"><link rel="next" href="Hlp_E_LinearPerturbElems.html" title="5.9.&nbsp;Elements Under Linear Perturbation"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="5.8.&nbsp;Automatic Selection of Element Technologies and Formulations"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="EL2autoselETfdb"></a>5.8.&nbsp;Automatic Selection of Element Technologies and Formulations</h2></div></div></div><a class="indexterm" name="d0e15049"></a><p>With the variety of technologies available in many elements, choosing the best
+            settings to solve your problem efficiently can be challenging. Particularly in the newer
+            structural and solid elements for stress analysis, an element might offer two to four
+            technologies. </p><p>The program can offer suggestions (or reset the technology settings) to help you
+            achieve the best solution via the <a href="../ans_cmd/Hlp_C_ETCONTROL.html" class="olink"><span class="command"><strong>ETCONTROL</strong></span></a> command. The command
+            helps you to select the appropriate element technologies by considering the stress
+            state, the options set on the element type, and the associated constitutive models of
+            the element type. <a href="../ans_cmd/Hlp_C_ETCONTROL.html" class="olink"><span class="command"><strong>ETCONTROL</strong></span></a> supports all applicable <a class="link" href="Hlp_E_CH2_OLDNEW.html#EL2oldnewtable" title="2.4.1.&nbsp;Legacy vs. Current Element Technologies">current-technology elements</a>.</p><p>The materials associated with each element type are detected at the solution stage and
+            are classified as:</p><p>
+            </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Elastoplastic materials, including:</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>Linear elastic materials with Poisson's ratio &lt;= 0.49</p></li><li class="listitem"><p>Linear elastic materials with Poisson's ratio &gt; 0.49</p></li><li class="listitem"><p>Anisotropic materials (not including orthotropic materials defined
+                                via <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> commands)</p></li><li class="listitem"><p>Elastoplastic materials (other nonlinear materials except
+                                hyperelastic materials)</p></li></ul></div></li><li class="listitem"><p>Hyperelastic materials, including:</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>Nearly incompressible hyperelastic materials</p></li><li class="listitem"><p>Fully incompressible hyperelastic materials</p></li></ul></div></li></ul></div><p>
+        </p><p>In practical application, one element type could be associated with more than one
+            constitutive model, for example, linear elastic and elastoplastic materials. For this
+            case, the suggestions/resettings are based on elastoplastic materials, which need more
+            complicated element technology. The list of constitutive models above is organized in
+            order of complexity, with the bottom ones more difficult to solve numerically. When an
+            element type is associated with multiple constitutive models, the more complex one is
+            used in the automatic selection of the element technology.</p><p>When using <a href="../ans_cmd/Hlp_C_ETCONTROL.html" class="olink"><span class="command"><strong>ETCONTROL</strong></span></a>, the suggestions given or settings changed are
+            described in the tables below.</p><p>
+            </p><div class="table"><a name="elemtechcriteria1"></a><p class="title"><b>Table&nbsp;5.4:&nbsp;&nbsp;Recommendation Criteria for Element Technology (Linear Material)</b></p><div class="table-contents"><table summary="Recommendation Criteria for Element Technology (Linear Material)" border="1" width="95%"><colgroup><col width="22%" class="col1"><col width="23%" class="col2"><col width="27%" class="col3"><col width="28%" class="col4"></colgroup><thead><tr><th bgcolor="#E3E3E3" colspan="4" align="center" valign="top">
+                                
+                                Linear Materials Only</th></tr><tr><th bgcolor="#E3E3E3" valign="top">
+                                
+                                Element</th><th bgcolor="#C0C0C0" valign="top">
+                                
+                                Stress State / Option</th><th bgcolor="#C0C0C0" valign="top">
+                                
+                                Poisson's ratio (&#957;) &lt;= 0.49</th><th bgcolor="#C0C0C0" valign="top">
+                                
+                                Poisson's ratio (&#957;) &gt; 0.49 (or
+                                anisotropic materials)</th></tr></thead><tbody><tr><td rowspan="2">
+                                <a class="link" href="Hlp_E_SHELL181.html" title="SHELL181"><span class="structname">SHELL181</span></a>
+                            </td><td>Default</td><td colspan="2">KEYOPT(3) = 2 for higher accuracy of
+                                membrane stress, otherwise, KEYOPT(3) = 0; &nbsp;KEYOPT(8) = 2 for
+                                all cases</td></tr><tr><td>Membrane-only option (KEYOPT(1) = 1)</td><td colspan="2">KEYOPT(3) = 2 for higher accuracy of
+                                stress, otherwise, KEYOPT(3) = 0; &nbsp;KEYOPT(8) = 0 for all
+                                cases</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SOLID272.html" title="SOLID272"><span class="structname">SOLID272</span></a>
+                            </td><td>&nbsp;</td><td>KEYOPT(6) = 0</td><td>KEYOPT(6) = 1</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SOLID273.html" title="SOLID273"><span class="structname">SOLID273</span></a>
+                            </td><td>&nbsp;</td><td colspan="2">No change. (Default element settings
+                                are best.)</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SOLID285.html" title="SOLID285"><span class="structname">SOLID285</span></a>
+                            </td><td>&nbsp;</td><td colspan="2">No change. (Default element settings
+                                are best.)</td></tr><tr><td rowspan="2">
+                                <a class="link" href="Hlp_E_PLANE182.html" title="PLANE182"><span class="structname">PLANE182</span></a>
+                            </td><td>Plane stress</td><td colspan="2">KEYOPT(1) = 2</td></tr><tr><td>Not plane stress</td><td>KEYOPT(1) = 3 [<a class="xref" href="Hlp_E_AutoSelectElems.html#EL2eletechlin1.tab.1.a">1</a>]</td><td>KEYOPT(1) = 2</td></tr><tr><td rowspan="2">
+                                <a class="link" href="Hlp_E_PLANE183.html" title="PLANE183"><span class="structname">PLANE183</span></a>
+                            </td><td>Plane stress</td><td colspan="2">No change. (Default element settings
+                                are best.)</td></tr><tr><td>Not plane stress</td><td colspan="2">No change. (Default element settings
+                                are best.)</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SOLID185.html" title="SOLID185"><span class="structname">SOLID185</span></a>
+                            </td><td>&nbsp;</td><td>KEYOPT(2) = 3 [<a class="xref" href="Hlp_E_AutoSelectElems.html#EL2eletechlin1.tab.1.a">1</a>]</td><td>KEYOPT(2) = 2</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SOLID186.html" title="SOLID186"><span class="structname">SOLID186</span></a>
+                            </td><td>&nbsp;</td><td colspan="2">KEYOPT(2) = 0</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SOLID187.html" title="SOLID187"><span class="structname">SOLID187</span></a>
+                            </td><td>&nbsp;</td><td colspan="2">No change. (Default element settings
+                                are best.)</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_BEAM188.html" title="BEAM188"><span class="structname">BEAM188</span></a>
+                            </td><td>&nbsp;</td><td colspan="2">KEYOPT(3) = 2, KEYOPT(1) = 1 [<a class="xref" href="Hlp_E_AutoSelectElems.html#EL2eletechlin1.tab.1.ft.1">2</a>]</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_BEAM189.html" title="BEAM189"><span class="structname">BEAM189</span></a>
+                            </td><td>&nbsp;</td><td colspan="2">KEYOPT(1) = 1 [<a class="xref" href="Hlp_E_AutoSelectElems.html#EL2eletechlin1.tab.1.ft.1">2</a>]</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SHELL208.html" title="SHELL208"><span class="structname">SHELL208</span></a>
+                            </td><td>&nbsp;</td><td colspan="2">KEYOPT(8) = 2</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SHELL209.html" title="SHELL209"><span class="structname">SHELL209</span></a>
+                            </td><td>&nbsp;</td><td colspan="2">KEYOPT(8) = 2</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SHELL281.html" title="SHELL281"><span class="structname">SHELL281</span></a>
+                            </td><td>&nbsp;</td><td colspan="2">No change. (Default element settings
+                                are best.)</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_PIPE288.html" title="PIPE288"><span class="structname">PIPE288</span></a>
+                            </td><td>&nbsp;</td><td>
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>KEYOPT(3) = 2</td></tr><tr><td>KEYOPT(4) = 2</td></tr><tr><td>KEYOPT(15) = 1 [<a class="xref" href="Hlp_E_AutoSelectElems.html#EL2eletechlin1.tab.1.ft.2">3</a>]</td></tr></table>
+                            </td><td>
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>KEYOPT(3) = 2</td></tr><tr><td>KEYOPT(4) = 1</td></tr><tr><td>KEYOPT(15) = 1 [<a class="xref" href="Hlp_E_AutoSelectElems.html#EL2eletechlin1.tab.1.ft.2">3</a>]</td></tr></table>
+                            </td></tr><tr><td>
+                                <a class="link" href="Hlp_E_PIPE289.html" title="PIPE289"><span class="structname">PIPE289</span></a>
+                            </td><td>&nbsp;</td><td>
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>KEYOPT(4) = 2</td></tr><tr><td>KEYOPT(15) = 1 [<a class="xref" href="Hlp_E_AutoSelectElems.html#EL2eletechlin1.tab.1.ft.2">3</a>]</td></tr></table>
+                            </td><td>
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>KEYOPT(4) = 1</td></tr><tr><td>KEYOPT(15) = 1 [<a class="xref" href="Hlp_E_AutoSelectElems.html#EL2eletechlin1.tab.1.ft.2">3</a>]</td></tr></table>
+                            </td></tr></tbody></table></div></div><p><br class="table-break">
+            </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="EL2eletechlin1.tab.1.a"></a> If the material is orthotropic, set the KEYOPT to 2 (so that the program
+                        considers the material to be anisotropic).</p></li><li class="listitem"><p><a name="EL2eletechlin1.tab.1.ft.1"></a>Only when the element section is not circular; otherwise, KEYOPT(1) =
+                        0.</p></li><li class="listitem"><p><a name="EL2eletechlin1.tab.1.ft.2"></a>Only when the element cross section is composite; otherwise, KEYOPT(15) =
+                        0.</p></li></ol></div><p>
+            </p><div class="table"><a name="elemtechcriteria2"></a><p class="title"><b>Table&nbsp;5.5:&nbsp;&nbsp;Recommendation Criteria for Element Technology (Nonlinear Materials)</b></p><div class="table-contents"><table summary="Recommendation Criteria for Element Technology (Nonlinear Materials)" border="1" width="95%"><colgroup><col width="22%" class="col1"><col width="23%" class="col2"><col width="23%" class="col3"><col width="32%" class="col4"></colgroup><thead><tr><th bgcolor="#E3E3E3" colspan="4" align="center" valign="top">
+                                
+                                Nonlinear Materials</th></tr><tr><th bgcolor="#E3E3E3" valign="top">
+                                
+                                Element</th><th bgcolor="#C0C0C0" valign="top">
+                                
+                                Stress State / Option</th><th bgcolor="#C0C0C0" valign="top">
+                                
+                                Elastoplastic materials (may also have
+                                hyperelastic materials)</th><th bgcolor="#C0C0C0" valign="top">
+                                
+                                Hyperelastic materials only</th></tr></thead><tbody><tr><td rowspan="2">
+                                <a class="link" href="Hlp_E_SHELL181.html" title="SHELL181"><span class="structname">SHELL181</span></a>
+                            </td><td>Default</td><td>KEYOPT(3) = 2 for higher accuracy of membrane
+                                stress, otherwise, KEYOPT(3) = 0; &nbsp;KEYOPT(8) = 2 for all
+                                cases</td><td>KEYOPT(3) = 0, KEYOPT(8) = 0</td></tr><tr><td>Membrane-only option (KEYOPT(1) = 1)</td><td>KEYOPT(3) = 2 for higher accuracy of stress,
+                                otherwise, KEYOPT(3) = 0; &nbsp;KEYOPT(8) = 0 for all cases</td><td>KEYOPT(3) = 0, KEYOPT(8) = 0</td></tr><tr><td rowspan="2">
+                                <a class="link" href="Hlp_E_PLANE182.html" title="PLANE182"><span class="structname">PLANE182</span></a>
+                            </td><td>Plane stress</td><td>KEYOPT(1) = 2</td><td>KEYOPT(1) = 0</td></tr><tr><td>Not plane stress</td><td>KEYOPT(1) = 2 [<a class="xref" href="Hlp_E_AutoSelectElems.html#EL2eletech1.tab.1.ft.1">1</a>]</td><td>KEYOPT(1) = 0 [<a class="xref" href="Hlp_E_AutoSelectElems.html#EL2eletech1.tab.1.ft.1">1</a>]</td></tr><tr><td rowspan="2">
+                                <a class="link" href="Hlp_E_PLANE183.html" title="PLANE183"><span class="structname">PLANE183</span></a>
+                            </td><td>Plane stress</td><td colspan="2">No change. (Default element settings
+                                are best.)</td></tr><tr><td>Not plane stress</td><td colspan="2">no change (default element settings
+                                are best) [<a class="xref" href="Hlp_E_AutoSelectElems.html#EL2eletech1.tab.1.ft.1">1</a>]</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SOLID185.html" title="SOLID185"><span class="structname">SOLID185</span></a>
+                            </td><td>&nbsp;</td><td>KEYOPT(2) = 2 [<a class="xref" href="Hlp_E_AutoSelectElems.html#EL2eletech1.tab.1.ft.1">1</a>]</td><td>KEYOPT(2) = 0 [<a class="xref" href="Hlp_E_AutoSelectElems.html#EL2eletech1.tab.1.ft.1">1</a>]</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SOLID186.html" title="SOLID186"><span class="structname">SOLID186</span></a>
+                            </td><td>&nbsp;</td><td colspan="2">KEYOPT(2) = 0 [<a class="xref" href="Hlp_E_AutoSelectElems.html#EL2eletech1.tab.1.ft.1">1</a>]</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SOLID187.html" title="SOLID187"><span class="structname">SOLID187</span></a>
+                            </td><td>&nbsp;</td><td colspan="2">No change. (Default element settings
+                                are best.) [<a class="xref" href="Hlp_E_AutoSelectElems.html#EL2eletech1.tab.1.ft.1">1</a>]</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SOLID272.html" title="SOLID272"><span class="structname">SOLID272</span></a>
+                            </td><td>&nbsp;</td><td colspan="2">KEYOPT(6) = 1</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SOLID273.html" title="SOLID273"><span class="structname">SOLID273</span></a>
+                            </td><td>&nbsp;</td><td colspan="2">No change. (Default element settings
+                                are best.) [<a class="xref" href="Hlp_E_AutoSelectElems.html#EL2eletech1.tab.1.ft.1">1</a>]</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SOLID285.html" title="SOLID285"><span class="structname">SOLID285</span></a>
+                            </td><td>&nbsp;</td><td colspan="2">No change. (Default element settings
+                                are best.)</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_BEAM188.html" title="BEAM188"><span class="structname">BEAM188</span></a>
+                            </td><td>&nbsp;</td><td colspan="2">KEYOPT(3) = 2, KEYOPT(1) = 1 [<a class="xref" href="Hlp_E_AutoSelectElems.html#EL2eletech1.tab.1.ft.2">2</a>]</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_BEAM189.html" title="BEAM189"><span class="structname">BEAM189</span></a>
+                            </td><td>&nbsp;</td><td colspan="2">KEYOPT(1) = 1 [<a class="xref" href="Hlp_E_AutoSelectElems.html#EL2eletech1.tab.1.ft.2">2</a>]</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SHELL208.html" title="SHELL208"><span class="structname">SHELL208</span></a>
+                            </td><td>&nbsp;</td><td>KEYOPT(8) = 2</td><td>KEYOPT(8) = 0</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SHELL209.html" title="SHELL209"><span class="structname">SHELL209</span></a>
+                            </td><td>&nbsp;</td><td>KEYOPT(8) = 2</td><td>KEYOPT(8) = 0</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SHELL281.html" title="SHELL281"><span class="structname">SHELL281</span></a>
+                            </td><td>&nbsp;</td><td colspan="2">No change. (Default element settings
+                                are best.)</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_PIPE288.html" title="PIPE288"><span class="structname">PIPE288</span></a>
+                            </td><td>&nbsp;</td><td colspan="2">
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>KEYOPT(3) = 2</td></tr><tr><td>KEYOPT(4) = 2</td></tr><tr><td>KEYOPT(15) = 1 [<a class="xref" href="Hlp_E_AutoSelectElems.html#EL2eletech1.tab.1.ft.3">3</a>]</td></tr></table>
+                            </td></tr><tr><td>
+                                <a class="link" href="Hlp_E_PIPE289.html" title="PIPE289"><span class="structname">PIPE289</span></a>
+                            </td><td>&nbsp;</td><td colspan="2">
+                                <table border="0" summary="Simple list" class="simplelist"><tr><td>KEYOPT(4) = 2</td></tr><tr><td>KEYOPT(15) = 1 [<a class="xref" href="Hlp_E_AutoSelectElems.html#EL2eletech1.tab.1.ft.3">3</a>]</td></tr></table>
+                            </td></tr></tbody></table></div></div><p><br class="table-break">
+            </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="EL2eletech1.tab.1.ft.1"></a>If even one of your hyperelastic materials is fully incompressible, then
+                        KEYOPT(6) = 1 is required. Therefore, ANSYS, Inc. recommends using a
+                        different element type for such materials to avoid using the more costly
+                        mixed u-P formulation where it is not needed.</p></li><li class="listitem"><p><a name="EL2eletech1.tab.1.ft.2"></a>Only when the element section is not circular, otherwise KEYOPT(1) =
+                        0.</p></li><li class="listitem"><p><a name="EL2eletech1.tab.1.ft.3"></a>Only when the element cross section is composite; otherwise, KEYOPT(15) =
+                        0</p></li></ol></div><p>
+        </p><p>For the solid elements listed above, <a href="../ans_cmd/Hlp_C_ETCONTROL.html" class="olink"><span class="command"><strong>ETCONTROL</strong></span></a> provides suggestions
+            or resets the KEYOPTs for the element technology settings (i.e., KEYOPT(1) for
+                <a class="link" href="Hlp_E_PLANE182.html" title="PLANE182"><span class="structname">PLANE182</span></a>, KEYOPT(2) for <a class="link" href="Hlp_E_SOLID185.html" title="SOLID185"><span class="structname">SOLID185</span></a>
+            and <a class="link" href="Hlp_E_SOLID186.html" title="SOLID186"><span class="structname">SOLID186</span></a>). The Mixed u-P formulation KEYOPT(6) is reset
+            when necessary; that is, when fully incompressible hyperelastic materials are associated
+            with non-plane stress states.</p><p>For <a class="link" href="Hlp_E_BEAM188.html" title="BEAM188"><span class="structname">BEAM188</span></a> and <a class="link" href="Hlp_E_BEAM189.html" title="BEAM189"><span class="structname">BEAM189</span></a>, KEYOPT(1)
+            is always suggested for non-circular cross section beams and should be reset when
+                <a href="../ans_cmd/Hlp_C_ETCONTROL.html" class="olink"><span class="command"><strong>ETCONTROL</strong></span></a>,SET,.. is issued. However, the KEYOPT setting changes
+            the number of degrees of freedom at each node, so it must be set before you issue any
+                <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a>, <a href="../ans_cmd/Hlp_C_DK.html" class="olink"><span class="command"><strong>DK</strong></span></a>, <a href="../ans_cmd/Hlp_C_DA.html" class="olink"><span class="command"><strong>DA</strong></span></a>, and similar
+            commands. Because the <a href="../ans_cmd/Hlp_C_ETCONTROL.html" class="olink"><span class="command"><strong>ETCONTROL</strong></span></a> reset is done at the beginning of the
+            solution stage, a message appears indicating stating that you should change KEYOPT(1) to
+            1, but the change does not occur automatically.</p><p>For <a class="link" href="Hlp_E_SHELL181.html" title="SHELL181"><span class="structname">SHELL181</span></a>, the setting for KEYOPT(3) depends on your
+            problem and your purpose if the element type is associated with any non-hyperelastic
+            materials. In this case, the program cannot reset it automatically, but it displays a
+            message with the recommended setting (even if you used
+            <a href="../ans_cmd/Hlp_C_ETCONTROL.html" class="olink"><span class="command"><strong>ETCONTROL</strong></span></a>,SET,..). You should reset this manually if the defined
+            criteria matches your problem.</p><p>For the coupled-field elements <a class="link" href="Hlp_E_PLANE223.html" title="PLANE223"><span class="structname">PLANE223</span></a>,
+                <a class="link" href="Hlp_E_SOLID226.html" title="SOLID226"><span class="structname">SOLID226</span></a>, and <a class="link" href="Hlp_E_SOLID227.html" title="SOLID227"><span class="structname">SOLID227</span></a>, see the
+            individual element descriptions in the <a href="Hlp_E_ElemTOC.html" class="olink"><em class="citetitle">Element Reference</em></a> for information on
+                <a href="../ans_cmd/Hlp_C_ETCONTROL.html" class="olink"><span class="command"><strong>ETCONTROL</strong></span></a> suggestions/resettings.</p><p>If an element type is defined but not associated with any material, no suggestions or
+            resets are done for that element type. The stress states and options are mentioned only
+            when they affect the suggestions or settings. The suggestions are available in
+            output.</p><p>All nonlinear stress/strain data should be input as true-stress/true-(logarithmic-)
+            strain. Accordingly, all output data is also indicated as true-stress/true-strain. For
+            small strains, the true-stress/true-strain data and
+            engineering-stress/engineering-strain data are essentially identical. </p></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

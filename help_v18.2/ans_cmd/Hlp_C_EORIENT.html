@@ -1,0 +1,46 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:51-04:00"><title>EORIENT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_EOF.html" title="/EOF"><link rel="next" href="Hlp_C_EPLOT.html" title="EPLOT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="EORIENT"><a name="EORIENT"></a><div class="titlepage"></div><a class="indexterm" name="d0e95824"></a><span class="refentrytitle"><span class="command"><strong>EORIENT</strong></span></span><div class="refnamediv"><p><span class="command"><strong>EORIENT</strong></span>, <em class="replaceable"><code>Etype</code></em>, <em class="replaceable"><code>Dir</code></em>, <em class="replaceable"><code>TOLER</code></em><br><b class="refpurpose">Reorients solid element normals.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7meshingldm061600" title="Table&nbsp;2.36:&nbsp;&nbsp;Meshing"><span class="type">Meshing</span></a></span></div></div>   <div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7elementsldm061600" title="Table&nbsp;2.38:&nbsp;&nbsp;Elements"><span class="type">Elements</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="CMDEORIargsfdb53199"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Etype</code></em></b></span></dt><dd><p>Specifies which elements to orient.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LYSL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Specifies that certain solid elements
+(such as <a href="../ans_elem/Hlp_E_SOLID185.html" class="olink"><span class="structname">SOLID185</span></a> with KEYOPT(3) = 1, <a href="../ans_elem/Hlp_E_SOLID186.html" class="olink"><span class="structname">SOLID186</span></a> with KEYOPT(3) = 1, and <a href="../ans_elem/Hlp_E_SOLSH190.html" class="olink"><span class="structname">SOLSH190</span></a>) will be oriented.  This value is the default. </p></td></tr></tbody></table></div></div></dd></dl></div></div><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Dir</code></em></b></span></dt><dd><p>The axis and direction for orientation, or an element
+number. If <em class="replaceable"><code>Dir</code></em> is set to a positive number
+(<em class="replaceable"><code>n</code></em>), then all eligible elements
+are oriented as similarly as possible to element <em class="replaceable"><code>n</code></em>.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NEGX</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The element face with the outward
+normal most nearly parallel to the element coordinate system&#8217;s
+negative x-axis is designated (reoriented) as face 1.  </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">POSX</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The element face with the outward
+normal most nearly parallel to the element coordinate system&#8217;s
+positive x-axis is designated (reoriented) as face 1.  </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NEGY</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The element face with the outward
+normal most nearly parallel to the element coordinate system&#8217;s
+negative y-axis is designated (reoriented) as face 1.  .</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">POSY</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The element face with the outward
+normal most nearly parallel to the element coordinate system&#8217;s
+positive y-axis is designated (reoriented) as face 1.  </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NEGZ</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>(Default) The element face with the
+outward normal most nearly parallel to the element coordinate system&#8217;s
+negative z-axis is designated (reoriented) as face 1.  </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">POSZ</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The element face with the outward
+normal most nearly parallel to the element coordinate system&#8217;s
+positive z-axis is designated (reoriented) as face 1.  </p></td></tr></tbody></table></div></div></dd></dl></div></div><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>TOLER</code></em></b></span></dt><dd><p>The maximum angle (in degrees) between the outward
+normal face and the target axis. Default is 90.0. Lower <em class="replaceable"><code>TOLER</code></em> values will reduce the number of faces that are
+considered as the basis of element reorientation.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="EORIENT.notes"></a><h2>Notes</h2><p><span class="command"><strong>EORIENT</strong></span> renumbers the element faces, designating
+the face  most parallel to the XY plane of the element coordinate
+system (set with <a class="link" href="Hlp_C_ESYS.html" title="ESYS"><span class="command"><strong>ESYS</strong></span></a>) as face 1 (nodes I-J-K-L,
+parallel to the layers in layered elements). It calculates the outward
+normal of each face and changes  the node designation  of the elements
+so the face with a normal most nearly parallel with and in the same
+general direction as the target axis becomes face 1.</p><p>The target axis, defined by <em class="replaceable"><code>Dir</code></em>,
+is either the negative or positive indicated axis or the outward normal
+of face 1 of that element.</p><p>All <a href="../ans_elem/Hlp_E_SOLID185.html" class="olink"><span class="structname">SOLID185</span></a> Layered Structural Solid, <a href="../ans_elem/Hlp_E_SOLID186.html" class="olink"><span class="structname">SOLID186</span></a> Layered Structural Solid, and <a href="../ans_elem/Hlp_E_SOLSH190.html" class="olink"><span class="structname">SOLSH190</span></a> solid shell elements in the selected set are considered for reorientation.</p><p>After reorienting elements, you should always display and graphically
+review results using the <a href="Hlp_C_ESHAPE.html" class="olink"><span class="command"><strong>/ESHAPE</strong></span></a> command. When
+plotting models with many or symmetric layers, it may be useful to
+temporarily reduce the number of layers to two, with one layer being
+much thicker than the other.</p><p>You cannot use <span class="command"><strong>EORIENT</strong></span> to change the normal
+direction of any element that has a body or surface load.  We recommend
+that you apply all of your loads only <span class="italic"><em>after</em></span> ensuring that the element normal directions are acceptable.</p><p>Prisms and tetrahedrals are also supported, within the current
+limitations of the <a href="../ans_elem/Hlp_E_SOLID185.html" class="olink"><span class="structname">SOLID185</span></a>, <a href="../ans_elem/Hlp_E_SOLID186.html" class="olink"><span class="structname">SOLID186</span></a>, and <a href="../ans_elem/Hlp_E_SOLSH190.html" class="olink"><span class="structname">SOLSH190</span></a> elements.
+(Layers parallel to the four-node face of the prism are not supported.)</p></div><div class="refsect1" title="Menu Paths"><a name="CMDEORImenusfdb53199"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Move / Modify&gt;Elements&gt;Orient Normal</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

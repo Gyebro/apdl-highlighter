@@ -1,0 +1,51 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:44-04:00"><title>EDDRELAX</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_EDDC.html" title="EDDC"><link rel="next" href="Hlp_C_EDDUMP.html" title="EDDUMP"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="EDDRELAX"><a name="EDDRELAX"></a><div class="titlepage"></div><a class="indexterm" name="d0e81527"></a><span class="refentrytitle"><span class="command"><strong>EDDRELAX</strong></span></span><div class="refnamediv"><p><span class="command"><strong>EDDRELAX</strong></span>, <em class="replaceable"><code>Option</code></em>, <em class="replaceable"><code>NRCYCK</code></em>, <em class="replaceable"><code>DRTOL</code></em>, <em class="replaceable"><code>DFFCTR</code></em>, <em class="replaceable"><code>DRTERM</code></em>, <em class="replaceable"><code>TSSFDR</code></em>, <em class="replaceable"><code>IRELAL</code></em>, <em class="replaceable"><code>EDTTL</code></em><br><b class="refpurpose">Activates initialization to a prescribed geometry or dynamic relaxation
+for the explicit analysis.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluexpdyjla070199" title="Table&nbsp;2.72:&nbsp;&nbsp;Explicit Dynamics"><span class="type">Explicit Dynamics</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="EDDRELAX.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Option</code></em></b></span></dt><dd><p>Specifies when dynamic relaxation is activated.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ANSYS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Stresses are initialized in ANSYS LS-DYNA to a prescribed
+geometry for small strains, according to the solution of an ANSYS (implicit)
+run. The explicit solution is based on the implicit X,Y,Z displacements and
+rotations contained in the <span class="filename"><strong>drelax</strong></span> file (created with
+the <a class="link" href="Hlp_C_REXPORT.html" title="REXPORT"><span class="command"><strong>REXPORT</strong></span></a> command).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DYNA</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Dynamic relaxation is on. When you use this
+option, you can specify some or all of the parameters <em class="replaceable"><code>NRCYCK</code></em>, <em class="replaceable"><code>DRTOL</code></em>, <em class="replaceable"><code>DFFCTR</code></em>, <em class="replaceable"><code>DRTERM</code></em>, <em class="replaceable"><code>TSSFDR</code></em>, <em class="replaceable"><code>IRELAL</code></em>,
+and <em class="replaceable"><code>EDTTL</code></em>. Any parameters that you do not specify
+are set to their default values.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">OFF</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Turn off initialization to a prescribed geometry
+(<em class="replaceable"><code>Option</code></em> = ANSYS) or dynamic relaxation (<em class="replaceable"><code>Option</code></em> =
+DYNA).</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>NRCYCK</code></em></b></span></dt><dd><p>Number of iterations between convergence checks for dynamic
+relaxation option. Default = 250.</p></dd><dt><span><b class="term"><em class="replaceable"><code>DRTOL</code></em></b></span></dt><dd><p>Convergence tolerance for dynamic relaxation option. Default
+= 0.001.</p></dd><dt><span><b class="term"><em class="replaceable"><code>DFFCTR</code></em></b></span></dt><dd><p>Dynamic relaxation factor. Default = 0.995.</p></dd><dt><span><b class="term"><em class="replaceable"><code>DRTERM</code></em></b></span></dt><dd><p>Optional termination time for dynamic relaxation. Termination
+occurs at this time, or when convergence is attained, whichever comes first.
+Default = infinity.</p></dd><dt><span><b class="term"><em class="replaceable"><code>TSSFDR</code></em></b></span></dt><dd><p>Scale factor for computed time step during dynamic relaxation.
+If zero, the value is set to <em class="replaceable"><code>TSSFAC</code></em> (defined on
+the <a class="link" href="Hlp_C_EDCTS.html" title="EDCTS"><span class="command"><strong>EDCTS</strong></span></a> command). After converging, the scale factor
+is reset to <em class="replaceable"><code>TSSFAC</code></em>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>IRELAL</code></em></b></span></dt><dd><p>Automatic control for dynamic relaxation option based on algorithm
+of Papadrakakis.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Not active (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Active.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>EDTTL</code></em></b></span></dt><dd><p>Convergence tolerance on automatic control of dynamic relaxation
+(default = 0.04).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="EDDRELAX.notes"></a><h2>Notes</h2><p>Use <em class="replaceable"><code>Option</code></em> = ANSYS when running an implicit-to-explicit
+sequential solution to initialize the structure to a static solution performed
+earlier by the ANSYS implicit solver. Use <em class="replaceable"><code>Option</code></em> =
+DYNA to perform dynamic relaxation within the LS-DYNA program. Use <em class="replaceable"><code>Option</code></em> =
+OFF to turn off previously specified stress initialization or dynamic relaxation.
+You must specify the <em class="replaceable"><code>Option</code></em> you want; there is
+no default.</p><p>In LS-DYNA, the dynamic relaxation is performed before the regular transient
+analysis. The convergence process of the dynamic relaxation is not written
+to the ANSYS history file. The ANSYS results files only include the converged
+result of the dynamic relaxation, which is the result at time zero in the <span class="filename"><strong>Jobname.HIS</strong></span> and <span class="filename"><strong>Jobname.RST</strong></span> files.</p><p>You can restart a dynamic relaxation analysis (<a class="link" href="Hlp_C_EDSTART.html" title="EDSTART"><span class="command"><strong>EDSTART</strong></span></a>,2
+or <a class="link" href="Hlp_C_EDSTART.html" title="EDSTART"><span class="command"><strong>EDSTART</strong></span></a>,3) from a previous transient analysis or a previous
+dynamic relaxation analysis. In the restart, you can change or set the convergence
+criteria with the <span class="command"><strong>EDDRELAX</strong></span> command. Only the load curves
+that are flagged for dynamic relaxation (PHASE = 1 or 2 on <a class="link" href="Hlp_C_EDLOAD.html" title="EDLOAD"><span class="command"><strong>EDLOAD</strong></span></a>)
+are applied after restarting. If you restart the explicit portion of an implicit-to-explicit
+sequential solution, you do not need to reissue the <a class="link" href="Hlp_C_REXPORT.html" title="REXPORT"><span class="command"><strong>REXPORT</strong></span></a> command
+because displacement information contained in the drelax file is already included
+in the LS-DYNA restart file. If the dynamic relaxation is activated from a
+regular transient analysis, LS-DYNA continues the output of data to ANSYS
+results files. This is unlike the dynamic relaxation phase at the beginning
+of the calculation for which only the converged solution is written.</p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p></div><div class="refsect1" title="Menu Paths"><a name="EDDRELAX.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Analysis Options&gt;Dynamic Relax</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:44-04:00"><title>RESCONTROL</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_R_TOC.html" title="R Commands"><link rel="prev" href="Hlp_C_RESCOMBINE.html" title="RESCOMBINE"><link rel="next" href="Hlp_C_RESET.html" title="RESET"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="RESCONTROL"><a name="RESCONTROL"></a><div class="titlepage"></div><a class="indexterm" name="d0e225722"></a><span class="refentrytitle"><span class="command"><strong>RESCONTROL</strong></span></span><div class="refnamediv"><p><span class="command"><strong>RESCONTROL</strong></span>,
+        <em class="replaceable"><code>Action</code></em>, <em class="replaceable"><code>Ldstep</code></em>,
+        <em class="replaceable"><code>Frequency</code></em>, <em class="replaceable"><code>MAXFILES</code></em>,
+        <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>MAXTotalFiles</code></em><br><b class="refpurpose">Controls file writing for multiframe restarts.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolumiscldsjla070199" title="Table&nbsp;2.59:&nbsp;&nbsp;Miscellaneous Loads"><span class="type">Misc Loads</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  DesSpc | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="RESCONTROL.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Action</code></em></b></span></dt><dd><p> Command action. Valid options are:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DEFINE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Issuing the command specifies how
+frequently the <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> restart files are written for a load step (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">FILE_SUMMARY</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Issuing the command prints
+the substep and load step information for all <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files for the current jobname
+in the current directory. If this option is specified, all other arguments
+are ignored.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">STATUS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Issuing the command lists the current
+status in the tables of restart controls specified previously by <span class="command"><strong>RESCONTROL</strong></span>. If this option is specified, all other arguments
+are ignored.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NORESTART</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Issuing the command cleans up
+some of the restart files after a Distributed ANSYS solution. The host process
+will not have the following files in the working directory at the
+end of the run: <span class="filename"><strong>.ESAV</strong></span>, <span class="filename"><strong>.OSAV</strong></span>, <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span>, <span class="filename"><strong>.RDB</strong></span>,  <span class="filename"><strong>.LDHI</strong></span>. The slave processes
+will not have the following files in the working directory at the
+end of the run: <span class="filename"><strong>.ESAV</strong></span>, <span class="filename"><strong>.OSAV</strong></span>, <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span>, <span class="filename"><strong>.RST</strong></span> (or <span class="filename"><strong>.RTH</strong></span>, etc.). Some of the
+restart files are never written, some are removed upon leaving <a href="Hlp_C_SOLU_sl.html" class="olink"><span class="command"><strong>/SOLU</strong></span></a>  (for example, upon <a class="link" href="Hlp_C_FINISH.html" title="FINISH"><span class="command"><strong>FINISH</strong></span></a>), and
+some are removed upon exiting the program. </p><p>This option
+is useful for cleaning up files written by all of the Distributed ANSYS processes,
+particularly when you know that these restart files will not be needed
+later on. If this option is specified, all other arguments are ignored.</p><p>If this option is used in shared-memory parallel ANSYS, most
+of the restart files in the working directory are removed. It has
+the same effect as issuing <span class="command"><strong>RESCONTROL</strong></span>,,NONE. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LINEAR</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Issuing the command specifies the
+same actions as <em class="replaceable"><code>Action</code></em> = DEFINE. However,
+this option is intended for linear static applications. For a linear
+static analysis, the restart capability is normally not needed. However,
+it is typically needed when a subsequent linear perturbation analysis
+is desired. By default, none of the restart files are written for
+a linear static analysis.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DELETE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Delete the restart control specification
+corresponding to the <em class="replaceable"><code>Ldstep</code></em> label on a
+previous <span class="command"><strong>RESCONTROL</strong></span>,DEFINE command.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Ldstep</code></em></b></span></dt><dd><p>Specifies how the <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files are
+written for the specified load steps. This option also affects how
+often the load history information is written to the <span class="filename"><strong>.LDHI</strong></span> file.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ALL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Write the <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files at the
+same substep <em class="replaceable"><code>Frequency</code></em> for all load steps;
+write the load history information to the <span class="filename"><strong>.LDHI</strong></span> file for all load steps.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LAST</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Write the <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files for the last load step
+only; write load history information to the <span class="filename"><strong>.LDHI</strong></span> file for the last load step only. This option is the default for
+nonlinear static and full transient analyses. The remaining arguments
+are ignored.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term"><em class="replaceable"><code>N</code></em></b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Number that indicates how often the <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> file is written.</p><p> Input a positive number to write the <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files at the substep <em class="replaceable"><code>Frequency</code></em> indicated only for load step <em class="replaceable"><code>N</code></em>. Other load steps will be written at the
+default substep frequency or at a frequency defined by a previous <span class="command"><strong>RESCONTROL</strong></span> specification. Load history information is written
+to the <span class="filename"><strong>.LDHI</strong></span> file only for load steps <em class="replaceable"><code>N</code></em>.</p><p>Input a negative number (-<em class="replaceable"><code>N</code></em>) to write the <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files for every <em class="replaceable"><code>N</code></em>th load step at the specified substep <em class="replaceable"><code>Frequency</code></em>. The load history information is written
+to the <span class="filename"><strong>.LDHI</strong></span> file every <em class="replaceable"><code>N</code></em>th load step. This option is suitable for restart
+applications in which more than a few hundred load steps are required.
+Compared to the ALL and positive <em class="replaceable"><code>N</code></em> options, it can save disk space since the <span class="filename"><strong>.LDHI</strong></span> file is smaller and fewer <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files are written.</p><p>If <em class="replaceable"><code>Ldstep</code></em> =
+-<em class="replaceable"><code>N</code></em>, all other <em class="replaceable"><code>Ldstep</code></em> options specified by <span class="command"><strong>RESCONTROL</strong></span> are ignored and
+the program follows the -<em class="replaceable"><code>N</code></em> option
+(write load history information every Nth load step). If you want
+to change this pattern, issue <span class="command"><strong>RESCONTROL</strong></span>,DELETE,
+-<em class="replaceable"><code>N</code></em> and then issue another <span class="command"><strong>RESCONTROL</strong></span> command with the desired <em class="replaceable"><code>Ldstep</code></em> option.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NONE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>No multiframe restart files (<span class="filename"><strong>.RDB</strong></span> [restart database file], <span class="filename"><strong>.LDHI</strong></span> [load history file], <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span>) are created. This option is the default for mode-superposition
+analyses. The remaining arguments are ignored. </p><p>For nonlinear
+static, linear static, and full transient analyses, this option allows
+a restart to be done at the last or abort point using the same procedure
+as in ANSYS 5.5 or earlier (using the <span class="filename"><strong>.EMAT</strong></span>, <span class="filename"><strong>.ESAV</strong></span> or <span class="filename"><strong>.OSAV</strong></span>, and <span class="filename"><strong>.DB</strong></span> files). </p><p>For mode-superposition transient analyses, this option allows
+a restart from the last point using the <span class="filename"><strong>.RDSP</strong></span> file and the <span class="filename"><strong>.DB</strong></span> file.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Frequency</code></em></b></span></dt><dd><p>Frequency at which the <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files are written <span>at the substep level</span>.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NONE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Do not write
+any <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files for this load step.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LAST</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Write the <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files for the last substep
+of the load step only (default for nonlinear static and full transient
+analyses).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term"><em class="replaceable"><code>N</code></em></b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>If <em class="replaceable"><code>N</code></em> is positive, write the <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> file every <em class="replaceable"><code>N</code></em>th substep of a load step. If <em class="replaceable"><code>N</code></em> is negative, write <em class="replaceable"><code>N</code></em> equally spaced <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files within a load step. </p><p>In nonlinear static and full transient analyses, negative <em class="replaceable"><code>N</code></em> is valid only when <a class="link" href="Hlp_C_AUTOTS.html" title="AUTOTS"><span class="command"><strong>AUTOTS</strong></span></a>,ON.</p><p>In mode-superposition analyses, negative <em class="replaceable"><code>N</code></em> is always valid.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>MAXFILES</code></em></b></span></dt><dd><p>Maximum number of <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files to
+      save <span>within a load step</span>.</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">-1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Overwrite existing <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files
+          (default). The total maximum number of
+           <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files for one run is 999. If this
+          number is reached before the analysis is complete, the program will reset the
+            <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> file numbering back to 1 and
+          continue to write <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files; the program
+          keeps the newest 999 restart files and overwrites the oldest restart files. For this
+          option, the maximum number of files can be changed to a number less than 999 by setting
+          the <span class="italic"><em>MAXTotalFiles</em></span> argument.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Do not overwrite any existing <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span>
+          files. The total maximum number of <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files for one run is 999. If this number is reached before
+          the analysis is complete, the analysis continues but no longer writes any
+            <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term"><em class="replaceable"><code>N</code></em></b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The maximum number of <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files to keep for each load step. When
+                      <em class="replaceable"><code>N</code></em>
+                    <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files have been
+                    written for a load step, the program overwrites the first
+                        <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> file of
+                    that load step for subsequent substeps. The value of <em class="replaceable"><code>N</code></em> cannot exceed 999. If a total of 999 restart files is reached
+                    before the analysis is complete, the analysis continues but no longer writes any
+                        <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span>
+                    files.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused field</p></dd><dt><span><b class="term"><em class="replaceable"><code>MAXTotalFiles</code></em></b></span></dt><dd><p>Total number of restart files to keep (default is 999). This option is only valid when
+       <em class="replaceable"><code>MAXFILES</code></em> = -1 (which is the default).</p><p>The <em class="replaceable"><code>MAXTotalFiles</code></em> specification cannot be less than 1 or
+      greater than 999. Once the total number of restart files exceeds
+       <em class="replaceable"><code>MAXTotalFiles</code></em>, the program resets the <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> file numbering back to 1 and continues to write
+        <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files; it keeps the newest
+      restart files and overwrites the oldest restart files.</p><p>The <em class="replaceable"><code>MAXtotalFiles</code></em> value you set applies to all subsequent load
+      steps. To reset it to the default (999), reissue the command with
+       <em class="replaceable"><code>MAXTotalFiles</code></em> set to zero or a negative value. If
+       <em class="replaceable"><code>MAXTotalFiles</code></em> is set to different values at different load steps,
+      and if the value of <em class="replaceable"><code>MAXTotalFiles</code></em> specified in the prior load step
+      is larger than that of the current load step, the program can only overwrite the current
+      number of maximum restart files up to the number <em class="replaceable"><code>MAXTotalFiles</code></em>
+      currently specified (which is smaller than the previous number).</p><p>The recommended way to control the maximum number of restart files is to specify
+              <em class="replaceable"><code>MAXTotalfiles</code></em> at the first load step and not vary it in
+            subsequent load steps. Also, <em class="replaceable"><code>MAXTotalfiles</code></em> is best used when
+              <em class="replaceable"><code>Ldstep</code></em> = -<em class="replaceable"><code>N</code></em> or
+            ALL.</p></dd></dl></div></div></div><div class="refsect1" title="Command Default"><a name="RESCONTROL.default"></a><h2>Command Default</h2><p>If the <span class="command"><strong>RESCONTROL</strong></span> command is not issued during
+a structural analysis, the <span class="filename"><strong>.RDB</strong></span> and <span class="filename"><strong>.LDHI</strong></span> files will be written as described in <a href="../ans_bas/Hlp_G_BAS3_12.html" class="olink">Restarting an Analysis</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a>. </p><p>In nonlinear static and full transient analyses, the default
+behavior is multiframe restart (command default is <span class="command"><strong>RESCONTROL</strong></span>,DEFINE,LAST,LAST). The <span class="filename"><strong>.R<em class="replaceable"><code>nnn</code></em></strong></span> file is written at the last substep of the last load
+step by default. An <span class="filename"><strong>.R<em class="replaceable"><code>nnn</code></em></strong></span> file is also written at the iteration prior to the abort
+point of the run if a <span class="filename"><strong>Jobname.ABT</strong></span> file was used
+in batch mode or the <span class="guibutton"><strong>Stop</strong></span> button was pressed
+in the GUI, or if the job terminated because of a failure to reach
+convergence or some other solution error. No information at the aborted
+substep is saved to the <span class="filename"><strong>.R<em class="replaceable"><code>nnn</code></em></strong></span> file.</p></div><div class="refsect1" title="Notes"><a name="RESCONTROL.notes"></a><h2>Notes</h2><p>Multiframe restart files are indicated here as <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files. They correspond to <span class="filename"><strong>.R<em class="replaceable"><code>nnn</code></em></strong></span> files for nonlinear static
+and full transient analyses, and <span class="filename"><strong>.M<em class="replaceable"><code>nnn</code></em></strong></span> files for mode-superposition analyses. The total number
+of restart files for any analysis cannot exceed 999 (for example, <span class="filename"><strong>Jobname.R001</strong></span> to <span class="filename"><strong>Jobname.R999</strong></span>). </p><p>This command sets up the restart parameters for a multiframe
+restart, which allows you to restart an analysis from any load step
+and substep for which there is an <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> file. You can perform a multiframe
+restart for static and transient (full or mode-superposition method)
+analyses only. For more information about multiframe restarts and
+descriptions of the contents of the files used, see <a href="../ans_bas/Hlp_G_BAS3_12.html" class="olink">Restarting an Analysis</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a>. </p><p>If you have many substeps for each load step and are writing
+          <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files frequently, you may
+      want to use <em class="replaceable"><code>MAXFILES</code></em> to limit the number of <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files saved, since these files can fill up your
+      disk quickly. You can specify <em class="replaceable"><code>MAXFILES</code></em> and
+        <em class="replaceable"><code>Frequency</code></em> for individual load steps. These arguments will take on
+      the default value or the value defined by
+        <span class="command"><strong>RESCONTROL</strong></span>,,ALL,<em class="replaceable"><code>Frequency</code></em>,<em class="replaceable"><code>MAXFILES</code></em>
+      if they are not explicitly defined for a specific load step. When <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files are written over many load steps, you may
+      want to further limit the number of <span class="filename"><strong>.<em class="replaceable"><code>Xnnn</code></em></strong></span> files by setting <em class="replaceable"><code>MAXTotalFiles</code></em>. </p><p>You can specify a maximum of ten load steps; that is, you can
+issue the <span class="command"><strong>RESCONTROL</strong></span>,,N command a maximum of ten
+times. Specified load steps cannot be changed in a restart.</p><p>The program accepts only one occurrence
+of <span class="command"><strong>RESCONTROL</strong></span> with a negative <em class="replaceable"><code>Ldstep</code></em> value (<span class="command"><strong>RESCONTROL</strong></span>,,<em class="replaceable"><code>N</code></em> where <em class="replaceable"><code>N</code></em> is a negative number). Therefore,
+if you issue <span class="command"><strong>RESCONTROL</strong></span> multiple times with a negative <em class="replaceable"><code>Ldstep</code></em> value, the last specification overwrites the
+previous one.</p><p>The program accepts only one occurrence
+of <span class="command"><strong>RESCONTROL</strong></span> with <em class="replaceable"><code>Ldstep</code></em> = LAST. Therefore, if you issue <span class="command"><strong>RESCONTROL</strong></span>,,LAST,<em class="replaceable"><code>Frequency</code></em>,<em class="replaceable"><code>MAXFILES</code></em> multiple
+times, the last specification overwrites the previous one.</p></div><div class="refsect1" title="Menu Paths"><a name="RESCONTROL.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Analysis Type&gt;Sol'n Controls&gt;Sol'n Options</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Load Step Opts&gt;Nonlinear&gt;Restart Control</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Analysis Type&gt;Sol'n Controls&gt;Sol'n Options</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Load Step Opts&gt;Nonlinear&gt;Restart Control</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

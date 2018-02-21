@@ -1,0 +1,90 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:22-04:00"><title>GP</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_G_TOC.html" title="G Commands"><link rel="prev" href="Hlp_C_GOPR.html" title="/GOPR"><link rel="next" href="Hlp_C_GPDELE.html" title="GPDELE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="GP"><a name="GP"></a><div class="titlepage"></div><a class="indexterm" name="d0e128981"></a><span class="refentrytitle"><span class="command"><strong>GP</strong></span></span><div class="refnamediv"><p><span class="command"><strong>GP</strong></span>, <em class="replaceable"><code>NODE1</code></em>, <em class="replaceable"><code>NODE2</code></em>, <em class="replaceable"><code>Lab</code></em>, <em class="replaceable"><code>STIF</code></em>, <em class="replaceable"><code>GAP</code></em>, <em class="replaceable"><code>DAMP</code></em><br><b class="refpurpose">Defines a gap condition for transient analyses.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolugapcondjla070199" title="Table&nbsp;2.62:&nbsp;&nbsp;Gap Conditions"><span class="type">Gap Conditions</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="GP.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NODE1</code></em></b></span></dt><dd><p>Node I of gap.  If <em class="replaceable"><code>NODE1</code></em> = P, graphical picking is enabled and all remaining command fields
+are ignored (valid only in the GUI).</p></dd><dt><span><b class="term"><em class="replaceable"><code>NODE2</code></em></b></span></dt><dd><p>Node J of gap (must be different from <em class="replaceable"><code>NODE1</code></em>).  Non-grounded gap nodes must be defined as
+master degrees of freedom or be unconstrained, active DOF in a full
+analysis type.  Grounded gap nodes (those not defined as MDOF) need
+not appear elsewhere in the model.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><p>Direction of gap action in the nodal coordinate system
+(implied from the following force labels): FX, FY, FZ, MX, MY, MZ.</p></dd><dt><span><b class="term"><em class="replaceable"><code>STIF</code></em></b></span></dt><dd><p>Stiffness (Force/Length) of closed gap (may be positive
+or negative). </p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;High stiffness requires a small integration time step
+for numerical stability.</p><hr></div></dd><dt><span><b class="term"><em class="replaceable"><code>GAP</code></em></b></span></dt><dd><p>Initial size of gap.  A zero (or positive) value assumes
+an initially open gap.  A negative value defines an interference condition.
+ For a rotational gap, <em class="replaceable"><code>GAP</code></em> should be in
+radians.</p></dd><dt><span><b class="term"><em class="replaceable"><code>DAMP</code></em></b></span></dt><dd><p>Damping coefficient (Force*Time/Length) of closed
+gap using pseudo velocity (Newmark finite difference expansion scheme).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="GP.notes"></a><h2>Notes</h2><p>Defines a gap condition for the mode
+superposition transient analysis (<a class="link" href="Hlp_C_ANTYPE.html" title="ANTYPE"><span class="command"><strong>ANTYPE</strong></span></a>,TRANS
+with <a class="link" href="Hlp_C_TRNOPT.html" title="TRNOPT"><span class="command"><strong>TRNOPT</strong></span></a>,MSUP). If used in SOLUTION, this command
+is valid only within the first load step. Gap conditions specified
+in subsequent load steps are ignored. </p><p>Repeat <span class="command"><strong>GP</strong></span> command for additional gap conditions.
+Gaps are numbered sequentially as input.</p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;Gaps may be renumbered by the program during the solution
+(see output listing)</p><hr></div><p>The mode-superposition transient analysis
+does not allow gap action with the standard gap elements. However,
+you can define gap conditions which are similar to gap elements; gap
+conditions can be specified between surfaces that are expected to
+contact (impact) each other during the transient. The gap condition
+simulates the basic gap action of the <a href="../ans_elem/Hlp_E_COMBIN40.html" class="olink"><span class="structname">COMBIN40</span></a> element. </p><p>The gap condition is treated as an explicit
+force (equal to the interference times contact stiffness) and affects
+only the load vector calculation and not the stiffness matrix. The
+interference is calculated from the displacement extrapolated from
+the previous time points. </p><p>Gap conditions can only be defined between
+two master degree of freedom (DOF) nodes or between master DOF nodes
+and ground, as shown in the following figure. </p><div><img src="graphics/GSTR5-2.svg"></div><p>Master degrees of freedom are the unconstrained
+and active degrees of freedom. Gap nodes not defined as active degrees
+of freedom or attached to an element are assumed to be grounded. Grounded
+gap nodes do not need a spatial location, nor do they need to be located
+on an element. </p><p>Gap conditions may be defined in parallel
+(across the same nodes), with varying gap and stiffness values, to
+simulate a nonlinear (piecewise) force-deflection curve.</p><p>The gap direction is determined from the force label input on
+the <span class="command"><strong>GP</strong></span> command; i.e., FX defines a translational
+gap acting in the UX nodal degree of freedom direction, and MZ defines
+a rotational gap acting in the nodal ROTZ degree of freedom direction.
+The actual degree of freedom directions available for a particular
+node depends upon the degrees of freedom associated with the element
+types [<a class="link" href="Hlp_C_ET.html" title="ET"><span class="command"><strong>ET</strong></span></a>] at that node.</p><p>If the coordinate systems of the nodes connecting the gap are
+rotated relative to each other, the same degree of freedom may be
+in different directions. The gap, however, assumes only a one-dimensional
+action. Nodes I and J may be anywhere in space (preferably coincident).
+ No moment effects are included due to noncoincident nodes. That is,
+if the nodes are offset from the line of action, moment equilibrium
+may not be satisfied.</p><p>The contact stiffness value represents the stiffness of the
+closed gap.  Stiffness values are related to the integration time
+step size and should be physically reasonable. High stiffness will
+require a small integration time step; otherwise, due to the displacement
+extrapolation, the solution may go unstable. Negative stiffness values
+may be used with gaps in parallel to produce a decreasing force-deflection
+curve.</p><p>The order of specifying the gap nodes is important; i.e., a
+gap condition connecting two nodes will act differently depending
+upon which node is specified first on the <span class="command"><strong>GP</strong></span> command.
+ For example, for Node 1 at <em class="replaceable"><code>X</code></em> = 0.0, Node 2 at <em class="replaceable"><code>X</code></em> = 0.1, and the gap defined from Node 1 to 2, a displacement of Node 1
+greater than Node 2 will cause the gap to close.  For the gap defined
+from Node 2 to 1, a displacement of Node 2 greater than Node 1 will
+cause the gap to close (like a hook action).  In general, the gap
+closes whenever the separation (defined as U<sub>J</sub> - U<sub>I</sub> + <em class="replaceable"><code>GAP</code></em>) is negative.  U<sub>J</sub> is
+the displacement of node J, U<sub>I</sub> is the displacement
+of node I, and <em class="replaceable"><code>GAP</code></em> is the input gap value.
+ The gap force output appears in the printout only for the time steps
+for which the gap is closed.  A negative spring force is always associated
+with a closed gap (even with the hook option).</p><p>Some guidelines to define gap conditions
+are presented below:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Use enough gap conditions to obtain a smooth contact
+stress distribution between the contacting surfaces.</p></li><li class="listitem"><p>Define a reasonable gap stiffness. If the stiffness
+is too low, the contacting surfaces may overlap too much. If the stiffness
+is too high, a very small time step will be required during impact.
+A general recommendation is to specify a gap stiffness that is one
+or two orders of magnitude higher than the adjacent element stiffness.
+You can estimate the adjacent element stiffness using AE/L, where
+A is the contributing area around the gap condition, E is the elastic
+modulus of the softer material at the interface, and L is the depth
+of the first layer of elements at the interface.</p></li><li class="listitem"><p>A mode-superposition transient using the nonlinear
+gap damping provided through the <em class="replaceable"><code>DAMP</code></em> field
+runs faster than a full transient analysis using a gap element (<a href="../ans_elem/Hlp_E_COMBIN40.html" class="olink"><span class="structname">COMBIN40</span></a>).</p></li></ul></div><p>Use the <a class="link" href="Hlp_C_GPLIST.html" title="GPLIST"><span class="command"><strong>GPLIST</strong></span></a> command
+to list gap conditions and the <a class="link" href="Hlp_C_GPDELE.html" title="GPDELE"><span class="command"><strong>GPDELE</strong></span></a> command to
+delete gap conditions.</p><p>This command is also valid in PREP7.</p></div><div class="refsect1" title="Menu Paths"><a name="GP.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Loads&gt;Dynamic Gap Cond&gt;Define</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Dynamic Gap Cond&gt;Define</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

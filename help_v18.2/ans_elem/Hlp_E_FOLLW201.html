@@ -1,0 +1,78 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:37:25-04:00"><title>FOLLW201</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_MESH200.html" title="MESH200"><link rel="next" href="Hlp_E_INTER202.html" title="INTER202"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="FOLLW201"><a name="FOLLW201"></a><div class="titlepage"></div><a class="indexterm" name="d0e154277"></a><span class="refentrytitle"><span class="structname">FOLLW201</span></span><div class="refnamediv"><p><br><b class="refpurpose">Follower
+Load</b><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  DesSpc | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_E_FOLLW201.html#follw201prodrestr" title="FOLLW201 Product Restrictions">Product Restrictions</a></span></div></div></div></p></div><div class="refsect1" title="FOLLW201 Element Description"><a name="follw201.descr"></a><h2>FOLLW201 Element Description</h2><p><span class="structname">FOLLW201</span> is a one-node 3-D element
+that can be overlaid onto an existing node with physical rotation
+degrees of freedom. The element specifies external forces and moments
+which follow the deformation of a structure in a nonlinear analysis.
+ <span class="structname">FOLLW201</span> contributes follower load stiffness
+terms in a geometrically nonlinear analysis (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON).  </p><div class="figure"><a name="follw201.fig1"></a><p class="title"><b>Figure&nbsp;201.1:&nbsp;&nbsp;FOLLW201 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gelem201-1.svg" alt="FOLLW201 Geometry"></div><div class="blockquote"><blockquote class="blockquote"><p><span class="structname">FOLLW201</span> overlaid on a node shared
+by shell or beam elements. The element has two faces: face 1 for specifying
+magnitude of force and face 2 for specifying magnitude of moment.</p></blockquote></div></div></div><br class="figure-break"></div><div class="refsect1" title="FOLLW201 Input Data"><a name="follw201inputdata"></a><h2>FOLLW201 Input Data</h2><p>The geometry, node locations, and the coordinate system for
+this element are shown in <a class="xref" href="Hlp_E_FOLLW201.html#follw201.fig1" title="Figure&nbsp;201.1:&nbsp;&nbsp;FOLLW201 Geometry">Figure&nbsp;201.1:&nbsp;FOLLW201 Geometry</a>. The element
+is defined by a single node. The node has three translational and
+rotational degrees of freedom each. The element may be defined only
+at those nodes which are associated with structural elements having
+three translational and rotational degrees of freedom; a singularity
+will result if the element is used in any other way.</p><p>Real constants of the element specify the direction of the force/moment
+vectors, and the element load command <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> specifies
+the magnitude of force/moment.</p><p>Element loads are described in <a class="xref" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">Nodal Loading</a>.
+The vectors defined by real constants will evolve with deformation
+(follow the displacements) in a geometrically nonlinear analysis. </p><p>KEYOPT(1) = 1 provides a means of specifying complex (real and
+imaginary) point loads via an element specification. You can consider
+it as a nodal point equivalent of surface-effect elements (such as <a class="link" href="Hlp_E_SURF154.html" title="SURF154"><span class="structname">SURF154</span></a>). When KEYOPT(1) = 1 (intended primarily for
+use in the ANSYS Workbench interface), the direction of the load is not updated
+for geometrically nonlinear analyses, and the element is renamed to
+(and appears in the output as) CLOAD201. In this case, the applied
+load is the same as that generated via the <a href="../ans_cmd/Hlp_C_F.html" class="olink"><span class="command"><strong>F</strong></span></a> command,
+except that loads can be simultaneously applied in multiple directions
+to one node. The KEYOPT(2) = 1 setting, which can only be used with
+KEYOPT(1) = 1, enables use of the CLOAD201 element on nodes that may
+or may not have active rotational degrees of freedom. </p><p>With the exception of follower load effects, the element contributes
+nothing to the stiffness matrix. By default, follower (pressure) load
+stiffness effects are included in a geometrically nonlinear analysis.
+The stiffness contribution is usually unsymmetrical and may require
+an unsymmetrical solution option (<a href="../ans_cmd/Hlp_C_NROPT.html" class="olink"><span class="command"><strong>NROPT</strong></span></a>,UNSYM).</p><p><a class="xref" href="Hlp_E_FOLLW201.html#follw201inputsum" title="FOLLW201 Input Summary">"FOLLW201 Input Summary"</a> contains a summary of the
+element input. See <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a> in the <a href="Hlp_E_ElemTOC.html" class="olink"><em class="citetitle">Element Reference</em></a> for
+a general description of element input.</p><div class="refsect2" title="FOLLW201 Input Summary"><a name="follw201inputsum"></a><h3>FOLLW201 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I </p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>UX, UY, UZ, ROTX, ROTY, ROTZ</p></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>FX - Cosine of the angle between force vector and global X
+direction</td></tr><tr><td>FY - Cosine of the angle between force vector and global Y
+direction</td></tr><tr><td>FZ - Cosine of the angle between force vector and global Z
+direction</td></tr><tr><td>MX - Cosine of the angle between moment vector and global
+X direction</td></tr><tr><td>MY - Cosine of the angle between moment vector and global
+Y direction</td></tr><tr><td>MZ - Cosine of the angle between moment vector and global
+Z direction</td></tr></table></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>face 1 (force magnitude)</td></tr><tr><td>face 2 (moment magnitude)</td></tr></table></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td><a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth
+and death</a></td></tr><tr><td><a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink">Large deflection</a></td></tr><tr><td><a href="../ans_str/strlinperturb.html" class="olink">Linear
+perturbation</a></td></tr></table></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Direction load:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Updated direction load
+(default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Constant direction load
+(intended primarily for use in the ANSYS Workbench interface)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Degrees of freedom control:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Use all (UX, UY, UZ, ROTX,
+ROTY, ROTZ) degrees of freedom (default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Use UX, UY, and UZ degrees
+of freedom only (valid only when KEYOPT(1) = 1)</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="FOLLW201 Output Data"><a name="follw201outputdata"></a><h2>FOLLW201 Output Data</h2><p>The Element Outputs consist of updated direction cosines of
+the force/moment vectors as Miscellaneous quantities (SMISC).  No
+other output is provided.</p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><p>The following table lists output available via the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method.  See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General Postprocessor (POST1)</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in this reference
+for more information. </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined above</p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command</p></dd><dt><span><b class="term">I</b></span></dt><dd><p>sequence number for data at node I</p></dd></dl></div></div><div class="table"><a name="follw201seqtable"></a><p class="title"><b>Table&nbsp;201.1:&nbsp;&nbsp;FOLLW201 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="FOLLW201 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="120" class="COLSPEC0"><col width="120" class="COLSPEC1"><col width="120" class="COLSPEC2"></colgroup><thead><tr><th align="center">Name</th><th align="center">Item</th><th align="center">Location</th></tr></thead><tbody><tr><td align="center">FX</td><td align="center">SMISC</td><td align="center">1</td></tr><tr><td align="center">FY</td><td align="center">SMISC</td><td align="center">2</td></tr><tr><td align="center">FZ</td><td align="center">SMISC</td><td align="center">3</td></tr><tr><td align="center">MX</td><td align="center">SMISC</td><td align="center">4</td></tr><tr><td align="center">MY</td><td align="center">SMISC</td><td align="center">5</td></tr><tr><td align="center">MZ</td><td align="center">SMISC</td><td align="center">6</td></tr></tbody></table></div></div><br class="table-break"></div><div class="refsect1" title="FOLLW201 Assumptions and Restrictions"><a name="follw201assumptions"></a><h2>FOLLW201 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Follower load stiffening is ignored in geometrically
+linear analyses (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,OFF), which is equivalent
+to the normal specification of forces and moments (<a href="../ans_cmd/Hlp_C_F.html" class="olink"><span class="command"><strong>F</strong></span></a>).</p></li><li class="listitem"><p>The element must be overlaid on a node having existing
+physical stiffness contributions (from other shell or beam elements).</p></li><li class="listitem"><p>Follower load effects are nonconservative. They often
+introduce dynamics instability issues (such as flutter) which may
+cause convergence difficulties.</p></li></ul></div><p> </p></div><div class="refsect1" title="FOLLW201 Product Restrictions"><a name="follw201prodrestr"></a><h2>FOLLW201 Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific
+   restrictions apply to this element in addition to the general assumptions and restrictions given
+   in the previous section.</p><p title="ANSYS Mechanical Pro"><b>ANSYS Mechanical Pro&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li><li class="listitem"><p>Linear perturbation is not available.</p></li></ul></div><p title="ANSYS Mechanical Pro">
+   </p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+   </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

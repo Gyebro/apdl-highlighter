@@ -1,0 +1,28 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:56-04:00"><title>SECFUNCTION</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_S_TOC.html" title="S Commands"><link rel="prev" href="Hlp_C_SECDATA.html" title="SECDATA"><link rel="next" href="Hlp_C_SECJOINT.html" title="SECJOINT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="SECFUNCTION"><a name="SECFUNCTION"></a><div class="titlepage"></div><a class="indexterm" name="d0e239306"></a><span class="refentrytitle"><span class="command"><strong>SECFUNCTION</strong></span></span><div class="refnamediv"><p><span class="command"><strong>SECFUNCTION</strong></span>, <em class="replaceable"><code>TABLE</code></em>, <em class="replaceable"><code>PATTERN</code></em><br><b class="refpurpose">Specifies shell section thickness as a tabular function.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7crosssectldm061600" title="Table&nbsp;2.45:&nbsp;&nbsp;Sections"><span class="type">Cross Sections</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="SECFUNCTION.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>TABLE</code></em></b></span></dt><dd><p>Table name or array parameter reference for specifying
+thickness. </p></dd><dt><span><b class="term"><em class="replaceable"><code>PATTERN</code></em></b></span></dt><dd><p>Interpretation pattern for array parameters. </p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="SECFUNCTION.notes"></a><h2>Notes</h2><p> The <span class="command"><strong>SECFUNCTION</strong></span> command is associated with
+the section most recently defined via the <a class="link" href="Hlp_C_SECTYPE.html" title="SECTYPE"><span class="command"><strong>SECTYPE</strong></span></a> command.</p><p>A table (<em class="replaceable"><code>TABLE</code></em>) can define tabular thickness as a function of coordinates. Alternatively,
+you can use an array parameter (indexed by node number) that expresses
+the function to be mapped. (For example, func (17) should be the desired
+shell thickness at node 17.)  To specify a table, enclose the table
+or array name in percent signs (%) (<span class="command"><strong>SECFUNCTION</strong></span>,%<em class="replaceable"><code>tablename</code></em>%). Use the <a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a> command to define a table or array.</p><p>The table or array defines the total shell thickness at any
+point in space. In multilayered sections, the total thickness and
+each layer thickness are scaled accordingly.</p><p>The <a href="../ans_bas/Hlp_G_BASFUNCTOOL.html" class="olink">Function
+Tool</a> is a convenient way to define your thickness tables.
+For more information, see <a href="../ans_bas/Hlp_G_BASFUNCTOOL.html" class="olink">Using the Function Tool</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a>.</p><p>Refer to the <a href="Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a> command
+for interpreting a table in a local coordinate system.</p><div class="refsect2" title="Specifying the PATTERN Value"><a name="d0e239400"></a><h3>Specifying the <em class="replaceable"><code>PATTERN</code></em> Value</h3><p>When <em class="replaceable"><code>KCN</code></em> = NODE, the program interprets <em class="replaceable"><code>TABLE</code></em> as an array parameter (indexed by node number)
+that expresses the function to be mapped. </p><p>When <em class="replaceable"><code>KCN</code></em> =
+NOD2, the program interprets <em class="replaceable"><code>TABLE</code></em> as a
+2-D array parameter (where column 1 contains node numbers and column
+2 contains the corresponding thicknesses) that expresses the function
+to be mapped.</p></div></div><div class="refsect1" title="Menu Paths"><a name="SECFUNCTION.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Sections&gt;Shell&gt;Lay-up&gt;Add / Edit</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

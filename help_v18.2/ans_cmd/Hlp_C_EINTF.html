@@ -1,0 +1,42 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:49-04:00"><title>EINTF</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_EINFIN.html" title="EINFIN"><link rel="next" href="Hlp_C_EKILL.html" title="EKILL"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="EINTF"><a name="EINTF"></a><div class="titlepage"></div><a class="indexterm" name="d0e92121"></a><span class="refentrytitle"><span class="command"><strong>EINTF</strong></span></span><div class="refnamediv"><p><span class="command"><strong>EINTF</strong></span>, <em class="replaceable"><code>TOLER</code></em>, <em class="replaceable"><code>K</code></em>, <em class="replaceable"><code>TLAB</code></em>, <em class="replaceable"><code>KCN</code></em>, <em class="replaceable"><code>DX</code></em>, <em class="replaceable"><code>DY</code></em>, <em class="replaceable"><code>DZ</code></em>, <em class="replaceable"><code>KNONROT</code></em><br><b class="refpurpose">Defines two-node elements between coincident or offset nodes.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7elementsldm061600" title="Table&nbsp;2.38:&nbsp;&nbsp;Elements"><span class="type">Elements</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="EINTF.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>TOLER</code></em></b></span></dt><dd><p>Tolerance for coincidence (based on maximum Cartesian coordinate
+difference for node locations and on angle differences for node orientations).
+Defaults to 0.0001. Only nodes within the tolerance are considered to be coincident.</p></dd><dt><span><b class="term"><em class="replaceable"><code>K</code></em></b></span></dt><dd><p>Only used when the type of the elements to be generated is <a href="../ans_elem/Hlp_E_PRETS179.html" class="olink"><span class="structname">PRETS179</span></a>. <em class="replaceable"><code>K</code></em> is
+the pretension node that is common to the pretension section that is being
+created. If <em class="replaceable"><code>K</code></em> is not specified, it will be created
+by ANSYS automatically and will have an ANSYS-assigned node number. If <em class="replaceable"><code>K</code></em> is
+specified but does not already exist, it will be created automatically but
+will have the user-specified node number. <em class="replaceable"><code>K</code></em> cannot
+be connected to any existing element.</p></dd><dt><span><b class="term"><em class="replaceable"><code>TLAB</code></em></b></span></dt><dd><p>Nodal number ordering. Allowable values are:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term"><code class="literal">LOW</code></b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The 2-node elements are
+generated from the lowest numbered node to the highest numbered node.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term"><code class="literal">HIGH</code></b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>The 2-node elements are
+generated from the highest numbered node to the lowest numbered node.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term"><code class="literal">REVE</code></b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Reverses the orientation
+of the selected 2-node element.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>KCN</code></em></b></span></dt><dd><p>In coordinate system <em class="replaceable"><code>KCN</code></em>, elements
+are created between node 1 and node 2 (= node 1 + dx dy dz).</p></dd><dt><span><b class="term"><em class="replaceable"><code>DX</code></em>, <em class="replaceable"><code>DY</code></em>, <em class="replaceable"><code>DZ</code></em></b></span></dt><dd><p>Node location increments that define the node offset in the
+active coordinate system (DR, D&#952;, DZ for cylindrical and DR, D&#952;,
+D&#934; for spherical or toroidal).</p></dd><dt><span><b class="term"><em class="replaceable"><code>KNONROT</code></em></b></span></dt><dd><p>When <em class="replaceable"><code>KNONROT</code></em> = 0, the nodes coordinate
+system is not rotated. When <em class="replaceable"><code>KNONROT</code></em> = 1, the nodes
+belonging to the elements created are rotated into coordinate system <em class="replaceable"><code>KCN</code></em> (see <a class="link" href="Hlp_C_NROTAT.html" title="NROTAT"><span class="command"><strong>NROTAT</strong></span></a> command
+description).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="EINTF.notes"></a><h2>Notes</h2><p>Defines 2-node elements (such as gap elements) between coincident or
+offset nodes (within a tolerance). May be used, for example, to "hook" together
+elements interfacing at a seam, where the seam consists of a series of node
+pairs. One element is generated for each set of two coincident nodes. For
+more than two coincident or offset nodes in a cluster, an element is generated
+from the lowest numbered node to each of the other nodes in the cluster. If
+fewer than all nodes are to be checked for coincidence, use the <a class="link" href="Hlp_C_NSEL.html" title="NSEL"><span class="command"><strong>NSEL</strong></span></a> command
+to select the nodes. Element numbers are incremented by one from the highest
+previous element number. The element type must be set [<a class="link" href="Hlp_C_ET.html" title="ET"><span class="command"><strong>ET</strong></span></a>]
+to a 2-node element before issuing this command. Use the <a class="link" href="Hlp_C_CPINTF.html" title="CPINTF"><span class="command"><strong>CPINTF</strong></span></a> command
+to connect nodes by coupling instead of by elements. Use the <a class="link" href="Hlp_C_CEINTF.html" title="CEINTF"><span class="command"><strong>CEINTF</strong></span></a> command
+to connect the nodes by constraint equations instead of by elements.</p><p>For contact element <a href="../ans_elem/Hlp_E_CONTA178.html" class="olink"><span class="structname">CONTA178</span></a>, the tolerance
+is based on the maximum Cartesian coordinate difference for node locations
+only. The angle differences for node orientations are not checked.</p></div><div class="refsect1" title="Menu Paths"><a name="EINTF.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Elements&gt;Auto Numbered&gt;At Coincid Nd</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Elements&gt;Auto Numbered&gt;Offset Nodes</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

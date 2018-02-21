@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:24-04:00"><title>ASKIN</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_A_TOC.html" title="A Commands"><link rel="prev" href="Hlp_C_ASK.html" title="*ASK"><link rel="next" href="Hlp_C_ASLL.html" title="ASLL"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="ASKIN"><a name="ASKIN"></a><div class="titlepage"></div><a class="indexterm" name="d0e29986"></a><span class="refentrytitle"><span class="command"><strong>ASKIN</strong></span></span><div class="refnamediv"><p><span class="command"><strong>ASKIN</strong></span>, <em class="replaceable"><code>NL1</code></em>, <em class="replaceable"><code>NL2</code></em>, <em class="replaceable"><code>NL3</code></em>, <em class="replaceable"><code>NL4</code></em>, <em class="replaceable"><code>NL5</code></em>, <em class="replaceable"><code>NL6</code></em>, <em class="replaceable"><code>NL7</code></em>, <em class="replaceable"><code>NL8</code></em>, <em class="replaceable"><code>NL9</code></em><br><b class="refpurpose">Generates an area by "skinning" a surface through guiding lines.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7areasldm061600" title="Table&nbsp;2.33:&nbsp;&nbsp;Areas"><span class="type">Areas</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="ASKIN.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NL1</code></em></b></span></dt><dd><p>The first guiding line forming the skinned area.  If <em class="replaceable"><code>NL1</code></em> =
+P, graphical picking is enabled and all remaining arguments are ignored (valid
+only in the GUI).  A component name may also be substituted for <em class="replaceable"><code>NL1</code></em>.
+ If <em class="replaceable"><code>NL1</code></em> is negative, the line beginnings and ends
+will be used to direct the skinning of the remaining lines (see <a class="xref" href="Hlp_C_ASKIN.html#ASKIN.extranote1" title="Changing the ASKIN Algorithm">"Changing the <span class="command"><strong>ASKIN</strong></span> Algorithm"</a> below).</p></dd><dt><span><b class="term"><em class="replaceable"><code>NL2</code></em>, <em class="replaceable"><code>NL3</code></em>, <em class="replaceable"><code>NL4</code></em>,
+. . . , <em class="replaceable"><code>NL9</code></em></b></span></dt><dd><p>The additional guiding lines for the skinned area (up to 9
+total lines, including <em class="replaceable"><code>NL1</code></em>, if using keyboard entry).
+ If negative (and <em class="replaceable"><code>NL1</code></em> is negative), the line beginning
+and end will be temporarily interchanged for the skinning operation (see <a class="xref" href="Hlp_C_ASKIN.html#ASKIN.extranote1" title="Changing the ASKIN Algorithm">"Changing the <span class="command"><strong>ASKIN</strong></span> Algorithm"</a> below).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="ASKIN.notes"></a><h2>Notes</h2><p>Generates an area by "skinning" a surface through specified guiding
+lines.  The lines act as a set of "ribs" over which a surface is "stretched."
+ Two opposite edges of the area are framed by the first (<em class="replaceable"><code>NL1</code></em>)
+and last (<span class="italic"><em>NLn</em></span>) guiding lines specified.
+ The other two edges of the area are framed by splines-fit lines which the
+program automatically generates through the ends of all guiding lines.  The
+interior of the area is shaped by the interior guiding lines.  Once the area
+has been created, only the four edge lines will be attached to it.  In rare
+cases, it may be necessary to change the default algorithm used by the <span class="command"><strong>ASKIN</strong></span> command
+(see <a class="xref" href="Hlp_C_ASKIN.html#ASKIN.extranote1" title="Changing the ASKIN Algorithm">"Changing the <span class="command"><strong>ASKIN</strong></span> Algorithm"</a> below).</p><div class="refsect2" title="Changing the ASKIN Algorithm"><a name="ASKIN.extranote1"></a><h3>Changing the <span class="command"><strong>ASKIN</strong></span> Algorithm</h3><p>When skinning from one guiding line to the next, the program can create
+the transition area in one of two ways:  one more spiraled and one less spiraled
+("flatter").  By default, the program attempts to produce the flatter transition,
+instead of the more spiraled transition.  This algorithm can be changed by
+inputting <em class="replaceable"><code>NL1</code></em> as a negative number, in which case
+the program connects all the keypoints at the line "beginnings" (<a href="Hlp_C_PSYMB.html" class="olink"><span class="command"><strong>/PSYMB</strong></span></a>,LDIR
+command) as one edge of the area, and all the line "ends" as the opposite
+edge, irrespective of the amount of spiraling produced in each transition
+area.</p><p>To further control the geometry of the area (if <em class="replaceable"><code>NL1</code></em> is
+negative), the beginning and end of any specified line (other than <em class="replaceable"><code>NL1</code></em>)
+can be temporarily interchanged (for the skinning operation only) by inputting
+that line number as negative.  See <a href="../ans_mod/Hlp_G_MOD5.html" class="olink">Solid
+Modeling</a> in the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a> for an illustration.</p></div></div><div class="refsect1" title="Menu Paths"><a name="ASKIN.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Areas&gt;Arbitrary&gt;By Skinning</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

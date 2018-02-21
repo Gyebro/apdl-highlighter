@@ -1,0 +1,214 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:01-04:00"><title>*FFT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_F_TOC.html" title="F Commands"><link rel="prev" href="Hlp_C_FESURF.html" title="FESURF"><link rel="next" href="Hlp_C_FILE.html" title="FILE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="*FFT"><a name="a-FFT"></a><div class="titlepage"></div><a class="indexterm" name="d0e109342"></a><span class="refentrytitle"><a href="Hlp_C_FFT.html" class="olink"><span class="command"><strong>*FFT</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>*FFT</strong></span>, <em class="replaceable"><code>Type</code></em>, <em class="replaceable"><code>InputData</code></em>, <em class="replaceable"><code>OutputData</code></em>, <em class="replaceable"><code>DIM1</code></em>, <em class="replaceable"><code>DIM2</code></em>, <em class="replaceable"><code>ResultFormat</code></em> <br><b class="refpurpose">Computes the fast Fourier transformation of a specified
+matrix or vector.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_4.html" title="2.4.&nbsp;APDL Commands"><code class="classname">APDL</code></a>: <a class="link" href="Hlp_C_CH2_4.html#cmdapdlmatrix" title="Table&nbsp;2.23:&nbsp;&nbsp;Matrix Operations (APDL Math)"><span class="type">Matrix Operations</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsect1" title="Argument Descriptions"><a name="a-FFT.argdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Type</code></em></b></span></dt><dd><p>Type of FFT transformation:       </p><div><div class="variablelist"><dl><dt><span><b class="term">FORW&nbsp;--&nbsp;</b></span></dt><dd><p>Forward FFT computation
+(default).</p></dd><dt><span><b class="term">BACK&nbsp;--&nbsp;</b></span></dt><dd><p>Backward FFT computation.</p></dd></dl></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>InputData</code></em></b></span></dt><dd><p>Name of matrix or vector for which the FFT will be
+computed. This can be a dense matrix (created by the <a href="Hlp_C_DMAT.html" class="olink"><span class="command"><strong>*DMAT</strong></span></a> command) or a vector (created by the <a href="Hlp_C_VEC.html" class="olink"><span class="command"><strong>*VEC</strong></span></a> command).
+Data can be real or complex values. There is no default value for
+this argument.</p></dd><dt><span><b class="term"><em class="replaceable"><code>OutputData</code></em></b></span></dt><dd><p>Name of matrix or vector where the FFT results will
+be stored. The type of this argument must be consistent with <em class="replaceable"><code>InputData</code></em> (see table below). There is no default value
+for this argument.</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="120" class="col1"><col width="120" class="col2"><col width="120" class="col3"><col width="120" class="col4"><col width="120" class="col5"></colgroup><tbody><tr><td rowspan="2" align="center"><span class="bold"><strong>FFT Domain</strong></span></td><td colspan="2" align="center"><span class="bold"><strong>Forward</strong></span></td><td colspan="2" align="center"><span class="bold"><strong>Backward</strong></span></td></tr><tr><td><span class="bold"><strong>Input Data</strong></span></td><td><span class="bold"><strong>Output
+Data</strong></span></td><td><span class="bold"><strong>Input Data</strong></span></td><td><span class="bold"><strong>Output Data</strong></span></td></tr><tr><td>Real</td><td>Real</td><td>Complex</td><td>Complex</td><td>Real</td></tr><tr><td>Complex</td><td>Complex</td><td>Complex</td><td>Complex</td><td>Complex</td></tr></tbody></table></div></dd><dt><span><b class="term"><em class="replaceable"><code>DIM1</code></em></b></span></dt><dd><p>The number of terms to consider for a vector, or the
+number of rows for a matrix. Defaults to the whole input vector or
+all the rows of the matrix.</p></dd><dt><span><b class="term"><em class="replaceable"><code>DIM2</code></em></b></span></dt><dd><p>The number of columns to consider for a matrix. Defaults
+to all the columns of the matrix. (Valid only for matrices.)</p></dd><dt><span><b class="term"><em class="replaceable"><code>ResultFormat</code></em></b></span></dt><dd><p>Specifies the result format:</p><div><div class="variablelist"><dl><dt><span><b class="term">FULL&nbsp;--&nbsp;</b></span></dt><dd><p>Returns the full result.
+That is, the result matches the dimension specified on this command
+(<em class="replaceable"><code>DIM1</code></em>, <em class="replaceable"><code>DIM2</code></em>).</p></dd><dt><span><b class="term">PART&nbsp;--&nbsp;</b></span></dt><dd><p>Returns partial results.
+For real input data, there is a symmetry in the results of the Fourier
+transform as some coefficients are conjugated. The partial format
+uses this symmetry to optimize the storage of the results. (Valid
+only for real data.) </p></dd></dl></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="a-FFT.notes"></a><h2>Notes</h2><p>In the example that follows, the fast Fourier
+transformation is used to filter frequencies from a noisy input signal.</p></div><div class="refsect1" title="Example Usage"><a name="a-FFT.example"></a><h2>Example Usage</h2><p>The fast Fourier transformation can be used to create a filter
+to remove noise from a noisy input signal.</p><div class="figure"><a name="d0e109540"></a><p class="title"><b>Figure&nbsp;4:&nbsp;&nbsp;Input Signal</b></p><div class="figure-contents"><div><img src="graphics/gFFT1.png" alt="Input Signal"></div></div></div><br class="figure-break"><p>The input signal is decomposed in the Fourier space using the <a href="Hlp_C_FFT.html" class="olink"><span class="command"><strong>*FFT</strong></span></a>,<em class="replaceable"><code>FORW</code></em> command so that the
+frequencies that compose the signal can be observed. </p><div class="figure"><a name="d0e109553"></a><p class="title"><b>Figure&nbsp;5:&nbsp;&nbsp;Amplitude Spectrum of the FFT</b></p><div class="figure-contents"><div><img src="graphics/gFFT2.png" alt="Amplitude Spectrum of the FFT"></div></div></div><br class="figure-break"><p> The filter applies a threshold on the Fourier coefficients.
+Fourier coefficients of small amplitude are the result of the noise
+in the input signal. Only coefficients of a large amplitude are significant.
+  The inversion of the <a href="Hlp_C_FFT.html" class="olink"><span class="command"><strong>*FFT</strong></span></a> command (<a href="Hlp_C_FFT.html" class="olink"><span class="command"><strong>*FFT</strong></span></a>,<em class="replaceable"><code>BACK</code></em> command) rebuilds the signal from
+the remaining coefficients. </p><div class="figure"><a name="d0e109570"></a><p class="title"><b>Figure&nbsp;6:&nbsp;&nbsp;Signal Obtained with the Filter</b></p><div class="figure-contents"><div><img src="graphics/gFFT3.png" alt="Signal Obtained with the Filter"></div></div></div><br class="figure-break"><p>Example input demonstrating <a href="Hlp_C_FFT.html" class="olink"><span class="command"><strong>*FFT</strong></span></a> usage is
+provided below:</p><pre class="programlisting">/com,*************************************************
+/com,*  Usage example of the *FFT APDLMath command.  *
+/com,*  Use FFT to filter a noisy sinusoidal signal. *
+/com,*************************************************
+/verify
+/nopr
+
+/post26
+
+/gopr
+/com, *** Definition of the parameters for the signal
+
+pi             = acos(-1)
+periode1       = 2*pi/40.0
+phase1         = 4.0
+amplitude1     = 2.5
+periode2       = 2*pi/150.0
+phase2         = 0.0
+amplitude2     = 2.0
+periode3       = 2*pi/140.0
+phase3         = 0.0
+amplitude3     = 1.5
+amplitudenoise = 6.0
+n              = 400       !number of points in the sampling input signal
+tbegin         = 0.0       !start time for the signal
+dt             = 0.001     !time step
+tend           = tbegin + (n-1)*dt
+
+
+/com, *** Definition of the parameters
+
+threshold = 150.0
+FFTmethod = 1 !0 = FFT giving partial results , 1 = FFT giving full results
+
+
+/com, *** Create a signal from two sinus and add noise
+
+*dim,signal,array,n
+*dim,t,array,n
+*dim,noise,array,n
+*vfill,noise,rand
+
+omega1 = (2.0*pi) / periode1
+omega2 = (2.0*pi) / periode2
+omega3 = (2.0*pi) / periode3
+
+*do,ii,1,n
+  noisec     =  amplitudenoise * noise(ii)
+  tc         =  tbegin + (ii-1)*dt
+  t(ii)      =  tc
+  signal(ii) =  amplitude1*sin(omega1*tc+phase1)
+              + amplitude2*sin(omega2*tc+phase2)
+              + amplitude3*sin(omega3*tc+phase3) 
+              + noisec
+*enddo
+
+
+/com, *** Display the input signal
+
+*dim,signaldisp,table,n
+*dim,tdisp,table,n
+
+*do,ii,1,n
+   tdisp(ii)=t(ii)
+   signaldisp(ii)=signal(ii)
+*enddo
+
+/show,png
+/AXLAB,X,TIME
+/AXLAB,Y,SIGNAL
+/color,curve,BLUE
+/color,grbak,WHIT
+/color,wbak,WHIT
+/color,axes,BLAC
+/color,axlab,BLAC
+/color,axnum,blac
+/GROPT,FILL,OFF
+*vplot,tdisp,signaldisp
+
+
+/com, *** Copy signal in an APDLMath vector
+
+*vec,sigvec,d,alloc,n,1
+*do,ii,1,n
+ sigvec(ii) = signal(ii)
+*enddo
+
+
+/com, *** Perform a Fast Fourier Transform
+
+*vec,VFFT,Z,ALLOC,n,1
+*if,FFTmethod,eq,0,then
+  *FFT,FORW,sigvec,VFFT,,,PART   !partial FFT (use symmetry properties)
+*else
+  *FFT,FORW,sigvec,VFFT,,,FULL   !full FFT
+*endif  
+
+
+/com, *** Determine the real part and the imaginary part of the Fourier's coefficients
+
+*vec,VFFTI,Z,COPY,VFFT
+*AXPY,,,,0.,-1.,VFFTI
+*vec,VI,D,COPY,VFFTI
+*vec,VR,D,COPY,VFFT
+
+
+/com, *** Compute the modulus of the Fourier's coeff
+
+*EXPORT,VR,APDL,fftr
+*EXPORT,VI,APDL,ffti
+
+sizeVR = VR_rowDim
+
+*if,FFTmethod,eq,0,then
+  sizeVR = sizeVR/2
+*endif
+
+*dim,ind,table,sizeVR
+*dim,modfft,array,sizeVR
+
+*do,ii,1,sizeVR
+  ind(ii)   = ii
+  modfft(ii)= sqrt( fftr(ii)*fftr(ii) + ffti(ii)*ffti(ii) )
+*enddo
+
+
+/com,*** Display the Amplitude spectrum of the FFT
+
+*dim,modfftdisp,table,sizeVR
+*do,ii,1,sizeVR
+   modfftdisp(ii) = modfft(ii)
+*enddo
+
+/show,png
+/AXLAB,X,Amplitude spectrum of the FFT
+/AXLAB,Y,
+*vplot,ind,modfftdisp
+fini
+
+
+/com, *** Threshold on Fourier coefficients
+
+*print,VR
+*do,ii,1,sizeVR
+  module = modfft(ii)
+  *if,module,lt,threshold,then
+    VR(ii) = 0.0
+    VI(ii) = 0.0
+  *endif
+*enddo
+
+
+/com, *** Invert Fourier Transform
+
+*vec,VIFT,Z,COPY,VR
+*AXPY,0.0,1.0,VI,1.0,0.0,VIFT
+*vec,VFILTER,D,ALLOC,sizeVR
+
+*FFT,BACK,VIFT,VFILTER
+
+
+/com, *** Display the filtered signal
+
+*EXPORT,VFILTER,APDL,filterSignal
+*dim,fsignal,table,sizeVR
+
+*do,ii,1,sizeVR
+   fsignal(ii) = filterSignal(ii)
+*enddo
+
+/show,png
+/AXLAB,X,TIME
+/AXLAB,Y,SIGNAL
+*vplot,tdisp,fsignal
+fini
+
+/com, *** Free the APDLMath objects
+*free,all</pre></div><div class="refsect1" title="Menu Paths"><a name="d0e109582"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

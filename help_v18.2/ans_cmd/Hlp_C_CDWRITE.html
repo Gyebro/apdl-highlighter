@@ -1,0 +1,131 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:29-04:00"><title>CDWRITE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_C_CTOC.html" title="C Commands"><link rel="prev" href="Hlp_C_CDREAD.html" title="CDREAD"><link rel="next" href="Hlp_C_CE.html" title="CE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="CDWRITE"><a name="CDWRITE"></a><div class="titlepage"></div><a class="indexterm" name="d0e42145"></a><span class="refentrytitle"><span class="command"><strong>CDWRITE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>CDWRITE</strong></span>, <em class="replaceable"><code>
+Option</code></em>, <em class="replaceable"><code>Fname</code></em>, <em class="replaceable"><code>Ext</code></em>, <em class="replaceable"><code>--</code></em>, <em class="replaceable"><code>Fnamei</code></em>, <em class="replaceable"><code>
+Exti</code></em>, <em class="replaceable"><code>Fmat</code></em><br><b class="refpurpose">Writes geometry and load database items to a file.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7databaseldm061600" title="Table&nbsp;2.24:&nbsp;&nbsp;Database"><span class="type">Database</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="CDWRITE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Option</code></em></b></span></dt><dd><p>Selects which data to write:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ALL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Write all appropriate geometry, material
+property, load, and component data (default). Two files will be produced. <span class="filename"><strong><em class="replaceable"><code>Fname.Ext</code></em></strong></span> will contain all
+data items mentioned in <a class="xref" href="Hlp_C_CDWRITE.html#CDWRITE.notes" title="Notes">"Notes"</a>, except the
+solid model data. <span class="filename"><strong><em class="replaceable"><code>Fnamei.Exti</code></em></strong></span> will
+contain the solid model geometry and solid model loads data in the
+form of IGES commands. This option is not valid when <a class="link" href="Hlp_C_CDOPT.html" title="CDOPT"><span class="command"><strong>CDOPT</strong></span></a>,ANF
+is active.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">COMB</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Write all data mentioned, but to
+a single file, <span class="filename"><strong><em class="replaceable"><code>Fname.Ext</code></em></strong></span>.
+Solid model geometry data will be written in either IGES or ANF format
+as specified in the <a class="link" href="Hlp_C_CDOPT.html" title="CDOPT"><span class="command"><strong>CDOPT</strong></span></a> command, followed by
+the remainder of the data in the form of ANSYS commands. More information
+on these (IGES/ANF) file formats is provided in <a class="xref" href="Hlp_C_CDWRITE.html#CDWRITE.notes" title="Notes">"Notes"</a>. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DB</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Write all database information except
+the solid model and solid model loads to <span class="filename"><strong><em class="replaceable"><code>Fname.Ext</code></em></strong></span> in the form of
+ANSYS commands. This option is not valid when <a class="link" href="Hlp_C_CDOPT.html" title="CDOPT"><span class="command"><strong>CDOPT</strong></span></a>,ANF
+is active.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SOLID</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Write only the solid model geometry
+and solid model load data. This output will be in IGES or ANF format,
+as specified in the <a class="link" href="Hlp_C_CDOPT.html" title="CDOPT"><span class="command"><strong>CDOPT</strong></span></a> command. More information
+on these (IGES/ANF) file formats is provided in <a class="xref" href="Hlp_C_CDWRITE.html#CDWRITE.notes" title="Notes">"Notes"</a>. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">GEOM</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Write only element and nodal geometry
+data. Neither solid model geometry nor element attribute data will
+be written. One file, <span class="filename"><strong><em class="replaceable"><code>Fname.Ext</code></em></strong></span>,
+will be produced. Use <a class="link" href="Hlp_C_CDREAD.html" title="CDREAD"><span class="command"><strong>CDREAD</strong></span></a>,DB to read in a file
+written with this option. Element types [<a class="link" href="Hlp_C_ET.html" title="ET"><span class="command"><strong>ET</strong></span></a>] compatible
+with the connectivity of the elements on the file must first be defined
+before reading the file in with <a class="link" href="Hlp_C_CDREAD.html" title="CDREAD"><span class="command"><strong>CDREAD</strong></span></a>,DB.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CM</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Write only node and element component
+and geometry data to <span class="filename"><strong><em class="replaceable"><code>Fname.Ext</code></em></strong></span>.
+</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MAT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Write only material property data
+(both linear and nonlinear) to <span class="filename"><strong><em class="replaceable"><code>Fname.Ext
+</code></em></strong></span>.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LOAD</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Write only loads for current load
+step to <span class="filename"><strong><em class="replaceable"><code>Fname.Ext</code></em></strong></span>.
+</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SECT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Write only section data to <span class="filename"><strong><em class="replaceable"><code>Fname.Ext</code></em></strong></span>. Pretension sections
+are not included.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Fname</code></em></b></span></dt><dd><p>File name and directory path (248 characters maximum, including the characters needed for the directory path).  An unspecified directory path defaults to the working directory; in this case, you can use all 248 characters for the file name. </p></dd><dt><span><b class="term"><em class="replaceable"><code>Ext</code></em></b></span></dt><dd><p>Filename extension (eight-character maximum).</p><p>The extension defaults to CDB if <em class="replaceable"><code>
+Fname</code></em> is blank.</p></dd><dt><span><b class="term"><em class="replaceable"><code>--</code></em></b></span></dt><dd><p>Unused field.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Fnamei</code></em></b></span></dt><dd><p>Name of the IGES file and its directory path (248
+characters maximum, including directory). If you do not specify a
+directory path, it will default to your working directory and you
+can use all 248 characters for the file name.</p><p>The file
+name defaults to <em class="replaceable"><code>Fname</code></em>.
+Used only if <em class="replaceable"><code>Option</code></em> = ALL or SOLID. Previous
+data on this file, if any, is overwritten.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Exti</code></em></b></span></dt><dd><p>Filename extension (eight-character maximum).</p><p>The extension defaults to IGES in all cases,
+except when <a class="link" href="Hlp_C_CDOPT.html" title="CDOPT"><span class="command"><strong>CDOPT</strong></span></a>,ANF is active and <span class="command"><strong>CDWRITE</strong></span>,<em class="replaceable"><code>
+Option</code></em> = SOLID. In this case <em class="replaceable"><code>Exti</code></em> =
+ANF. </p></dd><dt><span><b class="term"><em class="replaceable"><code>Fmat</code></em></b></span></dt><dd><p>Format of the output file (defaults to BLOCKED).</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BLOCKED</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Blocked format. This format allows
+faster reading of the output file. The time savings is most significant
+when BLOCKED is used to read <span class="filename"><strong>.cdb</strong></span> files associated
+with very large models.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">UNBLOCKED</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Unblocked format.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="CDWRITE.notes"></a><h2>Notes</h2><p>Load data includes the current load step only. Loads applied
+to the solid model (if any) are automatically transferred to the finite
+element model when this command is issued. <span class="command"><strong>CDWRITE</strong></span> writes
+out solid model loads for meshed models only. If the model is not
+meshed, the solid model loads cannot be saved. Component data include
+component definitions, but not assembly definitions. Appropriate <a class="link" href="Hlp_C_NUMOFF.html" title="NUMOFF"><span class="command"><strong>
+NUMOFF</strong></span></a> commands are included at the beginning of the file;
+this is to avoid overlap of an existing database when the file is
+read in.</p><p>Solution control commands are typically not written to the file
+unless you specifically change a default solution setting.</p><p><span class="command"><strong>CDWRITE</strong></span> does not support the <a class="link" href="Hlp_C_GSBDATA.html" title="GSBDATA"><span class="command"><strong>GSBDATA</strong></span></a> and <a class="link" href="Hlp_C_GSGDATA.html" title="GSGDATA"><span class="command"><strong>
+GSGDATA</strong></span></a> commands, and these commands are not written to
+the file. </p><p>The data may be reread (on a different machine, for example)
+with the <a class="link" href="Hlp_C_CDREAD.html" title="CDREAD"><span class="command"><strong>CDREAD</strong></span></a> command. Caution: When the file
+is read in, the <a class="link" href="Hlp_C_NUMOFF.html" title="NUMOFF"><span class="command"><strong>NUMOFF</strong></span></a>,MAT command may cause a
+mismatch between material definitions and material numbers referenced
+by certain loads and element real constants. See <a class="link" href="Hlp_C_NUMOFF.html" title="NUMOFF"><span class="command"><strong>NUMOFF</strong></span></a> for
+details. Also, be aware that the files created by the <span class="command"><strong>CDWRITE</strong></span> command
+explicitly set the active coordinate system to Cartesian (<a class="link" href="Hlp_C_CSYS.html" title="CSYS"><span class="command"><strong>CSYS</strong></span></a>,0).
+</p><p>You should generally use the blocked format (<em class="replaceable"><code>Fmat</code></em> =
+BLOCKED) when writing out model data with <span class="command"><strong>CDWRITE</strong></span>.
+This is a compressed data format that greatly reduces the time required
+to read large models through the <a class="link" href="Hlp_C_CDREAD.html" title="CDREAD"><span class="command"><strong>CDREAD</strong></span></a> command.
+The blocked and unblocked formats are described in Chapter 3 of the <a href="../ans_prog/Hlp_P_INTTOC.html" class="olink"><em class="citetitle">Guide to Interfacing with ANSYS</em></a>.</p><p>If you use <span class="command"><strong>CDWRITE</strong></span> in any of the derived
+products (ANSYS Mechanical Pro, ANSYS Mechanical Premium), then before reading the file, you must
+edit the <span class="filename"><strong>Jobname.cdb</strong></span> file to remove commands
+that are not available in the respective component product.</p><p>The <span class="command"><strong>CDWRITE</strong></span> command writes PART information
+for any ANSYS LS-DYNA input file to the <span class="filename"><strong>Jobname.cdb</strong></span> file
+via the <span class="bold"><strong>EDPREAD</strong></span> command. (<span class="bold"><strong>EDPREAD</strong></span> is not a documented command; it is
+written only when the <span class="command"><strong>CDWRITE</strong></span> command is issued.)
+The PART information can be automatically read in via the <a class="link" href="Hlp_C_CDREAD.html" title="CDREAD"><span class="command"><strong>CDREAD
+</strong></span></a> command; however, if more than one <span class="filename"><strong>Jobname.cdb</strong></span> file
+is read, the PART list from the last <span class="filename"><strong>Jobname.cdb</strong></span> file
+overwrites the existing PART list of the total model. This behavior
+affects all PART-related commands contained in the <span class="filename"><strong>Jobname.cdb</strong></span> file.
+You can join models, but not PART-related inputs, which you must modify
+using the newly-created PART numbers. In limited cases, an update
+of the PART list (<a class="link" href="Hlp_C_EDWRITE.html" title="EDWRITE"><span class="command"><strong>EDWRITE</strong></span></a>,PUPDATE) is possible;
+doing so requires that no used combination of MAT/TYPE/REAL appears
+more than once in the list.</p><p>The <span class="command"><strong>CDWRITE</strong></span> command does not support (for
+beam meshing) any line operation that relies on solid model associativity.
+For example, meshing the areas adjacent to the meshed line, plotting
+the line that contains the orientation nodes, or clearing the mesh
+from the line that contains orientation nodes may not work as expected.
+For more information about beam meshing, see <a href="../ans_mod/Hlp_G_MOD7.html" class="olink">Meshing Your Solid Model</a> in the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a>.</p><p><span class="bold"><strong>IGES and ANF File Formats for Solid Model
+Geometry Information</strong></span></p><p>The format used for solid model geometry information is determined
+by the current <a class="link" href="Hlp_C_CDOPT.html" title="CDOPT"><span class="command"><strong>CDOPT</strong></span></a> command setting. The default
+format is IGES.</p><p>IGES option (default) to write solid model information (<a class="link" href="Hlp_C_CDOPT.html" title="CDOPT"><span class="command"><strong>CDOPT
+</strong></span></a>, IGS):</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Before writing solid model entities, select all corresponding
+lower level entities (<a class="link" href="Hlp_C_ALLSEL.html" title="ALLSEL"><span class="command"><strong>ALLSEL</strong></span></a>,BELOW,ALL). </p></li><li class="listitem"><p>Section properties assigned to areas, lines and other
+solid model entities are not maintained when the model is exported.</p></li><li class="listitem"><p>If you issue <span class="command"><strong>CDWRITE</strong></span> after generating
+a beam mesh with orientation nodes, the database file will contain
+all of the nodes for every beam element, including the orientation
+nodes; however, the orientation keypoints that were specified for
+the line (<a class="link" href="Hlp_C_LATT.html" title="LATT"><span class="command"><strong>LATT</strong></span></a>) are no longer associated with the
+line and won't be written out to the geometry file. All associativity
+between the line and the orientation keypoints is lost. </p></li><li class="listitem"><p>For beam meshing, this option does not support any
+line operation that relies on solid model associativity. For example,
+meshing the areas adjacent to the meshed line, plotting the line that
+contains the orientation nodes, or clearing the mesh from the line
+that contains orientation nodes may not work as expected. </p></li><li class="listitem"><p>Concatenated lines are not written. The line segments
+that make up the concatenated lines are written; however, if the command
+encounters an area that contains a concatenated line, the write operation
+halts (that area cannot be recreated during the read operation). If
+your model has areas that contain concatenated lines, you must first
+list these and then unconcatenate them before issuing the <a class="link" href="Hlp_C_CDWRITE.html" title="CDWRITE"><span class="command"><strong>CDWRITE
+</strong></span></a> command. Similarly, hardpoint information cannot be written.</p></li></ul></div><p>ANF option to write solid model information (<a class="link" href="Hlp_C_CDOPT.html" title="CDOPT"><span class="command"><strong>CDOPT</strong></span></a>,
+ANF):</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Writes all model information in the database (regardless
+of select status) to the archive file; however, when you restore the
+database using this archived file, the select status of entities is
+also restored. </p></li><li class="listitem"><p>Restores all line attributes, including orientation
+keypoints. It also writes out any components (not assemblies) that
+consist of solid model entities. </p></li><li class="listitem"><p>Halts <span class="command"><strong>CDWRITE</strong></span> when a concatenated
+line or an area that contains a concatenated line is detected. You
+must delete the concatenated lines before issuing <span class="command"><strong>CDWRITE</strong></span>.
+Similarly, hardpoint information cannot be written.</p></li></ul></div><p>This command is also valid in SOLUTION.</p></div><div class="refsect1" title="Menu Paths"><a name="CDWRITE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Archive Model&gt;Write</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:22-04:00"><title>ANSTOASAS</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_A_TOC.html" title="A Commands"><link rel="prev" href="Hlp_C_ANSTOAQWA.html" title="ANSTOAQWA"><link rel="next" href="Hlp_C_ANTIME.html" title="ANTIME"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="ANSTOASAS"><a name="ANSTOASAS"></a><div class="titlepage"></div><a class="indexterm" name="d0e24063"></a><span class="refentrytitle"><span class="command"><strong>ANSTOASAS</strong></span></span><div class="refnamediv"><p><span class="command"><strong>ANSTOASAS</strong></span>, <em class="replaceable"><code>Fname</code></em>, <em class="replaceable"><code>KEY</code></em><br><b class="refpurpose">Creates an ASAS input file from the current ANSYS model.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_1.html" title="2.1.&nbsp;SESSION Commands"><code class="classname">SESSION</code></a>: <a class="link" href="Hlp_C_CH2_1.html#cmdsessionfilejla062999" title="Table&nbsp;2.3:&nbsp;&nbsp;Files"><span class="type">Files</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="ANSTOASAS.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Fname</code></em></b></span></dt><dd><p>ASAS file name. Defaults to <span class="filename"><strong>Jobname</strong></span>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>KEY</code></em></b></span></dt><dd><p>Key indicating type of file to produce: </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>ASAS file for use by ANSYS Aqwa (no
+loads written). Creates the file <em class="replaceable"><code>Fname</code></em>.asas.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>ASAS file (all data written,
+including loads). Creates the file <em class="replaceable"><code>Fname</code></em>.asas.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">2&nbsp;&nbsp;</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>ASAS(NL) file. Creates the
+file <em class="replaceable"><code>Fname</code></em>.asnl.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="ANSTOASAS.notes"></a><h2>Notes</h2><p>This command creates an input file for the ANSYS Asas Finite Element
+Analysis System from the model and loads currently in the database,
+based on the currently selected set of elements. Most common structural
+element types are written, as well as sections (or real constants),
+materials, boundary conditions and loads, and solution and load step
+options. </p><p><span class="bold"><strong>Data Written</strong></span></p><p>The following data is written:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p><a class="link" href="Hlp_C_ANSTOASAS.html#solconop">Solution control options</a></p></li><li class="listitem"><p>Nodes</p></li><li class="listitem"><p><a class="link" href="Hlp_C_ANSTOASAS.html#elemdat">Elements</a></p></li><li class="listitem"><p><a class="link" href="Hlp_C_ANSTOASAS.html#matdat">Material data</a></p></li><li class="listitem"><p><a class="link" href="Hlp_C_ANSTOASAS.html#geomdat">Geometry data</a></p></li><li class="listitem"><p><a class="link" href="Hlp_C_ANSTOASAS.html#sectdat">Section data</a></p></li><li class="listitem"><p>ANSYS element components (ASAS sets)</p></li><li class="listitem"><p><a class="link" href="Hlp_C_ANSTOASAS.html#boundcon">Boundary conditions</a></p></li><li class="listitem"><p><a class="link" href="Hlp_C_ANSTOASAS.html#loadsasas">Loads</a></p></li><li class="listitem"><p>Added mass (via <a href="../ans_elem/Hlp_E_MASS21.html" class="olink"><span class="structname">MASS21</span></a> element)</p></li></ul></div><p>Details are provided in the following sections.</p><p>Not all data is written. You must verify the completeness and
+accuracy of the data. Only loading at the current step is transferred;
+hence, no load step history is captured.</p><p><a name="solconop"></a><span class="bold"><strong>Solution Control Options</strong></span></p><p>The ASAS project name is defined as <span class="quote">"<span class="quote">ANSYS</span>"</span>.</p><p>The solution control options are converted as follows:</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="col1"><col width="192" class="col2"><col width="192" class="col3"></colgroup><thead><tr><th align="center" valign="top">ANSYS Analysis Type</th><th align="center" valign="top">ASAS(L) / AQWA-WAVE Option</th><th align="center" valign="top">ASAS(NL) Option</th></tr></thead><tbody><tr><td>Static (0)</td><td>JOB NEW LINE</td><td>JOB STAT</td></tr><tr><td>Buckling (1) </td><td>Not
+applicable</td><td><div class="literallayout"><p>JOB&nbsp;STAT<br>
+SPIT&nbsp;KGEOM</p></div></td></tr><tr><td>Modal (2) </td><td>JOB NEW FREQ</td><td><div class="literallayout"><p>JOB&nbsp;STAT<br>
+SPIT&nbsp;KGEOM</p></div></td></tr><tr><td>Transient (4)</td><td>Not applicable</td><td>JOB TRAN</td></tr><tr><td>Remaining analysis types</td><td>JOB NEW LINE</td><td>JOB STAT</td></tr></tbody></table></div><p>For conversion to ASAS(NL), the large displacement option is
+set based on <a class="link" href="Hlp_C_NLGEOM.html" title="NLGEOM"><span class="command"><strong>NLGEOM</strong></span></a>, final load solution time is
+set based on <a class="link" href="Hlp_C_TIME.html" title="TIME"><span class="command"><strong>TIME</strong></span></a>, and sub-step times are set based
+on <a class="link" href="Hlp_C_DELTIM.html" title="DELTIM"><span class="command"><strong>DELTIM</strong></span></a> or <a class="link" href="Hlp_C_NSUBST.html" title="NSUBST"><span class="command"><strong>NSUBST</strong></span></a> (assuming
+constant step size).</p><p><a name="elemdat"></a><span class="bold"><strong>Element Data</strong></span></p><p>If you intend to use the data only with AQWA-WAVE, only the
+elements that form the wetted surface are required.  Selecting these
+elements before invoking the <span class="command"><strong>ANSTOASAS</strong></span> command
+will improve performance.  In order for AQWA-WAVE to identify the
+direction of the wave loading, all elements must be defined by nodes
+in a clockwise direction. For further information, refer to the AQWA-WAVE
+manual.</p><p>The element types are converted as follows:</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="col1"><col width="192" class="col2"><col width="192" class="col3"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center" valign="top">Element Type</th><th bgcolor="#E3E3E3" align="center" valign="top">Supported Facilities </th><th bgcolor="#E3E3E3" align="center" valign="top">Notes</th></tr></thead><tbody><tr><td><a href="../ans_elem/Hlp_E_COMBIN14.html" class="olink"><span class="structname">COMBIN14</span></a> - Spring-Damper</td><td><div class="literallayout"><p>SPR1&nbsp;<br>
+SPR2&nbsp;if&nbsp;rotational&nbsp;spring&nbsp;<br>
+FLA2&nbsp;(ASAS(L)&nbsp;only)&nbsp;<br>
+if&nbsp;nodes&nbsp;are&nbsp;not&nbsp;coincident&nbsp;<br>
+and&nbsp;longitudinal&nbsp;spring&nbsp;</p></div></td><td>ASAS(L) does
+not support spring elements with non-coincident nodes. In this case, <a href="../ans_elem/Hlp_E_COMBIN14.html" class="olink"><span class="structname">COMBIN14</span></a> is converted to FLA2. </td></tr><tr><td><a href="../ans_elem/Hlp_E_MASS21.html" class="olink"><span class="structname">MASS21</span></a> - Structural Mass </td><td>N/A</td><td>In ASAS, additional mass is not added as an element.
+Hence, if this element is included, equivalent ASAS lumped added mass
+information is written.</td></tr><tr><td>PLANE42 - 2-D Structural
+Solid [<a class="xref" href="Hlp_C_ANSTOASAS.html#anstoasas.fn1">1</a>]</td><td><div class="literallayout"><p>QUM4&nbsp;<br>
+TRM3&nbsp;-&nbsp;if&nbsp;Triangular</p></div></td><td align="center">-</td></tr><tr><td>SOLID45 - 3-D Structural Solid [<a class="xref" href="Hlp_C_ANSTOASAS.html#anstoasas.fn1">1</a>]</td><td><div class="literallayout"><p>BRK8&nbsp;<br>
+TET4&nbsp;-&nbsp;if&nbsp;Tetrahedral&nbsp;<br>
+BRK6&nbsp;-&nbsp;if&nbsp;Prism</p></div></td><td>TET4 elements are only
+available in ASAS(L). Element is not converted if Pyramidal.</td></tr><tr><td><a href="../ans_elem/Hlp_E_SHELL61.html" class="olink"><span class="structname">SHELL61</span></a> - Axisymmetric-Harmonic
+Structural Shell </td><td>ASH2</td><td>ASH2 elements are
+only available in ASAS(L).</td></tr><tr><td>SHELL63 - Elastic
+Shell [<a class="xref" href="Hlp_C_ANSTOASAS.html#anstoasas.fn1">1</a>]</td><td><div class="literallayout"><p>QUS4&nbsp;<br>
+TBC3&nbsp;-&nbsp;if&nbsp;Triangular</p></div></td><td>TBC3 elements are
+only available in ASAS(L).</td></tr><tr><td>PLANE82 - 2-D
+8-Node Structural Solid [<a class="xref" href="Hlp_C_ANSTOASAS.html#anstoasas.fn1">1</a>]</td><td><div class="literallayout"><p>QUM8&nbsp;<br>
+TRM6&nbsp;-&nbsp;if&nbsp;Triangular</p></div></td><td align="center">-</td></tr><tr><td>SOLID92 - 3-D 10-Node Tetrahedral Structural
+Solid [<a class="xref" href="Hlp_C_ANSTOASAS.html#anstoasas.fn1">1</a>]</td><td>TE10</td><td align="center">-</td></tr><tr><td>SOLID95 - 3-D 20-Node
+Structural Solid [<a class="xref" href="Hlp_C_ANSTOASAS.html#anstoasas.fn1">1</a>]</td><td><div class="literallayout"><p>BR20&nbsp;<br>
+TE10&nbsp;-&nbsp;if&nbsp;Tetrahedral&nbsp;&nbsp;<br>
+BR15&nbsp;-&nbsp;if&nbsp;Prism</p></div></td><td>TE10 elements are only
+available in ASAS(L). Element is not converted if Pyramidal. </td></tr><tr><td><a href="../ans_elem/Hlp_E_LINK180.html" class="olink"><span class="structname">LINK180</span></a> - 3-D Finite Strain
+Spar (or Truss) </td><td>FLA2</td><td align="center">-</td></tr><tr><td><a href="../ans_elem/Hlp_E_SHELL181.html" class="olink"><span class="structname">SHELL181</span></a> - 4-Node Finite
+Strain Shell</td><td><div class="literallayout"><p>QUS4&nbsp;<br>
+TBC3&nbsp;-&nbsp;if&nbsp;Triangular</p></div></td><td>TBC3 elements are
+only available in ASAS(L).</td></tr><tr><td><a href="../ans_elem/Hlp_E_PLANE182.html" class="olink"><span class="structname">PLANE182</span></a> - 2-D 4-Node Structural Solid</td><td><div class="literallayout"><p>QUM4&nbsp;<br>
+TRM3&nbsp;-&nbsp;if&nbsp;Triangular</p></div></td><td align="center">-</td></tr><tr><td><a href="../ans_elem/Hlp_E_PLANE183.html" class="olink"><span class="structname">PLANE183</span></a> - 2-D
+8-Node or 6-Node Structural Solid</td><td><div class="literallayout"><p>QUM8&nbsp;<br>
+TRM6&nbsp;-&nbsp;if&nbsp;Triangular</p></div></td><td align="center">-</td></tr><tr><td><a href="../ans_elem/Hlp_E_SOLID185.html" class="olink"><span class="structname">SOLID185</span></a> - 3-D
+8-Node Structural Solid or Layered Solid </td><td><div class="literallayout"><p>BRK8&nbsp;<br>
+TET4&nbsp;-&nbsp;if&nbsp;Tetrahedral&nbsp;<br>
+BRK6&nbsp;-&nbsp;if&nbsp;Prism</p></div></td><td>TET4 elements are only
+available in ASAS(L). Element is not converted if Pyramidal.</td></tr><tr><td><a href="../ans_elem/Hlp_E_SOLID186.html" class="olink"><span class="structname">SOLID186</span></a> - 3-D 20-Node Structural
+Solid or Layered Solid </td><td><div class="literallayout"><p>BR20&nbsp;<br>
+TE10&nbsp;-&nbsp;if&nbsp;Tetrahedral&nbsp;<br>
+BR15&nbsp;-&nbsp;if&nbsp;Prism</p></div></td><td>TE10 elements are only
+available in ASAS(L). Element is not converted if Pyramidal.  </td></tr><tr><td><a href="../ans_elem/Hlp_E_SOLID187.html" class="olink"><span class="structname">SOLID187</span></a> - 3-D 10-Node
+Tetrahedral Structural Solid </td><td>TE10</td><td>TE10
+elements are only available in ASAS(L).</td></tr><tr><td><a href="../ans_elem/Hlp_E_BEAM188.html" class="olink"><span class="structname">BEAM188</span></a> - 3-D Linear Finite Strain Beam </td><td>BM3D</td><td align="center">-</td></tr><tr><td><a href="../ans_elem/Hlp_E_BEAM189.html" class="olink"><span class="structname">BEAM189</span></a> - 3-D Quadratic Finite Strain Beam </td><td><div class="literallayout"><p>TCBM&nbsp;-&nbsp;if&nbsp;ASAS(L)&nbsp;<br>
+STF4&nbsp;-&nbsp;if&nbsp;ASAS(NL)</p></div></td><td>Refer to geometry
+details for limitations for TCBM elements. An orientation node is
+needed for STF4 and must be specified. </td></tr><tr><td><a href="../ans_elem/Hlp_E_SHELL208.html" class="olink"><span class="structname">SHELL208</span></a> - 2-Node Finite Strain Axisymmetric Shell </td><td>ASH2</td><td>ASH2 elements are only available in ASAS(L).</td></tr><tr><td><a href="../ans_elem/Hlp_E_SHELL281.html" class="olink"><span class="structname">SHELL281</span></a> - 8-Node Finite
+Strain Shell</td><td>TCS8</td><td align="center">-</td></tr><tr><td><a href="../ans_elem/Hlp_E_PIPE288.html" class="olink"><span class="structname">PIPE288</span></a> - 3-D Linear Finite
+Strain Pipe	</td><td>TUBE</td><td align="center">-</td></tr></tbody></table></div><div class="blockquote"><blockquote class="blockquote"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="anstoasas.fn1"></a>Documentation for this legacy element
+type appears in the <a href="../ans_arch/ans_arch.html" class="olink"><em class="citetitle">Feature Archive</em></a>.</p></li></ol></div></blockquote></div><p><a name="matdat"></a><span class="bold"><strong>Material Data</strong></span></p><p>Linear isotropic material conversion is supported for ASAS and
+ASAS(NL).</p><p><a name="geomdat"></a><span class="bold"><strong>Geometry Data</strong></span></p><p>The following ASAS element geometry data is supported:</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="col1"><col width="192" class="col2"><col width="192" class="col3"></colgroup><thead><tr><th align="center" valign="top">ASAS Element Type</th><th align="center" valign="top">Support Facilities</th><th align="center" valign="top">Notes</th></tr></thead><tbody><tr><td>BM3D</td><td>Sections, orientation by 3rd
+node position.</td><td>Sections are always defined separately.</td></tr><tr><td>TUBE</td><td>Thickness and diameter defined,
+orientation by 3rd node or default local axes.</td><td>Using
+the default local axes will result in BETA being set to 90&deg; (to
+ensure that the ASAS local axes are the same as those in ANSYS).</td></tr><tr><td>BM2D</td><td>A, IZ &amp; AY properties defined.</td><td>&nbsp;</td></tr><tr><td>TCBM</td><td>Uniform section
+properties supported.</td><td>TCBM does not support general
+local axis orientations. Hence, elements will only be correct if they
+lie in the global XY plane.</td></tr><tr><td>STF4</td><td>CTUB, RECT, and HREC ANSYS subtypes supported.</td><td>STF4
+elements are only supported in ASAS(NL). Local y and z are 90&deg;
+to the ANSYS definition.</td></tr><tr><td>FLA2</td><td>Uniform cross sectional area.</td><td>&nbsp;</td></tr><tr><td>SPR1 / SPR2</td><td>Stiffness (and also linear  damping if
+ASAS(NL)) included.</td><td>&nbsp;</td></tr><tr><td>All non-beam
+elements</td><td>Constant element thickness.</td><td>&nbsp;</td></tr></tbody></table></div><p>For all beam elements, the third node position must be explicitly
+   defined. If the position is not defined, the program generates an error code (-1) in the output
+   file.</p><p><a name="sectdat"></a><span class="bold"><strong>Section Data</strong></span></p><p>No user sections are generated if AQWA-WAVE data is selected.</p><p>The following sections are converted for ASAS and ASAS(NL):</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="col1"><col width="192" class="col2"><col width="192" class="col3"></colgroup><thead><tr><th align="center" valign="top">ANSYS Section Type</th><th align="center" valign="top">ASAS Section Type</th><th align="center" valign="top">Notes</th></tr></thead><tbody><tr><td>CTUB</td><td>TUB</td><td>Tubular section</td></tr><tr><td>I</td><td>FBI</td><td>Fabricated I beam</td></tr><tr><td>HREC</td><td>BOX</td><td>Fabricated
+box</td></tr><tr><td>All others</td><td>PRI</td><td>Prismatic section, only flexural properties defined.</td></tr></tbody></table></div><p><a name="boundcon"></a><span class="bold"><strong>Boundary Conditions </strong></span></p><p>The following boundary conditions are converted for ASAS and
+ASAS(NL):</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="col1"><col width="192" class="col2"><col width="192" class="col3"></colgroup><thead><tr><th align="center" valign="top">ANSYS Boundary Condition</th><th align="center" valign="top">ASAS Boundary Condition</th><th align="center" valign="top">Notes</th></tr></thead><tbody><tr><td>Nodal U* and ROT* constraints</td><td>SUPPressed
+freedoms: X, Y, Z, RX, RY, RZ</td><td>Skewed systems are not
+supported.</td></tr><tr><td>Nodal U* and ROT* imposed non-zero
+values</td><td>DISPlaced freedoms: X, Y, Z, RX, RY, RZ</td><td>Skewed systems are not supported.</td></tr><tr><td><a class="link" href="Hlp_C_CP.html" title="CP"><span class="command"><strong>CP</strong></span></a> and <a class="link" href="Hlp_C_CE.html" title="CE"><span class="command"><strong>CE</strong></span></a> constraint equations</td><td>CONStraint equation data</td><td>Skewed systems are not
+supported.</td></tr></tbody></table></div><p><a name="loadsasas"></a><span class="bold"><strong>Loads</strong></span></p><p>No user loading is generated if AQWA-WAVE data is selected.
+However, a load case (number 1000) is automatically defined to identify
+the wetted surface of the elements for use by AQWA-WAVE based on the
+normal surface loads applied to the solid or shell elements.</p><p>Pressure loads from <a href="../ans_elem/Hlp_E_SURF154.html" class="olink"><span class="structname">SURF154</span></a> elements
+are converted to equivalent nodal loads for ASAS. For AQWA-WAVE, the <a href="../ans_elem/Hlp_E_SURF154.html" class="olink"><span class="structname">SURF154</span></a> pressures are used to identify the wetted surface
+of the underlying elements. The following loads are converted for
+ASAS:</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" class="col1"><col width="192" class="col2"><col width="192" class="col3"></colgroup><thead><tr><th align="center" valign="top">ANSYS Load Type</th><th align="center" valign="top">ASAS Load Type</th><th align="center" valign="top">Notes</th></tr></thead><tbody><tr><td><a class="link" href="Hlp_C_SFE.html" title="SFE"><span class="command"><strong>SFE</strong></span></a> (PRES)</td><td>PRESSURE
+(no sub-types)</td><td>Element families supported: Solids, shells
+(excluding edge pressures), planes (edge pressures only), and axisymmetric
+shells.</td></tr><tr><td><a class="link" href="Hlp_C_SFE.html" title="SFE"><span class="command"><strong>SFE</strong></span></a> (PRES)</td><td><div class="literallayout"><p>DISTRIBUted&nbsp;loading&nbsp;<br>
+Shells&nbsp;-&nbsp;ML2&nbsp;<br>
+Beams&nbsp;-&nbsp;BL1&nbsp;/&nbsp;BL2&nbsp;<br>
+Tubes&nbsp;-&nbsp;GL1&nbsp;<br>
+Curved&nbsp;beams&nbsp;-&nbsp;CB1</p></div></td><td>Element families
+supported: Shells (edge pressures only), Beams (includes tubes and
+curved beams).</td></tr><tr><td><a class="link" href="Hlp_C_F.html" title="F"><span class="command"><strong>F</strong></span></a> (F* and
+M*)</td><td>NODAL Load, in X, Y, Z, RX, RY, RZ</td><td>Skewed systems are not supported.</td></tr><tr><td><a class="link" href="Hlp_C_D.html" title="D"><span class="command"><strong>D</strong></span></a> (U* and ROT*)</td><td>PRESCRIBed displacements</td><td>&nbsp;</td></tr><tr><td><a class="link" href="Hlp_C_ACEL.html" title="ACEL"><span class="command"><strong>ACEL</strong></span></a></td><td>BODY FORce</td><td>&nbsp;</td></tr></tbody></table></div></div><div class="refsect1" title="Menu Paths"><a name="ANSTOASAS.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:36-04:00"><title>CZMESH</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_C_CTOC.html" title="C Commands"><link rel="prev" href="Hlp_C_CZDEL.html" title="CZDEL"><link rel="next" href="Hlp_D_TOC.html" title="D Commands"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="CZMESH"><a name="CZMESH"></a><div class="titlepage"></div><a class="indexterm" name="d0e63063"></a><span class="refentrytitle">
+<span class="command"><strong>CZMESH</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>CZMESH</strong></span>, <em class="replaceable"><code>ecomps1</code></em>, <em class="replaceable"><code>ecomps2</code></em>, <em class="replaceable"><code>KCN</code></em>, <em class="replaceable"><code>KDIR</code></em>, <em class="replaceable"><code>VALUE</code></em>, <em class="replaceable"><code>CZTOL</code></em>
+<br><b class="refpurpose">Create and mesh an interface area composed of cohesive zone elements.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7meshingldm061600" title="Table&nbsp;2.36:&nbsp;&nbsp;Meshing"><span class="type">Meshing</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>ecomps1</code></em>
+</b></span></dt><dd><p>Component name or number for the group of plane or solid structural
+elements adjacent to the interface being meshed.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>ecomps2</code></em>
+</b></span></dt><dd><p>Component name or number for the opposing (from <em class="replaceable"><code>ecomps1</code></em>)
+group of plane or solid structural elements adjacent to the interface being
+meshed.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>KCN</code></em>
+</b></span></dt><dd><p>Coordinate system number for the separation surface and normal
+direction. (if <em class="replaceable"><code>ecomps1</code></em> and <em class="replaceable"><code>ecomps2</code></em> not
+specified)</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>KDIR</code></em>
+</b></span></dt><dd><p>Direction (x, y, or z) normal to separation surface in the <em class="replaceable"><code>KCN</code></em> coordinate
+system (if <em class="replaceable"><code>ecomps1</code></em> and <em class="replaceable"><code>ecomps2</code></em> not
+specified).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>VALUE</code></em>
+</b></span></dt><dd><p>Coordinate value along the <em class="replaceable"><code>KDIR</code></em> axis
+at which to locate the interface (if <em class="replaceable"><code>ecomps1</code></em> and <em class="replaceable"><code>ecomps2</code></em> not
+specified).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>CZTOL</code></em>
+</b></span></dt><dd><p>Optional absolute tolerance about <em class="replaceable"><code>VALUE</code></em> (if
+       <em class="replaceable"><code>ecomps1</code></em> and <em class="replaceable"><code>ecomps2</code></em> not specified).
+      Allows nodes occurring slightly above or below the separation to be grouped properly. The
+      following expression represents the default value:  </p><div class="informalequation"><a name="eq22db42bf-aaef-4afb-961e-9416b9c97eb0"></a><div><img src="graphics/eq22db42bf-aaef-4afb-961e-9416b9c97eb0.svg"></div></div><p>Where &#916;X, &#916;Y, and &#916;Z are the dimensions of the model
+      based on nodal locations (that is, &#916;X = X<em class="replaceable"><code>max</code></em> -
+       X<em class="replaceable"><code>min</code></em>).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="CZMESH.notes"></a><h2>Notes</h2><p><span class="command"><strong>CZMESH</strong></span>
+    is used on a mesh with shared nodes at the interface.</p><p>If <em class="replaceable"><code>ecomps1</code></em> and <em class="replaceable"><code>ecomps2</code></em> are
+specified, the <span class="command"><strong>CZMESH</strong></span> command creates/meshes interface
+elements (<a href="../ans_elem/Hlp_E_INTER202.html" class="olink"><span class="structname">INTER202</span></a>, <a href="../ans_elem/Hlp_E_INTER203.html" class="olink"><span class="structname">INTER203</span></a>, <a href="../ans_elem/Hlp_E_INTER204.html" class="olink"><span class="structname">INTER204</span></a>, <a href="../ans_elem/Hlp_E_INTER205.html" class="olink"><span class="structname">INTER205</span></a>) along the boundary between the two components or groups of elements. </p><p>The elements in each of the components or groups of elements share nodes with each other and
+   also with the interface elements. This one-element thick boundary of interface elements splits
+   the body between the two components or groups of elements. </p><p>Subsequent separation (delamination and failure) of the interface zone results in an
+   increasing displacement between the nodes (within the interface element) along the cohesive zone
+   elements. Unless otherwise specified, the <span class="command"><strong>CZMESH</strong></span> command analyzes the
+   configuration and geometry of the adjacent structural elements and provides the appropriate
+   interface element.</p><p>The <span class="command"><strong>CZMESH</strong></span> operation copies any nodal temperatures
+you have defined on the split surface of the original mesh from the original
+nodes to the newly created coincident duplicate nodes. However, displacements,
+forces, and other boundary conditions are not copied.</p><p>If using <span class="command"><strong>CZMESH</strong></span> to generate interface elements
+    (<a href="../ans_elem/Hlp_E_INTER202.html" class="olink"><span class="structname">INTER202</span></a> and <a href="../ans_elem/Hlp_E_INTER205.html" class="olink"><span class="structname">INTER205</span></a>) in a <a href="../ans_frac/Hlp_G_STR_VCCT.html" class="olink">VCCT-based crack-growth simulation</a>, be aware that those
+   elements do not support degenerate shapes. Examine the resulting mesh, therefore, to verify
+   correct element connectivity around the crack tip.</p><p>The <span class="command"><strong>CZMESH</strong></span> command is valid for structural analyses
+only.</p></div><div class="refsect1" title="Menu Paths"><a name="CZMESH.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

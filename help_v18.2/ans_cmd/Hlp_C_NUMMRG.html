@@ -1,0 +1,144 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:02-04:00"><title>NUMMRG</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_N_TOC.html" title="N Commands"><link rel="prev" href="Hlp_C_NUMEXP.html" title="NUMEXP"><link rel="next" href="Hlp_C_NUMOFF.html" title="NUMOFF"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="NUMMRG"><a name="NUMMRG"></a><div class="titlepage"></div><a class="indexterm" name="d0e187059"></a><span class="refentrytitle">
+<span class="command"><strong>NUMMRG</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>NUMMRG</strong></span>, <em class="replaceable"><code>Label</code></em>, <em class="replaceable"><code>TOLER</code></em>, <em class="replaceable"><code>GTOLER</code></em>, <em class="replaceable"><code>Action</code></em>, <em class="replaceable"><code>Switch</code></em>
+<br><b class="refpurpose">Merges coincident or equivalently defined items.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7databaseldm061600" title="Table&nbsp;2.24:&nbsp;&nbsp;Database"><span class="type">Database</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="NUMMRG.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Label</code></em>
+</b></span></dt><dd><p>Items to be merged:       </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NODE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Nodes</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ELEM</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Elements</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">KP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Keypoints (will also merge lines, areas,
+and volumes)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MAT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Materials</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TYPE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Element types</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">REAL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Real constants</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SECT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Section types</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Coupled sets</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Constraint equations</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ALL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>All items</p></td></tr></tbody></table></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>TOLER</code></em>
+</b></span></dt><dd><p>Range of coincidence. For <em class="replaceable"><code>Label</code></em> = NODE and KP, defaults to
+      1.0E-4 (based on maximum Cartesian coordinate difference between nodes or keypoints). For
+       <em class="replaceable"><code>Label</code></em> = MAT, REAL, SECT, and CE, defaults to 1.0E-7 (based on
+      difference of the values normalized by the values). Only items within range are merged. (For
+      keypoints attached to lines, further restrictions apply. See the
+       <em class="replaceable"><code>GTOLER</code></em> field and <span class="italic"><em>Merging Solid Model
+       Entities</em></span> below.)</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>GTOLER</code></em>
+</b></span></dt><dd><p>Global solid model tolerance -- used only when merging
+keypoints attached to lines.  If specified, <em class="replaceable"><code>GTOLER</code></em> will override the internal relative solid model tolerance.  See <span class="italic"><em>Merging Solid Model Entities</em></span> below.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Action</code></em>
+</b></span></dt><dd><p>Specifies whether to merge or select coincident items. </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">SELE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Select coincident items but do not
+merge. <em class="replaceable"><code>Action</code></em> = SELE is only valid for <em class="replaceable"><code>Label</code></em> = NODE.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">(Blank)</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Merge the coincident items (default).</p></td></tr></tbody></table></div></div><p>
+</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>Switch</code></em>
+</b></span></dt><dd><p>Specifies whether the lowest or highest numbered coincident
+item is retained after the merging operation.  This option does not
+apply to keypoints; i.e., for <em class="replaceable"><code>Label</code></em> = KP,
+the lowest numbered keypoint is retained regardless of the <em class="replaceable"><code>Switch</code></em> setting.     </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LOW</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Retain the lowest numbered coincident
+item after the merging operation (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">HIGH</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Retain the highest numbered coincident
+item after the merging operation.</p></td></tr></tbody></table></div></div><p>
+</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="NUMMRG.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>NUMMRG</strong></span> command does not change a model's geometry, only the
+   topology.</p><p>After issuing the command, the area and volume sizes (<a class="link" href="Hlp_C_ASUM.html" title="ASUM"><span class="command"><strong>ASUM</strong></span></a> and <a class="link" href="Hlp_C_VSUM.html" title="VSUM"><span class="command"><strong>VSUM</strong></span></a>) may give slightly different
+results. In order to obtain the same results as before, use <a href="Hlp_C_FACET.html" class="olink"><span class="command"><strong>/FACET</strong></span></a>, <a href="Hlp_C_NORMAL.html" class="olink"><span class="command"><strong>/NORMAL</strong></span></a>, and <a class="link" href="Hlp_C_ASUM.html" title="ASUM"><span class="command"><strong>ASUM</strong></span></a> / <a class="link" href="Hlp_C_VSUM.html" title="VSUM"><span class="command"><strong>VSUM</strong></span></a>.</p><p>The merge operation is useful for tying separate but coincident parts of a model together. If
+   not all items are to be checked for merging, use the select commands (<a class="link" href="Hlp_C_NSEL.html" title="NSEL"><span class="command"><strong>NSEL</strong></span></a>,
+    <a class="link" href="Hlp_C_ESEL.html" title="ESEL"><span class="command"><strong>ESEL</strong></span></a>, etc.) to select items. Only selected items are included in the merge
+   operation for nodes, keypoints, and elements. </p><p>By default, the merge operation retains the lowest numbered coincident item. Higher numbered
+   coincident items are deleted. Set <em class="replaceable"><code>Switch</code></em> to HIGH to retain the highest
+   numbered coincident item after the merging operation. Applicable related items are also checked
+   for deleted item numbers and if found, are replaced with the retained item number. For example,
+   if nodes are merged, element connectivities (except superelements), mesh item range
+   associativity, coupled degrees of freedom, constraint equations, master degrees of freedom, gap
+   conditions, degree of freedom constraints, nodal force loads, nodal surface loads, and nodal body
+   force loads are checked. Merging material numbers (<span class="command"><strong>NUMMRG</strong></span>,ALL or
+    <span class="command"><strong>NUMMRG</strong></span>,MAT) does <span class="italic"><em>not</em></span> update the material
+   number referenced:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>By temperature-dependent film coefficients as part of convection load or a
+     temperature-dependent emissivity as part of a surface-to-surface radiation load
+      (<a class="link" href="Hlp_C_SF.html" title="SF"><span class="command"><strong>SF</strong></span></a>, <a class="link" href="Hlp_C_SFE.html" title="SFE"><span class="command"><strong>SFE</strong></span></a>, <a class="link" href="Hlp_C_SFL.html" title="SFL"><span class="command"><strong>SFL</strong></span></a>,
+     <a class="link" href="Hlp_C_SFA.html" title="SFA"><span class="command"><strong>SFA</strong></span></a>)</p></li><li class="listitem"><p>By real constants for multi-material
+elements (such as <a href="../ans_elem/Hlp_E_SOLID65.html" class="olink"><span class="structname">SOLID65</span></a>)</p></li></ul></div><p>When merging tapered beam or pipe sections, the program first uses the
+   associated end sections for merging. If the merge is successful, the program replaces the tapered
+   section database with the end section data.</p><p>If a unique load is defined among merged nodes, the value is kept and applied to the retained
+   node. If loads are not unique (not recommended), only the value on the lowest node (or highest if
+    <em class="replaceable"><code>Switch</code></em> = HIGH) is kept (except for "force" loads for which the values
+   are summed if they are not defined via tabular boundary conditions).</p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;The unused nodes (not recommended) in elements, couplings,
+constraint equations, etc. may become active after the merge operation.</p><p>The <em class="replaceable"><code>Action</code></em> field provides the option
+of visualizing the coincident items before the merging operation.</p><hr></div><div class="caution" title="Caution" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b><font color="red">Caution:</font></b></span>&nbsp;&nbsp;When merging entities in a model that has already been meshed, the order in which you issue
+    multiple <span class="command"><strong>NUMMRG</strong></span> commands is significant. To merge two adjacent meshed regions
+    having coincident nodes and keypoints, always merge nodes (<span class="command"><strong>NUMMRG</strong></span>,NODE)
+     <span class="italic"><em>before</em></span> merging keypoints (<span class="command"><strong>NUMMRG</strong></span>,KP);
+    otherwise, some of the nodes may lose their association with the solid model (causing other
+    operations to fail). To prevent mesh failure, avoid multiple merging and meshing operations
+    .</p><hr></div><p>After a <span class="command"><strong>NUMMRG</strong></span>,NODE command executes, some nodes may be attached to more
+   than one solid entity. As a result, subsequent attempts to transfer solid model loads to the
+   elements may not be successful. Issue <span class="command"><strong>NUMMRG</strong></span>,KP to correct this problem. Do
+    <span class="italic"><em>NOT</em></span> issue <a class="link" href="Hlp_C_VCLEAR.html" title="VCLEAR"><span class="command"><strong>VCLEAR</strong></span></a> before issuing
+    <span class="command"><strong>NUMMRG</strong></span>,KP.</p><p>For <span class="command"><strong>NUMMRG</strong></span>,ELEM, elements must be identical
+in all aspects, including the direction of the element coordinate
+system.</p><p>For certain solid and shell elements, the program interprets coincident faces as internal and
+   eliminate them. To prevent this from occurring, shrink the entities by a very small factor to
+   delineate coincident items (<a href="Hlp_C_SHRINK.html" class="olink"><span class="command"><strong>/SHRINK</strong></span></a>, 0.0001) and no internal nodes, lines,
+   areas or elements will be eliminated. </p><p>When working with solid models, you may have better success
+with the gluing operations (<a class="link" href="Hlp_C_AGLUE.html" title="AGLUE"><span class="command"><strong>AGLUE</strong></span></a>, <a class="link" href="Hlp_C_LGLUE.html" title="LGLUE"><span class="command"><strong>LGLUE</strong></span></a>, <a class="link" href="Hlp_C_VGLUE.html" title="VGLUE"><span class="command"><strong>VGLUE</strong></span></a>). Please read the following information
+when attempting to merge solid model entities.</p><p>
+<span class="italic"><em>Gluing Operations vs. Merging Operations</em></span>
+</p><p>Adjacent, touching regions can be joined by gluing them (<a class="link" href="Hlp_C_AGLUE.html" title="AGLUE"><span class="command"><strong>AGLUE</strong></span></a>, <a class="link" href="Hlp_C_LGLUE.html" title="LGLUE"><span class="command"><strong>LGLUE</strong></span></a>, <a class="link" href="Hlp_C_VGLUE.html" title="VGLUE"><span class="command"><strong>VGLUE</strong></span></a>) or by merging coincident keypoints (<span class="command"><strong>NUMMRG</strong></span>,KP,
+which also causes merging of identical lines, areas, and volumes).
+ In many situations, either approach will work just fine. Some factors,
+however, may lead to a preference for one method over the other.</p><p>
+<span class="bold"><strong>Geometric Configuration</strong></span>
+</p><p>Gluing is possible regardless of the initial alignment or offset
+of the input entities. Keypoint merging is  possible only if each
+keypoint on one side of the face to be joined is matched by a coincident
+keypoint on the other side. This is commonly the case after a symmetry
+ reflection (<a class="link" href="Hlp_C_ARSYM.html" title="ARSYM"><span class="command"><strong>ARSYM</strong></span></a> or <a class="link" href="Hlp_C_VSYMM.html" title="VSYMM"><span class="command"><strong>VSYMM</strong></span></a>)
+or a copy (<a class="link" href="Hlp_C_AGEN.html" title="AGEN"><span class="command"><strong>AGEN</strong></span></a> or <a class="link" href="Hlp_C_VGEN.html" title="VGEN"><span class="command"><strong>VGEN</strong></span></a>),  especially
+for a model built entirely in ANSYS rather than imported from a CAD
+system. When the geometry is  extremely precise, and the configuration
+is correct for  keypoint merging, <span class="command"><strong>NUMMRG</strong></span> is more
+efficient and robust than <a class="link" href="Hlp_C_AGLUE.html" title="AGLUE"><span class="command"><strong>AGLUE</strong></span></a> or <a class="link" href="Hlp_C_VGLUE.html" title="VGLUE"><span class="command"><strong>VGLUE</strong></span></a>.</p><p>
+<span class="bold"><strong>Model Accuracy</strong></span>
+</p><p>As with all boolean operations, gluing requires that the input entities meet the current
+   boolean tolerance (BTOL). Otherwise, <a class="link" href="Hlp_C_AGLUE.html" title="AGLUE"><span class="command"><strong>AGLUE</strong></span></a> or <a class="link" href="Hlp_C_VGLUE.html" title="VGLUE"><span class="command"><strong>VGLUE</strong></span></a> may
+   fail. In such cases, relaxing the tolerance may allow the glue to complete. An advantage of
+   gluing is that it is unlikely to degrade the accuracy of a geometric model. Keypoint merging can
+   operate on almost any combination of entities (although you may have to override the default
+   tolerances on <span class="command"><strong>NUMMRG</strong></span>). However, it can also introduce or increase accuracy
+   flaws, making later boolean operations less likely to succeed. If the input tolerances are too
+   large, <span class="command"><strong>NUMMRG</strong></span> can collapse out small lines, areas, or volumes you intended to
+   keep, possibly rendering the model unusable. </p><p>
+<span class="bold"><strong>Mesh Status</strong></span>
+</p><p>As with all boolean operations, gluing requires that the input entities be unmeshed. Keypoint
+   merging is effective for meshed models under the right conditions. More information on keypoint
+   merging follows.</p><p>
+<span class="italic"><em>Merging Solid Model Entities:</em></span>
+</p><p>When merging solid model entities (<em class="replaceable"><code>Label</code></em> = KP or ALL), keypoint locations are used as the basis for merging.
+ Once keypoints are merged, any higher order solid model entities
+(lines, areas, and volumes), regardless of their select status or
+attachment to the merged keypoints, are considered for merging.</p><p>Keypoints that are attached to lines will be merged only if:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>&#916;X, &nbsp;&#916;Y, and&nbsp;&#916;Z are each
+less than <em class="replaceable"><code>TOLER</code></em>
+</p><p>where,</p><table border="0" summary="Simple list" class="simplelist"><tr><td>&#916;X is the X component of the distance between keypoints,</td></tr><tr><td>&#916;Y is the Y component of the distance between keypoints,
+and </td></tr><tr><td>&#916;Z  is the Z component of the distance between keypoints;</td></tr></table><p>
+</p><p>
+<span class="italic"><em>and</em></span>
+</p></li><li class="listitem"><p>
+<span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eq7f19f33f-7f38-4213-a14f-ae8612a485cc.svg"></span> is less than 1E-5 times the length of the longest line attached to those
+     keypoints (internal relative solid model tolerance), or <span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqa8633734-9f33-4931-bcd5-d7ab90e1bde8.svg"></span> is less than <em class="replaceable"><code>GTOLER</code></em> (global solid model tolerance)
+     if specified.</p></li></ul></div><p>The <em class="replaceable"><code>TOLER</code></em> field is a <span class="italic"><em>consideration</em></span> tolerance.  If a keypoint is
+within <em class="replaceable"><code>TOLER</code></em> of another keypoint, then
+those two keypoints are <span class="italic"><em>candidates</em></span> to be merged.  If, when "moving" the higher numbered keypoint, the
+distance exceeds the internal relative solid model tolerance, or the
+global solid model tolerance (<em class="replaceable"><code>GTOLER</code></em>) if
+specified, the keypoints will <span class="italic"><em>not</em></span> be merged.  Lines, areas, and volumes are considered for merging
+in a similar manner.</p><p>The internal relative solid model tolerance should be overridden by the global solid model
+   tolerance (<em class="replaceable"><code>GTOLER</code></em>) only when absolutely necessary.
+    <em class="replaceable"><code>GTOLER</code></em> is an <span class="italic"><em>absolute</em></span> tolerance;
+   if specified, relative lengths of lines in the model will no longer be considered in the merge
+   operation. If <em class="replaceable"><code>GTOLER</code></em> is too large, you can "merge-out" portions of
+   your model accidently, effectively defeaturing the model. If using
+    <em class="replaceable"><code>GTOLER</code></em>, it is good practice so first save the database before issuing
+    <span class="command"><strong>NUMMRG</strong></span> (as undesired merges of solid model entities could occur).</p></div><div class="refsect1" title="Menu Paths"><a name="NUMMRG.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Circuit&gt;Merge Nodes</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Delete&gt;Pre-tens Elemnts</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Numbering Ctrls&gt;Merge Items</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

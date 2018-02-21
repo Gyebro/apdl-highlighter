@@ -1,0 +1,61 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:46-04:00"><title>EDPART</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_EDOUT.html" title="EDOUT"><link rel="next" href="Hlp_C_EDPC.html" title="EDPC"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="EDPART"><a name="EDPART"></a><div class="titlepage"></div><a class="indexterm" name="d0e86263"></a><span class="refentrytitle"><span class="command"><strong>EDPART</strong></span></span><div class="refnamediv"><p><span class="command"><strong>EDPART</strong></span>, <em class="replaceable"><code>Option</code></em>, <em class="replaceable"><code>PARTID</code></em>, <em class="replaceable"><code>Cname</code></em><br><b class="refpurpose">Configures parts for an explicit dynamics analysis.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7expdynldm061600" title="Table&nbsp;2.44:&nbsp;&nbsp;Explicit Dynamics"><span class="type">Explicit Dynamics</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="EDPART.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Option</code></em></b></span></dt><dd><p>Option used to organize parts. (No default; <em class="replaceable"><code>Option</code></em> must
+be specified.)</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CREATE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Creates new PART IDs assigned to groups
+of elements with unique combinations of MAT, TYPE, and REAL set numbers. If
+this option is issued repeatedly, the part list is overwritten, except for
+PART IDs created with the ADD option. Remaining fields are ignored for this
+option.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">UPDATE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Updates the PART IDs for the element groups
+without changing the order of the existing part list. If elements are redefined
+(or new elements are created) with different MAT, TYPE, or REAL set numbers,
+then use this option to create an updated list of PART IDs. Remaining fields
+are ignored for this option.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ADD</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Assigns a user-specified PART ID (<em class="replaceable"><code>PARTID</code></em>)
+to the elements contained in the element component <em class="replaceable"><code>Cname</code></em>,
+or to the currently selected set of elements if <em class="replaceable"><code>Cname</code></em> =
+ALL. Use this option to assign a specific PART ID to an element group that
+has the same combination of MAT, TYPE, and REAL set numbers. An UPDATE operation
+is automatically performed on the currently selected set of elements immediately
+following the ADD operation.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DELE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Deletes a PART ID assigned by the ADD option. <em class="replaceable"><code>PARTID</code></em> is
+also required. An UPDATE operation is automatically performed on the currently
+selected set of elements immediately following the DELE operation.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">LIST</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Lists the PART IDs for the element groups.
+The part list consists of five columns of numbers, one each for PART, MAT,
+TYPE, and REAL numbers, and one to indicate if the PART ID is used (including
+how many elements use it). The part list is based on the last CREATE or UPDATE
+operation. Remaining fields are ignored for this option.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>PARTID</code></em></b></span></dt><dd><p>A positive integer to be used as PART ID for the elements
+specified by <em class="replaceable"><code>Cname</code></em> (no default). The number input
+must not be currently used for an existing part (except when <em class="replaceable"><code>Option</code></em> =
+DELE). Any previously defined PART IDs for the elements, whether assigned
+by the user or created by ANSYS LS-DYNA, will be overwritten. The user-specified PART
+ID will not be changed by subsequent <span class="command"><strong>EDPART</strong></span>,CREATE or <span class="command"><strong>EDPART</strong></span>,UPDATE
+commands.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Cname</code></em></b></span></dt><dd><p>Element component name for user-specified PART ID definition
+(<em class="replaceable"><code>Option</code></em> = ADD). If <em class="replaceable"><code>Cname</code></em> =
+ALL (default), all currently selected elements are considered for the part.
+The elements in the element component (or the currently selected set of elements
+if <em class="replaceable"><code>Cname</code></em> = ALL or blank) must have the same combination
+of MAT, TYPE, and REAL set numbers, or the ADD option will be ignored. </p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="EDPART.notes"></a><h2>Notes</h2><p>Certain ANSYS LS-DYNA commands (such as <a class="link" href="Hlp_C_EDCGEN.html" title="EDCGEN"><span class="command"><strong>EDCGEN</strong></span></a>, <a class="link" href="Hlp_C_EDLOAD.html" title="EDLOAD"><span class="command"><strong>EDLOAD</strong></span></a>, <a class="link" href="Hlp_C_EDREAD.html" title="EDREAD"><span class="command"><strong>EDREAD</strong></span></a>,
+etc.) refer to PART IDs. You must define PART IDs (<span class="command"><strong>EDPART</strong></span>,CREATE
+or <span class="command"><strong>EDPART</strong></span>,ADD) before using these commands.</p><p>If parts are repeatedly created using <em class="replaceable"><code>Option</code></em> =
+CREATE, the part list is continuously overwritten. This may cause problems
+for previously defined commands that reference a part number that has changed.
+To avoid this problem, the part list should be updated (<em class="replaceable"><code>Option</code></em> =
+UPDATE) rather than recreated to obtain the current part list. </p><p><span class="command"><strong>EDPART</strong></span>,ADD allows you to assign a specific part number
+to a group of elements instead of a number generated by the ANSYS LS-DYNA program.
+The user-specified PART IDs will not be changed by subsequent <span class="command"><strong>EDPART</strong></span>,CREATE
+or <span class="command"><strong>EDPART</strong></span>,UPDATE commands. Thus, you can use <span class="command"><strong>EDPART</strong></span>,ADD
+to specify PART IDs for some element groups, and use <span class="command"><strong>EDPART</strong></span>,CREATE
+or <span class="command"><strong>EDPART</strong></span>,UPDATE to assign PART IDs for the remaining element
+groups. Use <span class="command"><strong>EDPART</strong></span>,DELE to delete a PART ID generated by
+the ADD option. In this case, ANSYS LS-DYNA will generate a new PART ID for those elements
+associated with the deleted PART ID. </p><p>After creating or updating the part list, use <span class="command"><strong>EDPART</strong></span>,LIST
+to list the PART IDs and choose the correct one for use with other ANSYS LS-DYNA commands.
+For a detailed discussion on PART IDs, see <a href="../ans_lsd/Hlp_L_model6.html" class="olink">The
+Definition of Part</a> in the <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink"><em class="citetitle">ANSYS LS-DYNA User's Guide</em></a>.</p><p>This command is also valid in SOLUTION.</p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p></div><div class="refsect1" title="Menu Paths"><a name="EDPART.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;LS-DYNA Options&gt;Parts Options</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

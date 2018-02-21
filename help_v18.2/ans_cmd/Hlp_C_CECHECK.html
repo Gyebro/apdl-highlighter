@@ -1,0 +1,25 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:29-04:00"><title>CECHECK</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_C_CTOC.html" title="C Commands"><link rel="prev" href="Hlp_C_CE.html" title="CE"><link rel="next" href="Hlp_C_CECMOD.html" title="CECMOD"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="CECHECK"><a name="CECHECK"></a><div class="titlepage"></div><a class="indexterm" name="d0e42832"></a><span class="refentrytitle"><span class="command"><strong>CECHECK</strong></span> </span><div class="refnamediv"><p><span class="command"><strong>CECHECK</strong></span>, <em class="replaceable"><code>ItemLab</code></em>, <em class="replaceable"><code>Tolerance</code></em>, <em class="replaceable"><code>DOF</code></em><br><b class="refpurpose">Check constraint equations and couplings for rigid body
+motions.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7databaseldm061600" title="Table&nbsp;2.24:&nbsp;&nbsp;Database"><span class="type">Database</span></a></span></div></div>   <div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="CECHECK.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>ItemLab</code></em></b></span></dt><dd><p>Item indicating what is to be checked:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Check constraint equations only</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Check couplings only</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ALL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Check both CE and CP</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Tolerance</code></em></b></span></dt><dd><p>Allowed amount of out-of-balance for any constraint
+equation or coupled set. The default value of 1.0e-6 is usually good.</p></dd><dt><span><b class="term"><em class="replaceable"><code>DOF</code></em></b></span></dt><dd><p>Specifies which DOF is to be checked. Default is RIGID,
+the usual option. Other choices are individual DOF such as UX, ROTZ,
+etc. or THERM. The THERM option will check the constraint equations
+or coupled sets for free thermal expansions, whereas the individual
+DOFs check under rigid body motions. ALL is RIGID and THERM.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="CECHECK.notes"></a><h2>Notes</h2><p>This command imposes a rigid body motion on the nodes attached
+to the constraint equation or coupled set and makes sure that no internal
+forces are generated for such rigid body motions. Generation of internal
+forces by rigid body motions usually indicates an error in the equation
+specification (possibly due to nodal coordinate rotations). The THERM
+option does a similar check to see that no internal forces are created
+by the equations if the body does a free thermal expansion (this check
+assumes a single isotropic coefficient of expansion).</p></div><div class="refsect1" title="Menu Paths"><a name="d0e42924"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

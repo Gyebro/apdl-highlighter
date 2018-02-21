@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:23-04:00"><title>APTN</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_A_TOC.html" title="A Commands"><link rel="prev" href="Hlp_C_APPEND.html" title="APPEND"><link rel="next" href="Hlp_C_ARCLEN.html" title="ARCLEN"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="APTN"><a name="APTN"></a><div class="titlepage"></div><a class="indexterm" name="d0e26666"></a><span class="refentrytitle"><span class="command"><strong>APTN</strong></span></span><div class="refnamediv"><p><span class="command"><strong>APTN</strong></span>, <em class="replaceable"><code>NA1</code></em>, <em class="replaceable"><code>NA2</code></em>, <em class="replaceable"><code>NA3</code></em>, <em class="replaceable"><code>NA4</code></em>, <em class="replaceable"><code>NA5</code></em>, <em class="replaceable"><code>NA6</code></em>, <em class="replaceable"><code>NA7</code></em>, <em class="replaceable"><code>NA8</code></em>, <em class="replaceable"><code>NA9</code></em><br><b class="refpurpose">Partitions areas.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7booleansldm061600" title="Table&nbsp;2.35:&nbsp;&nbsp;Booleans"><span class="type">Booleans</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="APTN.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NA1</code></em>, <em class="replaceable"><code>NA2</code></em>, <em class="replaceable"><code>NA3</code></em>,
+. . . , <em class="replaceable"><code>NA9</code></em></b></span></dt><dd><p>Numbers of areas to be operated on.  If <em class="replaceable"><code>NA1</code></em> =
+ALL, <em class="replaceable"><code>NA2</code></em> to <em class="replaceable"><code>NA9</code></em> are
+ignored and all selected areas are used.  If <em class="replaceable"><code>NA1</code></em> =
+P, graphical picking is enabled and all remaining arguments are ignored (valid
+only in the GUI).  A component name may be substituted for <em class="replaceable"><code>NA1</code></em>.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="APTN.notes"></a><h2>Notes</h2><p>Partitions areas that intersect.  This command is similar to the combined
+functionality of the <a class="link" href="Hlp_C_ASBA.html" title="ASBA"><span class="command"><strong>ASBA</strong></span></a> and <a class="link" href="Hlp_C_AOVLAP.html" title="AOVLAP"><span class="command"><strong>AOVLAP</strong></span></a> commands.
+ If the intersection of two or more areas is an area (i.e., planar), new areas
+will be created with boundaries that conform to the area of intersection and
+to the boundaries of the non-intersecting portions of the input areas [<a class="link" href="Hlp_C_AOVLAP.html" title="AOVLAP"><span class="command"><strong>AOVLAP</strong></span></a>].
+ If the intersection is a line (i.e., not planar), the areas will be subtracted,
+or divided, along the line(s) of intersection [<a class="link" href="Hlp_C_ASBA.html" title="ASBA"><span class="command"><strong>ASBA</strong></span></a>]. 
+Both types of intersection can occur during a single <span class="command"><strong>APTN</strong></span> operation.
+ Areas that do not intersect will not be modified.  See the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a> for an
+illustration.  See the <a class="link" href="Hlp_C_BOPTN.html" title="BOPTN"><span class="command"><strong>BOPTN</strong></span></a> command for an explanation
+of the options available to Boolean operations.  Element attributes and solid
+model boundary conditions assigned to the original entities will not be transferred
+to the new entities generated.</p></div><div class="refsect1" title="Menu Paths"><a name="APTN.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Operate&gt;Booleans&gt;Partition&gt;Areas</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

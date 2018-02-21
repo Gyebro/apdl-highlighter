@@ -1,0 +1,80 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:46-04:00"><title>*USE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_U_TOC.html" title="U Commands"><link rel="prev" href="Hlp_C_UPGEOM.html" title="UPGEOM"><link rel="next" href="Hlp_C_USER.html" title="/USER"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="*USE"><a name="a-USE"></a><div class="titlepage"></div><a class="indexterm" name="d0e286924"></a><span class="refentrytitle"><a href="Hlp_C_USE.html" class="olink"><span class="command"><strong>*USE</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>*USE</strong></span>, <em class="replaceable"><code>Name</code></em>, <em class="replaceable"><code>ARG1</code></em>, <em class="replaceable"><code>ARG2</code></em>, <em class="replaceable"><code>ARG3</code></em>, <em class="replaceable"><code>ARG4</code></em>, <em class="replaceable"><code>ARG5</code></em>, <em class="replaceable"><code>ARG6</code></em>, <em class="replaceable"><code>ARG7</code></em>, <em class="replaceable"><code>ARG8</code></em>, <em class="replaceable"><code>ARG9</code></em>, <em class="replaceable"><code>AR10</code></em>, <em class="replaceable"><code>AR11</code></em>, <em class="replaceable"><code>AR12</code></em>, <em class="replaceable"><code>AR13</code></em>, <em class="replaceable"><code>AR14</code></em>, <em class="replaceable"><code>AG15</code></em>, <em class="replaceable"><code>AR16</code></em>, <em class="replaceable"><code>AR17</code></em>, <em class="replaceable"><code>AR18</code></em><br><b class="refpurpose">Executes a macro file.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_4.html" title="2.4.&nbsp;APDL Commands"><code class="classname">APDL</code></a>: <a class="link" href="Hlp_C_CH2_4.html#cmdapdlmacrojla070199" title="Table&nbsp;2.19:&nbsp;&nbsp;Macro Files"><span class="type">Macro Files</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsect1" title="Argument Descriptions"><a name="a-USE.argdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Name</code></em></b></span></dt><dd><p>Name (32 characters maximum, beginning with a letter) identifying
+the macro file or a macro block on a macro library file.</p></dd><dt><span><b class="term"><em class="replaceable"><code>ARG1</code></em>, <em class="replaceable"><code>ARG2</code></em>, <em class="replaceable"><code>ARG3</code></em>,
+. . . , <em class="replaceable"><code>AR18</code></em></b></span></dt><dd><p>Values passed into the file or block where the parameters
+ARG1 through ARG9 and AR10 through AR18 are referenced.  Values may be numbers,
+alphanumeric character strings (up to 32 characters enclosed in single quotes),
+parameters (numeric or character) or parametric expressions.  See below for
+additional details.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="a-USE.notes"></a><h2>Notes</h2><p>Causes execution of a macro file called <em class="replaceable"><code>Name</code></em>,
+or, if not found, a macro block "<em class="replaceable"><code>Name</code></em>" on the macro
+library file [<a href="Hlp_C_ULIB.html" class="olink"><span class="command"><strong>*ULIB</strong></span></a>].  Argument values (numeric or character)
+are passed into the file or block and substituted for local parameters ARG1,
+ARG2, ..., AR18.  The file <em class="replaceable"><code>Name</code></em> may
+also be executed as an "unknown command" (i.e., without the <a href="Hlp_C_USE.html" class="olink"><span class="command"><strong>*USE</strong></span></a> command
+name) as described below.</p><p>A macro is a sequence of ANSYS commands (as many as needed) recorded
+in a file or in a macro block in a library file (specified with the <a href="Hlp_C_ULIB.html" class="olink"><span class="command"><strong>*ULIB</strong></span></a> command).
+ The file or block is typically executed with the <a href="Hlp_C_USE.html" class="olink"><span class="command"><strong>*USE</strong></span></a> command.
+ In addition to command, numerical and alphanumeric data, the macro may include
+parameters which will be assigned numerical or alphanumerical character values
+when the macro is used.  Use of the macro may be repeated (within a do-loop,
+for example) with the parameters incremented.  A macro is defined within a
+run by "enclosing" a sequence of data input commands between a <a href="Hlp_C_CREATE.html" class="olink"><span class="command"><strong>*CREATE</strong></span></a> and
+a <a href="Hlp_C_END.html" class="olink"><span class="command"><strong>*END</strong></span></a>  command.  The data input commands are passive (not
+executed) while being written to the macro file.  The macro file (without <a href="Hlp_C_CREATE.html" class="olink"><span class="command"><strong>*CREATE</strong></span></a> and <a href="Hlp_C_END.html" class="olink"><span class="command"><strong>*END</strong></span></a> )
+can also be created external to ANSYS.</p><p>Up to 99 specially named scalar parameters called ARG1 to AR99 are <span class="italic"><em>locally</em></span> available to each macro.  Note that the prefix
+for the first 9 parameters is "ARG," while the prefix for the last 90 is "AR."
+ A <span class="italic"><em>local</em></span> parameter is one which is not
+affected by, nor does it affect, other parameters, even those of the same
+name, which are used outside of the macro.  The only way a local parameter
+can affect, or be affected by, parameters outside the macro is if values are
+passed out of, or into, the macro by an argument list.  Parameters ARG1 through
+AR18 can have their values (numeric or character) passed via the argument
+list on the <a href="Hlp_C_USE.html" class="olink"><span class="command"><strong>*USE</strong></span></a> command (ARG1 through AR19 can be passed
+as arguments on the "unknown command" macro).  Parameters AR19 through AR99
+(AR20 through AR99 in the "unknown command" macro) are available solely for
+use within the macro; they cannot be passed via an argument list.  Local parameters
+are available to do-loops and to <a href="Hlp_C_INPUT.html" class="olink"><span class="command"><strong>/INPUT</strong></span></a> files processed
+within the macro.  In addition to an ARG1--AR99 set for each macro, another
+ARG1--AR99 set is available external to all macros, local to "non-macro" space.</p><p>A macro is exited after its last line is executed.  Macros may be nested
+(such as a <a href="Hlp_C_USE.html" class="olink"><span class="command"><strong>*USE</strong></span></a> or an "unknown command" within a macro).
+ Each nested macro has its own set of 99 local parameters.  Only one set of
+local parameters can be active at a time and that is the set corresponding
+to the macro currently being executed or to the set external to all macros
+(if any).  When a nested macro completes execution, the previous set of local
+parameters once again becomes available.  Use <a href="Hlp_C_STATUS_st.html" class="olink"><span class="command"><strong>*STATUS</strong></span></a>,ARGX
+to view current macro parameter values.</p><p>An alternate way of executing a macro file is via the "unknown command"
+route.  If a command unknown to the ANSYS program is entered, a search for
+a file of that name (plus a <span class="filename"><strong>.MAC</strong></span> suffix) is made.  If
+the file exists, it is executed, if not, the "unknown command" message is
+output.  Thus, users can write their own commands in terms of other ANSYS
+commands.  The procedure is similar to issuing the <a href="Hlp_C_USE.html" class="olink"><span class="command"><strong>*USE</strong></span></a> command
+with the unknown command in the <em class="replaceable"><code>Name</code></em> field.  For
+example, the command <span class="bold"><strong>CMD</strong></span>,10,20,30 is internally
+similar to <a href="Hlp_C_USE.html" class="olink"><span class="command"><strong>*USE</strong></span></a>,CMD,10,20,30.  The macro file named <span class="filename"><strong>CMD.MAC</strong></span> will be executed with the three parameters.
+ The <a href="Hlp_C_USE.html" class="olink"><span class="command"><strong>*USE</strong></span></a> macro description also applies to the "unknown
+command" macro, except that various directories are searched and a suffix
+(<span class="filename"><strong>.MAC</strong></span>) is assumed.  Also, a macro library file is not
+searched.</p><p>A three-level directory search for the "unknown command" macro file may
+   be available (see the <a href="../ans_ope/Hlp_G_OpeTOC.html" class="olink"><em class="citetitle">Operations Guide</em></a>). The search order may be: 1) a high-level system directory, 2)
+   the login directory, and 3) the local (working) directory. Use the <a href="Hlp_C_PSEARCH.html" class="olink"><span class="command"><strong>/PSEARCH</strong></span></a>
+   command to change the directory search path. For an "unknown command" <span class="bold"><strong>CMD</strong></span>, the first file named <span class="filename"><strong>CMD.MAC</strong></span> found to exist
+   in the search order is executed. The command may be input in lower-, upper-, or mixed-case;
+   however, it converts to uppercase automatically before the file-name search occurs. On systems
+   that preserve the case as it was input, a file matching the upper-case name is used first,
+   followed by a file with the matching the lower-case name, and finally a file matching the
+   mixed-case name. All macro files placed in the <span class="filename"><strong>apdl</strong></span> directory must be
+   upper-case. </p><p> Note, since undocumented commands exist in the ANSYS program, the user
+should issue the command intended for the macro file name to be sure the "unknown
+command" message is output in the processor where it's to be used.  If the
+macro is to be used in other processors, the other processors must also be
+checked.</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e287161"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;Macro&gt;Execute Data Block</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

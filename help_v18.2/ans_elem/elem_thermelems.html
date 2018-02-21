@@ -1,0 +1,128 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:07-04:00"><title>6.2.&nbsp;Elements for Thermal Analysis</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="elem_chmultiphys.html" title="Chapter&nbsp;6:&nbsp;Elements for Multiphysics Analysis"><link rel="prev" href="elem_coupphys.html" title="6.1.&nbsp;Elements for Coupled-Physics Analysis"><link rel="next" href="elem_acouselems.html" title="6.3.&nbsp;Elements for Acoustic Analysis"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="sect1" title="6.2.&nbsp;Elements for Thermal Analysis"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="elem_thermelems"></a>6.2.&nbsp;Elements for Thermal Analysis</h2></div></div></div><a class="indexterm" name="d0e17195"></a><div class="highlights"><p>When performing a thermal analysis, consider the dimensionality of the problem as
+                well as the loads required. Use the following information to select elements for
+                modeling various regions as well as elements to apply loads:</p><ul><li><a href="elem_thermelems.html#d0e17211" title="6.2.1.&nbsp;Thermal Elements for the Structural Region">Thermal Elements for the Structural Region</a></li><li><a href="elem_thermelems.html#d0e17447" title="6.2.2.&nbsp;Thermal Elements for the Fluid Region">Thermal Elements for the Fluid Region</a></li><li><a href="elem_thermelems.html#d0e17456" title="6.2.3.&nbsp;Thermal Loading Elements">Thermal Loading Elements</a></li><li><a href="elem_thermelems.html#d0e17595" title="6.2.4.&nbsp;Thermal Control Element">Thermal Control Element</a></li><li><a href="elem_thermelems.html#d0e17604" title="6.2.5.&nbsp;Other Elements Useful in a Thermal Analysis">Other Elements Useful in a Thermal Analysis</a></li></ul></div><p>A complex thermal model often has a combination of all or most of the element types
+            described.</p><p>For more information, see the <a href="../ans_the/Hlp_G_TheTOC.html" class="olink"><em class="citetitle">Thermal Analysis Guide</em></a>.</p><div class="sect2" title="6.2.1.&nbsp;Thermal Elements for the Structural Region"><div class="titlepage"><div><div><h3 class="title"><a name="d0e17211"></a>6.2.1.&nbsp;Thermal Elements for the Structural Region</h3></div></div></div><p>Typically, the solid region should be meshed with 2-D or 3-D continuum elements.
+                1-D elements serve to couple these regions. The 0-D element can be used to represent
+                a lumped mass (that is, a reduced-order model of a continuum region).</p><p>Use the following table to select thermal elements for the structural
+                region:</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="96" class="col1"><col width="240" class="col2"><col width="288" class="col3"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center" valign="top">
+                                
+                                Continuum</th><th bgcolor="#E3E3E3" align="center" valign="top">
+                                
+                                Application</th><th bgcolor="#E3E3E3" align="center" valign="top">
+                                
+                                Elements</th></tr></thead><tbody><tr><td rowspan="5" align="center">3-D</td><td rowspan="2">Modeling homogeneous materials and
+                                layered solids / composites</td><td>
+                                <a class="link" href="Hlp_E_SOLID278.html" title="SOLID278"><span class="structname">SOLID278</span></a> -- Lower-order element that can
+                                degenerate</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SOLID279.html" title="SOLID279"><span class="structname">SOLID279</span></a> -- Higher-order element that can
+                                degenerate</td></tr><tr><td rowspan="3">Modeling homogeneous materials </td><td>
+                                <a class="link" href="Hlp_E_SOLID70.html" title="SOLID70"><span class="structname">SOLID70</span></a> -- Lower-order thermal solid that
+                                can degenerate</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SOLID87.html" title="SOLID87"><span class="structname">SOLID87</span></a> -- Higher-order tetrahedral-only
+                                thermal solid</td></tr><tr><td>
+                                <a class="link" href="Hlp_E_SOLID90.html" title="SOLID90"><span class="structname">SOLID90</span></a> -- Higher-order, accurate thermal
+                                solid that can degenerate</td></tr><tr><td bgcolor="#E3E3E3" rowspan="2" align="center">
+                                
+                                2.5-D</td><td bgcolor="#E3E3E3" rowspan="2">
+                                
+                                Analyzing the in-plane temperature
+                                distribution of thin structures such as plates or shells. [<a class="xref" href="elem_thermelems.html#thermelemnote1">1</a>]</td><td bgcolor="#E3E3E3">
+                                
+                                
+                                <a class="link" href="Hlp_E_SHELL131.html" title="SHELL131"><span class="structname">SHELL131</span></a> -- 3-D lower-order shell with
+                                in-plane and through-thickness thermal conduction capability</td></tr><tr><td bgcolor="#E3E3E3">
+                                
+                                
+                                <a class="link" href="Hlp_E_SHELL132.html" title="SHELL132"><span class="structname">SHELL132</span></a> -- 3-D higher-order shell with
+                                in-plane and through-thickness thermal conduction </td></tr><tr><td rowspan="3" align="center">2-D</td><td>Modeling irregular meshes</td><td>
+                                <a class="link" href="Hlp_E_PLANE35.html" title="PLANE35"><span class="structname">PLANE35</span></a> -- Triangular thermal solid
+                                (compatible with <a class="link" href="Hlp_E_PLANE77.html" title="PLANE77"><span class="structname">PLANE77</span></a>)</td></tr><tr><td>Modeling a plane or an axisymmetric ring </td><td>
+                                <a class="link" href="Hlp_E_PLANE55.html" title="PLANE55"><span class="structname">PLANE55</span></a> -- Thermal solid with 2-D thermal
+                                conduction</td></tr><tr><td>Modeling curved boundaries</td><td>
+                                <a class="link" href="Hlp_E_PLANE77.html" title="PLANE77"><span class="structname">PLANE77</span></a> -- Higher-order thermal solid
+                            </td></tr><tr><td bgcolor="#E3E3E3" rowspan="3" align="center">
+                                
+                                1-D</td><td bgcolor="#E3E3E3">
+                                
+                                Conduction link between regions</td><td bgcolor="#E3E3E3">
+                                
+                                
+                                <a class="link" href="Hlp_E_LINK33.html" title="LINK33"><span class="structname">LINK33</span></a> -- Uniaxial 3-D conduction bar
+                                    [<a class="xref" href="elem_thermelems.html#thermelemnote2">2</a>]</td></tr><tr><td bgcolor="#E3E3E3">
+                                
+                                Convection link between regions</td><td bgcolor="#E3E3E3">
+                                
+                                
+                                <a class="link" href="Hlp_E_LINK34.html" title="LINK34"><span class="structname">LINK34</span></a> -- Uniaxial convection link [<a class="xref" href="elem_thermelems.html#thermelemnote2">2</a>]</td></tr><tr><td bgcolor="#E3E3E3">
+                                
+                                Radiation link between regions</td><td bgcolor="#E3E3E3">
+                                
+                                
+                                <a class="link" href="Hlp_E_LINK31.html" title="LINK31"><span class="structname">LINK31</span></a> -- Uniaxial radiation link [<a class="xref" href="elem_thermelems.html#thermelemnote2">2</a>]</td></tr><tr><td align="center">0-D</td><td>Representing a body having thermal capacitance but with no
+                                significant temperature gradients</td><td>
+                                <a class="link" href="Hlp_E_MASS71.html" title="MASS71"><span class="structname">MASS71</span></a> -- Thermal mass point
+                                element</td></tr></tbody></table></div><div class="blockquote"><blockquote class="blockquote"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="thermelemnote1"></a>If the model containing the conducting shell element is to be analyzed
+                                <span class="italic"><em>structurally</em></span>, use an equivalent
+                            structural shell element (such as <a class="link" href="Hlp_E_SHELL281.html" title="SHELL281"><span class="structname">SHELL281</span></a>)
+                            instead. </p></li><li class="listitem"><p><a name="thermelemnote2"></a>In most cases, contact elements can be used in place of this element.
+                        </p></li></ol></div></blockquote></div><p>For related information, see <a href="Hlp_E_CH3_Classifications.html" class="olink">Selecting Elements for Your Analysis</a>.</p></div><div class="sect2" title="6.2.2.&nbsp;Thermal Elements for the Fluid Region"><div class="titlepage"><div><div><h3 class="title"><a name="d0e17447"></a>6.2.2.&nbsp;Thermal Elements for the Fluid Region</h3></div></div></div><p>For the 1-D continuum, use <a class="link" href="Hlp_E_FLUID116.html" title="FLUID116"><span class="structname">FLUID116</span></a>, a reduced-order
+                coupled thermal-fluid pipe, to represent fluid temperature for flow-through
+                pipes/internal channels. The element can be connected to nodes in the structural
+                region.</p></div><div class="sect2" title="6.2.3.&nbsp;Thermal Loading Elements"><div class="titlepage"><div><div><h3 class="title"><a name="d0e17456"></a>6.2.3.&nbsp;Thermal Loading Elements</h3></div></div></div><div class="highlights"><p>Two methods are available for applying loads to thermal elements:</p><ul><li><a href="elem_thermelems.html#d0e17462" title="6.2.3.1.&nbsp;Using Thermal Surface-Loading Elements">Using Thermal Surface-Loading Elements</a></li><li><a href="elem_thermelems.html#d0e17502" title="6.2.3.2.&nbsp;Using Contact Elements to Load Thermal Models">Using Contact Elements to Load Thermal Models</a></li></ul></div><div class="sect3" title="6.2.3.1.&nbsp;Using Thermal Surface-Loading Elements"><div class="titlepage"><div><div><h4 class="title"><a name="d0e17462"></a>6.2.3.1.&nbsp;Using Thermal Surface-Loading Elements</h4></div></div></div><p>In a thermal model, the surface loads can consist of convection, heat flux, or
+                    radiation. Although you can apply the loads directly on the continuum elements,
+                    it is more convenient to apply them via surface-effect elements, which are
+                    overlaid onto other thermal elements.</p><p>Use these surface-effect elements to apply convection, heat flux, and
+                    radiation (to a point) on solid regions:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                                <a class="link" href="Hlp_E_SURF151.html" title="SURF151"><span class="structname">SURF151</span></a> -- 2-D thermal surface
+                                effect</p></li><li class="listitem"><p>
+                                <a class="link" href="Hlp_E_SURF152.html" title="SURF152"><span class="structname">SURF152</span></a> -- 3-D thermal surface
+                                effect</p></li></ul></div><p>
+                </p><p>Use these surface-radiosity elements to apply grey body radiation (where view
+                    factors are unknown):</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                            <a class="link" href="Hlp_E_SURF251.html" title="SURF251"><span class="structname">SURF251</span></a> -- 2-D radiosity surface</p></li><li class="listitem"><p>
+                            <a class="link" href="Hlp_E_SURF252.html" title="SURF252"><span class="structname">SURF252</span></a> -- 3-D radiosity surface</p></li></ul></div></div><div class="sect3" title="6.2.3.2.&nbsp;Using Contact Elements to Load Thermal Models"><div class="titlepage"><div><div><h4 class="title"><a name="d0e17502"></a>6.2.3.2.&nbsp;Using Contact Elements to Load Thermal Models</h4></div></div></div><p>Besides surface loads, it is also possible to load thermal models via contact
+                    elements. </p><p>When two or more structural regions are in close vicinity or contact, it is
+                    sometimes necessary to account for convection, conduction, or radiation between
+                    the regions. Frictional forces between the contacting surfaces can also be a
+                    source of heat generation. </p><p>Use these contact elements between solid regions:</p><p>
+                    <span class="bold"><strong>2-D Contact Elements</strong></span>
+                </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                            <a class="link" href="Hlp_E_CONTA171.html" title="CONTA171"><span class="structname">CONTA171</span></a> -- Lower-order surface-to-surface
+                            contact element pasted on the surface of a region</p></li><li class="listitem"><p>
+                            <a class="link" href="Hlp_E_CONTA172.html" title="CONTA172"><span class="structname">CONTA172</span></a> -- Higher-order surface-to-surface
+                            contact element pasted on the surface of a region</p></li><li class="listitem"><p>
+                            <a class="link" href="Hlp_E_TARGE169.html" title="TARGE169"><span class="structname">TARGE169</span></a> -- Target segment, used with
+                                <a class="link" href="Hlp_E_CONTA171.html" title="CONTA171"><span class="structname">CONTA171</span></a> and
+                                <a class="link" href="Hlp_E_CONTA172.html" title="CONTA172"><span class="structname">CONTA172</span></a>, which must be pasted on the
+                            target region</p></li></ul></div><p>
+                    <span class="bold"><strong>3-D Contact Elements</strong></span>
+                </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                            <a class="link" href="Hlp_E_CONTA173.html" title="CONTA173"><span class="structname">CONTA173</span></a> -- Lower-order surface-to-surface
+                            contact element pasted on the surface of a region</p></li><li class="listitem"><p>
+                            <a class="link" href="Hlp_E_CONTA174.html" title="CONTA174"><span class="structname">CONTA174</span></a> -- Higher-order surface-to-surface
+                            contact element pasted on the surface of a region</p></li><li class="listitem"><p>
+                            <a class="link" href="Hlp_E_TARGE170.html" title="TARGE170"><span class="structname">TARGE170</span></a> -- Target segment, used with
+                                <a class="link" href="Hlp_E_CONTA173.html" title="CONTA173"><span class="structname">CONTA173</span></a> and
+                                <a class="link" href="Hlp_E_CONTA174.html" title="CONTA174"><span class="structname">CONTA174</span></a>, which must be pasted on the
+                            target region</p></li></ul></div><p>A special 2-D/3-D node-to-surface contact element,
+                        <a class="link" href="Hlp_E_CONTA175.html" title="CONTA175"><span class="structname">CONTA175</span></a>, is also available. You can use it with
+                    either <a class="link" href="Hlp_E_TARGE169.html" title="TARGE169"><span class="structname">TARGE169</span></a> or
+                    <a class="link" href="Hlp_E_TARGE170.html" title="TARGE170"><span class="structname">TARGE170</span></a>.</p></div></div><div class="sect2" title="6.2.4.&nbsp;Thermal Control Element"><div class="titlepage"><div><div><h3 class="title"><a name="d0e17595"></a>6.2.4.&nbsp;Thermal Control Element</h3></div></div></div><p>Use the <a class="link" href="Hlp_E_COMBIN37.html" title="COMBIN37"><span class="structname">COMBIN37</span></a> control element to enable or disable
+                heat flow between two points when the temperature (or other control parameters)
+                reach a specified threshold value.</p></div><div class="sect2" title="6.2.5.&nbsp;Other Elements Useful in a Thermal Analysis"><div class="titlepage"><div><div><h3 class="title"><a name="d0e17604"></a>6.2.5.&nbsp;Other Elements Useful in a Thermal Analysis</h3></div></div></div><p>In addition to the thermal and related loading elements described here, also
+                consider <a href="elem_coupphys.html" class="olink">coupled-physics
+                    elements</a>, which can couple thermal and other physics.</p><p>You can also create a custom element via <a class="link" href="Hlp_E_USER300.html" title="USER300"><span class="structname">USER300</span></a> to model
+                special physics, or combine a group of linear thermal elements into a
+                    <a class="link" href="Hlp_E_MATRIX50.html" title="MATRIX50"><span class="structname">MATRIX50</span></a> superelement for greater solution
+                efficiency.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

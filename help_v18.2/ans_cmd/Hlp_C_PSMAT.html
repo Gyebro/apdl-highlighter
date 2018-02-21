@@ -1,0 +1,68 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:39-04:00"><title>PSMAT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_P_TOC.html" title="P Commands"><link rel="prev" href="Hlp_C_PSF.html" title="/PSF"><link rel="next" href="Hlp_C_PSMESH.html" title="PSMESH"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="PSMAT"><a name="PSMAT"></a><div class="titlepage"></div><a class="indexterm" name="d0e218935"></a><span class="refentrytitle"><span class="command"><strong>PSMAT</strong></span></span><div class="refnamediv"><p><span class="command"><strong>PSMAT</strong></span>, <em class="replaceable"><code>Fname</code></em>, <em class="replaceable"><code>Ext</code></em>, <em class="replaceable"><code>Matrix</code></em>, <em class="replaceable"><code>Color</code></em><br><b class="refpurpose">Writes an assembled global matrix to a postscript format
+that graphically displays nonzero matrix values.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_9.html" title="2.9.&nbsp;AUX2 Commands"><code class="classname">AUX2</code></a>: <a class="link" href="Hlp_C_CH2_9.html#tabaux2man" title="Table&nbsp;2.102:&nbsp;&nbsp;Binary File Manipulation"><span class="type">Binary File Manipulation</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="PSMAT.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Fname</code></em></b></span></dt><dd><p>File name and directory path (248 characters maximum, including the characters needed for the directory path).  An unspecified directory path defaults to the working directory; in this case, you can use all 248 characters for the file name. </p><p>This file name is used for the postscript
+file name. It defaults to the current Jobname if left blank.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Ext</code></em></b></span></dt><dd><p>Filename extension (eight-character maximum).</p><p>Defaults to <span class="filename"><strong>.PS</strong></span> if
+left blank.</p></dd><dt><span><b class="term"><em class="replaceable"><code>Matrix</code></em></b></span></dt><dd><p>Specify which matrix to write to the output postscript
+file:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">STIFF</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Write stiffness matrix to output
+postscript file. Valid for all types of analyses that write a <span class="filename"><strong>.FULL</strong></span> file.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MASS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Write mass matrix to output postscript
+file. Valid for buckling, substructure, and modal analyses. If the <span class="filename"><strong>.FULL</strong></span> file was generated in a buckling analysis, then
+this label will write the stress stiffening matrix to the output postscript
+file.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DAMP</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Write damping matrix to output postscript
+file. Only valid for damped modal analyses.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Color</code></em></b></span></dt><dd><p>Specifies whether to display the grid in black and
+white or in color:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">BLACK </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Each nonzero coefficient is symbolized
+by a black square (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">COLOR </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Each nonzero coefficient is symbolized
+by a colored square. The color depends on the module of the coefficient;
+the range is from blue for the smallest values to red for the largest
+values. The color map is: </p><p><img src="graphics/gPSMAT1.gif">&nbsp;</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="PSMAT.notes"></a><h2>Notes</h2><p>This command is used to copy a matrix from the assembled global
+matrix file (<span class="filename"><strong>.FULL</strong></span> file) as specified on the <a class="link" href="Hlp_C_FILE.html" title="FILE"><span class="command"><strong>FILE</strong></span></a> command and write it in a postscript format to a new
+file named <em class="replaceable"><code>Fname</code></em>.<em class="replaceable"><code>Ext</code></em> (defaults to <span class="filename"><strong>Jobname.PS</strong></span>). The matrix is symbolized
+by a grid in which the black or colored squares represent the nonzero
+coefficients of the matrix. The <span class="filename"><strong>.FULL</strong></span> file must
+be available for this command to work properly.</p><p>If the matrix is large, it may be difficult to display the postscript
+file. In this case, use <em class="replaceable"><code>Color</code></em> = BLACK to
+reduce the postscript file size.</p><p>The assembled global matrix file is created
+during solution depending on the analysis type, equation solver, and
+other solution options. By default, the assembled global matrix file
+is never deleted at the end of solution. For most analysis types,
+the Sparse direct solver and the ICCG solver write a <span class="filename"><strong>.FULL</strong></span> file. All mode extraction methods used for buckling and modal analyses
+write a properly formatted <span class="filename"><strong>.FULL</strong></span> file to be used
+with the <span class="command"><strong>PSMAT</strong></span> command.</p><p>When copying the stiffness matrix for transient and harmonic
+analyses, be aware that the element mass matrix values (and possibly
+element damping matrix values) are incorporated into the globally
+assembled stiffness matrix.  Thus, the globally assembled stiffness
+matrix represents more than the stiffness of the model for these analysis
+types.  Please refer to the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for more details.</p><p>The <span class="command"><strong>PSMAT</strong></span> command is not able to display
+a lumped mass matrix from a <span class="filename"><strong>.FULL</strong></span> file generated
+by a harmonic analysis.</p><p>When copying a <span class="filename"><strong>.FULL</strong></span> file, the rows and
+columns corresponding to specified constraints (e.g., <a class="link" href="Hlp_C_D.html" title="D"><span class="command"><strong>D</strong></span></a> commands) are eliminated from the system of equations and therefore
+are not written to the <span class="filename"><strong>.PS</strong></span> file. In addition,
+rows and columns corresponding to eliminated (slave) degrees of freedom
+from coupling and/or constraint equations (e.g., <a class="link" href="Hlp_C_CE.html" title="CE"><span class="command"><strong>CE</strong></span></a>, <a class="link" href="Hlp_C_CP.html" title="CP"><span class="command"><strong>CP</strong></span></a> commands) are eliminated from the system
+of equations and are not written to the <span class="filename"><strong>.PS</strong></span> file.
+The DOFs that are eliminated from any coupling and/or constraint equations
+are determined internally by the solution code and may not match what
+you specified via the <a class="link" href="Hlp_C_CE.html" title="CE"><span class="command"><strong>CE</strong></span></a>/<a class="link" href="Hlp_C_CP.html" title="CP"><span class="command"><strong>CP</strong></span></a> (or
+similar) commands.</p><p>When copying a <span class="filename"><strong>.FULL</strong></span> file, only the upper
+triangular part of the matrix will be written to the <span class="filename"><strong>.PS </strong></span> file if the matrix is symmetric; the full matrix is written if the
+matrix is unsymmetric. Only matrix coefficients that are greater than
+zero will be written.</p><p>The <a class="link" href="Hlp_C_WRFULL.html" title="WRFULL"><span class="command"><strong>WRFULL</strong></span></a> command, in conjunction with the <a class="link" href="Hlp_C_SOLVE.html" title="SOLVE"><span class="command"><strong>SOLVE</strong></span></a> command, can be used to generate the assembled global
+matrix file and eliminate the equation solution process and results
+output process.  </p><p>The following command sequence shows typical usage of this command.</p><pre class="programlisting">/BATCH,LIST
+/AUX2			! Enter AUX2 processor 
+FILE,job1,full		! FULL file containing stiffness matrix is job1.full
+PSMAT,job1KColor,ps,STIFF,COLOR	! Create file job1KColor.ps in color 
+!                                 postscript format for stiffness matrix
+PSMAT,job1MBlack,,STIFF,BLACK	! Create file job1MBalck.ps in black/white 
+!                                 postscript format for stiffness matrix
+FINISH</pre><p>Below is an example of an export of the stiffness matrix to
+a postscript format using the COLOR option.</p><p><img src="graphics/gPSMAT2.svg">&nbsp;</p></div><div class="refsect1" title="Menu Paths"><a name="PSMAT.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

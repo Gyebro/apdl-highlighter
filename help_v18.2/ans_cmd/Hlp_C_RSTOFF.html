@@ -1,0 +1,30 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:50-04:00"><title>RSTOFF</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_R_TOC.html" title="R Commands"><link rel="prev" href="Hlp_C_RSTMAC.html" title="RSTMAC"><link rel="next" href="Hlp_C_RSURF.html" title="RSURF"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="RSTOFF"><a name="RSTOFF"></a><div class="titlepage"></div><a class="indexterm" name="d0e233146"></a><span class="refentrytitle"><span class="command"><strong>RSTOFF</strong></span></span><div class="refnamediv"><p><span class="command"><strong>RSTOFF</strong></span>, <em class="replaceable"><code>Lab</code></em>, <em class="replaceable"><code>OFFSET</code></em><br><b class="refpurpose">Offsets node or element IDs in the FE geometry record.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsoluanaoptjla070199" title="Table&nbsp;2.49:&nbsp;&nbsp;Analysis Options"><span class="type">Analysis Options</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><p>The offset type:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">NODE </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Offset the node IDs.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ELEM </b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Offset the element IDs.</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>OFFSET</code></em></b></span></dt><dd><p>A positive integer value specifying the offset value
+to apply. The value must be greater than the number of nodes or elements
+in the existing superelement results file.</p></dd></dl></div></div><div class="refsect2" title="Command Default"><a name="RSTOFF.default"></a><h3>Command Default</h3><p>Issuing the <span class="command"><strong>RSTOFF</strong></span> command with no specified
+argument values applies no offsets.</p></div></div><div class="refsect1" title="Notes"><a name="d0e233216"></a><h2>Notes</h2><p>The <span class="command"><strong>RSTOFF</strong></span> command offsets node or element
+IDs in the FE geometry record saved in the <span class="filename"><strong>.rst</strong></span> results file. Use the command when expanding superelements in a
+bottom-up <a href="../ans_substr/acBstq17cldm.html" class="olink">substructuring</a> analysis (where each superelement is generated individually in a <a href="../ans_substr/advcmssuperelem.html" class="olink">generation pass</a>, and all superelements are assembled together in the <a href="../ans_substr/an9Auq1d6ldm.html" class="olink">use pass</a>). </p><p>With appropriate offsets, you can write results files with unique
+node or element IDs and thus display the entire model even if the
+original superelements have overlapping element or node ID sets. (Such
+results files are incompatible with the <span class="filename"><strong>.db</strong></span> database
+file saved at the generation pass.)</p><p>The offset that you specify is based on the original superelement
+node or element numbering, rather than on any offset specified via
+a <a class="link" href="Hlp_C_SESYMM.html" title="SESYMM"><span class="command"><strong>SESYMM</strong></span></a> or <a class="link" href="Hlp_C_SETRAN.html" title="SETRAN"><span class="command"><strong>SETRAN</strong></span></a> command.
+When issuing an <span class="command"><strong>RSTOFF</strong></span> command, avoid specifying
+an offset that creates conflicting node or element numbers for a superelement
+generated via a <a class="link" href="Hlp_C_SESYMM.html" title="SESYMM"><span class="command"><strong>SESYMM</strong></span></a> or <a class="link" href="Hlp_C_SETRAN.html" title="SETRAN"><span class="command"><strong>SETRAN</strong></span></a> command. </p><p>If you issue the command to set non-zero offsets for node or
+element IDs, you must bring the geometry into the database via the <a class="link" href="Hlp_C_SET.html" title="SET"><span class="command"><strong>SET</strong></span></a> command so that ANSYS can display the results. You
+must specify appropriate offsets to avoid overlapping node or element
+IDs with other superelement results files.</p><p>The command is valid only in the first load step of a <a href="../ans_substr/axcAuq367ldm.html" class="olink">superelement expansion
+pass</a>.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e233273"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

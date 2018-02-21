@@ -1,0 +1,77 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:50-04:00"><title>COMBI165</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_SOLID164.html" title="SOLID164"><link rel="next" href="Hlp_E_MASS166.html" title="MASS166"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="COMBI165"><a name="COMBI165"></a><div class="titlepage"></div><a class="indexterm" name="d0e80274"></a><span class="refentrytitle">
+<span class="structname">COMBI165</span>  </span><div class="refnamediv"><p><br><b class="refpurpose">Explicit
+Spring-Damper</b><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | &#8211; | DYNA</span></div></div>
+<div class=""><div class="application"><span class="application">
+<a class="link" href="Hlp_E_COMBI165.html#a4Oxq2e6mcm" title="COMBI165 Product Restrictions">Product Restrictions</a>
+</span></div></div>
+</div></p></div><div class="refsect1" title="COMBI165 Element Description"><a name="ELEMcombi165descfdb"></a><h2>COMBI165 Element Description</h2><p>
+<span class="structname">COMBI165</span> allows you to model simple
+spring or damper systems, as well as the response of more complicated
+mechanisms such as the energy absorbers used in passenger vehicle
+bumpers. These mechanisms are often experimentally characterized in
+terms of force-displacement curves.  This element provides a variety
+of discrete element formulations that can be used individually or
+in combination to model complex force-displacement relations.</p><p>
+<span class="structname">COMBI165</span> is a two-node, 1-D element.
+You cannot define both spring and damper properties for the same element.
+Separate spring and damper elements are required, but they may use
+the same nodes (that is, you can overlay two different <span class="structname">COMBI165</span> elements). A <span class="structname">COMBI165</span> element can be attached to any of the other explicit elements.</p><p>This element is used in explicit dynamic analyses only.  Refer
+to the <span class="emphasis"><em>LS-DYNA Theoretical Manual</em></span> for more information.</p><div class="figure"><a name="a4Oxqc0mcm"></a><p class="title"><b>Figure&nbsp;165.1:&nbsp;&nbsp;COMBI165 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM14-1.svg" alt="COMBI165 Geometry"></div></div></div><br class="figure-break"><p>Both figures above show two <span class="structname">COMBI165</span> elements (a spring and a damper) attached to the same two nodes.</p></div><div class="refsect1" title="COMBI165 Input Data"><a name="a4Oxq12dmcm"></a><h2>COMBI165 Input Data</h2><p>The real constants K<sub>d</sub> to TDL are optional
+and do not need to be defined.</p><p>For example, if K<sub>d</sub>, the dynamic magnification
+factor, is nonzero, the forces computed from the spring elements are
+assumed to be the static values and are scaled by an amplification
+factor to obtain the dynamic value:</p><div class="informalequation"><a name="eq35bcc7af-f7bc-46d0-94cb-8f132cecfcb8"></a><div><img src="graphics/eq35bcc7af-f7bc-46d0-94cb-8f132cecfcb8.svg"></div></div><p>For example, if it is known that a component shows a dynamic
+crush force at 15m/s equal to 2.5 times the static crush force, use
+K<sub>d</sub> = 1.5 and V<sub>0</sub> = 15,
+where V<sub>0</sub> is the test velocity.</p><p>Here, clearance (CL) defines a compressive displacement which
+the spring sustains before beginning the force-displacement relation
+given by the load curve.  If a nonzero clearance is defined, the spring
+is compressive only.</p><p>The deflection limit in compression (CDL) and tension (TDL)
+is restricted in its application to no more than one spring per node
+subject to this limit, and to deformable bodies only.  For example,
+in the former case, if three springs are in series, either the center
+spring or the two end springs may be subject to a limit, but not all
+three.  When the limiting deflection (FD) is reached, momentum conservation
+calculations are performed and a common acceleration is computed in
+the appropriate direction.  An error termination will occur if a rigid
+body node is used in a spring definition where compression is limited.</p><p>For this element, you can choose from the following materials: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Linear Elastic Spring</p></li><li class="listitem"><p>Linear Viscous Damper</p></li><li class="listitem"><p>Elastoplastic Spring</p></li><li class="listitem"><p>Nonlinear Elastic Spring</p></li><li class="listitem"><p>Nonlinear Viscous Damper</p></li><li class="listitem"><p>General Nonlinear Spring</p></li><li class="listitem"><p>Maxwell Viscoelastic Spring</p></li><li class="listitem"><p>Inelastic Tension or Compression-Only Spring</p></li></ul></div><p>
+</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_COMBI165.html#aN6zSncdtlm" title="COMBI165 Input Summary">"COMBI165 Input Summary"</a>.  A general description of element input is
+given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>.</p><div class="refsect2" title="COMBI165 Input Summary"><a name="aN6zSncdtlm"></a><h3>COMBI165 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>UX, UY, UZ, VX, VY, VZ, AX, AY, AZ (KEYOPT(1) = 0)</td></tr><tr><td>ROTX, ROTY, ROTZ (KEYOPT(1) = 1)</td></tr></table><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;For explicit dynamic analyses, V(X, Y, Z) refers to nodal
+velocity, and A(X, Y, Z) refers to nodal acceleration.  Although V(X,
+Y, Z) and A(X, Y, Z) appear as DOFs, they are not actually physical
+DOFs.  However, these quantities are computed as DOF solutions and
+stored for postprocessing.</p><hr></div></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>Kd - Dynamic magnification factor,</td></tr><tr><td>Vo - Test velocity,</td></tr><tr><td>CL - Clearance,</td></tr><tr><td>FD - Failure deflection,</td></tr><tr><td>CDL - Deflection limit (compression),</td></tr><tr><td>TDL - Deflection limit (tension)</td></tr></table></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p>
+<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command: See <a class="xref" href="elem_matsupp.html" title="Chapter&nbsp;4:&nbsp;Element Support for Material Models">Element Support for Material Models</a> for this element.</p><p>
+<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: BETD, <span>DMPR</span>
+</p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><p>None</p></dd><dt><span><b class="term">Special Features</b></span></dt><dd><p>All nonlinear features allowed for an <a href="../ans_lsd/Hlp_G_LsdTOC.html" class="olink">explicit dynamic analysis</a>.</p></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Spring/damper type (translational or torsional):</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>The material describes
+a translational spring/damper</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>The material describes
+a torsional spring/damper</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="COMBI165 Output Data"><a name="a4Oxq1a3mcm"></a><h2>COMBI165 Output Data</h2><p>Output data for <span class="structname">COMBI165</span> consists of
+the following:</p><div class="table"><a name="a4Oxq209mcm"></a><p class="title"><b>Table&nbsp;165.1:&nbsp;&nbsp;COMBI165 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="COMBI165 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="192" class="col1"><col width="264" class="col2"><col width="72" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th rowspan="2" align="center" valign="middle">Output Quantity Name[<a class="xref" href="Hlp_E_COMBI165.html#combi165.tab.3.ft.1">1</a>]</th><th colspan="3" align="center">
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th align="center">Description</th><th align="center">Item</th><th align="center">Seq. No.</th></tr></thead><tbody><tr><td>MFORX/MMOMX</td><td>X-component of member
+force/moment</td><td align="center">SMISC</td><td align="center">1</td></tr><tr><td>MFORY/MMOMY</td><td>Y-component of member force/moment</td><td align="center">SMISC</td><td align="center">2</td></tr><tr><td>MFORZ/MMOMZ</td><td>Z-component of member force/moment</td><td align="center">SMISC</td><td align="center">3</td></tr><tr><td>MFORSUM/MMOMSUM</td><td>Vector
+sum of X, Y, and Z components of member force/moment</td><td align="center">SMISC</td><td align="center">4</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="combi165.tab.3.ft.1"></a>You must specify <span class="italic"><em>either</em></span> force or moment via KEYOPT(1).  Note
+that you cannot specify <span class="italic"><em>both</em></span> force
+and moment.</p><p>MFOR:  KEYOPT(1) = 0</p><p>MMOM:  KEYOPT(1)
+= 1</p></li></ol></div><p>To output the element data in POST1, you must use the <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command.  Then, you can use the <a href="../ans_cmd/Hlp_C_PRETAB.html" class="olink"><span class="command"><strong>PRETAB</strong></span></a> command to print the output data. The <a href="../ans_cmd/Hlp_C_RSYS.html" class="olink"><span class="command"><strong>RSYS</strong></span></a> command
+has no effect when postprocessing output for this element.</p><p>In POST26, you can postprocess the element data using the <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> command only when postprocessing the <span class="filename"><strong>Jobname.RST</strong></span> file. The element results are not available on the <span class="filename"><strong>Jobname.HIS</strong></span> file.</p></div><div class="refsect1" title="COMBI165 Assumptions and Restrictions"><a name="a4Oxq278mcm"></a><h2>COMBI165 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The time step size calculation is approximated by
+using the instantaneous stiffness and one-half the nodal mass of the
+nodes joined by the spring. If the global time step size is controlled
+by an explicit spring-damper element, instabilities can develop with
+the default time step size due to the approximations in the step size
+calculation.</p></li><li class="listitem"><p>When used to interconnect under-integrated elements,
+the explicit spring-damper can sometimes excite the zero-energy hourglass
+modes.</p></li><li class="listitem"><p>To ensure that parts are uniquely defined when using <span class="structname">COMBI165</span>, specify a unique set of real constants (<a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a>), the element type (<a href="../ans_cmd/Hlp_C_ET.html" class="olink"><span class="command"><strong>ET</strong></span></a>), and the material
+properties (<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>) for each part. Defining a unique
+material number (<a href="../ans_cmd/Hlp_C_MAT.html" class="olink"><span class="command"><strong>MAT</strong></span></a>) alone is insufficient.</p></li></ul></div></div><div class="refsect1" title="COMBI165 Product Restrictions"><a name="a4Oxq2e6mcm"></a><h2>COMBI165 Product Restrictions</h2><p>There are no product-specific restrictions for this element.</p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:32-04:00"><title>LARC</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_L_TOC.html" title="L Commands"><link rel="prev" href="Hlp_C_LANG.html" title="LANG"><link rel="next" href="Hlp_C_LARC_sl.html" title="/LARC"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="LARC"><a name="LARC"></a><div class="titlepage"></div><a class="indexterm" name="d0e146345"></a><span class="refentrytitle"><span class="command"><strong>LARC</strong></span></span><div class="refnamediv"><p><span class="command"><strong>LARC</strong></span>, <em class="replaceable"><code>P1</code></em>, <em class="replaceable"><code>P2</code></em>, <em class="replaceable"><code>PC</code></em>, <em class="replaceable"><code>RAD</code></em><br><b class="refpurpose">Defines a circular arc.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7linesldm061600" title="Table&nbsp;2.32:&nbsp;&nbsp;Lines"><span class="type">Lines</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="LARC.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>P1</code></em></b></span></dt><dd><p>Keypoint at one end of circular arc line.  If <em class="replaceable"><code>P1</code></em> =
+P, graphical picking is enabled and all remaining command fields are ignored
+(valid only in the GUI).</p></dd><dt><span><b class="term"><em class="replaceable"><code>P2</code></em></b></span></dt><dd><p>Keypoint at other end of circular arc line.</p></dd><dt><span><b class="term"><em class="replaceable"><code>PC</code></em></b></span></dt><dd><p>Keypoint defining plane of arc and center of curvature side
+(with positive radius).  Must not lie along the straight line from <em class="replaceable"><code>P1</code></em> to <em class="replaceable"><code>P2</code></em>.
+ <em class="replaceable"><code>PC</code></em> need not be at the center of curvature.</p></dd><dt><span><b class="term"><em class="replaceable"><code>RAD</code></em></b></span></dt><dd><p>Radius of curvature of the arc.  If negative, assume center
+of curvature side is opposite to that defined by <em class="replaceable"><code>PC</code></em>.
+ If <em class="replaceable"><code>RAD</code></em> is blank, <em class="replaceable"><code>RAD</code></em> will
+be calculated from a curve fit through <em class="replaceable"><code>P1</code></em>, <em class="replaceable"><code>PC</code></em>,
+and <em class="replaceable"><code>P2</code></em>.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="LARC.notes"></a><h2>Notes</h2><p>Defines a circular arc line from <em class="replaceable"><code>P1</code></em> to <em class="replaceable"><code>P2</code></em>.
+ The line shape is generated as circular, regardless of the active coordinate
+system.  The line shape is invariant with coordinate system after it is generated.</p><p>When dealing with a large radius arc (1e3), or if the location of the
+arc you create is far away from the origin of your coordinate system, anomalies
+may occur. You can prevent this by creating the arc at a smaller scale, and
+then scaling the model back to full size (<a class="link" href="Hlp_C_LSSCALE.html" title="LSSCALE"><span class="command"><strong>LSSCALE</strong></span></a>). </p></div><div class="refsect1" title="Menu Paths"><a name="LARC.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Lines&gt;Arcs&gt;By End KPs &amp; Rad</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Lines&gt;Arcs&gt;Through 3 KPs</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

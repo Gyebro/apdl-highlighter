@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:39-04:00"><title>DFSWAVE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_D_TOC.html" title="D Commands"><link rel="prev" href="Hlp_C_DFLX.html" title="DFLX"><link rel="next" href="Hlp_C_DIG.html" title="DIG"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="DFSWAVE"><a name="DFSWAVE"></a><div class="titlepage"></div><a class="indexterm" name="d0e68927"></a><span class="refentrytitle"><span class="command"><strong>DFSWAVE</strong></span></span><div class="refnamediv"><p><span class="command"><strong>DFSWAVE</strong></span>, <em class="replaceable"><code>KCN</code></em>, <em class="replaceable"><code>RADIUS</code></em>, <em class="replaceable"><code>PSDREF</code></em>, <em class="replaceable"><code>DENS</code></em>, <em class="replaceable"><code>SONIC</code></em>, <em class="replaceable"><code>INCANG</code></em>, <em class="replaceable"><code>NPARA</code></em>, <em class="replaceable"><code>SampOpt</code></em><br><b class="refpurpose">Specifies the incident planar waves with random phases
+for a diffuse sound field.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_6.html" title="2.6.&nbsp;SOLUTION Commands"><code class="classname">SOLUTION</code></a>: <a class="link" href="Hlp_C_CH2_6.html#cmdsolumiscldsjla070199" title="Table&nbsp;2.59:&nbsp;&nbsp;Miscellaneous Loads"><span class="type">Misc Loads</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="DFSWAVE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>KCN</code></em></b></span></dt><dd><p>Local coordinate system:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term"><em class="replaceable"><code>N</code></em></b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Coordinate
+system number. Default = 0.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DELETE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Delete defined incident diffused
+planar waves. </p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>RADIUS</code></em></b></span></dt><dd><p>Radius of the reference sphere on which the incident
+planar waves are distributed with equal energy. Defaults to 50 x the
+half-maximum dimension of the structural panel. </p></dd><dt><span><b class="term"><em class="replaceable"><code>PSDREF</code></em></b></span></dt><dd><p>Reference power spectral density. Default = 1. </p></dd><dt><span><b class="term"><em class="replaceable"><code>DENS</code></em></b></span></dt><dd><p>Mass density of incident planar wave media. Default = <span>1.2041
+        kg/m<sup>3</sup></span>.</p></dd><dt><span><b class="term"><em class="replaceable"><code>SONIC</code></em></b></span></dt><dd><p>Sound speed in incident planar wave media. Default
+= 343.24 m/s) </p></dd><dt><span><b class="term"><em class="replaceable"><code>INCANG</code></em></b></span></dt><dd><p>Maximum incident angle (0<sup>o</sup>
+                                                &lt;= <em class="replaceable"><code>degree</code></em> &lt;=
+                                                  180<sup>o</sup>) against the
+                                                positive z axis in the local coordinate system
+                                                  <em class="replaceable"><code>KCN</code></em>. Default =
+                                                  89<sup>o</sup>. </p></dd><dt><span><b class="term"><em class="replaceable"><code>NPARA</code></em></b></span></dt><dd><p>Number of divisions on the reference sphere with cutting
+planes parallel to the x-y coordinate plane of the local coordinate
+system. Default = 20. </p></dd><dt><span><b class="term"><em class="replaceable"><code>SampOpt</code></em></b></span></dt><dd><p>Random sampling option:       </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ALL</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Initializes the random generator of
+incident planar wave phases and samples the phases at each solving
+frequency.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MULT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Initializes the random generator
+of incident planar wave phases at the first frequency and samples
+the phases at each solving frequency.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">MONO</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Initializes the random generator
+of incident planar wave phases and samples the phases only once at
+first solving frequency so that the same phases are used over the
+whole frequency range for each incident planar wave.</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="DFSWAVE.notes"></a><h2>Notes</h2><p>Issue the <span class="command"><strong>DFSWAVE</strong></span> command to activate a diffuse
+sound field. (The <a class="link" href="Hlp_C_AWAVE.html" title="AWAVE"><span class="command"><strong>AWAVE</strong></span></a> command does not activate
+a diffuse sound field.)</p><p>The <a href="../ans_elem/Hlp_E_SURF154.html" class="olink"><span class="structname">SURF154</span></a> surface element must be
+defined on the surface of the structural solid element for the excitation. </p><p>The acoustic elements and the absorbing boundary condition must
+be defined in the open acoustic domain. Do not define the acoustic
+domain on the excitation side. </p><p>The <a class="link" href="Hlp_C_PRAS.html" title="PRAS"><span class="command"><strong>PRAS</strong></span></a> and <a class="link" href="Hlp_C_PLAS.html" title="PLAS"><span class="command"><strong>PLAS</strong></span></a> commands
+                        calculate the average transmission loss for multiple sampling phases at each
+                        frequency over the frequency range. </p><p>The symmetry of a panel structure cannot be used to reduce the
+simulation size, as the incident plane waves have varying random phase
+angles. The z axis of the Cartesian coordinate system (<em class="replaceable"><code>KCN</code></em>) must be consistent with the panel&#8217;s outward
+normal unit vector at the center of the panel&#8217;s sending side. </p></div><div class="refsect1" title="Menu Paths"><a name="DFSWAVE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

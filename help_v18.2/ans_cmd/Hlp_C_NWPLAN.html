@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:03-04:00"><title>NWPLAN</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_N_TOC.html" title="N Commands"><link rel="prev" href="Hlp_C_NWPAVE.html" title="NWPAVE"><link rel="next" href="Hlp_C_NWRITE.html" title="NWRITE"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="NWPLAN"><a name="NWPLAN"></a><div class="titlepage"></div><a class="indexterm" name="d0e188208"></a><span class="refentrytitle"><span class="command"><strong>NWPLAN</strong></span></span><div class="refnamediv"><p><span class="command"><strong>NWPLAN</strong></span>, <em class="replaceable"><code>WN</code></em>, <em class="replaceable"><code>NORIG</code></em>, <em class="replaceable"><code>NXAX</code></em>, <em class="replaceable"><code>NPLAN</code></em><br><b class="refpurpose">Defines the working plane using three nodes.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_2.html" title="2.2.&nbsp;DATABASE Commands"><code class="classname">DATABASE</code></a>: <a class="link" href="Hlp_C_CH2_2.html#cmddatawkplanejla070199" title="Table&nbsp;2.8:&nbsp;&nbsp;Working Plane"><span class="type">Working Plane</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="NWPLAN.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>WN</code></em></b></span></dt><dd><p>Window number whose viewing direction will be modified to
+be normal to the working plane (defaults to 1).  If <em class="replaceable"><code>WN</code></em> is
+a negative value, the viewing direction will not be modified.  If fewer than
+three points are used, the viewing direction of window <em class="replaceable"><code>WN</code></em> will
+be used instead to define the normal to the working plane.</p></dd><dt><span><b class="term"><em class="replaceable"><code>NORIG</code></em></b></span></dt><dd><p>Node number defining the origin of the working plane coordinate
+system.  If <em class="replaceable"><code>NORIG</code></em> = P, graphical picking is enabled
+and all remaining command fields are ignored (valid only in the GUI).</p></dd><dt><span><b class="term"><em class="replaceable"><code>NXAX</code></em></b></span></dt><dd><p>Node number defining the x-axis orientation (defaults to the
+x-axis being parallel to the global X-axis; or if the normal to the working
+plane is parallel to the global X-axis, then defaults to being parallel to
+the global Y-axis).</p></dd><dt><span><b class="term"><em class="replaceable"><code>NPLAN</code></em></b></span></dt><dd><p>Node number defining the working plane (the normal defaults
+to the present display view [<a href="Hlp_C_VIEW.html" class="olink"><span class="command"><strong>/VIEW</strong></span></a>] of window <em class="replaceable"><code>WN</code></em>).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="NWPLAN.notes"></a><h2>Notes</h2><p>Defines a working plane to assist in picking operations using three
+nodes as an alternate to the <a class="link" href="Hlp_C_WPLANE.html" title="WPLANE"><span class="command"><strong>WPLANE</strong></span></a> command.  The three
+nodes also define the working plane coordinate system.  A minimum of one node
+(at the working plane origin) is required.  Immediate mode may also be active.
+ See the <a class="link" href="Hlp_C_WPSTYL.html" title="WPSTYL"><span class="command"><strong>WPSTYL</strong></span></a> command to set the style of the working
+plane display.</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="NWPLAN.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Surface Operations&gt;Create Surface&gt;Sphere&gt;At Node</strong></span></td></tr><tr><td><span class="guimenu"><strong>Utility Menu&gt;WorkPlane&gt;Align WP with&gt;Nodes</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

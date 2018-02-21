@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:41:40-04:00"><title>TIMP</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_T_TOC.html" title="T Commands"><link rel="prev" href="Hlp_C_TIMINT.html" title="TIMINT"><link rel="next" href="Hlp_C_TINTP.html" title="TINTP"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="TIMP"><a name="TIMP"></a><div class="titlepage"></div><a class="indexterm" name="d0e280339"></a><span class="refentrytitle"><span class="command"><strong>TIMP</strong></span></span><div class="refnamediv"><p><span class="command"><strong>TIMP</strong></span>, <em class="replaceable"><code>ELEM</code></em>, <em class="replaceable"><code>CHGBND</code></em>, <em class="replaceable"><code>IMPLEVEL</code></em><br><b class="refpurpose">Improves the quality of tetrahedral elements that are
+not associated with a volume.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7meshingldm061600" title="Table&nbsp;2.36:&nbsp;&nbsp;Meshing"><span class="type">Meshing</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="TIMP.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>ELEM</code></em></b></span></dt><dd><p>Identifies the tetrahedral elements to be improved.
+ Valid values are ALL and P.  If <em class="replaceable"><code>ELEM</code></em> =
+ALL (default), improve all selected tetrahedral elements.  If <em class="replaceable"><code>ELEM</code></em> = P, graphical picking is enabled and all remaining
+command fields are ignored (valid only in the GUI).</p></dd><dt><span><b class="term"><em class="replaceable"><code>CHGBND</code></em></b></span></dt><dd><p>Specifies whether to allow boundary modification.
+ Boundary modification includes such things as changes in the connectivity
+of the element faces on the boundary and the addition of boundary
+nodes.  (Also see the Notes section below for important usage information
+for <em class="replaceable"><code>CHGBND</code></em>.)  </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Do not allow boundary modification.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Allow boundary modification (default).</p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>IMPLEVEL</code></em></b></span></dt><dd><p>Identifies the level of improvement to be performed
+on the elements.  (Improvement occurs primarily through the use of
+face swapping and node smoothing techniques.)  </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Perform the least amount of swapping/smoothing.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Perform an intermediate amount of swapping/smoothing.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Perform the greatest amount of swapping/smoothing.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">3</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Perform the greatest amount of swapping/smoothing,
+plus additional improvement techniques (default).</p></td></tr></tbody></table></div></div></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="TIMP.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>TIMP</strong></span> command enables you to improve a
+given tetrahedral mesh by reducing the number of poorly-shaped tetrahedral
+elements (in particular, the number of sliver tetrahedral elements)--as
+well as the overall number of elements--in the mesh.  It also improves
+the overall quality of the mesh.</p><p><span class="command"><strong>TIMP</strong></span> is particularly useful for an imported
+tetrahedral mesh for which no geometry information is attached.</p><p>Regardless of the value of the <em class="replaceable"><code>CHGBND</code></em> argument, boundary mid-nodes can be moved.</p><p>When loads or constraints have been placed on boundary nodes
+or mid-nodes, and boundary mid-nodes are later moved, ANSYS issues
+a warning message to let you know that it will not update the loads
+or constraints.</p><p>No boundary modification is performed if shell or beam elements
+are present in the mesh, even when <em class="replaceable"><code>CHGBND</code></em> = 1.</p></div><div class="refsect1" title="Menu Paths"><a name="TIMP.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Modify Mesh&gt;Improve Tets&gt;Detached Elems</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

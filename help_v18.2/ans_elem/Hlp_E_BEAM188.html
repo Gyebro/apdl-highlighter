@@ -1,0 +1,576 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:37:14-04:00"><title>BEAM188</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_SOLID187.html" title="SOLID187"><link rel="next" href="Hlp_E_BEAM189.html" title="BEAM189"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="BEAM188"><a name="BEAM188"></a><div class="titlepage"></div><a class="indexterm" name="d0e143711"></a><span class="refentrytitle">
+            <span class="structname">BEAM188</span>
+        </span><div class="refnamediv"><p><br><b class="refpurpose">3-D 2-Node Beam</b><div class="refclass">
+            <div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  DesSpc | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+            <div class=""><div class="application"><span class="application">
+                <a class="link" href="Hlp_E_BEAM188.html#ab8Oxqa2mcm" title="BEAM188 Product Restrictions">Product Restrictions</a>
+            </span></div></div>
+        </div></p></div><div class="refsect1" title="BEAM188 Element Description"><a name="ELEMbeam188descfdb"></a><h2>BEAM188 Element Description</h2><p><span class="structname">BEAM188</span> is suitable for analyzing slender to moderately
+            stubby/thick beam structures. The element is based on Timoshenko beam theory which
+            includes shear-deformation effects. The element provides options for unrestrained
+            warping and restrained warping of cross-sections. </p><p>The element is a linear, quadratic, or cubic two-node beam element in 3-D. BEAM188 has
+            six or seven degrees of freedom at each node. These include translations in the x, y,
+            and z directions and rotations about the x, y, and z directions. A seventh degree of
+            freedom (warping magnitude) is optional. This element is well-suited for linear, large
+            rotation, and/or large strain nonlinear applications. </p><p>The element includes stress stiffness terms, by default, in any analysis with large
+            deflection. The provided stress-stiffness terms enable the elements to analyze flexural,
+            lateral, and torsional stability problems (using <a href="../ans_str/Hlp_G_STR7_2.html" class="olink">eigenvalue buckling</a>, or collapse studies with <a href="../ans_str/Hlp_G_STRUNST.html" class="olink">arc length methods or nonlinear
+                stabilization</a>).</p><p>Elasticity, plasticity, creep and other nonlinear material models are supported. A
+            cross-section associated with this element type can be a built-up section referencing
+            more than one material. Added mass, hydrodynamic added mass and loading, and buoyant
+            loading are available.</p><p>For more detailed information about this element, see <a href="../ans_thry/thy_el188.html" class="olink">BEAM188 - 3-D 2-Node Beam in the <span class="olinkdocname">Mechanical APDL Theory Reference</span></a>.</p><div class="figure"><a name="a41881"></a><p class="title"><b>Figure&nbsp;188.1:&nbsp;&nbsp;BEAM188 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gELEM188-1.svg" alt="BEAM188 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="BEAM188 Element Technology and Usage Recommendations"><a name="beam188usage"></a><h2>BEAM188 Element Technology and Usage Recommendations</h2><p><span class="structname">BEAM188</span> is based on Timoshenko beam theory, which is a
+            first-order shear-deformation theory: transverse-shear strain is constant through the
+            cross-section (that is, cross-sections remain plane and undistorted after deformation). </p><p>The element can be used for slender or stout beams. Due to the limitations of
+            first-order shear-deformation theory, slender to moderately thick beams can be analyzed.
+            Use the slenderness ratio of a beam structure (GAL<sup>2</sup> / (EI) )
+            to judge the applicability of the element, where:</p><div><div class="variablelist"><dl><dt><span><b class="term">G</b></span></dt><dd><p>Shear modulus</p></dd><dt><span><b class="term">A</b></span></dt><dd><p>Area of the cross-section</p></dd><dt><span><b class="term">L</b></span></dt><dd><p>Length of the member (not the element length)</p></dd><dt><span><b class="term">EI</b></span></dt><dd><p>Flexural rigidity</p></dd></dl></div></div><p>Calculate the ratio using some global distance measures, rather than basing it upon
+            individual element dimensions. The following illustration shows an estimate of
+            transverse-shear deformation in a cantilever beam subjected to a tip load. Although the
+            results cannot be extrapolated to any other application, the example serves well as a
+            general guideline. A slenderness ratio greater than 30 is recommended. </p><div class="figure"><a name="d0e143807"></a><p class="title"><b>Figure&nbsp;188.2:&nbsp;&nbsp;Transverse-Shear Deformation Estimation</b></p><div class="figure-contents"><div><img src="graphics/gELEM188-2.svg" alt="Transverse-Shear Deformation Estimation"></div></div></div><br class="figure-break"><div class="informaltable"><table border="1" width="95%"><colgroup><col width="192" align="center" class="col1"><col width="192" align="center" class="col2"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center">Slenderness
+                            Ratio (GAL<sup>2</sup>/(EI))</th><th bgcolor="#E3E3E3" align="center" valign="top" charoff="50">&nbsp;&#948;
+                            Timoshenko / &#948; Euler-Bernoulli</th></tr></thead><tbody><tr><td align="center">25</td><td align="center">1.120</td></tr><tr><td align="center">50</td><td align="center">1.060</td></tr><tr><td align="center">100</td><td align="center">1.030</td></tr><tr><td align="center">1000</td><td align="center">1.003</td></tr></tbody></table></div><p>The element supports an elastic relationship between transverse-shear forces and
+            transverse-shear strains. You can override default values of transverse-shear
+            stiffnesses via the <a href="../ans_cmd/Hlp_C_SECCONTROL.html" class="olink"><span class="command"><strong>SECCONTROL</strong></span></a> command.</p><p><span class="structname">BEAM188</span> does not use higher-order theories to account for
+            variation in distribution of shear stresses. Use solid elements if such effects must be
+            considered.</p><p><span class="structname">BEAM188</span> supports &#8220;restrained warping&#8221; analysis by
+            making available a seventh degree of freedom at each beam node. By default,
+                <span class="structname">BEAM188</span> elements assume that the warping of a cross-section
+            is small enough that it can be neglected (KEYOPT(1) = 0). You can activate the warping
+            degree of freedom by using KEYOPT(1) = 1. With the warping degree of freedom activated,
+            each node has seven degrees of freedom: UX, UY, UZ, ROTX, ROTY, ROTZ, and WARP. With
+            KEYOPT(1) = 1, bimoment and bicurvature are output.</p><p>When KEYOPT(3) = 0 (linear, default), <span class="structname">BEAM188</span> is based on
+            linear shape functions. It uses one point of integration along the length; therefore,
+            all element solution quantities are constant along the length. For example, when SMISC
+            quantities are requested at nodes I and J, the centroidal values are reported for both
+            end nodes. This option is recommended if the element is used as stiffener and it is
+            necessary to maintain compatibility with a first-order shell element (such as
+                <a class="link" href="Hlp_E_SHELL181.html" title="SHELL181"><span class="structname">SHELL181</span></a>). Only constant bending moments can be represented
+            exactly with this option. Mesh refinement is generally required in typical
+            applications.</p><p>When KEYOPT(3) = 2 (quadratic), <span class="structname">BEAM188</span> has an internal node
+            in the interpolation scheme, effectively making this a beam element based on quadratic
+            shape functions. Two points of integration are used, resulting in linear variation of
+            element solution quantities along the length. Linearly varying bending moments are
+            represented exactly. </p><p>When KEYOPT(3) = 3 (cubic), <span class="structname">BEAM188</span> has two internal nodes
+            and adopts cubic shape functions. Quadratically varying bending moments are represented
+            exactly. Three points of integration along the length are used, resulting in quadratic
+            variation of element solution quantities along the length. Unlike typical cubic
+            (Hermitian) formulations, cubic interpolation is used for all displacements and
+            rotations. </p><p>Quadratic and cubic options are recommended when higher-order element interpolations
+            are desired in situations where: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The element is associated with tapered cross-sections.</p></li><li class="listitem"><p>Nonuniform loads (including tapered distributed loads) exist within
+                        the element; in this case, the cubic option gives superior results over the
+                        quadratic option. </p><p>(For partially distributed loads and
+                        non-nodal point loads, only the cubic option is valid.)</p></li><li class="listitem"><p>The element may undergo highly nonuniform deformation (for example,
+                        when individual frame members in civil engineering structures are modeled
+                        with single elements).</p></li></ul></div><p>In practice, when two elements with &#8220;restrained warping&#8221; come together at
+            a sharp angle, you need to couple the displacements and rotations, but leave the
+            out-of-plane warping decoupled. This is normally accomplished by having two nodes at a
+            physical location and using appropriate constraints. This process is made easier (or
+            automated) by the <a href="../ans_cmd/Hlp_C_ENDRELEASE.html" class="olink"><span class="command"><strong>ENDRELEASE</strong></span></a> command, which decouples the out-of
+            plane warping for any adjacent elements with cross-sections intersecting at an angle
+            greater than 20 degrees.</p><p><span class="structname">BEAM188</span> allows change in cross-sectional inertia properties
+            as a function of axial elongation. By default, the cross-sectional area changes such
+            that the volume of the element is preserved after deformation. The default is suitable
+            for elastoplastic applications. By using KEYOPT(2), you can choose to keep the
+            cross-section constant or rigid. Scaling is not an option for <a href="../ans_str/Hlp_G_STRNGBS.html" class="olink">nonlinear general beam sections</a>
+                (<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,,GENB).</p><p>Two limitations are associated with the quadratic and cubic options in
+                <span class="structname">BEAM188</span>:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Although the elements employ higher-order interpolations, the
+                        initial geometry of <span class="structname">BEAM188</span> is treated as
+                        straight.</p></li><li class="listitem"><p>Because the internal nodes are inaccessible, no
+                        boundary/loading/initial conditions are allowed on these internal
+                        nodes.</p></li></ul></div><p>As a result of the limitations associated with the quadratic and cubic options, you
+            will notice discrepancies in the results between <a class="link" href="Hlp_E_BEAM189.html" title="BEAM189"><span class="structname">BEAM189</span></a> and
+            the quadratic option of <span class="structname">BEAM188</span> if the midside nodes of the
+                <a class="link" href="Hlp_E_BEAM189.html" title="BEAM189"><span class="structname">BEAM189</span></a> model have specified boundary/loading/initial
+            conditions and/or the midside nodes are not located exactly at the element midpoint.
+            Similarly, the cubic option of <span class="structname">BEAM188</span> may not be identical to
+            a traditional cubic (Hermitian) beam element. </p><p>For the mass matrix and evaluation of consistent load vectors, a higher order
+            integration rule than that used for stiffness matrix is employed. The elements support
+            both consistent and lumped mass matrices. Use <a href="../ans_cmd/Hlp_C_LUMPM.html" class="olink"><span class="command"><strong>LUMPM</strong></span></a>,ON to activate
+            lumped mass matrix. Consistent mass matrix is used by default. You can add mass per unit
+            length via the <a href="../ans_cmd/Hlp_C_SECCONTROL.html" class="olink"><span class="command"><strong>SECCONTROL</strong></span></a> command's <em class="replaceable"><code>ADDMAS</code></em>
+            values. See <a class="xref" href="Hlp_E_BEAM188.html#at41882" title="BEAM188 Input Summary">"BEAM188 Input Summary"</a>.</p><p>When <a href="../ans_bas/Hlp_G_BAS2_6.html#bas_oceanloads" class="olink">ocean loading</a> is
+            applied, the loading is nonlinear (that is, based on the square of the relative velocity
+            between the structure and the water). Accordingly, the full <a href="../ans_str/Hlp_G_STR8_13.html#strnewtraptlm81999" class="olink">Newton-Raphson option</a>
+                (<a href="../ans_cmd/Hlp_C_NROPT.html" class="olink"><span class="command"><strong>NROPT</strong></span></a>,FULL) may be necessary to achieve optimal results. (Full
+            Newton-Raphson is applied automatically in an analysis involving large-deflection
+            effects [<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON].)</p><p>The St. Venant warping functions for torsional behavior are determined in the
+            undeformed state, and are used to define shear strain even after yielding. No options
+            are available for recalculating in deformed configuration the torsional shear
+            distribution on cross-sections during the analysis and possible partial plastic yielding
+            of cross-sections. As such, large inelastic deformation due to torsional loading should
+            be treated and verified with caution. Under such circumstances, alternative modeling
+            using solid or shell elements is recommended.</p></div><div class="refsect1" title="BEAM188 Input Data"><a name="aa8Oxq337mcm"></a><h2>BEAM188 Input Data</h2><p>The geometry, node locations, coordinate system, and pressure directions for this
+            element are shown in <a class="xref" href="Hlp_E_BEAM188.html#a41881" title="Figure&nbsp;188.1:&nbsp;&nbsp;BEAM188 Geometry">Figure&nbsp;188.1:&nbsp;BEAM188 Geometry</a>. <span class="structname">BEAM188</span> is
+            defined by nodes I and J in the global coordinate system. </p><p>Node K is a preferred way to define the orientation of the element. For information
+            about orientation nodes and beam meshing, see <a href="../ans_mod/Hlp_G_MOD7_5.html#aeDruq1fclcd" class="olink">Generating a Beam Mesh With Orientation Nodes in the <span class="olinkdocname">Mechanical APDL Modeling and Meshing Guide</span></a>. See the <a href="../ans_cmd/Hlp_C_LMESH.html" class="olink"><span class="command"><strong>LMESH</strong></span></a> and
+                <a href="../ans_cmd/Hlp_C_LATT.html" class="olink"><span class="command"><strong>LATT</strong></span></a> command descriptions for details on generating the K node
+            automatically.</p><p><span class="structname">BEAM188</span> can also be defined without the orientation node K.
+            In this case, the element x-axis is oriented from node I (end 1) toward node J (end 2).
+            If no orientation node is used, the default orientation of the element y-axis is
+            automatically calculated to be parallel to the global X-Y plane. For the case where the
+            element is parallel to the global Z-axis (or within a 0.01 percent slope of it), the
+            element y-axis is oriented parallel to the global Y-axis (as shown). To control the
+            element orientation about the element x-axis, use the orientation-node option. If both
+            are defined, the orientation-node option takes precedence. The orientation node K, if
+            used, defines a plane (with I and J) containing the element x and z-axes (as shown). If
+            using this element in a large-deflection analysis, be aware that the location of the
+            orientation node K is used only to <span class="italic"><em>initially</em></span> orient
+            the element.</p><p>The number of degrees of freedom depends on the value of KEYOPT(1). When KEYOPT(1) = 0
+            (the default), six degrees of freedom occur at each node. These include translations in
+            the x, y, and z directions and rotations about the x, y, and z directions. When
+            KEYOPT(1) = 1, a seventh degree of freedom (warping magnitude) is also
+            considered.</p><p>The beam element is a one-dimensional line element in space. The cross-section details
+            are provided separately via the <a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a> and
+                <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> commands. (See <a href="../ans_str/Hlp_G_STR15.html" class="olink">Beam and Pipe Cross Sections in the <span class="olinkdocname">Mechanical APDL Structural Analysis Guide</span></a> for details.) A section is associated with the beam
+            elements by specifying the section ID number (<a href="../ans_cmd/Hlp_C_SECNUM.html" class="olink"><span class="command"><strong>SECNUM</strong></span></a>). A section
+            number is an independent element attribute. In addition to a constant cross-section, you
+            can also define a tapered cross-section by using the TAPER option on the
+                <a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a> command. (See <a href="../ans_str/Hlp_G_STR15_4.html#taperbeam" class="olink">Defining a Tapered Beam or Pipe in the <span class="olinkdocname">Mechanical APDL Structural Analysis Guide</span></a>.)</p><p><span class="structname">BEAM188</span> ignores any real constant data. See the
+                <a href="../ans_cmd/Hlp_C_SECCONTROL.html" class="olink"><span class="command"><strong>SECCONTROL</strong></span></a> command for defining the transverse-shear stiffness
+            and added mass.</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_BEAM188.html#at41882" title="BEAM188 Input Summary">"BEAM188 Input Summary"</a>.</p></div><div class="refsect1" title="BEAM188 Cross-Sections"><a name="d0e144045"></a><h2>BEAM188 Cross-Sections</h2><p><span class="structname">BEAM188</span> can be associated with these cross-section types
+                (<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,,<em class="replaceable"><code>Type</code></em>):</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Standard library section types or user meshes which define the geometry of the
+                    beam cross-section (<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,,BEAM). The material of the beam
+                    is defined either as an element attribute (MAT), or as part of section buildup
+                    (for multi-material cross-sections).</p></li><li class="listitem"><p><a href="../ans_str/Hlp_G_STRNGBS.html" class="olink">Generalized beam
+                        cross-section</a> (<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,,GENB), where the
+                    relationships of generalized stresses to generalized strains are input directly.
+                    Not available for <a href="../ans_bas/Hlp_G_BAS2_6.html#bas_oceanloads" class="olink">ocean
+                        loading</a>.</p></li><li class="listitem"><p><a href="../ans_str/Hlp_G_STR15_4.html#taperbeam" class="olink">Tapered beam
+                        cross-section</a> (<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,,TAPER), where a standard
+                    library section or user mesh defines each end of the beam. Not available for
+                        <a href="../ans_bas/Hlp_G_BAS2_6.html#bas_oceanloads" class="olink">ocean
+                    loading</a>.</p></li><li class="listitem"><p><a href="../ans_str/Hlp_G_PREBEAMSECT_5.html" class="olink">Preintegrated composite
+                        beam cross section</a> (<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,,COMB,MATRIX),
+                    abstract cross section type for defining a fully populated but symmetrical
+                    cross-section stiffness and mass matrix directly. Not available for <a href="../ans_bas/Hlp_G_BAS2_6.html#bas_oceanloads" class="olink">ocean loading</a>.</p></li></ul></div><p>
+            <span class="bold"><strong>Standard Library Sections</strong></span>
+        </p><p><span class="structname">BEAM188</span> elements are provided with section-relevant
+            quantities (area of integration, position, etc.) automatically at a number of section
+            points using <a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a> and <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a>. Each section is
+            assumed to be an assembly of a predetermined number of nine-node cells. Each
+            cross-section cell has four integration points and each can be associated with an
+            independent material type.</p><div class="figure"><a name="beam188fig_crossect"></a><p class="title"><b>Figure&nbsp;188.3:&nbsp;&nbsp;Cross-Section Cells</b></p><div class="figure-contents"><div><img src="graphics/gELEM188-4.svg" alt="Cross-Section Cells"></div></div></div><br class="figure-break"><p>The number of cells in the cross-sections influences the accuracy of section
+            properties and ability to model nonlinear stress-strain relationship through the
+            cross-section. The element has a nested structure of integration (along the length and
+            in the cross-section). </p><p>When the material associated with the elements has inelastic behavior or when the
+            temperature varies across the section, constitutive calculations are performed at the
+            section integration points. For more common elastic applications, the element uses
+            precalculated properties of the section at the element integration points; however, the
+            stresses and strains are calculated in the output pass at the section integration
+            points. Element output is available at the integration points, as well as values
+            extrapolated to the element and section nodes.</p><p>If the section is assigned the subtype ASEC, only the generalized stresses and strains
+            (axial force, bending moments, transverse shears, curvatures, and shear strains) are
+            available for output. 3-D contour plots and deformed shapes are not available. The ASEC
+            subtype is displayed only as a thin rectangle to verify beam orientation.</p><p><span class="structname">BEAM188</span> is helpful for analyzing built-up beams (that is,
+            those fabricated of two or more pieces of material joined together to form a single,
+            solid beam). The pieces are assumed to be perfectly bonded together; therefore, the beam
+            behaves as a single member. </p><p>The multi-material cross-section capability is applicable only where the assumption of
+            beam behavior (Timoshenko or Bernoulli-Euler beam theory) holds. </p><p>Therefore, the element models a simple extension of a conventional Timoshenko beam and
+            can be used in applications such as: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Bimetallic strips</p></li><li class="listitem"><p>Beams with metallic reinforcement</p></li><li class="listitem"><p>Sensors where layers of a different material has been deposited</p></li></ul></div><p><span class="structname">BEAM188</span> does not account for coupling of bending and twisting
+            at the section stiffness level. The transverse shears are also treated in an uncoupled
+            manner. This can have a significant effect on layered composite and sandwich beams if
+            the lay-up is unbalanced.</p><p>Always validate the application of <span class="structname">BEAM188</span>, either with
+            experiments or other numerical analysis. Use the restrained warping option with built-up
+            sections after due verification.</p><p>KEYOPT(15) specifies the format of the <span class="filename"><strong>.rst</strong></span> results file. For
+            KEYOPT(15) = 0, the format gives only one averaged result at each section corner node;
+            therefore, this option typically applies to homogeneous sections. For KEYOPT(15) = 1,
+            the format gives one result for each section integration point; therefore, this option
+            typically applies to built-up sections with multiple materials (and generates a larger
+            results file). </p><p>
+            <span class="bold"><strong>Generalized Beam Cross-Sections</strong></span>
+        </p><p>When using nonlinear general beam sections, neither the geometric properties nor the
+            material is explicitly specified. <span class="italic"><em>Generalized stress</em></span>
+            implies the axial force, bending moments, torque, and transverse-shear forces.
+            Similarly, <span class="italic"><em>generalized strain</em></span> implies the axial
+            strain, bending curvatures, twisting curvature, and transverse-shear strains. (For more
+            information, see <a href="../ans_str/Hlp_G_STRNGBS.html" class="olink">Using Nonlinear General Beam Sections in the <span class="olinkdocname">Mechanical APDL Structural Analysis Guide</span></a>.) This is an
+            abstract method for representing cross-section behavior; therefore, input often consists
+            of experimental data or the results of other analyses. </p><p>Generally, <span class="structname">BEAM188</span> supports an elastic relationship between
+            transverse-shear forces and transverse-shear strains. You can override default values of
+            transverse-shear stiffnesses via the <a href="../ans_cmd/Hlp_C_SECCONTROL.html" class="olink"><span class="command"><strong>SECCONTROL</strong></span></a> command. </p><p> When the beam element is associated with a generalized beam
+                (<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,,GENB) cross-section type, the relationship of
+            transverse-shear force to the transverse-shear strain can be nonlinear elastic or
+            plastic, an especially useful capability when flexible spot welds are modeled. In such a
+            case, the <a href="../ans_cmd/Hlp_C_SECCONTROL.html" class="olink"><span class="command"><strong>SECCONTROL</strong></span></a> command does not apply. </p><p>
+            <span class="bold"><strong>Tapered Beam Cross-Sections</strong></span>
+        </p><p>A linearly tapered beam is defined by specifying a standard library section or user
+            mesh at each end of the beam. The section geometries are specified at global
+            coordinates, then linear interpolated and evaluated at the element. The sections at the
+            end points must be topologically identical. (For more information, see <a href="../ans_str/Hlp_G_STR15_4.html#taperbeam" class="olink">Defining a Tapered Beam or Pipe in the <span class="olinkdocname">Mechanical APDL Structural Analysis Guide</span></a>.)</p></div><div class="refsect1" title="BEAM188 Loads"><a name="d0e144205"></a><h2>BEAM188 Loads</h2><p>Forces are applied at the nodes (which also define the element x-axis). If the
+            centroidal axis is not colinear with the element x-axis, applied axial forces will cause
+            bending. Applied shear forces cause torsional strains and moment if the centroid and
+            shear center of the cross-section are different. The nodes should therefore be located
+            at the desired points where you want to apply the forces. Use the
+                <em class="replaceable"><code>OFFSETY</code></em> and <em class="replaceable"><code>OFFSETZ</code></em> arguments
+            of the <a href="../ans_cmd/Hlp_C_SECOFFSET.html" class="olink"><span class="command"><strong>SECOFFSET</strong></span></a> command appropriately. By default, the program uses
+            the centroid as the reference axis for the beam elements.</p><p>Element loads are described in <a class="xref" href="Hlp_E_CH2_1.html#aT8sq34fldm" title="3.1.9.&nbsp;Nodal Loading">Nodal Loading</a>. Pressures can be input
+            as surface loads on the element faces as shown by the circled numbers in <a class="xref" href="Hlp_E_BEAM188.html#a41881" title="Figure&nbsp;188.1:&nbsp;&nbsp;BEAM188 Geometry">Figure&nbsp;188.1:&nbsp;BEAM188 Geometry</a>. Positive normal pressures act into the element. Lateral
+            pressures are input as force per unit length. End "pressures" are input as
+            forces.</p><p>At both ends of the element, temperatures can be input at these locations: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>At the element x-axis (T(0,0))</p></li><li class="listitem"><p>At one unit from the x-axis in the element y-direction
+                        (T(1,0))</p></li><li class="listitem"><p>At one unit from the x-axis in the element z-direction
+                        (T(0,1))</p></li></ul></div><p>Element locations (T(y,z)) are given according to the convention used in <a class="xref" href="Hlp_E_BEAM188.html#a41881" title="Figure&nbsp;188.1:&nbsp;&nbsp;BEAM188 Geometry">Figure&nbsp;188.1:&nbsp;BEAM188 Geometry</a>.</p><p>For beam elements, element body load commands (<a href="../ans_cmd/Hlp_C_BFE.html" class="olink"><span class="command"><strong>BFE</strong></span></a>) accept an
+            element number and a list of values, 1 through 6 for temperatures
+                T<sub>I</sub>(0,0), T<sub>I</sub>(1,0),
+                T<sub>I</sub>(0,1), T<sub>J</sub>(0,0),
+                T<sub>J</sub>(1,0), and T<sub>J</sub>(0,1). This input can
+            be used to specify temperature gradients that vary linearly both over the cross section
+            and along the length of the element.</p><p>The following defaults apply to element temperature input:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>If all temperatures after the first are unspecified, they default to
+                        the first. This pattern applies a uniform temperature over the entire
+                        element. (The first coordinate temperature, if unspecified, defaults to
+                        TUNIF.) </p></li><li class="listitem"><p>If all three temperatures at node I are input, and all temperatures
+                        at node J are unspecified, the node J temperatures default to the
+                        corresponding node I temperatures. This pattern applies a temperature
+                        gradient that varies linearly over the cross section but remains constant
+                        along the length of the element.</p></li><li class="listitem"><p>For any other input pattern, unspecified temperatures default to
+                        TUNIF. </p></li></ul></div><p>Alternatively, temperatures at nodes I and J can be defined using nodal body loads
+                (<a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a>,<em class="replaceable"><code>NODE</code></em>,TEMP,<em class="replaceable"><code>VAL1</code></em>).
+            When using a nodal body load to define a temperature, a uniform temperature is applied
+            over the cross section at the specified node. </p><p>Temperature gradients across the cross-section are not allowed when the beam section
+            has an arbitrary (ASEC) subtype, where the integrated cross-section inertia properties
+            are user-defined (<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,,BEAM,ASEC).</p><p>You can apply an initial stress state to this element via the
+                <a href="../ans_cmd/Hlp_C_INISTATE.html" class="olink"><span class="command"><strong>INISTATE</strong></span></a> command. For more information, see <a href="../ans_adv/Hlp_G_INSTINTRO.html" class="olink">Initial State in the <span class="olinkdocname">Mechanical APDL Advanced Analysis Guide</span></a>. </p><p>The effects of pressure load stiffness are automatically included for this element. If
+            an unsymmetric matrix is needed for pressure load stiffness effects, use
+                <a href="../ans_cmd/Hlp_C_NROPT.html" class="olink"><span class="command"><strong>NROPT</strong></span></a>,UNSYM.</p><div class="refsect2" title="Ocean Loading"><a name="d0e144310"></a><h3>Ocean Loading</h3><p>Hydrodynamic added mass and loading, and buoyant loading, are available via the
+                    <a href="../ans_cmd/Hlp_C_OCDATA.html" class="olink"><span class="command"><strong>OCDATA</strong></span></a> and <a href="../ans_cmd/Hlp_C_OCTABLE.html" class="olink"><span class="command"><strong>OCTABLE</strong></span></a> commands. </p><p>The global origin is normally at the mean sea level, with the global Z-axis
+                pointing away from the center of the earth; however, the vertical location can be
+                adjusted via <em class="replaceable"><code>Zmsl</code></em> (<em class="replaceable"><code>Val6</code></em>) on
+                the <a href="../ans_cmd/Hlp_C_OCDATA.html" class="olink"><span class="command"><strong>OCDATA</strong></span></a> command (following the <a href="../ans_cmd/Hlp_C_OCTYPE.html" class="olink"><span class="command"><strong>OCTYPE</strong></span></a>,BASIC
+                command). </p><p>For more information, see <a href="../ans_bas/Hlp_G_BAS2_6.html#bas_oceanloads" class="olink">Applying Ocean Loads in the <span class="olinkdocname">Mechanical APDL Basic Analysis Guide</span></a>.</p></div><div class="refsect2" title="BEAM188 Input Summary"><a name="at41882"></a><h3>BEAM188 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J, K (K, the orientation node, is optional but recommended)</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>UX, UY, UZ, ROTX, ROTY, ROTZ if KEYOPT(1) = 0</td></tr><tr><td>UX, UY, UZ, ROTX, ROTY, ROTZ, WARP if KEYOPT(1) = 1</td></tr></table></dd><dt><span><b class="term">Section Controls</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>TXZ, TXY, ADDMAS (See <a href="../ans_cmd/Hlp_C_SECCONTROL.html" class="olink"><span class="command"><strong>SECCONTROL</strong></span></a>)</td></tr><tr><td>(TXZ and TXY default to A*GXZ and A*GXY, respectively, where A =
+                                cross-sectional area)</td></tr></table></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><p><a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command: See <a class="xref" href="elem_matsupp.html" title="Chapter&nbsp;4:&nbsp;Element Support for Material Models">Element Support for Material Models</a> for
+                            this element.</p><p><a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: EX, (PRXY,or NUXY), GXY, GXZ, ALPX, (or
+                            CTEX, or THSX), DENS, ALPD, BETD, <span>DMPR</span></p></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Pressure&nbsp;--&nbsp;</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>face 1 (I-J) (-z normal direction)</td></tr><tr><td>face 2 (I-J) (-y normal direction)</td></tr><tr><td>face 3 (I-J) (+x tangential direction)</td></tr><tr><td>face 4 (I) (+x axial direction)</td></tr><tr><td>face 5 (J) (-x axial direction)</td></tr><tr><td>---</td></tr><tr><td>I and J denote the end nodes.</td></tr><tr><td>Use a negative value for loading in the opposite
+                                            direction.</td></tr><tr><td>Issue the <a href="../ans_cmd/Hlp_C_SFBEAM.html" class="olink"><span class="command"><strong>SFBEAM</strong></span></a> command to
+                                            specify surface loads.</td></tr><tr><td>For faces 1, 2, and 3, offsets apply only if you are
+                                            using the cubic option (KEYOPT(3) = 3). </td></tr></table></dd></dl></div></div></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Temperatures&nbsp;--&nbsp;</b></span></dt><dd><p>T(0,0), T(1,0), T(0,1) at each end node</p></dd></dl></div></div></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td><a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth
+                                    and death</a> (requires KEYOPT(11) = 1)</td></tr><tr><td><a href="../ans_cmd/Hlp_C_CORIOLIS.html" class="olink">Coriolis
+                                    effect</a></td></tr><tr><td>
+                                <a href="Hlp_E_AutoSelectElems.html" class="olink">Element
+                                    technology autoselect</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_str/Hlp_G_STRNGBS.html" class="olink">Generalized
+                                    cross-section</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_adv/Hlp_G_INSTINTRO.html" class="olink">Initial state</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink">Large
+                                    deflection</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_thry/thy_geo1.html" class="olink">Large
+                                    strain</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_str/strlinperturb.html" class="olink">Linear
+                                    perturbation</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_str/Hlp_G_STRUNST.html#strnonlinstab" class="olink">Nonlinear
+                                    stabilization</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_bas/Hlp_G_BAS2_6.html#bas_oceanloads" class="olink">Ocean
+                                    loading</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_str/Hlp_G_STR8_2.html#strstrstiftlm61199434" class="olink">Stress
+                                    stiffening</a>
+                            </td></tr></table></dd><dt><span><b class="term">KEYOPT(1)</b></span></dt><dd><p>Warping degree of freedom:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Six degrees of freedom per node, unrestrained warping
+                                        (default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Seven degrees of freedom per node (including warping).
+                                        Bimoment and bicurvature are output.</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Cross-section scaling, applies only if <a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON
+                            has been invoked:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Cross-section is scaled as a function of axial stretch
+                                        (default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Section is assumed to be rigid (classical beam
+                                        theory)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(3)</b></span></dt><dd><p>Shape functions along the length:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Linear (default)</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Quadratic</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Cubic</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(4)</b></span></dt><dd><p>Shear stress output:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Output only torsion-related shear stresses
+                                        (default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Output only flexure-related transverse-shear
+                                        stresses</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Output a combined state of the previous two types</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(6), KEYOPT(7), and KEYOPT(9) </b></span></dt><dd><p>active only when <a href="../ans_cmd/Hlp_C_OUTPR.html" class="olink"><span class="command"><strong>OUTPR</strong></span></a>,ESOL is active:</p></dd><dt><span><b class="term">KEYOPT(6)</b></span></dt><dd><p>Output control for section forces/moments and
+                            strains/curvatures:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Output section forces/moments and strains/curvatures at
+                                        integration points along the length (default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Same as KEYOPT(6) = 0 plus current section area</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Same as KEYOPT(6) = 1 plus element basis directions
+                                        (X,Y,Z)</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Output section forces/moments and strains/curvatures
+                                        extrapolated to the element nodes</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(7)</b></span></dt><dd><p>Output control at integration points (not available when section
+                            subtype = ASEC):</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>None (default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Maximum and minimum stresses/strains</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Same as KEYOPT(7) = 1 plus stresses and strains at each
+                                        section point</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(9)</b></span></dt><dd><p>Output control for values extrapolated to the element and section
+                            nodes (not available when section subtype = ASEC):</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>None (default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Maximum and minimum stresses/strains</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Same as KEYOPT(9) = 1 plus stresses and strains along the
+                                        exterior boundary of the cross-section</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Same as KEYOPT(9) = 1 plus stresses and strains at all
+                                        section nodes</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(11)</b></span></dt><dd><p>Set section properties:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Automatically determine if preintegrated section
+                                        properties can be used (default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Use numerical integration of section</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(12)</b></span></dt><dd><p>Tapered section treatment:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Linear tapered section analysis; cross-section properties
+                                        are evaluated at each Gauss point (default). This is more
+                                        accurate, but computationally intensive.</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Average cross-section analysis; for elements with tapered
+                                        sections, cross-section properties are evaluated at the
+                                        centroid only. This is an approximation of the order of the
+                                        mesh size; however, it is faster.</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(13)</b></span></dt><dd><p>Hydrodynamic output (not available in harmonic analyses that <a href="../ans_thry/thy_anproc4.html#anwaveloadingharm" class="olink">include ocean
+                                wave effects</a> (<a href="../ans_cmd/Hlp_C_HROCEAN.html" class="olink"><span class="command"><strong>HROCEAN</strong></span></a>)):</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>None (default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Additional hydrodynamic printout</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(15)</b></span></dt><dd><p>Results file format:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Store averaged results at each section corner node
+                                        (default).</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Store non-averaged results at each section integration
+                                        point. (The volume of data may be excessive. This option is
+                                        typically useful for built-up sections with multiple
+                                        materials only.)</p></dd></dl></div></div></dd></dl></div></div></div></div><div class="refsect1" title="BEAM188 Output Data"><a name="aa8Oxq3afmcm"></a><h2>BEAM188 Output Data</h2><p>The solution output associated with these elements is in two forms:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal displacements and reactions included in the overall nodal
+                        solution</p></li><li class="listitem"><p>Additional element output as described in <a class="xref" href="Hlp_E_BEAM188.html#at41883" title="Table&nbsp;188.1:&nbsp;&nbsp;BEAM188 Element Output Definitions">Table&nbsp;188.1:&nbsp;BEAM188 Element Output Definitions</a></p></li></ul></div><p>To view 3-D deformed shapes for <span class="structname">BEAM188</span>, issue an
+                <a href="../ans_cmd/Hlp_C_OUTRES.html" class="olink"><span class="command"><strong>OUTRES</strong></span></a>,MISC or <a href="../ans_cmd/Hlp_C_OUTRES.html" class="olink"><span class="command"><strong>OUTRES</strong></span></a>,ALL command for static
+            or transient analyses. To view 3-D mode shapes for a modal or eigenvalue buckling
+            analysis, you must expand the modes with element results calculation active (via the
+                <a href="../ans_cmd/Hlp_C_MXPAND.html" class="olink"><span class="command"><strong>MXPAND</strong></span></a> command's <em class="replaceable"><code>Elcalc</code></em> = YES option). </p><p>
+            <span class="bold"><strong>Linearized Stress</strong></span>
+        </p><p>It is customary in beam design to employ components of axial stress that contribute to
+            axial loads and bending in each direction separately; therefore,
+                <span class="structname">BEAM188</span> provides a linearized stress output as part of its
+            SMISC output record, as indicated in the following definitions: </p><p>SDIR is the stress component due to axial load.</p><p>SDIR = Fx/A, where Fx is the axial load (SMISC quantities 1 and 14) and A is the area
+            of the cross-section. </p><p>SByT and SByB are bending-stress components.</p><table border="0" summary="Simple list" class="simplelist"><tr><td>SByT = -Mz * y<sub>max</sub> / Izz</td></tr><tr><td>SByB = -Mz * y<sub>min</sub> / Izz</td></tr><tr><td>SBzT = My * z<sub>max</sub> / Iyy</td></tr><tr><td>SBzB = My * z<sub>min</sub> / Iyy</td></tr></table><p>where My, Mz are bending moments in the beam coordinate system (SMISC quantities
+            2,15,3,16), as shown in <a class="xref" href="Hlp_E_BEAM188.html#a41881" title="Figure&nbsp;188.1:&nbsp;&nbsp;BEAM188 Geometry">Figure&nbsp;188.1:&nbsp;BEAM188 Geometry</a>. Coordinates
+                y<sub>max</sub>, y<sub>min</sub>,
+                z<sub>max</sub>, and z<sub>min</sub> are the maximum and
+            minimum y, z coordinates in the cross-section measured from the centroid. Values Iyy and
+            Izz are moments of inertia of the cross-section. Except for the ASEC type of beam
+            cross-section, the program uses the maximum and minimum cross-section dimensions. For
+            the ASEC type of cross-section, the maximum and minimum in each of y and y direction is
+            assumed to be +0.5 to -0.5, respectively.</p><p>Corresponding definitions for the component strains are:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>EPELDIR = Ex</td></tr><tr><td>EPELByT = -Kz * y<sub>max</sub></td></tr><tr><td>EPELByB = -Kz * y<sub>min</sub></td></tr><tr><td>EPELBzT = Ky * z<sub>max</sub></td></tr><tr><td>EPELBzB = Ky * z<sub>min</sub></td></tr></table><p>where Ex, Ky, and Kz are generalized strains and curvatures (SMISC quantities 7,8,9,
+            20,21 and 22). </p><p>The reported linearized stresses are strictly valid only for elastic behavior of
+            members. <span class="structname">BEAM188</span> always employs combined stresses in order to
+            support nonlinear material behavior. When the elements are associated with nonlinear
+            materials, the component stresses can at best be regarded as linearized approximations
+            and should be interpreted with caution.</p><p>When using KEYOPT(7) with the cubic option (KEYOPT(3) = 3), the integration point at
+            the middle of the element is reported <span class="italic"><em>last</em></span> in the
+            integration-point printout.</p><p>
+            <span class="bold"><strong>The Element Output Definitions table uses the following
+                notation:</strong></span>
+        </p><p>In the table below, the O column indicates the availability of the items in the file
+                <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of the
+            items in the results file.</p><p>In either the O or R columns, &#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote that
+            describes when the item is <span class="italic"><em>conditionally</em></span> available,
+            and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span>
+            available.</p><div class="table"><a name="at41883"></a><p class="title"><b>Table&nbsp;188.1:&nbsp;&nbsp;BEAM188 Element Output Definitions</b></p><div class="table-contents"><table summary="BEAM188 Element Output Definitions" border="1" width="95%"><colgroup><col width="120" class="col1"><col width="312" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center">Name</th><th bgcolor="#E3E3E3" align="center">Definition</th><th bgcolor="#E3E3E3" align="center">O</th><th bgcolor="#E3E3E3" align="center">R</th></tr></thead><tbody><tr><td>EL</td><td>Element number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Element connectivity</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>MAT</td><td>Material number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>C.G.:X, Y, Z</td><td>Element center of gravity</td><td align="center">Y</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.centroid">1</a>
+                        </td></tr><tr><td>Area</td><td>Area of cross-section</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.1">2</a>
+                        </td><td align="center">Y</td></tr><tr><td>SF:y, z</td><td>Section shear forces</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.1">2</a>
+                        </td><td align="center">Y</td></tr><tr><td>SE:y, z</td><td>Section shear strains</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.1">2</a>
+                        </td><td align="center">Y</td></tr><tr><td>S:xx, xy, xz</td><td>Section point stresses</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.2">3</a>
+                        </td><td align="center">Y</td></tr><tr><td>EPEL:xx, xy, xz</td><td>Elastic strains</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.2">3</a>
+                        </td><td align="center">Y</td></tr><tr><td>EPTO:xx, xy, xz</td><td>Section point total mechanical strains (EPEL + EPPL + EPCR)</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.2">3</a>
+                        </td><td align="center">Y</td></tr><tr><td>EPTT:xx, xy, xz</td><td>Section point total strains (EPEL + EPPL + EPCR+EPTH)</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.2">3</a>
+                        </td><td align="center">Y</td></tr><tr><td>EPPL:xx, xy, xz</td><td>Section point plastic strains</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.2">3</a>
+                        </td><td align="center">Y</td></tr><tr><td>EPCR:xx, xy, xz</td><td>Section point creep strains</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.2">3</a>
+                        </td><td align="center">Y</td></tr><tr><td>EPTH:xx</td><td>Section point thermal strains</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.2">3</a>
+                        </td><td align="center">Y</td></tr><tr><td>NL:SEPL</td><td>Plastic yield stress</td><td align="center">-</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.4">4</a>
+                        </td></tr><tr><td>NL:SRAT</td><td>Plastic yielding (1 = actively yielding, 0 = not yielding)</td><td align="center">-</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.4">4</a>
+                        </td></tr><tr><td>NL:HPRES</td><td>Hydrostatic pressure</td><td align="center">-</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.4">4</a>
+                        </td></tr><tr><td>NL:EPEQ</td><td>Accumulated equivalent plastic strain</td><td align="center">-</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.4">4</a>
+                        </td></tr><tr><td>NL:CREQ</td><td>Accumulated equivalent creep strain</td><td align="center">-</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.4">4</a>
+                        </td></tr><tr><td>NL:PLWK</td><td>Plastic work/volume</td><td align="center">-</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.4">4</a>
+                        </td></tr><tr><td>SEND:ELASTIC, PLASTIC, CREEP</td><td>Strain energy densities</td><td align="center">-</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.4">4</a>
+                        </td></tr><tr><td>TQ</td><td>Torsional moment</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>TE</td><td>Torsional strain</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>Ky, Kz</td><td>Curvature</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>Ex</td><td>Axial strain</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>Fx</td><td>Axial force</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>My, Mz</td><td>Bending moments</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>BM</td><td>Warping bimoment</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.3">6</a>
+                        </td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.3">6</a>
+                        </td></tr><tr><td>BK</td><td>Warping bicurvature</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.3">6</a>
+                        </td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.3">6</a>
+                        </td></tr><tr><td>EXT PRESS</td><td>External pressure at integration point</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.oiolip">5</a>
+                        </td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.oiolip">5</a>
+                        </td></tr><tr><td>EFFECTIVE TENS</td><td>Effective tension on beam</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.oiolip">5</a>
+                        </td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.oiolip">5</a>
+                        </td></tr><tr><td>SDIR</td><td>Axial direct stress</td><td align="center">-</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.1">2</a>
+                        </td></tr><tr><td>SByT</td><td>Bending stress on the element +Y side of the
+                            beam</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>SByB</td><td>Bending stress on the element -Y side of the
+                            beam</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>SBzT</td><td>Bending stress on the element +Z side of the
+                            beam</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>SBzB</td><td>Bending stress on the element -Z side of the
+                            beam</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>EPELDIR</td><td>Axial strain at the end</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>EPELByT</td><td>Bending strain on the element +Y side of the
+                            beam.</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>EPELByB</td><td>Bending strain on the element -Y side of the
+                            beam.</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>EPELBzT</td><td>Bending strain on the element +Z side of the
+                            beam.</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>EPELBzB</td><td>Bending strain on the element -Z side of the
+                            beam.</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>TEMP</td><td>Temperatures at all section corner nodes.</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>LOCI:X, Y, Z</td><td>Integration point locations</td><td align="center">-</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.5">7</a>
+                        </td></tr><tr><td>SVAR:1, 2, ... , N</td><td>State variables</td><td align="center">-</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.2.ft.6">8</a>
+                        </td></tr><tr><td bgcolor="#E3E3E3" colspan="4">
+                            
+                            
+                            <span class="bold"><strong>The following values apply to <a href="../ans_bas/Hlp_G_BAS2_6.html#bas_oceanloads" class="olink">ocean
+                                    loading</a> only: [<a class="xref" href="Hlp_E_BEAM188.html#elem188ocloadonly">9</a>]</strong></span>
+                        </td></tr><tr><td>GLOBAL COORD</td><td>Element centroid location</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.epet">10</a>
+                        </td><td align="center">Y</td></tr><tr><td>VR, VZ</td><td>Radial and vertical fluid particle velocities (VR is always &gt; 0) </td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.epet">10</a>
+                        </td><td align="center">Y</td></tr><tr><td>AR, AZ</td><td>Radial and vertical fluid particle accelerations</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.epet">10</a>
+                        </td><td align="center">Y</td></tr><tr><td>PHDYN</td><td>Dynamic fluid pressure head </td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.epet">10</a>
+                        </td><td align="center">Y</td></tr><tr><td>ETA</td><td>Wave amplitude over center of element</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.epet">10</a>
+                        </td><td align="center">Y</td></tr><tr><td>TFLUID</td><td>Fluid temperature (printed if VISC is nonzero) </td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.epet">10</a>
+                        </td><td align="center">Y</td></tr><tr><td>VISC</td><td>Viscosity (output if VISC is nonzero)</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.epet">10</a>
+                        </td><td align="center">Y</td></tr><tr><td>REN, RET</td><td>Normal and tangential Reynolds numbers (if VISC is nonzero) </td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.epet">10</a>
+                        </td><td align="center">Y</td></tr><tr><td>CT</td><td>Input tangential drag coefficients evaluated at Reynolds numbers </td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.epet">10</a>
+                        </td><td align="center">Y</td></tr><tr><td>CDY, CDZ</td><td>Input normal drag coefficients evaluated at Reynolds numbers </td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.epet">10</a>
+                        </td><td align="center">Y</td></tr><tr><td>CMY, CMZ</td><td>Input inertia coefficients evaluated at Reynolds numbers</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.epet">10</a>
+                        </td><td align="center">Y</td></tr><tr><td>URT, URN</td><td>Tangential (parallel to element axis) and normal relative
+                            velocities</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.epet">10</a>
+                        </td><td align="center">Y</td></tr><tr><td>ABURN</td><td>Vector sum of normal (URN) velocities </td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.epet">10</a>
+                        </td><td align="center">Y</td></tr><tr><td>AN</td><td>Accelerations normal to element</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.epet">10</a>
+                        </td><td align="center">Y</td></tr><tr><td>FX, FY, FZ</td><td>Hydrodynamic tangential and normal forces per unit length in element
+                            coordinates</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.epet">10</a>
+                        </td><td align="center">Y</td></tr><tr><td>ARGU</td><td>Effective position of wave (radians)</td><td align="center">
+                            <a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.epet">10</a>
+                        </td><td align="center">Y</td></tr></tbody></table></div></div><br class="table-break"><div class="blockquote"><blockquote class="blockquote"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="beam188.tab.2.ft.centroid"></a>Available only at the centroid as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item.</p></li><li class="listitem"><p><a name="beam188.tab.2.ft.1"></a>See KEYOPT(6) description.</p></li><li class="listitem"><p><a name="beam188.tab.2.ft.2"></a>See KEYOPT(7) and KEYOPT(9) descriptions.</p></li><li class="listitem"><p><a name="beam188.tab.2.ft.4"></a>Available if the element has a nonlinear material. </p></li><li class="listitem"><p><a name="beam188.tab.oiolip"></a>Available only if <a href="../ans_bas/Hlp_G_BAS2_6.html#bas_oceanloads" class="olink">ocean loading</a> is present.</p></li><li class="listitem"><p><a name="beam188.tab.2.ft.3"></a>See KEYOPT(1) description.</p></li><li class="listitem"><p><a name="beam188.tab.2.ft.5"></a>Available only if <a href="../ans_cmd/Hlp_C_OUTRES.html" class="olink"><span class="command"><strong>OUTRES</strong></span></a>,LOCI command is used. </p></li><li class="listitem"><p><a name="beam188.tab.2.ft.6"></a>Available only if the <a href="../ans_mat/matcustommatmods.html#user" class="olink"><code class="function">UserMat</code> subroutine</a> and
+                            <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,STATE command are used. </p></li><li class="listitem"><p><a name="elem188ocloadonly"></a>Values are given as the average of the hydrodynamic integration points,
+                        which are distributed along the wetted portion of the element.</p></li><li class="listitem"><p><a name="beam188.tab.epet"></a>Applies to <a href="../ans_bas/Hlp_G_BAS2_6.html#bas_oceanloads" class="olink">ocean
+                            loading</a> only.</p></li></ol></div></blockquote></div><p>More output is described via the <a href="../ans_cmd/Hlp_C_PRESOL.html" class="olink"><span class="command"><strong>PRESOL</strong></span></a> and <a href="../ans_cmd/Hlp_C_GET.html#get.post.secr" class="olink"><span class="bold"><strong>*GET</strong></span>,,SECR</a> commands in POST1.</p><p><a class="xref" href="Hlp_E_BEAM188.html#arbtrq1b4ldm" title="Table&nbsp;188.2:&nbsp;&nbsp;BEAM188 Item and Sequence Numbers">Table&nbsp;188.2:&nbsp;BEAM188 Item and Sequence Numbers</a> lists output available via the
+                <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> commands using the Sequence
+            Number method. See <a href="../ans_bas/Hlp_G_BAS5_2.html#abOBsq267ldm" class="olink">Creating an Element Table in the <span class="olinkdocname">Mechanical APDL Basic Analysis Guide</span></a> and
+                <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in this reference for more information. The table
+            uses the following notation:</p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the <a class="xref" href="Hlp_E_BEAM188.html#at41883" title="Table&nbsp;188.1:&nbsp;&nbsp;BEAM188 Element Output Definitions">Table&nbsp;188.1:&nbsp;BEAM188 Element Output Definitions</a></p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for
+                        <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a></p></dd><dt><span><b class="term">I,J</b></span></dt><dd><p>sequence number for data at nodes I and J</p></dd></dl></div></div><div class="table"><a name="arbtrq1b4ldm"></a><p class="title"><b>Table&nbsp;188.2:&nbsp;&nbsp;BEAM188 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="BEAM188 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="144" align="center" class="col1"><col width="120" align="center" class="col2"><col width="120" class="COLSPEC0"><col width="120" align="center" class="col3"><col width="120" align="center" class="col4"></colgroup><thead><tr><th bgcolor="#C0C0C0" rowspan="2" align="center" valign="middle">Output Quantity
+                            Name</th><th bgcolor="#C0C0C0" colspan="4" align="center"><a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>
+                            and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th bgcolor="#E3E3E3" align="center">Item</th><th bgcolor="#E3E3E3" align="center">E</th><th bgcolor="#E3E3E3" align="center">I</th><th bgcolor="#E3E3E3" align="center">J</th></tr></thead><tbody><tr><td align="center">Fx</td><td align="center">SMISC</td><td align="center">-- </td><td align="center">1</td><td align="center">14</td></tr><tr><td align="center">My</td><td align="center">SMISC</td><td align="center">--</td><td align="center">2</td><td align="center">15</td></tr><tr><td align="center">Mz</td><td align="center">SMISC</td><td align="center">--</td><td align="center">3</td><td align="center">16</td></tr><tr><td align="center">TQ</td><td align="center">SMISC</td><td align="center">--</td><td align="center">4</td><td align="center">17</td></tr><tr><td align="center">SFz</td><td align="center">SMISC</td><td align="center">--</td><td align="center">5</td><td align="center">18</td></tr><tr><td align="center">SFy</td><td align="center">SMISC</td><td align="center">--</td><td align="center">6</td><td align="center">19</td></tr><tr><td align="center">Ex</td><td align="center">SMISC</td><td align="center">--</td><td align="center">7</td><td align="center">20</td></tr><tr><td align="center">Ky</td><td align="center">SMISC</td><td align="center">--</td><td align="center">8</td><td align="center">21</td></tr><tr><td align="center">Kz</td><td align="center">SMISC</td><td align="center">--</td><td align="center">9</td><td align="center">22</td></tr><tr><td align="center">TE</td><td align="center">SMISC</td><td align="center">--</td><td align="center">10</td><td align="center">23</td></tr><tr><td align="center">SEz</td><td align="center">SMISC</td><td align="center">--</td><td align="center">11</td><td align="center">24</td></tr><tr><td align="center">SEy</td><td align="center">SMISC</td><td align="center">--</td><td align="center">12</td><td align="center">25</td></tr><tr><td align="center">Area</td><td align="center">SMISC</td><td align="center">--</td><td align="center">13</td><td align="center">26</td></tr><tr><td align="center" valign="top">BM</td><td align="center">SMISC</td><td align="center">--</td><td align="center" valign="top">27</td><td align="center" valign="top" charoff="50">29</td></tr><tr><td align="center" valign="top">BK</td><td align="center" valign="top" charoff="50">SMISC</td><td align="center">--</td><td align="center" valign="top" charoff="50">28</td><td align="center" valign="top">30</td></tr><tr><td align="center">SDIR</td><td align="center">SMISC</td><td align="center">--</td><td align="center">31</td><td align="center">36</td></tr><tr><td align="center">SByT</td><td align="center">SMISC</td><td align="center">--</td><td align="center">32</td><td align="center">37</td></tr><tr><td align="center">SByB</td><td align="center">SMISC</td><td align="center">--</td><td align="center">33</td><td align="center">38</td></tr><tr><td align="center">SBzT</td><td align="center">SMISC</td><td align="center">--</td><td align="center">34</td><td align="center">39</td></tr><tr><td align="center">SBzB</td><td align="center">SMISC</td><td align="center">--</td><td align="center">35</td><td align="center">40</td></tr><tr><td align="center">EPELDIR</td><td align="center">SMISC</td><td align="center">--</td><td align="center">41</td><td align="center">46</td></tr><tr><td align="center">EPELByT</td><td align="center">SMISC</td><td align="center">--</td><td align="center">42</td><td align="center">47</td></tr><tr><td align="center">EPELByB</td><td align="center">SMISC</td><td align="center">--</td><td align="center">43</td><td align="center">48</td></tr><tr><td align="center">EPELBzT</td><td align="center">SMISC</td><td align="center">--</td><td align="center">44</td><td align="center">49</td></tr><tr><td align="center">EPELBzB</td><td align="center">SMISC</td><td align="center">--</td><td align="center">45</td><td align="center">50</td></tr><tr><td align="center">TEMP</td><td align="center">SMISC</td><td align="center">--</td><td align="center">51-53</td><td align="center">54-56</td></tr><tr><td align="center">EXT PRESS [<a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.3.ft.1">9</a>]</td><td align="center">SMISC</td><td align="center">--</td><td align="center">62</td><td align="center">66</td></tr><tr><td align="center">EFFECTIVE TENS [<a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.3.ft.1">9</a>]</td><td align="center">SMISC</td><td align="center">--</td><td align="center">63</td><td align="center">67</td></tr><tr><td align="center">S:xx, xy, xz</td><td align="center">LS</td><td align="center">--</td><td align="center">CI[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.1">1</a>], DI[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.2">2</a>]</td><td align="center">CJ[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.1">1</a>], DJ[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.2">2</a>]</td></tr><tr><td align="center">EPEL:xx, xy, xz</td><td align="center">LEPEL</td><td align="center">--</td><td align="center">CI[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.1">1</a>], DI[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.2">2</a>]</td><td align="center">CJ[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.1">1</a>], DJ[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.2">2</a>]</td></tr><tr><td align="center">EPTH:xx</td><td align="center">LEPTH</td><td align="center">--</td><td align="center">AI[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.3">3</a>], BI[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.4">4</a>]</td><td align="center">AJ[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.3">3</a>], BJ[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.4">4</a>]</td></tr><tr><td align="center">EPPL:xx, xy, xz</td><td align="center">LEPPL</td><td align="center">--</td><td align="center">CI[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.1">1</a>], DI[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.2">2</a>]</td><td align="center">CJ[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.1">1</a>], DJ[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.2">2</a>]</td></tr><tr><td align="center">EPCR:xx, xy, xz</td><td align="center">LEPCR</td><td align="center">--</td><td align="center">CI[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.1">1</a>], DI[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.2">2</a>]</td><td align="center">CJ[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.1">1</a>], DJ[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.2">2</a>]</td></tr><tr><td align="center">EPTO:xx, xy, xz</td><td align="center">LEPTO</td><td align="center">--</td><td align="center">CI[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.1">1</a>], DI[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.2">2</a>]</td><td align="center">CJ[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.1">1</a>], DJ[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.2">2</a>]</td></tr><tr><td align="center">EPTT:xx, xy, xz</td><td align="center">LEPTT</td><td align="center">--</td><td align="center">CI[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.1">1</a>], DI[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.2">2</a>]</td><td align="center">CJ[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.1">1</a>], DJ[<a class="xref" href="Hlp_E_BEAM188.html#pipe188.tab.3.ft.2">2</a>]</td></tr><tr><td align="center">NL: SEPL, SRAT, HPRES, EPEQ, CREQ, PLWK</td><td align="center">NLIN</td><td align="center">--</td><td align="center">EI[<a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.eiej">5</a>], FI[<a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.fifj">6</a>]</td><td align="center">EJ[<a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.eiej">5</a>], FJ[<a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.fifj">6</a>]</td></tr><tr><td bgcolor="#E3E3E3" colspan="5" align="center">
+                            
+                            
+                            <span class="bold"><strong>The following output quantities are valid for
+                                    <a href="../ans_bas/Hlp_G_BAS2_6.html#bas_oceanloads" class="olink">ocean
+                                    loading</a> only and are averaged values for the element:
+                                    [<a class="xref" href="Hlp_E_BEAM188.html#link188.tab.ocloadonly">10</a>]</strong></span>
+                        </td></tr><tr><td align="center">GLOBAL COORD</td><td align="center">NMISC</td><td align="center">1, 2, 3</td><td align="center">-- </td><td align="center">-- </td></tr><tr><td align="center">VR, VZ</td><td align="center">NMISC</td><td align="center">4, 5</td><td align="center">-- </td><td align="center">-- </td></tr><tr><td align="center">AR, AZ</td><td align="center">NMISC</td><td align="center">6, 7 [<a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.onlywaveload">7</a>]</td><td align="center">-- </td><td align="center">-- </td></tr><tr><td align="center">PHDYN</td><td align="center">NMISC</td><td align="center">8 [<a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.onlywaveload">7</a>]</td><td align="center">-- </td><td align="center">-- </td></tr><tr><td align="center">ETA</td><td align="center">NMISC</td><td align="center">9 [<a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.onlywaveload">7</a>]</td><td align="center">-- </td><td align="center">-- </td></tr><tr><td align="center">TFLUID</td><td align="center">NMISC</td><td align="center">10</td><td align="center">-- </td><td align="center">-- </td></tr><tr><td align="center">VISC</td><td align="center">NMISC</td><td align="center">11</td><td align="center">-- </td><td align="center">-- </td></tr><tr><td align="center">REN, RET</td><td align="center">NMISC</td><td align="center">12, 13 [<a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.reynolds">8</a>]</td><td align="center">-- </td><td align="center">-- </td></tr><tr><td align="center">CT</td><td align="center">NMISC</td><td align="center">14</td><td align="center">-- </td><td align="center">-- </td></tr><tr><td align="center">CDY, CDZ </td><td align="center">NMISC</td><td align="center">15, 16</td><td align="center">-- </td><td align="center">-- </td></tr><tr><td align="center">CMY, CMZ</td><td align="center">NMISC</td><td align="center">17, 18 [<a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.onlywaveload">7</a>]</td><td align="center">-- </td><td align="center">-- </td></tr><tr><td align="center">URT, URN</td><td align="center">NMISC</td><td align="center">19, 20, 21</td><td align="center">-- </td><td align="center">-- </td></tr><tr><td align="center">ABURN</td><td align="center">NMISC</td><td align="center">22 [<a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.onlywaveload">7</a>]</td><td align="center">-- </td><td align="center">-- </td></tr><tr><td align="center">AN</td><td align="center">NMISC</td><td align="center">23, 24 [<a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.onlywaveload">7</a>]</td><td align="center">-- </td><td align="center">-- </td></tr><tr><td align="center">FX, FY, FZ</td><td align="center">NMISC</td><td align="center">25, 26, 27</td><td align="center">-- </td><td align="center">-- </td></tr><tr><td align="center">ARGU</td><td align="center">NMISC</td><td align="center">28 [<a class="xref" href="Hlp_E_BEAM188.html#beam188.tab.onlywaveload">7</a>]</td><td align="center">-- </td><td align="center">-- </td></tr></tbody></table></div></div><br class="table-break"><div class="blockquote"><blockquote class="blockquote"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="pipe188.tab.3.ft.1"></a>CI and CJ are the sequence numbers for accessing the averaged line element
+                        solution quantities (LS, LEPEL, LEPPL, LEPCR, LEPTO, and LEPTT) at RST
+                        section nodes (section corner nodes where results are available), at element
+                        Node I and J respectively. CI and CJ are applicable only when KEYOPT(15) =
+                        0. For a given section corner node <em class="replaceable"><code>nn</code></em>, CI and CJ
+                        are given as follows:</p><p>CI = (<em class="replaceable"><code>nn</code></em> - 1) * 3+
+                            <em class="replaceable"><code>COMP</code></em></p><p>CJ = (<em class="replaceable"><code>nnMax</code></em> + <em class="replaceable"><code>nn</code></em> -
+                        1) * 3+ <em class="replaceable"><code>COMP</code></em></p><p>Where <em class="replaceable"><code>nnMax</code></em> is the total number of RST section
+                        nodes, and COMP is the stress or strain component (1 - xx, 2 - xy, 3 - xz).
+                        Locations of RST section nodes can be visualized with
+                            <a href="../ans_cmd/Hlp_C_SECPLOT.html" class="olink"><span class="command"><strong>SECPLOT</strong></span></a>,,6.</p></li><li class="listitem"><p><a name="pipe188.tab.3.ft.2"></a>DI and DJ are the sequence numbers for accessing the non-averaged line
+                        element solution quantities (LS, LEPEL, LEPPL, LEPCR, LEPTO, and LEPTT) at
+                        RST section integration points (section integration points where results are
+                        available), at element Node I and J respectively. DI and DJ are applicable
+                        only when KEYOPT(15) = 1. For the ith integration point (i = 1, 2, 3, or 4)
+                        in section cell <em class="replaceable"><code>nc</code></em>, DI and DJ are given as
+                        follows:</p><p>DI = (<em class="replaceable"><code>nc</code></em> - 1) * 12 + (i - 1) * 3 + COMP</p><p>DJ = (<em class="replaceable"><code>ncMax</code></em> + <em class="replaceable"><code>nc</code></em> -
+                        1) * 12 + (i - 1) * 3 + COMP</p><p>Where <em class="replaceable"><code>ncMax</code></em> is the total number of RST section
+                        cells, and COMP is the stress or strain component (1 - xx, 2 - xy, 3 - xz).
+                        Locations of RST section cells can be visualized with
+                            <a href="../ans_cmd/Hlp_C_SECPLOT.html" class="olink"><span class="command"><strong>SECPLOT</strong></span></a>,,7.</p></li><li class="listitem"><p><a name="pipe188.tab.3.ft.3"></a>AI and AJ are the sequence numbers for accessing the averaged line element
+                        thermal strain quantities LEPTH at RST section nodes (section corner nodes
+                        where results are available), at element Node I and J respectively. AI and
+                        AJ are applicable only when KEYOPT(15) = 0. For a given section corner node
+                            <em class="replaceable"><code>nn</code></em>, AI and AJ are given as follows:</p><p>AI = <em class="replaceable"><code>nn</code></em></p><p>AJ = <em class="replaceable"><code>nnMax</code></em> +
+                        <em class="replaceable"><code>nn</code></em></p><p>Where <em class="replaceable"><code>nnMax</code></em> is the total number of RST section
+                        nodes. Locations of RST section nodes can be visualized with
+                            <a href="../ans_cmd/Hlp_C_SECPLOT.html" class="olink"><span class="command"><strong>SECPLOT</strong></span></a>,,6.</p></li><li class="listitem"><p><a name="pipe188.tab.3.ft.4"></a>BI and BJ are the sequence numbers for accessing the non-averaged line
+                        element thermal strain quantities LEPTH at RST section integration points
+                        (section integration points where results are available), at element Node I
+                        and J respectively. BI and BJ are applicable only when KEYOPT(15) = 1. For
+                        the ith integration point (i = 1, 2, 3, or 4) in section cell
+                            <em class="replaceable"><code>nc</code></em>, BI and BJ are given as follows:</p><p>BI = (<em class="replaceable"><code>nc</code></em> - 1) * 4 + i</p><p>BJ = (<em class="replaceable"><code>ncMax</code></em> + <em class="replaceable"><code>nc</code></em> -
+                        1) * 4 + i</p><p>Where <em class="replaceable"><code>ncMax</code></em> is the total number of RST section
+                        cells. Locations of RST section cells can be visualized with
+                            <a href="../ans_cmd/Hlp_C_SECPLOT.html" class="olink"><span class="command"><strong>SECPLOT</strong></span></a>,,7.</p></li><li class="listitem"><p><a name="beam188.tab.eiej"></a>EI and EJ are the sequence numbers for accessing the averaged line element
+                        nonlinear solution quantities (NLIN) at RST section nodes (section corner
+                        nodes where results are available), at element Node I and J, respectively.
+                        EI and EJ are applicable only when KEYOPT(15) = 0. For a given section
+                        corner node <em class="replaceable"><code>nn</code></em>, EI and EJ are given as
+                        follows:</p><div class="blockquote"><blockquote class="blockquote"><p>EI = (<em class="replaceable"><code>nn</code></em> - 1) * 10 + COMP</p><p>EJ = (<em class="replaceable"><code>nn</code></em>Max + <em class="replaceable"><code>nn</code></em>
+                            - 1) * 10 + COMP</p></blockquote></div><p>where <em class="replaceable"><code>nn</code></em>Max is the total number of RST section
+                        nodes, and COMP is the nonlinear element solution component (1 - SEPL, 2 -
+                        SRAT, 3 - HPRES, 4 -EPEQ, 5 - CREQ, 6 - PLWK). Locations of RST section
+                        nodes can be visualized via <a href="../ans_cmd/Hlp_C_SECPLOT.html" class="olink"><span class="command"><strong>SECPLOT</strong></span></a>,,6.</p></li><li class="listitem"><p><a name="beam188.tab.fifj"></a>FI and FJ are the sequence numbers for accessing the nonaveraged line
+                        element non-linear solution quantities (NLIN) at RST section integration
+                        points (section integration points where results are available), at element
+                        Node I and J, respectively. FI and FJ are applicable only when KEYOPT(15) =
+                        1. For a given section integration point <em class="replaceable"><code>nc</code></em>, FI
+                        and FJ are given as follows:</p><div class="blockquote"><blockquote class="blockquote"><p>FI = (<em class="replaceable"><code>nc</code></em> - 1) * 10 + COMP</p><p>FJ = (<em class="replaceable"><code>nc</code></em>Max + <em class="replaceable"><code>nc</code></em>
+                            - 1) * 10 + COMP</p></blockquote></div><p>where <em class="replaceable"><code>nc</code></em>Max is the total number of RST section
+                        cells and COMP is the non-linear element solution component (1 - SEPL, 2 -
+                        SRAT, 3 - HPRES, 4 - EPEQ, 5 - CREQ, 6 - PLWK). Locations of RST section
+                        cells can be visualized via <a href="../ans_cmd/Hlp_C_SECPLOT.html" class="olink"><span class="command"><strong>SECPLOT</strong></span></a>,,7.</p></li><li class="listitem"><p><a name="beam188.tab.onlywaveload"></a>Applies to <a href="../ans_bas/Hlp_G_BAS2_6.html#bas_oceanloads" class="olink">ocean
+                            loading</a> only.</p></li><li class="listitem"><p><a name="beam188.tab.reynolds"></a>These quantities are output only if a Reynold's number dependency is
+                        used.</p></li><li class="listitem"><p><a name="beam188.tab.3.ft.1"></a>External pressure (EXT PRESS) and effective tension (EFFECTIVE TENS) occur
+                        at integration points, and not at end nodes.</p></li><li class="listitem"><p><a name="link188.tab.ocloadonly"></a>Values are given as the average of the hydrodynamic integration points,
+                        which are distributed along the wetted portion of the element.</p></li></ol></div></blockquote></div><h4><a name="d0e146590"></a>Transverse-Shear Stress Output</h4><p>The <span class="structname">BEAM188</span> formulation is based on three stress
+            components:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>one axial</p></li><li class="listitem"><p>two shear stress </p></li></ul></div><p>The shear stresses are caused by torsional and transverse loads.
+                <span class="structname">BEAM188</span> is based on first-order shear-deformation theory,
+            also popularly known as Timoshenko beam theory. The transverse-shear strain is constant
+            for the cross-section; therefore, the shear energy is based on a transverse-shear force.
+            The shear force is redistributed by predetermined shear-stress distribution coefficients
+            across the beam cross-section, and made available for output purposes. By default, the
+            program outputs only the shear stresses caused by torsional loading. Use KEYOPT(4) to
+            activate output of shear stresses caused by flexure or transverse loading.</p><p>The accuracy of transverse-shear distribution is directly proportional to the mesh
+            density of cross-section modeling (for determination of warping, shear center and other
+            section geometric properties). The traction-free state at the edges of a cross-section
+            is met only in a well-refined model of the cross-section.</p><p>By default, the program uses a mesh density (for cross-section modeling) that provides
+            accurate results for torsional rigidity, warping rigidity, inertia properties, and
+            shear-center determination. The default mesh employed is also appropriate for nonlinear
+            material calculations; however, more refined cross-section models may be necessary if
+            the shear stress distribution due to transverse loads must be captured very accurately.
+            Increasing cross-section mesh size does not imply larger computational cost if the
+            cross-section is homogeneous and the associated material is linear. Use the
+                <a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a> and <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> commands to adjust
+            cross-section mesh density.</p><p>The transverse-shear distribution calculation ignores the effects of Poisson's ratio.
+            The Poisson's ratio affects the shear-correction factor and shear-stress distribution
+            slightly, and this effect is ignored. </p></div><div class="refsect1" title="BEAM188 Assumptions and Restrictions"><a name="ab8Oxq39mcm"></a><h2>BEAM188 Assumptions and Restrictions</h2><p>
+            </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The beam must not have zero length.</p></li><li class="listitem"><p>By default (KEYOPT(1) = 0), the effect of warping restraint is assumed to
+                        be negligible.</p></li><li class="listitem"><p>Cross-section failure or folding is not accounted for.</p></li><li class="listitem"><p>Rotational degrees of freedom are not included in the lumped mass matrix
+                        if offsets are present.</p></li><li class="listitem"><p>The element works best with the full Newton-Raphson solution scheme (that
+                        is, the default choice in solution control).</p></li><li class="listitem"><p>Only moderately "thick" beams can be analyzed. See <a class="xref" href="Hlp_E_BEAM188.html#beam188usage" title="BEAM188 Element Technology and Usage Recommendations">"BEAM188 Element Technology and Usage Recommendations"</a> for more information.</p></li><li class="listitem"><p>Stress stiffening is always included in geometrically nonlinear analyses
+                            (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON). Prestress effects can be activated by
+                        the <a href="../ans_cmd/Hlp_C_PSTRES.html" class="olink"><span class="command"><strong>PSTRES</strong></span></a> command.</p></li><li class="listitem"><p>When the element is associated with <a href="../ans_str/Hlp_G_STRNGBS.html" class="olink">nonlinear general beam sections</a>
+                            (<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a>,,GENB), additional restrictions apply. For
+                        more information, see <a href="../ans_str/Hlp_G_STRNGBS.html#strngbscons" class="olink">Considerations for Using Nonlinear General Beam Sections in the <span class="olinkdocname">Mechanical APDL Structural Analysis Guide</span></a>.</p></li><li class="listitem"><p>For a random vibration (PSD) analysis, equivalent stress is not
+                        calculated.</p></li><li class="listitem"><p>When the element is used in an ocean environment:</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>For subtype ASEC, the calculated perimeter is two times the sum of
+                                the input maximum height and width.</p></li><li class="listitem"><p>Hydrodynamic output via KEYOPT(13) is not available in harmonic
+                                analyses that <a href="../ans_thry/thy_anproc4.html#anwaveloadingharm" class="olink">include ocean wave effects</a>
+                                    (<a href="../ans_cmd/Hlp_C_HROCEAN.html" class="olink"><span class="command"><strong>HROCEAN</strong></span></a>).</p></li><li class="listitem"><p>The three-dimensional effect of water pressure on the element is
+                                adjusted, as the element has only one direct stress. For more
+                                information, see <a href="../ans_thry/pipe288_hydrostatic.html" class="olink">Hydrostatic Loads in the <span class="olinkdocname">Mechanical APDL Theory Reference</span></a>.</p></li><li class="listitem"><p>Enclosed spaces used by subtypes CTUBE or HREC are assumed to have
+                                the same pressure and internal fluid density as the surrounding
+                                ocean (that is, as if the flooding option used with
+                                    <a class="link" href="Hlp_E_PIPE288.html" title="PIPE288"><span class="structname">PIPE288</span></a> or
+                                    <a class="link" href="Hlp_E_PIPE289.html" title="PIPE289"><span class="structname">PIPE289</span></a> is always enabled).</p></li><li class="listitem"><p>Generally, it is better to use a pipe element
+                                    (<a class="link" href="Hlp_E_PIPE288.html" title="PIPE288"><span class="structname">PIPE288</span></a> or
+                                    <a class="link" href="Hlp_E_PIPE289.html" title="PIPE289"><span class="structname">PIPE289</span></a>) rather than beam subtype
+                                CTUBE, as the pipe element has a degree of freedom to account for
+                                cross-sectional compression and can also have an independent
+                                internal pressure applied.</p></li><li class="listitem"><p>The output axial force may not be exact when using <a href="../ans_bas/Hlp_G_BAS2_6.html#bas_oceanloads" class="olink">ocean
+                                    loading</a> with nonlinear materials.</p></li></ul></div></li></ul></div><p>
+        </p></div><div class="refsect1" title="BEAM188 Product Restrictions"><a name="ab8Oxqa2mcm"></a><h2>BEAM188 Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific restrictions
+            apply to this element in addition to the general assumptions and restrictions given in
+            the previous section.</p><p title="ANSYS Mechanical Pro"><b>ANSYS Mechanical Pro&nbsp;</b>
+                </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li><li class="listitem"><p>Initial state is not available.</p></li><li class="listitem"><p>Linear perturbation is not available.</p></li><li class="listitem"><p>Ocean loading is not available.</p></li></ul></div><p title="ANSYS Mechanical Pro">
+            </p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+                </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+            </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

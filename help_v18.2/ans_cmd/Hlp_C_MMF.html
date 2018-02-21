@@ -1,0 +1,22 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:45-04:00"><title>MMF</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_M_TOC.html" title="M Commands"><link rel="prev" href="Hlp_C_MMASS.html" title="MMASS"><link rel="next" href="Hlp_C_MODCONT.html" title="MODCONT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="MMF"><a name="MMF"></a><div class="titlepage"></div><a class="indexterm" name="d0e166821"></a><span class="refentrytitle"><span class="command"><strong>MMF</strong></span></span><div class="refnamediv"><p><span class="command"><strong>MMF</strong></span><br><b class="refpurpose">Calculates the magnetomotive force along a path.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_7.html" title="2.7.&nbsp;POST1 Commands"><code class="classname">POST1</code></a>: <a class="link" href="Hlp_C_CH2_7.html#cmdpost1magcalcjla070199" title="Table&nbsp;2.89:&nbsp;&nbsp;Magnetics Calculations"><span class="type">Magnetics Calculations</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | &#8211; | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div></div></p></div><div class="refsect1" title="Notes"><a name="MMF.notes"></a><h2>Notes</h2><p><span class="command"><strong>MMF</strong></span> invokes an ANSYS macro which calculates the magnetomotive
+force (mmf) along a predefined path [<a class="link" href="Hlp_C_PATH.html" title="PATH"><span class="command"><strong>PATH</strong></span></a>].  It  is valid
+for both 2-D and 3-D magnetic field analyses.  The calculated mmf value is
+stored in the parameter MMF.</p><p>A closed path [<a class="link" href="Hlp_C_PATH.html" title="PATH"><span class="command"><strong>PATH</strong></span></a>], passing through the magnetic
+circuit for which mmf is to be calculated, must be defined before this command
+is issued.  A counterclockwise ordering of points on the <a class="link" href="Hlp_C_PPATH.html" title="PPATH"><span class="command"><strong>PPATH</strong></span></a> command
+will yield the correct sign on the mmf.  The mmf is based on Ampere's Law.
+ The macro makes use of calculated values of field intensity (H), and uses
+path operations for the calculations.  All path items are cleared upon completion.
+ The <span class="command"><strong>MMF</strong></span> macro sets the "ACCURATE" mapping method and "MAT"
+discontinuity option of the <a class="link" href="Hlp_C_PMAP.html" title="PMAP"><span class="command"><strong>PMAP</strong></span></a> command.</p><p class="dan" title="Distributed ANSYS Restriction"><b>Distributed ANSYS Restriction&nbsp;</b>This command is not supported in Distributed ANSYS.</p></div><div class="refsect1" title="Menu Paths"><a name="MMF.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;General Postproc&gt;Elec&amp;Mag Calc&gt;Path Based&gt;MMF</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

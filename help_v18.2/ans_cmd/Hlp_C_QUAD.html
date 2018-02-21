@@ -1,0 +1,66 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:40:41-04:00"><title>QUAD</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_Q_TOC.html" title="Q Commands"><link rel="prev" href="Hlp_C_QSOPT.html" title="QSOPT"><link rel="next" href="Hlp_C_QUIT.html" title="/QUIT"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="QUAD"><a name="QUAD"></a><div class="titlepage"></div><a class="indexterm" name="d0e221476"></a><span class="refentrytitle">
+<span class="command"><strong>QUAD</strong></span>
+</span><div class="refnamediv"><p>
+<span class="command"><strong>QUAD</strong></span>, <em class="replaceable"><code>NODE1</code></em>, <em class="replaceable"><code>NINTR</code></em>, <em class="replaceable"><code>NODE2</code></em>, <em class="replaceable"><code>NFILL</code></em>, <em class="replaceable"><code>NSTRT</code></em>, <em class="replaceable"><code>NINC</code></em>, <em class="replaceable"><code>PKFAC</code></em>
+<br><b class="refpurpose">Generates a quadratic line of nodes from three nodes.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7nodesldm061600" title="Table&nbsp;2.37:&nbsp;&nbsp;Nodes"><span class="type">Nodes</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="QUAD.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>NODE1</code></em>
+</b></span></dt><dd><p>Begin fill-in from this node location.  If <em class="replaceable"><code>NODE1</code></em> =
+P, graphical picking is enabled and all remaining command fields are ignored
+(valid only in the GUI).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NINTR</code></em>
+</b></span></dt><dd><p>Intermediate or guiding node.  Quadratic curve will pass through
+this location.  <em class="replaceable"><code>NINTR</code></em> may have any node number
+and any location.  If the quadratic line also generates a node with number <em class="replaceable"><code>NINTR</code></em>,
+the generated location overrides the previous <em class="replaceable"><code>NINTR</code></em> location.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NODE2</code></em>
+</b></span></dt><dd><p>End quadratic fill-in at this node location.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NFILL</code></em>
+</b></span></dt><dd><p>Fill-in <em class="replaceable"><code>NFILL</code></em> nodes between <em class="replaceable"><code>NODE1</code></em> and <em class="replaceable"><code>NODE2</code></em> (defaults
+to |<em class="replaceable"><code>NODE2</code></em>-<em class="replaceable"><code>NODE1</code></em>|-1).
+ <em class="replaceable"><code>NFILL</code></em> must be positive.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NSTRT</code></em>
+</b></span></dt><dd><p>Node number assigned to first filled-in node (defaults to <em class="replaceable"><code>NODE1</code></em> + <em class="replaceable"><code>NINC</code></em>).</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NINC</code></em>
+</b></span></dt><dd><p>Add this increment to each of the remaining filled-in node
+numbers (may be positive or negative).  Defaults to (<em class="replaceable"><code>NODE2</code></em>-<em class="replaceable"><code>NODE1</code></em>)/(<em class="replaceable"><code>NFILL</code></em> + 1), i.e., linear interpolation.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>PKFAC</code></em>
+</b></span></dt><dd><p>Peak location factor.  If <em class="replaceable"><code>PKFAC</code></em>=0.5,
+the peak of the quadratic shape occurs at the <em class="replaceable"><code>NINTR</code></em> location.
+ If 0.0 &lt; <em class="replaceable"><code>PKFAC</code></em> &lt; 0.5, the peak occurs to
+the <em class="replaceable"><code>NODE2</code></em> side of the <em class="replaceable"><code>NINTR</code></em> location.
+ If 0.5 &lt; <em class="replaceable"><code>PKFAC</code></em> &lt; 1.0, the peak occurs to
+the <em class="replaceable"><code>NODE1</code></em> side of the <em class="replaceable"><code>NINTR</code></em> location.
+ Defaults to 0.5.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="QUAD.notes"></a><h2>Notes</h2><p>Generates a quadratic line of nodes (in the active coordinate system)
+from three nodes.  The three nodes determine the plane of the curve and may
+have been defined in any coordinate system.  Any number of nodes may be filled-in
+and any node number sequence may be assigned.</p><p>The quadratic line feature uses three nodes (<em class="replaceable"><code>NODE1</code></em>,<em class="replaceable"><code>NINTR</code></em>,<em class="replaceable"><code>NODE2</code></em>) to determine the plane of the curve.  The curve passes through the three
+points, beginning from <em class="replaceable"><code>NODE1</code></em>, through the intermediate
+(or guiding) point <em class="replaceable"><code>NINTR</code></em>, and toward <em class="replaceable"><code>NODE2</code></em>.</p><p>Generated nodes are also quadratically spaced.  If the guiding node
+number is within the set being generated, it will be relocated according to
+the quadratic spacing.</p><p>The peak location factor is used to determine how the quadratic fits
+through the three points.  Various nodal progressions can be obtained by different
+combinations of <em class="replaceable"><code>PKFAC</code></em> and the guiding node location.
+ If the guiding node is at mid-length between <em class="replaceable"><code>NODE1</code></em> and <em class="replaceable"><code>NODE2</code></em>,
+0.293&nbsp;
+<span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqecb04cd2-e39b-4cfc-94d1-b31e8b65ec12.svg"></span> <em class="replaceable"><code>PKFAC</code></em>&lt;
+0.707 will ensure that all generated nodes fall within the <em class="replaceable"><code>NODE1</code></em>,<em class="replaceable"><code>NODE2</code></em> bounds.
+ In the limit, as <em class="replaceable"><code>PKFAC</code></em> approaches 0.0, the peak
+approaches the line through <em class="replaceable"><code>NODE1</code></em> and <em class="replaceable"><code>NINTR</code></em> at
+an infinite distance from <em class="replaceable"><code>NODE1</code></em>.  The <span class="command"><strong>QUAD</strong></span> command
+generates quadratic lines of nodes, which in turn may be used as a base line
+for generating irregular surfaces of nodes (by repeating [<a href="Hlp_C_REPEAT.html" class="olink"><span class="command"><strong>*REPEAT</strong></span></a>],
+generating [<a class="link" href="Hlp_C_NGEN.html" title="NGEN"><span class="command"><strong>NGEN</strong></span></a>, <a class="link" href="Hlp_C_NSCALE.html" title="NSCALE"><span class="command"><strong>NSCALE</strong></span></a>], etc.).  Irregular
+surfaces may also be generated with the meshing commands.</p></div><div class="refsect1" title="Menu Paths"><a name="QUAD.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Modeling&gt;Create&gt;Nodes&gt;Quadratic Fill</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

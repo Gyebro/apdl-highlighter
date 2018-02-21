@@ -1,0 +1,137 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:49-04:00"><title>EEXTRUDE</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_E_TOC.html" title="E Commands"><link rel="prev" href="Hlp_C_EDWRITE.html" title="EDWRITE"><link rel="next" href="Hlp_C_EFACET.html" title="/EFACET"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="EEXTRUDE"><a name="EEXTRUDE"></a><div class="titlepage"></div><a class="indexterm" name="d0e90511"></a><span class="refentrytitle">
+<span class="command"><strong>EEXTRUDE</strong></span>
+</span><div class="refnamediv"><p>
+   <span class="command"><strong>EEXTRUDE</strong></span>, <em class="replaceable"><code>Action</code></em>, <em class="replaceable"><code>NELEM</code></em>,
+    <em class="replaceable"><code>SPACE</code></em>, <em class="replaceable"><code>DIST</code></em>,
+    <em class="replaceable"><code>THETA</code></em>, <em class="replaceable"><code>TFACT</code></em> , &#8211;,
+    <em class="replaceable"><code>BCKEY</code></em><br><b class="refpurpose">Extrudes 2-D plane elements into 3-D solids during a 2-D to 3-D
+   analysis.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7nodesldm061600" title="Table&nbsp;2.37:&nbsp;&nbsp;Nodes"><span class="type">Nodes</span></a></span></div></div></div><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+</div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="EEXTRUDE.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term">
+<em class="replaceable"><code>Action</code></em>
+</b></span></dt><dd><p>Specifies one of the following command behaviors:</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">AUTO</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Extrudes plane elements (<a href="../ans_elem/Hlp_E_PLANE182.html" class="olink"><span class="structname">PLANE182</span></a> and
+           <a href="../ans_elem/Hlp_E_PLANE183.html" class="olink"><span class="structname">PLANE183</span></a>) <a class="link" href="Hlp_C_EEXTRUDE.html#EEXTRUDE.notes" title="Notes">based on the KEYOPT(3)
+           setting</a>. Complementary elements are also extruded. (See <a class="link" href="Hlp_C_EEXTRUDE.html#EEXTRUDE.notes" title="Notes">Notes</a> for more information.) This behavior is the
+          default.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">PLANE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Extrudes elements in the global Z direction. KEYOPT(3) of the parent plane elements
+          is ignored. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">AXIS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Extrudes elements about the global Y axis. KEYOPT(3) of the parent plane elements is
+          ignored. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TANGENT</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Extrudes plane and contact elements about the global Y axis. Target elements are
+          extruded in the global Z direction. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TIRE</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Extrudes plane and contact elements about the global Y axis in a 360-degree span.
+          Target elements are extruded in the global Z direction <span class="emphasis"><em>if outside the plane
+           elements</em></span>. Mesh refinement is adapted specifically for tire analysis.</p></td></tr></tbody></table></div></div><p>See <a class="xref" href="Hlp_C_EEXTRUDE.html#actionbehavior" title="Figure&nbsp;2:&nbsp;&nbsp;Example Command Actions">Figure&nbsp;2:&nbsp;Example Command Actions</a>.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>NELEM</code></em>
+</b></span></dt><dd><p>Number of elements to generate in the extruded direction.
+If you do not specify a number, the program calculates a number automatically
+based on the average element size and extrusion distance.</p></dd><dt><span><b class="term">
+<em class="replaceable"><code>SPACE</code></em>
+</b></span></dt><dd><p>Spacing ratio. If positive, this value is the nominal ratio of the last division size to the
+      first division size (if &gt; 1.0, sizes increase, if &lt; 1.0, sizes decrease). If negative,
+      |SPACE| is the nominal ratio of the center division size to the end division size. Default =
+      1.0 (uniform spacing). </p></dd><dt><span><b class="term">
+<em class="replaceable"><code>DIST</code></em>
+</b></span></dt><dd><p>Distance to extrude in the global Z direction for
+the plane strain case (<em class="replaceable"><code>Action</code></em> = PLANE).
+The default is 1.</p></dd><dt><span><b class="term">
+     <em class="replaceable"><code>THETA</code></em>
+    </b></span></dt><dd><p>Angle (in degrees) depending on <em class="replaceable"><code>Action</code></em>:</p><table border="0" summary="Simple list" class="simplelist"><tr><td><em class="replaceable"><code>Action</code></em> = AXIS &#8211; Ending angle to extrude about the global Y
+        axis for the axisymmetric case. Default = 360. (The beginning angle is always 0 degrees.)  </td></tr><tr><td><em class="replaceable"><code>Action</code></em> = TIRE &#8211; Span of the contact patch for mesh
+        refinement. The program generates an abrupt mesh transition from fine to coarse. Default =
+        0.</td></tr></table></dd><dt><span><b class="term">
+<em class="replaceable"><code>TFACT</code></em>
+</b></span></dt><dd><p>Factor for increasing the rigid target size. The size of the extruded rigid target elements is
+      determined automatically based on the size of the contact elements. Default = 0.2. </p></dd><dt><span><b class="term"> -- </b></span></dt><dd><p>Reserved for future use.</p></dd><dt><span><b class="term">
+     <em class="replaceable"><code>BCKEY</code></em>
+    </b></span></dt><dd><p>Controls the nodal orientation in the third direction and boundary-condition mapping
+       (<em class="replaceable"><code>Action</code></em> = AXIS or TIRE only):</p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0 --</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>All nodes are rotated to a local Cartesian coordinate system where X is the radial, Y
+          axial and Z circumferential direction. All loads and displacements are mapped from the 2-D
+          model to the 3-D model in the local coordinate system.</p><p>If applying rotation ROTY in axisymmetric cases with torsion on the 2-D model, this
+          value sets UZ = 0 at all corresponding 3-D nodes.</p><p>This value is the default. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1 --</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Only nodes with applied loads and/or displacements are rotated to a local Cartesian
+          coordinate system where X is the radial, Y axial and Z circumferential direction. All
+          loads are mapped to the 3-D model and all applied displacements are reset to zero.</p></td></tr></tbody></table></div></div><p>See <a class="xref" href="Hlp_C_EEXTRUDE.html#bckeybehavior" title="Figure&nbsp;3:&nbsp;&nbsp;Boundary Condition Key Behavior">Figure&nbsp;3:&nbsp;Boundary Condition Key Behavior</a>.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="EEXTRUDE.notes"></a><h2>Notes</h2><p>The <span class="command"><strong>EEXTRUDE</strong></span> command extrudes current-technology elements
+    <a href="../ans_elem/Hlp_E_PLANE182.html" class="olink"><span class="structname">PLANE182</span></a> and <a href="../ans_elem/Hlp_E_PLANE183.html" class="olink"><span class="structname">PLANE183</span></a>. Complementary elements
+    <a href="../ans_elem/Hlp_E_TARGE169.html" class="olink"><span class="structname">TARGE169</span></a>, <a href="../ans_elem/Hlp_E_CONTA171.html" class="olink"><span class="structname">CONTA171</span></a>,
+    <a href="../ans_elem/Hlp_E_CONTA172.html" class="olink"><span class="structname">CONTA172</span></a>, and <a href="../ans_elem/Hlp_E_REINF263.html" class="olink"><span class="structname">REINF263</span></a> also extrude. Extrusion
+   operates automatically on elements in the selected element set.</p><p><em class="replaceable"><code>Action</code></em> = TIRE determines if target elements
+   are in the middle ("rim") part of the model or on the outside ("road") part. The middle elements
+   extrude axisymmetrically about the Y axis, and the outside elements extrude in the Z
+   direction.</p><div class="figure"><a name="actionbehavior"></a><p class="title"><b>Figure&nbsp;2:&nbsp;&nbsp;Example Command Actions</b></p><div class="figure-contents"><div class="mediaobject"><span class="imagedata"><img src="graphics/gcmdexxt1.jpg" alt="Example Command Actions"></span></div></div></div><br class="figure-break"><p>If interference exists between road and tire, the command extrudes
+   outside elements within the specified tolerance (<a class="link" href="Hlp_C_SELTOL.html" title="SELTOL"><span class="command"><strong>SELTOL</strong></span></a>) in the global Z
+   direction. For more information, see <a href="../ans_adv/Hlp_G_ADV2DTO3D.html" class="olink">2-D
+    to 3-D analysis</a>.</p><p>The <em class="replaceable"><code>BCKEY</code></em> value is valid only within the 2-D
+   to 3-D analysis environment (that is, after issuing <a class="link" href="Hlp_C_MAP2DTO3D.html" title="MAP2DTO3D"><span class="command"><strong>MAP2DTO3D</strong></span></a>,START and before
+   issuing <a class="link" href="Hlp_C_MAP2DTO3D.html" title="MAP2DTO3D"><span class="command"><strong>MAP2DTO3D</strong></span></a>,FINISH). </p><p>Use the default <em class="replaceable"><code>BCKEY</code></em> = 0 setting if you
+   intend to apply minimal new loads or constraints during the 3-D analysis phase; otherwise, set
+    <em class="replaceable"><code>BCKEY</code></em> = 1.</p><p>For more information, including how boundary conditions and loads are
+   mapped from the 2-D model to the 3-D model, see <a href="../ans_adv/Hlp_G_ADV2DTO3D.html" class="olink">2-D to 3-D Analysis in the <span class="olinkdocname">Mechanical APDL Advanced Analysis Guide</span></a>.</p><div class="figure"><a name="bckeybehavior"></a><p class="title"><b>Figure&nbsp;3:&nbsp;&nbsp;Boundary Condition Key Behavior</b></p><div class="figure-contents"><div class="mediaobject"><span class="imagedata"><img src="graphics/gcmd2ddispltopnodes.png" alt="Boundary Condition Key Behavior"></span></div></div></div><br class="figure-break"><p>This command is valid in the PREP7 (<a href="Hlp_C_PREP7.html" class="olink"><span class="command"><strong>/PREP7</strong></span></a>) and
+   SOLUTION (<a href="Hlp_C_SOLU_sl.html" class="olink"><span class="command"><strong>/SOLU</strong></span></a>) processors. Some options are valid within the 2-D to 3-D
+   analysis environment only (between <a class="link" href="Hlp_C_MAP2DTO3D.html" title="MAP2DTO3D"><span class="command"><strong>MAP2DTO3D</strong></span></a>,START and
+    <a class="link" href="Hlp_C_MAP2DTO3D.html" title="MAP2DTO3D"><span class="command"><strong>MAP2DTO3D</strong></span></a>,FINISH).</p><div class="refsect2" title="Element Behavior"><a name="d0e90825"></a><h3>Element Behavior</h3><p>For automatic <a href="../ans_elem/Hlp_E_PLANE182.html" class="olink"><span class="structname">PLANE182</span></a> and <a href="../ans_elem/Hlp_E_PLANE183.html" class="olink"><span class="structname">PLANE183</span></a>
+    extrusion (<em class="replaceable"><code>Action</code></em> = AUTO), based on the element behavior of the plane
+    elements, the command performs as follows:</p><div class="blockquote"><blockquote class="blockquote"><div><div class="variablelist"><dl><dt><span><b class="term">KEYOPT(3) = 0 --</b></span></dt><dd><p>Plane stress; the element is ignored.</p></dd><dt><span><b class="term">KEYOPT(3) = 1 --</b></span></dt><dd><p>Axisymmetric; the element is extruded 360 degrees about the Y-axis.
+          <em class="replaceable"><code>THETA</code></em> is ignored.</p></dd><dt><span><b class="term">KEYOPT(3) = 2 --</b></span></dt><dd><p>Plane strain (Z strain = 0.0); the element is extruded a unit distance in the global Z
+         direction. </p></dd><dt><span><b class="term">KEYOPT(3) = 3 --</b></span></dt><dd><p>Plane stress with thickness input; the element is extruded in the Z-direction as
+         specified by the thickness input via a real constant. </p></dd><dt><span><b class="term">KEYOPT(3) = 5 -- </b></span></dt><dd><p>Generalized plane strain; the element is ignored. </p></dd><dt><span><b class="term">KEYOPT(3) = 6 -- </b></span></dt><dd><p>Axisymmetric with torsion; the element is extruded 360 degrees about the Y-axis.
+          <em class="replaceable"><code>THETA</code></em> is ignored.</p></dd></dl></div></div></blockquote></div><p>
+   </p><p>For an axisymmetric extrusion (<em class="replaceable"><code>Action</code></em> = AUTO with KEYOPT(3) = 1,
+     <em class="replaceable"><code>Action</code></em> = AXIS, or <em class="replaceable"><code>Action</code></em> = TANGENT), the
+    command merges any nodes within the specified tolerance
+     (<a class="link" href="Hlp_C_SELTOL.html" title="SELTOL"><span class="command"><strong>SELTOL</strong></span></a>,<em class="replaceable"><code>TOLER</code></em>) of the axis into a single node,
+    then forms degenerate tetrahedrons, pyramids, or wedges. The default tolerance value is 1.0E-6. </p><p>For an axisymmetric extrusion, <a href="../ans_elem/Hlp_E_SHELL208.html" class="olink"><span class="structname">SHELL208</span></a> and
+     <a href="../ans_elem/Hlp_E_SHELL209.html" class="olink"><span class="structname">SHELL209</span></a> will extrude.</p><p>You can control shape-checking options via the <a class="link" href="Hlp_C_SHPP.html" title="SHPP"><span class="command"><strong>SHPP</strong></span></a> command.</p><p>The extrusion behavior of accompanying contact
+     (<a href="../ans_elem/Hlp_E_CONTA171.html" class="olink"><span class="structname">CONTA171</span></a> and <a href="../ans_elem/Hlp_E_CONTA172.html" class="olink"><span class="structname">CONTA172</span></a>) is determined by the
+    plane element settings. Rigid target (<a href="../ans_elem/Hlp_E_TARGE169.html" class="olink"><span class="structname">TARGE169</span></a>) elements are extruded
+    in the global Z direction unless axisymmetric extrusion (<em class="replaceable"><code>Action</code></em> =
+    AXIS or <em class="replaceable"><code>Action</code></em> = TIRE) is in effect.</p><p>Within the 2-D to 3-D analysis environment (between
+     <a class="link" href="Hlp_C_MAP2DTO3D.html" title="MAP2DTO3D"><span class="command"><strong>MAP2DTO3D</strong></span></a>,START and <a class="link" href="Hlp_C_MAP2DTO3D.html" title="MAP2DTO3D"><span class="command"><strong>MAP2DTO3D</strong></span></a>,FINISH), only
+     <a href="../ans_elem/Hlp_E_PLANE182.html" class="olink"><span class="structname">PLANE182</span></a>, <a href="../ans_elem/Hlp_E_PLANE183.html" class="olink"><span class="structname">PLANE183</span></a>, and associated
+    contact/target elements are supported for the axisymmetric option (with or without torsion) and
+    plane strain.</p></div><div class="refsect2" title="2-D to 3-D Element Pairs"><a name="d0e90958"></a><h3>2-D to 3-D Element Pairs</h3><p>The following table shows each 2-D element capable of extrusion
+and its corresponding post-extrusion 3-D element: </p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="144" class="col1"><col width="144" class="col2"></colgroup><thead><tr><th bgcolor="#C0C0C0" valign="top">
+        
+        Pre-extrusion 2-D Element</th><th bgcolor="#C0C0C0" valign="top">
+        
+        Post-extrusion 3-D Element</th></tr></thead><tbody><tr><td>
+        <a href="../ans_elem/Hlp_E_PLANE182.html" class="olink"><span class="structname">PLANE182</span></a>
+       </td><td>
+        <a href="../ans_elem/Hlp_E_SOLID185.html" class="olink"><span class="structname">SOLID185</span></a>
+       </td></tr><tr><td>
+        <a href="../ans_elem/Hlp_E_PLANE183.html" class="olink"><span class="structname">PLANE183</span></a>
+       </td><td>
+        <a href="../ans_elem/Hlp_E_SOLID186.html" class="olink"><span class="structname">SOLID186</span></a>
+       </td></tr><tr><td>
+        <a href="../ans_elem/Hlp_E_TARGE169.html" class="olink"><span class="structname">TARGE169</span></a>
+       </td><td>
+        <a href="../ans_elem/Hlp_E_TARGE170.html" class="olink"><span class="structname">TARGE170</span></a>
+       </td></tr><tr><td>
+        <a href="../ans_elem/Hlp_E_CONTA171.html" class="olink"><span class="structname">CONTA171</span></a>
+       </td><td>
+        <a href="../ans_elem/Hlp_E_CONTA173.html" class="olink"><span class="structname">CONTA173</span></a>
+       </td></tr><tr><td>
+        <a href="../ans_elem/Hlp_E_CONTA172.html" class="olink"><span class="structname">CONTA172</span></a>
+       </td><td>
+        <a href="../ans_elem/Hlp_E_CONTA174.html" class="olink"><span class="structname">CONTA174</span></a>
+       </td></tr><tr><td>
+        <a href="../ans_elem/Hlp_E_REINF263.html" class="olink"><span class="structname">REINF263</span></a>
+       </td><td>
+        <a href="../ans_elem/Hlp_E_REINF265.html" class="olink"><span class="structname">REINF265</span></a>
+       </td></tr><tr><td>
+        <a href="../ans_elem/Hlp_E_SHELL208.html" class="olink"><span class="structname">SHELL208</span></a>
+       </td><td>
+        <a href="../ans_elem/Hlp_E_SHELL181.html" class="olink"><span class="structname">SHELL181</span></a>
+       </td></tr><tr><td>
+        <a href="../ans_elem/Hlp_E_SHELL209.html" class="olink"><span class="structname">SHELL209</span></a>
+       </td><td>
+        <a href="../ans_elem/Hlp_E_SHELL281.html" class="olink"><span class="structname">SHELL281</span></a>
+       </td></tr></tbody></table></div><p> All element properties are also transferred consistently during
+    extrusion. For example, a <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eq1682f964-0bcd-4551-80b5-97651b902c92.svg"></span> 2-D element is extruded to a <span class="inlineequation" style="&#xA;          vertical-align:0.000000px"><img src="graphics/eqf8c603c8-bf82-4a0c-a80e-a08a8e42f080.svg"></span> 3-D element, and a mixed u-P 2-D element is extruded to a mixed u-P 3-D
+    element. Element and node components are passed over the 3-D elements and extruded nodes.</p></div></div><div class="refsect1" title="Menu Paths"><a name="EEXTRUDE.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>This command cannot be accessed from a menu.</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

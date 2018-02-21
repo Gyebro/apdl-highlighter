@@ -1,0 +1,186 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:26-04:00"><title>REINF263</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_INFIN257.html" title="INFIN257"><link rel="next" href="Hlp_E_REINF264.html" title="REINF264"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="REINF263"><a name="REINF263"></a><div class="titlepage"></div><a class="indexterm" name="d0e190088"></a><a class="indexterm" name="d0e190091"></a><span class="refentrytitle">
+<span class="structname">REINF263</span>  </span><div class="refnamediv"><p><br><b class="refpurpose">2-D Smeared Reinforcing</b><div class="refclass">
+<div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | &#8211; | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+<div class=""><div class="application"><span class="application">
+<a class="link" href="Hlp_E_REINF263.html#reinf263.product" title="REINF263 Product Restrictions">Product Restrictions</a>
+</span></div></div>
+</div></p></div><div class="refsect1" title="REINF263 Element Description"><a name="ELEMreinf263desc"></a><h2>REINF263 Element Description</h2><p>Use <span class="structname">REINF263</span> with standard 2-D solid
+and shell elements (referred to here as the <span class="italic"><em>base elements</em></span>) to provide extra reinforcing to those elements.</p><p>The element uses a smeared approach and is suitable for modeling
+evenly spaced reinforcing fibers that appear in layered form. Each
+reinforcing layer contains a cluster of fibers with unique orientation,
+material, and cross-section area, and is simplified as a homogeneous
+membrane having unidirectional stiffness. You can specify multiple
+layers of reinforcing in one <span class="structname">REINF263</span> element.
+The nodal locations, degrees of freedom, and connectivity of the <span class="structname">REINF263</span> element are identical to those of the base
+element. </p><p>
+   <span class="structname">REINF263</span> has plasticity, stress stiffening, creep, large deflection, and
+   large strain capabilities.</p><p>For more information, see <a href="../ans_str/Hlp_G_STRREINF.html" class="olink">Reinforcing in the <span class="olinkdocname">Mechanical APDL Structural Analysis Guide</span></a>.</p><div class="figure"><a name="ELEM263.fig.1"></a><p class="title"><b>Figure&nbsp;263.1:&nbsp;&nbsp;REINF263 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gelem263-1.svg" alt="REINF263 Geometry"></div></div></div><br class="figure-break"><div class="figure"><a name="ELEM263.fig.2"></a><p class="title"><b>Figure&nbsp;263.2:&nbsp;&nbsp;REINF263 Coordinate System</b></p><div class="figure-contents"><div><img src="graphics/gelem263-2.svg" alt="REINF263 Coordinate System"></div><div class="blockquote"><blockquote class="blockquote"><table border="0" summary="Simple list" class="simplelist"><tr><td>X = Layer x-axis if layer orientation angle &#952; is specified
+(<a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a>,,,,<em class="replaceable"><code>THETA</code></em>)</td></tr><tr><td>X<sub>0</sub> = Layer x-axis if layer orientation
+angle &#952; is <span class="italic"><em>not</em></span> specified</td></tr></table></blockquote></div></div></div><br class="figure-break"></div><div class="refsect1" title="REINF263 Input Data"><a name="ELEM263inputdata"></a><h2>REINF263 Input Data</h2><p>The geometry and nodal locations for this element are shown
+in <a class="xref" href="Hlp_E_REINF263.html#ELEM263.fig.1" title="Figure&nbsp;263.1:&nbsp;&nbsp;REINF263 Geometry">Figure&nbsp;263.1:&nbsp;REINF263 Geometry</a>. The <span class="structname">REINF263</span> element and its base element share the same nodes and element connectivity. </p><p>You can easily create <span class="structname">REINF263</span> elements
+from the selected base elements via the <a href="../ans_cmd/Hlp_C_EREINF.html" class="olink"><span class="command"><strong>EREINF</strong></span></a> command.
+Section commands (<a href="../ans_cmd/Hlp_C_SECTYPE.html" class="olink"><span class="command"><strong>SECTYPE</strong></span></a> and <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a>) define the material ID, cross-section area, spacing, location,
+and orientation of reinforcing fibers. </p><p>The equivalent thickness <em class="replaceable"><code>h</code></em> of the
+smeared reinforcing layer is given by</p><div class="blockquote"><blockquote class="blockquote"><p>h = A / S</p></blockquote></div><p>where <em class="replaceable"><code>A</code></em> is the cross-section area
+of a single fiber, and <em class="replaceable"><code>S</code></em> is the distance
+between two adjacent fibers. </p><p>The coordinate systems for one reinforcing layer are shown in <a class="xref" href="Hlp_E_REINF263.html#ELEM263.fig.2" title="Figure&nbsp;263.2:&nbsp;&nbsp;REINF263 Coordinate System">Figure&nbsp;263.2:&nbsp;REINF263 Coordinate System</a>. Each reinforcing layer is indicated by
+its intersection points (II, JJ for linear base elements, and II,
+JJ, KK, for quadratic base elements) with the base elements. Fibers
+in this layer are always parallel to the first coordinate axis x.
+The x axis is default to the first parametric direction S1 at the
+center of the layer. The default axis is defined as </p><div class="informalequation"><a name="eqe2cc8dd7-7d65-4b7f-b7b0-6e5f5e0ab0fe"></a><div><img src="graphics/eqe2cc8dd7-7d65-4b7f-b7b0-6e5f5e0ab0fe.svg"></div></div><p>where</p><table border="0" summary="Simple list" class="simplelist"><tr><td>{x} = h<sub>1</sub>{x}<sup>II</sup> + h<sub>2</sub>{x}<sup>JJ</sup> + h<sub>3</sub>{x}<sup>KK</sup>
+</td></tr><tr><td>{x}<sup>II</sup>, {x}<sup>JJ</sup>, {x}<sup>KK</sup> = global coordinates of intersection
+points</td></tr><tr><td>h<sub>1</sub>, h<sub>2</sub>, h<sub>3</sub> = line shape functions</td></tr></table><p>
+</p><p>You can reorient the layer coordinate system by angle &#952;
+(in degrees) for each layer. The value of &#952; is also provided
+for each layer via the <a href="../ans_cmd/Hlp_C_SECDATA.html" class="olink"><span class="command"><strong>SECDATA</strong></span></a> command. For more
+information about visualizing fiber orientations, see the <a href="../ans_cmd/Hlp_C_PSYMB.html" class="olink"><span class="command"><strong>/PSYMB</strong></span></a> command documentation.</p><p>You can use <span class="structname">REINF263</span> to reinforce 2-D solid
+   elements with plane stress, plane strain, axisymmetric (with or without torsion), and generalized
+   plane strain behaviors. The element can also reinforce axisymmetric shells or membranes (with or
+   without uniform torsion). The element accounts for various base element behaviors automatically. </p><p>
+<span class="structname">REINF263</span> allows tension-only or compression-only
+reinforcing fibers. You can specify the desired fiber behavior (<a href="../ans_cmd/Hlp_C_SECCONTROL.html" class="olink"><span class="command"><strong>SECCONTROL</strong></span></a>).</p><p>The element can account for redundant base element material where the
+   reinforcing fibers are located
+   (<a href="../ans_cmd/Hlp_C_SECCONTROL.html" class="olink"><span class="command"><strong>SECCONTROL</strong></span></a>,,<em class="replaceable"><code>REMBASE</code></em>).</p><p>The <span class="structname">REINF263</span> element does not accept
+element loading. Apply element loading only to the base element. The
+temperature of the <span class="structname">REINF263</span> element is identical
+to the temperature of the base element. </p><p>You can import an initial stress state for this element (<a href="../ans_cmd/Hlp_C_INISTATE.html" class="olink"><span class="command"><strong>INISTATE</strong></span></a>). For more information, see <a href="../ans_adv/Hlp_G_INSTINTRO.html" class="olink">Initial State in the <span class="olinkdocname">Mechanical APDL Advanced Analysis Guide</span></a>. </p><p>A summary of the element input follows.</p><div class="refsect2" title="REINF263 Input Summary"><a name="reinf263inpsummary"></a><h3>REINF263 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>Same as those of the base element, as shown:</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="42%" class="col1"><col width="58%" class="col2"></colgroup><tbody><tr><td bgcolor="#E3E3E3">
+
+
+<span class="bold"><strong>Base Element</strong></span>
+</td><td bgcolor="#E3E3E3">
+
+
+<span class="bold"><strong>REINF263 Nodes</strong></span>
+</td></tr><tr><td>2-D
+4-Node Solid</td><td>I,J,K,L</td></tr><tr><td>2-D 8-Node
+Solid</td><td>I,J,K,L,M,N,O,P</td></tr><tr><td>2-D 2-Node
+Axisymmetric Shell</td><td>I,J</td></tr><tr><td>2-D
+3-Node Axisymmetric Shell</td><td>I,J,K</td></tr></tbody></table></div></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><p>Same as those of the base element, as shown:</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="42%" class="col1"><col width="58%" class="col2"></colgroup><tbody><tr><td bgcolor="#E3E3E3">
+           
+           
+           <span class="bold"><strong>Base Element</strong></span>
+          </td><td bgcolor="#E3E3E3">
+           
+           
+           <span class="bold"><strong>REINF263 DOFs</strong></span>
+          </td></tr><tr><td>2-D 4-Node or 8-Node Solid</td><td>UX, UY</td></tr><tr><td>2-D 4-Node or 8-Node Axisymmetric Solid with Torsion</td><td>UX, UY, ROTY</td></tr><tr><td>2-D 2-Node Axisymmetric Shell</td><td>UX, UY, ROTZ</td></tr><tr><td>2-D 2-Node Axisymmetric Membrane</td><td>UX, UY</td></tr><tr><td>2-D 2-Node Axisymmetric Shell Allowing Uniform Torsion</td><td>UX, UY, UZ, ROTX</td></tr><tr><td>2-D 2-Node Axisymmetric Membrane Allowing Uniform Torsion</td><td>UX, UY, UZ</td></tr></tbody></table></div></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>None</td></tr></table></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command: See <a class="xref" href="elem_matsupp.html" title="Chapter&nbsp;4:&nbsp;Element Support for Material Models">Element Support for Material Models</a> for this element.</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: EX, (PRXY or NUXY), ALPX (or CTEX <span class="italic"><em>or</em></span> THSX), DENS, GXY, ALPD, BETD, <span>DMPR</span>
+</td></tr></table></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>None</td></tr></table></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><div><div class="variablelist"><dl><dt><span><b class="term">Temperatures&nbsp;--&nbsp;</b></span></dt><dd><p>Same as those
+of the base element</p></dd></dl></div></div></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+<a href="../ans_str/Hlp_G_STR8_11.html#strbirdeatlm61299" class="olink">Birth
+and death</a>
+</td></tr><tr><td>
+<a href="../ans_adv/Hlp_G_INSTINTRO.html" class="olink">Initial state</a>
+</td></tr><tr><td>
+<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink">Large deflection</a>
+</td></tr><tr><td>
+<a href="../ans_thry/thy_geo1.html" class="olink">Large
+strain</a>
+</td></tr><tr><td>
+<a href="../ans_str/Hlp_G_STR8_2.html#strstrstiftlm61199434" class="olink">Stress stiffening</a>
+</td></tr></table></dd><dt><span><b class="term">KEYOPTS</b></span></dt><dd><p>None</p></dd></dl></div></div></div></div><div class="refsect1" title="REINF263 Output Data"><a name="reinf263.output"></a><h2>REINF263 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal displacements included in the overall nodal
+solution</p></li><li class="listitem"><p>Additional element output as shown in <a class="xref" href="Hlp_E_REINF263.html#reinf263outputdefs" title="Table&nbsp;263.1:&nbsp;&nbsp;REINF263 Element Output Definitions">Table&nbsp;263.1:&nbsp;REINF263 Element Output Definitions</a>.</p></li></ul></div><p>
+</p><p>The following figure illustrates the axial stress component:</p><div class="figure"><a name="ELEM263.fig.3"></a><p class="title"><b>Figure&nbsp;263.3:&nbsp;&nbsp;
+<span class="structname">REINF263</span> Stress Output</b></p><div class="figure-contents"><div><img src="graphics/gelem263-3.svg" alt="REINF263 Stress Output"></div></div></div><br class="figure-break"><p>Unlike layered solid or shell elements (such as <a class="link" href="Hlp_E_SHELL181.html" title="SHELL181"><span class="structname">SHELL181</span></a>), <span class="structname">REINF263</span> always
+outputs the element solution for <span class="italic"><em>all</em></span> reinforcing layers. You can select solution items for a <span class="italic"><em>specific</em></span> reinforcing layer (<a href="../ans_cmd/Hlp_C_LAYER.html" class="olink"><span class="command"><strong>LAYER</strong></span></a>) for listing and visualization by using full graphics (<a href="../ans_cmd/Hlp_C_GRAPHICS.html" class="olink"><span class="command"><strong>/GRAPHICS</strong></span></a>,FULL).  Visualization via PowerGraphics (<a href="../ans_cmd/Hlp_C_GRAPHICS.html" class="olink"><span class="command"><strong>/GRAPHICS</strong></span></a>,POWER) is not affected by the <a href="../ans_cmd/Hlp_C_LAYER.html" class="olink"><span class="command"><strong>LAYER</strong></span></a> command; all reinforcing layers are displayed simultaneously. See
+the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways to review results.</p><p>To inspect <span class="structname">REINF263</span> element results,
+select only <span class="structname">REINF263</span> element results <span class="italic"><em>or</em></span> adjust translucency level of the base
+elements before executing any plotting command. REINF263 display options
+are also available directly via the GUI (<span class="guimenu"><strong>Main Menu&gt; Preprocessor&gt;
+Sections&gt; Reinforcing&gt; Display Options</strong></span>).</p><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="reinf263outputdefs"></a><p class="title"><b>Table&nbsp;263.1:&nbsp;&nbsp;REINF263 Element Output Definitions</b></p><div class="table-contents"><table summary="REINF263 Element Output Definitions" border="1" width="95%"><colgroup><col width="139" class="col1"><col width="340" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th bgcolor="#E3E3E3" align="center">
+
+Name</th><th bgcolor="#E3E3E3" align="center">
+
+Definition</th><th bgcolor="#E3E3E3" align="center">
+
+O</th><th bgcolor="#E3E3E3" align="center">
+
+R</th></tr></thead><tbody><tr><td>EL</td><td>Element number and name</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Nodes (as shown in <a class="xref" href="Hlp_E_REINF263.html#reinf263inpsummary" title="REINF263 Input Summary">"REINF263 Input Summary"</a>)</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>MAT</td><td>Material number</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>AREA</td><td>Averaged
+cross-section area of reinforcing fibers</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>SPACING</td><td>Averaged distance
+between two adjacent fibers</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>VOLU:</td><td>Volume</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>XC, YC, ZC</td><td>Center location</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_REINF263.html#reinf263.tab.3.ft.4">3</a>
+</td></tr><tr><td>TEMP</td><td>
+<p>T1, T2 for reinforcing layer 1; T3, T4 for reinforcing
+layer 2; ending with temperatures for the last reinforcing layer NL
+(2*NL maximum)</p>
+</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>S:X</td><td>Axial stresses</td><td align="center">
+<a class="xref" href="Hlp_E_REINF263.html#reinf263.tab.3.ft.3">2</a>
+</td><td align="center">Y</td></tr><tr><td>EPEL:X</td><td>Axial elastic strains</td><td align="center">
+<a class="xref" href="Hlp_E_REINF263.html#reinf263.tab.3.ft.3">2</a>
+</td><td align="center">Y</td></tr><tr><td>EPTH:X</td><td>Axial thermal strains</td><td align="center">
+<a class="xref" href="Hlp_E_REINF263.html#reinf263.tab.3.ft.3">2</a>
+</td><td align="center">Y</td></tr><tr><td>EPPL:X</td><td>Axial plastic strains</td><td align="center">
+<a class="xref" href="Hlp_E_REINF263.html#reinf263.tab.3.ft.3">2</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_REINF263.html#reinf263.tab.3.ft.2">1</a>
+</td></tr><tr><td>EPCR:X</td><td>Axial creep strains</td><td align="center">
+<a class="xref" href="Hlp_E_REINF263.html#reinf263.tab.3.ft.3">2</a>
+</td><td align="center">
+<a class="xref" href="Hlp_E_REINF263.html#reinf263.tab.3.ft.2">1</a>
+</td></tr><tr><td>EPTO:X</td><td>Total axial
+mechanical strains (EPEL + EPPL + EPCR)</td><td align="center">Y</td><td align="center">-</td></tr><tr><td>EPTT:X</td><td>Total axial strains (EPEL + EPPL + EPCR + EPTH)</td><td align="center">Y</td><td align="center">-</td></tr><tr><td>NL:EPEQ</td><td>Accumulated equivalent plastic strain</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_REINF263.html#reinf263.tab.3.ft.2">1</a>
+</td></tr><tr><td>NL:CREQ</td><td>Accumulated
+equivalent creep strain</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_REINF263.html#reinf263.tab.3.ft.2">1</a>
+</td></tr><tr><td>NL:SRAT</td><td>Plastic yielding (1 = actively yielding,
+0 = not yielding)</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_REINF263.html#reinf263.tab.3.ft.2">1</a>
+</td></tr><tr><td>NL:PLWK</td><td>Plastic work/volume</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_REINF263.html#reinf263.tab.3.ft.2">1</a>
+</td></tr><tr><td>N11</td><td>Averaged axial force</td><td align="center">-</td><td align="center">Y</td></tr><tr><td>LOCI:X,
+Y, Z</td><td>Integration point locations</td><td align="center">-</td><td align="center">
+<a class="xref" href="Hlp_E_REINF263.html#reinf263.tab.3.ft.5">4</a>
+</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="reinf263.tab.3.ft.2"></a>Nonlinear solution output
+if the element has a nonlinear material.</p></li><li class="listitem"><p><a name="reinf263.tab.3.ft.3"></a>Stresses, total strains,
+plastic strains, elastic strains, creep strains, and thermal strains
+in the element coordinate system are available for output.</p></li><li class="listitem"><p><a name="reinf263.tab.3.ft.4"></a>Available only at centroid
+as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item. </p></li><li class="listitem"><p><a name="reinf263.tab.3.ft.5"></a>Available only if <a href="../ans_cmd/Hlp_C_OUTRES.html" class="olink"><span class="command"><strong>OUTRES</strong></span></a>,LOCI is used. </p></li></ol></div><p>
+<a class="xref" href="Hlp_E_REINF263.html#reinf263itemseq" title="Table&nbsp;263.2:&nbsp;&nbsp;REINF263 Item and Sequence Numbers">Table&nbsp;263.2:&nbsp;REINF263 Item and Sequence Numbers</a> lists output available via <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> using the Sequence Number method. See <a href="../ans_bas/Hlp_G_BAS5_2.html#abOBsq267ldm" class="olink">Creating an Element
+Table</a> and <a class="xref" href="Hlp_E_CH2_2.html#agi8sq365ldm" title="3.2.3.2.&nbsp;The Item and Sequence Number Table">The Item and Sequence Number Table</a> in this document
+for more information. The following notation is used in <a class="xref" href="Hlp_E_REINF263.html#reinf263itemseq" title="Table&nbsp;263.2:&nbsp;&nbsp;REINF263 Item and Sequence Numbers">Table&nbsp;263.2:&nbsp;REINF263 Item and Sequence Numbers</a>: </p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in <a class="xref" href="Hlp_E_REINF263.html#reinf263outputdefs" title="Table&nbsp;263.1:&nbsp;&nbsp;REINF263 Element Output Definitions">Table&nbsp;263.1:&nbsp;REINF263 Element Output Definitions</a>
+</p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>
+</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element
+data</p></dd></dl></div></div><p>
+</p><div class="table"><a name="reinf263itemseq"></a><p class="title"><b>Table&nbsp;263.2:&nbsp;&nbsp;REINF263 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="REINF263 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="72" align="center" class="col1"><col width="113" align="center" class="col2"><col width="111" align="center" class="col3"></colgroup><thead><tr><th bgcolor="#CCCCCC" rowspan="2" align="center" valign="middle">
+
+Output
+Quantity Name</th><th bgcolor="#CCCCCC" colspan="2" align="center">
+
+
+<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command Input</th></tr><tr><th bgcolor="#E3E3E3" align="center">
+
+Item</th><th bgcolor="#E3E3E3" align="center">
+
+E</th></tr></thead><tbody><tr><td align="center">N11</td><td align="center">SMISC</td><td align="center">(i - 1) *
+3 + 1</td></tr><tr><td align="center">AREA</td><td align="center">SMISC</td><td align="center">(i - 1) * 3 + 2</td></tr><tr><td align="center">SPACING</td><td align="center">SMISC</td><td align="center">(i - 1) * 3 + 3</td></tr></tbody></table></div></div><br class="table-break"><p>The <em class="replaceable"><code>i</code></em> value (where <em class="replaceable"><code>i</code></em> = 1, 2, 3, ..., <em class="replaceable"><code>NL</code></em>) represents the reinforcing
+layer number of the element. <em class="replaceable"><code>NL</code></em> is the
+maximum reinforcing layer number.</p></div><div class="refsect1" title="REINF263 Assumptions and Restrictions"><a name="reinf263.assumptions"></a><h2>REINF263 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Zero-volume elements are invalid.</p></li><li class="listitem"><p>This element can be used only with base element types <a class="link" href="Hlp_E_SHELL208.html" title="SHELL208"><span class="structname">SHELL208</span></a>, <a class="link" href="Hlp_E_SHELL209.html" title="SHELL209"><span class="structname">SHELL209</span></a>, <a class="link" href="Hlp_E_PLANE182.html" title="PLANE182"><span class="structname">PLANE182</span></a>, and <a class="link" href="Hlp_E_PLANE183.html" title="PLANE183"><span class="structname">PLANE183</span></a>. </p></li><li class="listitem"><p>A valid base element must be present for each <span class="structname">REINF263</span> element.</p></li><li class="listitem"><p>The reinforcing element is firmly attached to its
+base element. No relative movement between the reinforcing element
+and the base is allowed. </p></li><li class="listitem"><p>Through-thickness reinforcing is not permitted in
+shells and layered solid elements.</p></li><li class="listitem"><p>Stress stiffening is always included in geometrically
+nonlinear analyses (<a href="../ans_cmd/Hlp_C_NLGEOM.html" class="olink"><span class="command"><strong>NLGEOM</strong></span></a>,ON). You can also activate <span class="italic"><em>prestress</em></span> effects (<a href="../ans_cmd/Hlp_C_PSTRES.html" class="olink"><span class="command"><strong>PSTRES</strong></span></a>).</p></li><li class="listitem"><p>To simulate tension-/compression-only reinforcing
+fibers, a nonlinear iterative solution approach is necessary.</p></li></ul></div></div><div class="refsect1" title="REINF263 Product Restrictions"><a name="reinf263.product"></a><h2>REINF263 Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific
+   restrictions apply to this element in addition to the general assumptions and restrictions given
+   in the previous section.</p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Birth and death is not available.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+   </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,545 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:36:28-04:00"><title>CONTA178</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemLib.html" title="Part&nbsp;I:&nbsp;Element Library"><link rel="prev" href="Hlp_E_CONTA177.html" title="CONTA177"><link rel="next" href="Hlp_E_PRETS179.html" title="PRETS179"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="CONTA178"><a name="CONTA178"></a><div class="titlepage"></div><a class="indexterm" name="d0e111223"></a><span class="refentrytitle">
+            <span class="structname">CONTA178</span>
+        </span><div class="refnamediv"><p><br><b class="refpurpose">3-D Node-to-Node Contact</b><div class="refclass">
+            <div class=""><div class="application"><span class="application"><a href="Hlp_E_CH1_2_1.html#aIgns24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | &#8211;</span></div></div>
+            <div class=""><div class="application"><span class="application">
+                <a class="link" href="Hlp_E_CONTA178.html#CONTA178.product" title="CONTA178 Product Restrictions">Product Restrictions</a>
+            </span></div></div>
+        </div></p></div><div class="refsect1" title="CONTA178 Element Description"><a name="ELEMconta178descwfl"></a><h2>CONTA178 Element Description</h2><p>
+            <span class="structname">CONTA178</span> represents contact and sliding between any two nodes
+            of any types of elements. The element has two nodes with three degrees of freedom at
+            each node with translations in the X, Y, and Z directions. It can also be used in 2-D
+            and axisymmetric models by constraining the UZ degree of freedom. The element is capable
+            of supporting compression in the contact normal direction and Coulomb friction in the
+            tangential direction. User-defined friction with the <code class="function">USERFRIC</code>
+            subroutine and user-defined interaction with the <code class="function">USERINTER</code>
+            subroutine are also allowed. The element may be initially preloaded in the normal
+            direction or it may be given a gap specification. A longitudinal damper option can also
+            be included. See <a href="../ans_thry/thy_el178.html" class="olink">CONTA178</a> in
+            the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for more details about this element. Other contact elements, such as
+                <a class="link" href="Hlp_E_COMBIN40.html" title="COMBIN40"><span class="structname">COMBIN40</span></a>, are also available.</p><div class="figure"><a name="CONTA178.fig.1"></a><p class="title"><b>Figure&nbsp;178.1:&nbsp;&nbsp;CONTA178 Geometry</b></p><div class="figure-contents"><div><img src="graphics/gelem178-1.svg" alt="CONTA178 Geometry"></div></div></div><br class="figure-break"></div><div class="refsect1" title="CONTA178 Input Data"><a name="CONTA178.input"></a><h2>CONTA178 Input Data</h2><p>The geometry, node locations, and the coordinate system for this element are shown in
+            the <span class="structname">CONTA178</span> figure above. The element is defined by two nodes,
+            an initial gap or interference (GAP), an initial element status (START), and damping
+            coefficients CV1 and CV2. The orientation of the interface is defined by the node
+            locations (I and J) or by a user specified contact normal direction. The interface is
+            assumed to be perpendicular to the I-J line or to the specified gap direction. The
+            element coordinate system has its origin at node I and the x-axis is directed toward
+            node J or in the user specified gap direction. The interface is parallel to the element
+            y-z plane. See <a href="../ans_ctec/Hlp_ctec_pernono.html#strch9createele" class="olink">Generating Contact Elements</a> in the
+            <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a> for more information on generating elements automatically using the
+                <a href="../ans_cmd/Hlp_C_EINTF.html" class="olink"><span class="command"><strong>EINTF</strong></span></a> command.</p><p>To model proper momentum transfer and energy balance between contact and target
+            surfaces, impact constraints should be used in transient dynamic analysis. See the
+            description of KEYOPT(7) in the <a class="link" href="Hlp_E_CONTA178.html#CONTA178.tab.1" title="CONTA178 Input Summary">Input Summary</a> and
+            the <a href="../ans_thry/thy_el174.html" class="olink">contact element
+                discussion</a> in the <a href="../ans_thry/ans_thry.html" class="olink"><em class="citetitle">Mechanical APDL Theory Reference</em></a> for details. </p><div class="refsect2" title="Contact Algorithms"><a name="d0e111312"></a><h3>Contact Algorithms</h3><p>Four different contact algorithms can be selected: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Pure Lagrange multiplier method (KEYOPT(2) = 4)</p></li><li class="listitem"><p>Lagrange multiplier on contact normal and penalty on frictional
+                        (tangential) direction (KEYOPT(2) = 3)</p></li><li class="listitem"><p>Augmented Lagrange method (KEYOPT(2) = 0)</p></li><li class="listitem"><p>Pure Penalty method (KEYOPT(2) = 1)</p></li></ul></div><p>The following sections outline these four algorithms.</p><div class="refsect3" title="Pure Lagrange Multiplier"><a name="ele178purelagrange"></a><h4>Pure Lagrange Multiplier</h4><p>The pure Lagrange multiplier method does not require contact stiffness FKN,
+                    FKS. Instead it requires chattering control parameters TOLN, FTOL, by which
+                    ANSYS assumes that the contact status remains unchanged. TOLN is the maximum
+                    allowable penetration and FTOL is the maximum allowable tensile contact force. </p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;A negative contact force occurs when the contact status is closed. A
+                        tensile contact force (positive) refers to a separation between the contact
+                        surfaces, but not necessarily an open contact status.</p><hr></div><p>The behavior can be described as follows:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>If the contact status from the previous iteration is open and the
+                            current calculated penetration is smaller than TOLN, then contact
+                            remains open. Otherwise the contact status switches to closed and
+                            another iteration is processed.</p></li><li class="listitem"><p>If the contact status from the previous iteration is closed and the
+                            current calculated contact force is positive, but smaller than FTOL,
+                            then contact remains closed. If the tensile contact force is larger than
+                            FTOL, then the contact status changes from closed to open and ANSYS
+                            continues to the next iteration.</p></li></ul></div><p>ANSYS will provide reasonable defaults for TOLN and FTOL. Keep in mind the
+                    following when providing values for TOLN and FTOL:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>A positive value is a scaling factor applied to the default
+                            values.</p></li><li class="listitem"><p>A negative value is used as an absolute value (which overrides the
+                            default).</p></li></ul></div><p>The objective of TOLN and FTOL is to provide stability to models which exhibit
+                    contact chattering due to changing contact status. If the values you use for
+                    these tolerances are too small, the solution will require more iterations.
+                    However, if the values are too big it will affect the accuracy of the solution,
+                    since a certain amount of penetration or tensile contact force are
+                    allowed.</p><p>Theoretically, the pure Lagrange multiplier method enforces zero penetration
+                    when contact is closed and "zero slip" when sticking contact occurs. However the
+                    pure Lagrange multiplier method adds additional degrees of freedom to the model
+                    and requires additional iterations to stabilize contact conditions. This will
+                    increase the computational cost and may even lead to solution divergence if many
+                    contact points are oscillating between sticking and sliding conditions during
+                    iterations.</p></div><div class="refsect3" title="Lagrange Multiplier on Normal and Penalty on Tangent Plane"><a name="ele178lagrangemultiplier"></a><h4>Lagrange Multiplier on Normal and Penalty on Tangent Plane</h4><p>An alternative algorithm is the Lagrange multiplier method applied on the
+                    contact normal and the penalty method (tangential contact stiffness) on the
+                    frictional plane. This method only allows a very small amount of slip for a
+                    sticking contact condition. It requires chattering control parameters TOLN, FTOL
+                    as well as the maximum allowable elastic slip parameter SLTOL. Again, ANSYS
+                    provides default tolerance values which work well in most cases. You can
+                    override the default value for SLTOL by defining a scaling factor (positive
+                    value) or an absolute value (negative value). Based on the tolerance, current
+                    normal contact force, and friction coefficient, the tangential contact stiffness
+                    FKS can be obtained automatically. In a few cases, you can override FKS by
+                    defining a scaling factor (positive input) or absolute value (negative input).
+                    Use care when specifying values for SLTOL and FKS. If the value for SLTOL is too
+                    large and the value for FKS too small, too much elastic slip can occur. If the
+                    value for SLTOL is too small or the value for FKS too large, the problem may not
+                    converge.</p></div><div class="refsect3" title="Augmented Lagrange Method"><a name="ele178augmentedlagrange"></a><h4>Augmented Lagrange Method</h4><p>The third contact algorithm is the augmented Lagrange method, which is
+                    basically the penalty method with additional penetration control. This method
+                    requires contact normal stiffness FKN, maximum allowable penetration TOLN, and
+                    maximum allowable slip SLTOL. FKS can be derived based on the maximum allowable
+                    slip SLTOL and the current normal contact force. ANSYS provides a default normal
+                    contact stiffness FKN which is based on the Young's modulus E and the size of
+                    the underlying elements. If Young's modulus E is not found, E =
+                        1x10<sup>9</sup> will be assumed.</p><p>You can override the default normal contact stiffness FKN by defining a
+                    scaling factor (positive input) or absolute value (negative input with unit
+                    force/length). If you specify a large value for TOLN, the augmented Lagrange
+                    method works as the penalty method. Use care when specifying values for FKN and
+                    TOLN. If the value for FKN is too small and the value for TOLN too large, too
+                    much penetration can occur. If the value for FKN is too large or the value for
+                    TOLN too small, the problem may not converge. </p></div><div class="refsect3" title="Penalty Method"><a name="ele178penaltymethod"></a><h4>Penalty Method</h4><p>The last algorithm is the pure penalty method. This method requires both
+                    contact normal and tangential stiffness values FKN, FKS. Real constants TOLN,
+                    FTOLN, and SLTOL are not used and penetration is no longer controlled in this
+                    method. Default FKN is provided as the one used in the augmented Lagrange
+                    method. The default FKS is given by MU x FKN. You can override the default
+                    values for FKN and FKS by inputting a scaling factor (positive input) or
+                    absolute value (negative input) for these real constants. </p></div></div><div class="refsect2" title="Contact Normal Definition"><a name="ele178contactnormal"></a><h3>Contact Normal Definition</h3><p>The contact normal direction is of primary importance in a contact analysis. By
+                default [KEYOPT(5) = 0 and NX, NY, NZ = 0], ANSYS will calculate the contact normal
+                direction based on the initial positions of the I and J nodes, such that a positive
+                displacement (in the element coordinate system) of node J relative to node I opens
+                the gap. However, you must specify the contact normal direction for any of the
+                following conditions:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>If nodes I and J have the same initial coordinates.</p></li><li class="listitem"><p>If the model has an initial interference condition in which the underlying
+                        elements' geometry overlaps.</p></li><li class="listitem"><p>If the initial open gap distance is very small.</p></li></ul></div><p>In the above cases, the ordering of nodes I and J is critical. The correct contact
+                normal usually points from node I toward node J unless contact is initially
+                overlapped.</p><p>You can specify the contact normal by means of real constants NX, NY, NZ
+                (direction cosines related to the global Cartesian system) or element KEYOPT(5). The
+                following lists the various options for KEYOPT(5):</p><div><div class="variablelist"><dl><dt><span><b class="term">KEYOPT(5) = 0</b></span></dt><dd><p>The contact normal is either based on the real constant values of NX,
+                            NY, NZ or on node locations when NX, NY, NZ are not defined. For 2-D
+                            contact, NZ = 0.</p></dd><dt><span><b class="term">KEYOPT(5) = 1 (2,3)</b></span></dt><dd><p>The contact normal points in a direction which averages the direction
+                            cosines of the X (Y, Z) axis of the nodal coordinates on both nodes I
+                            and J. The direction cosines on nodes I and J should be very close. This
+                            option may be supported by the <a href="../ans_cmd/Hlp_C_NORA.html" class="olink"><span class="command"><strong>NORA</strong></span></a> and
+                                <a href="../ans_cmd/Hlp_C_NORL.html" class="olink"><span class="command"><strong>NORL</strong></span></a> commands, which rotate the X axis of the
+                            nodal coordinate system to point to the surface normal of solid
+                            models.</p></dd><dt><span><b class="term">KEYOPT(5) = 4 (5,6)</b></span></dt><dd><p>The contact normal points to X (Y, Z) of the element coordinate system
+                            issued by the <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a> command. If you use this option,
+                            make sure that the element coordinate system specified by
+                                <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a> is the Cartesian system. Otherwise, the
+                            global Cartesian system is assumed.</p></dd></dl></div></div><p>Note that the above discussion pertains to the unidirectional gap option
+                (KEYOPT(1) = 0). For the definition of the contact normal for other gap options, see
+                    <a class="xref" href="Hlp_E_CONTA178.html#el178cyl-gap" title="Cylindrical Gap">"Cylindrical Gap"</a> and <a class="xref" href="Hlp_E_CONTA178.html#el178shper-gap" title="Spherical Gap">"Spherical Gap"</a>.</p></div><div class="refsect2" title="Contact Status"><a name="d0e111442"></a><h3>Contact Status</h3><p>The initial gap defines the gap size (if positive) or the displacement
+                interference (if negative). If KEYOPT(4) = 0, the default, the gap size can be
+                automatically calculated from the GAP real constant and the node locations
+                (projection of vector points from node I to J on the contact normal), that is, the
+                gap size is determined from the additive effect of the geometric gap and the value
+                of GAP.</p><p>If KEYOPT(4) = 1, the initial gap size is only based on real constant GAP (node
+                locations are ignored).</p><p>By default KEYOPT(9) is set to 0, which means the initial gap size is applied in
+                the first load step. To ramp the initial gap size with the first load step (to model
+                initial interference problems, for example), set KEYOPT(9) = 1. Also, set
+                    <a href="../ans_cmd/Hlp_C_KBC.html" class="olink"><span class="command"><strong>KBC</strong></span></a>,0 and do not specify any external loads over the first
+                load step. </p><p>The force deflection relationships for the contact element can be separated into
+                the normal and tangential (sliding) directions. In the normal direction, when the
+                normal force (FN) is negative, the contact status remains closed (STAT = 3 or 2). In
+                the tangential direction, for FN &lt; 0 and the absolute value of the tangential
+                force (FS) less than &#956;|FN|, contact "sticks" (STAT = 3). For FN &lt; 0 and FS =
+                &#956;|FN|, sliding occurs (STAT = 2). As FN becomes positive, contact is broken (STAT
+                = 1) and no force is transmitted (FN = 0, FS = 0).</p><p>The contact condition at the beginning of the first substep can be determined from
+                the START parameter. The initial element status (START) is used to define the
+                "previous" condition of the interface at the start of the first substep. This value
+                overrides the condition implied by the interference specification and can be useful
+                in anticipating the final interface configuration and reducing the number of
+                iterations required for convergence. However, specifying unrealistic START values
+                can sometimes degrade the convergence behavior.</p><p>If START = 0.0 or blank, the initial status of the element is determined from
+                either the GAP value or the KEYOPT(4) setting. If START = 3.0, contact is initially
+                closed and not sliding (&#956; &#8800; 0), or sliding (if &#956; = 0.0). If START = 2.0,
+                contact is initially closed and sliding. If START = 1.0, contact is initially
+                open.</p></div><div class="refsect2" title="Friction"><a name="d0e111461"></a><h3>Friction</h3><p>The only structural material property used is the interface coefficient of
+                friction &#956; (MU). A zero value should be used for frictionless surfaces.
+                Temperatures may be specified at the element nodes (via the <a href="../ans_cmd/Hlp_C_BF.html" class="olink"><span class="command"><strong>BF</strong></span></a>
+                command in a structural analysis or the <a href="../ans_cmd/Hlp_C_D.html" class="olink"><span class="command"><strong>D</strong></span></a> command in a coupled
+                thermal-structural analysis). The coefficient of friction &#956; is evaluated at the
+                average of the two node temperatures. The node I temperature T(I) defaults to TUNIF.
+                The node J temperature defaults to T(I).</p><p>For analyses involving friction, using <a href="../ans_cmd/Hlp_C_NROPT.html" class="olink"><span class="command"><strong>NROPT</strong></span></a>,UNSYM is useful
+                (and, in fact, sometimes required if the coefficient of friction &#956; is &gt; 0.2)
+                for problems where the normal and tangential (sliding) motions are strongly coupled. </p><p>To define a coefficient of friction for isotropic friction that is dependent on
+                temperature, time, normal pressure, sliding distance, or sliding relative velocity,
+                use the <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink"><span class="command"><strong>TBFIELD</strong></span></a> command along with <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,FRIC.
+                See <a href="../ans_mat/contfriction.html" class="olink">Contact Friction</a> in the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a> for more
+                information.</p><p>Rigid Coulomb friction can be modeled with KEYOPT(10) = 7. In penalty-based
+                methods, there is some elastic sliding present based on FKS. With the rigid Coulomb
+                friction option, no sliding stiffness is used, so the element is always in a sliding
+                state. See <a href="../ans_thry/thy_el178.html#contac178rigidcoul" class="olink">Rigid Coulomb Friction</a> for
+                details.</p><p>This element also supports user-defined friction. To implement a user-defined
+                friction model, use the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,FRIC command with
+                    <em class="replaceable"><code>TBOPT</code></em> = USER to specify friction properties and write
+                a <code class="function">USERFRIC</code> subroutine to compute friction forces. See <a href="../ans_ctec/ctecuserinterfacial.html#ctecuserfriclaws" class="olink">Writing Your Own Friction Law (<code class="function">USERFRIC</code>) in the <span class="olinkdocname">Mechanical APDL Contact Technology Guide</span></a>
+                for more information on how to use this feature. See also the <a href="../ans_prog/Hlp_P_UPFTOC.html" class="olink">Guide to User-Programmable Features in the <span class="olinkdocname">Mechanical APDL Programmer's Reference</span></a> for a detailed
+                description of the <code class="function">USERFRIC</code> subroutine.</p><p>In addition to the user-defined friction subroutine, the contact interaction
+                subroutine <code class="function">USERINTER</code> is available for user-defined interface
+                interactions, including interactions in the normal and tangential directions as well
+                coupled-field interactions. See <a href="../ans_ctec/ctecuserinterfacial.html#ctecuserinteract" class="olink">Defining Your Own Contact Interaction (<code class="function">USERINTER</code>) in the <span class="olinkdocname">Mechanical APDL Contact Technology Guide</span></a> for more information
+                on how to use this feature. See also the <a href="../ans_prog/Hlp_P_UPFTOC.html" class="olink">Guide to User-Programmable Features in the <span class="olinkdocname">Mechanical APDL Programmer's Reference</span></a> for a detailed description of the
+                    <code class="function">USERINTER</code> subroutine.</p></div><div class="refsect2" title="Cross-sectional Area"><a name="d0e111531"></a><h3>Cross-sectional Area</h3><p>You may specify the contact area (defaults to 1.0) associated with this element by
+                specifying real constant AREA. This area is used to compute the normal pressure and
+                the tangential stress values. For axisymmetric problems, the area should be input on
+                a full 360&deg; basis. </p></div><div class="refsect2" title="Weak Spring"><a name="d0e111536"></a><h3>Weak Spring</h3><p>KEYOPT(3) can be used to specify a "weak spring" across an open or free sliding
+                interface, which is useful for preventing rigid body motion that could occur in a
+                static analysis. The weak spring stiffness is computed by multiplying the normal
+                stiffness KN by a reduction factor if the real constant REDFACT is positive (which
+                defaults to 1 x 10<sup>-6</sup>). The weak spring stiffness can be
+                overridden if REDFACT has a negative value. Set KEYOPT(3) = 1 to add weak spring
+                stiffness only to the contact normal direction when contact is open. Set KEYOPT(3) =
+                2 to add weak spring stiffness to the contact normal direction for open contact and
+                tangent plane for frictionless or open contact.</p><p>The weak spring only contributes to global stiffness, which prevents a
+                "singularity" condition from occurring during the solution phase if KEYOPT(3) = 1,2.
+                By setting KEYOPT(3) = 3,4, the weak spring will contribute both to the global
+                stiffness and the internal nodal force which holds two separated nodes. </p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp;The weak spring option should <span class="emphasis"><em>never</em></span> be used in
+                    conjunction with either the no-separation or bonded contact options defined by
+                    KEYOPT(10).</p><hr></div></div><div class="refsect2" title="Contact Behavior"><a name="el178cont-behav"></a><h3>Contact Behavior</h3><p>Use KEYOPT(10) to model the following different contact surface behaviors:</p><p>
+                </p><div><div class="variablelist"><dl><dt><span><b class="term">KEYOPT(10) = 0</b></span></dt><dd><p>Models standard unilateral contact; that is, normal pressure
+                                equals zero if separation occurs.</p></dd><dt><span><b class="term">KEYOPT(10) = 1</b></span></dt><dd><p>Models rough frictional contact where there is no sliding. This
+                                case corresponds to an infinite friction coefficient and ignores the
+                                material property input MU.</p></dd><dt><span><b class="term">KEYOPT(10) = 2 </b></span></dt><dd><p>Models no separation contact, in which two gap nodes are tied
+                                (although sliding is permitted) for the remainder of the analysis
+                                once contact is established. </p></dd><dt><span><b class="term">KEYOPT(10) = 3</b></span></dt><dd><p>Models bonded contact, in which two gap nodes are bonded in all
+                                directions (once contact is established) for the remainder of the
+                                analysis. </p></dd><dt><span><b class="term">KEYOPT(10) = 4</b></span></dt><dd><p>Models no separation contact, in which two gap nodes are always
+                                tied (sliding is permitted) throughout the analysis.</p></dd><dt><span><b class="term">KEYOPT(10) = 5</b></span></dt><dd><p>Models bonded contact, in which two gap nodes are bonded in all
+                                directions throughout the analysis. </p></dd><dt><span><b class="term">KEYOPT(10) = 6</b></span></dt><dd><p>Models bonded contact, in which two gap nodes that are initially
+                                in a closed state will remain closed and two gap nodes that are
+                                initially in an open state will remain open throughout the
+                                analysis.</p></dd><dt><span><b class="term">KEYOPT(10) = 7</b></span></dt><dd><p>Models rigid Coulomb frictional contact in which sliding always
+                                occurs regardless of the magnitude of the normal contact force and
+                                the friction coefficient. Sticking contact never occurs and FKS is
+                                not used in this case. This option is useful for
+                                displacement-controlled problems or for certain dynamic problems
+                                where sliding dominates.</p></dd></dl></div></div><p>
+            </p></div><div class="refsect2" title="Cylindrical Gap"><a name="el178cyl-gap"></a><h3>Cylindrical Gap</h3><p>The cylindrical gap option (KEYOPT(1) = 1) is useful where the final contact
+                normal is not fixed during the analysis, such as in the interaction between
+                concentric pipes. With this option, you define the real constants NX, NY, NZ as the
+                direction cosines of the cylindrical axis (
+                <span class="inlineequation" style="&#xA;          vertical-align:-1.000000px"><img src="graphics/eq5f2acec8-3f9f-4182-b5b9-002856484248.svg"></span>) in the global Cartesian coordinate system. The contact normal
+                direction lies in a cross section that is perpendicular to the cylindrical axis. The
+                program measures the relative distance |XJ - XI| between the current position of
+                node I and the current position of node J projected onto the cross section. NX, NY,
+                NZ defaults to (0,0,1), which is the case for a 2-D circular gap. With the
+                cylindrical gap option, KEYOPT(4) and KEYOPT(5) are ignored and node ordering can be
+                arbitrary. Real constant GAP is no long referred as the initial gap size and a zero
+                value is not allowed. The following explanation defines the model based on the sign
+                of the GAP value.</p><div class="figure"><a name="el178fig-2"></a><p class="title"><b>Figure&nbsp;178.2:&nbsp;&nbsp;CONTA178 - Cylindrical Gap</b></p><div class="figure-contents"><div><img src="graphics/gelem178-2.svg" alt="CONTA178 - Cylindrical Gap"></div></div></div><br class="figure-break"><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>A positive GAP value models contact when one smaller cylinder inserted
+                        into another parallel larger cylinder. GAP is equal to the difference
+                        between the radii of the cylinders (|RJ - RI|) and it represents the maximum
+                        allowable distance projected on the cross-section. The contact constraint
+                        condition can be written as : 
+                        <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eqd0a8575d-cee6-4598-86fc-09be53894860.svg"></span>
+                    </p></li><li class="listitem"><p>A negative GAP value models external contact between two parallel
+                        cylinders. GAP is equal to the sum of the radii of the cylinders (|RJ + RI|)
+                        and it represents the minimum allowable distance projected on the
+                        cross-section. The contact constraint condition can be written as:
+                            
+                        <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq1d008a45-ad6c-405c-803a-da238afd91ca.svg"></span>
+                    </p></li></ul></div></div><div class="refsect2" title="Spherical Gap"><a name="el178shper-gap"></a><h3>Spherical Gap</h3><p>The spherical gap option (KEYOPT(1) = 2) is useful when the final contact normal
+                is not fixed during the analysis, such as in the interaction between two rigid
+                spheres. With this spherical gap option, KEYOPT(4), KEYOPT(5), and real constants
+                NX, NY, NZ are ignored. In addition, node ordering can be arbitrary. Real constant
+                GAP is no longer referenced as the initial gap size, and a zero value is not
+                allowed. </p><div class="figure"><a name="d0e111639"></a><p class="title"><b>Figure&nbsp;178.3:&nbsp;&nbsp;CONTA178 - Spherical Gap</b></p><div class="figure-contents"><div><img src="graphics/gelem178-3.png" alt="CONTA178 - Spherical Gap"></div></div></div><br class="figure-break"><p>The following explanation defines the model based on the sign of the GAP
+                value:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>A positive GAP value models contact when one smaller sphere is inside
+                        another large sphere. GAP is equal to the difference between the radii of
+                        the spheres (|RJ - RI|) and it represents the maximum allowable distance.
+                        The contact constraint condition can be written as: 
+                        <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq96f0fa59-a81d-4dc0-b682-ab2390b6bd27.svg"></span>
+                    </p></li><li class="listitem"><p>A negative GAP value models external contact between two spheres. GAP is
+                        equal to the sum of the radii of the spheres (|RJ + RI|) and it represents
+                        the minimum allowable distance. The contact constraint condition can be
+                        written as: 
+                        <span class="inlineequation" style="&#xA;          vertical-align:-5.000000px"><img src="graphics/eq28a3f17a-ad93-4155-9436-f7384673d399.svg"></span>
+                    </p></li></ul></div></div><div class="refsect2" title="Damper"><a name="el178damper"></a><h3>Damper</h3><p>The damping capability is only used for modal and transient analyses. By default,
+                the damping capability is removed from the element. Damping is only active in the
+                contact normal direction when contact is closed. The damping coefficient units are
+                Force (Time/Length). For a 2-D axisymmetric analysis, the coefficient should be on a
+                full 360&deg; basis. The damping force is computed as 
+                <span class="inlineequation" style="&#xA;          vertical-align:-6.000000px"><img src="graphics/eqd8d2fe61-7c9a-46f8-836e-82498b7fbcdc.svg"></span>, where C<sub>v</sub> is the damping coefficient given
+                by C<sub>v</sub> = C<sub>v1</sub> +
+                    C<sub>v2</sub>xV. V is the velocity calculated in the previous
+                substep. The second damping coefficient (C<sub>v2</sub>) is available to
+                produce a nonlinear damping effect.</p></div><div class="refsect2" title="Modeling Thermal Contact"><a name="d0e111681"></a><h3>Modeling Thermal Contact</h3><p>You can use the node-to-node contact element, in combination with
+                thermal-structural coupled field solid elements or thermal elements, to model heat
+                transfer that occurs between two contact nodes. To activate both the structural and
+                thermal DOFs, set KEYOPT(6) = 1. To activate the thermal DOF only, set KEYOPT(6) =
+                2. </p><p>The <a class="link" href="Hlp_E_CONTA178.html#ele178contactnormal" title="Contact Normal Definition">contact normal direction</a> must be
+                specified, even in a purely thermal analysis (KEYOPT(6) = 2). </p><p>In the discussions below, note that the contacting area (AREA) is input as a real
+                constant; it is not automatically calculated by the program.</p><div class="refsect3" title="Modeling Conduction"><a name="d0e111693"></a><h4>Modeling Conduction</h4><p>To take into account the conductive heat transfer between two contacting
+                    nodes, you need to specify the thermal contact conductance coefficient, which is
+                    real constant TCC.</p><p>The conduction function is defined as follows:</p><div class="blockquote"><blockquote class="blockquote"><p>q(I) = -q(J) = TCC * AREA * (T(I) - T(J))</p></blockquote></div><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>q(I) = heat flow to node I (Heat/Time)</td></tr><tr><td>q(J) = heat flow to node J (Heat/Time)</td></tr><tr><td>AREA = cross sectional area (Length<sup>2</sup>)
+                            (defaults to 1)</td></tr><tr><td>TCC = thermal contact conductance coefficient
+                                (Heat/Length<sup>2</sup> * Time * Deg)</td></tr><tr><td>T(I) = temperature at node I (Deg)</td></tr><tr><td>T(J) = temperature at node J (Deg)</td></tr></table><p>
+                </p><p>The TCC value is input through a real constant, which can be made a function
+                    of temperature [(T(I) + T(J))/2], pressure, time, penetration (positive input
+                    with GAP as a table parameter), and location by using the
+                        %<em class="replaceable"><code>tabname</code></em>% option. If contact occurs, a small
+                    value of TCC yields a measured amount of imperfect contact and a temperature
+                    discontinuity across the two contacting nodes. For large values of TCC, the
+                    resulting temperature discontinuity tends to vanish, and perfect thermal contact
+                    is approached. When not in contact, however, it is assumed that no heat is
+                    transferred across the interface. To model contact conduction between two
+                    surfaces where a small gap exists, use KEYOPT(10) = 4 or 5 to define either the
+                    &#8220;bonded contact&#8221; or &#8220;no-separation contact&#8221; option.
+                </p></div><div class="refsect3" title="Modeling Convection"><a name="d0e111730"></a><h4>Modeling Convection</h4><p>The standard convection function is defined as follows:</p><div class="blockquote"><blockquote class="blockquote"><p>q(I) = -q(J) = -CONV * AREA * (T(I) - T(J))</p></blockquote></div><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>CONV = Heat convection coefficient
+                                (Heat/Length<sup>2</sup> * Time * Deg))</td></tr></table><p>
+                </p><p>To model convective heat transfer between two opening nodes, you must specify
+                    the heat convection coefficient CONV using the <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> command
+                    (with <em class="replaceable"><code>KVAL</code></em> = 1 and CONV as a table parameter). CONV
+                    can be a constant value (only uniform is allowed) or a function of temperature
+                    [T(I) + T(J))/2], time, or location as specified through tabular input. If CONV
+                    is not defined through the <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> command, real constant TCC
+                    will be used instead only if tabular input or a user subroutine is used. TCC can
+                    be made a function of temperature [(T(I) + T(J))/2], pressure, time, gap
+                    (negative value input with GAP as a table parameter), and location by using the
+                        %<em class="replaceable"><code>tabname</code></em>% option.</p></div><div class="refsect3" title="Modeling Radiation"><a name="d0e111763"></a><h4>Modeling Radiation</h4><p>The standard radiation function is defined as follows:</p><div class="blockquote"><blockquote class="blockquote"><p>q(I) = -q(J) = -RDVF * EMIS * SBCT * AREA* [(T(I) +
+                            TOFFST)<sup>4</sup> - (T(J)) +
+                            TOFFST)<sup>4</sup>]</p></blockquote></div><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>TOFFST = the temperature offset from absolute zero to zero (defined
+                            through the <a href="../ans_cmd/Hlp_C_TOFFST.html" class="olink"><span class="command"><strong>TOFFST</strong></span></a> command)</td></tr><tr><td>EMIS = surface emissivity (input as a material property)</td></tr><tr><td>SBCT = The Stefan-Boltzmann constant (input as a real constant).
+                            There is no default for SBCT; if it is not defined, the radiation effect
+                            is excluded. (BTU/Hr * in<sup>2</sup> *
+                                R<sup>4</sup>)</td></tr><tr><td>RDVF = The radiation view factor input as a real constant (defaults
+                            to 1). RDVF can be defined as a function of temperature, gap distance
+                            (negative value input with GAP as a table parameter), time, and location
+                            by using the %<em class="replaceable"><code>tabname</code></em>% option. </td></tr></table><p>
+                </p></div><div class="refsect3" title="Modeling Heat Generation Due to Friction"><a name="d0e111802"></a><h4>Modeling Heat Generation Due to Friction</h4><p>The standard frictional heat function is defined as follows:</p><div class="blockquote"><blockquote class="blockquote"><p>q(I) = FHTG * FWGT * FDDIS</p><p>q(J) = FHTG * (1.0 - FWGT) * FDDIS</p></blockquote></div><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>FHTG = the fraction of frictionally dissipated energy converted into
+                            heat (defaults to 1.0). For an input of true zero, you must enter a very
+                            small value (for example, 1E-8). If you enter 0, the program interprets
+                            this input as the default value.</td></tr><tr><td>FWGT = the weight factor for the distribution of heat between node I
+                            and node J (defaults to 0.5)</td></tr><tr><td>FDDIS = frictional energy dissipation (Heat/Time)</td></tr></table><p>
+                </p><p>In order to model heat generation due to frictionally dissipated energy, you
+                    would typically perform a coupled transient thermal-structural analysis. If
+                    inertia effects are negligible, you can turn off transient effects on structural
+                    DOFs by using the command <a href="../ans_cmd/Hlp_C_TIMINT.html" class="olink"><span class="command"><strong>TIMINT</strong></span></a>,STRUC,OFF. However, you
+                    should generally include transient effects on the thermal DOF.</p><p>In a steady-state coupled thermal-structural analysis, the friction-induced
+                    heat is still accounted for. The program computes the frictional energy
+                    dissipation as follows:</p><div class="blockquote"><blockquote class="blockquote"><p>FDDIS = (total accumulated frictional energy)/(total time of the current
+                        load step)</p></blockquote></div><p>In this case, the time of the current load step cannot be described as
+                    arbitrary. If you wish to neglect the friction-induced heat generation in the
+                    steady-state coupled thermal-structural analysis, use FHTG to specify a very
+                    small fraction of the frictionally dissipated energy (for example, FHTG =
+                    1E-8).</p></div><div class="refsect3" title="Modeling External Heat Flux"><a name="d0e111835"></a><h4>Modeling External Heat Flux</h4><p>You can apply an external flux through the <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a> command.
+                    Only a uniform flux can be applied. The node J heat flux, HFLUX(J), defaults to
+                    the node I heat flux, HFLUX(I). The external heat flux is active only for
+                    opening contact.</p><p>The heat flow is defined as follows:</p><div class="blockquote"><blockquote class="blockquote"><p>q(I) = q(J) = FLUX * AREA</p></blockquote></div><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>FLUX = applied heat flux, HFLUX(I) </td></tr></table><p>
+                </p></div></div><div class="refsect2" title="Modeling Electric Contact"><a name="d0e111855"></a><h3>Modeling Electric Contact</h3><p>You can use the node-to-node contact element, in combination with thermal-electric
+                elements and solid coupled field elements, to model electric current conduction
+                between the two contacting nodes. You can also use the node-to-node contact element,
+                in combination with piezoelectric and electrostatic elements, to model electric
+                charge between the two contacting nodes.</p><p>KEYOPT(6) provides degree of freedom options for modeling electric contact. For
+                combined structural/thermal/electric contact, set KEYOPT(6) = 3 to activate the
+                structural, thermal, and electric current DOFs. For pure thermal/electric contact,
+                set KEYOPT(6) = 4 to activate the thermal and electric current DOFs. For
+                piezoelectric contact, set KEYOPT(6) = 5 to activate the structural and
+                piezoelectric DOFs. For electrostatic contact, set KEYOPT(6) = 6 to activate the
+                electrostatic DOF.</p><p>The <a class="link" href="Hlp_E_CONTA178.html#ele178contactnormal" title="Contact Normal Definition">contact normal direction</a> must be
+                specified, even in a purely electrical analysis (KEYOPT(6) = 6). </p><p>In the discussions below, note that the contacting area (AREA) is input as a real
+                constant; it is not automatically calculated by the program.</p><div class="refsect3" title="Modeling Electric Conduction"><a name="d0e111869"></a><h4>Modeling Electric Conduction</h4><p>To take into account the surface interaction for electric contact, you need to
+                    specify the electric contact conductance if you are using the electric current
+                    degree of freedom, or the electric contact capacitance if you are using the
+                    piezoelectric or electrostatic degrees of freedom. For either case, this
+                    parameter is specified through a real constant ECC.</p><p>The interaction between the two contacting surfaces is defined by:</p><div class="blockquote"><blockquote class="blockquote"><p>J = ECC * AREA * (V(I) - V(J))</p></blockquote></div><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>J = current density for the electric potential (VOLT) degree of
+                            freedom (KEYOPT(6) = 3 or 4), or the electric charge density (KEYOPT(6)
+                            = 5, or 6)</td></tr><tr><td>V(I) and V(J) = voltages at node I and node J</td></tr><tr><td>ECC = electric contact conductance for the electric potential (VOLT)
+                            degree of freedom (KEYOPT(6) = 3 or 4), or the electric contact
+                            capacitance per unit area for (KEYOPT(6) = 5, or 6)</td></tr></table><p>
+                </p><p>The ECC value is input through a real constant, which can be a function of
+                    temperature [(T(I) + T(J))/2], pressure (PRESSURE as a table parameter),
+                    penetration (positive value input with GAP as a table parameter), gap (negative
+                    value input with GAP as a table parameter), and time by using the
+                        %<em class="replaceable"><code>tabname</code></em>% option. For the current conduction
+                    option, the electric contact conductance ECC has units of electric
+                    conductivity/length. For the piezoelectric and electrostatic options, the
+                    electric contact capacitance ECC has units of capacitance per unit area. If the
+                    &#8220;bonded contact&#8221; or &#8220;no-separation contact&#8221; option
+                    is set, contact interaction can occur between two nodes separated by a narrow
+                    gap.</p></div><div class="refsect3" title="Modeling Heat Dissipation Due to Electric Current"><a name="d0e111894"></a><h4>Modeling Heat Dissipation Due to Electric Current</h4><p>For electric current field analyses (KEYOPT(6) = 3 or 4), the heat dissipation
+                    at node I and node J due to electric current is given by:</p><div class="blockquote"><blockquote class="blockquote"><p>q(I) = FHEG * FWGT * J * (V(I) - V(J))</p><p>q(J) = FHEG * (1.0 - FWGT) * J * (V(I) - V(J))</p></blockquote></div><p>where:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>FHEG = the fraction of electrically dissipated energy converted into
+                            heat (Joule heating). This value defaults to 1 and can be input as a
+                            real constant. For an input of true zero, you must enter a very small
+                            value (for example, 1E-8). If you enter 0, the program interprets this
+                            input as the default value.</td></tr><tr><td>J = the current density</td></tr><tr><td>FWGT = the weight factor for the contact heat dissipation between
+                            node I and node J (input as a real constant). FWGT is the same real
+                            constant used for frictional heat generation. By default, FWGT = 0.5.
+                            For an input of true zero, you must enter a very small value (for
+                            example, 1E-8). If you enter 0, the program interprets this input as the
+                            default value.</td></tr></table><p>
+                </p></div></div><div class="refsect2" title="Defining Real Constants in Tabular Format"><a name="d0e111914"></a><h3>Defining Real Constants in Tabular Format</h3><p>For certain real constants, you can define the real constants as a function of
+                primary variables by using tabular input. <a class="xref" href="Hlp_E_CONTA178.html#conta178realpv" title="Table&nbsp;178.2:&nbsp;&nbsp;Real Constants and Corresponding Primary Variables for CONTA178">Table&nbsp;178.2:&nbsp;Real Constants and Corresponding Primary Variables for CONTA178</a> lists
+                real constants that allow tabular input and their associated primary
+                variables.</p><p>Use the <a href="../ans_cmd/Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a> command to dimension the table and identify the
+                variables. You should follow the positive and negative convention for the real
+                constant values. The possible primary variables used in tabular input are:</p><table border="0" summary="Simple list" class="simplelist"><tr><td>Time (TIME)</td></tr><tr><td>X location (X) in local/global coordinates </td></tr><tr><td>Y location (Y) in local/global coordinates </td></tr><tr><td>Z location (Z) in local/global coordinates </td></tr><tr><td>Temperature (TEMP degree of freedom)</td></tr><tr><td>Contact normal force (PRESSURE); specify positive index values for
+                        compression, negative index values for tension</td></tr><tr><td>Geometric contact gap/penetration (GAP); specify positive index values
+                        for penetration, negative index values for an open gap </td></tr></table><p>
+            </p><p>Note that the primary variables X, Y, and Z represent the coordinates of the
+                contact detection points. Coordinate system applicability is determined by the
+                    <a href="../ans_cmd/Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a> command.</p><p>When defining the tables, the primary variables must be in ascending order in the
+                table indices (as in any table array).</p><p>When defining real constants via the <a href="../ans_cmd/Hlp_C_R.html" class="olink"><span class="command"><strong>R</strong></span></a>,
+                    <a href="../ans_cmd/Hlp_C_RMORE.html" class="olink"><span class="command"><strong>RMORE</strong></span></a>, or <a href="../ans_cmd/Hlp_C_RMODIF.html" class="olink"><span class="command"><strong>RMODIF</strong></span></a> command, enclose the
+                table name in % signs (e.g., %<em class="replaceable"><code>tabname</code></em>%). For example,
+                given a table named CNREAL1 that contains normal contact stiffness (FKN) values, you
+                would issue a command similar to the following:
+                </p><pre class="programlisting">RMODIF,<em class="replaceable"><code>NSET</code></em>,1,%CNREAL1%      ! <em class="replaceable"><code>NSET</code></em> is the real constant set ID associated with the contact pair</pre><p>
+            </p><p>For more information and examples of using table inputs, see <a href="../ans_apdl/Hlp_P_APDL3_11.html#apdltbltyptlm8599" class="olink">TABLE Type Array Parameters</a> in the <a href="../ans_apdl/Hlp_P_APDLTOC.html" class="olink"><em class="citetitle">ANSYS Parametric Design Language Guide</em></a>; <a href="../ans_bas/Hlp_G_BAS2_6.html#apoQxq21cmcm" class="olink">Applying Loads Using TABLE Type Array Parameters</a> in the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a>; and the
+                    <a href="../ans_cmd/Hlp_C_DIM.html" class="olink"><span class="command"><strong>*DIM</strong></span></a> command in the <a href="../ans_cmd/Hlp_C_CmdTOC.html" class="olink"><em class="citetitle">Command Reference</em></a>.</p></div><div class="refsect2" title="Defining Real Constants via a User Subroutine"><a name="d0e111999"></a><h3>Defining Real Constants via a User Subroutine</h3><p>You can write a <code class="function">USERCNPROP</code> subroutine to define your own real
+                constants. The real constants that can be defined via this user subroutine are noted
+                in <a class="xref" href="Hlp_E_CONTA178.html#conta178realconstants" title="Table&nbsp;178.1:&nbsp;&nbsp;CONTA178 Real Constants">Table&nbsp;178.1:&nbsp;CONTA178 Real Constants</a>. For additional details, see <a href="../ans_ctec/ctecuserinterfacial.html#ctecuserreals" class="olink">Defining Your Own Real Constant (<code class="function">USERCNPROP</code>)</a> in the <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a>, and the
+                    <a href="../ans_prog/upfcontinterfac.html#usercnproproutine" class="olink">description of
+                        <code class="function">USERCNPROP</code></a> in the <a href="../ans_prog/ans_prog.html" class="olink"><em class="citetitle">Programmer's Reference</em></a>.</p></div><div class="refsect2" title="Monitoring Contact Status"><a name="el178mon-status"></a><h3>Monitoring Contact Status</h3><p>By default, the program will not print out contact status and contact stiffness
+                for each individual element. Use KEYOPT(12) = 1 to print out such information, which
+                may help in solving problems that are difficult to converge.</p><p>See the <a href="../ans_ctec/ctectoc.html" class="olink"><em class="citetitle">Contact Technology Guide</em></a> for a detailed discussion on contact and using the contact
+                elements. <a href="../ans_ctec/Hlp_ctec_nodnod.html" class="olink">Node-to-Node Contact</a> discusses
+                    <span class="structname">CONTA178</span> specifically, including the use of real
+                constants and KEYOPTs.</p><p>A summary of the element input is given in <a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.1" title="CONTA178 Input Summary">"CONTA178 Input Summary"</a>. A
+                general description of element input is given in <a class="xref" href="Hlp_E_CH2_1.html" title="3.1.&nbsp;Element Input">Element Input</a>.</p></div><div class="refsect2" title="CONTA178 Input Summary"><a name="CONTA178.tab.1"></a><h3>CONTA178 Input Summary</h3><div><div class="variablelist"><dl><dt><span><b class="term">Nodes</b></span></dt><dd><p>I, J</p></dd><dt><span><b class="term">Degrees of Freedom</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>UX, UY, UZ (if KEYOPT(6) = 0)</td></tr><tr><td>UX, UY, UZ, TEMP (if KEYOPT(6) = 1)</td></tr><tr><td>TEMP (if KEYOPT(6) = 2)</td></tr><tr><td>UX, UY, UZ, TEMP, VOLT (if KEYOPT(6) = 3)</td></tr><tr><td>TEMP, VOLT (if KEYOPT(6) = 4)</td></tr><tr><td>UX, UY, UZ, VOLT (if KEYOPT(6) = 5)</td></tr><tr><td>VOLT (if KEYOPT(6) = 6)</td></tr></table></dd><dt><span><b class="term">Real Constants</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>FKN, GAP, START, FKS, REDFACT, NX,</td></tr><tr><td>NY, NZ, TOLN, FTOL, SLTOL, CV1,</td></tr><tr><td>CV2, COR, AREA, TCC, FHTG, SBCT</td></tr><tr><td>RDVF, FWGT, ECC, FHEG</td></tr><tr><td>See <a class="xref" href="Hlp_E_CONTA178.html#conta178realconstants" title="Table&nbsp;178.1:&nbsp;&nbsp;CONTA178 Real Constants">Table&nbsp;178.1:&nbsp;CONTA178 Real Constants</a> for a description of
+                                the real constants</td></tr></table></dd><dt><span><b class="term">Material Properties</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+                                <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a> command: See <a class="xref" href="elem_matsupp.html" title="Chapter&nbsp;4:&nbsp;Element Support for Material Models">Element Support for Material Models</a>
+                                for this element.</td></tr><tr><td>
+                                <a href="../ans_cmd/Hlp_C_MP.html" class="olink"><span class="command"><strong>MP</strong></span></a> command: MU, EMIS, DMPR</td></tr></table></dd><dt><span><b class="term">Surface Loads</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>Convection, Face 1 (input with <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a>
+                                command)</td></tr><tr><td>Heat Flux, Face 1 (I-J) (input with <a href="../ans_cmd/Hlp_C_SFE.html" class="olink"><span class="command"><strong>SFE</strong></span></a>
+                                command)</td></tr></table></dd><dt><span><b class="term">Body Loads</b></span></dt><dd><p>Temperatures - T(I), T(J) </p></dd><dt><span><b class="term">Special Features</b></span></dt><dd><table border="0" summary="Simple list" class="simplelist"><tr><td>
+                                <a href="../ans_mat/contfriction.html#isofriction" class="olink">Isotropic
+                                    friction</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_str/strlinperturb.html" class="olink">Linear
+                                    perturbation</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_str/Hlp_G_STRnlbasin.html" class="olink">Nonlinear</a> gap type</td></tr><tr><td>
+                                <a href="../ans_ctec/ctecuserinterfacial.html#ctecuserinteract" class="olink">User-defined contact interaction</a>
+                            </td></tr><tr><td>
+                                <a href="../ans_ctec/ctecuserinterfacial.html#ctecuserfriclaws" class="olink">User-defined friction</a>
+                            </td></tr></table></dd><dt><span><b class="term">KEYOPT(1) </b></span></dt><dd><p>Gap type:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Unidirectional gap</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Cylindrical gap</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Spherical gap</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(2)</b></span></dt><dd><p>Contact algorithm:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Augmented Lagrange method (default)</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Pure Penalty method</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Lagrange multiplier on contact normal and penalty on
+                                        tangent (uses U/P formulation for normal contact, non-U/P
+                                        formulation for tangential contact)</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>Lagrange multiplier method </p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(3)</b></span></dt><dd><p>Weak Spring:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Not used</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Acts across an open contact (only contributes to
+                                        stiffness)</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Acts across an open contact or free sliding plane (only
+                                        contributes to stiffness)</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Acts across an open contact (contributes to stiffness and
+                                        internal force)</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>Acts across an open contact or free sliding plane
+                                        (contributes to stiffness and force)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(4)</b></span></dt><dd><p>Gap size:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Gap size based on real constant GAP + initial node
+                                        locations</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Gap size based on real constant GAP (ignore node
+                                        locations)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(5)</b></span></dt><dd><p>Basis for contact normal:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Node locations or real constants NX, NY, NZ</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>X - component of nodal coordinate system (averaging on two
+                                        contact nodes)</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Y - component of nodal coordinate system (averaging on two
+                                        contact nodes)</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Z - component of nodal coordinate system (averaging on two
+                                        contact nodes)</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>X - component of defined element coordinate system
+                                        (ESYS)</p></dd><dt><span><b class="term">5&nbsp;--&nbsp;</b></span></dt><dd><p>Y - component of defined element coordinate system
+                                        (ESYS)</p></dd><dt><span><b class="term">6&nbsp;--&nbsp;</b></span></dt><dd><p>Z - component of defined element coordinate system
+                                        (ESYS)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(6)</b></span></dt><dd><p>Selects degrees of freedom:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>UX, UY, UZ</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>UX, UY, UZ, TEMP</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>TEMP</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>UX, UY, UZ, TEMP, VOLT</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>TEMP, VOLT</p></dd><dt><span><b class="term">5&nbsp;--&nbsp;</b></span></dt><dd><p>UX, UY, UZ, VOLT</p></dd><dt><span><b class="term">6&nbsp;--&nbsp;</b></span></dt><dd><p>VOLT</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(7)</b></span></dt><dd><p>Element level time incrementation control / impact control:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>No control</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Change in contact predictions are made to maintain a
+                                        reasonable time/load increment</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>Change in contact predictions are made to achieve the
+                                        minimum time/load increment whenever a change in contact
+                                        status occurs</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>Use impact constraints for standard or rough contact
+                                        (KEYOPT(12) = 0 or 1) in a transient dynamic analysis with
+                                        automatic adjustment of the time increment </p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(9)</b></span></dt><dd><p>Initial gap step size application:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Initial gap size is step applied</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Initial gap size is ramped in the first load step</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(10)</b></span></dt><dd><p>Behavior of contact surface:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Standard</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Rough</p></dd><dt><span><b class="term">2&nbsp;--&nbsp;</b></span></dt><dd><p>No separation (sliding permitted)</p></dd><dt><span><b class="term">3&nbsp;--&nbsp;</b></span></dt><dd><p>Bonded</p></dd><dt><span><b class="term">4&nbsp;--&nbsp;</b></span></dt><dd><p>No separation (always)</p></dd><dt><span><b class="term">5&nbsp;--&nbsp;</b></span></dt><dd><p>Bonded (always)</p></dd><dt><span><b class="term">6&nbsp;--&nbsp;</b></span></dt><dd><p>Bonded (initial)</p></dd><dt><span><b class="term">7&nbsp;--&nbsp;</b></span></dt><dd><p>Rigid Coulomb friction (resisting force only if MU &gt;
+                                        0.0)</p></dd></dl></div></div></dd><dt><span><b class="term">KEYOPT(12)</b></span></dt><dd><p>Contact Status:</p><div><div class="variablelist"><dl><dt><span><b class="term">0&nbsp;--&nbsp;</b></span></dt><dd><p>Does not print contact status</p></dd><dt><span><b class="term">1&nbsp;--&nbsp;</b></span></dt><dd><p>Monitor and print contact status, contact stiffness</p></dd></dl></div></div></dd></dl></div></div><div class="table"><a name="conta178realconstants"></a><p class="title"><b>Table&nbsp;178.1:&nbsp;&nbsp;CONTA178 Real Constants</b></p><div class="table-contents"><table summary="CONTA178 Real Constants" border="1" width="95%"><colgroup><col width="72" class="col1"><col width="120" class="col2"><col width="432" class="col3"></colgroup><thead><tr><th align="center" valign="top">No.</th><th align="center" valign="top">Name</th><th align="center" valign="top">Description</th></tr></thead><tbody><tr><td align="center">1</td><td>FKN</td><td>Normal stiffness [<a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.1.ft.1">1</a>] [<a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.1.ft.2">2</a>]</td></tr><tr><td align="center">2</td><td>GAP</td><td>Initial gap size [<a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.1.ft.1">1</a>]</td></tr><tr><td align="center">3</td><td>START</td><td>Initial contact status</td></tr><tr><td align="center">4</td><td>FKS</td><td>Sticking stiffness [<a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.1.ft.1">1</a>] [<a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.1.ft.2">2</a>]</td></tr><tr><td align="center">5</td><td>REDFACT</td><td>KN/KS reduction factor</td></tr><tr><td align="center">6</td><td>NX</td><td>Defined gap normal - X component</td></tr><tr><td align="center">7</td><td>NY</td><td>Defined gap normal - Y component</td></tr><tr><td align="center">8</td><td>NZ</td><td>Defined gap normal - Z component</td></tr><tr><td align="center">9</td><td>TOLN</td><td>Penetration tolerance</td></tr><tr><td align="center">10</td><td>FTOL</td><td>Maximum tensile contact force</td></tr><tr><td align="center">11</td><td>SLTOL</td><td>Maximum elastic slip</td></tr><tr><td align="center">12</td><td>CV1</td><td>Damping coefficient</td></tr><tr><td align="center">13</td><td>CV2</td><td>Nonlinear damping coefficient</td></tr><tr><td align="center">14</td><td>COR</td><td>Coefficient of restitution</td></tr><tr><td align="center">15</td><td>AREA</td><td>Cross-sectional area (defaults to 1.0)</td></tr><tr><td align="center">16</td><td>TCC</td><td>Thermal contact conductance [<a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.1.ft.1">1</a>] [<a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.1.ft.2">2</a>]</td></tr><tr><td align="center">17</td><td>FHTG</td><td>Fraction of frictionally dissipation energy converted into
+                                heat</td></tr><tr><td align="center">18</td><td>SBCT</td><td>Stefan-Boltzmann constant. There is no default for SBCT. If this
+                                real constant is not defined, the radiation effect is excluded. The
+                                Stefan-Boltzmann constant should correspond to the units of the FE
+                                model to be solved (e.g., 0.1190E-10
+                                    Btu/hr-in<sup>2</sup>-R<sup>4</sup>;
+                                5.67E-8
+                                    W/m<sup>2</sup>-K<sup>4</sup>)</td></tr><tr><td align="center">19</td><td>RDVF</td><td>Radiation view factor [<a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.1.ft.1">1</a>]
+                                    [<a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.1.ft.2">2</a>]</td></tr><tr><td align="center">20</td><td>FWGT</td><td>Heat distribution weighing factor</td></tr><tr><td align="center">21</td><td>ECC</td><td>Electric contact conductance [<a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.1.ft.1">1</a>] [<a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.1.ft.2">2</a>]</td></tr><tr><td align="center">22</td><td>FHEG</td><td>The fraction of Joule dissipation energy converted into
+                                heat</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="CONTA178.tab.1.ft.1"></a>This real constant can be defined as a function of certain primary
+                        variables.</p></li><li class="listitem"><p><a name="CONTA178.tab.1.ft.2"></a>This real constant can be defined by the user subroutine
+                        USERCNPROP.F.</p></li></ol></div><div class="table"><a name="conta178realpv"></a><p class="title"><b>Table&nbsp;178.2:&nbsp;&nbsp;Real Constants and Corresponding Primary Variables for CONTA178</b></p><div class="table-contents"><table summary="Real Constants and Corresponding Primary Variables for CONTA178" border="1" width="95%"><colgroup><col width="10%" class="col1"><col width="11%" class="col2"><col width="11%" class="col3"><col width="12%" class="col4"><col width="10%" class="col5"><col width="17%" class="col6"><col width="12%" class="col7"><col width="17%" class="col8"></colgroup><thead><tr><th colspan="2" valign="top">Real Constants</th><th valign="top">TIME</th><th valign="top">Location (X,Y,Z)</th><th valign="top">TEMP</th><th valign="top">PRESSURE [<a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.pv.ft.1">1</a>]</th><th valign="top">GAP [<a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.pv.ft.2">2</a>]</th><th valign="top">%_CNPROP% [<a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.pv.ft.4">4</a>]</th></tr></thead><tbody><tr><td>
+                                <span class="bold"><strong>Number</strong></span>
+                            </td><td>
+                                <span class="bold"><strong>Name</strong></span>
+                            </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>1</td><td>FKN</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x [<a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.pv.ft.3">3</a>]</td><td align="center">x</td><td align="center">x</td></tr><tr><td>2</td><td>GAP</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td></tr><tr><td>4</td><td>FKS</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td></tr><tr><td>12</td><td>CV1</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td></tr><tr><td>13</td><td>CV2</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td></tr><tr><td>16</td><td>TCC</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td></tr><tr><td>19</td><td>RDVF</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">&nbsp;</td><td align="center">x</td><td align="center">x</td></tr><tr><td>21</td><td>ECC</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td><td align="center">x</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="CONTA178.tab.pv.ft.1"></a>Contact normal force via the primary variable PRESSURE. For PRESSURE index
+                        values, specify positive values for compression, negative value for
+                        tension.</p></li><li class="listitem"><p><a name="CONTA178.tab.pv.ft.2"></a>Geometric contact gap/penetration via the primary variable GAP. For GAP
+                        index values, specify positive values for penetration, negative values for
+                        an open gap.</p></li><li class="listitem"><p><a name="CONTA178.tab.pv.ft.3"></a>Contact normal force at the end of the previous iteration, if it
+                        exists.</p></li><li class="listitem"><p><a name="CONTA178.tab.pv.ft.4"></a>Real constant can be defined via the user subroutine USERCNPROP.</p></li></ol></div></div></div><div class="refsect1" title="CONTA178 Output Data"><a name="CONTA178.output"></a><h2>CONTA178 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Nodal displacements included in the overall nodal solution.</p></li><li class="listitem"><p>Additional element output as shown in Element Output Definitions.</p></li></ul></div><p>
+        </p><p>The value of USEP is determined from the normal displacement (UN), in the element
+            x-direction, between the contact nodes at the end of a substep. This value is used in
+            determining the normal force, FN. The values represented by UT(Y, Z) are the total
+            translational displacements in the element y and z directions. The maximum value printed
+            for the sliding force, FS, is &#956;|FN|. Sliding may occur in both the element y and z
+            directions. STAT describes the status of the element at the end of a substep. </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>If STAT = 3, contact is closed and no sliding occurs</p></li><li class="listitem"><p>If STAT = 1, contact is open</p></li><li class="listitem"><p>If STAT = 2, node J slides relative to node I</p></li></ul></div><p>For a frictionless surface (&#956; = 0.0), the converged element status is either STAT =
+            2 or 1. </p><p>The element coordinate system orientation angles <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font> and &#946; (shown in <a class="xref" href="Hlp_E_CONTA178.html#CONTA178.fig.1" title="Figure&nbsp;178.1:&nbsp;&nbsp;CONTA178 Geometry">Figure&nbsp;178.1:&nbsp;CONTA178 Geometry</a>) are
+            computed by the program from the node locations. These values are printed as ALPHA and
+            BETA respectively. <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font> ranges from 0&deg;
+            to 360&deg; and &#946; from -90&deg; to +90&deg;. Elements lying along the Z-axis are
+            assigned values of <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font> = 0&deg;, &#946; =
+            &plusmn; 90&deg;, respectively. Elements lying off the Z-axis have their coordinate
+            system oriented as shown for the general <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font>, &#946; position.</p><div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><hr><p><span class="admontitle"><b>Note:</b></span>&nbsp;&nbsp; For <font face="Arial Unicode Ms"><span class="markup">&#945;</span></font> = 90&deg;, &nbsp;&#946;
+                <font face="Arial Unicode Ms"><span class="markup"> &#8594; </span></font> 90&deg;, the element coordinate system flips 90&deg; about the Z-axis.
+                The value of ANGLE represents the principal angle of the friction force in the
+                element y-z plane. A general description of solution output is given in <a class="xref" href="Hlp_E_CH2_2.html#a1HGoq8dldm" title="3.2.3.&nbsp;Element Solution">Element Solution</a>. See the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for ways to view results.</p><hr></div><p><span class="bold"><strong>The Element Output Definitions table uses
+the following notation:</strong></span></p><p>A colon (:) in the
+Name column indicates that the item can be accessed by
+the Component Name method (<a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a>, <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a>). The O column indicates the availability of the items in the file <span class="filename"><strong>Jobname.OUT</strong></span>. The R column indicates the availability of
+the items in the results file.</p><p>In either the O or R columns,
+&#8220;Y&#8221; indicates that the item is <span class="italic"><em>always</em></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><em>conditionally</em></span> available, and &#8220;-&#8221; indicates that the item is <span class="italic"><em>not</em></span> available.</p><div class="table"><a name="CONTA178.tab.2"></a><p class="title"><b>Table&nbsp;178.3:&nbsp;&nbsp;CONTA178 Element Output Definitions</b></p><div class="table-contents"><table summary="CONTA178 Element Output Definitions" border="1" width="95%"><colgroup><col width="120" class="col1"><col width="408" class="col2"><col width="48" align="center" class="col3"><col width="48" align="center" class="col4"></colgroup><thead><tr><th align="center">Name</th><th align="center">Definition</th><th align="center">O</th><th align="center">R</th></tr></thead><tbody><tr><td>EL</td><td>Element Number</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>NODES</td><td>Nodes - I, J</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>XC, YC, ZC</td><td>Location where results are reported</td><td align="center">Y</td><td align="center">
+                            <a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.2.ft.3">3</a>
+                        </td></tr><tr><td>TEMP</td><td>T(I), T(J)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>USEP</td><td>Gap size (gap = negative value; penetration = positive value)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>FN</td><td>Normal force (along I-J line)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>STAT</td><td>Element status</td><td align="center">
+                            <a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.2.ft.1">1</a>
+                        </td><td align="center">
+                            <a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.2.ft.1">1</a>
+                        </td></tr><tr><td>OLDST</td><td>Old contact status</td><td align="center">
+                            <a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.2.ft.1">1</a>
+                        </td><td align="center">
+                            <a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.2.ft.1">1</a>
+                        </td></tr><tr><td>ALPHA, BETA</td><td>Element orientation angles</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>MU</td><td>Coefficient of friction</td><td align="center">
+                            <a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.2.ft.2">2</a>
+                        </td><td align="center">
+                            <a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.2.ft.2">2</a>
+                        </td></tr><tr><td>UT(Y, Z)</td><td>Displacement (node J - node I) in element y and z directions</td><td align="center">
+                            <a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.2.ft.2">2</a>
+                        </td><td align="center">
+                            <a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.2.ft.2">2</a>
+                        </td></tr><tr><td>FS(Y, Z)</td><td>Tangential (friction) force in element y and z directions</td><td align="center">
+                            <a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.2.ft.2">2</a>
+                        </td><td align="center">
+                            <a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.2.ft.2">2</a>
+                        </td></tr><tr><td>ANGLE</td><td>Principal angle of friction force in element y-z plane</td><td align="center">
+                            <a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.2.ft.2">2</a>
+                        </td><td align="center">
+                            <a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.2.ft.2">2</a>
+                        </td></tr><tr><td>AREA</td><td>Cross-sectional area</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>VELOC</td><td>Normal velocity used for damping calculation</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>DAMPF</td><td>Damping force</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>AUTY</td><td>Total sliding in y direction</td><td align="center">&nbsp;</td><td align="center">Y</td></tr><tr><td>AUTZ</td><td>Total sliding in z direction</td><td align="center">&nbsp;</td><td align="center">Y</td></tr><tr><td>ELSI</td><td>Total equivalent elastic slip distance</td><td align="center">&nbsp;</td><td align="center">Y</td></tr><tr><td>PLSI</td><td>Total (accumulated) equivalent plastic slip due to frictional
+                            sliding</td><td align="center">&nbsp;</td><td align="center">Y</td></tr><tr><td>TEMP1</td><td>Temperature at node I</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>TEMP2</td><td>Temperature at node J</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>TCC</td><td>Conductance coefficient</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>CONV</td><td>Convection coefficient</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>RAC</td><td>Radiation coefficient</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>HFLUX1</td><td>Applied heat flux at node I</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>HFLUX2</td><td>Applied heat flux at node J</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>FLUX1</td><td>Total heat flow at node I</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>FLUX2</td><td>Total heat flow at node J</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>FDDIS</td><td>Frictional energy dissipation</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>FXCV</td><td>Heat flow due to convection</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>FXRD</td><td>Heat flow due to radiation</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>FXCD</td><td>Heat flow due to conductance</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>ECC</td><td>Electric contact conductance (for electric current DOF), or electric
+                            contact capacitance per unit area (for piezoelectric or electrostatic
+                            DOF)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>VOLT1</td><td>Voltage at node I</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>VOLT2</td><td>Voltage at node J</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>HJOU</td><td>Contact power/area</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>CCONT</td><td>Contact charge density (charge/area)</td><td align="center">Y</td><td align="center">Y</td></tr><tr><td>JCONT</td><td>Contact current density (current/area)</td><td align="center">Y</td><td align="center">Y</td></tr></tbody></table></div></div><br class="table-break"><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><a name="CONTA178.tab.2.ft.1"></a>If the value of STAT is:</p><p>1 - Open contact</p><p>2 - Sliding contact</p><p>3 - Sticking contact (no sliding)</p></li><li class="listitem"><p><a name="CONTA178.tab.2.ft.2"></a>If MU&gt;0.0 </p></li><li class="listitem"><p><a name="CONTA178.tab.2.ft.3"></a>Available only at centroid as a <a href="../ans_cmd/Hlp_C_GET.html" class="olink"><span class="command"><strong>*GET</strong></span></a> item.</p></li></ol></div><p>
+            <a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.3" title="Table&nbsp;178.4:&nbsp;&nbsp;CONTA178 Item and Sequence Numbers">Table&nbsp;178.4:&nbsp;CONTA178 Item and Sequence Numbers</a> lists output available through the
+                <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command using the Sequence Number method. See <a href="../ans_bas/Hlp_G_BAS5.html" class="olink">The General Postprocessor (POST1)</a> in
+            the <a href="../ans_bas/Hlp_G_BasTOC.html" class="olink"><em class="citetitle">Basic Analysis Guide</em></a> for more information. The following notation is used in <a class="xref" href="Hlp_E_CONTA178.html#CONTA178.tab.3" title="Table&nbsp;178.4:&nbsp;&nbsp;CONTA178 Item and Sequence Numbers">Table&nbsp;178.4:&nbsp;CONTA178 Item and Sequence Numbers</a> :</p><div><div class="variablelist"><dl><dt><span><b class="term">Name</b></span></dt><dd><p>output quantity as defined in the Element Output Definition</p></dd><dt><span><b class="term">Item</b></span></dt><dd><p>predetermined Item label for <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> command</p></dd><dt><span><b class="term">E</b></span></dt><dd><p>sequence number for single-valued or constant element data</p></dd></dl></div></div><div class="table"><a name="CONTA178.tab.3"></a><p class="title"><b>Table&nbsp;178.4:&nbsp;&nbsp;CONTA178 Item and Sequence Numbers</b></p><div class="table-contents"><table summary="CONTA178 Item and Sequence Numbers" border="1" width="95%"><colgroup><col width="72" align="center" class="col1"><col width="72" align="center" class="col2"><col width="48" align="center" class="col3"></colgroup><thead><tr><th rowspan="2" align="center" valign="middle">Output Quantity
+                            Name</th><th colspan="2" align="center">
+                            <a href="../ans_cmd/Hlp_C_ETABLE.html" class="olink"><span class="command"><strong>ETABLE</strong></span></a> and <a href="../ans_cmd/Hlp_C_ESOL.html" class="olink"><span class="command"><strong>ESOL</strong></span></a> Command
+                            Input</th></tr><tr><th align="center">Item</th><th align="center">E</th></tr></thead><tbody><tr><td align="center">FN</td><td align="center">SMISC</td><td align="center">1</td></tr><tr><td align="center">FSY</td><td align="center">SMISC</td><td align="center">2</td></tr><tr><td align="center">FSZ</td><td align="center">SMISC</td><td align="center">3</td></tr><tr><td align="center">FLUX1</td><td align="center">SMISC</td><td align="center">4</td></tr><tr><td align="center">FLUX2</td><td align="center">SMISC</td><td align="center">5</td></tr><tr><td align="center">FDDIS</td><td align="center">SMISC</td><td align="center">6</td></tr><tr><td align="center">HFLUX1</td><td align="center">SMISC</td><td align="center">7</td></tr><tr><td align="center">HFLUX2</td><td align="center">SMISC</td><td align="center">8</td></tr><tr><td align="center">FXCV</td><td align="center">SMISC</td><td align="center">9</td></tr><tr><td align="center">FXRD</td><td align="center">SMISC</td><td align="center">10</td></tr><tr><td align="center">FXCD</td><td align="center">SMISC</td><td align="center">11</td></tr><tr><td align="center">HJOU</td><td align="center">SMISC</td><td align="center">12</td></tr><tr><td align="center">CCONT</td><td align="center">SMISC</td><td align="center">13</td></tr><tr><td align="center">JCONT</td><td align="center">SMISC</td><td align="center">13</td></tr><tr><td align="center">STAT</td><td align="center">NMISC</td><td align="center">1</td></tr><tr><td align="center">OLDST</td><td align="center">NMISC</td><td align="center">2</td></tr><tr><td align="center">USEP</td><td align="center">NMISC</td><td align="center">3</td></tr><tr><td align="center">ALPHA</td><td align="center">NMISC</td><td align="center">4</td></tr><tr><td align="center">BETA</td><td align="center">NMISC</td><td align="center">5</td></tr><tr><td align="center">UTY</td><td align="center">NMISC</td><td align="center">6</td></tr><tr><td align="center">UTZ</td><td align="center">NMISC</td><td align="center">7</td></tr><tr><td align="center">MU</td><td align="center">NMISC</td><td align="center">8</td></tr><tr><td align="center">ANGLE</td><td align="center">NMISC</td><td align="center">9</td></tr><tr><td align="center">KN</td><td align="center">NMISC</td><td align="center">10</td></tr><tr><td align="center">KS</td><td align="center">NMISC</td><td align="center">11</td></tr><tr><td align="center">TOLN</td><td align="center">NMISC</td><td align="center">12</td></tr><tr><td align="center">FTOL</td><td align="center">NMISC</td><td align="center">13</td></tr><tr><td align="center">SLTOL</td><td align="center">NMISC</td><td align="center">14</td></tr><tr><td align="center">ELSI</td><td align="center">NMISC</td><td align="center">15</td></tr><tr><td align="center">PLSI</td><td align="center">NMISC</td><td align="center">16</td></tr><tr><td align="center">AREA</td><td align="center">NMISC</td><td align="center">17</td></tr><tr><td align="center">VELOC</td><td align="center">NMISC</td><td align="center">18</td></tr><tr><td align="center">DAMPF</td><td align="center">NMISC</td><td align="center">19</td></tr><tr><td align="center">AUTY</td><td align="center">NMISC</td><td align="center">20</td></tr><tr><td align="center">AUTZ</td><td align="center">NMISC</td><td align="center">21</td></tr><tr><td align="center">TEMP1</td><td align="center">NMISC</td><td align="center">22</td></tr><tr><td align="center">TEMP2</td><td align="center">NMISC</td><td align="center">23</td></tr><tr><td align="center">CONV</td><td align="center">NMISC</td><td align="center">24</td></tr><tr><td align="center">RAC</td><td align="center">NMISC</td><td align="center">25</td></tr><tr><td align="center">TCC</td><td align="center">NMISC</td><td align="center">26</td></tr><tr><td align="center">ECC</td><td align="center">NMISC</td><td align="center">27</td></tr><tr><td align="center">VOLT1</td><td align="center">NMISC</td><td align="center">28</td></tr><tr><td align="center">VOLT2</td><td align="center">NMISC</td><td align="center">29</td></tr></tbody></table></div></div><br class="table-break"><p>You can list contact results through several POST1 postprocessor commands. The contact
+            specific items for the <a href="../ans_cmd/Hlp_C_PRNSOL.html" class="olink"><span class="command"><strong>PRNSOL</strong></span></a> and <a href="../ans_cmd/Hlp_C_PRESOL.html" class="olink"><span class="command"><strong>PRESOL</strong></span></a> commands
+            are listed below:</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="120" class="col1"><col width="336" class="col2"></colgroup><tbody><tr><td>STAT</td><td>Contact status</td></tr><tr><td>PENE</td><td>Contact penetration</td></tr><tr><td>PRES</td><td>Contact force</td></tr><tr><td>SFRIC</td><td>Contact tangential force</td></tr><tr><td>STOT</td><td>Total contact tangential force</td></tr><tr><td>SLIDE</td><td>Contact sliding distance</td></tr><tr><td>GAP</td><td>Contact gap distance</td></tr><tr><td>FLUX</td><td>Total heat flow at contact node</td></tr></tbody></table></div></div><div class="refsect1" title="CONTA178 Assumptions and Restrictions"><a name="CONTA178.assumptions"></a><h2>CONTA178 Assumptions and Restrictions</h2><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>The element operates bilinearly only in static and nonlinear transient dynamic
+                    analyses. If used in other analysis types, the element maintains its initial
+                    status throughout the analysis.</p></li><li class="listitem"><p>The element is nonlinear and requires an iterative solution.</p></li><li class="listitem"><p>Nonconverged substeps are not in equilibrium.</p></li><li class="listitem"><p>Unless the contact normal direction is specified by (NX, NY, NZ) or KEYOPT(5),
+                    nodes I and J must not be coincident or overlapped since the nodal locations
+                    define the interface orientation. In this case the node ordering is not an
+                    issue. On the other hand, if the contact normal is not defined by nodal
+                    locations, the node ordering is critical. Use <a href="../ans_cmd/Hlp_C_PSYMB.html" class="olink"><span class="command"><strong>/PSYMB</strong></span></a>,
+                        <a href="../ans_cmd/Hlp_C_ESYS.html" class="olink"><span class="command"><strong>ESYS</strong></span></a> to verify the contact normal and use
+                        <a href="../ans_cmd/Hlp_C_EINTF.html" class="olink"><span class="command"><strong>EINTF</strong></span></a>,,,REVE to reverse the normal if wrong ordering is
+                    detected. To determine which side of the interface contains the nodes, use
+                        <a href="../ans_cmd/Hlp_C_ESEL.html" class="olink"><span class="command"><strong>ESEL</strong></span></a>,,ENAM,,178 and then
+                    <a href="../ans_cmd/Hlp_C_NSLE.html" class="olink"><span class="command"><strong>NSLE</strong></span></a>,,POS,1.</p></li><li class="listitem"><p>The element maintains its original orientation in either a small or a large
+                    deflection analysis unless the cylindrical gap option is used.</p></li><li class="listitem"><p>For real constants FKN, REDFACT, TOLN, FTOL, SLTOL and FKS, you can specify
+                    either a positive or negative value. ANSYS interprets a positive value as a
+                    scaling factor and interprets a negative value as the absolute value. These real
+                    constants can be changed between load steps or during restart stages.</p></li><li class="listitem"><p>The Lagrange multiplier methods introduce zero diagonal terms in the stiffness
+                    matrix. The PCG solver may encounter precondition matrix singularity. The
+                    Lagrange multiplier methods often overconstrain the model if boundary
+                    conditions, coupling, and constraint equations applied on the contact nodes
+                    overlay the contact constraints. Chattering is most likely to occur due to
+                    change of contact status, typically for contact impact problems. The Lagrange
+                    multipliers also introduce more degrees of freedom which may result in spurious
+                    modes for modal and linear eigenvalue bucking analysis. Therefore, the augmented
+                    Lagrange method option is the best choice for: PCG iterative solver, transient
+                    analysis for impact problems, modal, and eigenvalue bucking analysis.</p></li><li class="listitem"><p>The element may not be deactivated with the <a href="../ans_cmd/Hlp_C_EKILL.html" class="olink"><span class="command"><strong>EKILL</strong></span></a>
+                    command.</p></li></ul></div></div><div class="refsect1" title="CONTA178 Product Restrictions"><a name="CONTA178.product"></a><h2>CONTA178 Product Restrictions</h2><p>When used in the product(s) listed below, the stated product-specific restrictions
+            apply to this element in addition to the general assumptions and restrictions given in
+            the previous section.</p><p title="ANSYS Mechanical Pro"><b>ANSYS Mechanical Pro&nbsp;</b>
+                </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>User-defined contact is not available.</p></li><li class="listitem"><p>User-defined friction is not available.</p></li><li class="listitem"><p>Linear perturbation is not available.</p></li></ul></div><p title="ANSYS Mechanical Pro">
+            </p><p title="ANSYS Mechanical Premium"><b>ANSYS Mechanical Premium&nbsp;</b>
+                </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>User-defined contact is not available.</p></li><li class="listitem"><p>User-defined friction is not available.</p></li></ul></div><p title="ANSYS Mechanical Premium">
+            </p></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

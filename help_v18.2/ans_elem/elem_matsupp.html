@@ -1,0 +1,382 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:35:04-04:00"><title>Chapter&nbsp;4:&nbsp;Element Support for Material Models</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="up" href="Hlp_E_ElemTOC.html" title="Mechanical APDL Element Reference"><link rel="prev" href="Hlp_E_CH2_3.html" title="3.3.&nbsp;Coordinate Systems"><link rel="next" href="Hlp_E_StressAnalysisElems.html" title="Chapter&nbsp;5:&nbsp;Elements for Stress Analysis"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="chapter" title="Chapter&nbsp;4:&nbsp;Element Support for Material Models"><div class="titlepage"><div><div><h2 class="title"><a name="elem_matsupp"></a>Chapter&nbsp;4:&nbsp;Element Support for Material Models</h2></div></div></div><a class="indexterm" name="d0e10289"></a><a class="indexterm" name="d0e10292"></a><p>Following is a list of element types that support various material constitutive
+        properties. To take advantage of the many material properties available, <a href="Hlp_E_CH2_OLDNEW.html" class="olink">use current-technology (rather
+            than legacy) elements</a> in your analysis.</p><p>Material models are specified via the <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,<em class="replaceable"><code>Lab</code></em>
+        command, where <em class="replaceable"><code>Lab</code></em> represents the material model label (shortcut
+        name). For more information about each material model, see the <a href="../ans_mat/ans_mat.html" class="olink"><em class="citetitle">Material Reference</em></a>.</p><p>For a list of <span class="italic"><em>material models</em></span> and the elements that
+        support them, see <a href="../ans_mat/Mp8sasdgh.html" class="olink">Material Model Element Support in the <span class="olinkdocname">Mechanical APDL Material Reference</span></a>.</p><div class="informaltable"><table border="1" width="95%"><colgroup><col width="96" class="c1"><col width="144" class="c2"><col width="384" class="c3"></colgroup><thead><tr><th bgcolor="#E3E3E3" valign="top">Element</th><th bgcolor="#E3E3E3" valign="top">Description</th><th bgcolor="#E3E3E3" valign="top">
+                        Supported Material Properties</th></tr></thead><tbody><tr><td><a class="link" href="Hlp_E_SOLID5.html" title="SOLID5"><span class="structname">SOLID5</span></a> (legacy)</td><td>3-D Coupled-Field Solid</td><td><a href="../ans_mat/anel.html" class="olink">Anisotropic elasticity</a>, <a href="../ans_mat/mat_electricmagnet.html#bh" class="olink">Magnetic</a>, <a href="../ans_mat/mat_electricmagnet.html#piez" class="olink">Piezoelectric matrix</a></td></tr><tr><td><a class="link" href="Hlp_E_PLANE13.html" title="PLANE13"><span class="structname">PLANE13</span></a> (legacy)</td><td>2-D Coupled-Field Solid</td><td><a href="../ans_mat/anel.html" class="olink">Anisotropic elasticity</a>, <a href="../ans_mat/mat_electricmagnet.html#bh" class="olink">Magnetic</a>, <a href="../ans_mat/mat_electricmagnet.html#piez" class="olink">Piezoelectric
+                            matrix</a></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_FLUID30.html" title="FLUID30"><span class="structname">FLUID30</span></a>
+                    </td><td>3-D Acoustic Fluid</td><td>
+                        <a href="../ans_mat/acousticmat.html#elemdatatblperf" class="olink">Johnson-Champoux-Allard Equivalent Fluid
+                            Model of a Porous Media</a>
+                    </td></tr><tr><td><a class="link" href="Hlp_E_SOLID65.html" title="SOLID65"><span class="structname">SOLID65</span></a> (legacy)</td><td>3-D Reinforced Concrete Solid</td><td><a href="../ans_arch/anisotropicopt.html" class="olink">Anisotropic plasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#biso" class="olink">Bilinear isotropic hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#bkin" class="olink">Bilinear kinematic hardening</a>, <a href="../ans_thry/thy_el65.html" class="olink">Concrete</a>, <a href="../ans_mat/amp8sq21dldm.html#dp" class="olink">Classic
+                            Drucker-Prager plasticity</a>, <a href="../ans_mat/rate.html#aQy8sq33aldm" class="olink">Creep</a>, <a href="../ans_arch/mela.html" class="olink">Multilinear elasticity</a>,
+                            <a href="../ans_mat/matcustommatmods.html#matstatvaruserdefmats" class="olink">State variables
+                            (user-defined)</a>, <a href="../ans_mat/matcustommatmods.html#user" class="olink">User-defined</a></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_SOLID96.html" title="SOLID96"><span class="structname">SOLID96</span></a>
+                    </td><td>3-D Magnetic Scalar Solid</td><td align="left">
+                        <a href="../ans_mat/mat_electricmagnet.html#bh" class="olink">Magnetic</a>
+                    </td></tr><tr><td><a class="link" href="Hlp_E_SOLID98.html" title="SOLID98"><span class="structname">SOLID98</span></a> (legacy)</td><td>Tetrahedral Coupled-Field Solid</td><td><a href="../ans_mat/anel.html" class="olink">Anisotropic elasticity</a>, <a href="../ans_mat/mat_electricmagnet.html#bh" class="olink">Magnetic</a>, <a href="../ans_mat/mat_electricmagnet.html#piez" class="olink">Piezoelectric
+                            matrix</a></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_FLUID116.html" title="FLUID116"><span class="structname">FLUID116</span></a>
+                    </td><td>Coupled Thermal-Fluid Pipe</td><td><a href="../ans_mat/matcustommatmods.html#matstatvaruserdefmats" class="olink">State variables
+                            (user-defined)</a>, <a href="../ans_mat/matcustommatmods.html#usrthm" class="olink">User-defined</a></td></tr><tr><td><a class="link" href="Hlp_E_LINK160.html" title="LINK160"><span class="structname">LINK160</span></a> (explicit)</td><td>Explicit 3-D Spar (or Truss)</td><td><a href="../ans_lsd/Hlp_L_matl3.html#lbkin" class="olink">Bilinear kinematic hardening</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lsdplasticityjla4400" class="olink">Plasticity
+                            laws</a></td></tr><tr><td><a class="link" href="Hlp_E_BEAM161.html" title="BEAM161"><span class="structname">BEAM161</span></a> (explicit)</td><td>Explicit 3-D Beam</td><td><a href="../ans_lsd/Hlp_L_matl3.html#lbkin" class="olink">Bilinear kinematic hardening</a>, <a href="../ans_lsd/Hlp_L_matl3.html#levi" class="olink">Viscoelasticity</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lsdplasticityjla4400" class="olink">Plasticity laws</a></td></tr><tr><td><a class="link" href="Hlp_E_PLANE162.html" title="PLANE162"><span class="structname">PLANE162</span></a> (explicit)</td><td>Explicit 2-D Structural Solid</td><td><a href="../ans_lsd/Hlp_L_matl3.html#lbiso" class="olink">Bilinear isotropic hardening</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lbkin" class="olink">Bilinear kinematic hardening</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lcom" class="olink">Composite damage</a>, <a href="../ans_lsd/Hlp_L_matl3.html#levi" class="olink">Viscoelasticity</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lsdfoamjla4400" class="olink">Foam</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lhon" class="olink">Honeycomb</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lmoon" class="olink">Mooney-Rivlin hyperelasticity</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lsdplasticityjla4400" class="olink">Plasticity laws</a></td></tr><tr><td><a class="link" href="Hlp_E_SHELL163.html" title="SHELL163"><span class="structname">SHELL163</span></a> (explicit)</td><td>Explicit Thin Structural Shell</td><td><a href="../ans_lsd/Hlp_L_matl3.html#lbiso" class="olink">Bilinear isotropic hardening</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lbkin" class="olink">Bilinear kinematic hardening</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lcom" class="olink">Composite damage</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lmoon" class="olink">Mooney-Rivlin hyperelasticity</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lsdplasticityjla4400" class="olink">Plasticity laws</a></td></tr><tr><td><a class="link" href="Hlp_E_SOLID164.html" title="SOLID164"><span class="structname">SOLID164</span></a> (explicit)</td><td>Explicit 3-D Structural Solid</td><td><a href="../ans_lsd/Hlp_L_matl3.html#lanel" class="olink">Anisotropic elasticity</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lbiso" class="olink">Bilinear isotropic hardening</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lbkin" class="olink">Bilinear kinematic hardening</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lcom" class="olink">Composite damage</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lcon" class="olink">Concrete damage</a>, <a href="../ans_lsd/Hlp_L_matl3.html#levi" class="olink">Viscoelasticity</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lsdfoamjla4400" class="olink">Foam</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lsdprdepl51800" class="olink">Geological cap</a>,
+                            <a href="../ans_lsd/Hlp_L_matl3.html#lhon" class="olink">Honeycomb</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lmoon" class="olink">Mooney-Rivlin hyperelasticity</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lsdplasticityjla4400" class="olink">Plasticity laws</a></td></tr><tr><td><a class="link" href="Hlp_E_COMBI165.html" title="COMBI165"><span class="structname">COMBI165</span></a> (explicit)</td><td>Explicit Spring-Damper</td><td>
+                        <a href="../ans_lsd/Hlp_L_matl3.html#lsddiscretemodtlm51700" class="olink">Explicit spring-damper
+                            (discrete)</a>
+                    </td></tr><tr><td><a class="link" href="Hlp_E_SOLID168.html" title="SOLID168"><span class="structname">SOLID168</span></a> (explicit)</td><td>Explicit 3-D 10-Node Tetrahedral Structural Solid</td><td><a href="../ans_lsd/Hlp_L_matl3.html#lanel" class="olink">Anisotropic elasticity</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lbiso" class="olink">Bilinear isotropic hardening</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lbkin" class="olink">Bilinear kinematic hardening</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lcom" class="olink">Composite damage</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lcon" class="olink">Concrete damage</a>, <a href="../ans_lsd/Hlp_L_matl3.html#levi" class="olink">Viscoelasticity</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lsdfoamjla4400" class="olink">Foam</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lsdprdepl51800" class="olink">Geological cap</a>,
+                            <a href="../ans_lsd/Hlp_L_matl3.html#lhon" class="olink">Honeycomb</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lmoon" class="olink">Mooney-Rivlin hyperelasticity</a>, <a href="../ans_lsd/Hlp_L_matl3.html#lsdplasticityjla4400" class="olink">Plasticity laws</a></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_CONTA171.html" title="CONTA171"><span class="structname">CONTA171</span></a>
+                    </td><td>2-D 2-Node Surface-to-Surface Contact</td><td rowspan="7" valign="middle"><a href="../ans_mat/cozonemats.html" class="olink">Cohesive
+                            zone</a>, Coefficient of <a href="../ans_mat/contfriction.html" class="olink">friction</a>, <a href="../ans_ctec/ctecuserinterfacial.html#ctecuserfriclaws" class="olink">User-defined
+                            friction</a>, <a href="../ans_mat/continteraction.html" class="olink">Contact
+                            interaction</a>, <a href="../ans_mat/contwearmat.html" class="olink">Contact surface
+                            wear</a><p>Orthotropic friction
+                            (<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,FRIC,,,,ORTHO) is not applicable to the 2-D
+                            contact elements <a class="link" href="Hlp_E_CONTA171.html" title="CONTA171"><span class="structname">CONTA171</span></a> and
+                                <a class="link" href="Hlp_E_CONTA172.html" title="CONTA172"><span class="structname">CONTA172</span></a>.</p><p>Contact surface wear
+                            is not available for <a class="link" href="Hlp_E_CONTA176.html" title="CONTA176"><span class="structname">CONTA176</span></a> and
+                                <a class="link" href="Hlp_E_CONTA177.html" title="CONTA177"><span class="structname">CONTA177</span></a>.</p><p>Contact interaction
+                            for general contact definitions is not applicable to
+                                <a class="link" href="Hlp_E_CONTA176.html" title="CONTA176"><span class="structname">CONTA176</span></a>.</p></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_CONTA172.html" title="CONTA172"><span class="structname">CONTA172</span></a>
+                    </td><td>2-D 3-Node Surface-to-Surface Contact</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_CONTA173.html" title="CONTA173"><span class="structname">CONTA173</span></a>
+                    </td><td>3-D 4-Node Surface-to-Surface Contact</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_CONTA174.html" title="CONTA174"><span class="structname">CONTA174</span></a>
+                    </td><td>3-D 8-Node Surface-to-Surface Contact</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_CONTA175.html" title="CONTA175"><span class="structname">CONTA175</span></a>
+                    </td><td>2-D/3-D Node-to-Surface Contact</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_CONTA176.html" title="CONTA176"><span class="structname">CONTA176</span></a>
+                    </td><td>3-D Line-to-Line Contact</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_CONTA177.html" title="CONTA177"><span class="structname">CONTA177</span></a>
+                    </td><td>3-D Line-to-Surface Contact</td></tr><tr><td>
+                        <p>
+                            <a class="link" href="Hlp_E_CONTA178.html" title="CONTA178"><span class="structname">CONTA178</span></a>
+                        </p>
+                    </td><td>
+                        <p>3-D Node-to-Node Contact</p>
+                    </td><td>Coefficient of <a href="../ans_mat/contfriction.html" class="olink">friction</a>, <a href="../ans_ctec/ctecuserinterfacial.html#ctecuserfriclaws" class="olink">User-defined friction</a>, <a href="../ans_mat/continteraction.html" class="olink">Contact interaction</a><p>Orthotropic
+                            friction (<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,FRIC,,,,ORTHO) is not applicable to
+                                <a class="link" href="Hlp_E_CONTA178.html" title="CONTA178"><span class="structname">CONTA178</span></a>.</p><p>Contact interaction
+                            for general contact definitions does not apply to
+                                <a class="link" href="Hlp_E_CONTA178.html" title="CONTA178"><span class="structname">CONTA178</span></a>.</p></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_LINK180.html" title="LINK180"><span class="structname">LINK180</span></a>
+                    </td><td>3-D Spar (or Truss)</td><td><a href="../ans_mat/amp8sq21dldm.html#biso" class="olink">Bilinear isotropic hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#bkin" class="olink">Bilinear kinematic hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#chab" class="olink">Chaboche nonlinear kinematic hardening</a>, <a href="../ans_mat/rate.html#aQy8sq33aldm" class="olink">Creep</a>, Coefficient of <a href="../ans_mat/ansmattherexp.html" class="olink">thermal expansion</a>, <a href="../ans_mat/mat_damageall.html#mat_dmge" class="olink">Damage evolution law</a>, <a href="../ans_mat/mat_damageall.html#mat_dmgi" class="olink">Damage initiation criteria</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Density</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Elasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#matRIPisohillyield" class="olink">Hill
+                            anisotropy</a>, <a href="../ans_mat/evis.html" class="olink">Prony series</a>
+                        constants for viscoelastic materials, <a href="../ans_mat/rate.html" class="olink">Rate-dependent
+                            plasticity</a> (viscoplasticity), <a href="../ans_mat/amp8sq21dldm.html" class="olink">Rate-independent plasticity</a>, <a href="../ans_mat/evis.html" class="olink">Shift
+                            function</a> for viscoelastic materials, <a href="../ans_mat/matcustommatmods.html#matstatvaruserdefmats" class="olink">State variables
+                        (user-defined)</a>, <a href="../ans_mat/matcustommatmods.html#user" class="olink">User-defined</a>, <a href="../ans_mat/amp8sq21dldm.html#nlis" class="olink">Voce isotropic hardening law</a></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_SHELL181.html" title="SHELL181"><span class="structname">SHELL181</span></a>
+                    </td><td>4-Node Structural Shell</td><td><a href="../ans_mat/aQw8sq22dldm.html#anhyper1g" class="olink">Anisotropic hyperelasticity</a>, <a href="../ans_mat/anel.html" class="olink">Anisotropic elasticity</a>, <a href="../ans_mat/aQw8sq22dldm.html#elbergboyce" class="olink">Bergstrom-Boyce</a>, <a href="../ans_mat/amp8sq21dldm.html#biso" class="olink">Bilinear isotropic hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#bkin" class="olink">Bilinear
+                            kinematic hardening</a>, <a href="../ans_mat/rate.html#aQy8sq33aldm" class="olink">Creep</a>, Coefficient of <a href="../ans_mat/ansmattherexp.html" class="olink">thermal
+                            expansion</a>, <a href="../ans_mat/aQw8sq22dldm.html#elemmullinsconstants" class="olink">Mullins
+                            effect</a>, <a href="../ans_mat/amp8sq21dldm.html#chab" class="olink">Chaboche nonlinear kinematic
+                            hardening</a>, <a href="../ans_mat/rate.html#aQy8sq33aldm" class="olink">Creep</a>, <a href="../ans_mat/mat_damageall.html#mat_dmge" class="olink">Damage evolution law</a>, <a href="../ans_mat/mat_damageall.html#mat_dmgi" class="olink">Damage initiation criteria</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Density</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Elasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#matRIPisohillyield" class="olink">Hill
+                            anisotropy</a>, <a href="../ans_mat/aQw8sq22dldm.html" class="olink">Hyperelasticity</a>, <a href="../ans_mat/mat_matdamping.html#matalphsbetarayleigh" class="olink">Material-dependent alpha and beta damping (Rayleigh Damping)</a>,
+                            <a href="../ans_mat/mat_matdamping.html#matdepstructdamp" class="olink">Material-dependent structural
+                            damping</a>, <a href="../ans_mat/evis.html" class="olink">Prony series</a> constants
+                        for viscoelastic materials, <a href="../ans_mat/rate.html" class="olink">Rate-dependent
+                            plasticity</a> (viscoplasticity), <a href="../ans_mat/amp8sq21dldm.html" class="olink">Rate-independent plasticity</a>, <a href="../ans_mat/smas.html" class="olink">Shape
+                            memory alloy (SMA)</a>, <a href="../ans_mat/evis.html" class="olink">Shift
+                            function</a> for viscoelastic materials, <a href="../ans_mat/matcustommatmods.html#matstatvaruserdefmats" class="olink">State variables
+                        (user-defined)</a>, <a href="../ans_mat/swel.html" class="olink">Swelling</a>, <a href="../ans_mat/matcustommatmods.html#user" class="olink">User-defined</a>, <a href="../ans_mat/amp8sq21dldm.html#nlis" class="olink">Voce
+                            isotropic hardening law</a></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_PLANE182.html" title="PLANE182"><span class="structname">PLANE182</span></a>
+                    </td><td>2-D 4-Node Structural Solid</td><td rowspan="2"><a href="../ans_mat/aQw8sq22dldm.html#anhyper1g" class="olink">Anisotropic
+                            hyperelasticity</a>, <a href="../ans_mat/anel.html" class="olink">Anisotropic
+                            elasticity</a>, <a href="../ans_mat/aQw8sq22dldm.html#elbergboyce" class="olink">Bergstrom-Boyce</a>, <a href="../ans_mat/amp8sq21dldm.html#biso" class="olink">Bilinear isotropic
+                            hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#bkin" class="olink">Bilinear kinematic
+                            hardening</a>, <a href="../ans_mat/mat_geomechanics.html#matgeomechcamclay" class="olink">Cam-clay</a>, <a href="../ans_mat/amp8sq21dldm.html#cast" class="olink">Cast iron</a>, <a href="../ans_mat/aQw8sq22dldm.html#elemmullinsconstants" class="olink">Mullins effect</a>, <a href="../ans_frac/Hlp_G_STR_VCCT.html#vcctfractcrit" class="olink">Crack growth fracture criterion</a>,
+                            <a href="../ans_mat/amp8sq21dldm.html#chab" class="olink">Chaboche nonlinear kinematic hardening</a>,
+                            <a href="../ans_mat/rate.html#aQy8sq33aldm" class="olink">Creep</a>, Coefficient of <a href="../ans_mat/ansmattherexp.html" class="olink">thermal expansion</a>, <a href="../ans_mat/mat_damageall.html#mat_dmge" class="olink">Damage evolution law</a>, <a href="../ans_mat/mat_damageall.html#mat_dmgi" class="olink">Damage initiation criteria</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Density</a>, <a href="../ans_mat/mat_geomechanics.html#matgeomechDPconc" class="olink">Drucker-Prager concrete</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Elasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#elemedp" class="olink">Extended
+                            Drucker-Prager</a>, <a href="../ans_mat/amp8sq21dldm.html#elmgurson" class="olink">Gurson
+                            pressure-dependent plasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#matRIPisohillyield" class="olink">Hill anisotropy</a>, <a href="../ans_mat/aQw8sq22dldm.html" class="olink">Hyperelasticity</a>, <a href="../ans_mat/mat_geomechanics.html#matgeomecgjointedrock" class="olink">Jointed rock</a>, <a href="../ans_mat/mat_matdamping.html#matalphsbetarayleigh" class="olink">Material-dependent alpha and beta
+                            damping (Rayleigh damping)</a>, <a href="../ans_mat/mat_matdamping.html#matdepstructdamp" class="olink">Material-dependent structural damping</a>, <a href="../ans_mat/microplane.html" class="olink">Microplane</a>, <a href="../ans_mat/mat_geomechanics.html#matgeomechmohrcoul" class="olink">Mohr-Coulomb</a>, <a href="../ans_mat/mat_porous_elasticity.html" class="olink">Porous elasticity</a>, <a href="../ans_mat/evis.html" class="olink">Prony series</a> constants for viscoelastic
+                        materials, <a href="../ans_mat/rate.html" class="olink">Rate-dependent plasticity</a>
+                        (viscoplasticity), <a href="../ans_mat/amp8sq21dldm.html" class="olink">Rate-independent
+                            plasticity</a>, <a href="../ans_mat/evis.html" class="olink">Shift function</a> for
+                        viscoelastic materials, <a href="../ans_mat/smas.html" class="olink">Shape memory alloy</a>,
+                            <a href="../ans_mat/matcustommatmods.html#matstatvaruserdefmats" class="olink">State variables
+                            (user-defined)</a>, <a href="../ans_mat/swel.html" class="olink">Swelling</a>, <a href="../ans_mat/amp8sq21dldm.html#cast" class="olink">Uniaxial stress-strain relation</a>, <a href="../ans_mat/matcustommatmods.html#user" class="olink">User-defined</a>, <a href="../ans_mat/amp8sq21dldm.html#nlis" class="olink">Voce
+                            isotropic hardening law</a></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_PLANE183.html" title="PLANE183"><span class="structname">PLANE183</span></a>
+                    </td><td>2-D 8-Node or 6-Node Structural Solid</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_MPC184.html" title="MPC184"><span class="structname">MPC184</span></a>
+                    </td><td>Multipoint Constraint</td><td><a href="../ans_mat/jointmat.html" class="olink">Joint</a> (linear and nonlinear elastic
+                        stiffness, linear and nonlinear damping, and frictional behavior)</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_SOLID185.html" title="SOLID185"><span class="structname">SOLID185</span></a>
+                    </td><td>3-D 8-Node Structural Solid</td><td><a href="../ans_mat/aQw8sq22dldm.html#anhyper1g" class="olink">Anisotropic hyperelasticity</a>, <a href="../ans_mat/anel.html" class="olink">Anisotropic elasticity</a>, <a href="../ans_mat/aQw8sq22dldm.html#elbergboyce" class="olink">Bergstrom-Boyce</a>, <a href="../ans_mat/amp8sq21dldm.html#biso" class="olink">Bilinear isotropic hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#bkin" class="olink">Bilinear
+                            kinematic hardening</a>, <a href="../ans_mat/mat_geomechanics.html#matgeomechcamclay" class="olink">Cam-clay</a>, <a href="../ans_mat/amp8sq21dldm.html#cast" class="olink">Cast iron</a>, <a href="../ans_mat/aQw8sq22dldm.html#elemmullinsconstants" class="olink">Mullins effect</a>, <a href="../ans_frac/Hlp_G_STR_VCCT.html#vcctfractcrit" class="olink">Crack growth fracture criterion</a>,
+                            <a href="../ans_mat/amp8sq21dldm.html#chab" class="olink">Chaboche nonlinear kinematic hardening</a>,
+                            <a href="../ans_mat/rate.html#aQy8sq33aldm" class="olink">Creep</a>, Coefficient of <a href="../ans_mat/ansmattherexp.html" class="olink">thermal expansion</a>, <a href="../ans_mat/mat_damageall.html#mat_dmge" class="olink">Damage evolution law</a>, <a href="../ans_mat/mat_damageall.html#mat_dmgi" class="olink">Damage initiation criteria</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Density</a>, <a href="../ans_mat/mat_geomechanics.html#matgeomechDPconc" class="olink">Drucker-Prager concrete</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Elasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#elemedp" class="olink">Extended
+                            Drucker-Prager</a>, <a href="../ans_mat/amp8sq21dldm.html#elmgurson" class="olink">Gurson
+                            pressure-dependent plasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#matRIPisohillyield" class="olink">Hill anisotropy</a>, <a href="../ans_mat/aQw8sq22dldm.html" class="olink">Hyperelasticity</a>, <a href="../ans_mat/mat_geomechanics.html#matgeomecgjointedrock" class="olink">Jointed rock</a>, <a href="../ans_mat/mat_matdamping.html#matalphsbetarayleigh" class="olink">Material-dependent alpha and beta
+                            damping (Rayleigh damping)</a>, <a href="../ans_mat/mat_matdamping.html#matdepstructdamp" class="olink">Material-dependent structural damping</a>, <a href="../ans_mat/microplane.html" class="olink">Microplane</a>, <a href="../ans_mat/mat_geomechanics.html#matgeomechmohrcoul" class="olink">Mohr-Coulomb</a>, <a href="../ans_mat/mat_porous_elasticity.html" class="olink">Porous elasticity</a>, <a href="../ans_mat/evis.html" class="olink">Prony series</a> constants for viscoelastic
+                        materials, <a href="../ans_mat/rate.html" class="olink">Rate-dependent plasticity</a>
+                        (viscoplasticity), <a href="../ans_mat/amp8sq21dldm.html" class="olink">Rate-independent
+                            plasticity</a>, <a href="../ans_mat/evis.html" class="olink">Shift function</a> for
+                        viscoelastic materials, <a href="../ans_mat/smas.html" class="olink">Shape memory alloy</a>,
+                            <a href="../ans_mat/matcustommatmods.html#matstatvaruserdefmats" class="olink">State variables
+                            (user-defined)</a>, <a href="../ans_mat/swel.html" class="olink">Swelling</a>, <a href="../ans_mat/amp8sq21dldm.html#cast" class="olink">Uniaxial stress-strain relation</a>, <a href="../ans_mat/matcustommatmods.html#user" class="olink">User-defined</a>, <a href="../ans_mat/amp8sq21dldm.html#nlis" class="olink">Voce
+                            isotropic hardening law</a></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_SOLID186.html" title="SOLID186"><span class="structname">SOLID186</span></a>
+                    </td><td>3-D 20-Node Structural Solid</td><td rowspan="2"><a href="../ans_mat/aQw8sq22dldm.html#anhyper1g" class="olink">Anisotropic
+                            hyperelasticity</a>, <a href="../ans_mat/anel.html" class="olink">Anisotropic
+                            elasticity</a>, <a href="../ans_mat/aQw8sq22dldm.html#elbergboyce" class="olink">Bergstrom-Boyce</a>, <a href="../ans_mat/amp8sq21dldm.html#biso" class="olink">Bilinear isotropic
+                            hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#bkin" class="olink">Bilinear kinematic
+                            hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#cast" class="olink">Cast iron</a>, <a href="../ans_mat/aQw8sq22dldm.html#elemmullinsconstants" class="olink">Mullins effect</a>, <a href="../ans_mat/mat_geomechanics.html#matgeomechcamclay" class="olink">Cam-clay</a>, <a href="../ans_mat/amp8sq21dldm.html#chab" class="olink">Chaboche nonlinear kinematic hardening</a>, <a href="../ans_mat/rate.html#aQy8sq33aldm" class="olink">Creep</a>, Coefficient of <a href="../ans_mat/ansmattherexp.html" class="olink">thermal expansion</a>, <a href="../ans_mat/mat_damageall.html#mat_dmge" class="olink">Damage evolution law</a>, <a href="../ans_mat/mat_damageall.html#mat_dmgi" class="olink">Damage initiation criteria</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Density</a>, <a href="../ans_mat/mat_geomechanics.html#matgeomechDPconc" class="olink">Drucker-Prager concrete</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Elasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#elemedp" class="olink">Extended
+                            Drucker-Prager</a>, <a href="../ans_mat/amp8sq21dldm.html#elmgurson" class="olink">Gurson
+                            pressure-dependent plasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#matRIPisohillyield" class="olink">Hill anisotropy</a>, <a href="../ans_mat/aQw8sq22dldm.html" class="olink">Hyperelasticity</a>, <a href="../ans_mat/mat_geomechanics.html#matgeomecgjointedrock" class="olink">Jointed rock</a>, <a href="../ans_mat/mat_matdamping.html#matalphsbetarayleigh" class="olink">Material-dependent alpha and beta
+                            damping (Rayleigh damping)</a>, <a href="../ans_mat/mat_matdamping.html#matdepstructdamp" class="olink">Material-dependent structural damping</a>, <a href="../ans_mat/microplane.html" class="olink">Microplane</a>, <a href="../ans_mat/mat_geomechanics.html#matgeomechmohrcoul" class="olink">Mohr-Coulomb</a>, <a href="../ans_mat/mat_porous_elasticity.html" class="olink">Porous elasticity</a>, <a href="../ans_mat/evis.html" class="olink">Prony series</a> constants for viscoelastic
+                        materials, <a href="../ans_mat/rate.html" class="olink">Rate-dependent plasticity</a>
+                        (viscoplasticity), <a href="../ans_mat/amp8sq21dldm.html" class="olink">Rate-independent
+                            plasticity</a>, <a href="../ans_mat/evis.html" class="olink">Shift function</a> for
+                        viscoelastic materials, <a href="../ans_mat/smas.html" class="olink">Shape memory alloy</a>,
+                            <a href="../ans_mat/matcustommatmods.html#matstatvaruserdefmats" class="olink">State variables
+                            (user-defined)</a>, <a href="../ans_mat/swel.html" class="olink">Swelling</a>, <a href="../ans_mat/amp8sq21dldm.html#cast" class="olink">Uniaxial stress-strain relation</a>, <a href="../ans_mat/matcustommatmods.html#user" class="olink">User-defined</a>, <a href="../ans_mat/amp8sq21dldm.html#nlis" class="olink">Voce
+                            isotropic hardening law</a></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_SOLID187.html" title="SOLID187"><span class="structname">SOLID187</span></a>
+                    </td><td>3-D 10-Node Tetrahedral Structural Solid</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_BEAM188.html" title="BEAM188"><span class="structname">BEAM188</span></a>
+                    </td><td>3-D 2-Node Beam</td><td rowspan="2" valign="middle"><a href="../ans_mat/amp8sq21dldm.html#biso" class="olink">Bilinear isotropic
+                            hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#bkin" class="olink">Bilinear kinematic
+                            hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#chab" class="olink">Chaboche nonlinear kinematic
+                            hardening</a>, <a href="../ans_mat/rate.html#aQy8sq33aldm" class="olink">Creep</a>,
+                        Coefficient of <a href="../ans_mat/ansmattherexp.html" class="olink">thermal expansion</a>,
+                            <a href="../ans_mat/mat_damageall.html#mat_dmge" class="olink">Damage evolution law</a>, <a href="../ans_mat/mat_damageall.html#mat_dmgi" class="olink">Damage initiation criteria</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Density</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Elasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#matRIPisohillyield" class="olink">Hill
+                            anisotropy</a>, <a href="../ans_mat/evis.html" class="olink">Prony series</a>
+                        constants for viscoelastic materials, <a href="../ans_mat/rate.html" class="olink">Rate-dependent
+                            plasticity</a> (viscoplasticity), <a href="../ans_mat/amp8sq21dldm.html" class="olink">Rate-independent plasticity</a>, <a href="../ans_mat/evis.html" class="olink">Shift
+                            function</a> for viscoelastic materials, <a href="../ans_mat/smas.html" class="olink">Shape memory alloy (SMA)</a>, <a href="../ans_mat/matcustommatmods.html#matstatvaruserdefmats" class="olink">State variables
+                        (user-defined)</a>, <a href="../ans_mat/matcustommatmods.html#user" class="olink">User-defined</a>, <a href="../ans_mat/amp8sq21dldm.html#nlis" class="olink">Voce isotropic hardening law</a></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_BEAM189.html" title="BEAM189"><span class="structname">BEAM189</span></a>
+                    </td><td>3-D 3-Node Beam</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_SOLSH190.html" title="SOLSH190"><span class="structname">SOLSH190</span></a>
+                    </td><td>3-D 8-Node Structural Solid Shell</td><td><a href="../ans_mat/anel.html" class="olink">Anisotropic elasticity</a>, <a href="../ans_mat/aQw8sq22dldm.html#elbergboyce" class="olink">Bergstrom-Boyce</a>, <a href="../ans_mat/amp8sq21dldm.html#biso" class="olink">Bilinear isotropic hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#bkin" class="olink">Bilinear
+                            kinematic hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#cast" class="olink">Cast iron</a>,
+                            <a href="../ans_mat/aQw8sq22dldm.html#elemmullinsconstants" class="olink">Mullins effect</a>, <a href="../ans_mat/amp8sq21dldm.html#chab" class="olink">Chaboche nonlinear kinematic hardening</a>, <a href="../ans_mat/rate.html#aQy8sq33aldm" class="olink">Creep</a>, Coefficient of <a href="../ans_mat/ansmattherexp.html" class="olink">thermal expansion</a>, <a href="../ans_mat/mat_damageall.html#mat_dmge" class="olink">Damage evolution law</a>, <a href="../ans_mat/mat_damageall.html#mat_dmgi" class="olink">Damage initiation criteria</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Density</a>, <a href="../ans_mat/amp8sq21dldm.html#elemedp" class="olink">Extended
+                            Drucker-Prager</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Elasticity</a>,
+                            <a href="../ans_mat/amp8sq21dldm.html#elmgurson" class="olink">Gurson pressure-dependent
+                            plasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#matRIPisohillyield" class="olink">Hill
+                            anisotropy</a>, <a href="../ans_mat/aQw8sq22dldm.html" class="olink">Hyperelasticity</a>, <a href="../ans_mat/mat_matdamping.html#matalphsbetarayleigh" class="olink">Material-dependent alpha and beta damping (Rayleigh damping)</a>,
+                            <a href="../ans_mat/mat_matdamping.html#matdepstructdamp" class="olink">Material-dependent structural
+                            damping</a>, <a href="../ans_mat/evis.html" class="olink">Prony series</a> constants
+                        for viscoelastic materials, <a href="../ans_mat/rate.html" class="olink">Rate-dependent
+                            plasticity</a> (viscoplasticity), <a href="../ans_mat/amp8sq21dldm.html" class="olink">Rate-independent plasticity</a>, <a href="../ans_mat/evis.html" class="olink">Shift
+                            function</a> for viscoelastic materials, <a href="../ans_mat/smas.html" class="olink">Shape memory alloy</a>, <a href="../ans_mat/matcustommatmods.html#matstatvaruserdefmats" class="olink">State variables (user-defined)</a>, <a href="../ans_mat/swel.html" class="olink">Swelling</a>, <a href="../ans_mat/amp8sq21dldm.html#cast" class="olink">Uniaxial stress-strain
+                            relation</a>, <a href="../ans_mat/matcustommatmods.html#user" class="olink">User-defined</a>, <a href="../ans_mat/amp8sq21dldm.html#nlis" class="olink">Voce isotropic hardening law</a></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_INTER192.html" title="INTER192"><span class="structname">INTER192</span></a>
+                    </td><td>2-D 4-Node Gasket</td><td rowspan="4" valign="middle">
+                        <a href="../ans_mat/gask.html" class="olink">Gasket</a>
+                    </td></tr><tr><td>
+                        <a class="link" href="Hlp_E_INTER193.html" title="INTER193"><span class="structname">INTER193</span></a>
+                    </td><td>2-D 6-Node Gasket</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_INTER194.html" title="INTER194"><span class="structname">INTER194</span></a>
+                    </td><td>3-D 16-Node Gasket</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_INTER195.html" title="INTER195"><span class="structname">INTER195</span></a>
+                    </td><td>3-D 8-Node Gasket</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_INTER202.html" title="INTER202"><span class="structname">INTER202</span></a>
+                    </td><td>2-D 4-Node Cohesive</td><td rowspan="4" valign="middle">
+                        <a href="../ans_mat/cozonemats.html" class="olink">Cohesive zone</a>
+                    </td></tr><tr><td>
+                        <a class="link" href="Hlp_E_INTER203.html" title="INTER203"><span class="structname">INTER203</span></a>
+                    </td><td>2-D 6-Node Cohesive</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_INTER204.html" title="INTER204"><span class="structname">INTER204</span></a>
+                    </td><td>3-D 16-Node Cohesive</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_INTER205.html" title="INTER205"><span class="structname">INTER205</span></a>
+                    </td><td>3-D 8-Node Cohesive</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_SHELL208.html" title="SHELL208"><span class="structname">SHELL208</span></a>
+                    </td><td>2-Node Axisymmetric Shell</td><td><a href="../ans_mat/aQw8sq22dldm.html#anhyper1g" class="olink">Anisotropic hyperelasticity</a>, <a href="../ans_mat/anel.html" class="olink">Anisotropic elasticity</a>, <a href="../ans_mat/aQw8sq22dldm.html#elbergboyce" class="olink">Bergstrom-Boyce</a>, <a href="../ans_mat/amp8sq21dldm.html#biso" class="olink">Bilinear isotropic hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#bkin" class="olink">Bilinear
+                            kinematic hardening</a>, <a href="../ans_mat/aQw8sq22dldm.html#elemmullinsconstants" class="olink">Mullins effect</a>, <a href="../ans_mat/amp8sq21dldm.html#chab" class="olink">Chaboche nonlinear
+                            kinematic hardening</a>, <a href="../ans_mat/rate.html#aQy8sq33aldm" class="olink">Creep</a>, Coefficient of <a href="../ans_mat/ansmattherexp.html" class="olink">thermal
+                            expansion</a>, <a href="../ans_mat/mat_damageall.html#mat_dmge" class="olink">Damage evolution
+                            law</a>, <a href="../ans_mat/mat_damageall.html#mat_dmgi" class="olink">Damage initiation
+                            criteria</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Density</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Elasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#matRIPisohillyield" class="olink">Hill anisotropy</a>, <a href="../ans_mat/aQw8sq22dldm.html" class="olink">Hyperelasticity</a>, <a href="../ans_mat/mat_matdamping.html#matalphsbetarayleigh" class="olink">Material-dependent alpha and beta
+                            damping (Rayleigh damping)</a>, <a href="../ans_mat/mat_matdamping.html#matdepstructdamp" class="olink">Material-dependent structural damping</a>, <a href="../ans_mat/evis.html" class="olink">Prony series</a> constants for viscoelastic materials, <a href="../ans_mat/rate.html" class="olink">Rate-dependent plasticity</a> (viscoplasticity),
+                            <a href="../ans_mat/amp8sq21dldm.html" class="olink">Rate-independent plasticity</a>,
+                            <a href="../ans_mat/evis.html" class="olink">Shift function</a> for viscoelastic
+                        materials, <a href="../ans_mat/smas.html" class="olink">Shape memory alloy (SMA)</a>, <a href="../ans_mat/matcustommatmods.html#matstatvaruserdefmats" class="olink">State variables
+                        (user-defined)</a>, <a href="../ans_mat/swel.html" class="olink">Swelling</a>, <a href="../ans_mat/matcustommatmods.html#user" class="olink">User-defined</a>, <a href="../ans_mat/amp8sq21dldm.html#nlis" class="olink">Voce
+                            isotropic hardening law</a></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_SHELL209.html" title="SHELL209"><span class="structname">SHELL209</span></a>
+                    </td><td>3-Node Axisymmetric Shell</td><td><a href="../ans_mat/aQw8sq22dldm.html#anhyper1g" class="olink">Anisotropic hyperelasticity</a>, <a href="../ans_mat/anel.html" class="olink">Anisotropic elasticity</a>, <a href="../ans_mat/aQw8sq22dldm.html#elbergboyce" class="olink">Bergstrom-Boyce</a>,
+                            <a href="../ans_mat/amp8sq21dldm.html#biso" class="olink">Bilinear isotropic hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#bkin" class="olink">Bilinear kinematic hardening</a>, <a href="../ans_mat/aQw8sq22dldm.html#elemmullinsconstants" class="olink">Mullins effect</a>, <a href="../ans_mat/amp8sq21dldm.html#chab" class="olink">Chaboche nonlinear kinematic hardening</a>, <a href="../ans_mat/rate.html#aQy8sq33aldm" class="olink">Creep</a>, Coefficient of <a href="../ans_mat/ansmattherexp.html" class="olink">thermal expansion</a>, <a href="../ans_mat/mat_damageall.html#mat_dmge" class="olink">Damage evolution law</a>, <a href="../ans_mat/mat_damageall.html#mat_dmgi" class="olink">Damage initiation criteria</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Density</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Elasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#matRIPisohillyield" class="olink">Hill
+                            anisotropy</a>, <a href="../ans_mat/aQw8sq22dldm.html" class="olink">Hyperelasticity</a>, <a href="../ans_mat/mat_matdamping.html#matalphsbetarayleigh" class="olink">Material-dependent alpha and beta damping (Rayleigh damping)</a>,
+                            <a href="../ans_mat/mat_matdamping.html#matdepstructdamp" class="olink">Material-dependent structural
+                            damping</a>, <a href="../ans_mat/evis.html" class="olink">Prony series</a> constants
+                        for viscoelastic materials, <a href="../ans_mat/rate.html" class="olink">Rate-dependent
+                            plasticity</a> (viscoplasticity), <a href="../ans_mat/amp8sq21dldm.html" class="olink">Rate-independent plasticity</a>, <a href="../ans_mat/evis.html" class="olink">Shift
+                            function</a> for viscoelastic materials, <a href="../ans_mat/smas.html" class="olink">Shape memory alloy (SMA)</a>, <a href="../ans_mat/matcustommatmods.html#matstatvaruserdefmats" class="olink">State variables
+                        (user-defined)</a>, <a href="../ans_mat/swel.html" class="olink">Swelling</a>, <a href="../ans_mat/matcustommatmods.html#user" class="olink">User-defined</a>, <a href="../ans_mat/amp8sq21dldm.html#nlis" class="olink">Voce
+                            isotropic hardening law</a></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_CPT212.html" title="CPT212"><span class="structname">CPT212</span></a>
+                    </td><td>2-D 4-Node Coupled Pore-Pressure Mechanical Solid</td><td rowspan="5" valign="middle"><a href="../ans_mat/amp8sq21dldm.html#biso" class="olink">Bilinear isotropic
+                            hardening</a>, <a href="../ans_mat/mat_geomechanics.html#matgeomechcamclay" class="olink">Cam-clay</a>, <a href="../ans_mat/amp8sq21dldm.html#cast" class="olink">Cast iron</a>, <a href="../ans_mat/amp8sq21dldm.html#chab" class="olink">Chaboche nonlinear kinematic hardening</a>, <a href="../ans_mat/elemdatatblpor.html#elemdatatblpm" class="olink">Coupled Pore-Fluid Diffusion and Structural
+                            Model of Porous Media</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Density</a>, <a href="../ans_mat/mat_geomechanics.html#matgeomechDPconc" class="olink">Drucker-Prager
+                            concrete</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Elasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#elemedp" class="olink">Extended Drucker-Prager</a> (excluding Cap yield
+                        surface), <a href="../ans_mat/amp8sq21dldm.html#elmgurson" class="olink">Gurson pressure-dependent
+                            plasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#matRIPisohillyield" class="olink">Hill
+                            anisotropy</a> (with <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,BISO or
+                            <a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,PLAS,,,,MISO only), <a href="../ans_mat/aQw8sq22dldm.html" class="olink">Hyperelasticity</a>, <a href="../ans_mat/mat_geomechanics.html#matgeomecgjointedrock" class="olink">Jointed rock</a>, <a href="../ans_mat/microplane.html" class="olink">Microplane</a>, <a href="../ans_mat/mat_geomechanics.html#matgeomechmohrcoul" class="olink">Mohr-Coulomb</a>, <a href="../ans_mat/amp8sq21dldm.html#miso" class="olink">Multilinear isotropic hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#nlis" class="olink">Nonlinear isotropic hardening</a>, <a href="../ans_mat/mat_porous_elasticity.html" class="olink">Porous elasticity</a>, <a href="../ans_mat/swel.html" class="olink">Swelling</a>, <a href="../ans_mat/thermalmat.html" class="olink">Thermal</a>, Coefficient of <a href="../ans_mat/ansmattherexp.html" class="olink">thermal expansion</a></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_CPT213.html" title="CPT213"><span class="structname">CPT213</span></a>
+                    </td><td>2-D 8-Node Coupled Pore-Pressure Mechanical Solid</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_CPT215.html" title="CPT215"><span class="structname">CPT215</span></a>
+                    </td><td>3-D 8-Node Coupled Pore-Pressure Mechanical Solid</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_CPT216.html" title="CPT216"><span class="structname">CPT216</span></a>
+                    </td><td>3-D 20-Node Coupled Pore-Pressure Mechanical Solid</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_CPT217.html" title="CPT217"><span class="structname">CPT217</span></a>
+                    </td><td>3-D 10-Node Coupled Pore-Pressure Mechanical Solid</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_FLUID220.html" title="FLUID220"><span class="structname">FLUID220</span></a>
+                    </td><td>3-D Acoustic Fluid 20-Node Solid Element</td><td valign="middle">
+                        <a href="../ans_mat/acousticmat.html#elemdatatblperf" class="olink">Johnson-Champoux-Allard Equivalent Fluid
+                            Model of a Porous Media</a>
+                    </td></tr><tr><td>
+                        <a class="link" href="Hlp_E_FLUID221.html" title="FLUID221"><span class="structname">FLUID221</span></a>
+                    </td><td>3-D Acoustic Fluid 10-Node Solid Element</td><td valign="middle">
+                        <a href="../ans_mat/acousticmat.html#elemdatatblperf" class="olink">Johnson-Champoux-Allard Equivalent Fluid
+                            Model of a Porous Media</a>
+                    </td></tr><tr><td>
+                        <a class="link" href="Hlp_E_PLANE222.html" title="PLANE222"><span class="structname">PLANE222</span></a>
+                    </td><td>2-D 4-Node Coupled-Field Solid</td><td valign="middle"><a href="../ans_mat/aQw8sq22dldm.html#anhyper1g" class="olink">Anisotropic
+                            hyperelasticity</a>, <a href="../ans_mat/anel.html" class="olink">Anisotropic
+                            elasticity</a>, <a href="../ans_mat/aQw8sq22dldm.html#elbergboyce" class="olink">Bergstrom-Boyce</a>, <a href="../ans_mat/amp8sq21dldm.html#biso" class="olink">Bilinear isotropic
+                            hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#bkin" class="olink">Bilinear kinematic
+                            hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#cast" class="olink">Cast iron</a>, <a href="../ans_mat/amp8sq21dldm.html#chab" class="olink">Chaboche nonlinear kinematic hardening</a>, <a href="../ans_mat/rate.html#aQy8sq33aldm" class="olink">Creep</a>, <a href="../ans_mat/amp8sq21dldm.html#elemedp" class="olink">Extended Drucker-Prager</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Elasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#elmgurson" class="olink">Gurson
+                            pressure-dependent plasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#matRIPisohillyield" class="olink">Hill anisotropy</a>, <a href="../ans_mat/aQw8sq22dldm.html" class="olink">Hyperelasticity</a>, <a href="../ans_mat/aQw8sq22dldm.html#elemmullinsconstants" class="olink">Mullins effect</a>, <a href="../ans_mat/evis.html" class="olink">Prony series</a> constants for viscoelastic
+                        materials, <a href="../ans_mat/rate.html" class="olink">Rate-dependent plasticity</a>
+                        (viscoplasticity), <a href="../ans_mat/amp8sq21dldm.html" class="olink">Rate-independent
+                            plasticity</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Material structural
+                            damping</a>, <a href="../ans_mat/evis.html" class="olink">Shift function</a> for
+                        viscoelastic materials, <a href="../ans_mat/smas.html" class="olink">Shape memory alloy</a>,
+                            <a href="../ans_mat/amp8sq21dldm.html#cast" class="olink">Uniaxial stress-strain relation</a>, <a href="../ans_mat/amp8sq21dldm.html#nlis" class="olink">Voce isotropic hardening law</a></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_PLANE223.html" title="PLANE223"><span class="structname">PLANE223</span></a>
+                    </td><td>2-D 8-Node Coupled-Field Solid</td><td rowspan="3" valign="middle"><a href="../ans_mat/aQw8sq22dldm.html#anhyper1g" class="olink">Anisotropic
+                            hyperelasticity</a>, <a href="../ans_mat/anel.html" class="olink">Anisotropic
+                            elasticity</a>, <a href="../ans_mat/aQw8sq22dldm.html#elbergboyce" class="olink">Bergstrom-Boyce</a>, <a href="../ans_mat/amp8sq21dldm.html#biso" class="olink">Bilinear isotropic
+                            hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#bkin" class="olink">Bilinear kinematic
+                            hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#cast" class="olink">Cast iron</a>, <a href="../ans_mat/amp8sq21dldm.html#chab" class="olink">Chaboche nonlinear kinematic hardening</a>, <a href="../ans_mat/rate.html#aQy8sq33aldm" class="olink">Creep</a>, <a href="../ans_mat/mat_electricmagnet.html#DPER" class="olink">Anisotropic electric permittivity</a>, <a href="../ans_mat/amp8sq21dldm.html#elemedp" class="olink">Extended Drucker-Prager</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Elasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#elmgurson" class="olink">Gurson
+                            pressure-dependent plasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#matRIPisohillyield" class="olink">Hill anisotropy</a>, <a href="../ans_mat/aQw8sq22dldm.html" class="olink">Hyperelasticity</a>, <a href="../ans_mat/migr.html" class="olink">Migration model</a>, <a href="../ans_mat/aQw8sq22dldm.html#elemmullinsconstants" class="olink">Mullins effect</a>, <a href="../ans_mat/mat_electricmagnet.html#piez" class="olink">Piezoelectric matrix</a>, <a href="../ans_mat/evis.html" class="olink">Prony series</a> constants for viscoelastic materials, <a href="../ans_mat/mat_electricmagnet.html#pzrs" class="olink">Piezoresistivity</a>, <a href="../ans_mat/rate.html" class="olink">Rate-dependent plasticity</a> (viscoplasticity), <a href="../ans_mat/amp8sq21dldm.html" class="olink">Rate-independent plasticity</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Material structural damping</a>, <a href="../ans_mat/evis.html" class="olink">Shift function</a> for viscoelastic materials,
+                            <a href="../ans_mat/smas.html" class="olink">Shape memory alloy</a>, <a href="../ans_mat/amp8sq21dldm.html#cast" class="olink">Uniaxial stress-strain relation</a>, <a href="../ans_mat/amp8sq21dldm.html#nlis" class="olink">Voce isotropic hardening law</a><p>These
+                            material properties do not apply to piezoelectric analyses
+                                (<a href="../ans_cmd/Hlp_C_TB.html" class="olink"><span class="command"><strong>TB</strong></span></a>,PIEZ) where KEYOPT(1) = 1001 or
+                                1011.</p><p><a href="../ans_mat/mat_electricmagnet.html#bh" class="olink">Magnetic</a> properties
+                            are available for <a class="link" href="Hlp_E_PLANE223.html" title="PLANE223"><span class="structname">PLANE223</span></a> only.</p></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_SOLID226.html" title="SOLID226"><span class="structname">SOLID226</span></a>
+                    </td><td>3-D 20-Node Coupled-Field Solid</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_SOLID227.html" title="SOLID227"><span class="structname">SOLID227</span></a>
+                    </td><td>3-D 10-Node Coupled-Field Solid</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_PLANE233.html" title="PLANE233"><span class="structname">PLANE233</span></a>
+                    </td><td>2-D 8-Node Electromagnetic Solid </td><td rowspan="3" valign="middle">
+                        <a href="../ans_mat/mat_electricmagnet.html#bh" class="olink">Magnetic</a>
+                    </td></tr><tr><td>
+                        <a class="link" href="Hlp_E_SOLID236.html" title="SOLID236"><span class="structname">SOLID236</span></a></td><td>3-D 20-Node Electromagnetic Solid</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_SOLID237.html" title="SOLID237"><span class="structname">SOLID237</span></a>
+                    </td><td>3-D 10-Node Electromagnetic Solid</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_HSFLD241.html" title="HSFLD241"><span class="structname">HSFLD241</span></a>
+                    </td><td>2-D Hydrostatic Fluid</td><td rowspan="2" valign="middle">
+                        <a href="../ans_mat/fluidmat.html" class="olink">Fluid</a>
+                    </td></tr><tr><td>
+                        <a class="link" href="Hlp_E_HSFLD242.html" title="HSFLD242"><span class="structname">HSFLD242</span></a>
+                    </td><td>3-D Hydrostatic Fluid</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_REINF263.html" title="REINF263"><span class="structname">REINF263</span></a>
+                    </td><td>2-D Smeared Reinforcing</td><td rowspan="3" valign="middle"><a href="../ans_mat/amp8sq21dldm.html#biso" class="olink">Bilinear isotropic
+                            hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#bkin" class="olink">Bilinear kinematic
+                            hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#chab" class="olink">Chaboche nonlinear kinematic
+                            hardening</a>, <a href="../ans_mat/rate.html#aQy8sq33aldm" class="olink">Creep</a>,
+                        Coefficient of <a href="../ans_mat/ansmattherexp.html" class="olink">thermal expansion</a>,
+                            <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Density</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Elasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#matRIPisohillyield" class="olink">Hill
+                            anisotropy</a>, <a href="../ans_mat/evis.html" class="olink">Prony series</a>
+                        constants for viscoelastic materials, <a href="../ans_mat/rate.html" class="olink">Rate-dependent
+                            plasticity</a> (viscoplasticity), <a href="../ans_mat/amp8sq21dldm.html" class="olink">Rate-independent plasticity</a>, <a href="../ans_mat/evis.html" class="olink">Shift
+                            function</a> for viscoelastic materials, <a href="../ans_mat/matcustommatmods.html#matstatvaruserdefmats" class="olink">State variables
+                        (user-defined)</a>, <a href="../ans_mat/swel.html" class="olink">Swelling</a>, <a href="../ans_mat/matcustommatmods.html#user" class="olink">User-defined</a>, <a href="../ans_mat/amp8sq21dldm.html#nlis" class="olink">Voce
+                            isotropic hardening law</a></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_REINF264.html" title="REINF264"><span class="structname">REINF264</span></a>
+                    </td><td>3-D Discrete Reinforcing</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_REINF265.html" title="REINF265"><span class="structname">REINF265</span></a>
+                    </td><td>3-D Smeared Reinforcing</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_SOLID272.html" title="SOLID272"><span class="structname">SOLID272</span></a>
+                    </td><td>General Axisymmetric Solid with 4 Base Nodes</td><td rowspan="2" valign="middle"><a href="../ans_mat/aQw8sq22dldm.html#anhyper1g" class="olink">Anisotropic
+                            hyperelasticity</a>, <a href="../ans_mat/anel.html" class="olink">Anisotropic
+                            elasticity</a>, <a href="../ans_mat/aQw8sq22dldm.html#elbergboyce" class="olink">Bergstrom-Boyce</a>, <a href="../ans_mat/amp8sq21dldm.html#biso" class="olink">Bilinear isotropic
+                            hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#bkin" class="olink">Bilinear kinematic
+                            hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#cast" class="olink">Cast iron</a>, <a href="../ans_mat/aQw8sq22dldm.html#elemmullinsconstants" class="olink">Mullins effect</a>, <a href="../ans_mat/amp8sq21dldm.html#chab" class="olink">Chaboche nonlinear kinematic hardening</a>, <a href="../ans_mat/rate.html#aQy8sq33aldm" class="olink">Creep</a>, Coefficient of <a href="../ans_mat/ansmattherexp.html" class="olink">thermal expansion</a>, <a href="../ans_mat/mat_damageall.html#mat_dmge" class="olink">Damage evolution law</a>, <a href="../ans_mat/mat_damageall.html#mat_dmgi" class="olink">Damage initiation criteria</a>, <a href="../ans_mat/amp8sq21dldm.html#elemedp" class="olink">Extended Drucker-Prager</a>, <a href="../ans_mat/smas.html" class="olink">Shape memory alloy (SMA)</a></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_SOLID273.html" title="SOLID273"><span class="structname">SOLID273</span></a>
+                    </td><td>General Axisymmetric Solid with 8 Base Nodes</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_SOLID278.html" title="SOLID278"><span class="structname">SOLID278</span></a>
+                    </td><td>3-D 8-Node Thermal Solid</td><td rowspan="2"><a href="../ans_mat/thermalmat.html" class="olink">Thermal properties</a>,
+                            <a href="../ans_mat/matcustommatmods.html#matstatvaruserdefmats" class="olink">State variables
+                            (user-defined)</a>, <a href="../ans_mat/matcustommatmods.html#usrthm" class="olink">User-defined</a></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_SOLID279.html" title="SOLID279"><span class="structname">SOLID279</span></a>
+                    </td><td>3-D 20-Node Thermal Solid</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_SHELL281.html" title="SHELL281"><span class="structname">SHELL281</span></a>
+                    </td><td>8-Node Structural Shell</td><td><a href="../ans_mat/aQw8sq22dldm.html#anhyper1g" class="olink">Anisotropic hyperelasticity</a>, <a href="../ans_mat/anel.html" class="olink">Anisotropic elasticity</a>, <a href="../ans_mat/aQw8sq22dldm.html#elbergboyce" class="olink">Bergstrom-Boyce</a>, <a href="../ans_mat/amp8sq21dldm.html#biso" class="olink">Bilinear isotropic hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#bkin" class="olink">Bilinear
+                            kinematic hardening</a>, <a href="../ans_mat/aQw8sq22dldm.html#elemmullinsconstants" class="olink">Mullins effect</a>, <a href="../ans_mat/amp8sq21dldm.html#chab" class="olink">Chaboche nonlinear
+                            kinematic hardening</a>, <a href="../ans_mat/rate.html#aQy8sq33aldm" class="olink">Creep</a>, Coefficient of <a href="../ans_mat/ansmattherexp.html" class="olink">thermal
+                            expansion</a>, <a href="../ans_mat/mat_damageall.html#mat_dmge" class="olink">Damage evolution
+                            law</a>, <a href="../ans_mat/mat_damageall.html#mat_dmgi" class="olink">Damage initiation
+                            criteria</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Density</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Elasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#matRIPisohillyield" class="olink">Hill anisotropy</a>, <a href="../ans_mat/aQw8sq22dldm.html" class="olink">Hyperelasticity</a>, <a href="../ans_mat/mat_matdamping.html#matalphsbetarayleigh" class="olink">Material-dependent alpha and beta
+                            damping (Rayleigh damping)</a>, <a href="../ans_mat/mat_matdamping.html#matdepstructdamp" class="olink">Material-dependent structural damping</a>, <a href="../ans_mat/evis.html" class="olink">Prony series</a> constants for viscoelastic materials, <a href="../ans_mat/rate.html" class="olink">Rate-dependent plasticity</a> (viscoplasticity),
+                            <a href="../ans_mat/amp8sq21dldm.html" class="olink">Rate-independent plasticity</a>,
+                            <a href="../ans_mat/evis.html" class="olink">Shift function</a> for viscoelastic
+                        materials, <a href="../ans_mat/smas.html" class="olink">Shape memory alloy (SMA)</a>, <a href="../ans_mat/matcustommatmods.html#matstatvaruserdefmats" class="olink">State variables
+                        (user-defined)</a>, <a href="../ans_mat/swel.html" class="olink">Swelling</a>, <a href="../ans_mat/matcustommatmods.html#user" class="olink">User-defined</a>, <a href="../ans_mat/amp8sq21dldm.html#nlis" class="olink">Voce
+                            isotropic hardening law</a></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_SOLID285.html" title="SOLID285"><span class="structname">SOLID285</span></a>
+                    </td><td>3-D 4-Node Tetrahedral Structural Solid with Nodal Pressures</td><td><a href="../ans_mat/aQw8sq22dldm.html#anhyper1g" class="olink">Anisotropic hyperelasticity</a>, <a href="../ans_mat/anel.html" class="olink">Anisotropic elasticity</a>, <a href="../ans_mat/aQw8sq22dldm.html#elbergboyce" class="olink">Bergstrom-Boyce</a>, <a href="../ans_mat/amp8sq21dldm.html#biso" class="olink">Bilinear isotropic hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#bkin" class="olink">Bilinear
+                            kinematic hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#cast" class="olink">Cast iron</a>,
+                            <a href="../ans_mat/aQw8sq22dldm.html#elemmullinsconstants" class="olink">Mullins effect</a>, <a href="../ans_mat/amp8sq21dldm.html#chab" class="olink">Chaboche nonlinear kinematic hardening</a>, <a href="../ans_mat/rate.html#aQy8sq33aldm" class="olink">Creep</a>, Coefficient of <a href="../ans_mat/ansmattherexp.html" class="olink">thermal expansion</a>, <a href="../ans_mat/mat_damageall.html#mat_dmge" class="olink">Damage evolution law</a>, <a href="../ans_mat/mat_damageall.html#mat_dmgi" class="olink">Damage initiation criteria</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Density</a>, <a href="../ans_mat/amp8sq21dldm.html#elemedp" class="olink">Extended
+                            Drucker-Prager</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Elasticity</a>,
+                            <a href="../ans_mat/amp8sq21dldm.html#matRIPisohillyield" class="olink">Hill anisotropy</a>, <a href="../ans_mat/aQw8sq22dldm.html" class="olink">Hyperelasticity</a>, <a href="../ans_mat/mat_matdamping.html#matalphsbetarayleigh" class="olink">Material-dependent alpha and beta
+                            damping (Rayleigh damping)</a>, <a href="../ans_mat/mat_matdamping.html#matdepstructdamp" class="olink">Material-dependent structural damping</a>, <a href="../ans_mat/evis.html" class="olink">Prony series</a> constants for viscoelastic materials, <a href="../ans_mat/rate.html" class="olink">Rate-dependent plasticity</a> (viscoplasticity),
+                            <a href="../ans_mat/amp8sq21dldm.html" class="olink">Rate-independent plasticity</a>,
+                            <a href="../ans_mat/evis.html" class="olink">Shift function</a> for viscoelastic
+                        materials, <a href="../ans_mat/smas.html" class="olink">Shape memory alloy</a>, <a href="../ans_mat/matcustommatmods.html#matstatvaruserdefmats" class="olink">State variables
+                        (user-defined)</a>, <a href="../ans_mat/swel.html" class="olink">Swelling</a>, <a href="../ans_mat/amp8sq21dldm.html#cast" class="olink">Uniaxial stress-strain relation</a>, <a href="../ans_mat/matcustommatmods.html#user" class="olink">User-defined</a>, <a href="../ans_mat/amp8sq21dldm.html#nlis" class="olink">Voce
+                            isotropic hardening law</a></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_PIPE288.html" title="PIPE288"><span class="structname">PIPE288</span></a>
+                    </td><td>3-D 2-Node Pipe</td><td rowspan="2" valign="middle"><a href="../ans_mat/aQw8sq22dldm.html#anhyper1g" class="olink">Anisotropic
+                            hyperelasticity</a>, <a href="../ans_mat/anel.html" class="olink">Anisotropic
+                            elasticity</a>, <a href="../ans_mat/aQw8sq22dldm.html#elbergboyce" class="olink">Bergstrom-Boyce</a>, <a href="../ans_mat/amp8sq21dldm.html#biso" class="olink">Bilinear isotropic
+                            hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#bkin" class="olink">Bilinear kinematic
+                            hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#cast" class="olink">Cast iron</a>, <a href="../ans_mat/aQw8sq22dldm.html#elemmullinsconstants" class="olink">Mullins effect</a>, <a href="../ans_mat/amp8sq21dldm.html#chab" class="olink">Chaboche nonlinear kinematic hardening</a>, <a href="../ans_mat/rate.html#aQy8sq33aldm" class="olink">Creep</a>, Coefficient of <a href="../ans_mat/ansmattherexp.html" class="olink">thermal expansion</a>, <a href="../ans_mat/mat_damageall.html#mat_dmge" class="olink">Damage evolution law</a>, <a href="../ans_mat/mat_damageall.html#mat_dmgi" class="olink">Damage initiation criteria</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Density</a>, <a href="../ans_mat/amp8sq21dldm.html#elemedp" class="olink">Extended
+                            Drucker-Prager</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Elasticity</a>,
+                            <a href="../ans_mat/amp8sq21dldm.html#matRIPisohillyield" class="olink">Hill anisotropy</a>, <a href="../ans_mat/aQw8sq22dldm.html" class="olink">Hyperelasticity</a>, <a href="../ans_mat/evis.html" class="olink">Prony series</a> constants for viscoelastic
+                        materials, <a href="../ans_mat/rate.html" class="olink">Rate-dependent plasticity</a>
+                        (viscoplasticity), <a href="../ans_mat/amp8sq21dldm.html" class="olink">Rate-independent
+                            plasticity</a>, <a href="../ans_mat/evis.html" class="olink">Shift function</a> for
+                        viscoelastic materials, <a href="../ans_mat/smas.html" class="olink">Shape memory alloy
+                            (SMA)</a>, <a href="../ans_mat/matcustommatmods.html#matstatvaruserdefmats" class="olink">State variables
+                            (user-defined)</a>, <a href="../ans_mat/matcustommatmods.html#user" class="olink">User-defined</a>,
+                            <a href="../ans_mat/amp8sq21dldm.html#nlis" class="olink">Voce isotropic hardening law</a></td></tr><tr><td>
+                        <a class="link" href="Hlp_E_PIPE289.html" title="PIPE289"><span class="structname">PIPE289</span></a>
+                    </td><td>3-D 3-Node Pipe</td></tr><tr><td>
+                        <a class="link" href="Hlp_E_ELBOW290.html" title="ELBOW290"><span class="structname">ELBOW290</span></a>
+                    </td><td>3-D 3-Node Elbow</td><td><a href="../ans_mat/aQw8sq22dldm.html#anhyper1g" class="olink">Anisotropic hyperelasticity</a>, <a href="../ans_mat/anel.html" class="olink">Anisotropic elasticity</a>, <a href="../ans_mat/aQw8sq22dldm.html#elbergboyce" class="olink">Bergstrom-Boyce</a>, <a href="../ans_mat/amp8sq21dldm.html#biso" class="olink">Bilinear isotropic hardening</a>, <a href="../ans_mat/amp8sq21dldm.html#bkin" class="olink">Bilinear
+                            kinematic hardening</a>, <a href="../ans_mat/aQw8sq22dldm.html#elemmullinsconstants" class="olink">Mullins effect</a>, <a href="../ans_mat/amp8sq21dldm.html#chab" class="olink">Chaboche nonlinear
+                            kinematic hardening</a>, <a href="../ans_mat/rate.html#aQy8sq33aldm" class="olink">Creep</a>, Coefficient of <a href="../ans_mat/ansmattherexp.html" class="olink">thermal
+                            expansion</a>, <a href="../ans_mat/mat_damageall.html#mat_dmge" class="olink">Damage evolution
+                            law</a>, <a href="../ans_mat/mat_damageall.html#mat_dmgi" class="olink">Damage initiation
+                            criteria</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Density</a>, <a href="../ans_mat/amp8sq21dldm.html#elemedp" class="olink">Extended Drucker-Prager</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Elasticity</a>, <a href="../ans_mat/amp8sq21dldm.html#matRIPisohillyield" class="olink">Hill anisotropy</a>, <a href="../ans_mat/aQw8sq22dldm.html" class="olink">Hyperelasticity</a>, <a href="../ans_mat/evis.html" class="olink">Prony series</a> constants for viscoelastic
+                        materials, <a href="../ans_mat/rate.html" class="olink">Rate-dependent plasticity</a>
+                        (viscoplasticity), <a href="../ans_mat/amp8sq21dldm.html" class="olink">Rate-independent
+                            plasticity</a>, <a href="../ans_cmd/Hlp_C_TBFIELD.html" class="olink">Material structural
+                            damping</a>, <a href="../ans_mat/evis.html" class="olink">Shift function</a> for
+                        viscoelastic materials, <a href="../ans_mat/matcustommatmods.html#matstatvaruserdefmats" class="olink">State
+                            variables (user-defined)</a>, <a href="../ans_mat/matcustommatmods.html#user" class="olink">User-defined</a>, <a href="../ans_mat/amp8sq21dldm.html#nlis" class="olink">Voce isotropic hardening
+                            law</a></td></tr></tbody></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:39:33-04:00"><title>LCCAT</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_L_TOC.html" title="L Commands"><link rel="prev" href="Hlp_C_LCCALC.html" title="LCCALC"><link rel="next" href="Hlp_C_LCDEF.html" title="LCDEF"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="LCCAT"><a name="LCCAT"></a><div class="titlepage"></div><a class="indexterm" name="d0e148077"></a><span class="refentrytitle"><span class="command"><strong>LCCAT</strong></span></span><div class="refnamediv"><p><span class="command"><strong>LCCAT</strong></span>, <em class="replaceable"><code>NL1</code></em>, <em class="replaceable"><code>NL2</code></em><br><b class="refpurpose">Concatenates multiple lines into one line for mapped meshing.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_5.html" title="2.5.&nbsp;PREP7 Commands"><code class="classname">PREP7</code></a>: <a class="link" href="Hlp_C_CH2_5.html#cmdprep7meshingldm061600" title="Table&nbsp;2.36:&nbsp;&nbsp;Meshing"><span class="type">Meshing</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="LCCAT.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>NL1</code></em>, <em class="replaceable"><code>NL2</code></em></b></span></dt><dd><p>Lines to be concatenated.  If <em class="replaceable"><code>NL1</code></em> =
+ALL, <em class="replaceable"><code>NL2</code></em> is ignored and all selected lines [<a class="link" href="Hlp_C_LSEL.html" title="LSEL"><span class="command"><strong>LSEL</strong></span></a>]
+are concatenated.  If <em class="replaceable"><code>NL1</code></em> = P, graphical picking
+is enabled and all remaining command fields are ignored (valid only in the
+GUI).  A component name may also be substituted for <em class="replaceable"><code>NL1</code></em> (<em class="replaceable"><code>NL2</code></em> is
+ignored).</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="LCCAT.notes"></a><h2>Notes</h2><p>Concatenates multiple, adjacent lines (the input lines) into one line
+(the output line) in preparation for mapped meshing.  An area that contains
+too many lines for mapped meshing can still be mapped meshed if some of the
+lines in that area are first concatenated (see <a href="../ans_mod/Hlp_G_MOD7.html" class="olink">Meshing Your Solid Model</a> in the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a> for
+details on mapped meshing restrictions).</p><p><span class="command"><strong>LCCAT</strong></span> is meant to be used solely for meshing and
+cannot be used for any other purposes.  Specifically, (a) the output line
+and any areas that have the output line on their line list [<a class="link" href="Hlp_C_ALIST.html" title="ALIST"><span class="command"><strong>ALIST</strong></span></a>]
+cannot be used as input to any other solid modeling operation (not even another <span class="command"><strong>LCCAT</strong></span> command);
+and (b) the output line cannot accept solid model boundary conditions [<a class="link" href="Hlp_C_DL.html" title="DL"><span class="command"><strong>DL</strong></span></a>, <a class="link" href="Hlp_C_SFL.html" title="SFL"><span class="command"><strong>SFL</strong></span></a>].</p><p>The output line will take on the element divisions of the input lines
+and will not accept element divisions that are directly assigned [<a class="link" href="Hlp_C_LESIZE.html" title="LESIZE"><span class="command"><strong>LESIZE</strong></span></a>].
+ The output line from the <span class="command"><strong>LCCAT</strong></span> operation will be coincident
+with the input lines and the input lines will be retained.  Consider the <a class="link" href="Hlp_C_LCOMB.html" title="LCOMB"><span class="command"><strong>LCOMB</strong></span></a> command
+instead of <span class="command"><strong>LCCAT</strong></span> if you wish to delete the input lines
+and if the lines to be combined have similar slopes at the common keypoint(s).
+ When an <span class="command"><strong>LCCAT</strong></span> command is issued, area line lists [<a class="link" href="Hlp_C_ALIST.html" title="ALIST"><span class="command"><strong>ALIST</strong></span></a>]
+that contain <span class="italic"><em>all</em></span> of the input lines will
+be updated so that the area line lists refer to the output line instead of
+the input lines.  Deletion of the output line [<a class="link" href="Hlp_C_LDELE.html" title="LDELE"><span class="command"><strong>LDELE</strong></span></a>] effectively
+reverses the <span class="command"><strong>LCCAT</strong></span> operation and restores area line lists
+to their original condition.</p><p>You can use the <a class="link" href="Hlp_C_LSEL.html" title="LSEL"><span class="command"><strong>LSEL</strong></span></a> command to select lines that
+were created by concatenation, and then follow it with an <a class="link" href="Hlp_C_LDELE.html" title="LDELE"><span class="command"><strong>LDELE</strong></span></a>,ALL
+command to delete them.  Also see <a href="../ans_mod/Hlp_G_MOD7.html" class="olink">Meshing
+Your Solid Model</a> in the <a href="../ans_mod/Hlp_G_ModTOC.html" class="olink"><em class="citetitle">Modeling and Meshing Guide</em></a> for a discussion on
+how to easily select and delete concatenated lines in one step.</p></div><div class="refsect1" title="Menu Paths"><a name="LCCAT.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Mesh&gt;Areas&gt;Mapped&gt;Concatenate&gt;Lines</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Preprocessor&gt;Meshing&gt;Mesh&gt;Volumes&gt;Mapped&gt;Concatenate&gt;Lines</strong></span></td></tr><tr><td><span class="guimenu"><strong>Main Menu&gt;Solution&gt;Manual Rezoning&gt;Create Remesh Zone(s)&gt;Geometry Controls&gt;Concatenate Lines</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

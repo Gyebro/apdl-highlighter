@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:19-04:00"><title>*ABBR</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_A_TOC.html" title="A Commands"><link rel="prev" href="Hlp_C_ABEXTRACT.html" title="ABEXTRACT"><link rel="next" href="Hlp_C_ABBRES.html" title="ABBRES"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="*ABBR"><a name="a-ABBR"></a><div class="titlepage"></div><a class="indexterm" name="d0e16185"></a><span class="refentrytitle"><a href="Hlp_C_ABBR.html" class="olink"><span class="command"><strong>*ABBR</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>*ABBR</strong></span>, <em class="replaceable"><code>Abbr</code></em>, <em class="replaceable"><code>String</code></em><br><b class="refpurpose">Defines an abbreviation.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_4.html" title="2.4.&nbsp;APDL Commands"><code class="classname">APDL</code></a>: <a class="link" href="Hlp_C_CH2_4.html#cmdapdlabbrvjla070199" title="Table&nbsp;2.20:&nbsp;&nbsp;Abbreviations"><span class="type">Abbreviations</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsect1" title="Argument Descriptions"><a name="a-ABBR.argdescript"></a><h2>Argument Descriptions</h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Abbr</code></em></b></span></dt><dd><p>The abbreviation (up to 8 alphanumeric characters) used to
+represent the string <em class="replaceable"><code>String</code></em>.  If <em class="replaceable"><code>Abbr</code></em> is
+the same as an existing ANSYS command, the abbreviation overrides.  Avoid
+using an <em class="replaceable"><code>Abbr</code></em> which is the same as an ANSYS command.</p></dd><dt><span><b class="term"><em class="replaceable"><code>String</code></em></b></span></dt><dd><p>String of characters (60 maximum) represented by <em class="replaceable"><code>Abbr</code></em>.
+ Cannot include a $ or any of the commands <a href="Hlp_C_C.html" class="olink"><span class="command"><strong>C***</strong></span></a>,  <a href="Hlp_C_COM.html" class="olink"><span class="command"><strong>/COM</strong></span></a>,
+ <a href="Hlp_C_GOPR.html" class="olink"><span class="command"><strong>/GOPR</strong></span></a>,  <a href="Hlp_C_NOPR.html" class="olink"><span class="command"><strong>/NOPR</strong></span></a>,  <a href="Hlp_C_QUIT.html" class="olink"><span class="command"><strong>/QUIT</strong></span></a>,
+ <a href="Hlp_C_UI.html" class="olink"><span class="command"><strong>/UI</strong></span></a>, or  <a href="Hlp_C_END.html" class="olink"><span class="command"><strong>*END</strong></span></a>.  Parameter names and
+commands of the <a href="Hlp_C_DO.html" class="olink"><span class="command"><strong>*DO</strong></span></a> and Use the <a href="Hlp_C_IF.html" class="olink"><span class="command"><strong>*IF</strong></span></a> groups
+may not be abbreviated. If <em class="replaceable"><code>String</code></em> is blank, the
+abbreviation is deleted. To abbreviate multiple commands, create an "unknown
+command" macro or define <em class="replaceable"><code>String</code></em> to execute a macro
+file [<a href="Hlp_C_USE.html" class="olink"><span class="command"><strong>*USE</strong></span></a>] containing the desired commands.</p></dd></dl></div></div></div><div class="refsect1" title="Notes"><a name="a-ABBR.notes"></a><h2>Notes</h2><p>Once the abbreviation <em class="replaceable"><code>Abbr</code></em> is defined, you
+can issue it at the beginning of a command line and follow it with a blank
+(or with a comma and appended data), and the program will substitute the string
+ <em class="replaceable"><code>String</code></em> for <em class="replaceable"><code>Abbr</code></em> as
+the line is executed. Up to 100 abbreviations may exist at any time and are
+available throughout the program. Abbreviations may be redefined or deleted
+at any time.</p><p>Use <a href="Hlp_C_STATUS_st.html" class="olink"><span class="command"><strong>*STATUS</strong></span></a> to display the current list of abbreviations.
+For abbreviations repeated with <a href="Hlp_C_REPEAT.html" class="olink"><span class="command"><strong>*REPEAT</strong></span></a>, substitution occurs
+before the repeat increments are applied. There are a number of abbreviations
+that are predefined by the program (these can be deleted by using the blank <em class="replaceable"><code>String</code></em> option
+described above). Note that <em class="replaceable"><code>String</code></em> will be written
+to the <span class="filename"><strong>File.LOG</strong></span>.</p><p>This command is valid in any processor.</p></div><div class="refsect1" title="Menu Paths"><a name="d0e16329"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;Macro&gt;Edit Abbreviations</strong></span></td></tr><tr><td><span class="guimenu"><strong>Utility Menu&gt;MenuCtrls&gt;Edit Toolbar</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>

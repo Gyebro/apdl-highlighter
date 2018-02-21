@@ -1,0 +1,77 @@
+<!DOCTYPE html><html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta name="date" content="2017-07-14 18:38:42-04:00"><title>/DV3D</title><link rel="stylesheet" type="text/css" href="basic.css"><meta name="generator" content="DocBook XSL Stylesheets V1.76.1"><link rel="home" href="Hlp_C_CmdTOC.html" title="Mechanical APDL Command Reference"><link rel="up" href="Hlp_D_TOC.html" title="D Commands"><link rel="prev" href="Hlp_C_DUMP.html" title="DUMP"><link rel="next" href="Hlp_C_DVAL.html" title="DVAL"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="refentry" title="/DV3D"><a name="s-DV3D"></a><div class="titlepage"></div><a class="indexterm" name="d0e76176"></a><span class="refentrytitle"><a href="Hlp_C_DV3D.html" class="olink"><span class="command"><strong>/DV3D</strong></span></a></span><div class="refnamediv"><p><span class="command"><strong>/DV3D</strong></span>, <em class="replaceable"><code>Lab</code></em>, <em class="replaceable"><code>Key</code></em><br><b class="refpurpose">Sets 3-D device option modes.</b><div class="refclass"><div class=""><div class="application"><span class="application"><a class="link" href="Hlp_C_CH2_3.html" title="2.3.&nbsp;GRAPHICS Commands"><code class="classname">GRAPHICS</code></a>: <a class="link" href="Hlp_C_CH2_3.html#cmdgraphicsetupjla070199" title="Table&nbsp;2.11:&nbsp;&nbsp;Setup"><span class="type">Set Up</span></a></span></div></div></div><div class="refclass"><div class=""><div class="application"><span class="application"><a href="Hlp_C_CH1_2_1.html#aIcomd24mcm" class="olink">Compatible Products:</a>  &#8211; | Pro | Premium | Enterprise | Ent PP | Ent Solver | DYNA</span></div></div></div></p></div><div class="refsynopsisdiv" title="Synopsis"><a name="s-DV3D.argdescript"></a><h2></h2><div><div class="variablelist"><dl><dt><span><b class="term"><em class="replaceable"><code>Lab</code></em></b></span></dt><dd><p>Mode label:  </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ACCU</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Allows ANSYS to use the accumulation
+buffer for OpenGL graphics. Activating this feature will provide faster
+model rotation when shaded backgrounds are in use. This feature is
+off by default. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ACTR</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Label term to designate the cursor
+position as the center for automatic dynamic rotational center capability. 
+The subsequent <em class="replaceable"><code>Key</code></em> value (see below)
+turns this capability on and off. This feature is on by default. (Available
+for OpenGL displays only) </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ANIM</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Animation mode.  The ANIM option
+allows you to create animation frames in pixmap mode instead of display
+list mode.  This may improve large model performance, but it eliminates
+local manipulation while animation is in progress. This feature is
+on by default.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">ANTI</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Label term to control Anti-aliasing,
+a smoothing technique for your graph plots. (see below) The subsequent <em class="replaceable"><code>Key</code></em> value turns this capability on and off. The default
+for this feature is off. (Available for OpenGL displays only). </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">CNTR</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Switches banded contours on (1) or
+off (0) for your 3&#8211;D contour display. The default is 1 (ON).
+Other contour parameters such as number of contours or the increment
+and range are defined using the <a href="Hlp_C_CONTOUR.html" class="olink"><span class="command"><strong>/CONTOUR</strong></span></a> command.
+When either 9 or 128 contours are specified via <a href="Hlp_C_CONTOUR.html" class="olink"><span class="command"><strong>/CONTOUR</strong></span></a>, this command is ignored and a smooth contour is always displayed. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DGEN</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Local manipulation degenerate mode.
+ You access the DGEN option to set wire-frame local manipulation mode
+for 3-D devices (device dependent). This feature is off by default. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DLIST</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>With DLIST,
+you can specify whether screen updates and redraws will be performed
+using the ANSYS Display List (off), or the 3-D device's Display List
+(on). DLIST is on by default for Windows systems, but off for Linux.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">DELS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>You use DELS to suppress contour
+display screen overwrites when <a href="Hlp_C_NOERASE.html" class="olink"><span class="command"><strong>/NOERASE</strong></span></a> is active.
+This prevents the bleed-through that occurs when you overlay contour
+plots. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">TRIS</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Triangle strip mode. Tri-stripping
+provides faster 3-D display capabilities and is on by default. Some
+display enhancements, such as texturing, are adversely affected by
+tri-stripping. You can turn off tri-stripping in order to improve
+these display functions. Be sure to turn tri-stripping on after the
+desired output is obtained. </p></td></tr></tbody></table></div></div></dd><dt><span><b class="term"><em class="replaceable"><code>Key</code></em></b></span></dt><dd><p>The following key options apply to <em class="replaceable"><code>Lab</code></em> = ACCU:       </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>(OFF)  The accumulation buffer is not
+accessed. (default)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>(ON)  Access to the buffer is enabled. </p></td></tr></tbody></table></div></div><p>The following key options apply to <em class="replaceable"><code>Lab</code></em> = ACTR:       </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>(OFF)  The cursor position has no effect
+on the existing rotational center for dynamic operations. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>(ON)  The rotational center for dynamic
+rotations in OpenGL is determined by the position of the mouse cursor
+on (or within 15 pixels of) the model. Any rotations that are initiated
+with the cursor more than 15 pixels from the model will occur about
+the midpoint of the Z-axis at that point in space. If the Z-buffer
+has not been refreshed the Z-axis will have an infinite value, and
+rotations will appear to occur about an extremely long Z-axis. This
+behavior stops when the graphics window is refreshed or replotted.
+(default)</p><p>Note that when using the GUI in 3-D mode, when
+ACTR = 1, the <span class="guimenuitem"><strong>Rotational Center</strong></span> option
+is grayed out under <span class="guimenu"><strong>Utility Menu&gt; PlotCtrls&gt; View Setting</strong></span> because the rotational center is determined strictly by the position
+of the mouse cursor.</p></td></tr></tbody></table></div></div><p>The following key options apply to <em class="replaceable"><code>Lab</code></em> = ANIM:       </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Display list animation.  The object
+can be dynamically manipulated while animating. No legend, countour
+or annotation items are displayed. (see Notes, below)</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>On Linux, device-dependent
+pixmap animation is used.  On the PC, bitmap animation is provided
+(default). When you animate in this mode, you cannot dynamically manipulate
+your model (see Notes, below).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">2</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>On the PC only, this option provides
+AVI animation which uses the AVI movie player .</p><p>Although
+you can create animations of multiple ANSYS window schemes, animations
+created with OpenGL display lists (<a href="Hlp_C_DV3D.html" class="olink"><span class="command"><strong>/DV3D</strong></span></a>, ANIM,
+0) do not retain the windowing scheme information. You CAN save multiple
+windows via the X11/WIN32 drivers, or via the OpenGL driver with <a href="Hlp_C_DV3D.html" class="olink"><span class="command"><strong>/DV3D</strong></span></a>, ANIM, KEY in effect (where KEY is not zero).</p></td></tr></tbody></table></div></div><p>The following key options apply to <em class="replaceable"><code>Lab</code></em> = ANTI      </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>(OFF)  Anti-aliasing is not active (default).</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>(ON)  The anti-aliasing technique will
+be applied to smooth the lines in your displays (valid for OpenGL
+only). </p></td></tr></tbody></table></div></div><p>The following key options apply to <em class="replaceable"><code>Lab</code></em> = DGEN:       </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Normal manipulation.</p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>Wireframe Manipulation.</p></td></tr></tbody></table></div></div><p>The following key options apply to <em class="replaceable"><code>Lab</code></em> = DLIST:       </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>(OFF)  The ANSYS
+Display List is used for plotting and dynamic graphics manipulation
+(Linux default). </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>(ON)  The local (3-D Device) Display
+List is used for plotting and dynamic rotation (Windows default).</p></td></tr></tbody></table></div></div><p>The following key options apply to <em class="replaceable"><code>Lab</code></em> = TRIS:       </p><div><div class="variablelist"><table border="0"><col align="left" valign="top"><tbody><tr valign="top"><td align="right" valign="top"><p><span><b class="term">0</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>(OFF)  Tri-stripping is off. </p></td></tr><tr valign="top"><td align="right" valign="top"><p><span><b class="term">1</b></span></p></td><td valign="center"><p>&nbsp;&#8212;&nbsp;</p></td><td><p>(ON)  Tri-stripping is on (default). </p></td></tr></tbody></table></div></div></dd></dl></div></div><p>This command is valid in any processor.</p></div><div class="refsect1" title="Notes"><a name="d0e76448"></a><h2>Notes</h2><p>ANSYS uses display list animation for its 3-D models. This memory
+resident array method interfaces with the OpenGL model information
+to allow the program to efficiently pan, zoom, rotate and dynamically
+manipulate your model during animation. The logo, legend, contour
+and other annotation items are produced in 2-D and will not appear
+when <a href="Hlp_C_DV3D.html" class="olink"><span class="command"><strong>/DV3D</strong></span></a>, ANIM, 0 is in effect. To display these
+items, use <a href="Hlp_C_DV3D.html" class="olink"><span class="command"><strong>/DV3D</strong></span></a>, ANIM, 1. All screen data will
+be displayed, but manipulation of the model will not be possible. </p></div><div class="refsect1" title="Menu Paths"><a name="s-DV3D.menupath"></a><h2>Menu Paths</h2><table border="0" summary="Simple list" class="simplelist"><tr><td><span class="guimenu"><strong>Utility Menu&gt;PlotCtrls&gt;Device Options</strong></span></td></tr></table></div></div><hr><p class="legalfooter"><small><i>Release 18.2 - &copy; ANSYS, Inc. All rights reserved.</i></small></p></body></html>
