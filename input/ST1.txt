@@ -57,7 +57,7 @@ PSTRES,1
 /STATUS,SOLU
 SOLVE   
 FINISH
-  
+
 ! Eigen buckling analysis
 /SOL
 ANTYPE,1
@@ -73,7 +73,7 @@ SET,FIRST
 
 ! printing the eigenshapes
 *DO, III, 1, 8,1
-	PLNSOL, U,SUM, 1,1.0  
-	/IMAGE,SAVE,strcat(chrval(III),'_eigen_shape'),bmp
-	SET,NEXT
+ PLNSOL, U,SUM, 1,1.0
+ /IMAGE,SAVE,strcat(chrval(III),'_eigen_shape'),bmp
+ SET,NEXT
 *ENDDO
