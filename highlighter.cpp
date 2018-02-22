@@ -3,6 +3,8 @@
 //
 
 #include <c++/fstream>
+#include <iomanip>
+#include <ctime>
 #include "highlighter.h"
 #include "common.h"
 
@@ -36,8 +38,37 @@ void highlighter::highlight(string input_file) {
         ++lineNumber;
         output << convert_line(line, in_paragraph);
     }
+    output << get_footer(input_file);
     output << "</body>\n";
     output.close();
+}
+
+string highlighter::get_footer(string input_file) {
+    string filename = split(input_file, '/')[1];
+    string footer = "";
+    footer += "<p id='footer'>";
+    footer += "This webpage was generated with " + get_product_name()
+              + " (version: " + get_version_string() + ")"
+              + " on: " + get_timestamp_string() + ", "
+              + " from APDL script: <a target='_blank' href='" + filename + "'>" + filename + "</a>";
+    footer += "</p>";
+    return footer;
+}
+
+string highlighter::get_product_name() {
+    return PRODUCT_NAME;
+}
+
+string highlighter::get_version_string() {
+    return VERSION_STRING;
+}
+
+string highlighter::get_timestamp_string() {
+    time_t t = time(nullptr);
+    tm time = *localtime(&t);
+    stringstream ss;
+    ss << put_time(&time, "%d.%m.%Y %H:%M:%S");
+    return ss.str();
 }
 
 string highlighter::convert_line(string line, bool& in_paragraph) {
