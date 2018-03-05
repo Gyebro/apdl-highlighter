@@ -47,7 +47,7 @@ string highlighter::get_footer(string input_file) {
     string filename = split(input_file, '/')[1];
     string footer = "";
     footer += "<p id='footer'>";
-    footer += "This webpage was generated with " + get_product_name()
+    footer += "! This webpage was generated with " + get_product_name()
               + " (version: " + get_version_string() + ")"
               + " on: " + get_timestamp_string() + ", "
               + " from APDL script: <a target='_blank' href='" + filename + "'>" + filename + "</a>";
