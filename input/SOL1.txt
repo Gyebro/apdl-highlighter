@@ -1,31 +1,45 @@
 !!! FEA SOL1: STATIC ANALYSIS OF A SWITCH BAR
-! Created by Tamas Poloskei, 2017. February 14.
-! Units: [N],[Nmm],[N/mm^2=MPa],[N/mm]
 
-!! Define constant parameters
-ELAST = 2E5
-NU = 0.3
-P1 = 6
-P2 = 8
+!! Initial setup
+! White canvas
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15
+! Isometric view
+/VIEW,1,1,1,1
+/ANG,1
+/REP,FAST
+! Define constant parameters
+! Units: [N],[Nmm],[N/mm^2=MPa],[N/mm]
+ELAST=2E5
+NU=0.3
+P1=6
+P2=8
 
 !! SETUP: element types, materials, sections
 KEYW,PR_STRUC,1  ! Preferences / Structural
 /PREP7
 ET,1,SOLID185
+!
 MPTEMP,1,0  
 MPDATA,EX,1,,ELAST
 MPDATA,PRXY,1,,NU
-/RGB,INDEX,100,100,100,0
-/RGB,INDEX,0,0,0,15
+!
 WPROTA,,,90.0
-BLC4,0,0,50,60 
+!
+BLC4,0,0,50,60
+!
 WPOFFS,,,150
-BLC4,0,0,50,30  
+!
+BLC4,0,0,50,30
+!
 V,1,2,3,4,5,6,7,8
+!
 WPOFFS,60,,
+!
 K,9,150,0,-60
 K,10,150,30,-60
 L,9,10
+!
 WPROTA,,,90.0
 VROTAT,2,,,,,,9,10,90,1
 VEXT,11,,,0,0,-30
@@ -52,12 +66,7 @@ VMESH,1
 VMESH,3  
 MSHKEY,0
 VSWEEP,2
-
-! Isometric view
-/VIEW,1,1,1,1   
-/ANG,1  
-/REP,FAST
-
+!
 ! Define kinematic constraints
 DA,1,ALL,0
 CSKP,11,0,16,12,17,1,1

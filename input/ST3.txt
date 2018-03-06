@@ -1,0 +1,81 @@
+!!! FEA ST1: BUCKLING ANALYSIS OF A RECTANGULAR PLATE
+
+!! Initial setup
+! White canvas
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15 
+! Define constant parameters
+! [N],[Nmm],[N/mm^2=MPa],[N/mm] 
+ELAST=2E5
+NU=0.3
+A=1000
+B=300
+T=3
+
+!! SETUP: element types, materials, sections
+KEYW,PR_STRUC,1  ! Preferences / Structural
+/PREP7
+ET,1,SHELL181
+!
+MPTEMP 
+MPTEMP,1,0  
+MPDATA,EX,1,,ELAST  
+MPDATA,PRXY,1,,NU  
+!
+SECT,1,SHELL,,
+SECDATA, T,1,0.0,3
+SECOFFSET,MID
+SECCONTROL
+!
+BLC4,0,0,A,B
+!
+LESIZE,1,,,20
+LESIZE,3,,,20
+LESIZE,2,,,5
+LESIZE,4,,,5
+! Mesh the area using mapped meshing algorithm
+MSHKEY,1
+AMESH,ALL
+! Define the kinematic constraints on lines
+DL,4,,UX,0
+DL,4,,UZ,0
+DL,4,,ROTZ,0
+!
+DL,1,,UY,0
+DL,1,,UZ,0
+DL,1,,ROTZ,0
+!
+DL,3,,UY,0
+DL,3,,UZ,0
+DL,3,,ROTZ,0
+!
+DL,2,,UZ,0
+DL,2,,ROTZ,0
+! Define loading on surface
+SFL,2,PRES,1
+FINISH
+!
+! Calculate prestress effect
+/SOL
+PSTRES,1
+/STATUS,SOLU
+SOLVE   
+FINISH
+!
+! Solve the eigen buckling analysis
+/SOL
+ANTYPE,1
+! Extract the first four modes
+BUCOPT,LANB,4,0,0,CENTER
+MXPAND,4,0,0,0,0.001,   
+/STATUS,SOLU
+SOLVE
+! Postprocessing
+/POST1
+SET,FIRST   
+! Export the eigenshapes as bmp files
+*DO, III, 1, 4,1
+PLNSOL, U,SUM, 1,1.0
+/IMAGE,SAVE,strcat(chrval(III),'_ST3'),bmp
+SET,NEXT
+*ENDDO

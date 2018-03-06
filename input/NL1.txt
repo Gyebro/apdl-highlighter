@@ -1,0 +1,138 @@
+!!! FEA NL1: POST-BUCKLING ANALYSIS OF A PINNED-PINNED BEAM
+
+!! Initial setup, White canvas and parameters
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15 
+!
+ELAST=200E9
+NU = 0.3
+L = 3
+A = 2/100
+B = 5/100
+FCR = 7330
+
+!! SETUP: element types, materials, sections
+KEYW,PR_STRUC,1
+/PREP7   
+ET,1,BEAM188
+! Define the rectangular crossection
+SECTYPE,1,BEAM,RECT 
+SECOFFSET,CENT 
+SECDATA,A,B
+! Linear, isotropic, elastic material model
+MPTEMP 
+MPTEMP,1,0  
+MPDATA,EX,1,,ELAST  
+MPDATA,PRXY,1,,NU  
+! Create the keypoints
+K,1,0,0,0
+K,2,L,0,0
+! Create the line
+L,1,2
+! Set number of elements
+LESIZE,1,,,20
+LMESH,1
+! Apply geometric constraints at keypoints
+DK,1,UX,0
+DK,1,UY,0
+DK,2,UY,0
+! Apply geometric constraints at nodes
+D,ALL,UZ,0,
+D,ALL,ROTX,0
+D,ALL,ROTY,0
+
+! Apply load at keypoint
+FK,2,FX,-1000
+FINISH
+! Calculate prestress effect
+/SOL
+PSTRES,1
+/STATUS,SOLU
+SOLVE   
+FINISH
+
+! Carry out the eigen buckling analysis
+/SOL
+ANTYPE,1
+!  Extract te first four modes
+BUCOPT,LANB,4,0,0,CENTER
+MXPAND,4,0,0,0,0.001,   
+/STATUS,SOLU
+SOLVE   
+/POST1
+! Print mode shapes with undeformed edge
+SET,FIRST
+PLNSOL, U,SUM, 2,1.0
+/IMAGE,SAVE,eigenshape_1,bmp
+SET,NEXT
+PLNSOL, U,SUM, 2,1.0
+/IMAGE,SAVE,eigenshape_2,bmp
+SET,NEXT
+PLNSOL, U,SUM, 2,1.0
+/IMAGE,SAVE,eigenshape_3,bmp
+SET,NEXT
+PLNSOL, U,SUM, 2,1.0
+/IMAGE,SAVE,eigenshape_4,bmp
+FINISH
+
+!! Post buckling analysis
+/SOL
+! Static analysis
+ANTYPE,0
+! Geometric nonlinearity turned on
+NLGEOM,1
+
+! First substep
+NSUBST,10,10,10 
+NEQIT,150   
+TIME,5  
+FINISH
+
+/PREP7
+! Delete load at the end keypoint
+FKDELE,2,ALL 
+! Apply concentrated force on the middle node
+F,12,FY,100
+FINISH
+/SOL
+LSWRITE,1
+
+! Second substep
+TIME,10 
+FINISH
+/PREP7
+! Apply 99% of the critical force at the end
+FK,2,FX,-(99/100)*FCR
+FINISH  
+/SOL
+LSWRITE,2
+
+! Third substep
+! Between pseudo time 10 and 20 nothing happens
+TIME,20
+LSWRITE,3
+
+! Fourth substep
+TIME,30
+FINISH
+/PREP7
+! Remove the load at the middle of the beam
+FDELE,12,FY
+FINISH  
+/SOL
+LSWRITE,4
+
+! Fifth substep
+TIME,50
+FINISH
+/PREP7
+! Remove the load from the end keypoint
+FKDELE,2,FX
+FINISH  
+/SOL
+LSWRITE,5
+! Solve problem from subtep 1 to 5
+LSSOLVE,1,5,1
+
+! Time history post processing
+/POST26
