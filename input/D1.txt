@@ -1,0 +1,125 @@
+!!! FEA NL4: DYNAMIC ANALYSIS OF A SIMPLY SUPPORTED BEAM
+!! Initial setup
+! White canvas
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15
+! Isometric view
+/VIEW,1,1,1,1
+/ANG,1
+/REP,FAST
+! Define constant parameters
+! Units: [N],[Nmm],[N/mm^2=MPa],[N/mm]
+
+L=1000
+A=20
+AREA=400
+Iy=1.333E4
+Iz=1.333E4
+ELAST=2.0E5
+NU=0.3
+RHO=8.0E-9
+P0=1
+ELEMNUM=20 ! has to be an even number and larger than 2 to work
+!! SETUP: element types, materials, layup
+KEYW,PR_STRUC,1  ! Preferences / Structural
+/PREP7
+ET,1,BEAM188
+
+MPTEMP,
+MPTEMP,1,0  
+MPDATA,EX,1,,ELAST  
+MPDATA,PRXY,1,,NU
+
+MPTEMP,
+MPTEMP,1,0  
+MPDATA,DENS,1,,RHO
+
+SECTYPE,1,BEAM,RECT  
+SECOFFSET,CENT 
+SECDATA,A,A
+
+K,1,0,0,0
+K,2,1000,0,0
+
+L,1,2
+
+LESIZE,1,,,10
+LMESH,1
+
+DK,1,UX,0
+DK,1,UY,0
+DK,2,UY,0
+D,ALL,UZ,0
+
+FINISH
+
+/SOL
+ANTYPE,4
+
+TRNOPT,FULL 
+LUMPM,0
+
+DELTIM,0.005
+OUTRES,ALL,ALL  
+AUTOTS,1
+BETAD,0.0002
+TIME,0.01
+
+SFBEAM,ALL,2,PRES,p0
+
+LSWRITE,1
+KBC,0
+TIME,0.1
+LSWRITE,2
+
+LSSOLVE,1,2,1,  
+GPLOT   
+FINISH
+
+/POST26
+! time history post processing comes here
+FINISH  
+/SOL
+
+SFEDELE,ALL,2,PRES 
+
+! Modal analysis
+ANTYPE,2
+
+MODOPT,LANB,10  
+EQSLV,SPAR  
+MXPAND,10, , ,1 
+LUMPM,0 
+PSTRES,0
+
+MODOPT,LANB,10,0,0, ,OFF
+
+SOLVE   
+FINISH  
+/POST1  
+SET,LIST,2  
+FINISH  
+
+/SOL
+! harmonic analysis
+ANTYPE,3
+*AFUN,DEG
+
+AMPL=1
+PHASE=120
+FR=AMPL*COS(PHASE)
+FI=AMPL*SIN(PHASE)
+
+NSEL,S,,,3,ELEMNUM+1,1
+F,ALL,FY,FR/(ELEMNUM-1),FI/(ELEMNUM-1)
+ALLSEL,ALL
+
+HARFRQ,0,500,   
+NSUBST,501,
+KBC,1
+
+SOLVE
+FINISH
+
+/POST26
+! time history post processing goes here
