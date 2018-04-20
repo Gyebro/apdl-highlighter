@@ -1,79 +1,76 @@
-KEYW,PR_SET,1   
-KEYW,PR_STRUC,1 
+!!! FEA D4: Transient dynamic analysis of a built-in beam
+! Created by Gergely Gyebroszki, 2018.04.19.
+!! Units in mm/MPa
 
-ELAST=2.1E5
+S=10
+E=2.1E5
 NU=0.3
 RHO=7.85E-9
 P0=3
-S=10
-L1=1000
-L2=300
-H=200
 T1=0.05
-T2=1
+T2=1.0
+BETA=0.0002
+TSTEP=0.005
 
-/PREP7  
+!! SETUP: Element types, Materials, Sections
+KEYW,PR_STRUC,1
+/PREP7
 ET,1,PLANE182
-KEYOPT,1,3,3
-
-R,1,S
-
-MPTEMP
-MPTEMP,1,0  
-MPDATA,EX,1,,ELAST  
+KEYOPT,1,3,3  ! Plane stress with thickness
+R,1,S  ! Real constant to define thickness
+MPTEMP,1,0
+MPDATA,EX,1,,E
 MPDATA,PRXY,1,,NU
-
-MPTEMP
-MPTEMP,1,0  
 MPDATA,DENS,1,,RHO
 
-BLC4,0,0,L1,H
-BLC4,L1,0,L2,H
-
-LSEL,S,LINE,,1,3,2
-LESIZE,ALL,,,16
-
-LSEL,S,LINE,,5,7,2
-LESIZE,ALL,,,6
-
-LSEL,S,LINE,,2,8,2
-LESIZE,ALL,,,4
-ALLSEL
-
-MSHKEY,1
+!! MODELLING
+BLC4,0,0,1000,200
+BLC4,1000,0,300,200
+! Set explicit element size of 50mm to achieve same divisions
+LESIZE,ALL,50
 AMESH,ALL
-
 NUMMRG,NODE,0.01,,,LOW
+! Built-in end at X=0
+NSEL,S,LOC,X,0
+D,ALL,ALL
+ALLSEL,ALL
+FINISH
 
-DL,4, ,ALL
-FINISH  
-
+!! SOLUTION: Transient  
 /SOL
-!*  
-ANTYPE,4
-!*  
-TRNOPT,FULL
-!*  
-DELTIM,0.005,0.0005,0.05
-OUTRES,ALL,ALL  
-AUTOTS,1
-BETAD,0.0002
-KBC,0  
-TIME,T1 
-SFL,7,PRES,P0,   
+! Load step 1
+ANTYPE,4	! Analysis type: Transient
+TRNOPT,FULL ! Solution method: FULL
+LUMPM,0 	! Lumped mass approximation: OFF
+TIME,T1 	! Time at the end
+AUTOTS,1	! Auto time-stepping: ON
+DELTIM,TSTEP	! Time step size
+OUTRES,ALL,1	! Write every substep
+BETAD,BETA 		! Damping
+KBC,0		! Ramped loading (instead of stepped)
+! Pressure load on right-top line
+LSEL,S,LOC,Y,200,200    ! Select lines with Y in (200,200)
+LSEL,R,LOC,X,1000,1300		! Reduce selection to lines with X in (1000,1300)
+SFL,ALL,PRES,P0
+ALLSEL,ALL
 LSWRITE,1
-
-DELTIM,0.005,0.0005,0.05
-OUTRES,ALL,ALL  
-AUTOTS,1
-BETAD,0.0002
-KBC,1
+! Load step 2 (only the time changes)
 TIME,T2
 LSWRITE,2
-
+! Solve from LS file 1-2
 LSSOLVE,1,2,1
-FINISH  
-/POST1  
-!*  
-PLNS,U,Y
-ANTIME,200,0.1, ,1,2,0,0.2  
+FINISH
+
+!! TIME HISTORY POSTPROCESSING
+/POST26
+NSOL,2,NODE(1300,100,0),U,Y,UY_A
+NSOL,3,NODE(1300,100,0),V,Y,VY_A
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15
+/YRANGE,-4,-3.7,1 
+PLVAR,2
+/IMAGE,SAVE,Disp_vs_time_A,bmp
+/YRANGE,-140,60,1 
+PLVAR,3
+/IMAGE,SAVE,Veloc_vs_time_A,bmp
+FINISH

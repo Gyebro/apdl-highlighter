@@ -1,0 +1,86 @@
+!!! FEA D5: Dynamic analysis of a 4-bar linkage
+! Created by Gergely Gyebroszki, 2018.04.19.
+!! Units in mm/MPa
+
+!! Parameters
+AREA=0.063
+IZZ=0.00525
+IYY=2.084e-5
+TKZ=0.063
+K1=10e6
+K2=10e6
+K3=10e6
+K4=1.5528e-4
+E=10e6
+NU=0.3
+RHO=2.588e-4 
+DAMPING1=0.000139
+DAMPING2=0.000278
+
+!! SETUP
+KEYW,PR_STRUC,1
+/PREP7
+ET,1,BEAM4
+ET,2,COMBIN7
+R,1,AREA,IZZ,IYY,TKZ
+R,2,K1,K2,K3,K4
+MPTEMP,1,0
+MPDATA,EX,1,,E
+MPDATA,PRXY,1,,NU
+MPDATA,DENS,1,,RHO
+MPDATA,DMPR,1,,DAMPING1
+MPDATA,EX,2,,E
+MPDATA,PRXY,2,,NU
+MPDATA,DENS,2,,RHO
+MPDATA,DMPR,2,,DAMPING2
+
+!! MODELLING
+N,,0
+N,,2.5
+N,,2.5
+! New local coord system
+LOCAL,11,0,2.5,0,0,66.024, , ,1,1,
+CSYS,11
+N,,2.5
+N,,5.5
+N,,8.5
+N,,11.0
+N,,11.0
+CSYS,0 
+*AFUN,DEG
+! Second local CS
+LOCAL,12,0,2.5+11*cos(66.024),11*sin(66.024),0,-73.21,,,1,1,
+CSYS,12
+N,,2.5
+N,,5.25
+N,,8.0
+N,,10.5
+! Create BEAM4 elements 1-5
+MAT,1
+TYPE,1
+REAL,1
+E,1,2
+E,3,4   
+E,4,5   
+E,5,6   
+E,6,7  
+MAT,2 
+E,8,9   
+E,9,10  
+E,10,11 
+E,11,12
+! Create Joint elements
+TYPE,2
+REAL,2
+E,2,3
+E,7,8
+FINISH
+
+!! SOLUTION
+/SOL
+! Load step 1
+ANTYPE,4	! Analysis type: Transient
+TRNOPT,FULL ! Solution method: FULL
+LUMPM,0 	! Lumped mass approximation: OFF
+TIME,T1 	! Time at the end
+
