@@ -74,6 +74,14 @@ TYPE,2
 REAL,2
 E,2,3
 E,7,8
+! Constraints
+D,1,UX
+D,1,UY
+D,12,UX
+D,12,UY
+D,ALL,UZ
+! Gravity
+ACEL,209.4,324.7,0
 FINISH
 
 !! SOLUTION
@@ -82,5 +90,40 @@ FINISH
 ANTYPE,4	! Analysis type: Transient
 TRNOPT,FULL ! Solution method: FULL
 LUMPM,0 	! Lumped mass approximation: OFF
-TIME,T1 	! Time at the end
+NLGEOM,1	! Large displacement static
+AUTOTS,0	! Auto stepping: OFF
+NSUBST,1	! Number of substeps
+NEQIT,50	! Number of Equilibrium iterations
+TIME,0.001  ! Time at the end of step
+TIMINT,0	! Transient effect: OFF
+OUTRES,ALL,1	! Write every substep
+! Rotz = -0.041888 on left linkage (-1.2°)
+D,1,ROTZ,-0.041888
+LSWRITE,1
+! Load step 2
+TIME,0.6  ! Time at the end of step
+NSUBST,99	! Number of substeps
+TIMINT,1	! Transient effect: ON
+KBC,0.0 	! Ramped loading
+NEQIT,30	! Number of Equilibrium iterations
+! Rotz = -25.13274 on left linkage (-720°)
+D,1,ROTZ,-25.13274
+LSWRITE,2
+LSSOLVE,1,2,1
 
+!! TIME HISTORY POSTPROCESSING
+/POST26
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15
+/XRANGE,0,0.6
+! Displacement of Node 2
+NSOL,2,2,U,Y,UY_NODE2
+PLVAR,2
+/IMAGE,SAVE,UY_Node2,bmp	! <a href="D5-1.png" target="_blank">Click here to view image</a>
+! Reaction moment on Node 1
+RFORCE,3,1,M,Z,MZ_NODE1
+/COLOR,CURVE,RED,1
+PLVAR,3
+/IMAGE,SAVE,MZ_Node3,bmp	! <a href="D5-2.png" target="_blank">Click here to view image</a>
+! Animate over time
+ANTIME,100,0.2, ,1,2,0,0.6 	! <a href="D5.mp4" target="_blank">Click here to view animation</a>
