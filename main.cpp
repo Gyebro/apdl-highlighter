@@ -4,9 +4,7 @@
 using namespace std;
 
 string filenames[] = {"R1", "R2", "R3",
-                      "D1", "D2",
-                      "D4", "D5",
-                      "D7",
+                      "D1", "D2", "D3", "D4", "D5", "D7",
                       "H1", "H2", "H3",
                       "NL1",
                       "P1",

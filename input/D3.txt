@@ -1,0 +1,144 @@
+!!! FEA D3: HARMONIC ANALYSIS OF AN IN-PLANE FRAME
+!! Initial setup
+! White canvas
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15
+/VIEW,1,1,2,3   
+/ANG,1
+/ESHAPE,1.0
+! Define constant parameters
+! Units: [N],[Nm],[N/m^2=Pa],[N/m]
+
+ELAST=30E9
+NU=0.3
+RHO=2500E
+DAMP=0.02
+B1=0.042
+H1=0.6
+B2=0.6
+H2=0.8
+F0=8000
+FSTART=0
+FEND=350
+M0=5000
+THETAZ0=100
+
+!! SETUP: element types, real constants, materials, sections
+/PREP7
+ET,1,BEAM188
+ET,2,MASS21 
+
+R,1,M0,M0, , , ,THETAZ0,
+
+MPTEMP,1,0  
+MPDATA,EX,1,,ELAST  
+MPDATA,PRXY,1,,NU
+MPTEMP,1,0  
+MPDATA,DENS,1,,RHO
+
+SECTYPE,   1, BEAM, RECT
+SECOFFSET, CENT 
+SECDATA,B1,H1
+
+SECTYPE,   2, BEAM, RECT
+SECOFFSET, CENT 
+SECDATA,B2,H2
+
+!! Modeling
+! Keypoints
+K,1,0,0,0
+K,2,0,2,0
+K,3,2,2,0
+K,4,3,2,0
+K,5,3,0,0
+! Lines
+L,1,2
+L,2,3
+L,3,4
+L,4,5
+
+! Meshing
+LESIZE,ALL,0.2
+
+SECNUM,1
+LMESH,1,4,3
+SECNUM,2
+LMESH,2,3
+
+TYPE,2
+REAL,1
+E,NODE(2,2,0)
+
+! Kinematic constraints
+DK,1,ALL,0
+DK,5,ALL,0
+D,ALL,UZ,0
+FINISH
+
+!! Modal analysis
+/SOL
+
+ANTYPE,2
+! Analysis setup
+MODOPT,LANB,10  
+EQSLV,SPAR  
+MXPAND,10, , ,1 
+MODOPT,LANB,10,0,0, ,OFF
+SOLVE   
+FINISH
+! Post processing
+/POST1
+SET,FIRST
+*DO,III,1,10
+PLNSOL, U,SUM, 2,1.0
+/IMAGE,SAVE,strcat(chrval(III),'_eigenshape'),png ! <a href="D3_1.gif" target="_blank">Click here to view modeshapes</a>
+SET,NEXT
+*ENDDO
+FINISH
+
+!! Harmonics analyis  
+/SOL
+
+ANTYPE,3
+
+! Analysis options  
+HROPT,FULL  
+HROUT,ON
+
+EQSLV,SPAR,0,   
+
+! Analysis setup
+FK,3,FY,F0,0
+
+! Frequency range and number of steps
+HARFRQ,FSTART,FEND,   
+NSUBST,(FEND-FSTART)/1,   
+KBC,0
+
+! Damping parameters
+ALPHAD,0   
+BETAD,0
+DMPSTR,DAMP
+
+SOLVE
+FINISH
+
+!! Postprocessing
+/POST26
+NSOL,2,NODE(2,2,0),U,Y,UY_2
+
+/AXLAB,Y,'A [m]'  
+/AXLAB,X,'f [Hz]' 
+/XRANGE,FSTART,FEND 
+/GROPT,LOGY,ON
+PLCPLX,0
+PRCPLX,1
+PLVAR,2,
+/IMAGE,SAVE,uy_amplitude,png ! <a href="D3_2.png" target="_blank">Click here to view image</a>
+
+/GROPT,LOGY,OFF
+/AXLAB,Y,'PHI [DEG]'  
+PLCPLX,1
+PRCPLX,1
+PLVAR,2,
+/IMAGE,SAVE,uy_phase_angle,png ! <a href="D3_3.png" target="_blank">Click here to view image</a>
