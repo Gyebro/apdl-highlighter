@@ -18,7 +18,7 @@ int main() {
     cout << "Running APDL highlighter\n";
     highlighter h("config/rules.txt", "config/hints_eng.txt", "config/config.txt");
     for (string filename : filenames) {
-        h.highlight("input/"+filename+".txt");
+        h.highlight("input/"+filename+"/script.txt");
     }
     return 0;
 }
