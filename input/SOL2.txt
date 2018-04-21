@@ -1,0 +1,164 @@
+!!! FEA SOL2:  TERMOMECHANICAL ANALYSIS OF A PIPE-TANK ASSEMBLY
+!! Initial setup
+! White canvas
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15
+/VIEW,1,1,1,1   
+/ANG,1
+
+! Define constant parameters
+! [N],[Nm],[N/m^2=Pa],[N/m]
+
+RI1 = 0.03302
+RO1 = 0.0381
+RI2 = 0.01016
+RO2 = 0.0127
+Z2 = 0.0508
+ELAST = 200E9
+NU = 0.3
+RHO = 7890
+ALPHA = 1.435E-5
+TT = 505.37
+TP = 310.92
+LAMBDA = 1419.56
+
+!! SETUP: element types, materials,
+/PREP7
+ET,1,SOLID278
+
+MPTEMP,1,0  
+MPDATA,DENS,1,,RHO 
+
+! Define thermal material properties
+! Conductivity
+MPTEMP,1,294.26 
+MPTEMP,2,366.48 
+MPTEMP,3,422.03 
+MPTEMP,4,477.59 
+MPTEMP,5,533.15 
+MPDATA,KXX,1,,14.45 
+MPDATA,KXX,1,,15.40 
+MPDATA,KXX,1,,16.18
+MPDATA,KXX,1,,16.96 
+MPDATA,KXX,1,,17.91
+
+! Specific heat 
+MPTEMP,1,294.36 
+MPTEMP,2,366.48 
+MPTEMP,3,422.03 
+MPTEMP,4,477.59 
+MPTEMP,5,533.15 
+MPDATA,C,1,,473.11  
+MPDATA,C,1,,489.56  
+MPDATA,C,1,,498.22  
+MPDATA,C,1,,510.79  
+MPDATA,C,1,,523.35
+
+! Covection or film coefficient
+MPTEMP,1,294.36 
+MPTEMP,2,366.48 
+MPTEMP,3,422.03 
+MPTEMP,4,477.59 
+MPTEMP,5,533.15 
+MPDATA,HF,2,,2418.94
+MPDATA,HF,2,,2299.7 
+MPDATA,HF,2,,1998.75
+MPDATA,HF,2,,1561.52
+MPDATA,HF,2,,1254.9
+
+!! Modeling
+! Creating volumes
+CYLIND,RO1,RI1,0,Z2,0,90
+WPROTA,0,-90,0 
+CYLIND,RO2,RI2,0,Z2,0,-90
+WPROTA,0,90,0
+VOVLAP,1,2
+
+! Delete unnecessary volumes
+VDELE,3,,,1
+VDELE,4,,,1
+
+!! Meshing
+! Mapped meshing algorithm
+MSHKEY,1
+MSHAPE,0,2D 
+MSHAPE,0,3D
+
+! Concatenate areas for mapped mesh
+ACCAT,2,5
+! Concatenate lines for mapped mesh
+LCCAT,5,10
+LCCAT,7,12
+! Element number definition along lines
+LESIZE,7,,,12
+LESIZE,12,,,10
+LESIZE,18,4
+LESIZE,39,,,22
+LESIZE,47,,,4
+
+! Mesh volumes
+VMESH,ALL
+FINISH
+
+/SOL
+TUNIF,TT
+
+CSYS,1
+NSEL,S,LOC,X,RI1
+SF,ALL,CONV,LAMBDA,Tt
+
+NSEL,S,LOC,Z,Z2
+D,ALL,TEMP,Tt
+ALLSEL,ALL
+
+! create cylindrical coordinatesystem
+WPROTA,0,-90,0
+CSWPLA,11,1,1,1,
+
+! set convection on inner sutrface of the pipe
+ALLSEL,ALL
+NSEL,S,LOC,X,RI2
+SF,ALL,CONV,-2,Tp
+ALLSEL,ALL
+
+AUTOTS,1
+NSUBST,50, , ,1
+SOLVE
+
+/POST1
+PLNSOL, TEMP,, 0
+/IMAGE,SAVE,TEMPERATURE_DISTRIBUTION,bmp
+
+/PREP7
+! change element type from thermal to structural
+ETCHG,TTS
+
+! Define mechanical material properties
+MPTEMP,1,0  
+MPDATA,EX,1,,ELAST  
+MPDATA,PRXY,1,,NU   
+MPTEMP,1,0  
+UIMP,1,REFT,,,273+20
+MPDATA,ALPX,1,,ALPHA
+
+! Constraints on areas due to symmetricity
+DA,24,UZ,0
+DA,28,UZ,0
+DA,31,UZ,0
+
+DA,26,UX,0
+DA,29,UX,0
+DA,32,UX,0
+!*
+DA,5,UY,0
+FINISH 
+
+/SOL
+ANTYPE,0
+LDREAD,TEMP,,,,,,rth
+SOLVE   
+FINISH
+
+/POST1
+PLNSOL, S,INT, 0,1.0
+/IMAGE,SAVE,STRESS_INTENSITY,bmp

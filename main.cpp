@@ -11,8 +11,9 @@ string filenames[] = {"R1", "R2", "R3",
                       "NL1",
                       "P1",
                       "S3",
-                      "SOL1",
-                      "ST1", "ST3", "ST4"
+                      "SOL1", "SOL2",
+                      "ST1", "ST3", "ST4",
+                      "T1"
                      };
 
 int main() {
