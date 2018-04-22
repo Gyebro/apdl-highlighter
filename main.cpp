@@ -3,7 +3,7 @@
 
 using namespace std;
 
-string filenames[] = {"R1", "R2", "R3",
+string filenamesFEA[] = {"R1", "R2", "R3",
                       "D1", "D2", "D3", "D4", "D5", "D6", "D7",
                       "H1", "H2", "H3",
                       "NL1",
@@ -13,12 +13,19 @@ string filenames[] = {"R1", "R2", "R3",
                       "ST1", "ST3", "ST4",
                       "T1"
                      };
+string filenamesVEMA[] = {"11het"
+};
 
 int main() {
     cout << "Running APDL highlighter\n";
     highlighter h("config/rules.txt", "config/hints_eng.txt", "config/config.txt");
-    for (string filename : filenames) {
-        h.highlight("input/"+filename+"/script.txt");
+    for (string filename : filenamesFEA) {
+        h.highlight("input/FEA/"+filename+"/script.txt");
+    }
+//    hungarian hints should be used in case of hungarian courses
+    h = highlighter("config/rules.txt", "config/hints_eng.txt", "config/config.txt");
+    for (string filename : filenamesVEMA) {
+        h.highlight("input/VEMA/"+filename+"/script.txt");
     }
     return 0;
 }

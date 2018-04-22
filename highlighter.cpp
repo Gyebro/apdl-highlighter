@@ -25,7 +25,7 @@ void highlighter::highlight(string input_file) {
     ofstream output(out_file);
     output << "<!DOCTYPE html>\n";
     output << "<html lang=\"en\">\n"
-            " <link rel=\"stylesheet\" type=\"text/css\" href=\"../style.css\">\n"
+            " <link rel=\"stylesheet\" type=\"text/css\" href=\"../../style.css\">\n"
             "<head>\n";
     output << " <title>FEA Ansys APDL tutorial</title>\n";
     output << "</head>\n<body>\n";

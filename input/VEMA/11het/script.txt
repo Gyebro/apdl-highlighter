@@ -1,0 +1,100 @@
+!!! VEMA 11. HÉT: VENTILÁTORLAPÁT MODÁLIS ANALÍZISE
+!! Kezdeti beállítások
+! Fehér háttér
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15
+! Izometrikus nézet
+/VIEW,1,1,1,1     
+/ANG,1
+/ESHAPE,1.0
+! Dimenziók: [N],[Nmm],[N/mm^2=MPa],[N/mm]
+
+/PREP7
+!! Modellezés
+! Kulcspontok létrehozása
+K, 1, -65, 0, 0
+K, 2, 65, 0, 0
+K, 3, 0, 7, 0
+K, 4, 0, 7, 250
+
+/PNUM,KP,1  
+LARC,1,2,3 
+L,3,4
+
+! Felület kihúzása
+ADRAG, 1, , , , , , 2   
+
+! Levágáshoz tartozó kulcspontok létrehozása
+K, 7, 30, 0, 0
+K, 8, 65, 0, 30
+K, 9, -30, 0, 0
+K, 10, -65, 0, 30
+
+K, 11, 0, 20, 0
+
+L, 7 ,8
+L, 9, 10
+L, 3, 11
+
+! Vonal számozás bekapcsolása
+
+/PNUM,LINE,1  
+GPLOT   
+! Metsző feluletek létrehozása
+ADRAG, 6, , , , , , 8   
+ADRAG, 7, , , , , , 8   
+! Metszés
+/PNUM,KP,0
+/PNUM,AREA,1
+ASBA, 1, 2
+ASBA, 5, 3
+
+! Felesleges felületek törlése
+ADELE, 1, 4, 3 
+GPLOT	! <a href="images/1.png" target="_blank">Aktuális képernyőkép</a>
+
+! Mechanikai tulajdonságok megadása
+! Rugalmassagi modulus, Poisson tényező, sűrűség, vastagság
+
+MPTEMP,1,0  
+MPDATA,EX,1,,69E3   
+MPDATA,PRXY,1,,0.33 
+
+MPTEMP,1,0  
+MPDATA,DENS,1,,2700E-12 
+
+! Elemtípus definiálása
+ET,1,SHELL181   
+
+!* Rétegfelépítés definiálása
+SECT,1,SHELL,,  
+SECDATA, 1.4,1,0.0,3
+SECOFFSET,MID   
+
+!! Hálózás
+! Végeselemes háló átlagos mérete
+AESIZE, 2, 10
+AMESH, ALL
+
+!! Peremfeltételek megadása
+! Geometriai kényszer megadása
+DL, 10, ,ALL, 0 
+FINISH
+
+!! Modális analízis elvégzése
+/SOL
+ANTYPE,2
+
+! Első 15 sajátfrekvencia meghatározása
+MODOPT,LANB,15  
+EQSLV,SPAR
+
+! Sajátérték sajátvektor probléma megoldása
+SOLVE   
+FINISH  
+
+!! Posztprocesszálás
+/POST1  
+SET,FIRST
+
+PLNSOL, U,SUM, 2,1.0 ! <a href="images/2.gif" target="_blank">Kattints ide a lengésképek megtekintéséhez</a>
