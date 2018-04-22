@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,700&subset=latin-ext');
+
+body {
+    font-family: 'Roboto Mono', monospace;
+    padding-left: 6px;
+}
+
+h1, h2, p {
+    margin: 0px;
+}
+
+.comment {
+    color: #269226;
+}
+
+.comment.inline::before {
+    content: " ";
+    width: 4em;
+    display: inline-block;
+}
+
+.keyword {
+    color: #0e52d1;
+    position: relative;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+.param {
+    color: #a722cc;
+	position: relative;
+    border-bottom: 1px dotted black;
+}
+
+.keyword .tooltiptext, .param .tooltiptext {
+    visibility: hidden;
+    background-color: #cccccc;
+    color: #000000;
+    text-align: left;
+    padding: 6px;
+    border-radius: 6px;
+    position: absolute;
+    top: -5px;
+    left: 105%; 
+    z-index: 1;
+    white-space: pre;
+}
+
+.keyword .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%; /* To the left of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent #cccccc transparent transparent;
+	white-space: normal;
+}
+
+.keyword:hover .tooltiptext, .param:hover .tooltiptext {
+    visibility: visible;
+}
+
+/*.hidden {
+    font-size: 0;
+    color: transparent;
+    text-shadow: none;
+}*/
+
+@media only screen and (max-width: 600px) {
+	.tooltiptext {
+		font-size: 1em;
+	}
+}
+
+a, a:visited {
+	color: #0e52d1;
+	text-decoration: none;
+}
+
+#footer {
+    padding-top: 36px;
+    padding-bottom: 36px;
+    font-size: 0.5em;
+}

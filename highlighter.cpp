@@ -20,12 +20,13 @@ void highlighter::highlight(string input_file) {
     // Update scalar parameters
     pcfg.update(input_file);
     ifstream input(input_file);
-    string out_file = input_file.substr(0,input_file.length()-3)+"html";
+    //string out_file = input_file.substr(0,input_file.length()-3)+"html";
+    string out_file = input_file.substr(0,input_file.length()-10)+"index.html";
     cout << "Highlighting APDL script '"+input_file+"', output: '"+out_file+"'\n";
     ofstream output(out_file);
     output << "<!DOCTYPE html>\n";
     output << "<html lang=\"en\">\n"
-            " <link rel=\"stylesheet\" type=\"text/css\" href=\"../../style.css\">\n"
+            " <link rel=\"stylesheet\" type=\"text/css\" href=\"../style.css\">\n"
             "<head>\n";
     output << " <title>FEA Ansys APDL tutorial</title>\n";
     output << "<meta charset=\"UTF-8\">\n";
