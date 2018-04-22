@@ -13,7 +13,7 @@ string filenamesFEA[] = {"R1", "R2", "R3",
                       "ST1", "ST3", "ST4",
                       "T1"
                      };
-string filenamesVEMA[] = {"11het"
+string filenamesVEMA[] = {"04het", "11het"
 };
 
 int main() {
