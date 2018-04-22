@@ -28,6 +28,7 @@ void highlighter::highlight(string input_file) {
             " <link rel=\"stylesheet\" type=\"text/css\" href=\"../../style.css\">\n"
             "<head>\n";
     output << " <title>FEA Ansys APDL tutorial</title>\n";
+    output << "<meta charset=\"UTF-8\">\n";
     output << "</head>\n<body>\n";
     string line;
     bool in_paragraph = false;
@@ -44,7 +45,7 @@ void highlighter::highlight(string input_file) {
 }
 
 string highlighter::get_footer(string input_file) {
-    string filename = split(input_file, '/')[1];
+    string filename = split(input_file, '/').back();
     string footer = "";
     footer += "<p id='footer'>";
     footer += "! This webpage was generated with " + get_product_name()
