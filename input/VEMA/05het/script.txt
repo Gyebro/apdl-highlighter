@@ -1,0 +1,104 @@
+!!! VEMA 05. HÉT: Egyenes tartó lehajlásfüggvényének meghatározása végeselemes módszerrel
+!! Kezdeti beállítások
+! Fehér háttér
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15
+/ESHAPE,1
+! Dimenziók: [N],[Nm],[N/m^2=Pa],[N/m]
+
+! Paraméterek definiálása
+A=800e-3
+B=400e-3
+D=20e-3
+ELAST=50e9
+NU=0.3
+F1=2500
+M1=-500
+P0=5000
+ELEMSZAM=1
+! Preprocesszálás
+/PREP7
+!! Beállítások (elemtípus, anyagi viselkedés, keresztmetszet)
+! Elemtípus kiválasztása
+ET,1,BEAM188
+! Interpolációs polinom rendje az elem mentén
+! 0 - lináris (alaphelyzet), 2 - négyzetes, 3 - köbös
+KEYOPT,1,3,2
+
+! Anyagi viselkedés definiálása
+MPTEMP,1,0  
+MPDATA,EX,1,,ELAST
+MPDATA,PRXY,1,,NU 
+
+MPTEMP,1,0  
+MPDATA,EX,2,,4*ELAST
+MPDATA,PRXY,2,,NU 
+
+! Keresztmetszetek definiálása
+SECTYPE,   1, BEAM, CSOLID
+SECOFFSET, CENT 
+SECDATA,D
+
+SECTYPE,   2, BEAM, CSOLID
+SECOFFSET, CENT 
+SECDATA,D/2
+
+!! Modellezés
+! Kulcspontok létrehozása
+K,1,0,0
+K,2,A,0
+K,3,A+B,0
+
+! Vonalak létrehozása
+L,1,2
+L,2,3
+GPLOT! <a href="images/1.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
+!! Hálózás
+! 'ELEMSZAM' darab végeselem minden vonalon
+LESIZE,ALL,,,ELEMSZAM
+! Vastagabb szakasz hálózása
+MAT,1
+SECNUM,1
+LMESH,1
+! Vékonyabb szakasz hálózása
+MAT,2
+SECNUM,2
+LMESH,2
+!! Kényszerek definiálása
+! Befalazott vég
+D,NODE(0,0,0),ALL,0
+! Görgős megtámasztás
+D,NODE(A+B,0,0),UY,0
+! Aktív külső terhelés
+F,NODE(A,0,0),FY,F1
+F,NODE(A+B,0,0),MZ,M1
+! Rúdra merőleges irányú megoszló terhelés definiálása a vastagabb részen
+*DO,III,1,ELEMSZAM,1
+SFBEAM,III,2,PRES,P0
+*ENDDO
+FINISH
+! <a href="images/2.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
+!! K.U=F egyenletrendszer megoldása
+/SOL
+SOLVE
+FINISH
+!! Posztprocesszálás
+/POST1
+! Deformált alak
+PLDISP,2! <a href="images/3.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
+! Y irányú elmozdulás
+PLNSOL, U,Y, 1,1.0! <a href="images/4.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
+
+! Elem táblázatok definiálása
+! z tengely körüli hajlítónyomaték
+ETABLE,MZI,SMISC, 3
+ETABLE,MZJ,SMISC, 16
+! y tengely irányú nyírófeszültség definiálása
+ETABLE,VYI,SMISC, 6
+ETABLE,VYJ,SMISC, 19
+! Hajlítónyomatéki függvény megjelenítése [Nm]
+PLLS,MZI,MZJ,1,0,0! <a href="images/5.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
+! Nyíróerő eloszlás megjelenítés [N]
+PLLS,VYI,VYJ,1,0,0! <a href="images/6.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
+! Reakcióerők listázása
+PRRSOL
