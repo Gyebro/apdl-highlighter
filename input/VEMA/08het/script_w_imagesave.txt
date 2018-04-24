@@ -1,0 +1,149 @@
+!!! VEMA 08. HÉT: Vastagfalú tartály modellezése forgászszimmetrikus elemekkel.
+!! Kezdeti beállítások
+! Fehér háttér
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15
+/ESHAPE,1
+! Dimenziók: [N],[Nm],[N/m^2=Pa],[N/m]
+
+! Paraméterek definiálása
+RBELSO=100e-3
+RKULSO=200e-3
+H=300e-3
+ELAST=200e9
+NU=0.3
+P=300e5
+ELEMMERET=0.005
+! Preprocesszálás
+/PREP7
+!! Beállítások (elemtípus, anyagi viselkedés, keresztmetszet)
+! Elemtípus kiválasztása
+ET,1,PLANE182
+! Forgászszimmetrikus elemi viselkedés kiválasztása
+KEYOPT,1,3,1
+! Anyagi viselkedés definiálása
+MPTEMP,1,0  
+MPDATA,EX,1,,ELAST
+MPDATA,PRXY,1,,NU 
+
+!! Modellezés
+! Kulcspontok létrehozása
+K,1,RBELSO,0
+K,2,RKULSO,0
+K,3,RBELSO,H
+K,4,RKULSO,H
+K,5,0,H
+K,6,0,H+RBELSO
+K,7,0,H+RKULSO
+! Vonalak létrehozása
+L,1,2
+L,2,4
+L,4,3
+L,3,1
+L,6,7
+LARC,3,6,5,RBELSO
+LARC,4,7,5,RKULSO
+! Felületek létrehozása
+AL,1,2,3,4
+AL,3,7,5,6
+GPLOT! <a href="images/1.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
+!! Hálózás
+! 'ELEMMERET' átlagos elemméret
+AESIZE,ALL,ELEMMERET
+! strukturált stílusú hálózási algoritmus
+MSHKEY,1
+AMESH,ALL
+!! Kényszerek definiálása
+! szimmetria síkban görgős megtámasztás
+DL,1,,UY,0
+! Aktív külső terhelés
+! belső nyomás felületen
+SFL,4,PRES,P
+SFL,6,PRES,P
+FINISH
+! <a href="images/2.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
+!! K.U=F egyenletrendszer megoldása
+/SOL
+SOLVE
+FINISH
+!! Posztprocesszálás
+/POST1
+! Deformált alak
+PLDISP,2! <a href="images/3.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
+! X (radiális) irányú normálfeszültség [Pa]
+PLNSOL, S,X, 2,1.0  ! <a href="images/4.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
+! Y (axiális) irányú normálfeszültség [Pa]
+PLNSOL, S,Y, 2,1.0! <a href="images/5.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
+! z (tangenciális) irányú normálfeszültség [Pa]
+PLNSOL, S,Z, 2,1.0! <a href="images/6.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
+! Mohr-féle egyenértékű feszültség [Pa]
+PLNSOL, S,INT, 2,1.0! <a href="images/7.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
+
+PATH,SZIMM,2,30,20, 
+PPATH,1,0,RBELSO,0,0,0
+PPATH,2,0,RKULSO,0,0,0
+
+PDEF,SRAD,S,X,AVG
+PDEF,SAX,S,Y,AVG 
+PDEF,STAN,S,Z,AVG 
+
+/AXLAB,X,'r [m]'
+/AXLAB,Y,'sig [Pa]'
+PLPATH,SRAD,SAX,STAN! <a href="images/8.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
+
+/COLOR,SMIN,BLUE
+/COLOR,SMAX,RED
+/AXLAB,X,'y [m]' 
+*DO,RCRD,RBELSO,RKULSO,(RKULSO-RBELSO)/100
+PATH,MY_PATH,2,30,20, 
+PPATH,1,0,RCRD,0,0,0
+PPATH,2,0,RCRD,H,0,0
+
+PDEF,SRAD,S,X,AVG
+PDEF,SAX,S,Y,AVG
+PDEF,STAN,S,Z,AVG
+
+/AXLAB,Y,'sigRAD [Pa]'
+/YRANGE,-30e6,0
+PLPATH,SRAD
+/image,save,strcat('SRADPATH_',chrval(1000*RCRD)),png
+/YRANGE,DEFAULT
+/AXLAB,Y,'sigAX [Pa]'
+/YRANGE,0,15e6
+PLPATH,SAX
+/image,save,strcat('SAXPATH_',chrval(1000*RCRD)),png
+/YRANGE,DEFAULT
+/AXLAB,Y,'sTAN [Pa]'
+/YRANGE,0,50e6
+PLPATH,STAN
+/image,save,strcat('STANPATH_',chrval(1000*RCRD)),png
+
+PADEL,ALL
+*ENDDO
+
+/GROPT,VIEW,1
+/FOCUS,0,RKULSO/2,H/2,0
+/DIST,ALL,0.3,0
+*DO,RCRD,RBELSO,RKULSO,(RKULSO-RBELSO)/100
+PATH,MY_PATH,2,30,20, 
+PPATH,1,0,RCRD,0,0,0
+PPATH,2,0,RCRD,H,0,0
+
+PDEF,SRAD,S,X,AVG
+PDEF,SAX,S,Y,AVG 
+PDEF,STAN,S,Z,AVG
+
+/CONT,1,9,-30e6, ,0
+PLPAGM,SRAD,1,Blank
+/image,save,strcat('SRADGEOM_',chrval(1000*RCRD)),png
+
+/CONT,1,9,0, ,15e6
+PLPAGM,SAX,1,Blank
+/image,save,strcat('SAXGEOM_',chrval(1000*RCRD)),png
+
+/CONT,1,9,0,,50e6
+PLPAGM,STAN,1,Blank
+/image,save,strcat('STANGEOM_',chrval(1000*RCRD)),png
+
+PADEL,ALL
+*ENDDO

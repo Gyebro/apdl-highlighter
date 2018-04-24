@@ -68,11 +68,51 @@ FINISH
 ! Deformált alak
 PLDISP,2! <a href="images/3.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
 ! X irányú normálfeszültség
-PLNSOL, S,X, 1,1.0  ! <a href="images/4.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
+PLNSOL, S,X, 2,1.0  ! <a href="images/4.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
 ! Y irányú normálfeszültség
-PLNSOL, S,Y, 1,1.0! <a href="images/5.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
+PLNSOL, S,Y, 2,1.0! <a href="images/5.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
 ! XY irányú csúsztatófeszültség
-PLNSOL, S,Y, 1,1.0! <a href="images/6.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
-PATH,0,2,30,20, 
-PPATH,1,0,0,0,0,0,  
-PPATH,2,0,0,H,0,0,  
+PLNSOL, S,Y, 2,1.0! <a href="images/6.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
+
+! Útvonal menti feszültségeloszlás megjelentítése
+! x irányú normálfeszültség a szimmetria síkban
+PATH,MY_PATH,2,30,20, 
+PPATH,1,0,A+L/2,0,0,0
+PPATH,2,0,A+L/2,H,0,0
+
+PDEF,SX,S,X,AVG
+
+! Diagramon megjelenítés
+/AXLAB,X,'yCRD [m]'
+/AXLAB,Y,'sigX [Pa]'
+PLPATH,SX
+! Szerkezeten megjelenítés
+PLPAGM,SX,1,Blank
+! <a href="images/sx.gif" target="_blank">Kattints ide az x irányú normálfeszültség eloszlás változásának megtekintéséhez!</a>
+
+! Csúsztatófeszültség x = A/2-ben
+PATH,MY_PATH,2,30,20, 
+PPATH,1,0,A/2,0,0,0
+PPATH,2,0,A/2,H,0,0
+
+PDEF,SXY,S,XY,AVG
+
+! Diagramon megjelenítés
+/AXLAB,Y,'tauXY [Pa]'
+PLPATH,SXY
+! Szerkezeten megjelenítés
+PLPAGM,SXY,1,Blank
+! <a href="images/sxy.gif" target="_blank">Kattints ide az xy síkban ébredő csúsztatófeszültés eloszlás változásának megtekintéséhez!</a>
+! y irányú normálfeszültség x = A-ban
+PATH,MY_PATH,2,30,20, 
+PPATH,1,0,A,0,0,0
+PPATH,2,0,A,H,0,0
+
+PDEF,SY,S,Y,AVG
+
+! Diagramon megjelenítés
+/AXLAB,Y,'sigY [Pa]'
+PLPATH,SXY
+! Szerkezeten megjelenítés
+PLPAGM,SXY,1,Blank
+! <a href="images/sy.gif" target="_blank">Kattints ide az y irányú normálfeszültség eloszlás változásának megtekintéséhez!</a>
