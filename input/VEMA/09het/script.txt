@@ -1,0 +1,70 @@
+!!! VEMA 09. HÉT: Feszültséggyűjtő hatás vizsgálata lemezben.
+!! Kezdeti beállítások
+! Fehér háttér
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15
+/ESHAPE,1
+! Dimenziók: [N],[Nmm],[N/mm^2=MPa],[N/mm]
+! Paraméterek definiálása
+T=10
+R=10
+W1=400
+W2=200
+H=400
+P=50
+EY=200e3
+NU=0.3
+!! Preprocesszálás
+/PREP7
+! Elemtípus kiválasztása
+ET,1,PLANE182
+! Síkfeszültségi állapot aktiválása
+KEYOPT,1,3,3
+! Lemez vastagsága
+R,1,T
+! Anyagi viselkedés definiálása
+MPTEMP,1,0  
+MPDATA,EX,1,,EY
+MPDATA,PRXY,1,,NU
+!! Modellezés
+K,1,W2/2,0
+K,2,W2/2+R,R 
+K,3,W2/2+R,0
+K,4,W1/2,R
+K,5,W1/2,H/2
+K,6,0,H/2
+K,7,0,0
+!
+L,7,1
+LARC,1,2,3,R
+L,2,4  
+L,4,5  
+L,5,6  
+L,6,7
+!  
+AL,1,2,3,4,5,6
+!! Hálózás
+AESIZE,1,R/5
+AMESH,1
+! Kinematikai kényszerek definiálása
+DL,1,,UY,0
+DL,6,,UX,0
+! Megoszló terhelés definiálása
+SFL, 5, PRES, -P
+FINISH
+!! K.U = F egyenlet megoldása
+/SOL
+SOLVE
+!! Posztporcesszálás
+/POST1
+! Deformált alak
+PLDISP,2! <a href="images/1.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
+! Feszültségeloszlás megjelenítése a vízszintes szimmetria síkban
+PATH,SZIMM,2,30,100
+PPATH,1,0,0
+PPATH,2,0,W2/2
+PDEF,SIGY,S,Y,NOAVG
+/AXLAB,X,'x [mm]'
+/AXLAB,Y,'sig [MPa]'
+PLPATH,SIGY ! <a href="images/2.png" target="_blank">Kattints ide az aktuális képernyőkép megtekintéséhez!</a>
+PRPATH,SIGY
