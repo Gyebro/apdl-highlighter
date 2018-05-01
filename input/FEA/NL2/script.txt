@@ -1,0 +1,131 @@
+!!! FEA NL2: CONTACT PROBLEM OF A BALL AND A DISK
+!! Initial setup
+! White canvas
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15
+! Define constant parameters
+! Units: [N],[Nmm],[N/mm^2=MPa],[N/mm]
+ELAST = 210E3
+NU = 0.3
+F = 3000
+ELEMNUM=6
+!! SETUP: element types, materials, layup
+KEYW,PR_STRUC,1  ! Preferences / Structural
+/PREP7
+ET,1,PLANE182   
+! Axysimmetric plane element
+KEYOPT,1,3,1
+
+ET,2,TARGE169   
+ET,3,CONTA175   
+! Linear, isotropic, elastic material model
+MPTEMP,1,0
+MPDATA,EX,1,,ELAST
+MPDATA,PRXY,1,,NU
+!! Modeling
+BLC4,0,-5,5,5   
+BLC4,5,-5,15,5
+! glue areas
+AGLUE,1,2
+!
+K,5,0,10,0
+K,8,10,10,0
+K,9,0,0,0
+LARC,8,9,5,10
+L,9,5
+L,5,8
+! divide the arc (L5)
+LDIV,5,2/3
+L,5,10
+!
+AL,7,11,12
+AL,12,5,8
+!! Meshing
+! Set the number of elements along lines
+LESIZE,11,,,2*ELEMNUM
+LESIZE,5,,,2*ELEMNUM
+LESIZE,7,,,2*ELEMNUM
+LESIZE,8,,,2*ELEMNUM
+LESIZE,12,,,2*ELEMNUM
+! horizontal line
+LESIZE,1,,,ELEMNUM
+LESIZE,3,,,ELEMNUM
+LESIZE,9,,,2*ELEMNUM
+LESIZE,10,,,2*ELEMNUM
+! vertical line
+LESIZE,4,,,ELEMNUM
+LESIZE,2,,,ELEMNUM
+LESIZE,6,,,ELEMNUM
+! mesh areas using mapped algorithm
+MSHKEY,1
+AMESH,ALL
+
+ALLSEL,ALL 
+! Add Contact and Target elements of surface lines
+LSEL,S,,,11
+NSLL,S,1
+TYPE,3
+ESURF,ALL
+!
+ALLSEL,ALL
+LSEL,S,,,3
+NSLL,S,1
+TYPE,2
+ESURF,ALL
+
+ALLSEL,ALL
+GPLOT! <a href="images/1.png" target="_blank">Click here to view image!</a>
+!! Apply kinematic and dynamic loads on structure.
+! kinematic constraints
+DK,6,UY,0
+! impose identical UY displacement on line 8 through constraint
+LSEL,S,,,8
+NSLL,S,1
+CP,1,UY,ALL
+!*
+ALLSEL,ALL
+!! Define loadcases
+! Loadcase 1 displacement
+LSEL,S,,,8
+NSLL,S,1
+D,ALL,UY,-0.005
+ALLSEL,ALL
+FINISH 
+! Solve loadcase 1
+/SOL
+SOLVE
+FINISH
+! Loadcase 2
+/PREP7
+! Delete displacement constraint
+LSEL,S,,,8
+NSLL,S,1
+DDELE,ALL,ALL
+ALLSEL,ALL
+! Apply force on keypoint
+FK,5,FY,-F
+FINISH  
+/SOL
+! Set solution options
+NLGEOM,1
+NSUBST,2,10,1
+SOLVE
+!! Postprocessing
+/POST1
+! Loadcase 2
+! Displacement fields
+PLNSOL, U,X, 0,1.0! <a href="images/2.png" target="_blank">Click here to view image!</a>
+PLNSOL, U,Y, 0,1.0! <a href="images/3.png" target="_blank">Click here to view image!</a>
+PLNSOL, U,SUM, 0,1.0! <a href="images/4.png" target="_blank">Click here to view image!</a>
+! Stress fields
+PLNSOL, S,Y, 0,1.0! <a href="images/5.png" target="_blank">Click here to view image!</a>
+PLNSOL, S,EQV, 0,1.0! <a href="images/6.png" target="_blank">Click here to view image!</a>
+! Stress distribution along the symmetry axis
+PATH,SYMM,2,30,100
+PPATH,1,NODE(0,-5,0)
+PPATH,2,NODE(0,10,0)
+PDEF,SIGY,S,Y,NOAVG   
+!
+/AXLAB,X,'y [mm]'
+/AXLAB,Y,'sigY [MPa]'
+PLPATH,SIGY! <a href="images/7.png" target="_blank">Click here to view image!</a>

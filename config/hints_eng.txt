@@ -44,7 +44,9 @@ ANTYPE	ANTYPE, Antype, Status, LDSTEP, SUBSTEP, Action	Specifies the analysis ty
 AREFINE	AREFINE, NA1, NA2, NINC, LEVEL, DEPTH, POST, RETAIN	Refines the mesh around specified areas.	/ans_cmd/Hlp_C_AREFINE.html
 AREVERSE	AREVERSE, ANUM, NOEFLIP	Reverses the normal of an area, regardless of its connectivity or mesh status.	/ans_cmd/Hlp_C_AREVERSE.html
 AROTAT	AROTAT, NL1, NL2, NL3, NL4, NL5, NL6, PAX1, PAX2, ARC, NSEG	Generates cylindrical areas by rotating a line pattern about an axis.	/ans_cmd/Hlp_C_AROTAT.html
+ARSYM	ARSYM, Ncomp, NA1, NA2, NINC, KINC, NOELEM, IMOVE	Generates areas from an area pattern by symmetry reflection.	/ans_cmd/Hlp_C_ARSYM.html
 ASBA	ASBA, NA1, NA2, SEPO, KEEP1, KEEP2	Subtracts areas from areas.	/ans_cmd/Hlp_C_ASBA.html
+ASBL	ASBL, NA, NL, --, KEEPA, KEEPL	Subtracts lines from areas.	/ans_cmd/Hlp_C_ASBL.html
 AUTOTS	AUTOTS, Key	Specifies whether to use automatic time stepping or load stepping.	/ans_cmd/Hlp_C_AUTOTS.html
 BETAD	BETAD, VALUE	Defines the stiffness matrix multiplier for damping.	/ans_cmd/Hlp_C_BETAD.html
 BFL	BFL, Line, Lab, VAL1, VAL2, VAL3, VAL4	Defines a body force load on a line.	/ans_cmd/Hlp_C_BFL.html
@@ -52,6 +54,7 @@ BLC4	BLC4, XCORNER, YCORNER, WIDTH, HEIGHT, DEPTH	Creates a rectangular area or 
 BLC5	BLC5, XCENTER, YCENTER, WIDTH, HEIGHT, DEPTH	Creates a rectangular area or block volume by center and corner points.	/ans_cmd/Hlp_C_BLC5.html
 BUCOPT	BUCOPT, Method, NMODE, SHIFT, LDMULTE, RangeKey	Specifies buckling analysis options.	/ans_cmd/Hlp_C_BUCOPT.html
 CIRCLE	CIRCLE, PCENT, RAD, PAXIS, PZERO, ARC, NSEG	Generates circular arc lines.	/ans_cmd/Hlp_C_CIRCLE.html
+CP	CP, NSET, Lab, NODE1, NODE2, NODE3, NODE4, NODE5, NODE6, NODE7, NODE8, NODE9, NODE10, NODE11, NODE12, NODE13, NODE14, NODE15, NODE16, NODE17	Defines (or modifies) a set of coupled degrees of freedom.	/ans_cmd/Hlp_C_CP.html
 CSKP	CSKP, KCN, KCS, PORIG, PXAXS, PXYPL, PAR1, PAR2	Defines a local coordinate system by three keypoint locations.	/ans_cmd/Hlp_C_CSKP.html
 CSWPLA	CSWPLA, KCN, KCS, PAR1, PAR2	Defines a local coordinate system at the origin of the working plane.	/ans_cmd/Hlp_C_CSWPLA.html
 CSYS	CSYS, KCN	Activates a previously defined coordinate system.	/ans_cmd/Hlp_C_CSYS.html
@@ -70,6 +73,7 @@ EPLOT	EPLOT	Produces an element display.	/ans_cmd/Hlp_C_EPLOT.html
 EQSLV	EQSLV, Lab, TOLER, MULT, --, KeepFile	Specifies the type of equation solver.	/ans_cmd/Hlp_C_EQSLV.html
 ESEL	ESEL, Type, Item, Comp, VMIN, VMAX, VINC, KABS	Selects a subset of elements.	/ans_cmd/Hlp_C_ESEL.html
 ESLL	ESLL, Type	Selects those elements associated with the selected lines.	/ans_cmd/Hlp_C_ESLL.html
+ESURF	ESURF, XNODE, Tlab, Shape	Generates elements overlaid on the free faces of selected nodes.	/ans_cmd/Hlp_C_ESURF.html
 ET	ET, ITYPE, Ename, KOP1, KOP2, KOP3, KOP4, KOP5, KOP6, INOPR	Defines a local element type from the element library.	/ans_cmd/Hlp_C_ET.html
 ETABLE	ETABLE, Lab, Item, Comp, Option	Fills a table of element values for further processing.	/ans_cmd/Hlp_C_ETABLE.html
 ETCHG	ETCHG, Cnv	Changes element types to their corresponding types.	/ans_cmd/Hlp_C_ETCHG.html
@@ -95,6 +99,7 @@ LCASE	LCASE, LCNO	Reads a load case into the database.	/ans_cmd/Hlp_C_LCASE.html
 LCCAT	LCCAT, NL1, NL2	Concatenates multiple lines into one line for mapped meshing.	/ans_cmd/Hlp_C_LCCAT.html
 LCDEF	LCDEF, LCNO, LSTEP, SBSTEP, KIMG	Creates a load case from a set of results on a results file.	/ans_cmd/Hlp_C_LCDEF.html
 LCOPER	LCOPER, Oper, LCASE1, Oper2, LCASE2	Performs load case operations.	/ans_cmd/Hlp_C_LCOPER.html
+LDIV	LDIV, NL1, RATIO, PDIV, NDIV, KEEP	Divides a single line into two or more lines.	/ans_cmd/Hlp_C_LDIV.html
 LDREAD	LDREAD, Lab, LSTEP, SBSTEP, TIME, KIMG, Fname, Ext, --	Reads results from the results file and applies them as loads.	/ans_cmd/Hlp_C_LDREAD.html
 LESIZE	LESIZE, NL1, SIZE, ANGSIZ, NDIV, SPACE, KFORC, LAYER1, LAYER2, KYNDIV	Specifies the divisions and spacing ratio on unmeshed lines.	/ans_cmd/Hlp_C_LESIZE.html
 LFILLT	LFILLT, NL1, NL2, RAD, PCENT	Generates a fillet line between two intersecting lines.	/ans_cmd/Hlp_C_LFILLT.html
@@ -128,6 +133,7 @@ NUMMRG	NUMMRG, Label, TOLER, GTOLER, Action, Switch	Merges coincident or equival
 OMEGA	OMEGA, OMEGX, OMEGY, OMEGZ	Specifies the rotational velocity of the structure.	/ans_cmd/Hlp_C_OMEGA.html
 OUTRES	OUTRES, Item, Freq, Cname, -- , NSVAR, DSUBres	Controls the solution data written to the database.	/ans_cmd/Hlp_C_OUTRES.html
 PATH	PATH, NAME, nPts, nSets, nDiv	Defines a path name and establishes parameters for the path.	/ans_cmd/Hlp_C_PATH.html
+PCIRC	PCIRC, RAD1, RAD2, THETA1, THETA2	Creates a circular area centered about the working plane origin.	/ans_cmd/Hlp_C_PCIRC.html
 PDEF	PDEF, Lab, Item, Comp, Avglab	Interpolates an item onto a path.	/ans_cmd/Hlp_C_PDEF.html
 PLCPLX	PLCPLX, KEY	Specifies the part of a complex variable to display.	/ans_cmd/Hlp_C_PLCPLX.html
 PLDISP	PLDISP, KUND	Displays the displaced structure.	/ans_cmd/Hlp_C_PLDISP.html
@@ -145,6 +151,7 @@ PSTRES	PSTRES, Key	Specifies whether prestress effects are calculated or include
 R	R, NSET, R1, R2, R3, R4, R5, R6	Defines the element real constants.	/ans_cmd/Hlp_C_R.html
 REAL	REAL, NSET	Sets the element real constant set attribute pointer.	/ans_cmd/Hlp_C_REAL.html
 RFORCE	RFORCE, NVAR, NODE, Item, Comp, Name	Specifies the total reaction force data to be stored.	/ans_cmd/Hlp_C_RFORCE.html
+RSYS	RSYS, KCN	Activates a coordinate system for printout or display of element and nodal results.	/ans_cmd/Hlp_C_RSYS.html
 SECCONTROL	SECCONTROL, VAL1, VAL2, VAL3, VAL4, VAL5, VAL6, VAL7, VAL8, VAL9, VAL10, VAL11, VAL12, VAL13	Supplements or overrides default section properties.	/ans_cmd/Hlp_C_SECCONTROL.html
 SECDATA	SECDATA, VAL1, VAL2, VAL3, VAL4, VAL5, VAL6, VAL7, VAL8, VAL9, VAL10, VAL11, VAL12	Describes the geometry of a section.	/ans_cmd/Hlp_C_SECDATA.html
 SECN	SECNUM, SECID	Sets the element section attribute pointer.	/ans_cmd/Hlp_C_SECNUM.html
@@ -164,6 +171,8 @@ SFLDELE	SFLDELE, LINE, Lab	Deletes surface loads from lines.	/ans_cmd/Hlp_C_SFLD
 SMRT	SMRTSIZE, SIZLVL, FAC, EXPND, TRANS, ANGL, ANGH, GRATIO, SMHLC, SMANC, MXITR, SPRX	Specifies meshing parameters for automatic (smart) element sizing.	/ans_cmd/Hlp_C_SMRTSIZE.htmlSMRT	SMRTSIZE, SIZLVL, FAC, EXPND, TRANS, ANGL, ANGH, GRATIO, SMHLC, SMANC, MXITR, SPRX	Specifies meshing parameters for automatic (smart) element sizing.	/ans_cmd/Hlp_C_SMRTSIZE.html
 SMRTSIZE	SMRTSIZE, SIZLVL, FAC, EXPND, TRANS, ANGL, ANGH, GRATIO, SMHLC, SMANC, MXITR, SPRX	Specifies meshing parameters for automatic (smart) element sizing.	/ans_cmd/Hlp_C_SMRTSIZE.html
 SOLVE	SOLVE, Action	Starts a solution.	/ans_cmd/Hlp_C_SOLVE.html
+TB	TB, Lab, MAT, NTEMP, NPTS, TBOPT, EOSOPT, FuncName	Activates a data table for material properties or special element input.	/ans_cmd/Hlp_C_TB.html
+TBPT	TBPT, Oper, X1, X2, X3, ..., XN	Defines a point on a nonlinear data curve.	/ans_cmd/Hlp_C_TBPT.html
 TIME	TIME, TIME	Sets the time for a load step.	/ans_cmd/Hlp_C_TIME.html
 TIMINT	TIMINT, Key, Lab	Turns on transient effects.	/ans_cmd/Hlp_C_TIMINT.html
 TRNOPT	TRNOPT, Method, MAXMODE, --, MINMODE, MCout, TINTOPT, VAout	Specifies transient analysis options.	/ans_cmd/Hlp_C_TRNOPT.html

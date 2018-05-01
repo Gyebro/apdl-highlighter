@@ -1,0 +1,150 @@
+!!! FEA NL5: PLASTIC DEFORMATION OF AN ALUMINIUM CYLINDER
+!! Initial setup
+! White canvas  
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST 
+! Define constant parameters
+! Units: [N],[Nm],[N/m^2=Pa],[N/m]
+ELAST = 68.95E9
+NU = 0.3
+R = 0.5
+H = 1.8
+T = R/40
+F = 450E3
+P = 10E6
+NDIV1 = 10
+NDIV2 = 15
+
+!! SETUP: element types, materials, sections
+/PREP7
+ET,1,SHELL281   
+!
+MPTEMP,1,0
+MPDATA,EX,1,,ELAST
+MPDATA,PRXY,1,,NU
+TB,MISO,1,1,20
+TBPT,,0.00300,206.84E6
+TBPT,,0.00350,227.81E6
+TBPT,,0.00400,236.49E6
+TBPT,,0.00450,243.16E6
+TBPT,,0.00500,248.75E6
+TBPT,,0.00550,253.73E6
+TBPT,,0.00600,258.20E6
+TBPT,,0.00650,262.61E6
+TBPT,,0.00700,266.14E6
+TBPT,,0.00750,269.75E6
+TBPT,,0.00800,273.14E6
+TBPT,,0.00850,276.38E6
+TBPT,,0.00875,277.94E6
+TBPT,,0.00900,279.47E6
+TBPT,,0.00925,280.97E6
+TBPT,,0.00950,282.44E6
+TBPT,,0.00975,283.88E6
+TBPT,,0.02400,342.72E6
+TBPT,,0.04000,387.21E6
+TBPT,,0.06300,436.53E6
+! <a href="images/1.png" target="_blank">Click here to see stress-strain diagram!</a>
+!
+SECT,1,SHELL
+SECDATA,T,1,0.0,3
+SECOFFSET,MID
+!
+MPTEMP,1,0  
+MPDATA,EX,2,,6.894757E14
+MPDATA,PRXY,2,,0
+!! Modeling
+CYLIND,R,0,0,H,0,360
+!
+VDELE, 1
+ADELE,1,2
+!
+L, 1, 8
+L, 4, 6
+ASBL, 3, 12
+ASBL, 4, 11
+!
+WPOFFS,0,0,H
+!
+PCIRC, ,R,0,90
+PCIRC,R,1.5*R,0,90
+ARSYM,X,4,6,2
+!*
+
+
+ARSYM,Y,4,8,2
+ARSYM,Y,7
+!*
+NUMMRG,KP,0.01
+
+!! Meshing
+! Setting number of elements along lines
+*DO,III, 1,8
+LESIZE,III, , ,NDIV1
+*ENDDO
+
+*DO, III, 9, 12
+LESIZE,III, , ,NDIV2
+*ENDDO
+! Mapped meshing of areas
+MSHKEY,1
+AMESH,ALL
+! <a href="images/2.png" target="_blank">Click here to see image!</a>
+! Load step 1
+! Defining kinematic and dynamic constraints
+LSEL,S,LOC,Z,0
+DL,ALL,,ALL,0
+ALLSEL,ALL
+SFA,1,1,PRES,P
+SFA,2,1,PRES,P
+SFA,3,1,PRES,P
+SFA,5,1,PRES,P
+
+LSWRITE,1
+
+! Load step 2
+! Defining additional dynamic constraints
+FK,12,FY,F
+FK,13,FX,-F
+FK,19,FY,-F
+FK,27,FX,F
+
+LSWRITE,2
+FINISH
+! Solution of load cases
+/SOL
+/STATUS,SOLU
+LSSOLVE,1,2 
+FINISH
+!! Post processing
+/POST1 
+! Cylindrical coordinatesystem for results
+! x - radial, y - tangential, z - axial
+RSYS,1
+LCDEF,1,1,Last
+LCDEF,2,2,Last
+!
+LCASE,1
+! Total deformation
+PLNSOL, U,SUM, 2,1.0! <a href="images/3.png" target="_blank">Click here to see image!</a>
+! First principal stress
+PLNSOL, S,1, 2,1.0  ! <a href="images/4.png" target="_blank">Click here to see image!</a>
+!
+LCASE,2
+! Total deformation
+PLNSOL, U,SUM, 2,1.0! <a href="images/5.png" target="_blank">Click here to see image!</a>
+! First principal stress
+PLNSOL, S,1, 2,1.0  ! <a href="images/6.png" target="_blank">Click here to see image!</a>
+! Stress distribution along an edge
+PATH,EDGE,2,30,100
+PPATH,1,NODE(R,0,0)
+PPATH,2,NODE(R,0,H)
+
+PDEF,SRAD,S,X,NOAVG
+PDEF,STAN,S,Y,NOAVG
+PDEF,SAX,S,Z,NOAVG
+/AXLAB,X,'z [m]'
+/AXLAB,Y,'sig [Pa]'
+PLPATH,SRAD,STAN,SAX ! <a href="images/7.png" target="_blank">Click here to see image!</a>
