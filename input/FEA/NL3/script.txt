@@ -1,0 +1,85 @@
+!!! FEA NL3: Large deformation of a built-in plate
+! Created by Gergely Gyebroszki, 2018.05.02.
+! All units in SI
+
+!! Parameters
+E=120E6
+NU=0.3
+A=40
+B=30
+T=0.4
+F=40E3
+
+!! SETUP: Element types, Materials, Sections
+KEYW,PR_STRUC,1
+/PREP7
+ET,1,SHELL181
+MPTEMP,1,0
+MPDATA,EX,1,,E
+MPDATA,PRXY,1,,NU
+SECT,1,SHELL,
+SECDATA,T,1,0.0,3  
+SECOFFSET,MID
+
+!! MODELLING
+K, ! Auto-numbered at origin
+K,,40
+K,,40,30
+K,,,30
+A,1,2,3,4
+LESIZE,ALL,,,20
+AMESH,ALL
+! Built-in end
+NSEL,S,LOC,X,0,0
+D,ALL,,,,,,ALL,
+ALLSEL,ALL  
+FINISH
+
+!! Solution: Static
+/SOL
+ANTYPE,0 ! 0: Static
+NLGEOM,1 ! Large displacement
+OUTRES,ALL,1 ! Write every substep
+NEQIT,150   ! Number of eq. iterations
+! Force load
+NSEL,S,LOC,X,40,40 ! Select nodes with X=40
+NSEL,R,LOC,Y,0,0   ! Narrow selection to the single node with Y=0
+F,ALL,FZ,-F/5	   ! Apply FZ 
+ALLSEL,ALL
+LSWRITE,1
+! Load step 2
+! Another way to select a node is by using the NODE(x,y,z) function
+F,NODE(40,0,0),FZ,-F*2/5  
+LSWRITE,2
+! Load step 3
+F,NODE(40,0,0),FZ,-F*3/5  
+LSWRITE,3
+! Load step 4
+F,NODE(40,0,0),FZ,-F*4/5  
+LSWRITE,4
+! Load step 5
+F,NODE(40,0,0),FZ,-F
+LSWRITE,5
+LSSOLVE,1,5,1
+FINISH
+
+!! Postprocessing
+/POST1
+NA=NODE(40,0,0)  ! NA is the number of Node at X=40, Y=0
+NB=NODE(40,30,0) ! NB is the number of Node at X=40, Y=30
+*DO,I,1,5 	! Start a cycle, looping on the five load steps
+SET,I
+/OUTPUT,ADISP,TXT,,APPEND ! Create an output file, ADISP
+*VWRITE,UX(NA),UY(NA),UZ(NA) ! Write the displacements at A into ADISP
+(E16.8,5X,E16.8,5X,E16.8,5X) ! Specify the number format
+/OUTPUT  ! Finalize output file
+/OUTPUT,BDISP,TXT,,APPEND ! Create an output file, BDISP
+*VWRITE,UX(NB),UY(NB),UZ(NB) ! Write the displacements at B into BDISP
+(E16.8,5X,E16.8,5X,E16.8,5X) ! Specify the number format
+/OUTPUT  ! Finalize output file
+*ENDDO   ! End of cycle
+! <a href="images/ADISP.TXT" target="_blank">Click here to view ADISP.TXT</a>
+! <a href="images/BDISP.TXT" target="_blank">Click here to view ADISP.TXT</a>
+! <a href="images/1.png" target="_blank">Click here to view Displacement plot of Node A</a>
+! <a href="images/2.png" target="_blank">Click here to view Displacement plot of Node B</a>
+PLNSOL,U,Z,0,1.0 ! Plot nodal solution UZ <a href="images/3.png" target="_blank">Click to view plot</a>
