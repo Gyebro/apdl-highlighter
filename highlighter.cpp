@@ -144,16 +144,15 @@ string highlighter::convert_line(string line, bool& in_paragraph) {
                 converted += "<br>\n";
             } else {
                 vector<string> parts = split(command, ',');
-
-//                indent the line
-                if (parts[0] == "*ENDDO")
+//              indent the line
+                if (trim_spaces(parts[0]) == "*ENDDO")
                     indentationLevel--;
                 for (size_t iii = 1; iii <= indentationLevel; iii++) {
                     for (size_t jjj=0; jjj<ucfg.get_indent_size(); jjj++) {
                         converted += "&nbsp;";
                     }
                 }
-                if (parts[0] == "*DO")
+                if (trim_spaces(parts[0]) == "*DO")
                     indentationLevel++;
 
                 string url;
