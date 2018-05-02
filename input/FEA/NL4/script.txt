@@ -1,0 +1,169 @@
+!!! FEA NL4: IMPACT OF A SQUARE BLOCK WITH AN ELASTIC BEAM
+!! Initial setup
+! White canvas
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15
+/ESHAPE,1.0
+! Define constant parameters
+! Units: [N],[Nm],[N/m^2=Pa],[N/m],[kg=N/(m/s^2)]
+
+ELAST=70E9
+NU=0.3
+RHO=2700
+H=0.025
+V=0.025
+L=2.5
+BEAMH=28.0624e-3
+BEAMW=11.4031e-3
+delT=0.005
+ELEMSIZE=0.15
+
+!! SETUP: element types, real constants, materials, sections
+/PREP7
+ET,1,BEAM188
+ET,2,PLANE182
+!  plane stress with thickness
+KEYOPT,2,3,3
+ET,3,CONTA175
+ET,4,TARGE169
+! Define crossection properties
+SECTYPE,   1, BEAM, RECT,
+SECOFFSET, CENT
+SECDATA,BEAMW,BEAMH
+R,1,3.2e-4,2.1e-8,0.025
+! Thickness of the plane element
+R,2,H
+! Penalty stiffness factor of the contact element
+R,3,2000
+! Define material properties
+MPTEMP,1,0
+MPDATA,EX,1,,ELAST
+MPDATA,PRXY,1,,NU
+MPTEMP,1,0
+MPDATA,DENS,1,,RHO
+!! Modeling
+K,1,0,0,0
+K,2,L,0,0
+L,1,2
+
+RECTNG,1.4,1.55,2.5,2.65
+GPLOT !<a href="images/1.png" target="_blank">Click here to see current state.</a>
+!! Meshing
+LESIZE,1,ELEMSIZE
+*DO,J,2,5
+LESIZE,J,ELEMSIZE
+*ENDDO
+! Mesh lines
+TYPE,1
+MAT,1
+SECN,1
+LMESH,1
+! Mesh area with plane elements using mapped algorithm
+TYPE,2
+REAL,2
+MSHKEY,1
+AMESH,1
+!<a href="images/2.png" target="_blank">Click here to see current state.</a>
+FINISH
+
+!! Transient analysis definition
+/SOL
+ANTYPE,4
+TRNOPT,FULL 
+LUMPM,1 
+! Fix the ends of the beam
+D,NODE(0,0,0), ALL, 0
+D,NODE(L,0,0), ALL, 0
+! Fix the nodes of rectangle
+NSEL,S,LOC,Y,2.5,2.65
+D,ALL,ALL,0
+ALLSEL,ALL
+! Define gravitational acceleration
+ACEL,0,9.81,0
+NLGEOM,1
+DELTIM,0.0001,
+ALPHAD,1.5  
+BETAD,6e-4  
+KBC,1.0 
+TIME,0.0002 
+TIMINT,0
+CNVTOL,F,,0.0001,2
+SOLVE
+
+! Delete constraints on the nodes of the rectangle
+NSEL,S,LOC,Y,2.5,2.65 
+DDELE,ALL,ALL
+ALLSEL,ALL
+FINISH
+/PREP7
+TYPE,3
+TSHAP,LINE
+TYPE,4
+TSHAP,LINE
+
+! Create conta175 elements on the sides of the rectangle
+LSEL,S,LINE,,2,5,1
+NSLL,S,1
+TYPE,3
+REAL,3
+ESURF
+
+! Create targe169 elements on the beam
+LSEL,S,LINE,,1
+NSLL,S,1
+TYPE,4
+REAL,3
+ESURF
+ALLSEL,ALL
+GPLOT
+FINISH  
+
+/SOL 
+DELTIM,0.02,0.0002,0.02 
+OUTRES,ALL,ALL  
+AUTOTS,1
+KBC,1.0 
+PRED,ON,,ON 
+TIME,3.5
+TIMINT,1
+CNVTOL,,-1,1
+SOLVE
+FINISH
+
+!! Time History Postprocessing
+/POST26
+! Displacements
+NSOL,2,NODE(L/2,0,0),U,Y,MID
+/AXLAB,X,'t [s]'
+/AXLAB,Y,'uy [m]'
+/XRANGE,0,3.5 
+PLVAR,2 !<a href="images/3.png" target="_blank">Click here to see the y displacement of the middle of the beam.</a>
+NSOL,3,NODE(1.4,2.5,0),U,Y,BL
+NSOL,4,NODE(1.55,2.65,0),U,Y,BR
+NSOL,5,NODE(1.4,2.65,0),U,Y,TL
+NSOL,6,NODE(1.55,2.65,0),U,Y,TR
+/YRANGE,-2.8,0 
+PLVAR,3,4,5,6 !<a href="images/4.png" target="_blank">Click here to see the y displacement of the corner of the rectangles.</a>
+! Reaction forces and moments
+RFORCE,7,NODE(0,0,0),F,Y, FY_0
+RFORCE,8,NODE(0,0,0),M,Z, MZ_0
+RFORCE,9,NODE(L,0,0),F,Y, FY_L
+RFORCE,10,NODE(L,0,0),M,Z, MZ_L
+/YRANGE,DEFAULT
+/AXLAB,Y,'Fy [N]'
+PLVAR,7,9 !<a href="images/5.png" target="_blank">Click here to see the y component of reaction forces at the fixed ends.</a>
+/AXLAB,Y,'Mz [Nm]'
+PLVAR,8,10 !<a href="images/6.png" target="_blank">Click here to see the z component of reaction moments at the fixed ends.</a>
+FINISH
+
+!! Postprocessing
+/POST1
+/DIST,ALL,1.5,0
+/FOCUS,0,2.5/2,2.65/2,0
+! Uncomment the following do block to save images
+!*DO,TIME,0,3.5,delT
+!SET,,,1,,TIME
+!PLDISP,0
+!/image,save,strcat('disp_',chrval(200*TIME)),bmp
+!*ENDDO
+! <a href="images/disp.mp4" target="_blank">Click here to see the animation of the whole motion.</a>
