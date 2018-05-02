@@ -1,0 +1,183 @@
+!!! FEA SOL3: STATIC ANALYSIS OF A SANDWICH PANEL
+
+! covert everything to a consistent unit system
+! [N],[NM],[N/m^2=Pa],[N/m]
+
+P = 7e6
+! facesheet
+EXFS = 66.05E9
+EYFS = 66.05E9
+EZFS = 11.45E9
+NUXYFS = 0.033
+NUYZFS = 0.352
+NUXZFS = 0.352
+GXYFS = 4.88E9
+GYZFS = 5.04E9
+GXZFS = 5.04E9
+TF = 0.00025
+! core
+EC = 127E6
+NUC = 0.3
+TC = 0.0125
+
+! parameters
+W = 0.15
+H = 0.15
+D = 0.025
+DIV1 = 10
+DIV2 = 7
+DIV3 = 5
+DIV4 = DIV1/2
+
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15 
+
+/PREP7  
+! define elements 
+ET,1,SHELL281   
+ET,2,SOLID186   
+! create material properties
+! orthotropic (facesheet)
+MPTEMP,
+MPTEMP,1,0  
+MPDATA,EX,1,,EXFS   
+MPDATA,EY,1,,EYFS   
+MPDATA,EZ,1,,EZFS   
+MPDATA,PRXY,1,,NUXYFS   
+MPDATA,PRYZ,1,,NUYZFS   
+MPDATA,PRXZ,1,,NUXZFS   
+MPDATA,GXY,1,,GXYFS 
+MPDATA,GYZ,1,,GYZFS 
+MPDATA,GXZ,1,,GXZFS
+! isotropic (core)
+MPTEMP, 
+MPTEMP,1,0  
+MPDATA,EX,2,,EC 
+MPDATA,PRXY,2,,NUC
+! define shell layup
+SECT,1,shell,,  
+SECDATA,TFS,1,0.0,3
+SECOFFSET,MID
+!
+! create local coordinatesystem
+LOCAL,11,0,0,0,0,,,,1,1
+! set element properties
+TYPE,1   
+MAT,1
+REAL, 
+ESYS,11   
+SECNUM,1 
+TSHAP,LINE
+
+! create rectangles
+RECTNG,0,W/2,0,H/2, 
+RECTNG,0,D,0,H/2,   
+RECTNG,0,W/2,0,D,   
+RECTNG,0,2*D,0,H/2, 
+RECTNG,0,W/2,0,2*D,
+
+! overlap areas
+AOVLAP,ALL
+
+! set element size
+LESIZE,21,,,DIV1
+LESIZE,22,,,DIV1
+LESIZE,37,,,DIV2
+LESIZE,43,,,DIV2
+LESIZE,26,,,DIV3
+LESIZE,34,,,DIV3
+
+! mesh areas as mapped
+MSHKEY,1
+AMESH,ALL
+
+! copy areas
+AGEN,2,ALL,,,,,-TF/2
+
+! change elementy type and material properties
+TYPE,2
+MAT,2
+
+! set extrude options
+TYPE,2   
+EXTOPT,ESIZE,6  
+EXTOPT,ACLEAR,
+!  
+EXTOPT,ATTR, 
+MAT,2   
+REAL,
+ESYS,11
+! select areas to be extruded
+ASEL,S,LOC,Z,-TF/2  
+! extrude elements
+VEXT,ALL,,,0,0,-TC
+!
+ALLSEL,ALL
+!
+! create bottom facesheet
+TYPE,1
+MAT,1
+ASEL,S,LOC,Z,-TC-TF/2
+AGEN,2,ALL,,,,,-TF/2
+
+ASEL,S,LOC,Z,-TC-TF
+MSHKEY,1
+AMESH,ALL
+ALLSEL,ALL
+
+! macro to create rigid connection beteen the top facesheet and the core
+NSEL,S,LOC,Z,-TF/2
+*GET,NUM1,NODE,0,COUNT
+*GET,MIN1,NODE,0,NUM,MIN
+CURNOD = MIN1
+*DO,I,1,NUM1
+	ALLSEL
+	SLAVE = NODE(NX(CURNOD),NY(CURNOD),0)
+	CERIG,CURNOD,SLAVE,UXYZ
+	NSEL,S,LOC,Z,-TF/2
+	CURNOD = NDNEXT(CURNOD)
+*ENDDO
+
+! macro to create rigid connection between the bottom facesheet and the core
+ALLSEL,ALL
+NSEL,S,LOC,Z,-TC-TF/2
+*GET,NUM1,NODE,0,COUNT
+*GET,MIN1,NODE,0,NUM,MIN
+CURNOD = MIN1
+*DO,I,1,NUM1
+	ALLSEL
+	SLAVE = NODE(NX(CURNOD),NY(CURNOD),-TC-TF)
+	CERIG,CURNOD,SLAVE,UXYZ
+	NSEL,S,LOC,Z,-TC-TF/2
+	CURNOD = NDNEXT(CURNOD)
+*ENDDO
+
+! define kinematic constraints
+NSEL,S,LOC,X,0
+D,ALL,UX,0
+ALLSEL,ALL
+NSEL,S,LOC,Y,0
+D,ALL,UY,0
+ALLSEL,ALL
+NSEL,S,LOC,Y,0
+D,ALL,UY,0
+ALLSEL,ALL
+NSEL,S,LOC,X,W/2
+D,ALL,UX,0
+D,ALL,UZ,0
+ALLSEL,ALL
+NSEL,S,LOC,Y,H/2
+D,ALL,UY,0
+D,ALL,UZ,0
+
+! apply loads
+ALLSEL,ALL
+ASEL,S,LOC,Z,0
+SFA,ALL,1,PRES,-P  
+ALLSEL,ALL
+FINISH
+/NERR,5,100000, ,0,5,   
+
+! solve the finite element equation
+/SOL
+SOLVE
