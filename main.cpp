@@ -13,7 +13,7 @@ string filenamesFEA[] = {"R1", "R2", "R3",
                          "SOL1", "SOL2", "SOL3",
                          "ST1", "ST3", "ST4",
                          "T1"};
-string filenamesVEMA[] = {"04het", "05het", "06het", "07het", "08het", "09het", "11het"};
+string filenamesVEMA[] = {"04het", "05het", "06het", "07het", "08het", "09het", "11het", "12het"};
 
 int main() {
     cout << "Running APDL highlighter\n";

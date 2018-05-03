@@ -1,0 +1,126 @@
+!!! VEMA 12. HÉT: Szakító próbatest vizsgálata
+!! Kezdeti beállítások
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15
+
+! Dimenziók: [N],[Nmm],[N/mm^2=MPa],[N/mm]
+L0=25
+L1=75
+R=30
+B0=5
+B1=10
+T=5
+PHI=ACOS(1-(B1-B0)/2/R)
+EY=210e3
+SIGY=250
+ET=10e3
+NU=0.33
+PMAX=300*B0/B1
+/PREP7
+! Elemtípus kiválasztása
+ET,1,PLANE182
+KEYOPT,1,3,3
+! Elem vastagsága
+R,1,T
+! Anyagi viselkedés
+! Linearáisan rugalmas szakasz
+MPTEMP,1,0
+MPDATA,EX,1,,EY
+MPDATA,PRXY,1,,NU
+
+! Izotrop keményedő szakasz
+TB,BISO,1,1,2
+! Kinematikailag keményedő szakasz
+! TB, BKIN,1,,1
+TBTEMP,0
+TBDATA,,SIGY,ET
+!! Modellezés
+! Kulcspontok felvétele
+K,1,0,0
+K,2,B0/2,0
+K,3,0,L0/2
+K,4,B0/2,L0/2
+K,5,0,L0/2 + R*SIN(PHI)
+K,6,B1/2,L0/2 + R*SIN(PHI)
+K,7,0,L1/2
+K,8,B1/2,L1/2
+K,9,B1/2,L0/2
+! Vonalak definiálása
+L,1,2
+L,1,3
+L,2,4
+L,3,4
+L,3,5
+L,5,6
+L,5,7
+L,6,8
+L,7,8
+
+LARC,4,6,9,R
+! Felületek létrehzoása
+AL,1,2,3,4
+AL,4,5,6,10
+AL,6,7,8,9
+!! Hálózása
+AESIZE,ALL,B0/2/5
+AMESH,ALL
+!! Kinematikai kényszerek definiálása
+DL,1,,UY,0
+DL,2,,UX,0
+DL,5,,UX,0
+DL,7,,UX,0
+! Merev megfogás modellezése
+DL,9,,UX,0
+LSEL,S,LINE,,9
+NSLL,S,1
+CP,1,UY,ALL
+ALLSEL,ALL
+FINISH
+
+/SOL
+!! Szimuláció beállításai
+ANTYPE,0
+NLGEOM,1
+DELTIM,1e-2,1e-4,2e-2
+OUTRES,ALL,ALL
+TIME,1
+FINISH
+/PREP7
+! Első terheléshez tartozó dinamikai peremfeltétel megadása
+SFL,9,PRES,-PMAX
+FINISH
+/SOL
+! Első terhelés lépcső kiírása
+LSWRITE,1
+
+TIME,2
+FINISH
+/PREP7
+! Második terhelési lépéshez tartozó peremfeltétel 'megadása'
+SFLDELE,9,PRES   
+FINISH
+/SOL
+! Második terhelés lépcső kiírása
+LSWRITE,2
+! Esetek egymásutáni megoldása
+LSSOLVE,1,2
+FINISH
+
+!! Posztprocesszálás
+/POST1
+! Utolsó 'időpillanat' kiválasztása
+SET,LAST
+! Maradó elmozdulásmező
+PLNSOL, U,SUM, 2,1.0
+! Maradó egyenértékű feszültség eloszlás
+PLNSOL, S,INT, 2,1.0
+
+/POST26
+! Y irányú normálfeszültség a szimmetria középpontban
+ANSOL,2,NODE(0,0,0),S,Y,SY
+! Y irányú elmozdulás a szakító pofában
+NSOL,3,NODE(0,L1,0),U,Y,UY
+/AXLAB,X,'uY [mm]'
+/AXLAB,Y,'sigY [MPa]'
+XVAR,3
+PLVAR,2
