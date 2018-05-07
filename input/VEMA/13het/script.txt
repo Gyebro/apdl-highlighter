@@ -1,0 +1,76 @@
+!!! VEMA 13. HÉT: VÉKONY GUMIMEBRÁN VIZSGÁLATA
+!! Kezdeti beállítások
+! Fehér háttér
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15
+! Konstans paraméterek definiálása
+A=100
+R1=10
+R2=20
+!
+MU=0.2424
+LAMBDA=20.25
+D=0
+!! Preprocesszálás
+/PREP7
+! Elemtípus kiválasztása
+ET,1,PLANE182
+! Síkfeszültségi állapot
+KEYOPT,1,3,0
+! Anyagmodell definiálása
+TB,HYPE,1,1,3,BOYC
+TBTEMP,0
+TBDATA,,MU,LAMBDA,D
+! Modellezés
+BLC4,0,0,A,A
+CYL4,A/4,A/4,R1
+CYL4,3*A/4,25,R1
+CYL4,A/4,3*A/4,R1
+CYL4,3*A/4,3*A/4,R1
+CYL4,A/2,A/2,r2
+! Felületek kivonása egymásból
+ASBA,1,ALL
+!! Hálózás
+! Elemméret beállítása
+AESIZE,ALL,0.3*R1
+AMESH,ALL !<a href="images/1.bmp" target="_blank">Végeselemes háló</a>
+FINISH 
+
+!! Peremfeltételek megadása
+/SOL
+! Megfogás
+DL,1,,UY,0
+DL,4,,UX,0
+! Elmozdulás
+DL,3,,UY,5*a
+DL,2,,UX,5*a
+
+! Megoldó paramétereinek megadása
+NLGEOM,1
+NSUBST,20
+OUTRES,ALL,ALL
+AUTOTS,0
+
+SOLVE
+FINISH
+!! Posztprocesszálás
+/POST1
+PLDISP,1!<a href="images/2.bmp" target="_blank">Deformált és eredeti szerkezet.</a>
+
+PLNSOL,S,EQV !<a href="images/3.bmp" target="_blank">Egyenértékű feszültség.</a>
+
+/DSCALE,ALL,OFF
+PLNSOL,S,EQV!<a href="images/4.bmp" target="_blank">Egyenértékű feszültség.</a>
+FINISH
+!
+/POST26
+ANSOL,2,230,S,EQV
+XVAR,1
+PLVAR,2 !<a href="images/5.bmp" target="_blank">Feszültség elmozdulás függvény.</a>
+FINISH
+!
+/POST1
+SET,,,,,,,20
+PLNSOL,S,EQV
+
+ANCNTR,20,0.1
