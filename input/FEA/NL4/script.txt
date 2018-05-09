@@ -47,7 +47,7 @@ K,2,L,0,0
 L,1,2
 
 RECTNG,1.4,1.55,2.5,2.65
-GPLOT !<a href="images/1.png" target="_blank">Click here to see current state.</a>
+GPLOT !<a href="images/1.png" target="_blank"><i class="far fa-image"></i> Click here to see current state.</a>
 !! Meshing
 LESIZE,1,ELEMSIZE
 *DO,J,2,5
@@ -63,7 +63,7 @@ TYPE,2
 REAL,2
 MSHKEY,1
 AMESH,1
-!<a href="images/2.png" target="_blank">Click here to see current state.</a>
+!<a href="images/2.png" target="_blank"><i class="far fa-image"></i> Click here to see current state.</a>
 FINISH
 
 !! Transient analysis definition
@@ -137,13 +137,13 @@ NSOL,2,NODE(L/2,0,0),U,Y,MID
 /AXLAB,X,'t [s]'
 /AXLAB,Y,'uy [m]'
 /XRANGE,0,3.5 
-PLVAR,2 !<a href="images/3.png" target="_blank">Click here to see the y displacement of the middle of the beam.</a>
+PLVAR,2 !<a href="images/3.png" target="_blank"><i class="far fa-image"></i> Click here to see the y displacement of the middle of the beam.</a>
 NSOL,3,NODE(1.4,2.5,0),U,Y,BL
 NSOL,4,NODE(1.55,2.65,0),U,Y,BR
 NSOL,5,NODE(1.4,2.65,0),U,Y,TL
 NSOL,6,NODE(1.55,2.65,0),U,Y,TR
 /YRANGE,-2.8,0 
-PLVAR,3,4,5,6 !<a href="images/4.png" target="_blank">Click here to see the y displacement of the corner of the rectangles.</a>
+PLVAR,3,4,5,6 !<a href="images/4.png" target="_blank"><i class="far fa-image"></i> Click here to see the y displacement of the corner of the rectangles.</a>
 ! Reaction forces and moments
 RFORCE,7,NODE(0,0,0),F,Y, FY_0
 RFORCE,8,NODE(0,0,0),M,Z, MZ_0
@@ -151,9 +151,9 @@ RFORCE,9,NODE(L,0,0),F,Y, FY_L
 RFORCE,10,NODE(L,0,0),M,Z, MZ_L
 /YRANGE,DEFAULT
 /AXLAB,Y,'Fy [N]'
-PLVAR,7,9 !<a href="images/5.png" target="_blank">Click here to see the y component of reaction forces at the fixed ends.</a>
+PLVAR,7,9 !<a href="images/5.png" target="_blank"><i class="far fa-image"></i> Click here to see the y component of reaction forces at the fixed ends.</a>
 /AXLAB,Y,'Mz [Nm]'
-PLVAR,8,10 !<a href="images/6.png" target="_blank">Click here to see the z component of reaction moments at the fixed ends.</a>
+PLVAR,8,10 !<a href="images/6.png" target="_blank"><i class="far fa-image"></i> Click here to see the z component of reaction moments at the fixed ends.</a>
 FINISH
 
 !! Postprocessing
@@ -166,4 +166,4 @@ FINISH
 !PLDISP,0
 !/image,save,strcat('disp_',chrval(200*TIME)),bmp
 !*ENDDO
-! <a href="images/disp.mp4" target="_blank">Click here to see the animation of the whole motion.</a>
+! <a href="images/disp.mp4" target="_blank"><i class="fas fa-video"></i> Click here to see the animation of the whole motion.</a>
