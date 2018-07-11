@@ -13,22 +13,29 @@
 
 class highlighter {
 private:
-    highlight_config hcfg;
     tooltip_config tcfg;
     parameter_config pcfg;
     user_config ucfg;
+
     unsigned indentationLevel;
     unsigned lineNumber;
-    string convert_line(string line, bool& in_paragraph);
+
+    string processLinesHTMLCode(string line);
     string get_tooltip(string keyword, string& url);
     string get_footer(string input_file);
     string get_product_name();
     string get_version_string();
     string get_timestamp_string();
 public:
-    highlighter(string config_file, string tooltip_file, string userconfig_file);
-    void highlight(string input_file);
+    highlighter(string tooltip_file, string userconfig_file);
+    void highlightHTML(string input_file);
+    void highlightTeX(string input_file);
+
+    string processLinesTeXCode(string line);
 };
 
-
+string processLinesTeXSkip(vector<string> &lines);
+string processLinesHTMLSkip(vector<string>& lines);
+string processLinesTeXFigure(vector<string> &lines);
+string processLinesHTMLFigure(vector<string>& lines);
 #endif //APDL_HIGHLIGHT_HIGHLIGHTER_H

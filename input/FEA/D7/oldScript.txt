@@ -1,7 +1,6 @@
 !ttl
 ! FEA D7: Impact loading on a beam
 
-!comm
 ! Created by Gergely Gyebroszki, 2018.04.18.
 
 !par
@@ -14,22 +13,18 @@ RHO=7850
 A=6.25E-4
 IZ=32.552E-9
 
-!comm
 ! Max value of Fy
 
 FRCY=450
 
-!comm
 ! Time when Fy reaches its maximum value
 
 T1=0.0001
 
-!comm
 ! Time when Fy reaches zero
 
 T2=0.0002
 
-!comm
 ! Ending time of simulation
 
 T3=0.5
@@ -43,6 +38,7 @@ DAMPING=0.0005
 
 KEYW,PR_STRUC,1
 /PREP7
+
 !  BEAM3 element type is not available in the GUI
 
 ET,1,BEAM3
@@ -55,7 +51,7 @@ R,1,A,IZ,H
 !par
 ! MODELLING: Geometry and meshing
 
-K,,-0.5
+K,,-0.5 
 K,,0.5
 L,1,2
 LESIZE,1,,,30
@@ -63,50 +59,37 @@ LMESH,ALL
 
 ! Select nodes at X=-0.5 and also select at X=0.5
 
-NSEL,S,LOC,X,-0.5
+NSEL,S,LOC,X,-0.5   
 NSEL,A,LOC,X,0.5
 
 ! We can use D on ALL nodes when applying constraints, but don't forget to select everything afterwards
 
 D,ALL,ALL
 ALLSEL,ALL
-FINISH
+FINISH  
 
 !par
 ! SOLUTION: Time history is given by 3 time points
 
 /SOL
-
-!comm
-! 4: Transient
-
-ANTYPE,4
-
-!comm
+ANTYPE,4 ! 4: Transient
 ! Time point at T1
-
-TRNOPT,FULL
-LUMPM,0
-
-!comm
-! Turn off auto time stepping
-
-AUTOTS,0
-NSUBST,SUBSTEPS1,0,0
+TRNOPT,FULL 
+LUMPM,0 
+AUTOTS,0 ! Turn off auto time stepping
+NSUBST,SUBSTEPS1,0,0  
 OUTRES,ALL,1
 TIME,T1
-NSEL,S,LOC,X,0
+NSEL,S,LOC,X,0  
 F,ALL,FY,-FRCY
 ALLSEL,ALL
 LSWRITE,1
 
-!comm
 ! Also create a version of this load step with damping
 
 BETAD,DAMPING
 LSWRITE,4
 
-!comm
 ! Time point at T2
 
 TIME,T2
@@ -115,7 +98,6 @@ BETAD,0
 FDELE,ALL,FY
 LSWRITE,2
 
-!comm
 ! Also create a version of this load step with damping
 
 BETAD,DAMPING
@@ -125,15 +107,13 @@ LSWRITE,5
 
 TIME,T3
 BETAD,0
-NSUBST,SUBSTEPS3,0,0
+NSUBST,SUBSTEPS3,0,0  
 LSWRITE,3
 
-!comm
 ! Also create a version of this load step with damping
 
 BETAD,DAMPING
 
-!comm
 ! Stop at 0.25 sec instead of 0.5
 
 TIME,T3/2
@@ -158,7 +138,6 @@ PLVAR,2
 
 !fig
 ! D7-1.png
-! Displacement as the function of time
 
 FINISH
 
@@ -167,11 +146,10 @@ FINISH
 
 /SOL
 LSSOLVE,4,6,1
-FINISH
+FINISH  
 /POST26
 NSOL,2,NODE(0,0,0),U,Y,UY_CENTER
 
-!comm
 ! Change the color of Curve 1
 
 /COLOR,CURVE,BMAG,1
@@ -181,7 +159,6 @@ PLVAR,2
 /IMAGE,SAVE,Case_B_With_Damping,bmp
 
 !fig
-! D7-2.png
-! Displacement as the function of time
+D7-2.png
 
 FINISH

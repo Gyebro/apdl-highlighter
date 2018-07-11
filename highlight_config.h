@@ -10,27 +10,6 @@
 
 using namespace std;
 
-enum html_entity {
-    TAG,
-    CLASS,
-    ID
-};
-
-struct html_rule {
-    string token;
-    html_entity repl_type;
-    string repl_value;
-};
-
-class highlight_config {
-private:
-    vector<html_rule> html_rules;
-    html_rule generate_html_rule(string line);
-public:
-    highlight_config(string filename);
-    const vector<html_rule> &get_rules() const;
-};
-
 struct tooltip {
     string keyword;
     string usage;

@@ -120,4 +120,5 @@ string bytes_to_hex_string(vector<uint8_t> bytes);
 
 string hex_string_to_binary(const string s);
 
+string ReplaceAll(string str, const string& from, const string& to);
 #endif
