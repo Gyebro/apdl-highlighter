@@ -33,6 +33,8 @@ void split(const std::string &s, char delim, T result) {
 
 vector<string> split(const string &s, char delim);
 
+void split_at_multiple(const string& str, const string& delims, vector<string>& splittedString, vector<char>& splitterDelims);
+
 /**
  * Check whether string s1 and s2 are anagrams (e.g. abcd and cadb are anagrams)
  * @param s1
@@ -121,4 +123,6 @@ string bytes_to_hex_string(vector<uint8_t> bytes);
 string hex_string_to_binary(const string s);
 
 string ReplaceAll(string str, const string& from, const string& to);
+
+
 #endif

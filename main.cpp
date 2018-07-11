@@ -14,7 +14,7 @@ using namespace std;
 //                         "ST1", "ST3", "ST4",
 //                         "T1"};
 
-string filenamesFEA[] = {"D7"};
+string filenamesFEA[] = {"testing"};
 //string filenamesVEMA[] = {"04het", "05het", "06het", "07het", "08het", "09het", "11het", "12het", "13het"};
 
 int main() {

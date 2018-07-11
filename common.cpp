@@ -19,6 +19,25 @@ vector<string> split(const string &s, char delim) {
     return elems;
 }
 
+void split_at_multiple(const string& str, const string& delims, vector<string>& splittedString, vector<char>& splitterDelims) {
+    size_t start = 0;
+    size_t end;
+    for(end = 0; end < str.length(); end++){
+        if(delims.find(str[end]) != string::npos){
+            if(start==end){//for cases when K,,,,
+                splittedString.push_back("");
+            }else{
+                splittedString.push_back(trim_spaces(str.substr(start,end-start)));
+            }
+            splitterDelims.push_back(str[end]);
+            start = end+1;
+        }
+    }
+    if(start <= end){
+        splittedString.push_back(trim_spaces(str.substr(start,end-start)));
+    }
+}
+
 bool anagram_pair_test(string s1, string s2) {
     // Check length
     if (s1.size() == s2.size()) {

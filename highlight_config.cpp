@@ -40,8 +40,8 @@ void parameter_config::update(string filename) {
         if (trim_spaces(line)[0] != '!') {
             parts = split(line,'=');
             if (parts.size() > 1) {
-                sp.param = parts[0];
-                sp.value = parts[1];
+                sp.param = trim_spaces(parts[0]);
+                sp.value = trim_spaces(parts[1]);
                 params.push_back(sp);
             }
         }

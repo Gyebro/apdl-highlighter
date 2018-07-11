@@ -121,7 +121,7 @@ string processLinesHTMLSkip(vector<string>& lines){
 string processLinesHTMLFigure(vector<string>& lines){
     string outputString = "";
     outputString += "<figure>\n<img src='./images/" + lines[1].substr(2) + "' alt='" + lines[1].substr(2) + "'>\n" +
-              "<figcaption>" + lines[2].substr(2) + "</figcaption>\n</figure>";
+                    "<figcaption>" + lines[2].substr(2) + "</figcaption>\n</figure>";
     return outputString;
 }
 
@@ -166,42 +166,46 @@ string highlighter::processLinesHTMLCode(string line){
         }
     }
     if (!command.empty()) {
-        // Check for = sign first, Assume A=B
+        // Check for = sign first, Assume A=B, second part has to processed as well
         size_t loc = 0;
         if (has_string(command,"=",loc)) {
-            converted += "<span class='param'>" + command.substr(0,loc) + "</span>";
-            converted += command.substr(loc);
-            converted += "<br>\n";
-        } else {
-            vector<string> parts = split(command, ',');
+            converted += "<span class='param'>" + trim_spaces(command.substr(0,loc)) + "</span>";
+            command = command.substr(loc);
+        }
+        vector<string> splittedString;
+        vector<char> splitterDelims;
+        split_at_multiple(command, "=+-*/(),", splittedString, splitterDelims);
 //              indent the line
-            if (trim_spaces(parts[0]) == "*ENDDO")
-                indentationLevel--;
-            for (size_t iii = 1; iii <= indentationLevel; iii++) {
-                for (size_t jjj=0; jjj<ucfg.get_indent_size(); jjj++) {
-                    converted += "&nbsp;";
+        if (splittedString.size()>1 && splittedString[1] == "ENDDO")
+            indentationLevel--;
+        for (size_t iii = 1; iii <= indentationLevel; iii++) {
+            for (size_t jjj=0; jjj<ucfg.get_indent_size(); jjj++) {
+                converted += "&nbsp;";
+            }
+        }
+        if (splittedString.size()>1 && splittedString[1] == "DO")
+            indentationLevel++;
+        for(size_t i = 0; i < splittedString.size(); i++) {
+            if(!splittedString[i].empty())
+            {
+                // assume that it is a function -> try to get the function tooltip for it
+                string url;
+                string tooltip = get_tooltip(splittedString[i], url);
+                if (url.length() > 0) { // it is a function indeed
+                    converted += "<span class='keyword'>";
+                    converted += "<a href='" + url + "' target='_blank'>" + splittedString[i] + "</a>";
+                    converted += tooltip + "</span>";
+                } else { // it is a numeric or scalar
+                    converted +=pcfg.annotate(splittedString[i]);
                 }
             }
-            if (trim_spaces(parts[0]) == "*DO")
-                indentationLevel++;
-            string url;
-            string tooltip = get_tooltip(trim_spaces(parts[0]), url);
-            if (url.length() > 0) {
-                converted += "<span class='keyword'><a href='" + url + "' target='_blank'>" + trim_spaces(parts[0]) + "</a>";
-            } else {
-                converted += "<span class='keyword'>" + trim_spaces(parts[0]);
-            }
-            // Find tooltip for this keyword if any
-            converted += tooltip;
-            converted += "</span>";
-            for (size_t i = 1; i < parts.size(); i++) {
-                converted += "," + pcfg.annotate(trim_spaces(parts[i]));
-            }
-            if (!comment.empty()) {
-                converted += "<span class='comment inline'>!" + comment + "</span>";
-            }
-            converted += "<br>\n";
+            if(i < splitterDelims.size())
+                converted += splitterDelims[i];
         }
+        if (!comment.empty()) {
+            converted += "<span class='comm inline'>!" + comment + "</span>";
+        }
+        converted += "<br>\n";
     }
     return converted;
 }
