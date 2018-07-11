@@ -38,6 +38,11 @@ void split_at_multiple(const string& str, const string& delims, vector<string>& 
     }
 }
 
+bool is_digits(const string &str)
+{
+    return str.find_first_not_of("0123456789") == string::npos;
+}
+
 bool anagram_pair_test(string s1, string s2) {
     // Check length
     if (s1.size() == s2.size()) {

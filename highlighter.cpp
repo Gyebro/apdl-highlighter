@@ -234,7 +234,7 @@ string highlighter::processLinesTeXCode(string line) {
                 indentationLevel--;
             for (size_t iii = 1; iii <= indentationLevel; iii++) {
                 for (size_t jjj=0; jjj<ucfg.get_indent_size(); jjj++) {
-                    converted += "\\quad;";
+                    converted += "\\quad ";
                 }
             }
             if (trim_spaces(parts[0]) == "*DO")
@@ -250,7 +250,7 @@ string highlighter::processLinesTeXCode(string line) {
                 converted += "," + trim_spaces(parts[i]);
             }
             if (!comment.empty()) {
-                converted += "!" + comment + "\n";
+                converted += "\\quad !" + comment + "\n";
             }
         }
     }

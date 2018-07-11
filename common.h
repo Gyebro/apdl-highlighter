@@ -124,5 +124,6 @@ string hex_string_to_binary(const string s);
 
 string ReplaceAll(string str, const string& from, const string& to);
 
+bool is_digits(const string &str);
 
 #endif
