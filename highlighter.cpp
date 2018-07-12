@@ -177,6 +177,11 @@ string highlighter::processLinesHTMLCode(string line){
         vector<string> splittedString;
         vector<char> splitterDelims;
         split_at_multiple(command, "=+-*/(),", splittedString, splitterDelims, true);
+        if(splittedString[0] == "" && string("*/").find(splitterDelims[0]) != string::npos){ // chopped of the first character of an APDL function
+            splittedString[1] = string(1, splitterDelims[0]) + splittedString[1];
+            splittedString.erase(splittedString.begin());
+            splitterDelims.erase(splitterDelims.begin());
+        }
 //              indent the line
         if (splittedString.size()>1 && splittedString[1] == "ENDDO")
             indentationLevel--;

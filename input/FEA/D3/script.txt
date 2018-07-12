@@ -1,11 +1,19 @@
-!!! FEA D3: HARMONIC ANALYSIS OF AN IN-PLANE FRAME
-!! Initial setup
+!ttl
+! FEA D3: HARMONIC ANALYSIS OF AN IN-PLANE FRAME
+
+!par
+! Initial setup
+
+!comm
 ! White canvas
+
 /RGB,INDEX,100,100,100,0
 /RGB,INDEX,0,0,0,15
 /VIEW,1,1,2,3   
 /ANG,1
 /ESHAPE,1.0
+
+!comm
 ! Define constant parameters
 ! Units: [N],[Nm],[N/m^2=Pa],[N/m]
 
@@ -23,7 +31,9 @@ FEND=350
 M0=5000
 THETAZ0=100
 
-!! SETUP: element types, real constants, materials, sections
+!par
+! SETUP: element types, real constants, materials, sections
+
 /PREP7
 ET,1,BEAM188
 ET,2,MASS21 
@@ -44,20 +54,29 @@ SECTYPE,   2, BEAM, RECT
 SECOFFSET, CENT 
 SECDATA,B2,H2
 
-!! Modeling
+!par
+! Modeling
+
+!comm
 ! Keypoints
+
 K,1,0,0,0
 K,2,0,2,0
 K,3,2,2,0
 K,4,3,2,0
 K,5,3,0,0
+
+!comm
 ! Lines
+
 L,1,2
 L,2,3
 L,3,4
 L,4,5
 
+!comm
 ! Meshing
+
 LESIZE,ALL,0.2
 
 SECNUM,1
@@ -69,53 +88,77 @@ TYPE,2
 REAL,1
 E,NODE(2,2,0)
 
+!comm
 ! Kinematic constraints
+
 DK,1,ALL,0
 DK,5,ALL,0
 D,ALL,UZ,0
 FINISH
 
-!! Modal analysis
-/SOL
+!par
+! Modal analysis
 
+/SOL
 ANTYPE,2
+
+!comm
 ! Analysis setup
+
 MODOPT,LANB,10  
 EQSLV,SPAR  
 MXPAND,10, , ,1 
 MODOPT,LANB,10,0,0, ,OFF
 SOLVE   
 FINISH
+
+!comm
 ! Post processing
+
 /POST1
+
+!skip
 SET,FIRST
 *DO,III,1,10
 PLNSOL, U,SUM, 2,1.0
 /IMAGE,SAVE,strcat(chrval(III),'_eigenshape'),png ! <a href="images/1.gif" target="_blank">Click here to view modeshapes</a>
 SET,NEXT
 *ENDDO
+
+!fig
+! modeshapes_01_10.gif
+! First 10 modeshape of the structure
+
 FINISH
 
-!! Harmonics analyis  
-/SOL
+!par
+! Harmonics analyis  
 
+/SOL
 ANTYPE,3
 
+!comm
 ! Analysis options  
+
 HROPT,FULL  
 HROUT,ON
-
 EQSLV,SPAR,0,   
 
+!comm
 ! Analysis setup
+
 FK,3,FY,F0,0
 
+!comm
 ! Frequency range and number of steps
+
 HARFRQ,FSTART,FEND,   
 NSUBST,(FEND-FSTART)/1,   
 KBC,0
 
+!comm
 ! Damping parameters
+
 ALPHAD,0   
 BETAD,0
 DMPSTR,DAMP
@@ -123,22 +166,36 @@ DMPSTR,DAMP
 SOLVE
 FINISH
 
-!! Postprocessing
+!par
+! Postprocessing
+
 /POST26
 NSOL,2,NODE(2,2,0),U,Y,UY_2
 
 /AXLAB,Y,'A [m]'  
-/AXLAB,X,'f [Hz]' 
+/AXLAB,X,'f [Hz]'
 /XRANGE,FSTART,FEND 
 /GROPT,LOGY,ON
 PLCPLX,0
 PRCPLX,1
 PLVAR,2,
+
+!skip
 /IMAGE,SAVE,uy_amplitude,png ! <a href="images/2.png" target="_blank">Click here to view image</a>
+
+!fig
+! 2.png
+! Amplitude in the y direction.
 
 /GROPT,LOGY,OFF
 /AXLAB,Y,'PHI [DEG]'  
 PLCPLX,1
 PRCPLX,1
 PLVAR,2,
+
+!skip
 /IMAGE,SAVE,uy_phase_angle,png ! <a href="images/3.png" target="_blank">Click here to view image</a>
+
+!fig
+! 3.png
+! Phase angle of the vibration compared to the excitation.
