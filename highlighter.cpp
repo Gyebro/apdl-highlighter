@@ -37,14 +37,14 @@ void highlighter::highlightHTML(string input_file) {
     // Reset line number and indent level
     indentationLevel = 0;
     lineNumber = 0;
-
+    unsigned parNum = 0;
     while(!input.eof()){
         vector<string> lines;
         do{
             getline(input, line, '\n');
             ++lineNumber;
             lines.push_back(line);
-        }while(!line.empty());
+        }while(!input.eof() && !line.empty());
         lines.pop_back();
 
         if(lines[0][0] == '!' && lines[0][1] != ' '){ // this type of line marks the beginning of a 'none-code' environment
@@ -52,6 +52,12 @@ void highlighter::highlightHTML(string input_file) {
                 output << processLinesHTMLSkip(lines);
             else if(lines[0]=="!fig") {
                 output << processLinesHTMLFigure(lines);
+            }
+            else if(lines[0]=="!par"){
+                parNum++;
+                if(parNum > 1)
+                    output << "</div>\n";
+                output << "<button class=\"paragraphtitle\">" + lines[1] + "</button>\n" + "<div class=\"paragraphcontent\">\n";
             }
             else{
                 output << "<div class='" + lines[0].substr(1) + "'>\n<p>\n";
@@ -64,9 +70,9 @@ void highlighter::highlightHTML(string input_file) {
                 output << processLinesHTMLCode(ln) << "\n";
         }
     }
-
+    output << "</div>\n"; // close the last paragraph
     output << get_footer(input_file);
-    output << "</body>\n";
+    output << "\n<script src='../../myScripts.js'></script>\n</body>\n</html>";
     output.close();
 }
 
@@ -85,7 +91,7 @@ void highlighter::highlightTeX(string input_file) {
             getline(input, line, '\n');
             ++lineNumber;
             lines.push_back(line);
-        }while(!line.empty());
+        }while(!input.eof() && !line.empty());
         lines.pop_back();
 
         if(lines[0][0] == '!' && lines[0][1] != ' '){ // this type of line marks the beginning of a 'none-code' environment
@@ -123,7 +129,7 @@ string processLinesHTMLSkip(vector<string>& lines){
 string processLinesHTMLFigure(vector<string>& lines){
     string outputString = "";
     outputString += "<figure>\n<img src='./images/" + lines[1].substr(2) + "' alt='" + lines[1].substr(2) + "'>\n" +
-                    "<figcaption>" + lines[2].substr(2) + "</figcaption>\n</figure>";
+                    "<figcaption>" + lines[2].substr(2) + "</figcaption>\n</figure><br>\n";
     return outputString;
 }
 
@@ -183,14 +189,14 @@ string highlighter::processLinesHTMLCode(string line){
             splitterDelims.erase(splitterDelims.begin());
         }
 //              indent the line
-        if (splittedString.size()>1 && splittedString[1] == "ENDDO")
+        if (splittedString.size()>0 && splittedString[0] == "*ENDDO")
             indentationLevel--;
         for (size_t iii = 1; iii <= indentationLevel; iii++) {
             for (size_t jjj=0; jjj<ucfg.get_indent_size(); jjj++) {
-                converted += "&nbsp;";
+                converted += "&nbsp";
             }
         }
-        if (splittedString.size()>1 && splittedString[1] == "DO")
+        if (splittedString.size()>0 && splittedString[0] == "*DO")
             indentationLevel++;
         for(size_t i = 0; i < splittedString.size(); i++) {
             if(splittedString[i].empty())

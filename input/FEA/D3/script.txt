@@ -116,12 +116,14 @@ FINISH
 ! Post processing
 
 /POST1
+SET,FIRST
+PLNSOL, U,SUM, 2,1.0
 
 !skip
 SET,FIRST
 *DO,III,1,10
 PLNSOL, U,SUM, 2,1.0
-/IMAGE,SAVE,strcat(chrval(III),'_eigenshape'),png ! <a href="images/1.gif" target="_blank">Click here to view modeshapes</a>
+/IMAGE,SAVE,strcat(chrval(III),'_eigenshape'),png
 SET,NEXT
 *ENDDO
 
@@ -181,7 +183,7 @@ PRCPLX,1
 PLVAR,2,
 
 !skip
-/IMAGE,SAVE,uy_amplitude,png ! <a href="images/2.png" target="_blank">Click here to view image</a>
+/IMAGE,SAVE,uy_amplitude,png
 
 !fig
 ! 2.png
@@ -194,7 +196,7 @@ PRCPLX,1
 PLVAR,2,
 
 !skip
-/IMAGE,SAVE,uy_phase_angle,png ! <a href="images/3.png" target="_blank">Click here to view image</a>
+/IMAGE,SAVE,uy_phase_angle,png
 
 !fig
 ! 3.png
