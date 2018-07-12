@@ -19,7 +19,7 @@ vector<string> split(const string &s, char delim) {
     return elems;
 }
 
-void split_at_multiple(const string& str, const string& delims, vector<string>& splittedString, vector<char>& splitterDelims) {
+void split_at_multiple(const string& str, const string& delims, vector<string>& splittedString, vector<char>& splitterDelims, const bool& toTrim) {
     size_t start = 0;
     size_t end;
     for(end = 0; end < str.length(); end++){
@@ -27,7 +27,10 @@ void split_at_multiple(const string& str, const string& delims, vector<string>& 
             if(start==end){//for cases when K,,,,
                 splittedString.push_back("");
             }else{
-                splittedString.push_back(trim_spaces(str.substr(start,end-start)));
+                if(toTrim)
+                    splittedString.push_back(trim_spaces(str.substr(start,end-start)));
+                else
+                    splittedString.push_back(str.substr(start,end-start));
             }
             splitterDelims.push_back(str[end]);
             start = end+1;

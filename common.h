@@ -33,7 +33,7 @@ void split(const std::string &s, char delim, T result) {
 
 vector<string> split(const string &s, char delim);
 
-void split_at_multiple(const string& str, const string& delims, vector<string>& splittedString, vector<char>& splitterDelims);
+void split_at_multiple(const string& str, const string& delims, vector<string>& splittedString, vector<char>& splitterDelims, const bool& toTrim);
 
 /**
  * Check whether string s1 and s2 are anagrams (e.g. abcd and cadb are anagrams)

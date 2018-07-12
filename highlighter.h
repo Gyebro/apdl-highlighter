@@ -13,21 +13,22 @@
 
 class highlighter {
 private:
-    tooltip_config tcfg;
-    parameter_config pcfg;
+    tooltip_config tcfgAPDL;
+    tooltip_config tcfgPARAM;
     user_config ucfg;
 
     unsigned indentationLevel;
     unsigned lineNumber;
 
     string processLinesHTMLCode(string line);
-    string get_tooltip(string keyword, string& url);
+    string get_tooltip(string keyword);
     string get_footer(string input_file);
     string get_product_name();
     string get_version_string();
     string get_timestamp_string();
 public:
-    highlighter(string tooltip_file, string userconfig_file);
+    highlighter(string APDLElemsFile, string userconfig_file);
+    void updateParams(string scriptFile);
     void highlightHTML(string input_file);
     void highlightTeX(string input_file);
 

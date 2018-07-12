@@ -8,16 +8,19 @@
 #include "highlighter.h"
 #include "common.h"
 
-highlighter::highlighter(string tooltip_file, string userconfig_file) :
-        tcfg(tooltip_file),
+highlighter::highlighter(string APDLElemsFile, string userconfig_file) :
+        tcfgAPDL(APDLElemsFile, tooltipType::APDLELEM),
+        tcfgPARAM(),
         ucfg(userconfig_file) {
     indentationLevel = 0;
     lineNumber = 0;
 }
 
+void highlighter::updateParams(string scriptFile){
+    tcfgPARAM = tooltip_config(scriptFile, tooltipType::PARAM);
+}
+
 void highlighter::highlightHTML(string input_file) {
-    // Update scalar parameters
-    pcfg.update(input_file);
     ifstream input(input_file);
     string out_file = input_file.substr(0,input_file.length()-10)+"index.html";
     cout << "Highlighting APDL script '"+input_file+"', output: '"+out_file+"'\n";
@@ -69,7 +72,6 @@ void highlighter::highlightHTML(string input_file) {
 
 void highlighter::highlightTeX(string input_file) {
     // Update scalar parameters
-    pcfg.update(input_file);
     ifstream input(input_file);
     string out_file = input_file.substr(0,input_file.length()-10)+"index.tex";
     cout << "Highlighting APDL script '"+input_file+"', output: '"+out_file+"'\n";
@@ -166,7 +168,7 @@ string highlighter::processLinesHTMLCode(string line){
         }
     }
     if (!command.empty()) {
-        // Check for = sign first, Assume A=B, second part has to processed as well
+        // Check for = sign first, Assume A=B, second part has to be processed as well
         size_t loc = 0;
         if (has_string(command,"=",loc)) {
             converted += "<span class='param'>" + trim_spaces(command.substr(0,loc)) + "</span>";
@@ -174,7 +176,7 @@ string highlighter::processLinesHTMLCode(string line){
         }
         vector<string> splittedString;
         vector<char> splitterDelims;
-        split_at_multiple(command, "=+-*/(),", splittedString, splitterDelims);
+        split_at_multiple(command, "=+-*/(),", splittedString, splitterDelims, true);
 //              indent the line
         if (splittedString.size()>1 && splittedString[1] == "ENDDO")
             indentationLevel--;
@@ -186,18 +188,13 @@ string highlighter::processLinesHTMLCode(string line){
         if (splittedString.size()>1 && splittedString[1] == "DO")
             indentationLevel++;
         for(size_t i = 0; i < splittedString.size(); i++) {
-            if(!splittedString[i].empty())
-            {
-                // assume that it is a function -> try to get the function tooltip for it
-                string url;
-                string tooltip = get_tooltip(splittedString[i], url);
-                if (url.length() > 0) { // it is a function indeed
-                    converted += "<span class='keyword'>";
-                    converted += "<a href='" + url + "' target='_blank'>" + splittedString[i] + "</a>";
-                    converted += tooltip + "</span>";
-                } else { // it is a numeric or scalar
-                    converted +=pcfg.annotate(splittedString[i]);
-                }
+            if(splittedString[i].empty())
+                ;
+            else if(is_digits(splittedString[i])){ // it contains only numbers -> cannot be annotated
+                converted += splittedString[i];
+            }
+            else{
+                converted += get_tooltip(splittedString[i]);
             }
             if(i < splitterDelims.size())
                 converted += splitterDelims[i];
@@ -240,7 +237,7 @@ string highlighter::processLinesTeXCode(string line) {
             if (trim_spaces(parts[0]) == "*DO")
                 indentationLevel++;
             string url;
-            string tooltip = get_tooltip(trim_spaces(parts[0]), url);
+            string tooltip = get_tooltip(trim_spaces(parts[0]));
             if (url.length() > 0) {
                 converted += "\\href{{" + url + "}}{" + trim_spaces(parts[0]) + "}";
             } else {
@@ -257,24 +254,33 @@ string highlighter::processLinesTeXCode(string line) {
     return converted;
 }
 
-string highlighter::get_tooltip(string keyword, string& url) {
+string highlighter::get_tooltip(string keyword) {
     string tt = "";
     string tooltip_newline = "\n";
-    for (tooltip t : tcfg.get_tooltips()) {
+    for (tooltip t : tcfgAPDL.get_tooltips()) {
         if (t.keyword == keyword) {
+            tt += "<span class='keyword'>";
+            tt += "<a href='" + ucfg.get_help_root() + t.url + "' target='_blank'>" + keyword + "</a>";
             tt += "<span class='tooltiptext'>";
 //            Removing the 'unnecessary' text from the tooltip
 //            tt += "<a href='" + t.url + "' target='_blank'>";
 //            tt += t.keyword + "</a>" + tooltip_newline;
             tt += "<b>" + t.usage + "</b>" + tooltip_newline;
             tt += t.description;
-            tt += "</span>";
-            url = ucfg.get_help_root() + t.url;
+            tt += "</span></span>";
+            return tt;
+        }
+    }
+    for (tooltip t : tcfgPARAM.get_tooltips()) {
+        if (t.keyword == keyword) {
+            tt += "<span class='param'>" + keyword
+                  + "<span class='tooltiptext'>" + keyword + " = " + t.description + "</span>"
+                  + "</span>";
             return tt;
         }
     }
     cout << "Line " << lineNumber << " Warning: tooltip for keyword: '" + keyword + "' not found!\n";
-    return tt;
+    return keyword;
 }
 
 string processLinesTeXSkip( vector<string> &lines) {

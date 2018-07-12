@@ -10,7 +10,12 @@
 
 using namespace std;
 
+enum tooltipType{
+    APDLELEM, PARAM
+};
+
 struct tooltip {
+    tooltipType ttT;
     string keyword;
     string usage;
     string description;
@@ -21,23 +26,9 @@ class tooltip_config {
 private:
     vector<tooltip> tooltips;
 public:
-    tooltip_config(string filename);
+    tooltip_config(const string& fileName, tooltipType ttT);
+    tooltip_config(){tooltips = vector<tooltip>();};
     const vector<tooltip> &get_tooltips() const;
-};
-
-struct scalar_param {
-    string param;
-    string value;
-};
-
-class parameter_config {
-private:
-    vector<scalar_param> params;
-public:
-    parameter_config();
-    void update(string filename);
-    string annotate(string argument);
-    const vector<scalar_param> &getParams() const;
 };
 
 class user_config {

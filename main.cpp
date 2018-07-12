@@ -21,10 +21,8 @@ int main() {
     cout << "Running APDL highlighter for HTML\n";
     highlighter h("config/hints_eng.txt", "config/config.txt");
     for (string& filename : filenamesFEA) {
+        h.updateParams("input/FEA/"+filename+"/script.txt");
         h.highlightHTML("input/FEA/"+filename+"/script.txt");
-    }
-    cout << "Running APDL highlighter for TeX\n";
-    for (string& filename : filenamesFEA) {
         h.highlightTeX("input/FEA/"+filename+"/script.txt");
     }
 //    cout << "Warning: Hungarian hints should be used in case of hungarian courses\n";
