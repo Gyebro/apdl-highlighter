@@ -1,0 +1,88 @@
+\documentclass[magyar]{apdl_mod}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyvrb}
+
+\begin{document}
+
+\codefile{proba_mod.txt}
+
+\title{Téglalap hálózása}
+\date{2018/08/15}
+\course{Bevezetés a síkidomok hálózásába}
+\tasknum{1/b}
+
+% Elérhető szintek: 1: essential, 2: default, 3: verbose
+\detailLevelPDF{3}
+\detailLevelAPDL{1}
+
+\maketitle
+
+\task{Itt kezdődik a feladatkitűzés. Vegyünk egy $a=3\unit{cm}$ széles és $b=2\unit{cm}$ magas téglalapot. Hálózzuk be a téglalapot $t=0.5\unit{cm}$ oldalhosszúságú négyzet alakú, négy csomópontos síkelemekkel.}
+
+\section{Geometria létrehozása}
+
+% A comment parancs első opcionális argumentuma a fontosság.
+% 1: nagyon fontos, (essential detail level)
+% 2: normál fontosságú (default detail level)
+% 3: nem fontos (verbose detail level)
+% Az argumentum alapértéke 2.
+
+\comment{Először tároljuk el a szükséges paramétereket:}
+
+\comment[3]{Ez a komment egyáltalán nem fontos.}
+
+\comment[1]{paraméterek}
+
+\code{
+a=0.03; 
+b=0.02;
+t=0.005
+}
+
+\comment[3]{Elindítjuk a Preprocessor folyamatot. Ez szükséges ahhoz, hogy elérhetőek legyenek a következő parancsok.}
+
+\comment{preprocessor folyamat}
+\code{/PREP7}
+
+\comment[3]{Először a sarokpontokat hozzuk létre, majd a téglalap oldalait, végül létrehozzuk a felületet.}
+
+\comment[1]{pontok rajzolása}
+\ccode{4cm}
+{Megrajzoljuk a kulcspontokat. Az első paraméter a pont számát, a további kettő a koordinátáikat jelöli.}
+{
+K,1,0,0; 
+K,2,a,0;
+K,3,a,b;
+K,4,0,b
+}
+
+\comment[1]{vonalak létrehozása}
+\ccode[1]{4cm}
+{Megrajzoljuk a vonalakat. A két paraméter a kezdő- és végpont sorszáma.}
+{
+L,1,2;
+L,2,3;
+L,3,4;
+L,4,1;
+}
+
+\comment[3]{Azért ide gyün még egy kis szöveg.}
+
+\comment[1]{felület létrehozása}
+\ccode[3]{4cm}{A négy vonal segítségével létrehozzuk a téglalapot.}{AL,1,2,3,4}
+
+\comment{El is készítettünk ezt a rendkívül bonyolult geometriát.}
+
+\section{Hálózás}
+
+\comment[1]{elemtípus kiválasztása (PLANE 182)}
+\ccode[3]{4cm}{Kiválasztjuk az elemtípust, mely a PLANE182 nevű, négy csomópontos kvadratikus síkelem.}
+{ET,1,PLANE182}
+
+\code{AESIZE,1,t; MSHAPE,0}
+
+\comment[3]{Végül nem marad más dolgunk, mint elvégezni a hálózást és örülni a fejünknek.}
+
+\code{AMESH,ALL}
+
+\end{document}
