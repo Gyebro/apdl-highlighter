@@ -1,0 +1,79 @@
+\documentclass[magyar]{apdl}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyvrb}
+
+\begin{document}
+
+\codefile{proba.txt}
+
+\title{Téglalap hálózása}
+\date{2018/08/15}
+\course{Bevezetés a síkidomok hálózásába}
+\tasknum{1/b}
+
+\maketitle
+
+\task{Itt kezdődik a feladatkitűzés. Vegyünk egy $a=3\unit{cm}$ széles és $b=2\unit{cm}$ magas téglalapot. Hálózzuk be a téglalapot $t=0.5\unit{cm}$ oldalhosszúságú négyzet alakú, négy csomópontos síkelemekkel.}
+
+\section{Geometria létrehozása}
+
+Először tároljuk el a szükséges paramétereket:
+
+\comment{Ez a komment nem látszik a dokumentumban.}
+
+\comment{paraméterek}
+
+\code{
+a=0.03; 
+b=0.02;
+t=0.005
+}
+
+Elindítjuk a \emph{Preprocessor} folyamatot. Ez szükséges ahhoz, hogy elérhetőek legyenek a következő parancsok.
+
+\comment{preprocessor folyamat}
+\code{/PREP7}
+
+Először a sarokpontokat hozzuk létre, majd a téglalap oldalait, végül létrehozzuk a felületet.
+
+\comment{pontok rajzolása}
+\ccode{4cm}
+{Megrajzoljuk a kulcspontokat. Az első paraméter a pont számát, a további kettő a koordinátáikat jelöli.}
+{
+K,1,0,0; 
+K,2,a,0;
+K,3,a,b;
+K,4,0,b
+}
+
+\comment{vonalak létrehozása}
+\ccode{4cm}
+{Megrajzoljuk a vonalakat. A két paraméter a kezdő- és végpont sorszáma.}
+{
+L,1,2;
+L,2,3;
+L,3,4;
+L,4,1;
+}
+
+Azért ide gyün még egy kis szöveg.
+
+\comment{felület létrehozása}
+\ccode{4cm}{A négy vonal segítségével létrehozzuk a téglalapot.}{AL,1,2,3,4}
+
+El is készítettünk ezt a rendkívül bonyolult geometriát.
+
+\section{Hálózás}
+
+\comment{elemtípus kiválasztása (PLANE 182)}
+\ccode{4cm}{Kiválasztjuk az elemtípust, mely a PLANE182 nevű, négy csomópontos kvadratikus síkelem.}
+{ET,1,PLANE182}
+
+
+\code{AESIZE,1,t; MSHAPE,0}
+
+Végül nem marad más dolgunk, mint elvégezni a hálózást és örülni a fejünknek.
+
+\code{AMESH,ALL}
+
+\end{document}
