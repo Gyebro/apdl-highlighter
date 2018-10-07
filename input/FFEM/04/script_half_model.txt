@@ -1,0 +1,114 @@
+!!! 2D TRUSS structure - symmetry conditions and beam diagrams
+
+! Initial setup
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15
+
+!! Define constant parameters
+! Units: [N],[Nm],[N/m^2=Pa],[N/m]
+a = 1
+b = 6
+c = 1
+Exx = 210e9
+nu = 0.3
+p = 10e3
+F0 = 2e3
+F1 = p*1/2
+AI40 = 1/2*7.85e-4
+AI80 = 7.85e-4
+
+AI200 = 33.5e-4
+
+!! Preprocessing
+/PREP7
+
+! add finite element type
+ET,1,LINK180
+
+! define material properties
+MPTEMP
+MPTEMP,1,0  
+MPDATA,EX,1,,Exx
+MPDATA,PRXY,1,,nu
+
+! define crossection properties
+! I40
+SECTYPE,1,LINK,,I40
+SECDATA,AI40
+
+! I80
+SECTYPE,2,LINK,,I80
+SECDATA,AI80
+
+! I200
+SECTYPE,3,LINK,,I200
+SECDATA,AI200
+
+!! Modeling
+! Create keypoints
+K,1,0,c
+K,2,a,0
+K,3,a,c
+K,4,(b/2-a)/2 + a,c
+K,5,b/2,0
+K,6,b/2,c
+
+! Create the lines
+*DO,I,1,5
+L,I,I+1
+*ENDDO
+L,1,3
+L,2,4
+L,2,5
+L,4,6
+!! Meshing
+LESIZE,ALL,,,1
+! I200
+SECN,3
+LSEL,S,LOC,Y,c
+LMESH,ALL
+! I40
+SECN,1
+LSEL,S,LOC,X,b/2
+LMESH,ALL
+! I80
+SECN,2
+LSEL,INVE
+LSEL,U,LOC,Y,c
+LMESH,ALL
+
+ALLSEL,ALL
+
+! kinematic and dynamic constraints
+D,NODE(0,c,0),UY,0
+D,NODE(b/2,0,0),UX,0
+D,NODE(b/2,c,0),UX,0
+! FK, 3, FX, F0 ! dynamic constraint based on keypoint number
+F,NODE(a,c,0),FX,F0
+
+
+F,NODE(a,c,0),FY,-F1
+F,NODE((b/2-a)/2+a,c,0),FY,-2*F1
+F,NODE(b/2,c,0),FY,-2*F1
+F,NODE((b/2-a)/2+b/2,c,0),FY,-2*F1
+F,NODE(b-a,c,0),FY,-F1
+FINISH  
+/SOL
+SOLVE
+!! Post processing
+/POST1
+! Listing the displacement results
+PRNSOL,U,X
+PRNSOL,U,Y
+! Plotting the displacement results
+PLNSOL, U,X, 1,1.0  
+PLNSOL, U,Y, 1,1.0
+! Plotting the axial forces in the trusses
+ETABLE,FX,SMISC,1
+PLETAB,FX,NOAV
+!
+PLLS,FX,FX,0.3,0,0
+! Axial stresses
+ETABLE,SIGXI,LS,1
+ETABLE,SIGXJ,LS,2
+PLLS,SIGXI,SIGXJ,1,0,0
