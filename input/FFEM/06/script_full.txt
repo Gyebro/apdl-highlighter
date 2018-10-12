@@ -1,0 +1,165 @@
+! Initial setup
+/RGB,INDEX,100,100,100,0
+/RGB,INDEX,0,0,0,15
+
+L1 = 2
+L2 = 1.5
+L3 = 0.5
+L4 = 1
+A1 = 10e-4
+A2 = 40e-4
+A3 = 5e-4
+I1 = 100e-8
+I2 = 1000e-8
+I3 = 20e-8
+H1 = 6.2e-3
+H2 = 13.4e-3
+H3 = 3.6e-3
+Exx = 210e9
+NU = 0.3
+F0 = 200e3
+
+/PREP7
+ET,1,BEAM3
+R,1,A1,I1,H1
+R,2,A2,I2,H2
+R,3,A3,I3,H3
+
+! define material properties
+MPTEMP
+MPTEMP,1,0  
+MPDATA,EX,1,,Exx
+MPDATA,PRXY,1,,NU
+
+K,1,0,0
+K,2,0,L2
+K,3,0,L1
+K,4,L3,L1
+K,5,L4,L1
+K,6,2*L4-L3,L1
+K,7,2*L4,L1
+K,8,2*L4,L2
+K,9,2*L4,0
+
+L,1,2
+L,2,3
+L,7,8
+L,8,9
+
+*DO,I,3,6
+L,I,I+1
+*ENDDO
+
+L,2,4
+L,6,8
+
+LESIZE,ALL,,,1
+
+LSEL,S,,,1,4
+LMESH,ALL
+
+LSEL,S,,,5,8
+REAL,2
+LMESH,ALL
+
+LSEL,S,,,9,10
+REAL,3
+LMESH,ALL
+
+ALLSEL,ALL
+
+/ESHAPE,1.0
+/VIEW,1,1,2,3
+
+/REPLOT
+KSEL,S,,,1,9,8
+DK,ALL,UX,0 
+DK,ALL,UY,0
+
+ALLSEL,ALL
+FK,5,FY,-F0
+FINISH
+/SOL
+SOLVE
+/POST1
+/VIEW,1,,,1 
+/ANG,1
+PLNSOL, U,Y, 0,1.0
+!
+! axial stress
+ETABLE,SDIRI,LS,1
+ETABLE,SDIRJ,LS,4
+!
+! bending stress +y
+ETABLE,SBYTI,LS,2
+ETABLE,SBYTJ,LS,5
+!
+! bending stress -y
+ETABLE,SBYBI,LS,3
+ETABLE,SBYBJ,LS,6
+!
+! maximum stress (normal + bending)
+ETABLE,SMAXI,NMISC, 1
+ETABLE,SMAXJ,NMISC, 3
+!
+! minimum stress (normal + bending)
+ETABLE,SMINI,NMISC, 2
+ETABLE,SMINJ,NMISC, 4
+!
+! section force, normal
+ETABLE,MFORXI,SMISC, 1
+ETABLE,MFORXJ,SMISC, 7
+!
+! section force, shear
+ETABLE,MFORYI,SMISC, 2
+ETABLE,MFORYJ,SMISC, 8
+!
+! section force, moment
+ETABLE,MMOMZI,SMISC, 6
+ETABLE,MMOMZJ,SMISC, 12
+!
+! axial strain
+ETABLE,EPELDIRI,LEPEL, 1
+ETABLE,EPELDIRJ,LEPEL, 4
+!
+! bending strain +y
+ETABLE,EPELBYTI,LEPEL, 1
+ETABLE,EPELBYTJ,LEPEL, 4
+!
+! bending strain -y
+ETABLE,EPELBYBI,LEPEL, 1
+ETABLE,EPELBYBJ,LEPEL, 4
+!
+/ESHAPE,0.0
+PLLS,SDIRI,SDIRJ,1,0,0
+/IMAGE,SAVE,axial_stress,png
+!
+PLLS,SBYTI,SBYTJ,1,0,0
+/IMAGE,SAVE,bending_stress_ty,png
+!
+PLLS,SBYBI,SBYBJ,1,0,0
+/IMAGE,SAVE,bending_stress_by,png
+!
+PLLS,SMAXI,SMAXJ,1,0,0
+/IMAGE,SAVE,max_stress,png
+!
+PLLS,SMINI,SMINJ,1,0,0
+/IMAGE,SAVE,min_stress,png
+!
+PLLS,MFORXI,MFORXJ,1,0,0
+/IMAGE,SAVE,normal_force,png
+!
+PLLS,MFORYI,MFORYJ,1,0,0
+/IMAGE,SAVE,shear_force,png
+!
+PLLS,MMOMZI,MMOMZJ,1,0,0
+/IMAGE,SAVE,bending_moment,png
+!
+PLLS,EPELDIRI,EPELDIRJ,1,0,0
+/IMAGE,SAVE,axial_strain,png
+!
+PLLS,EPELBYTI,EPELBYTJ,1,0,0
+/IMAGE,SAVE,bending_strain_ty,png
+!
+PLLS,EPELBYBI,EPELBYBJ,1,0,0
+/IMAGE,SAVE,bending_strain_by,png
