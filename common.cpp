@@ -2,8 +2,8 @@
 // Created by Gyebro on 2017. 12. 01..
 //
 
-#include <c++/algorithm>
-#include <c++/bitset>
+#include <algorithm>
+#include <bitset>
 #include "common.h"
 
 string file_to_string(string filename) {

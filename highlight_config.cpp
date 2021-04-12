@@ -3,7 +3,7 @@
 //
 
 #include "highlight_config.h"
-#include <c++/fstream>
+#include <fstream>
 #include "common.h"
 
 html_rule highlight_config::generate_html_rule(string line) {

@@ -116,8 +116,8 @@ LSWRITE,3
 TIME,30
 FINISH
 /PREP7
-! Remove the load at the middle of the beam
-FDELE,12,FY
+! Remove the load at the middle of the beam (set to 0 instead of deleting to have ramped transition)
+F,12,FY,0
 FINISH  
 /SOL
 LSWRITE,4
@@ -126,8 +126,8 @@ LSWRITE,4
 TIME,50
 FINISH
 /PREP7
-! Remove the load from the end keypoint
-FKDELE,2,FX
+! Remove the load from the end keypoint (set to 0 instead of deleting to have ramped transition)
+FK,2,FX,0
 FINISH  
 /SOL
 LSWRITE,5

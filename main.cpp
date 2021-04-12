@@ -1,4 +1,4 @@
-#include <c++/iostream>
+#include <iostream>
 #include "highlighter.h"
 
 using namespace std;
